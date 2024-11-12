@@ -1,0 +1,207 @@
+// color pallet
+$col-primary: #2E4473;
+$col-primary-light: #E4EDF3;
+$col-secondary: #A1B8CF;
+$col-secondary-bg: #F5F9FB;
+$col-dark-grey: #C5C5C5;
+$col-light-grey: #F8F8F8;
+$col-red-prim : #C0392B;
+$col-red-sec : #F9EBEA;
+$col-yellow-prim : #FAB872;
+$col-yellow-sec : #FEF6E7;
+$col-green-prim : #588157;
+$col-green-sec : #e9f5eb;
+$body-bg: white;
+
+
+// tabsets
+$tabset-border-color: $col-primary;
+
+
+// fonts
+$h1-font-size: 30px;
+$h1-font-weight: 400;
+
+$h2-font-size: 27px; 
+$h2-font-weight: 300;
+
+$h3-font-size: 25px; 
+$h3-font-weight: 300;
+
+$h4-font-size: 23px; 
+$h4-font-weight: 300;
+
+$weight-title: 600;
+
+
+// table of contents
+$toc-color: $col-primary;
+$toc-inactive-color: $col-light-grey;
+$content-padding-top: 1px;
+
+
+// nav features
+$navbar-bg: $col-secondary-bg;
+
+// code 
+$code-bg: $col-primary-light;
+$code-color: $col-primary; 
+
+$code-block-bg: $col-secondary-bg;
+$code-block-border-color: $col-primary;
+
+
+
+// styles ------------------------------------------------------------------------------------------
+
+// fonts
+h1, h2, h3 {
+  color: $col-primary;
+}
+
+h1.title {
+  font-size: 50px;
+  font-weight: 600;
+  color: $col-primary;
+}
+
+h1 {
+  font-weight: $h1-font-weight;
+}
+
+h2 {
+  font-weight: $h2-font-weight;
+}
+
+h3 {
+  font-weight: $h3-font-weight;
+}
+
+h4{
+  font-weight: $h4-font-weight;
+}
+
+p.subtitle {
+  font-style: italic;
+  color: darken($col-dark-grey, 50%);
+}
+
+.author {
+  margin-bottom: 0;
+}
+
+
+// block quotes
+.blockquote {
+  font-size: 1em;
+  color: $col-primary;
+  border-left-color: $col-primary;
+}
+
+/* Inline code */
+code {
+  border-radius: 5px;
+  color:$col-primary;
+}
+
+/* Inline code */
+.quarto-title-block .quarto-title-banner {
+  background-image: url(img/epicentre_msf_logo_transparent.png);
+  background-size: 250px;
+  background-position: left;
+  background-repeat: no-repeat;
+  padding-left: 50px;
+  padding-right: 50px;
+  background-origin: content-box;
+}
+
+/* Customize code block and output */
+.code {
+  
+  border-radius: 1px;
+}
+
+/* call outs style */ 
+div.callout-note.callout{
+  border-left-color: $col-primary;
+  background-color: $col-secondary-bg;
+  border-radius: 10px;
+}
+
+div.callout-caution.callout{
+  border-left-color: $col-yellow-prim;
+  background-color: $col-yellow-sec;
+  border-radius: 10px;
+}
+
+div.callout-important.callout{
+  border-left-color: $col-red-prim;
+  background-color: $col-red-sec;
+  border-radius: 10px;
+}
+
+div.callout-tip.callout{
+  border-left-color: $col-green-prim;
+  background-color: $col-green-sec;
+  border-radius: 10px;
+}
+
+/* TOC styling */
+h2#toc-title{
+  font-weight: 700;
+}
+
+.nav-link {
+  border-left-color: $col-primary ;
+  border-left-width: thick;
+  border-radius: 3px;
+}
+
+.nav-link:hover, .nav-link:focus, .nav-link.active {
+  background-color: $col-secondary-bg;
+  font-weight: 700;
+}
+
+/* book */
+.sidebar-title {
+  font-weight: 700;
+  color: $col-primary;
+}
+
+.sidebar-item-text:hover, .sidebar-item-text:focus, .sidebar-item-text.sidebar-link.active {
+  background-color: $col-secondary-bg;
+  color:$col-primary;
+  font-weight: 700;
+}
+
+.reveal .slide-background-content {
+  background-image: linear-gradient(#80b882, #37578b) !important;
+}
+
+/* nice hyperlinks */
+p>a {
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: 400;
+  color: $col-primary;
+  position: relative;
+}
+
+p>a::after {
+  text-decoration: none;
+  content: "";
+  background: $col-yellow-sec;
+  width: 105%;
+  position: absolute;
+  bottom: .5px;
+  height: 5px;
+  left: -2px;
+  right: 0;
+  z-index: -1;
+  transition: all .3s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+
+p>a:hover::after {
+  height: calc(100%)
+}
+
