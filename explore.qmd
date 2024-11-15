@@ -1,0 +1,13 @@
+---
+title: Explore
+description: 'Everything everywhere all at once'
+listing:
+  categories: unnumbered
+  type: grid
+  image-placeholder: img/under-construction.svg
+  contents:
+    - 'sessions_core/*.qmd'
+    - 'sessions_extra/*.qmd'
+---
+
+Choose your own adventure by browsing all available sessions.

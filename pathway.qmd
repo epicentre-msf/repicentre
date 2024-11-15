@@ -1,0 +1,14 @@
+---
+title: Pathway
+description: 'An intro to R starting from the very beginning'
+listing:
+  - id: articles-links
+    sort: false
+    contents:
+      - 'sessions_core/*.qmd'
+    
+---
+
+These sessions can be followed in order to get a baseline level in R. The series assumes **no prior experience in R** and is suitable for beginners.
+
+Looking for more? Want more flexibility? Consider browsing the [full session catalog](explore.html).
