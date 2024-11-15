@@ -1,0 +1,104 @@
+---
+title: Example Core Session
+description: Just an example
+date: last-modified
+author:
+  - name: Author 1
+    email: email.author.1@epicentre.msf.org
+  - name: Author 2
+    email: email.author.2@epicentre.msf.org
+image: ../img/under_construction.svg
+include-before-body:
+  text: <script type="text/javascript" src="../script.js"></script>
+categories:
+  - Core
+  - Example
+---
+
+```{r setup}
+#| include: false
+
+# library(fs)         # work with path
+# library(here)       # create relative paths
+# library(rio)        # import files
+# library(janitor)    # data cleaning
+# library(lubridate)  # date handling
+# library(tidyverse)  # data science 
+
+```
+
+## Text Formatting
+
+1. *Italic* and **Bold** will turn out like this
+
+2. Block quotes will look like this:
+
+> This is a `blockquote` made using `>` 
+
+3. Tooltips are trickier to use than in a normal... for the moment we can perhaps use footnotes^[example footnote "tooltip"].
+
+<span tooltip-position="top" tooltip="Example tooltip text">example</span>
+
+<p class="muted">Placeholder text to demonstrate some <a href="#" data-bs-toggle="tooltip" data-bs-title="Default tooltip">inline links</a> with tooltips. This is now just filler, no killer. Content placed here just to mimic the presence of <a href="#" data-bs-toggle="tooltip" data-bs-title="Another tooltip">real text</a>. And all that just to give you an idea of how tooltips would look when used in real-world situations. So hopefully you've now seen how <a href="#" data-bs-toggle="tooltip" data-bs-title="Another one here too">these tooltips on links</a> can work in practice, once you use them on <a href="#" data-bs-toggle="tooltip" data-bs-title="The last tip!">your own</a> site or project.
+</p>
+
+4. Content can also go in the margin, this is another option to get around the tooltip issue -->
+
+::: {.column-margin}
+
+Hi! I'm a side note!
+
+:::
+
+## Code
+Inline coding will turn out `like this`
+
+Code blocks will appear like this:
+```{r}
+print('hello world')
+```
+
+Note, this website has **code linking** activated, so you can click on functions to get their documentation.
+
+
+## Callouts
+
+::: {.callout-note}
+**This is a Note** using `{.callout-note}`
+:::
+
+::: {.callout-caution}
+**This is a warning** using `{.callout-caution}`. They can be collapsed using `collapse="true"` 
+:::
+
+::: {.callout-important}
+**This is an important note** using `{.callout-important}`
+:::
+
+
+
+## Tabsets
+::: {.panel-tabset .nav-pills}
+
+## One
+Content that will show under the first tab
+
+## Two
+Content that will show under the second tab
+
+## Three
+Content that will show under the third tab
+:::
+
+
+## Images
+You can insert images by referring to their relative path using markdown syntax or HTML. Note that the markdown syntax does not allow you to modify image size. In either case, make sure to add alt text for accessibility.
+
+Markdown style syntax:
+
+![example image alt text](../img/under_construction.svg)
+
+HTML style syntax (with specification of desired size):
+
+<img src='../img/under_construction.svg' alt='example image alt (html)' width='200'/>
+
