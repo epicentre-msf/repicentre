@@ -1,0 +1,15 @@
+[
+  {
+    "listing": "/pathway.html",
+    "items": [
+      "/sessions_core/example.html"
+    ]
+  },
+  {
+    "listing": "/explore.html",
+    "items": [
+      "/sessions_extra/example.html",
+      "/sessions_core/example.html"
+    ]
+  }
+]
