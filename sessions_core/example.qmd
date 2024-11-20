@@ -1,5 +1,5 @@
 ---
-title: Example Core Session
+title: Second Example Core Session
 description: Just an example
 date: last-modified
 author:
@@ -13,6 +13,7 @@ include-before-body:
 categories:
   - Core
   - Example
+  - For fun
 ---
 
 ```{r setup}
@@ -35,20 +36,24 @@ categories:
 
 > This is a `blockquote` made using `>` 
 
-3. Tooltips are trickier to use than in a normal... for the moment we can perhaps use footnotes^[example footnote "tooltip"].
+3. Tooltips can be done using a classic html style:
+<span class='hoverinfo' data-toggle='tooltip' title='test'>example</span>
 
-<span tooltip-position="top" tooltip="Example tooltip text">example</span>
+4. If relevant, you might also want to use a footnote^[example footnote] instead of a tooltip.
 
-<p class="muted">Placeholder text to demonstrate some <a href="#" data-bs-toggle="tooltip" data-bs-title="Default tooltip">inline links</a> with tooltips. This is now just filler, no killer. Content placed here just to mimic the presence of <a href="#" data-bs-toggle="tooltip" data-bs-title="Another tooltip">real text</a>. And all that just to give you an idea of how tooltips would look when used in real-world situations. So hopefully you've now seen how <a href="#" data-bs-toggle="tooltip" data-bs-title="Another one here too">these tooltips on links</a> can work in practice, once you use them on <a href="#" data-bs-toggle="tooltip" data-bs-title="The last tip!">your own</a> site or project.
-</p>
-
-4. Content can also go in the margin, this is another option to get around the tooltip issue -->
+5. Content can also go in the margin -->
 
 ::: {.column-margin}
 
 Hi! I'm a side note!
 
 :::
+
+6. Finally, you can fold entire sections:
+<details>
+  Surprise ! 
+</details>
+
 
 ## Code
 Inline coding will turn out `like this`
@@ -62,18 +67,24 @@ Note, this website has **code linking** activated, so you can click on functions
 
 
 ## Callouts
+Things are a bit quick and dirty at the moment. Ultimately I will make nice new classes in a full **repicentre** theme that can be used for exercised etc. For the moment we will just frankenstine some existing callouts.
 
 ::: {.callout-note}
-**This is a Note** using `{.callout-note}`
+**This is a callout** using `{.callout-note}`
 :::
 
-::: {.callout-caution}
-**This is a warning** using `{.callout-caution}`. They can be collapsed using `collapse="true"` 
+::: {.callout .callout-look}
+**Look.** This callout can be used for "observation activities" (ie: look at this thing in the console). Eventually it will be more beautiful, just make sure you use this class. 
+
+**WARNING.** For the moment this class looks just like the "code activities" class, please make sure you use the right one.
 :::
 
-::: {.callout-important}
-**This is an important note** using `{.callout-important}`
+::: {.callout .callout-code}
+**Code.** This callout can be used for "code activities". Eventually it will be more beautiful, just make sure you use this class. 
+
+**WARNING.** For the moment this class looks just like the "observation activities" class, please make sure you use the right one.
 :::
+
 
 
 
