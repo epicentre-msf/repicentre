@@ -1,0 +1,71 @@
+---
+title: Session Title
+description: Short description (appears on cards in pathway / explore pages)
+date: last-modified
+image: ../img/under_construction.svg
+params: 
+  solutions: FALSE
+  sub_title: "**------ With Solutions ------**"
+categories:
+  - Category 1
+  - Category 2
+---
+
+```{r setup}
+#| include: false
+#| eval: true
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+
+solutions <- params$solutions
+
+# library(...)         # what does this library do?
+```
+
+
+Objectives
+----------------------------------------------------------------------------------------------------
+- Objective 1
+- Objective 2
+
+
+Setup
+----------------------------------------------------------------------------------------------------
+::: {.callout .callout-code}
+**SETUP.** Description of setup for the tutorial (what packages to use, what to name the file, etc.).
+:::
+
+
+Main Section
+----------------------------------------------------------------------------------------------------
+Lorem ipsum...
+
+```{r}
+print('some example code')
+```
+
+::: {.callout-note}
+Note about something of interest, like a best practice or helpful hint.
+:::
+
+::: {.callout .callout-look}
+**Look.** Description of something participants should observe.
+:::
+
+...lorem ispum again !
+
+
+::: {.callout .callout-code}
+**Code.** Description of something participants should code themselves.
+:::
+
+**Don't forget to include a solution**
+```{r include=solutions}
+#| eval: TRUE
+# Solution
+
+print('hello back!')
+```
+
+
+
+

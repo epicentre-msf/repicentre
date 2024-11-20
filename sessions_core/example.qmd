@@ -11,14 +11,9 @@ categories:
 
 ```{r setup}
 #| include: false
+#| eval: true
 
-# library(fs)         # work with path
-# library(here)       # create relative paths
-# library(rio)        # import files
-# library(janitor)    # data cleaning
-# library(lubridate)  # date handling
-# library(tidyverse)  # data science 
-
+solutions <- TRUE
 ```
 
 ## Text Formatting
@@ -54,6 +49,20 @@ Inline coding will turn out `like this`
 Code blocks will appear like this:
 ```{r}
 print('hello world')
+```
+
+**Warning:** For these tutorials, code blocks are **not evaluated** by default. If you want to evaluate them, you must indicate it specifically.
+```{r}
+#| eval: TRUE
+
+print('hello back!')
+```
+
+Additionally, **solution** code blocks are not included by default, including them is done by setting the `solutions` parameter (in the YAML) to `TRUE` when rendering.
+```{r include=solutions}
+#| eval: TRUE
+
+print('hello back!')
 ```
 
 Note, this website has **code linking** activated, so you can click on functions to get their documentation.
