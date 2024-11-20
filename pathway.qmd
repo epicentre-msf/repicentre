@@ -11,4 +11,9 @@ listing:
 
 These sessions can be followed in order to get a baseline level in R. The series assumes **no prior experience in R** and is suitable for beginners.
 
+Tooltips can be done using a classic html style:
+<span class='hoverinfo' data-toggle='tooltip' title='test'>example</span>
+
+<button id="myButton">My Button</button>
+
 Looking for more? Want more flexibility? Consider browsing the [full session catalog](explore.html).

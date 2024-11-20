@@ -1,6 +1,9 @@
 ---
 home:
   id: home
+  toc: false
 ---
 
 ![](img/under_construction.svg)
+
+work in progress... check back later.
