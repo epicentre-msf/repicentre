@@ -4,28 +4,28 @@
     "href": "sessions_extra/example.html",
     "title": "Example Satellite Session",
     "section": "",
-    "text": "Italic and Bold will turn out like this\nBlock quotes will look like this:\n\n\nThis is a blockquote made using &gt;\n\n\nTooltips are trickier to use than in a normal… for the moment we can perhaps use footnotes1.\nContent can also go in the margin, this is another option to get around the tooltip issue –&gt;\n\n\n\nHi! I’m a side note!"
+    "text": "Italic and Bold will turn out like this\nBlock quotes will look like this:\n\n\nThis is a blockquote made using &gt;\n\n\nTooltips can be done using a classic html style: example\nIf relevant, you might also want to use a footnote1 instead of a tooltip.\nContent can also go in the margin –&gt;\n\n\n\nHi! I’m a side note!\n\nFinally, you can fold entire sections:\n\nSurprise !"
   },
   {
     "objectID": "sessions_extra/example.html#text-formatting",
     "href": "sessions_extra/example.html#text-formatting",
     "title": "Example Satellite Session",
     "section": "",
-    "text": "Italic and Bold will turn out like this\nBlock quotes will look like this:\n\n\nThis is a blockquote made using &gt;\n\n\nTooltips are trickier to use than in a normal… for the moment we can perhaps use footnotes1.\nContent can also go in the margin, this is another option to get around the tooltip issue –&gt;\n\n\n\nHi! I’m a side note!"
+    "text": "Italic and Bold will turn out like this\nBlock quotes will look like this:\n\n\nThis is a blockquote made using &gt;\n\n\nTooltips can be done using a classic html style: example\nIf relevant, you might also want to use a footnote1 instead of a tooltip.\nContent can also go in the margin –&gt;\n\n\n\nHi! I’m a side note!\n\nFinally, you can fold entire sections:\n\nSurprise !"
   },
   {
     "objectID": "sessions_extra/example.html#code",
     "href": "sessions_extra/example.html#code",
     "title": "Example Satellite Session",
     "section": "Code",
-    "text": "Code\nInline coding will turn out like this\nCode blocks will appear like this:\n\nprint('hello world')\n\n[1] \"hello world\"\n\n\nNote, this website has code linking activated, so you can click on functions to get their documentation."
+    "text": "Code\nInline coding will turn out like this\nCode blocks will appear like this:\n\nprint('hello world')\n\nWarning: For these tutorials, code blocks are not evaluated by default. If you want to evaluate them, you must indicate it specifically.\n\nprint('hello back!')\n\n[1] \"hello back!\"\n\n\nAdditionally, solution code blocks are not included by default, including them is done by setting the solutions parameter (in the YAML) to TRUE when rendering.\n\nprint('hello back!')\n\n[1] \"hello back!\"\n\n\nNote, this website has code linking activated, so you can click on functions to get their documentation."
   },
   {
     "objectID": "sessions_extra/example.html#callouts",
     "href": "sessions_extra/example.html#callouts",
     "title": "Example Satellite Session",
     "section": "Callouts",
-    "text": "Callouts\n\n\n\n\n\n\nNote\n\n\n\nThis is a Note using {.callout-note}\n\n\n\n\n\n\n\n\nCaution\n\n\n\nThis is a warning using {.callout-caution}. They can be collapsed using collapse=\"true\"\n\n\n\n\n\n\n\n\nImportant\n\n\n\nThis is an important note using {.callout-important}"
+    "text": "Callouts\nThings are a bit quick and dirty at the moment. Ultimately I will make nice new classes in a full repicentre theme that can be used for exercised etc. For the moment we will just frankenstine some existing callouts.\n\n\n\n\n\n\nNote\n\n\n\nThis is a callout using {.callout-note}\n\n\n\n\n\n\n\n\nLook. This callout can be used for “observation activities” (ie: look at this thing in the console). Eventually it will be more beautiful, just make sure you use this class.\nWARNING. For the moment this class looks just like the “code activities” class, please make sure you use the right one.\n\n\n\n\n\n\n\n\n\nCode. This callout can be used for “code activities”. Eventually it will be more beautiful, just make sure you use this class.\nWARNING. For the moment this class looks just like the “observation activities” class, please make sure you use the right one."
   },
   {
     "objectID": "sessions_extra/example.html#tabsets",
@@ -46,14 +46,14 @@
     "href": "sessions_extra/example.html#footnotes",
     "title": "Example Satellite Session",
     "section": "Footnotes",
-    "text": "Footnotes\n\nexample footnote “tooltip”↩︎"
+    "text": "Footnotes\n\nexample footnote↩︎"
   },
   {
     "objectID": "pathway.html",
     "href": "pathway.html",
     "title": "Pathway",
     "section": "",
-    "text": "These sessions can be followed in order to get a baseline level in R. The series assumes no prior experience in R and is suitable for beginners.\nTooltips can be done using a classic html style: example\n\nMy Button\n\nLooking for more? Want more flexibility? Consider browsing the full session catalog.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSecond Example Core Session\n\n\n\n\n\nJust an example\n\n\n\n\n\nNov 20, 2024\n\n\nAuthor 1, Author 2\n\n\n\n\n\n\nNo matching items"
+    "text": "These sessions can be followed in order to get a baseline level in R. The series assumes no prior experience in R and is suitable for beginners.\nLooking for more? Want more flexibility? Consider browsing the full session catalog.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nExample Core Session\n\n\n\n\n\nJust an example\n\n\n\n\n\nNov 20, 2024\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "about.html",
@@ -65,100 +65,86 @@
   {
     "objectID": "sessions_core/example.html",
     "href": "sessions_core/example.html",
-    "title": "Second Example Core Session",
+    "title": "Example Core Session",
     "section": "",
     "text": "Italic and Bold will turn out like this\nBlock quotes will look like this:\n\n\nThis is a blockquote made using &gt;\n\n\nTooltips can be done using a classic html style: example\nIf relevant, you might also want to use a footnote1 instead of a tooltip.\nContent can also go in the margin –&gt;\n\n\n\nHi! I’m a side note!\n\nFinally, you can fold entire sections:\n\nSurprise !"
   },
   {
     "objectID": "sessions_core/example.html#text-formatting",
     "href": "sessions_core/example.html#text-formatting",
-    "title": "Second Example Core Session",
+    "title": "Example Core Session",
     "section": "",
     "text": "Italic and Bold will turn out like this\nBlock quotes will look like this:\n\n\nThis is a blockquote made using &gt;\n\n\nTooltips can be done using a classic html style: example\nIf relevant, you might also want to use a footnote1 instead of a tooltip.\nContent can also go in the margin –&gt;\n\n\n\nHi! I’m a side note!\n\nFinally, you can fold entire sections:\n\nSurprise !"
   },
   {
     "objectID": "sessions_core/example.html#code",
     "href": "sessions_core/example.html#code",
-    "title": "Second Example Core Session",
+    "title": "Example Core Session",
     "section": "Code",
-    "text": "Code\nInline coding will turn out like this\nCode blocks will appear like this:\n\nprint('hello world')\n\n[1] \"hello world\"\n\n\nNote, this website has code linking activated, so you can click on functions to get their documentation."
+    "text": "Code\nInline coding will turn out like this\nCode blocks will appear like this:\n\nprint('hello world')\n\nWarning: For these tutorials, code blocks are not evaluated by default. If you want to evaluate them, you must indicate it specifically.\n\nprint('hello back!')\n\n[1] \"hello back!\"\n\n\nAdditionally, solution code blocks are not included by default, including them is done by setting the solutions parameter (in the YAML) to TRUE when rendering.\n\nprint('hello back!')\n\n[1] \"hello back!\"\n\n\nNote, this website has code linking activated, so you can click on functions to get their documentation."
   },
   {
     "objectID": "sessions_core/example.html#callouts",
     "href": "sessions_core/example.html#callouts",
-    "title": "Second Example Core Session",
+    "title": "Example Core Session",
     "section": "Callouts",
     "text": "Callouts\nThings are a bit quick and dirty at the moment. Ultimately I will make nice new classes in a full repicentre theme that can be used for exercised etc. For the moment we will just frankenstine some existing callouts.\n\n\n\n\n\n\nNote\n\n\n\nThis is a callout using {.callout-note}\n\n\n\n\n\n\n\n\nLook. This callout can be used for “observation activities” (ie: look at this thing in the console). Eventually it will be more beautiful, just make sure you use this class.\nWARNING. For the moment this class looks just like the “code activities” class, please make sure you use the right one.\n\n\n\n\n\n\n\n\n\nCode. This callout can be used for “code activities”. Eventually it will be more beautiful, just make sure you use this class.\nWARNING. For the moment this class looks just like the “observation activities” class, please make sure you use the right one."
   },
   {
     "objectID": "sessions_core/example.html#tabsets",
     "href": "sessions_core/example.html#tabsets",
-    "title": "Second Example Core Session",
+    "title": "Example Core Session",
     "section": "Tabsets",
     "text": "Tabsets\n\n\nOne\nTwo\nThree\n\n\n\nContent that will show under the first tab\n\n\nContent that will show under the second tab\n\n\nContent that will show under the third tab"
   },
   {
     "objectID": "sessions_core/example.html#images",
     "href": "sessions_core/example.html#images",
-    "title": "Second Example Core Session",
+    "title": "Example Core Session",
     "section": "Images",
     "text": "Images\nYou can insert images by referring to their relative path using markdown syntax or HTML. Note that the markdown syntax does not allow you to modify image size. In either case, make sure to add alt text for accessibility.\nMarkdown style syntax:\n\n\nexample image alt text\n\nHTML style syntax (with specification of desired size):"
   },
   {
-    "objectID": "sessions_core/example_2.html",
-    "href": "sessions_core/example_2.html",
-    "title": "Second Example Core Session",
-    "section": "",
-    "text": "Italic and Bold will turn out like this\nBlock quotes will look like this:\n\n\nThis is a blockquote made using &gt;\n\n\nTooltips can be done using a classic html style: example\nIf relevant, you might also want to use a footnote1 instead of a tooltip.\nContent can also go in the margin –&gt;\n\n\n\nHi! I’m a side note!\n\nFinally, you can fold entire sections:\n\nSurprise !"
-  },
-  {
-    "objectID": "sessions_core/example_2.html#text-formatting",
-    "href": "sessions_core/example_2.html#text-formatting",
-    "title": "Second Example Core Session",
-    "section": "",
-    "text": "Italic and Bold will turn out like this\nBlock quotes will look like this:\n\n\nThis is a blockquote made using &gt;\n\n\nTooltips can be done using a classic html style: example\nIf relevant, you might also want to use a footnote1 instead of a tooltip.\nContent can also go in the margin –&gt;\n\n\n\nHi! I’m a side note!\n\nFinally, you can fold entire sections:\n\nSurprise !"
-  },
-  {
-    "objectID": "sessions_core/example_2.html#code",
-    "href": "sessions_core/example_2.html#code",
-    "title": "Second Example Core Session",
-    "section": "Code",
-    "text": "Code\nInline coding will turn out like this\nCode blocks will appear like this:\n\nprint('hello world')\n\n[1] \"hello world\"\n\n\nNote, this website has code linking activated, so you can click on functions to get their documentation."
-  },
-  {
-    "objectID": "sessions_core/example_2.html#callouts",
-    "href": "sessions_core/example_2.html#callouts",
-    "title": "Second Example Core Session",
-    "section": "Callouts",
-    "text": "Callouts\nThings are a bit quick and dirty at the moment. Ultimately I will make nice new classes in a full repicentre theme that can be used for exercised etc. For the moment we will just frankenstine some existing callouts.\n\n\n\n\n\n\nNote\n\n\n\nThis is a callout using {.callout-note}\n\n\n\n\n\n\n\n\nLook. This callout can be used for “observation activities” (ie: look at this thing in the console). Eventually it will be more beautiful, just make sure you use this class.\nWARNING. For the moment this class looks just like the “code activities” class, please make sure you use the right one.\n\n\n\n\n\n\n\n\n\nCode. This callout can be used for “code activities”. Eventually it will be more beautiful, just make sure you use this class.\nWARNING. For the moment this class looks just like the “observation activities” class, please make sure you use the right one."
-  },
-  {
-    "objectID": "sessions_core/example_2.html#tabsets",
-    "href": "sessions_core/example_2.html#tabsets",
-    "title": "Second Example Core Session",
-    "section": "Tabsets",
-    "text": "Tabsets\n\n\nOne\nTwo\nThree\n\n\n\nContent that will show under the first tab\n\n\nContent that will show under the second tab\n\n\nContent that will show under the third tab"
-  },
-  {
-    "objectID": "sessions_core/example_2.html#images",
-    "href": "sessions_core/example_2.html#images",
-    "title": "Second Example Core Session",
-    "section": "Images",
-    "text": "Images\nYou can insert images by referring to their relative path using markdown syntax or HTML. Note that the markdown syntax does not allow you to modify image size. In either case, make sure to add alt text for accessibility.\nMarkdown style syntax:\n\n\nexample image alt text\n\nHTML style syntax (with specification of desired size):"
-  },
-  {
-    "objectID": "sessions_core/example_2.html#footnotes",
-    "href": "sessions_core/example_2.html#footnotes",
-    "title": "Second Example Core Session",
+    "objectID": "sessions_core/example.html#footnotes",
+    "href": "sessions_core/example.html#footnotes",
+    "title": "Example Core Session",
     "section": "Footnotes",
     "text": "Footnotes\n\nexample footnote↩︎"
+  },
+  {
+    "objectID": "sessions_core/template.html",
+    "href": "sessions_core/template.html",
+    "title": "Session Title",
+    "section": "",
+    "text": "Objective 1\nObjective 2"
+  },
+  {
+    "objectID": "sessions_core/template.html#objectives",
+    "href": "sessions_core/template.html#objectives",
+    "title": "Session Title",
+    "section": "",
+    "text": "Objective 1\nObjective 2"
+  },
+  {
+    "objectID": "sessions_core/template.html#setup",
+    "href": "sessions_core/template.html#setup",
+    "title": "Session Title",
+    "section": "Setup",
+    "text": "Setup\n\n\n\n\n\n\nSETUP. Description of setup for the tutorial (what packages to use, what to name the file, etc.)."
+  },
+  {
+    "objectID": "sessions_core/template.html#main-section",
+    "href": "sessions_core/template.html#main-section",
+    "title": "Session Title",
+    "section": "Main Section",
+    "text": "Main Section\nLorem ipsum…\n\nprint('some example code')\n\n\n\n\n\n\n\nNote\n\n\n\nNote about something of interest, like a best practice or helpful hint.\n\n\n\n\n\n\n\n\nLook. Description of something participants should observe.\n\n\n\n…lorem ispum again !\n\n\n\n\n\n\nCode. Description of something participants should code themselves.\n\n\n\nDon’t forget to include a solution"
   },
   {
     "objectID": "explore.html",
     "href": "explore.html",
     "title": "Explore",
     "section": "",
-    "text": "Choose your own adventure by browsing all available sessions.\n\n\n\n\n\n\n\n\n\n\n\n\nExample Satellite Session\n\n\n\nSatellite\n\n\nExample\n\n\n\nJust an example\n\n\n\nAuthor 1, Author 2\n\n\nNov 13, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSecond Example Core Session\n\n\n\nCore\n\n\nExample\n\n\nFor fun\n\n\n\nJust an example\n\n\n\nAuthor 1, Author 2\n\n\nNov 20, 2024\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Choose your own adventure by browsing all available sessions.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nExample Core Session\n\n\n\nCore\n\n\nExample\n\n\n\nJust an example\n\n\n\n\n\n\nNov 20, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nExample Satellite Session\n\n\n\nSatellite\n\n\nExample\n\n\nFor fun\n\n\n\nJust an example\n\n\n\n\n\n\nNov 20, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSession Title\n\n\n\nCore/Satellite\n\n\nCategory 1\n\n\nCategory 2\n\n\n\nShort description (appears on cards in pathway / explore pages)\n\n\n\n\n\n\nNov 20, 2024\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "index.html",
@@ -166,12 +152,5 @@
     "title": "Repicentre",
     "section": "",
     "text": "work in progress… check back later."
-  },
-  {
-    "objectID": "sessions_core/example.html#footnotes",
-    "href": "sessions_core/example.html#footnotes",
-    "title": "Second Example Core Session",
-    "section": "Footnotes",
-    "text": "Footnotes\n\nexample footnote↩︎"
   }
 ]
