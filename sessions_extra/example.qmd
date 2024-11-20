@@ -2,26 +2,18 @@
 title: Example Satellite Session
 description: Just an example
 date: last-modified
-author:
-  - name: Author 1
-    email: email.author.1@epicentre.msf.org
-  - name: Author 2
-    email: email.author.2@epicentre.msf.org
+image: ../img/under_construction.svg
 categories:
   - Satellite
   - Example
+  - For fun
 ---
 
 ```{r setup}
 #| include: false
+#| eval: true
 
-# library(fs)         # work with path
-# library(here)       # create relative paths
-# library(rio)        # import files
-# library(janitor)    # data cleaning
-# library(lubridate)  # date handling
-# library(tidyverse)  # data science 
-
+solutions <- TRUE
 ```
 
 ## Text Formatting
@@ -32,15 +24,24 @@ categories:
 
 > This is a `blockquote` made using `>` 
 
-3. Tooltips are trickier to use than in a normal... for the moment we can perhaps use footnotes^[example footnote "tooltip"].
+3. Tooltips can be done using a classic html style:
+<span class='hoverinfo' data-toggle='tooltip' title='test'>example</span>
 
-4. Content can also go in the margin, this is another option to get around the tooltip issue -->
+4. If relevant, you might also want to use a footnote^[example footnote] instead of a tooltip.
+
+5. Content can also go in the margin -->
 
 ::: {.column-margin}
 
 Hi! I'm a side note!
 
 :::
+
+6. Finally, you can fold entire sections:
+<details>
+  Surprise ! 
+</details>
+
 
 ## Code
 Inline coding will turn out `like this`
@@ -50,22 +51,42 @@ Code blocks will appear like this:
 print('hello world')
 ```
 
+**Warning:** For these tutorials, code blocks are **not evaluated** by default. If you want to evaluate them, you must indicate it specifically.
+```{r}
+#| eval: TRUE
+
+print('hello back!')
+```
+
+Additionally, **solution** code blocks are not included by default, including them is done by setting the `solutions` parameter (in the YAML) to `TRUE` when rendering.
+```{r include=solutions}
+#| eval: TRUE
+
+print('hello back!')
+```
+
 Note, this website has **code linking** activated, so you can click on functions to get their documentation.
 
 
 ## Callouts
+Things are a bit quick and dirty at the moment. Ultimately I will make nice new classes in a full **repicentre** theme that can be used for exercised etc. For the moment we will just frankenstine some existing callouts.
 
 ::: {.callout-note}
-**This is a Note** using `{.callout-note}`
+**This is a callout** using `{.callout-note}`
 :::
 
-::: {.callout-caution}
-**This is a warning** using `{.callout-caution}`. They can be collapsed using `collapse="true"` 
+::: {.callout .callout-look}
+**Look.** This callout can be used for "observation activities" (ie: look at this thing in the console). Eventually it will be more beautiful, just make sure you use this class. 
+
+**WARNING.** For the moment this class looks just like the "code activities" class, please make sure you use the right one.
 :::
 
-::: {.callout-important}
-**This is an important note** using `{.callout-important}`
+::: {.callout .callout-code}
+**Code.** This callout can be used for "code activities". Eventually it will be more beautiful, just make sure you use this class. 
+
+**WARNING.** For the moment this class looks just like the "observation activities" class, please make sure you use the right one.
 :::
+
 
 
 
