@@ -37,5 +37,8 @@
   },
   "sessions_core/example_2.qmd": {
     "example_2.html": "283b9cb2"
+  },
+  "sessions_core/template.qmd": {
+    "template.html": "61e6719c"
   }
 }
