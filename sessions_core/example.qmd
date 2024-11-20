@@ -6,7 +6,6 @@ image: ../img/under_construction.svg
 categories:
   - Core
   - Example
-  - For fun
 ---
 
 ```{r setup}
