@@ -1,0 +1,113 @@
+/*fonts*/
+h1, h2, h3 {
+  color: #819CBB;
+}
+
+h1.title {
+  font-size: 50px;
+  font-weight: bolder;
+  color: #819CBB;
+}
+
+h1 {
+  font-weight: bolder;
+}
+
+h2 {
+  font-weight: bolder;
+}
+
+h3 {
+  font-weight: bolder;
+}
+
+h4{
+  font-weight: bolder;
+}
+
+p.subtitle {
+  font-style: italic;
+  color: #808080;
+}
+
+.author {
+  margin-bottom: 0;
+}
+
+
+/*block quotes*/
+.blockquote {
+  font-size: 1em;
+  color: #819CBB;
+  border-left-color: #819CBB;
+}
+
+/* Inline code */
+.code {
+  border-radius: 5px;
+  color:#819CBB;
+}
+
+/* call outs style */ 
+.callout {
+  border-radius: 5px;
+}
+
+.callout-header {
+  color: white;
+  font-size: 1.25em !important;
+}
+
+
+/* notes */
+div.callout-note.callout-style-default>.callout-header {
+  background-color: #819cbb;
+}
+
+div.callout-note.callout {
+  border-left-color: #819cbb;
+  background-color: #e7f1ff;
+}
+
+/* TODO: center icon in line */
+div.callout-note.callout-titled .callout-icon::before {
+  background-image: url("img/icons/info.svg");
+  background-size: 100%;
+}
+
+
+div.callout-look.callout {
+  border-left-color: #94854d;
+  background-color: #f2eacb;
+}
+
+
+div.callout-code.callout {
+  border-left-color: #94854d;
+  background-color: #f2eacb;
+}
+
+
+/* TOC styling */
+h2#toc-title{
+  font-weight: 700;
+}
+
+.hoverinfo {
+  font-weight: bolder;
+  color: #819CBB;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+  background-color: #819cbb;
+}
+
+.nav-pills .nav-link {
+  color: #819cbb;
+}
+
+.sidebar nav[role=doc-toc] ul>li>a.active, .sidebar nav[role=doc-toc] ul>li>ul>li>a.active {
+  border-left: #94854d;
+  color: #94854d !important;
+}
+
