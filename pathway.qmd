@@ -6,6 +6,7 @@ listing:
     sort: false
     contents:
       - 'sessions_core/*.qmd'
+      - '!sessions_core/template.qmd'
     
 ---
 
