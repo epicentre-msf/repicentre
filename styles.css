@@ -45,7 +45,12 @@ p.subtitle {
 /* Inline code */
 .code {
   border-radius: 5px;
-  color:#819CBB;
+  color: #819CBB;
+}
+
+.code .solution {
+  border-radius: 5px;
+  color: grey;
 }
 
 /* call outs style */ 
