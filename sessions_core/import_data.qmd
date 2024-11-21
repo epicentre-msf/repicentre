@@ -1,0 +1,34 @@
+---
+title: Import data
+description: Starting your first project: loading packages, importing data and taking a peak at them in R.
+date: last-modified
+image: ../img/under_construction.svg
+params: 
+  solutions: FALSE
+  sub_title: "**------ With Solutions ------**"
+categories:
+  - Core
+  - RStudio projects
+  - Packages
+---
+
+```{r setup}
+#| include: false
+#| eval: true
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+
+solutions <- params$solutions
+
+# library(...)         # what does this library do?
+```
+
+
+## Objectives
+
+- Set up a organized and well documented code 
+- Create an RStudio Project
+- Install and load packages
+- Write robust file paths
+- Import and inspect data
+
+The principles you learned in the Data Management module will apply here as well: we should do our best to ensure that our projects won't just work today but can also be reused and shared in the future. While doing this is not always easy, there are several best practices that can help us and one of the most important is to start with a good, organized base.
