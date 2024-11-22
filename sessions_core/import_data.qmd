@@ -67,7 +67,7 @@ To better understand the concepts from the rest, you need to understand the two 
 
 **Working directory.** The working directory is the location (folder) where your R session is *actively working*. If you save a file, for example, it will be saved into this folder by default. Similarly, when you want to open a file, this folder will be shown by default. All relative paths (which will be explained in @sec-filepaths) will be relative to this working directory.^[By default, R usually picks the "Documents" folder as the working directory on Windows machines.]
 
-**Root.** The root refers to the top-most folder level of the working directory. If your course folder was called `FETCHR`, the root would then be directly inside it (as opposed to being inside one of it's subfolders like `R` or `Data`).
+**Root.** The root refers to the top-most folder level of the working directory. If your course folder was called `FETCHR`, the root would then be directly inside it (as opposed to being inside one of its subfolders like `R` or `Data`).
 
 ### RStudio Projects
 
@@ -222,7 +222,7 @@ Sometimes packages are updated in a way that might remove or change a function t
 
 ### Finding your files: Understanding File Paths {#sec-filepaths}
 
-To open a file in R you need to provide a **file path**. A file path is simply a longer name for a file, that includes not only its name but also it's location on your computer. There are several ways of defining these path, including *absolute*, *relative*, and *absolute*.
+To open a file in R you need to provide a **file path**. A file path is simply a longer name for a file, that includes not only its name but also its location on your computer. There are several ways of defining these path, including *absolute*, *relative*, and *absolute*.
 
 #### Absolute Paths
 
