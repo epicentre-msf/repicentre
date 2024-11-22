@@ -2,7 +2,8 @@
   {
     "listing": "/pathway.html",
     "items": [
-      "/sessions_core/example.html"
+      "/sessions_core/example.html",
+      "/sessions_core/introduction.html"
     ]
   },
   {
@@ -10,6 +11,9 @@
     "items": [
       "/sessions_core/example.html",
       "/sessions_extra/example.html",
+      "/sessions_extra/indexing.html",
+      "/sessions_core/introduction.html",
+      "/sessions_extra/lists.html",
       "/sessions_core/template.html"
     ]
   }

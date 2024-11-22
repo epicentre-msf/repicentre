@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.6.37">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-<meta name="description" content="Everything everywhere all at once">
-
-<title>Explore – Repicentre</title>
+<meta name="dcterms.date" content="2024-11-22">
+<meta name="description" content="Learn about the basic about R lists.">
+<title>Lists – Repicentre</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,26 +21,22 @@ ul.task-list li input[type="checkbox"] {
 }
 </style>
 
-
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-29e2c20b02301cfff04dc8050bf30c7e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-523b4dc3dad50da7e5c9dee1e7f3f290.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-29e2c20b02301cfff04dc8050bf30c7e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-523b4dc3dad50da7e5c9dee1e7f3f290.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -68,78 +62,14 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title','listing-author','listing-date','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
+}</script><link rel="stylesheet" href="../styles.css">
 </head>
-
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Repicentre</span>
     </a>
   </div>
@@ -149,48 +79,47 @@ window.Quarto = {
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+<li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./pathway.html"> 
+    <a class="nav-link" href="../pathway.html"> 
 <span class="menu-text">Pathway</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./explore.html" aria-current="page"> 
+    <a class="nav-link" href="../explore.html"> 
 <span class="menu-text">Explore</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
-          </div> <!-- /navcollapse -->
+</div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
-    </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-unnumbered"><div class="category" data-category="Q2F0ZWdvcnklMjAx">Category 1</div><div class="category" data-category="Q2F0ZWdvcnklMjAy">Category 2</div><div class="category" data-category="Q29yZQ==">Core</div><div class="category" data-category="Q29yZSUyRlNhdGVsbGl0ZQ==">Core/Satellite</div><div class="category" data-category="RGF0YSUyMHR5cGVz">Data types</div><div class="category" data-category="RGF0YWZyYW1lcw==">Dataframes</div><div class="category" data-category="RXhhbXBsZQ==">Example</div><div class="category" data-category="Rm9yJTIwZnVu">For fun</div><div class="category" data-category="TGlzdHM=">Lists</div><div class="category" data-category="UiUyMGJhc2ljcw==">R basics</div><div class="category" data-category="UnN0dWRpbyUyMGludGVyZmFjZQ==">Rstudio interface</div><div class="category" data-category="U2F0ZWxsaXRl">Satellite</div><div class="category" data-category="VmVjdG9ycw==">Vectors</div></div></div>
+    </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-<script type="text/javascript" src="../script.js"></script>
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Explore</h1>
-</div>
+<main class="content" id="quarto-document-content"><script type="text/javascript" src="../script.js"></script><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title">Lists</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Satellite</div>
+    <div class="quarto-category">R basics</div>
+    <div class="quarto-category">Data types</div>
+    <div class="quarto-category">Lists</div>
+  </div>
+  </div>
 
 <div>
   <div class="description">
-    Everything everywhere all at once
+    Learn about the basic about R lists.
   </div>
 </div>
 
@@ -198,251 +127,73 @@ window.Quarto = {
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">November 22, 2024</p>
+    </div>
+  </div>
   
     
   </div>
   
 
 
-</header>
+</header><p><img src="../img/under_construction.svg" class="img-fluid"></p>
+<!-- Objectives -->
+<!-- ---------------------------------------------------------------------------------------------------- -->
+<!-- - Objective 1 -->
+<!-- - Objective 2 -->
+<!-- ## Lists -->
+<!-- Unlike simple vectors, lists can contain multiple types of data, such as strings, numerics, and even other lists! Lists are created with the function `list()`. Typically, though not always, lists will be *named*, meaning each value is given a name:   -->
+<!-- ```{r} -->
+<!-- collect_moissala <- list( -->
+<!--   location = "Moissala",  -->
+<!--   cases =  c(2, 5, 8, 0, 4) -->
+<!-- ) -->
+<!-- collect_moissala  -->
+<!-- ``` -->
+<!-- We can use the function `str()` to see the structure of an object. -->
+<!-- ```{r} -->
+<!-- str(collect_moissala) -->
+<!-- ``` -->
+<!-- To access the elements in a named list, we can either write it’s numeric index in **double** square brackets or writing the element’s name after a `$`. Using the numeric index in **single** brackets will return that element as a list. -->
+<!-- ```{r} -->
+<!-- collect_moissala$location   # returns the element named location -->
+<!-- collect_moissala[[1]]       # returns the first element -->
+<!-- collect_moissala[1]         # returns the first element as a list -->
+<!-- ``` -->
+<!-- ::: {.callout .callout-code} -->
+<!-- **Code.**  Create a named list containing `cases` as the first element, a numeric vector (of your choice) as the second, and a text vector (of your choice) as the third. -->
+<!-- ::: -->
+<!-- NEEDS TO BE CHANGED? COMES FROM INTRODUCTION -->
+<!-- ```{r} -->
+<!-- #| include = solutions, -->
+<!-- #| eval = FALSE -->
+<!-- # SOLUTION -->
+<!-- my_list <- list( -->
+<!--   first_element = cases, -->
+<!--   second_element = c(1, 3, 5), -->
+<!--   third_element = c("admin 1", "admin 2") -->
+<!-- ) -->
+<!-- ``` -->
+<!-- ::: {.callout .callout-code} -->
+<!-- **Code.**  Access the second and third element of your list. Try write multiple solutions to test our the `$` operator as well as square brackets. -->
+<!-- ::: -->
+<!-- ```{r} -->
+<!-- #| include = solutions -->
+<!-- # SOLUTION -->
+<!-- liste_exo$un_vecteur -->
+<!-- liste_exo[[3]]   # si on veut le contenu de l'element 3 -->
+<!-- liste_exo[3]     # si on veut une liste -->
+<!-- ``` -->
+<!-- For the moment, we aren’t going to dig deeper into lists as you probably won’t use them that often while you are getting started in R. As you become more advanced, however, it’s a type of data structure that you will encounter often. -->
+<!-- TODO -->
+<!-- Explain that dataframes are list of vectors and re-illustrate some of the concpets with them to bridge the gap to what thgey already leanred -->
 
 
-<p>Choose your own adventure by browsing all available sessions.</p>
 
-
-
-
-<div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
-<div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="Q29yZSUyQ0V4YW1wbGU=" data-listing-date-sort="1732302028000" data-listing-file-modified-sort="1732302028821" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="386">
-<a href="./sessions_core/example.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./img/under_construction.svg" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Example Core Session
-</h5>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Q29yZQ=='); return false;">
-Core
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('RXhhbXBsZQ=='); return false;">
-Example
-</div>
-</div>
-<div class="card-text listing-description">
-Just an example
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-
-</div>
-<div class="listing-date">
-Nov 22, 2024
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="1" data-categories="U2F0ZWxsaXRlJTJDRXhhbXBsZSUyQ0ZvciUyMGZ1bg==" data-listing-date-sort="1732123598000" data-listing-file-modified-sort="1732123598541" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="386">
-<a href="./sessions_extra/example.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./img/under_construction.svg" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Example Satellite Session
-</h5>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('U2F0ZWxsaXRl'); return false;">
-Satellite
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('RXhhbXBsZQ=='); return false;">
-Example
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Rm9yJTIwZnVu'); return false;">
-For fun
-</div>
-</div>
-<div class="card-text listing-description">
-Just an example
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-
-</div>
-<div class="listing-date">
-Nov 20, 2024
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="2" data-categories="U2F0ZWxsaXRlJTJDUiUyMGJhc2ljcyUyQ1ZlY3RvcnMlMkNEYXRhZnJhbWVzJTJDTGlzdHM=" data-listing-date-sort="1732302028000" data-listing-file-modified-sort="1732302028843" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="138">
-<a href="./sessions_extra/indexing.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./img/under_construction.svg" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Indexing
-</h5>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('U2F0ZWxsaXRl'); return false;">
-Satellite
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('UiUyMGJhc2ljcw=='); return false;">
-R basics
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('VmVjdG9ycw=='); return false;">
-Vectors
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('RGF0YWZyYW1lcw=='); return false;">
-Dataframes
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('TGlzdHM='); return false;">
-Lists
-</div>
-</div>
-<div class="card-text listing-description">
-A more complete introduction to indexing in base R
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-
-</div>
-<div class="listing-date">
-Nov 22, 2024
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="3" data-categories="Q29yZSUyQ1JzdHVkaW8lMjBpbnRlcmZhY2UlMkNSJTIwYmFzaWNzJTJDRGF0YSUyMHR5cGVz" data-listing-date-sort="1732302028000" data-listing-file-modified-sort="1732302028842" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="26" data-listing-word-count-sort="5034">
-<a href="./sessions_core/introduction.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img src="sessions_core\img\intro_001_rstudio_interface_screenshot_EN.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Introduction to R
-</h5>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Q29yZQ=='); return false;">
-Core
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('UnN0dWRpbyUyMGludGVyZmFjZQ=='); return false;">
-Rstudio interface
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('UiUyMGJhc2ljcw=='); return false;">
-R basics
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('RGF0YSUyMHR5cGVz'); return false;">
-Data types
-</div>
-</div>
-<div class="card-text listing-description">
-Your first steps in R. Learn your way around Rstudio, and meet some common R objects
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-
-</div>
-<div class="listing-date">
-Nov 22, 2024
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="4" data-categories="U2F0ZWxsaXRlJTJDUiUyMGJhc2ljcyUyQ0RhdGElMjB0eXBlcyUyQ0xpc3Rz" data-listing-date-sort="1732302028000" data-listing-file-modified-sort="1732302028846" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="444">
-<a href="./sessions_extra/lists.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./img/under_construction.svg" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Lists
-</h5>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('U2F0ZWxsaXRl'); return false;">
-Satellite
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('UiUyMGJhc2ljcw=='); return false;">
-R basics
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('RGF0YSUyMHR5cGVz'); return false;">
-Data types
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('TGlzdHM='); return false;">
-Lists
-</div>
-</div>
-<div class="card-text listing-description">
-Learn about the basic about R lists.
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-
-</div>
-<div class="listing-date">
-Nov 22, 2024
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="5" data-categories="Q29yZSUyRlNhdGVsbGl0ZSUyQ0NhdGVnb3J5JTIwMSUyQ0NhdGVnb3J5JTIwMg==" data-listing-date-sort="1732123598000" data-listing-file-modified-sort="1732123598535" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="81">
-<a href="./sessions_core/template.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./img/under_construction.svg" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Session Title
-</h5>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Q29yZSUyRlNhdGVsbGl0ZQ=='); return false;">
-Core/Satellite
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Q2F0ZWdvcnklMjAx'); return false;">
-Category 1
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Q2F0ZWdvcnklMjAy'); return false;">
-Category 2
-</div>
-</div>
-<div class="card-text listing-description">
-Short description (appears on cards in pathway / explore pages)
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-
-</div>
-<div class="listing-date">
-Nov 20, 2024
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -860,7 +611,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-
 
 
 
