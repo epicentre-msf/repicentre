@@ -40,5 +40,20 @@
   },
   "sessions_core/template.qmd": {
     "template.html": "61e6719c"
+  },
+  "sessions_core/introduction.qmd": {
+    "introduction.html": "37ba75af"
+  },
+  "sessions_extra/import_multiple.qmd": {
+    "import_multiple.html": "8d68642e"
+  },
+  "sessions_extra/indexing.qmd": {
+    "indexing.html": "4b1ae49d"
+  },
+  "sessions_extra/lists.qmd": {
+    "lists.html": "7eb24070"
+  },
+  "sessions_core/import_data.qmd": {
+    "import_data.html": "6f030d71"
   }
 }

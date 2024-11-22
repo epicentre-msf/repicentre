@@ -108,7 +108,7 @@ You can insert images by referring to their relative path using markdown syntax 
 
 Markdown style syntax:
 
-![example image alt text](../img/under_construction.svg)
+![example image alt text](../img/under_construction.svg){fig-align="center"}
 
 HTML style syntax (with specification of desired size):
 
