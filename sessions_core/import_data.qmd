@@ -127,7 +127,7 @@ Remember that any commands or outputs that is needed for the cleaning and analys
 ::: {.callout .callout-code}
 **Do** Open a new script and save it in the `R` folder of your project under the name `import_data.R`. 
 
-**Code.** Add some metadata to the top as taught unsing [comments](introduction.qmd#sec-comments). Be sure to include:
+**Code.** Add some metadata to the top as seen in the first session using [comments](introduction.qmd#sec-comments). Be sure to include:
 
 - Title
 - Author
@@ -233,7 +233,7 @@ The use of hardcoded absolute paths is **strongly discouraged** as they would al
 
 #### Relative Paths
 
-*Relative paths* are defined relative to your current [working directory](#sec-definitions). For example, keeping in mind that our handy `.Rproj` file will set our working directory to the root of our project folder; we could create a relative path that looked like `data/raw/exemple_linelist.xlsx`. This means that **as long as we maintain the *internal* structure** of our project folder and have an `.Rproj` file our code would theoretically run on multiple computers.
+*Relative paths* are defined relative to your current working directory (@sec-definitions). For example, keeping in mind that our handy `.Rproj` file will set our working directory to the root of our project folder; we could create a relative path that looked like `data/raw/exemple_linelist.xlsx`. This means that **as long as we maintain the *internal* structure** of our project folder and have an `.Rproj` file our code would theoretically run on multiple computers.
 
 ::: {.callout-note}
 **Foreshadowing.** File paths actually work a bit differently in `RMarkdown` files than they do in `R` scripts, but this is something we will talk about much later in the course. If you don't know what `RMarkdown` is at the moment, don't worry about it.
