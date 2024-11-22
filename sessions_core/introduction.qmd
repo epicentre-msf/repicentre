@@ -253,7 +253,7 @@ While “what” comments aren’t per se recommended in final scripts that we w
 
 
 ::: {.callout-tip title="Keyborad shortcuts" #tip-shortcut-comments}
-You can comment a selected line with the shortcut `CTRL+MAJ+C`
+You can comment a selected line with the shortcut `CTRL+SHIFT+C`
 You can add a first level section with `CTRL+SHIFT+R` 
 :::
 
