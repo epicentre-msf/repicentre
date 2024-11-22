@@ -95,7 +95,7 @@ To the bottom right there will be another multi tab panel, including:
 
 - *Files.* A file explorer for the <span class='hoverinfo' data-toggle='tooltip' title="The working directory is the folder location (directory) where R is currently working. We will talk more about the idea of paths and working directories in the next session">working directory</span>.
 - *Plots.* A location where RStudio will display *static* visualizations; this tab should be empty for the moment.
-- *Packages.* A list of all the R <span class='hoverinfo' data-toggle='tooltip' title="Packages are simply collections of functions that help extend the functionality of R. We will discuss them in greater detail in the next lesson.">packages</span> installed on your computer.
+- *Packages.* A list of all the R <span class='hoverinfo' data-toggle='tooltip' title="Packages are simply collections of functions that help extend the functionality of R. We will discuss them in greater detail in the [next lesson](import_data.qmd#sec-packages).">packages</span> installed on your computer.
 - *Help.* A place to read help pages and documentation for functions and packages.[Documentation refers to additional narrative text either in a code file or an external document that is written to help folks understand what a piece of code, function, or package does and how it should be used. Code documentation is a bit analogous to creating a data dictionary for a set of survey data and is an invaluable part of making robust and reusable code]{.aside}
 - *Viewer.* A location where RStudio will display <span class='hoverinfo' data-toggle='tooltip' title="These could include, for example, tables, interactive widgets, or even full on dashboards.">html outputs</span>.
 
@@ -193,7 +193,8 @@ To run code from a script simply place your cursor on the line you wish to run (
 **Code.** Copy the code you ran in the previous exercises into your script and try running it using each of the above methods.
 :::
 
-#### Comments
+#### Comments {#sec-comments}
+
 In R, any text prefaced by a `#` (until the end of a line) is called a *comment*. R does not consider comments to be code and will ignore them whenever you run your scripts. This makes comments an excellent way to document your code.
 
 ```{r}
@@ -248,6 +249,12 @@ By comparison, here are a few use cases that would warrant comments:
 
 ::: {.callout-tip}
 While “what” comments aren’t per se recommended in final scripts that we will use for projects or share with our colleagues, do feel free to use them at will during this course to add additional notes that you might helpful during the learning process.
+:::
+
+
+::: {.callout-tip title="Keyborad shortcuts" #tip-shortcut-comments}
+You can comment a selected line with the shortcut `CTRL+MAJ+C`
+You can add a first level section with `CTRL+SHIFT+R` 
 :::
 
 ::: {.callout .callout-code}
@@ -322,7 +329,7 @@ is.character(TRUE)
 is.logical(FALSE)
 ```
 
-## Saving an Object
+## Saving an Object {#sec-assignement-operator}
 
 Before continuing with more complex data structures, we need to take an important detour to discuss how objects are saved into your environment.
 
@@ -567,7 +574,7 @@ data_cases <- data.frame(
 ```
 
 
-#### Exploring a Dataframe
+#### Exploring a Dataframe {#sec-dataframe-functions}
 
 `data_cases` should now appear in your environment. You can click on its name to see some additional information, or click on the blue circle with a white triangle in it to open the object in the *Viewer*. 
 
@@ -688,7 +695,7 @@ As epidemiologists, we work with missing data all the time. In R, missing values
 
 
 
-## Functions
+## Functions {#sec-functions}
 
 Functions are objects that contain commands (instead of values) that are run whenever the function is called. You are without doubt familiar with functions in Excel such as `SUM` and the idea of functions in R is exactly the same.
 
