@@ -1,0 +1,25 @@
+---
+title: Introduction to data visualisation with ggplot2
+description: Learn the basics of buidling plots with ggplot, and create you firs epicurves.
+date: last-modified
+image: ../img/under_construction.svg
+params: 
+  solutions: FALSE
+  sub_title: "**------ With Solutions ------**"
+categories:
+  - Core
+  - Graphs
+  - ggplot2
+  - epicurve
+---
+
+```{r setup}
+#| include: false
+#| eval: true
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+
+solutions <- params$solutions
+
+library(ggplot2)         # what does this library do?
+```
+
