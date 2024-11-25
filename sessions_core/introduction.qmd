@@ -277,7 +277,7 @@ The numeric type includes both integers and doubles (numbers that include a deci
 
 ### Strings
 
-Strings are the R version of text and can be created by surounding text with single or double quotation marks, for example `'"istrict"` or `"cases"`. 
+Strings are the R version of text and can be created by surounding text with single or double quotation marks, for example `'district'` or `"cases"`. 
 
 ::: {.callout .callout-best}
 **Best Practice.** While both single and double quotations can be used to create strings, double quotations are typically considered best practice.
@@ -699,11 +699,11 @@ As epidemiologists, we work with missing data all the time. In R, missing values
 
 Functions are objects that contain commands (instead of values) that are run whenever the function is called. You are without doubt familiar with functions in Excel such as `SUM` and the idea of functions in R is exactly the same.
 
-Most functions require some sort of input, such as a dataset or parameter. These inputs are called *arguments* and are normally named. For example, when we ran `sum(cases)`, we provided the vector `cases` as the first (and only) argument to the function `sum`. 
+Most functions require some sort of input, such as a dataset or parameter. These inputs are called *arguments* and are normally named. For example, when we ran `sum(cases)`, we provided the vector `cases` as the first (and only) argument to the function `sum()`. 
 
 Often, a function will have a combination of both *obligatory* and *optional* arguments. The first argument of a function is almost always obligatory and is typically a dataset. As an obligatory and rather obvious argument, most people omit its name when calling a function; ie: i.e. people will write `mean(cases)` instead of `mean(x = cases)`. Optional arguments on the other hand are usually added using their name, i.e.: `mean(x = cases, na.rm = TRUE)`.
 
-Optional arguments typically have default values and we only include them when we want to change their defaults (and thus change the default behavior of the function). For example, the `na.rm` argument of `mean` determines whether R will ignore missing values when calculating a mean. The default state of the `na.rm` argument is `FALSE`, so by default, the mean performed on data with missing values will always return `NA` as the result:^[this is true for many arithmetic operations in R]
+Optional arguments typically have default values and we only include them when we want to change their defaults (and thus change the default behavior of the function). For example, the `na.rm = ` argument of `mean()` determines whether R will ignore missing values when calculating a mean. The default state of the `na.rm = ` argument is `FALSE`, so by default, the mean performed on data with missing values will always return `NA` as the result:^[this is true for many arithmetic operations in R]
 
 ```{r}
 #| eval: true

@@ -352,7 +352,7 @@ df_linelist <- import(
 
 ##### From Any Sheet
 
-As you just saw, R selects the first sheet by default. It is however possible to pass the number (or name) of a specific worksheet in your Excel data to `import()` using the argument `which`:
+As you just saw, R selects the first sheet by default. It is however possible to pass the number (or name) of a specific worksheet in your Excel data to `import()` using the argument `which = `:
 
 ```{r}
 import(file = here(path_data_raw, "exemple_linelist.xlsx"),
@@ -360,7 +360,7 @@ import(file = here(path_data_raw, "exemple_linelist.xlsx"),
 ```
 
 ::: {.callout-note}
-The `which` argument is specific to the file types that have multiple sheets, such as an Excel or .Rdata file. If you try to use it on a `.csv` file the argument will be ignored.
+The `which = ` argument is specific to the file types that have multiple sheets, such as an Excel or .Rdata file. If you try to use it on a `.csv` file the argument will be ignored.
 :::
 
 
@@ -372,7 +372,7 @@ We can import a `.csv` file in exactly the same way as an `.xlsx` file, we need 
 import(file = here(path_data_raw, "exemple_linelist.csv"))
 ```
 
-`.csv` files sometimes use different <span tooltip-position="top" tooltip="A delimiter is the character used in a csv file to separate values. Many countries use a comma (,), but some use a semicolon (;).">delimiters</span> and <span tooltip-position="top" tooltip="Some countries use a decimal point (.) to indicate a number with a decimal, others will use a comma (,). Typically, countries using a comma for decimals will use a semicolon as a delimiter.">decimal characters</span> depending on where the file comes from. You can indicate to `import()` which characters to use for these using the `sep` and `dec` arguments respectively:
+`.csv` files sometimes use different <span tooltip-position="top" tooltip="A delimiter is the character used in a csv file to separate values. Many countries use a comma (,), but some use a semicolon (;).">delimiters</span> and <span tooltip-position="top" tooltip="Some countries use a decimal point (.) to indicate a number with a decimal, others will use a comma (,). Typically, countries using a comma for decimals will use a semicolon as a delimiter.">decimal characters</span> depending on where the file comes from. You can indicate to `import()` which characters to use for these using the `sep = ` and `dec = ` arguments respectively:
 
 ```{r}
 import(file = here(path_data_raw, "exemple_linelist.csv"),
@@ -398,13 +398,13 @@ We have now imported a dataset into R and assigned it to a dataframe (`df_lineli
 
 ### Useful Functions
 
-We can start by taking a quick look at the first few lines of the dataframe using the function `head()`. This function takes a dataframe as its first argument and optionally accepts a second argument `n` indicating the number of lines we would like to see. 
+We can start by taking a quick look at the first few lines of the dataframe using the function `head()`. This function takes a dataframe as its first argument and optionally accepts a second argument `n = ` indicating the number of lines we would like to see. 
 
 ```{r}
 head(df_linelist, n = 6)
 ```
 
-Actually, the default value of `n` is already 6, meaning our above code was equivalent to `head(df_linelist)`.[You can check the default value of an argument (if it exists) by checking the documentation of a function. We well show you how to do this in a later session, but you can read a bit [here](https://www.r-project.org/help.html) if you are dying to know.]{.aside}
+Actually, the default value of `n = ` is already 6, meaning our above code was equivalent to `head(df_linelist)`.[You can check the default value of an argument (if it exists) by checking the documentation of a function. We well show you how to do this in a later session, but you can read a bit [here](https://www.r-project.org/help.html) if you are dying to know.]{.aside}
 
 
 ::: {.callout .callout-code}
