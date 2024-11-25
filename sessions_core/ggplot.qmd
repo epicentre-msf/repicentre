@@ -459,4 +459,130 @@ If you would like to save your epicurve, you can click on the "Export" button in
 
 ![Save plot button in the RStudio plot pannel](../sessions_core/img/ggplot_005_plot_export.png){fig-align="center"}
 
+
+## Facetting: This Plot By Age Group or Site
+
+Now, this plot is cool, but in you sitrep you want to show the data by age group, or by site. There are several ways to do that.
+
+- The intuitive way, which you already have the skill to do is to copy and reuse the graph code, passing different, filtered dataframes to the `ggplot()` command
+- Use a for loop or `apply` or `map` familly functions: these are ways to automatize actions that involve less copy and pasting
+- Trust `{ggplot2}` to have a solution
+
+The first option is tedious and it is easy to make errors; the second option can be quite powerfull and I hope that at some point you will learn some of these tools, but it is quite out of the scope of this tutorial. We will focus on the third option, which is powerfull and sufficient for many contexts.
+
+The function `facet_wrap()` allow you to replicate a graph based on the categories of a variable. For example, you could make the outcome graph *by sex*, or *by site*. As other layers of a ggplot graph, you add it to your existing graph with a `+`. It will create a a figure with multiple small graphs, that `{ggplot2}` call *facets* or small multiples.
+
+
+#### Get the data ready
+
+If we want to to plot anything *by site*, the site variable must be present in the aggregated datadata. Our current summarised dataset is only summarised by week though:
+
+```{r}
+#| eval: true
+head(df_outcome)
+```
+
+Let's create a new summarised dataset that has the number of outcomes by week *and by site*!
+
+```{r}
+#| eval: true
+
+# Summarise the data
+df_outcome_site <- df %>%
+  mutate(week_outcome = isoweek(date_outcome)) %>%
+  count(week_outcome, site,
+        name = 'patients') %>%
+  tidyr::drop_na(week_outcome)
+
+# Inspect the first line
+head(df_outcome_site)
+
+# Quick sanity check...
+df_outcome_site %>% 
+  count(site)
+```
+
+
+#### Add the Facet Layer to the Plot
+
+Now, let's plot this data. Look at the code bellow: it is exactly the same as before but for the last line, which creates the facets:
+
+```{r}
+#| eval: true
+
+df_outcome_site %>%
+  ggplot(aes(x = week_outcome,
+             y = patients)) +
+  geom_col(fill = '#2E4573') +
+  labs(x = 'ISO Week',
+       y = 'Outcomes',
+       title = 'Measles outcomes in Moissala') +
+  theme_classic(base_size = 15) +
+  
+  facet_wrap(vars(site))   # Make the plot by site!
+```
+
+Isn't that incredible? As you can see, the function `facer_wrap()` takes as argument a variable name wrapped in the `vars()` function.
+
+::: {.callout .callout-code}
+Now is your turn, you will draw a plot of the number of admissions by age group.
+
+**Code.** Prepare a new aggregated dataframe, summarized by week and age. Then, draw the epicurve by age group (still keeping all the plots improvement: labels, themes etc.)
+:::
+
+
+```{r}
+#| include = solutions
+# SOLUTION
+df_cases_age <- df %>% 
+  count(week, age_group) %>% 
+  tidyr::drop_na(week)
+
+df_cases_age %>% 
+  ggplot(aes(x = week,
+             y = n)) +
+  geom_col(fill = '#2E4573') +
+  labs(x = 'ISO Week',
+       y = 'Measles Cases',
+       title = 'Measles in Moissala',
+       caption = 'Ficticious data provided by Hugo') +
+  theme_bw(base_size = 18) +
+  facet_wrap(vars(age_group))
+```
+
+
+
+
+:::{.callout-tip}
+**To go further** Check out the function [help page](https://ggplot2.tidyverse.org/reference/facet_wrap.html) to learn how to control the number of facets by row with `nrow = `, or column with `ncol = `, and how to control the maximum values of the axes with `scales = `.
+
+Check out the examples, one of them show how to adapt your code to do this:
+
+```{r echo=solutions}
+#| eval: true
+
+ggplot(data = df_cases_age,     # general dataset
+       aes(x = week,
+           y = n)) +
+  
+  # Plot the gray bars:
+  geom_col(data = df_cases,     # dataset for just this layer
+           fill = "grey") +
+  
+  # Plot the blue bars
+  geom_col(fill = '#2E4573') +  # uses the general dataset
+  
+  labs(x = 'ISO Week',
+       y = 'Measles Cases',
+       title = 'Measles in Moissala',
+       caption = 'Ficticious data provided by Hugo') +
+  theme_classic(base_size = 15) +
+  facet_wrap(vars(age_group))
+```
+:::
+
+
+
+## Done!
+
 Very well done team! You have build your first epicurve!
