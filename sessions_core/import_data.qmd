@@ -147,7 +147,7 @@ We can install a new package using the [function](../sessions_core/introduction.
 
 ```{r}
 #| eval = FALSE
-install.packages("here") # install the "here" package
+install.packages("here") # install the {here} package
 ```
 
 ::: {.callout-warning}
@@ -165,12 +165,12 @@ If you have not installed the packages used in the course yet, you will have to 
 Once a package is installed you can use it by "going to get it from your library" using the function `library()`. This process is called *loading the package*.
 
 ```{r}
-library(here) # load the "here" package
+library(here) # load the {here} package
 ```
 
 
 ::: {.callout .callout-code}
-**Code.**  Use the `library()` function to load the packages `here` and `rio`, which will be used in @sec-import.
+**Code.**  Use the `library()` function to load the packages `{here}` and `{rio}`, which will be used in @sec-import.
 :::
 
 ```{r}
@@ -191,7 +191,7 @@ Based on your computer's set up and the package you are trying to load, you may 
 library(ggplot)
 ```
 
-The above code throws an error because you have asked for a library that doesn't exist. Remember that R is **fickle and case sensitive** and many of your errors will come from small typos in the names of functions or objects. Here, for example, we wanted to load the package `ggplot2` but wrote `ggplot` instead.
+The above code throws an error because you have asked for a library that doesn't exist. Remember that R is **fickle and case sensitive** and many of your errors will come from small typos in the names of functions or objects. Here, for example, we wanted to load the package `{ggplot2}` but wrote `ggplot` instead.
 
 ::: {.callout .callout-best}
 **Best Practice.** Most of the time, you'll need to load a number of packages for your script and it is recommended to have a section at the start of your code that loads everything you'll need in one place:
@@ -252,7 +252,7 @@ file.path("data", "raw", "exemple_linelist.xlsx")
 
 Note that the path is relative, here to the current working directory
 
-While `file.path()` works fine, the function `here()` (from the package of `here`) works even better. One of the other outstanding problems with our relative path solution is that if ever we change our working directory during an R session the relative paths from our scripts will no longer be correct. `here` accepts a set of names in the same style as `file.path()` but will then use them to dynamically construct an absolute path adapted to your operating system and based on the location of your `.Rproj` file. In this course we **strongly encourage you** to use `here()` whenever you need to create a file path.
+While `file.path()` works fine, the function `here()` (from the package of `{here}`) works even better. One of the other outstanding problems with our relative path solution is that if ever we change our working directory during an R session the relative paths from our scripts will no longer be correct. `here()` accepts a set of names in the same style as `file.path()` but will then use them to dynamically construct an absolute path adapted to your operating system and based on the location of your `.Rproj` file. In this course we **strongly encourage you** to use `here()` whenever you need to create a file path.
 
 ```{r}
 #| eval: true
@@ -306,7 +306,7 @@ here(path_data_raw, "msf_linelist_moissala_2023-09-24.xlsx")
 
 ### Import function {#sec-import}
 
-In R different file formats are often imported using different, often specialized, functions. This can be tedious as it requires you to memorize and load a large number of functions just to get your data imported. To avoid this problem, we recommend that you use the `import()` function from the package <span tooltip-position="top" tooltip="`rio` stands for R Inputs and Outputs.">`rio`</span>. This function is able to open a large variety of of files (including Excel, csv, Stata, and many others) by recognizing the file extension of your data and calling a relevant specialized function from another package so that you don't have to.[This type of function, providing an unified interface to other specific functions is known as a *wrapper*]{.aside}.
+In R different file formats are often imported using different, often specialized, functions. This can be tedious as it requires you to memorize and load a large number of functions just to get your data imported. To avoid this problem, we recommend that you use the `import()` function from the package <span tooltip-position="top" tooltip="`rio` stands for R Inputs and Outputs.">`{rio}`</span>. This function is able to open a large variety of of files (including Excel, csv, Stata, and many others) by recognizing the file extension of your data and calling a relevant specialized function from another package so that you don't have to.[This type of function, providing an unified interface to other specific functions is known as a *wrapper*]{.aside}.
 
 To see the full list of all the file types you can load (and save!) with `rio`, check out their [website](https://gesistsa.github.io/rio/index.html) and in particular the list of [supported formats](https://gesistsa.github.io/rio/index.html#supported-file-formats). In the rest of the lesson we will focus on importing data from Excel `.xlsx` files and `.csv` text files.
 
@@ -474,7 +474,7 @@ The overwhelming majority of buttons in RStudio are actually just convenient sho
 
 ### Data Summaries
 
-The function `summary` accepts a dataframe and is a handy way to get some quick statistics on each of the columns in a dataset:
+The function `summary()` accepts a dataframe and is a handy way to get some quick statistics on each of the columns in a dataset:
 
 ```{r}
 summary(iris)
@@ -501,6 +501,6 @@ If you want to learn about importing several sheets in one go, or several simila
 
 ## Resources
 
-- The `rio` [ website](https://gesistsa.github.io/rio/index.html#supported-file-formats)
+- The `{rio}` package [ website](https://gesistsa.github.io/rio/index.html#supported-file-formats)
 
 - [More examples](https://epirhandbook.com/en/new_pages/importing.html) on importing data of various file types
