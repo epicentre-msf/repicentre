@@ -1,5 +1,5 @@
 ---
-title: Introduction to data visualisation with ggplot2
+title: Introduction to data visualization with ggplot2
 description: Learn the basics of buidling plots with ggplot, and create you firs epicurves.
 date: last-modified
 image: ../img/under_construction.svg
@@ -20,6 +20,418 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 
 solutions <- params$solutions
 
-library(ggplot2)         # what does this library do?
+library(here)        # Better paths
+library(rio)         # Import files
+library(dplyr)       # Data manipulation
+library(lubridate)   # Deal with dates
+library(ggplot2)     # Todays workhorse
+
+
+# Their data
+df <- rio::import(here::here('data', 'clean',
+                             'linelist_moissala_2023-09-24_clean.rds')) %>% 
+  mutate(week = isoweek(date_admission))
+
+df_cases <- df %>%
+  group_by(week) %>%
+  count()
+
+# Data for our examples
+df_outcome <- df %>%
+  mutate(week_outcome = isoweek(date_outcome)) %>%
+  count(week_outcome, name = 'patients') %>%
+  tidyr::drop_na(week_outcome)
 ```
 
+
+
+## Objectives
+
+- Grasp the very basics of data visualization in R using `{ggplot2}`
+- Build a basic epicurve
+
+
+## Introduction
+
+This session is a short introduction to data visualization using the popular `{ggplot2}` package. Keep in mind that visualization in general and even `{ggplot2}` in particular are **huge** subjects that we can't realistically cover in a single core session. So, today's tutorial is intended as taster session to give you a feel for how plotting is typically done. To do that, we will come back to one of our most beloved epidemiological plots: **the epicurve**.^[Remember that an epicurve is a particular type of plot that shows the number of daily (or weekly) cases observed during an outbreak. These curves are fundamental in epidemiology and often use multicolored (stacked) bars to indicate not only the number of cases but also the proportion that were suspected/confirmed, alive/dead, etc.]
+
+Our final plot will (hopefully!) look like this:
+![A simple but nice epicurve](../sessions_core/img/ggplot_001_final_output.png){fig-align="center"}
+
+## Setup
+
+Before we get into the theory, let's get your data and script ready: 
+
+::: {.callout .callout-code}
+**Code.** Open your RStudio project and create a new script called `epicurves.R` with appropriate metadata. Load the following packages: `{here}`, `{rio}`, `{dplyr}`, `{lubridate}`, and `{ggplot2}`.
+
+**Code.** Add a section to your script called `# IMPORT DATA` where you import the *clean course dataset* (`linelist_moissala_clean.RDS`). Verify that the `head()` of your data looks like this:
+:::
+
+```{r}
+#| echo: false
+#| eval: true
+head(df)
+```
+
+
+```{r}
+#| include = solutions
+# SOLUTION
+library(here)        # Better paths
+library(rio)         # Import files
+library(dplyr)       # Data manipulation
+library(lubridate)   # Deal with dates
+library(ggplot2)     # Todays workhorse
+
+# IMPORT DATA ----------------------------------------------------
+df <- import(here::here('data', 'clean',
+                        'linelist_moissala_2023-09-24_clean.rds'))
+
+# Check import
+head(df)
+# dim(df)
+# str(df)
+```
+
+
+## Paradigms of Plotting
+
+In R, and indeed in everything, there are a lot of ways to approach data visualization. Two of the biggest paradigms are :
+
+- **The All-In-One**: this approach is characterized by having a single, typically somewhat complex, function that handles all aspects of building a plot. Base R as well as a variety of specialized packages tend to use this approach.
+
+- **<span class='hoverinfo' data-toggle="This paradigm is sometimes refered to as a 'Grammar of Graphics' approach as it it was first articulated in a book of the same name.">Layered (or modular)</span>**: here, instead of creating a plot with a single function, we will use separate functions to add (or modify) different features of a plot (such as the primary shapes, labels, error bars, themes, etc). This is the strategy used by packages like `{ggplot2}`, `{highcharter}`, or `{echarts4r}`. 
+
+An in depth discussion of why one might use one approach versus another is beyond the scope of this course, though we will note that most modern visualization packages <span class='hoverinfo' data-toggle="This is because layered models tend to be more convenient when building complex or highly customized visualizations.">tend to use a layered model</span>. With that in mind, let's take a look at the types of layers we are talking about in our "layered" approach.
+
+### Breaking it Down: A Visualization and its Parts
+
+For the purpose of this tutorial we will talk about only four visualization components (layers) :
+
+1. **Canvas** / **Data**
+2. **Primary Shapes**
+3. **Labels**
+4. **Theme**
+
+To illustrate these components, let's look at a basic schematic of an epicurve:
+
+![The main components of a plot](../sessions_core/img/ggplot_002_theory.png){fig-align="center"}
+
+The most conceptually complex of the above layers is probably **the canvas itself**. Much as an artist needs to buy a canvas and conceptualize what they want to paint before they start painting, so too does a user of `{ggplot2}`. Creating the canvas is where we tell R that we want to start making a plot and what parts of the data that plot will use. Here, for example, we will tell R *"I want to make a plot where the x axis represents date and the y axis represents cases"*. Once that canvas is set up we can start adding our other layers in the same way that an artist would begin adding paint, their signature, or a frame.
+
+Now, let's look at the syntax for these layers in `{ggplot2}` and how to put them together.
+
+### Getting Started with `{ggplot2}`
+
+The method of building a <span class='hoverinfo' data-toggle='Here we will use the term "a ggplot" to refer to any plot made with the {ggplot2} package.'>`ggplot`</span> is relatively simple and takes the form:
+
+1. Create a canvas using a duo of functions `ggplot(aes(...))`
+2. Add things to the canvas 
+
+`{ggplot2}` takes the idea of "adding something to your canvas" very literally: each new layer will be introduced to your plot using the `+` sign. 
+
+The general syntax of a `ggplot` is then:
+
+```{r}
+# PSEUDO CODE -- DO NOT RUN
+df %>%                     # pipe in your data 
+  ggplot(aes(x = ...,      # step 1: create canvas
+             y = ...)) +
+  layer_one(...) +         # step 2: add a first layer
+  layer_two(...) +         # step 3: add another layer
+  ...                      # continue adding layers...
+
+```
+
+The number of layers you add depends on how complex you want your plot to be. In our case, we will be adding three layers to our canvas with the following functions:
+
+```{r}
+# PSEUDO CODE -- DO NOT RUN
+df %>%                    # pipe in your data
+  ggplot(aes(x = ...,     # step 1: create canvas
+             y = ...)) +
+  geom_col(...) +         # step 2: add shapes (bars)        
+  labs(...) +             # step 3: add titles
+  theme_classic(...)      # step 4: add a nicer theme
+```
+
+![The main components of a plot](../sessions_core/img/ggplot_003_functions.png){fig-align="center"}
+
+::: {.callout-note}
+Notice that in the above example our very first line is actually our dataset being piped into the `ggplot()` function. This makes sense since `{ggplot2}` needs to know what data you'd like to visualize. **But be careful,** make sure that **this line ends in a pipe** (`%>%`) and not in a `+` sign like the other ones.
+:::
+
+In the next part of the tutorial we will go through each of these steps (layers) individually using our course dataset to make your first epicurve.
+
+## Building Your First `ggplot` 
+
+### Preparing Your Data: aggreagte by week
+
+Ultimately we would like to plot an epicurve of *weekly cases*. You may have noticed, however, that our current data is daily, so we need to do some aggregation. To start let's determine the week associated with each notification date using the function `isoweek()` from `{lubridate}`, which takes a date (or a vector of dates) and returns the associated ISO week.^[ISO weeks offer an internationally standardized approach to dates that avoid differences between countries on when a week starts and how to define the first week of the year. ISO weeks begin on Monday.]
+
+```{r}
+#| eval: true
+example_date <- '27-01-2023'
+
+isoweek(example_date)
+```
+
+::: {.callout .callout-code}
+**Code.** Create a new section in your script called `# PREPARE DATA`, then, use `mutate()` and `isoweek()` to create a new column in your dataframe called `week` that contains the ISO week associated with every *notification date*. The head of `date_admission` and `week` should look like this:
+:::
+
+```{r}
+#| echo: false
+#| eval: true
+df %>%
+  select(date_admission, week) %>%
+  head()
+```
+
+
+```{r}
+#| include = solutions
+# SOLUTION
+
+# PREPARE DATA ----------------------------------------------
+df <- df %>%
+  mutate(week = isoweek(date_admission))
+
+df %>%
+  select(date_admission, week) %>%
+  head()
+```
+
+Now we need to aggregate the total number of cases that were observed each week; because we are using linelist data, the number of cases is simply the number of rows.
+
+::: {.callout .callout-code}
+**Code.** Using `group_by()` and `count()`, create a new dataframe called `df_cases` that summarizes the total number of cases observed each week. The head of this data frame should look like this:
+:::
+
+```{r}
+#| echo: false
+#| eval: true
+head(df_cases)
+```
+
+
+```{r}
+#| include = solutions
+# SOLUTION
+df_cases <- df %>%
+  group_by(week) %>%
+  count()
+```
+
+Great! Now we are ready to make our epicurve. In the following steps, *you*'ll be asked to use `df_cases` to plot a classic epicurve of the *number of weekly cases*. To demonstrate the functions you'll be using, *I* will plot the curve of the number of weekly *dates of onset* as an example. To do that, I've build myself another dataframe, `df_outcome`, which looks like this:
+
+```{r}
+#| eval: true
+head(df_outcome)
+```
+
+### Set up a Canvas: Initialize a Plot
+
+The first step is creating your canvas by specifying your dataset and the names of the columns you'd like to visualize. This is done using `ggplot(aes())` with the following syntax:
+
+```{r}
+# PSEUDO CODE -- DO NOT RUN
+df_data %>%
+  ggplot(aes(x = x_axis_variable_name,
+             y = y_axis_variable_name))
+```
+
+For my plot of date of onset, I'd like to plot the ISO week (`week_outcome`) on the x-axis and the number of patients hospitalized (`patients`) on the y-axis. Let's update our pseudo-code to do that:
+
+```{r}
+#| eval: true
+df_outcome %>%
+  ggplot(aes(x = week_outcome,
+             y = patients))
+```
+
+::: {.callout-note}
+Just like with `{dplyr}`, we write our column names without quotation marks. This is unsurprising as `{ggplot2}`, like `{dplyr}`, is a member of the tidyverse and therefore uses similar syntax.
+:::
+
+Fabulous, take a look at that big beautiful box of potential. This is our empty canvas. In RStudio this plot should show up in the panel on the bottom right of the screen.
+
+![The plot pannel in RStudio IDE](../sessions_core/img/ggplot_004_plot_panel.png){fig-align="center"}
+
+:::{.callout-note title="What does aes stands for?"}
+
+Now, you may be asking yourself: "what is this weird `aes()` function that we've nested inside of `ggplot()`?". The short answer is that `aes()` creates an **AESthetic mapping** that tells `{ggplot2}` which columns of our data should be represented by which visual elements of our plot (like the axes, for example). 
+
+Aesthetic mappings create a map that defines how *data elements* (variables) are to be represented by *visual elements* (like axes, colors, and sizes). For example, here we are mapping the week number to the x axis and the number of patients to the y axis. We could also imagine, for example, an epicurve where bars are colored based on whether patients lived or died. This would be an example where the variable exit status is being mapped to the visual element of color. 
+
+For now it is enough to know that `aes()` is the place where you will define your x and y axis. 
+:::
+
+::: {.callout .callout-code}
+**Code.** Create a new section in your script called `# PLOT EPICURVE`. Then, following the above example as a guide, create an empty canvas for your epicurve using `df_cases`. At this point, your plot should look like this:
+:::
+
+```{r}
+#| eval: true
+#| echo: false
+df_cases %>%
+  ggplot(aes(x = week,
+             y = n))
+```
+
+```{r echo = solutions}
+#| include = solutions
+# SOLUTION
+
+# PLOT EPICURVE --------------------------------------------
+df_cases %>%
+  ggplot(aes(x = week,
+             y = n))
+```
+
+Excellent! Now let's add some bars.
+
+
+### Plot the Bars
+
+Now that we have our canvas, it's time to add some shapes. In `{ggplot2}`, the shapes plotted on a figure are called *geometries*.^[You'll notice in the below examples that the function for all geometries starts with `geom_`. This is designed to improve human readability and indeed all geometries in `{ggplot2}` start this way for consistency. Geometries are the primary visual representation of your data and should feel pretty familiar. A few common types of geometries include:
+
+- <span class='hoverinfo' data-toggle="Including epicurves!">Bar Plots</span> (`geom_col()` or `geom_bar()`)
+- Histograms (`geom_hist()`)
+- Scatterplots (`geom_point()`)
+- Line Plots (`geom_line()`)
+- Boxplots (`geom_boxplot()`)
+
+Today, we're doing epicurves so we are most interested in learning how to make a bar plot. In our case, we will be using `geom_col()`.^[The exact difference between `geom_bar()` and `geom_col()` is a bit beyond our scope. But, in essence, whereas geom_col() is designed to work with pre-aggregated data, geom_bar() will do some degree of aggregation on its own.] Remember that adding a new layer (in this case a geometry) to our `ggplot` is as simple as using a `+`, so we can add bars to my epicurve of hospitalized cases in the following way:
+
+```{r}
+#| eval: true
+df_outcome %>%
+  ggplot(aes(x = week_outcome,
+             y = patients)) +
+  geom_col()
+```
+
+Brilliant! That sure looks like an epicurve to me. Though it does look a bit...grey. If we'd like to update the color of our bars (called the `fill`), we simply need to add the `fill = ` argument to `geom_col()`.^[Fills and border colors in `{ggplot2}` can be specified in several ways. Here we have used a [hex code](https://www.w3schools.com/colors/colors_picker.asp), which allows us to give a unique code for specific colors. In a pinch, however, you can also specify simple colors by name. For example, arguments like 'blue' or 'green' would also be accepted (see [a list of R named colors](https://r-charts.com/colors/)).] 
+
+Let's give it a try:
+
+```{r}
+#| eval: true
+df_outcome %>%
+  ggplot(aes(x = week_outcome,
+             y = patients)) +
+  geom_col(fill = '#2E4573')
+```
+
+::: {.callout .callout-code}
+**Code.** Update your epicurve plot to add bars with the color `#E4573`.
+:::
+
+Your plot should now look like this:
+
+```{r}
+#| eval: true
+#| echo = solutions
+# SOLUTION
+df_cases %>%
+  ggplot(aes(x = week,
+             y = n)) +
+  geom_col(fill = '#2E4573')
+```
+
+
+::: {.callout-note}
+In the `{ggplot2}` framework, layers **must** be added to an existing canvas. This means that running `geom_col()` by itself will not produce any <span class='hoverinfo' data-toggle="Note that it will produce some type of output, just not a plot. Feel free to try it out for yourself!">visual output</span>. This, however, makes sense. Continuing with our analogy of `ggplots` being like paintings, running `geom_col()` by itself would be like having paint with no canvas to put it on.
+:::
+
+Looking good. Now it's time to make our plot just a *bit* more informative and just a *bit* more attractive by adding labels and a nicer theme.
+
+
+### Add Some Labels
+
+A good plot needs some good labeling; `n` is hardly an informative axis title. Fortunately, `{ggplot2}` makes adding labels easy with the function `labs()`. This function will accept a variety of arguments allowing you to add a variety of label/title elements to your plot, for example:
+
+- Axis Titles (`x = ` and `y = `)
+- Plot Title (`title = `)
+- <span class='hoverinfo' data-toggle="This could be used, for example, to add a note about the source of your data to your plot.">Caption</span> (`caption = `)
+
+Just as in **Step 2**, we can include a label layer by adding `labs()` to our current plot with the `+` sign:
+
+```{r eval = TRUE}
+#| eval: true
+df_outcome %>%
+  ggplot(aes(x = week_outcome,
+             y = patients)) +
+  geom_col(fill = '#2E4573') +
+  labs(x = 'ISO Week',
+       y = 'Outcomes',
+       title = "Measles outcomes in Moissala")
+```
+
+::: {.callout .callout-code}
+**Code.** Update your epicurve plot to add some reasonable axis labels and a nice title. 
+
+**Extra Credit!** Try adding a data source using `caption = `. Your plot might now look like (for example):
+:::
+
+```{r}
+#| eval: true
+#| echo = solutions
+# SOLUTION
+df_cases %>%
+  ggplot(aes(x = week,
+             y = n)) +
+  geom_col(fill = '#2E4573') +
+  labs(x = 'ISO Week',
+       y = 'Measles Cases',
+       title = 'Measles in Moissala',
+       caption = 'Ficticious data provided by Hugo')
+```
+
+### Step 4 : Add a Theme
+
+If we wanted to, we could stop here if our goal is to produce an informal plot. Ideally, however, it would be nice to use a somewhat more attractive theme and to <span class='hoverinfo' data-toggle="The text size of default plots is rarely large enough to be used in reports and almost never large enough to be used in presentations.">increase the text size</span>. To do this, we will add one last layer to our plot: a theme layer. Much like how geometries in `{ggplot2}` all start with `geom_`, all themes start with `theme_`. There are several themes available to you and you can check out what they look like on the [`{ggplot2}` website](https://ggplot2.tidyverse.org/reference/ggtheme.html). 
+
+Today, we will use `theme_classic()`, which offers a simple but elegant output:
+
+```{r}
+#| eval: true
+df_outcome %>%
+  ggplot(aes(x = week_outcome,
+             y = patients)) +
+  geom_col(fill = '#2E4573') +
+  labs(x = 'ISO Week',
+       y = 'Outcomes',
+       title = 'Measles outcomes in Moissala') +
+  theme_classic()
+```
+
+Ok, nice. But we'd also like to increase the size of that tiny font. To do that we can adjust the `base_size = ` argument:^[The 'base size' of a plot is a baseline font size that is used to calculate the size of all text elements in a plot. If it is increased, the font size of all elements will be increased proportionally.]
+
+```{r}
+#| eval: true
+df_outcome %>%
+  ggplot(aes(x = week_outcome,
+             y = patients)) +
+  geom_col(fill = '#2E4573') +
+  labs(x = 'ISO Week',
+       y = 'Outcomes',
+       title = 'Measles outcomes in Moissala') +
+  theme_classic(base_size = 20)
+```
+
+That looks better! Keep in mind that the font size needed will depend on what the plot is going to be used for (ie: a presentation, an informal review, or a final report). Similarly, the exact theme you will want to use is ultimately a subjective choice. While there are guidelines, data visualization is as much an art as a science.
+
+::: {.callout .callout-code}
+**Code.** Add one final layer to your plot that adds a theme of your choice with an appropriate `base_size`.
+:::
+
+## Done!
+
+Congratulations! You've made your first epicurve in R! If you would like to save it, you can click on the "Export" button in the plot panel of RStudio:
+
+![Save plot button in the RStudio plot pannel](../sessions_core/img/ggplot_005_plot_export.png){fig-align="center"}
+
+Very well done team! You have build your first epicurve!
