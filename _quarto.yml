@@ -19,12 +19,26 @@ format:
     theme: default
     css: styles.css
     code-link: true
+    
+    # Table of contents
     toc: true
+    toc-depth: 5
+    toc-expand: 3
+    toc-location: left
+    
+    # Notes and captions
+    cap-location: margin
+    reference-location: margin
+    
     include-before-body:
       text: <script type="text/javascript" src="../script.js"></script>
+    
+    # Execution
     execute:
       echo: true
       eval: false
+      
+
 
 
 
