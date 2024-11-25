@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.37">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="dcterms.date" content="2024-11-25">
+<meta name="description" content="Learn the basics of buidling plots with ggplot2, and create you first epicurve.">
+<title>Introduction to data visualization with ggplot2 – Repicentre</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-29e2c20b02301cfff04dc8050bf30c7e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-523b4dc3dad50da7e5c9dee1e7f3f290.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script><link rel="stylesheet" href="../styles.css">
+</head>
+<body class="floating nav-fixed slimcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Repicentre</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+<li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../pathway.html"> 
+<span class="menu-text">Pathway</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../explore.html"> 
+<span class="menu-text">Explore</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+</div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="3"><h2 id="toc-title">On this page</h2>
+   
+  <ul>
+<li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
+  <li>
+<a href="#paradigms-of-plotting" id="toc-paradigms-of-plotting" class="nav-link" data-scroll-target="#paradigms-of-plotting">Paradigms of Plotting</a>
+  <ul>
+<li><a href="#breaking-it-down-a-visualization-and-its-parts" id="toc-breaking-it-down-a-visualization-and-its-parts" class="nav-link" data-scroll-target="#breaking-it-down-a-visualization-and-its-parts">Breaking it Down: A Visualization and its Parts</a></li>
+  <li><a href="#getting-started-with-ggplot2" id="toc-getting-started-with-ggplot2" class="nav-link" data-scroll-target="#getting-started-with-ggplot2">Getting Started with <code>{ggplot2}</code></a></li>
+  </ul>
+</li>
+  <li>
+<a href="#building-your-first-ggplot" id="toc-building-your-first-ggplot" class="nav-link" data-scroll-target="#building-your-first-ggplot">Building Your First <code>ggplot</code></a>
+  <ul>
+<li><a href="#preparing-your-data-aggreagte-by-week" id="toc-preparing-your-data-aggreagte-by-week" class="nav-link" data-scroll-target="#preparing-your-data-aggreagte-by-week">Preparing Your Data: aggreagte by week</a></li>
+  <li><a href="#set-up-a-canvas-initialize-a-plot" id="toc-set-up-a-canvas-initialize-a-plot" class="nav-link" data-scroll-target="#set-up-a-canvas-initialize-a-plot">Set up a Canvas: Initialize a Plot</a></li>
+  <li><a href="#plot-the-bars" id="toc-plot-the-bars" class="nav-link" data-scroll-target="#plot-the-bars">Plot the Bars</a></li>
+  <li><a href="#add-some-labels" id="toc-add-some-labels" class="nav-link" data-scroll-target="#add-some-labels">Add Some Labels</a></li>
+  <li><a href="#add-a-theme" id="toc-add-a-theme" class="nav-link" data-scroll-target="#add-a-theme">Add a Theme</a></li>
+  <li><a href="#save-your-plot" id="toc-save-your-plot" class="nav-link" data-scroll-target="#save-your-plot">Save your plot</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#facetting-this-plot-by-age-group-or-site" id="toc-facetting-this-plot-by-age-group-or-site" class="nav-link" data-scroll-target="#facetting-this-plot-by-age-group-or-site">Facetting: This Plot By Age Group or Site</a>
+  <ul>
+<li><a href="#get-the-data-ready" id="toc-get-the-data-ready" class="nav-link" data-scroll-target="#get-the-data-ready">Get the data ready</a></li>
+  <li><a href="#add-the-facet-layer-to-the-plot" id="toc-add-the-facet-layer-to-the-plot" class="nav-link" data-scroll-target="#add-the-facet-layer-to-the-plot">Add the Facet Layer to the Plot</a></li>
+  </ul>
+</li>
+  <li><a href="#done" id="toc-done" class="nav-link" data-scroll-target="#done">Done!</a></li>
+  </ul></nav>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content"><script type="text/javascript" src="../script.js"></script><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title">Introduction to data visualization with ggplot2</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Core</div>
+    <div class="quarto-category">Graphs</div>
+    <div class="quarto-category">ggplot2</div>
+    <div class="quarto-category">epicurve</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Learn the basics of buidling plots with ggplot2, and create you first epicurve.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">November 25, 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header><section id="objectives" class="level2"><h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
+<ul>
+<li>Grasp the very basics of data visualization in R using <a href="https://ggplot2.tidyverse.org">ggplot2</a>
+</li>
+<li>Build a basic epicurve</li>
+</ul></section><section id="introduction" class="level2 page-columns page-full"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>This session is a short introduction to data visualization using the popular <a href="https://ggplot2.tidyverse.org">ggplot2</a> package. Keep in mind that visualization in general and even <a href="https://ggplot2.tidyverse.org">ggplot2</a> in particular are huge subjects that we can’t cover in a single core session. This tutorial is intended as taster to give you a feel for how plotting is typically done. To do that, we will come back to one of our most beloved epidemiological plots: <strong>the epicurve</strong>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;Remember that an epicurve is a particular type of plot that shows the number of daily (or weekly) cases observed during an outbreak. These curves are fundamental in epidemiology and often use multicolored (stacked) bars to indicate not only the number of cases but also the proportion that were suspected/confirmed, alive/dead, etc.</p></div></div><p>Our final plot will look like this: <img src="../sessions_core/img/ggplot_001_final_output.png" class="img-fluid quarto-figure quarto-figure-center" alt="A simple but nice epicurve"></p>
+</section><section id="setup" class="level2"><h2 class="anchored" data-anchor-id="setup">Setup</h2>
+<p>Before we get into the theory, let’s get your data and script ready:</p>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Code.</strong> Open your RStudio project and create a new script called <code>epicurves.R</code> with appropriate metadata. Load the following packages: <a href="https://here.r-lib.org/">here</a>, <a href="https://gesistsa.github.io/rio/">rio</a>, <a href="https://dplyr.tidyverse.org">dplyr</a>, <a href="https://lubridate.tidyverse.org">lubridate</a>, and <a href="https://ggplot2.tidyverse.org">ggplot2</a>.</p>
+<p><strong>Code.</strong> Add a section to your script called <code># IMPORT DATA</code> where you import the <em>clean course dataset</em> (<code>linelist_moissala_clean.RDS</code>). Verify that the <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code> of your data looks like this:</p>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>  id               site            case_name sex age age_unit     age_group
+1  1    Bedaya Hospital             Lan Mock   f   5   months    &lt; 6 months
+2  2  Moïssala Hospital Gabrielle Digregorio   f   1   months    &lt; 6 months
+3  3 Danamadji Hospital        Amaya Solomon   f   4    years   1 - 4 years
+4  6     Bouna Hospital       Phillip Suzuki   m   5   months    &lt; 6 months
+5  7  Bekourou Hospital      Aaqil al-Yousif   m  11   months 9 - 11 months
+6 10   Koumogo Hospital         Travis Engel   m   1   months    &lt; 6 months
+       region sub_prefecture date_onset hospitalisation date_admission ct_value
+1     Mandoul         Bedaya 2022-08-13             yes     2022-08-18       NA
+2     Mandoul       Moissala 2022-08-18             yes     2022-08-19     26.6
+3 Moyen Chari      Danamadji 2022-08-17             yes     2022-08-18     26.6
+4     Mandoul          Bouna 2022-08-22             yes     2022-08-23       NA
+5     Mandoul       Bekourou 2022-08-30             yes     2022-08-31       NA
+6 Moyen Chari        Koumogo 2022-08-30             yes     2022-09-02       NA
+   malaria_rdt fever rash cough red_eye pneumonia encephalitis muac
+1     negative     0    0     1       0         0            0  179
+2 inconclusive     1    1     0       1         0            0   63
+3 inconclusive     0    0     1       1         0            0  235
+4     negative     1    0     1       1         0            0  117
+5 inconclusive     0    1     0       0         0            0  143
+6         &lt;NA&gt;     0    0     1       0         0            0  205
+               muac_cat vacc_status vacc_doses   outcome date_outcome
+1       Green (125+ mm)          No       &lt;NA&gt;      dead   2022-08-21
+2         Red (&lt;115 mm)          No       &lt;NA&gt; recovered   2022-08-22
+3       Green (125+ mm)        &lt;NA&gt;       &lt;NA&gt;      dead   2022-08-19
+4 Yellow (115 - 124 mm)          No       &lt;NA&gt;      &lt;NA&gt;   2022-08-25
+5       Green (125+ mm)          No       &lt;NA&gt; recovered   2022-09-04
+6       Green (125+ mm)          No       &lt;NA&gt; recovered   2022-09-05
+  epi_classification week
+1          confirmed   33
+2          suspected   33
+3          suspected   33
+4           probable   34
+5          suspected   35
+6          confirmed   35</code></pre>
+</div>
+</div>
+</section><section id="paradigms-of-plotting" class="level2 page-columns page-full"><h2 class="anchored" data-anchor-id="paradigms-of-plotting">Paradigms of Plotting</h2>
+<p>In R, and indeed in everything, there are a lot of ways to approach data visualization. Two of the biggest paradigms are :</p>
+<ul>
+<li><p><strong>The All-In-One</strong>: this approach is characterized by having a single, typically somewhat complex, function that handles all aspects of building a plot. Base R as well as a variety of specialized packages tend to use this approach.</p></li>
+<li><p><strong>Layered (or modular)</strong><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>: here, instead of creating a plot with a single function, we will use separate functions to add (or modify) different features of a plot (such as the primary shapes, labels, error bars, themes, etc). This is the strategy used by packages like <a href="https://ggplot2.tidyverse.org">ggplot2</a>, <a href="https://jkunst.com/highcharter/">highcharter</a>, or <a href="https://echarts4r.john-coene.com/">echarts4r</a>.</p></li>
+</ul>
+<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;This paradigm is sometimes refered to as a ‘Grammar of Graphics’ approach as it it was first articulated in a book of the same name.</p></div></div><p>An in depth discussion of why one might use one approach versus another is beyond the scope of this course, though we will note that most modern visualization packages <span class="hoverinfo" data-toggle="tooltip" title="This is because layered models tend to be more convenient when building complex or highly customized visualizations.">tend to use a layered model</span>. With that in mind, let’s take a look at the types of layers we are talking about in our “layered” approach.</p>
+<section id="breaking-it-down-a-visualization-and-its-parts" class="level3 page-columns page-full"><h3 class="anchored" data-anchor-id="breaking-it-down-a-visualization-and-its-parts">Breaking it Down: A Visualization and its Parts</h3>
+<p>For the purpose of this tutorial we will talk about only four visualization components (layers) :</p>
+<ol type="1">
+<li>
+<strong>Canvas</strong> / <strong>Data</strong>
+</li>
+<li><strong>Primary Shapes</strong></li>
+<li><strong>Labels</strong></li>
+<li><strong>Theme</strong></li>
+</ol>
+<p>To illustrate these components, let’s look at a basic schematic of an epicurve:</p>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full"><p><img src="../sessions_core/img/ggplot_002_theory.png" class="img-fluid figure-img"></p>
+<figcaption class="margin-caption">The main components of a plot</figcaption></figure>
+</div>
+<p>The most conceptually complex of the above layers is probably <strong>the canvas itself</strong>. Much as an artist needs to buy a canvas and conceptualize what they want to paint before they start painting, so too does a user of <a href="https://ggplot2.tidyverse.org">ggplot2</a>. Creating the canvas is where we tell R that we want to start making a plot and what parts of the data that plot will use. Here, for example, we will tell R <em>“I want to make a plot where the x axis represents date and the y axis represents cases”</em>. Once that canvas is set up we can start adding our other layers in the same way that an artist would begin adding paint, their signature, or a frame.</p>
+<p>Now, let’s look at the syntax for these layers in <a href="https://ggplot2.tidyverse.org">ggplot2</a> and how to put them together.</p>
+</section><section id="getting-started-with-ggplot2" class="level3 page-columns page-full"><h3 class="anchored" data-anchor-id="getting-started-with-ggplot2">Getting Started with <code>{ggplot2}</code>
+</h3>
+<p>The method of building a <span class="hoverinfo" data-toggle="tooltip" title="Here we will use the term &quot;a ggplot&quot; to refer to any plot made with the {ggplot2} package."><code>ggplot</code></span> is relatively simple and takes the form:</p>
+<ol type="1">
+<li>Create a canvas using a duo of functions <code>ggplot(aes(...))</code>
+</li>
+<li>Add things to the canvas</li>
+</ol>
+<p><a href="https://ggplot2.tidyverse.org">ggplot2</a> takes the idea of “adding something to your canvas” very literally: each new layer will be introduced to your plot using the <code>+</code> sign.</p>
+<p>The general syntax of a <code>ggplot</code> is then:</p>
+<div class="cell">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># PSEUDO CODE -- DO NOT RUN</span></span>
+<span><span class="va">df</span> <span class="op">%&gt;%</span>                     <span class="co"># pipe in your data </span></span>
+<span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">...</span>,      <span class="co"># step 1: create canvas</span></span>
+<span>             y <span class="op">=</span> <span class="va">...</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">layer_one</span><span class="op">(</span><span class="va">...</span><span class="op">)</span> <span class="op">+</span>         <span class="co"># step 2: add a first layer</span></span>
+<span>  <span class="fu">layer_two</span><span class="op">(</span><span class="va">...</span><span class="op">)</span> <span class="op">+</span>         <span class="co"># step 3: add another layer</span></span>
+<span>  <span class="va">...</span>                      <span class="co"># continue adding layers...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The number of layers you add depends on how complex you want your plot to be. In our case, we will be adding three layers to our canvas with the following functions:</p>
+<div class="cell">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># PSEUDO CODE -- DO NOT RUN</span></span>
+<span><span class="va">df</span> <span class="op">%&gt;%</span>                    <span class="co"># pipe in your data</span></span>
+<span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">...</span>,     <span class="co"># step 1: create canvas</span></span>
+<span>             y <span class="op">=</span> <span class="va">...</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_col</span><span class="op">(</span><span class="va">...</span><span class="op">)</span> <span class="op">+</span>         <span class="co"># step 2: add shapes (bars)        </span></span>
+<span>  <span class="fu">labs</span><span class="op">(</span><span class="va">...</span><span class="op">)</span> <span class="op">+</span>             <span class="co"># step 3: add titles</span></span>
+<span>  <span class="fu">theme_classic</span><span class="op">(</span><span class="va">...</span><span class="op">)</span>      <span class="co"># step 4: add a nicer theme</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Notice that in the above example our very first line is actually our dataset being piped into the <code>ggplot()</code> function. This makes sense since <a href="https://ggplot2.tidyverse.org">ggplot2</a> needs to know what data you’d like to visualize. <strong>But be careful,</strong> make sure that <strong>this line ends in a pipe</strong> (<code>%&gt;%</code>) and not in a <code>+</code> sign like the other ones.</p>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full"><p><img src="../sessions_core/img/ggplot_003_functions.png" class="img-fluid figure-img"></p>
+<figcaption class="margin-caption">The main components of a plot, with their associated functions</figcaption></figure>
+</div>
+<p>In the next part of the tutorial we will go through each of these steps (layers) individually using our course dataset to make your first epicurve.</p>
+</section></section><section id="building-your-first-ggplot" class="level2 page-columns page-full"><h2 class="anchored" data-anchor-id="building-your-first-ggplot">Building Your First <code>ggplot</code>
+</h2>
+<section id="preparing-your-data-aggreagte-by-week" class="level3 page-columns page-full"><h3 class="anchored" data-anchor-id="preparing-your-data-aggreagte-by-week">Preparing Your Data: aggreagte by week</h3>
+<p>Ultimately we would like to plot an epicurve of <em>weekly cases</em>. You may have noticed, however, that our current data is daily, so we need to do some aggregation. To start let’s determine the week associated with each notification date using the function <code>isoweek()</code> from <a href="https://lubridate.tidyverse.org">lubridate</a>, which takes a date (or a vector of dates) and returns the associated ISO week.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
+<div class="no-row-height column-margin column-container"><div id="fn3"><p><sup>3</sup>&nbsp;ISO weeks offer an internationally standardized approach to dates that avoid differences between countries on when a week starts and how to define the first week of the year. ISO weeks begin on Monday.</p></div></div><div class="cell">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">example_date</span> <span class="op">&lt;-</span> <span class="st">'27-01-2023'</span></span>
+<span></span>
+<span><span class="fu">isoweek</span><span class="op">(</span><span class="va">example_date</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3</code></pre>
+</div>
+</div>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Code.</strong> Create a new section in your script called <code># PREPARE DATA</code>, then use <code>mutate()</code> and <code>isoweek()</code> to create a new column in your dataframe called <code>week</code> that contains the ISO week associated with every <em>notification date</em>. The head of <code>date_admission</code> and <code>week</code> should look like this:</p>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>  date_admission week
+1     2022-08-18   33
+2     2022-08-19   33
+3     2022-08-18   33
+4     2022-08-23   34
+5     2022-08-31   35
+6     2022-09-02   35</code></pre>
+</div>
+</div>
+<p>Now we need to aggregate the total number of cases that were observed each week; because we are using linelist data, the number of cases is simply the number of rows.</p>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Code.</strong> Using <code>group_by()</code> and <code>count()</code>, create a new dataframe called <code>df_cases</code> that summarizes the total number of cases observed each week. The head of this data frame should look like this:</p>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 2
+# Groups:   week [6]
+   week     n
+  &lt;dbl&gt; &lt;int&gt;
+1     1    32
+2     2    34
+3     3    41
+4     4    49
+5     5    58
+6     6    86</code></pre>
+</div>
+</div>
+<p>Great! Now we are ready to make our epicurve. In the following steps, <em>you</em>’ll be asked to use <code>df_cases</code> to plot a classic epicurve of the <em>number of weekly cases</em>. To demonstrate the functions you’ll be using, <em>I</em> will plot the curve of the number of weekly <em>dates outcomes</em> as an example. To do that, I’ve build myself another dataframe, <code>df_outcome</code>, which looks like this:</p>
+<div class="cell">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">df_outcome</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  week_outcome patients
+1            1       30
+2            2       32
+3            3       28
+4            4       37
+5            5       58
+6            6       75</code></pre>
+</div>
+</div>
+</section><section id="set-up-a-canvas-initialize-a-plot" class="level3 page-columns page-full"><h3 class="anchored" data-anchor-id="set-up-a-canvas-initialize-a-plot">Set up a Canvas: Initialize a Plot</h3>
+<p>The first step is creating your canvas by specifying your dataset and the names of the columns you’d like to visualize. This is done using <code>ggplot(aes())</code> with the following syntax:</p>
+<div class="cell">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># PSEUDO CODE -- DO NOT RUN</span></span>
+<span><span class="va">df_data</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">x_axis_variable_name</span>,</span>
+<span>             y <span class="op">=</span> <span class="va">y_axis_variable_name</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>For my plot of date of onset, I’d like to plot the ISO week (<code>week_outcome</code>) on the x-axis and the number of patients hospitalized (<code>patients</code>) on the y-axis. Let’s update our pseudo-code to do that:</p>
+<div class="cell">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df_outcome</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">week_outcome</span>,</span>
+<span>             y <span class="op">=</span> <span class="va">patients</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="ggplot_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Just like with <a href="https://dplyr.tidyverse.org">dplyr</a>, we write our column names without quotation marks. This is unsurprising as <a href="https://ggplot2.tidyverse.org">ggplot2</a>, like <a href="https://dplyr.tidyverse.org">dplyr</a>, is a member of the tidyverse and therefore uses similar syntax.</p>
+</div>
+</div>
+<p>Fabulous, take a look at that big beautiful box of potential. This is our empty canvas. In RStudio this plot should show up in the panel on the bottom right of the screen.</p>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full"><p><img src="../sessions_core/img/ggplot_004_plot_panel.png" class="img-fluid figure-img"></p>
+<figcaption class="margin-caption">The plot pannel in RStudio IDE</figcaption></figure>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="What does aes stands for?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+What does aes stands for?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Now, you may be asking yourself: “what is this weird <code>aes()</code> function that we’ve nested inside of <code>ggplot()</code>?”. The short answer is that <code>aes()</code> creates an <strong>AESthetic mapping</strong> that tells <a href="https://ggplot2.tidyverse.org">ggplot2</a> which columns of our data should be represented by which visual elements of our plot (like the axes, for example).</p>
+<p>Aesthetic mappings create a map that defines how <em>data elements</em> (variables) are to be represented by <em>visual elements</em> (like axes, colors, and sizes). For example, here we are mapping the week number to the x axis and the number of patients to the y axis. We could also imagine, for example, an epicurve where bars are colored based on whether patients lived or died. This would be an example where the variable exit status is being mapped to the visual element of color.</p>
+<p>For now it is enough to know that <code>aes()</code> is the place where you will define your x and y axis.</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Code.</strong> Create a new section in your script called <code># PLOT EPICURVE</code>. Then create an empty canvas for your epicurve using <code>df_cases</code>.</p>
+</div>
+</div>
+</div>
+<p>At this point, your plot should look like this:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="ggplot_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Excellent! Now let’s add some bars.</p>
+</section><section id="plot-the-bars" class="level3 page-columns page-full"><h3 class="anchored" data-anchor-id="plot-the-bars">Plot the Bars</h3>
+<p>Now that we have our canvas, it’s time to add some shapes. In <a href="https://ggplot2.tidyverse.org">ggplot2</a>, the shapes plotted on a figure are called <em>geometries</em>.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. Geometries are the primary visual representation of your data and should feel pretty familiar. A few common types of geometries include:</p>
+<div class="no-row-height column-margin column-container"><div id="fn4"><p><sup>4</sup>&nbsp;You’ll notice in the below examples that the function for all geometries starts with <code>geom_</code>. This is designed to improve human readability and indeed all geometries in <a href="https://ggplot2.tidyverse.org">ggplot2</a> start this way for consistency</p></div></div><ul>
+<li>
+<span class="hoverinfo" data-toggle="tooltip" title="Including epicurves!">Bar Plots</span> (<code>geom_col()</code> or <code>geom_bar()</code>)</li>
+<li>Histograms (<code>geom_hist()</code>)</li>
+<li>Scatterplots (<code>geom_point()</code>)</li>
+<li>Line Plots (<code>geom_line()</code>)</li>
+<li>Boxplots (<code>geom_boxplot()</code>)</li>
+</ul>
+<p>Today, we’re doing epicurves so we are most interested in learning how to make a bar plot. In our case, we will be using <code>geom_col()</code>.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> Remember that adding a new layer (in this case a geometry) to our <code>ggplot</code> is as simple as using a <code>+</code>, so we can add bars to my epicurve of hospitalized cases in the following way:</p>
+<div class="no-row-height column-margin column-container"><div id="fn5"><p><sup>5</sup>&nbsp;The exact difference between <code>geom_bar()</code> and <code>geom_col()</code> is a bit beyond our scope. But, in essence, whereas <code>geom_col()</code> is designed to work with pre-aggregated data, <code>geom_bar()</code> will do some degree of aggregation on its own.</p></div></div><div class="cell">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df_outcome</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">week_outcome</span>,</span>
+<span>             y <span class="op">=</span> <span class="va">patients</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_col</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="ggplot_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Brilliant! That sure looks like an epicurve to me. Though it does look a bit…grey. If we’d like to update the color of our bars (called the <code>fill</code>), we simply need to add the <code>fill =</code> argument to <code>geom_col()</code>.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></p>
+<div class="no-row-height column-margin column-container"><div id="fn6"><p><sup>6</sup>&nbsp;Fills and border colors in <a href="https://ggplot2.tidyverse.org">ggplot2</a> can be specified in several ways. Here we have used a <a href="https://www.w3schools.com/colors/colors_picker.asp">hex code</a>, which allows us to give a unique code for specific colors. In a pinch, however, you can also specify simple colors by name. For example, arguments like ‘blue’ or ‘green’ would also be accepted (see <a href="https://r-charts.com/colors/">a list of R named colors</a>).</p></div></div><p>Let’s give it a try:</p>
+<div class="cell">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df_outcome</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">week_outcome</span>,</span>
+<span>             y <span class="op">=</span> <span class="va">patients</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_col</span><span class="op">(</span>fill <span class="op">=</span> <span class="st">'#2E4573'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="ggplot_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Code.</strong> Update your epicurve plot to add bars with the color <code>#E4573</code>.</p>
+</div>
+</div>
+</div>
+<p>Your plot should now look like this:</p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
+(`geom_col()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="ggplot_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In the <a href="https://ggplot2.tidyverse.org">ggplot2</a> framework, layers <strong>must</strong> be added to an existing canvas. This means that running <code>geom_col()</code> by itself will not produce any <span class="hoverinfo" data-toggle="tooltip" title="Note that it will produce some type of output, just not a plot. Feel free to try it out for yourself!">visual output</span>. This, however, makes sense. Continuing with our analogy of <code>ggplots</code> being like paintings, running <code>geom_col()</code> by itself would be like having paint with no canvas to put it on.</p>
+</div>
+</div>
+<p>Looking good. Now it’s time to make our plot just a <em>bit</em> more informative and just a <em>bit</em> more attractive by adding labels and a nicer theme.</p>
+</section><section id="add-some-labels" class="level3"><h3 class="anchored" data-anchor-id="add-some-labels">Add Some Labels</h3>
+<p>A good plot needs some good labeling; <code>n</code> is hardly an informative axis title. Fortunately, <a href="https://ggplot2.tidyverse.org">ggplot2</a> makes adding labels easy with the function <code>labs()</code>. This function will accept a variety of arguments allowing you to add a variety of label/title elements to your plot, for example:</p>
+<ul>
+<li>Axis Titles (<code>x =</code> and <code>y =</code>)</li>
+<li>Plot Title (<code>title =</code>)</li>
+<li>
+<span class="hoverinfo" data-toggle="tooltip" title="This could be used, for example, to add a note about the source of your data to your plot.">Caption</span> (<code>caption =</code>)</li>
+</ul>
+<p>As for other layers, we can include a label layer by adding <code>labs()</code> to our current plot with the <code>+</code> sign:</p>
+<div class="cell">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df_outcome</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">week_outcome</span>,</span>
+<span>             y <span class="op">=</span> <span class="va">patients</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_col</span><span class="op">(</span>fill <span class="op">=</span> <span class="st">'#2E4573'</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">'ISO Week'</span>,</span>
+<span>       y <span class="op">=</span> <span class="st">'Outcomes'</span>,</span>
+<span>       title <span class="op">=</span> <span class="st">"Measles outcomes in Moissala"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="ggplot_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Code.</strong> Update your epicurve plot to add some reasonable axis labels and a nice title.</p>
+<p><strong>Extra Credit!</strong> Try adding a data source using <code>caption =</code>.</p>
+</div>
+</div>
+</div>
+<p>Your plot might now look like (for example):</p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
+(`geom_col()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="ggplot_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="add-a-theme" class="level3 page-columns page-full"><h3 class="anchored" data-anchor-id="add-a-theme">Add a Theme</h3>
+<p>If we wanted to, we could stop here if our goal is to produce an informal plot. Ideally, however, it would be nice to use a somewhat more attractive theme and to <span class="hoverinfo" data-toggle="tooltip" title="The text size of default plots is rarely large enough to be used in reports and almost never large enough to be used in presentations.">increase the text size</span>. To do this, we will add one last layer to our plot: a theme layer. Much like how geometries in <a href="https://ggplot2.tidyverse.org">ggplot2</a> all start with <code>geom_</code>, all themes start with <code>theme_</code>. There are several themes available to you and you can check out what they look like on the <a href="https://ggplot2.tidyverse.org/reference/ggtheme.html"><code>{ggplot2}</code> website</a>.</p>
+<p>Today, we will use <code>theme_classic()</code>, which offers a simple but elegant output:</p>
+<div class="cell">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df_outcome</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">week_outcome</span>,</span>
+<span>             y <span class="op">=</span> <span class="va">patients</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_col</span><span class="op">(</span>fill <span class="op">=</span> <span class="st">'#2E4573'</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">'ISO Week'</span>,</span>
+<span>       y <span class="op">=</span> <span class="st">'Outcomes'</span>,</span>
+<span>       title <span class="op">=</span> <span class="st">'Measles outcomes in Moissala'</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">theme_classic</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="ggplot_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Ok, nice. But we’d also like to increase the size of that tiny font. To do that we can adjust the <code>base_size =</code> argument:<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a></p>
+<div class="no-row-height column-margin column-container"><div id="fn7"><p><sup>7</sup>&nbsp;The base size of a plot is a baseline font size that is used to calculate the size of all text elements in a plot. If it is increased, the font size of all elements will be increased proportionally.</p></div></div><div class="cell">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df_outcome</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">week_outcome</span>,</span>
+<span>             y <span class="op">=</span> <span class="va">patients</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_col</span><span class="op">(</span>fill <span class="op">=</span> <span class="st">'#2E4573'</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">'ISO Week'</span>,</span>
+<span>       y <span class="op">=</span> <span class="st">'Outcomes'</span>,</span>
+<span>       title <span class="op">=</span> <span class="st">'Measles outcomes in Moissala'</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">theme_classic</span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="ggplot_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>That looks better! Keep in mind that the font size needed will depend on what the plot is going to be used for (<em>i.e.</em>: a presentation, an informal review, or a final report). Similarly, the exact theme you will want to use is ultimately a subjective choice. While there are guidelines, data visualization is as much an art as a science.</p>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Code.</strong> Add one final layer to your plot that adds a theme of your choice with an appropriate <code>base_size =</code>.</p>
+</div>
+</div>
+</div>
+</section><section id="save-your-plot" class="level3 page-columns page-full"><h3 class="anchored" data-anchor-id="save-your-plot">Save your plot</h3>
+<p>If you would like to save your epicurve, you can click on the “Export” button in the plot panel of RStudio:</p>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full"><p><img src="../sessions_core/img/ggplot_005_plot_export.png" class="img-fluid figure-img"></p>
+<figcaption class="margin-caption">Save plot button in the RStudio plot pannel</figcaption></figure>
+</div>
+</section></section><section id="facetting-this-plot-by-age-group-or-site" class="level2"><h2 class="anchored" data-anchor-id="facetting-this-plot-by-age-group-or-site">Facetting: This Plot By Age Group or Site</h2>
+<p>Now, this plot is cool, but in you sitrep you want to show the data by age group, or by site. There are several ways to do that.</p>
+<ul>
+<li>The intuitive way, which you already have the skill to do is to copy and reuse the graph code, passing different, filtered dataframes to the <code>ggplot()</code> command</li>
+<li>Use a for loop or <code>apply</code> or <code>map</code> familly functions: these are ways to automatize actions that involve less copy and pasting</li>
+<li>Trust <a href="https://ggplot2.tidyverse.org">ggplot2</a> to have a solution</li>
+</ul>
+<p>The first option is tedious and it is easy to make errors; the second option can be quite powerfull and I hope that at some point you will learn some of these tools, but it is quite out of the scope of this tutorial. We will focus on the third option, which is powerfull and sufficient for many contexts.</p>
+<p>The function <code>facet_wrap()</code> allow you to replicate a graph based on the categories of a variable. For example, you could make the outcome graph <em>by sex</em>, or <em>by site</em>. As other layers of a ggplot graph, you add it to your existing graph with a <code>+</code>. It will create a a figure with multiple small graphs, that <a href="https://ggplot2.tidyverse.org">ggplot2</a> call <em>facets</em> or small multiples.</p>
+<section id="get-the-data-ready" class="level4"><h4 class="anchored" data-anchor-id="get-the-data-ready">Get the data ready</h4>
+<p>If we want to to plot anything <em>by site</em>, the site variable must be present in the aggregated datadata. Our current summarised dataset is only summarised by week though:</p>
+<div class="cell">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">df_outcome</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  week_outcome patients
+1            1       30
+2            2       32
+3            3       28
+4            4       37
+5            5       58
+6            6       75</code></pre>
+</div>
+</div>
+<p>Let’s create a new summarised dataset that has the number of outcomes by week <em>and by site</em>!</p>
+<div class="cell">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Summarise the data</span></span>
+<span><span class="va">df_outcome_site</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">mutate</span><span class="op">(</span>week_outcome <span class="op">=</span> <span class="fu">isoweek</span><span class="op">(</span><span class="va">date_outcome</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">count</span><span class="op">(</span><span class="va">week_outcome</span>, <span class="va">site</span>,</span>
+<span>        name <span class="op">=</span> <span class="st">'patients'</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na</a></span><span class="op">(</span><span class="va">week_outcome</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Inspect the first line</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">df_outcome_site</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  week_outcome               site patients
+1            1    Bedaya Hospital        3
+2            1  Bekourou Hospital        7
+3            1     Bouna Hospital        8
+4            1 Danamadji Hospital        5
+5            1  Moïssala Hospital        7
+6            2    Bedaya Hospital        2</code></pre>
+</div>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Quick sanity check...</span></span>
+<span><span class="va">df_outcome_site</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">count</span><span class="op">(</span><span class="va">site</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                site  n
+1    Bedaya Hospital 51
+2  Bekourou Hospital 37
+3     Bouna Hospital 52
+4 Danamadji Hospital 27
+5   Koumogo Hospital 10
+6  Moïssala Hospital 52</code></pre>
+</div>
+</div>
+</section><section id="add-the-facet-layer-to-the-plot" class="level4"><h4 class="anchored" data-anchor-id="add-the-facet-layer-to-the-plot">Add the Facet Layer to the Plot</h4>
+<p>Now, let’s plot this data. Look at the code bellow: it is exactly the same as before but for the last line, which creates the facets:</p>
+<div class="cell">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df_outcome_site</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">week_outcome</span>,</span>
+<span>             y <span class="op">=</span> <span class="va">patients</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_col</span><span class="op">(</span>fill <span class="op">=</span> <span class="st">'#2E4573'</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">'ISO Week'</span>,</span>
+<span>       y <span class="op">=</span> <span class="st">'Outcomes'</span>,</span>
+<span>       title <span class="op">=</span> <span class="st">'Measles outcomes in Moissala'</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">theme_classic</span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">15</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  </span>
+<span>  <span class="fu">facet_wrap</span><span class="op">(</span><span class="fu">vars</span><span class="op">(</span><span class="va">site</span><span class="op">)</span><span class="op">)</span>   <span class="co"># Make the plot by site!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="ggplot_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Isn’t that incredible? As you can see, the function <code>facer_wrap()</code> takes as argument a variable name wrapped in the <code>vars()</code> function.</p>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Now is your turn, you will draw a plot of the number of admissions by age group.</p>
+<p><strong>Code.</strong> Prepare a new aggregated dataframe, summarized by week and age. Then, draw the epicurve by age group (still keeping all the plots improvement: labels, themes etc.)</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>To go further</strong> Check out the function <a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">help page</a> to learn how to control the number of facets by row with <code>nrow =</code>, or column with <code>ncol =</code>, and how to control the maximum values of the axes with <code>scales =</code>.</p>
+<p>Check out the examples, one of them show how to adapt your code to do this:</p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 6 rows containing missing values or values outside the scale range
+(`geom_col()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="ggplot_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section></section><section id="done" class="level2"><h2 class="anchored" data-anchor-id="done">Done!</h2>
+<p>Very well done team! You have build your first epicurve!</p>
+
+
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

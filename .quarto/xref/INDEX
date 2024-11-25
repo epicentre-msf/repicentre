@@ -55,5 +55,8 @@
   },
   "sessions_core/import_data.qmd": {
     "import_data.html": "6f030d71"
+  },
+  "sessions_core/ggplot.qmd": {
+    "ggplot.html": "69ceaa48"
   }
 }

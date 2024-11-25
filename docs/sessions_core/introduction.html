@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.6.37">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta name="dcterms.date" content="2024-11-22">
+<meta name="dcterms.date" content="2024-11-25">
 <meta name="description" content="Your first steps in R. Learn your way around Rstudio, and meet some common R objects">
 <title>Introduction to R – Repicentre</title>
 <style>
@@ -98,7 +98,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script><link rel="stylesheet" href="../styles.css">
 </head>
-<body class="nav-fixed">
+<body class="floating nav-fixed slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
@@ -136,25 +136,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </div> <!-- /container-fluid -->
     </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="3"><h2 id="toc-title">On this page</h2>
    
   <ul>
 <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
   <li><a href="#exercise-format" id="toc-exercise-format" class="nav-link" data-scroll-target="#exercise-format">Exercise Format</a></li>
   <li>
 <a href="#rstudio-and-r" id="toc-rstudio-and-r" class="nav-link" data-scroll-target="#rstudio-and-r">RStudio and R</a>
-  <ul class="collapse">
-<li><a href="#getting-started-with-rstudio" id="toc-getting-started-with-rstudio" class="nav-link" data-scroll-target="#getting-started-with-rstudio">Getting Started with RStudio</a></li>
+  <ul>
+<li>
+<a href="#getting-started-with-rstudio" id="toc-getting-started-with-rstudio" class="nav-link" data-scroll-target="#getting-started-with-rstudio">Getting Started with RStudio</a>
+  <ul>
+<li><a href="#uper-right-corner" id="toc-uper-right-corner" class="nav-link" data-scroll-target="#uper-right-corner">Uper Right Corner</a></li>
+  <li><a href="#bottom-right-corner" id="toc-bottom-right-corner" class="nav-link" data-scroll-target="#bottom-right-corner">Bottom Right Corner</a></li>
+  <li><a href="#left-side" id="toc-left-side" class="nav-link" data-scroll-target="#left-side">Left Side</a></li>
+  </ul>
+</li>
   <li><a href="#sec-console" id="toc-sec-console" class="nav-link" data-scroll-target="#sec-console">The Console</a></li>
-  <li><a href="#sec-scripts" id="toc-sec-scripts" class="nav-link" data-scroll-target="#sec-scripts">Scripts</a></li>
+  <li>
+<a href="#sec-scripts" id="toc-sec-scripts" class="nav-link" data-scroll-target="#sec-scripts">Scripts</a>
+  <ul>
+<li><a href="#writing-your-first-script" id="toc-writing-your-first-script" class="nav-link" data-scroll-target="#writing-your-first-script">Writing Your First Script</a></li>
+  <li><a href="#executing-code-from-a-script" id="toc-executing-code-from-a-script" class="nav-link" data-scroll-target="#executing-code-from-a-script">Executing Code from a Script</a></li>
+  <li><a href="#sec-comments" id="toc-sec-comments" class="nav-link" data-scroll-target="#sec-comments">Comments</a></li>
+  </ul>
+</li>
   </ul>
 </li>
   <li><a href="#data-types" id="toc-data-types" class="nav-link" data-scroll-target="#data-types">Data Types</a></li>
   <li>
 <a href="#numerics" id="toc-numerics" class="nav-link" data-scroll-target="#numerics">Numerics</a>
-  <ul class="collapse">
+  <ul>
 <li><a href="#strings" id="toc-strings" class="nav-link" data-scroll-target="#strings">Strings</a></li>
   <li><a href="#boolean-logical" id="toc-boolean-logical" class="nav-link" data-scroll-target="#boolean-logical">Boolean (Logical)</a></li>
   <li><a href="#determining-the-type-of-an-object" id="toc-determining-the-type-of-an-object" class="nav-link" data-scroll-target="#determining-the-type-of-an-object">Determining the Type of an Object</a></li>
@@ -162,22 +174,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
   <li>
 <a href="#sec-assignement-operator" id="toc-sec-assignement-operator" class="nav-link" data-scroll-target="#sec-assignement-operator">Saving an Object</a>
-  <ul class="collapse">
+  <ul>
 <li><a href="#updating-an-object" id="toc-updating-an-object" class="nav-link" data-scroll-target="#updating-an-object">Updating an Object</a></li>
   <li><a href="#object-names" id="toc-object-names" class="nav-link" data-scroll-target="#object-names">Object Names</a></li>
   </ul>
 </li>
   <li>
 <a href="#data-structures" id="toc-data-structures" class="nav-link" data-scroll-target="#data-structures">Data Structures</a>
-  <ul class="collapse">
-<li><a href="#vectors" id="toc-vectors" class="nav-link" data-scroll-target="#vectors">Vectors</a></li>
+  <ul>
+<li>
+<a href="#vectors" id="toc-vectors" class="nav-link" data-scroll-target="#vectors">Vectors</a>
+  <ul>
+<li><a href="#simple-vectors" id="toc-simple-vectors" class="nav-link" data-scroll-target="#simple-vectors">Simple Vectors</a></li>
+  </ul>
+</li>
   <li><a href="#accessing-the-values-of-a-vector" id="toc-accessing-the-values-of-a-vector" class="nav-link" data-scroll-target="#accessing-the-values-of-a-vector">Accessing the Values of a Vector</a></li>
-  <li><a href="#dataframes" id="toc-dataframes" class="nav-link" data-scroll-target="#dataframes">Dataframes</a></li>
+  <li>
+<a href="#dataframes" id="toc-dataframes" class="nav-link" data-scroll-target="#dataframes">Dataframes</a>
+  <ul>
+<li><a href="#creating-a-dataframe" id="toc-creating-a-dataframe" class="nav-link" data-scroll-target="#creating-a-dataframe">Creating a Dataframe</a></li>
+  <li><a href="#sec-dataframe-functions" id="toc-sec-dataframe-functions" class="nav-link" data-scroll-target="#sec-dataframe-functions">Exploring a Dataframe</a></li>
+  <li><a href="#accessing-data-in-a-dataframe" id="toc-accessing-data-in-a-dataframe" class="nav-link" data-scroll-target="#accessing-data-in-a-dataframe">Accessing Data in a Dataframe</a></li>
+  </ul>
+</li>
   </ul>
 </li>
   <li><a href="#sec-missing-values" id="toc-sec-missing-values" class="nav-link" data-scroll-target="#sec-missing-values">Missing Values</a></li>
   <li><a href="#sec-functions" id="toc-sec-functions" class="nav-link" data-scroll-target="#sec-functions">Functions</a></li>
   </ul></nav>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content"><script type="text/javascript" src="../script.js"></script><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
@@ -203,7 +230,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 22, 2024</p>
+      <p class="date">November 25, 2024</p>
     </div>
   </div>
   
@@ -248,7 +275,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section><section id="rstudio-and-r" class="level2 page-columns page-full"><h2 class="anchored" data-anchor-id="rstudio-and-r">RStudio and R</h2>
 <p><em>R</em> is a functional programming language[Functional programming languages are designed primarily to run analyses and focus on tools for data manipulation, computation, and visualization. This can be contrasted with object oriented languages which are more adept at building complex programs (such as operating systems).] that can be used to clean and manipulate data, run analyses (especially statistical ones), visualize results, and much more.</p>
 <p><em>RStudio</em> is a piece of software that provides a user-friendly interface (or <span class="hoverinfo" data-toggle="tooltip" title="Integrated Development Environments">IDE</span> to be precise) for R.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> While using a graphical interface isn’t technically required, it is <strong>strongly recommended</strong> for beginners.</p>
-<section id="getting-started-with-rstudio" class="level3 page-columns page-full"><h3 class="anchored" data-anchor-id="getting-started-with-rstudio">Getting Started with RStudio</h3>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;Integrated Development Environments are a group of softwares that provide a convenient interface to use one or more programming languages. Many IDEs are specialized for a specific language (such as RStudio being specialized for R). Others, like VS Code are more general and can be used for any language.</p></div></div><section id="getting-started-with-rstudio" class="level3 page-columns page-full"><h3 class="anchored" data-anchor-id="getting-started-with-rstudio">Getting Started with RStudio</h3>
 <p>Let’s get started!</p>
 <div class="callout callout-style-simple callout-none no-icon">
 <div class="callout-body d-flex">
@@ -261,9 +288,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>You should see an interface that looks something like this:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="../sessions_core/img/intro_001_rstudio_interface_screenshot_EN.png" class="img-fluid figure-img"></p>
-<figcaption>View of the Rstudio IDE interface at opening</figcaption></figure>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full"><p><img src="../sessions_core/img/intro_001_rstudio_interface_screenshot_EN.png" class="img-fluid figure-img"></p>
+<figcaption class="margin-caption">View of the Rstudio IDE interface at opening</figcaption></figure>
 </div>
 <div class="callout callout-style-simple callout-none no-icon">
 <div class="callout-body d-flex">
@@ -276,12 +303,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>You will have either three or four panels, including:</p>
-<section id="uper-right-corner" class="level4"><h4 class="anchored" data-anchor-id="uper-right-corner">Uper Right Corner</h4>
+<section id="uper-right-corner" class="level4 page-columns page-full"><h4 class="anchored" data-anchor-id="uper-right-corner">Uper Right Corner</h4>
 <p>To the upper right there will be a panel with several tabs. Many of these are beyond the scope of this course, and we will focus on these two:</p>
 <ul>
 <li><p><em>Environment.</em> A list of the <span class="hoverinfo" data-toggle="tooltip" title="You will learn later this lesson that in R, pretty much everything is an object, including functions, scalar values, and other more complex data structures">objects</span> saved by the user in the current session.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> Because you’ve just started a new session, your environment should be empty.</p></li>
 <li><p><em>History.</em> A record of all the commands you have executed during the current session.</p></li>
-</ul></section><section id="bottom-right-corner" class="level4 page-columns page-full"><h4 class="anchored" data-anchor-id="bottom-right-corner">Bottom Right Corner</h4>
+</ul><div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;You can think of an R session like you would think of starting up a computer. Whenever a session starts, everything is blank and ready for computation in the same way that there aren’t any programs open when you first turn on your computer. In general, we encourge you to stop and start your R sessions regularly, you may just find that <em>turning it off an on again</em> will fix some of your bugs!</p></div></div></section><section id="bottom-right-corner" class="level4 page-columns page-full"><h4 class="anchored" data-anchor-id="bottom-right-corner">Bottom Right Corner</h4>
 <p>To the bottom right there will be another multi tab panel, including:</p>
 <ul>
 <li>
@@ -298,7 +325,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul><div class="no-row-height column-margin column-container"><span class="margin-aside">Documentation refers to additional narrative text either in a code file or an external document that is written to help folks understand what a piece of code, function, or package does and how it should be used. Code documentation is a bit analogous to creating a data dictionary for a set of survey data and is an invaluable part of making robust and reusable code</span></div></section><section id="left-side" class="level4"><h4 class="anchored" data-anchor-id="left-side">Left Side</h4>
 <p>To the left or bottom left (if you have four panels) you should see the <em>console</em> (we will come back to it in <a href="#sec-console" class="quarto-xref">Section&nbsp;3.2</a>).</p>
 <p>To the top left (if you have four panels) will be any open <em>scripts</em> (we will come back to it in <a href="#sec-scripts" class="quarto-xref">Section&nbsp;3.3</a>).</p>
-</section></section><section id="sec-console" class="level3"><h3 class="anchored" data-anchor-id="sec-console">The Console</h3>
+</section></section><section id="sec-console" class="level3 page-columns page-full"><h3 class="anchored" data-anchor-id="sec-console">The Console</h3>
 <p>The console is <strong>where R itself is run</strong>.</p>
 <p>Whenever you open a new session, R will start by printing a bit of information about your set up, such as your R version number. Below this there should be a line containing the <code>&gt;</code> symbol and a blinking cursor. To run a command in R, you simply need to type it in after this <code>&gt;</code> and press <code>Enter</code>. R will then process your code and print the result (if there is one). A new <code>&gt;</code> line will then appear ready for the next command.</p>
 <div class="callout callout-style-default callout-warning callout-titled" title="Beware of unfinished commands">
@@ -384,12 +411,12 @@ Let your code breathe
 </div>
 </div>
 </div>
-</section><section id="sec-scripts" class="level3"><h3 class="anchored" data-anchor-id="sec-scripts">Scripts</h3>
+<div class="no-row-height column-margin column-container"><div id="fn3"><p><sup>3</sup>&nbsp;Readability refers to how easy (or not) it is for a person to read your code and understand it easily. The spacing of characters within and between lines is an important aspect of what makes code readable. In general, the more we include spacing and the shorter we keep our lines of code the easier it will be to read.</p></div></div></section><section id="sec-scripts" class="level3 page-columns page-full"><h3 class="anchored" data-anchor-id="sec-scripts">Scripts</h3>
 <p>Scripts are text files that contain a <strong>series of commands</strong> for a particular programming language. The extension of the file indicates which language the commands were written in, and we will be using <code>.R</code>. Scripts allow us to create code that can be reused, shared, and even automated.</p>
-<section id="writing-your-first-script" class="level4"><h4 class="anchored" data-anchor-id="writing-your-first-script">Writing Your First Script</h4>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="../sessions_core/img/intro_002_rstudio_new_script.png" class="img-fluid figure-img"></p>
-<figcaption>Steps to create a new script in the RStudio IDE</figcaption></figure>
+<section id="writing-your-first-script" class="level4 page-columns page-full"><h4 class="anchored" data-anchor-id="writing-your-first-script">Writing Your First Script</h4>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full"><p><img src="../sessions_core/img/intro_002_rstudio_new_script.png" class="img-fluid figure-img"></p>
+<figcaption class="margin-caption">Steps to create a new script in the RStudio IDE</figcaption></figure>
 </div>
 <p>To create a new script, follow the menu <code>File &gt; New File &gt; R Script</code>. Alternatively, you can also click on the small green <code>+</code> sign just below the <code>File</code> menu or use the keyboard shortcut <code>CTRL+SHIFT+N</code>. This new and <strong>unsaved</strong> script will appear as a blank document in the top left panel.</p>
 <p>To save your script, either use the menu <code>File &gt; Save As</code> our the keyboard shortcut <code>CTRL+S</code>.</p>
@@ -531,7 +558,7 @@ Tip&nbsp;1: Keyborad shortcuts
 </ul></section><section id="numerics" class="level2 page-columns page-full"><h2 class="anchored" data-anchor-id="numerics">Numerics</h2>
 <p>The numeric type includes both integers and doubles (numbers that include a decimal) and can be created by simply writing the value into your script.</p>
 <section id="strings" class="level3 page-columns page-full"><h3 class="anchored" data-anchor-id="strings">Strings</h3>
-<p>Strings are the R version of text and can be created by surounding text with single or double quotation marks, for example <code>'"istrict"</code> or <code>"cases"</code>.</p>
+<p>Strings are the R version of text and can be created by surounding text with single or double quotation marks, for example <code>'district'</code> or <code>"cases"</code>.</p>
 <div class="callout callout-style-simple callout-none no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -717,7 +744,7 @@ Note
 <p>Giving your objects clear and informative names helps to make your code readable, making it easy for others to understand without the need for excessive documentation.</p>
 </section></section><section id="data-structures" class="level2 page-columns page-full"><h2 class="anchored" data-anchor-id="data-structures">Data Structures</h2>
 <p>Up until now we have looked only at simple objects that store single values, let’s now turn our focus to more complex structures that can store entire datasets.</p>
-<section id="vectors" class="level3"><h3 class="anchored" data-anchor-id="vectors">Vectors</h3>
+<section id="vectors" class="level3 page-columns page-full"><h3 class="anchored" data-anchor-id="vectors">Vectors</h3>
 <p>We can collect multiple values (such as numerics or strings) into a single object, called a <em>vector</em>.</p>
 <p>Technically, there are several types of vectors, for example:</p>
 <ul>
@@ -728,10 +755,10 @@ Note
 </li>
 </ul>
 <p>This course will not go into detail on the more abstract concepts behind these structures and instead focus only on those you will encounter most often in your daily work.</p>
-<section id="simple-vectors" class="level4"><h4 class="anchored" data-anchor-id="simple-vectors">Simple Vectors</h4>
+<section id="simple-vectors" class="level4 page-columns page-full"><h4 class="anchored" data-anchor-id="simple-vectors">Simple Vectors</h4>
 <p>Simple vectors can contain one or more values of a single data type, they thus have two key properties: <strong>length</strong> and <strong>type</strong>. For the purpose of this class, we will use the terms “simple vector” and “vector” interchangeably (as is typical in the R community).</p>
 <p>You’ve technically already created your very first simple vectors when you built <code>cases</code> and <code>region</code>. These were simply vectors with a <strong>length of one</strong>. To create a vector with more than one value, we will use the function <code><a href="https://rdrr.io/r/base/c.html">c()</a></code>:<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
-<div class="cell">
+<div class="no-row-height column-margin column-container"><div id="fn4"><p><sup>4</sup>&nbsp;Mnemonic: <code>c</code> is the first letter of “concatenate”</p></div></div><div class="cell">
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cases</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">5</span>, <span class="fl">8</span>, <span class="fl">0</span>, <span class="fl">4</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-simple callout-none no-icon">
@@ -834,9 +861,9 @@ Note
 </div>
 </section><section id="sec-dataframe-functions" class="level4 page-columns page-full"><h4 class="anchored" data-anchor-id="sec-dataframe-functions">Exploring a Dataframe</h4>
 <p><code>data_cases</code> should now appear in your environment. You can click on its name to see some additional information, or click on the blue circle with a white triangle in it to open the object in the <em>Viewer</em>.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="../sessions_core/img/intro_003_environment_screenshot.png" class="img-fluid figure-img"></p>
-<figcaption>The data_case dataframe now appears in the Environment pane</figcaption></figure>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full"><p><img src="../sessions_core/img/intro_003_environment_screenshot.png" class="img-fluid figure-img"></p>
+<figcaption class="margin-caption">The data_case dataframe now appears in the Environment pane</figcaption></figure>
 </div>
 <p>There are several handy functions we can use to explore a dataframe:</p>
 <div class="callout callout-style-simple callout-none no-icon">
@@ -979,12 +1006,12 @@ Note
 </div>
 </section></section></section><section id="sec-missing-values" class="level2"><h2 class="anchored" data-anchor-id="sec-missing-values">Missing Values</h2>
 <p>As epidemiologists, we work with missing data all the time. In R, missing values are coded using a special value: <code>NA</code> (meaning <strong>N</strong>ot <strong>A</strong>vailable). <code>NA</code> is somewhat unique in R as it doesn’t per se have a fixed type, rather, it will take on the type of the values around it. For example, an <code>NA</code> in a numeric column will then take on the numeric type. We will discuss the idea of missing data in more depth in later sessions of the course.</p>
-</section><section id="sec-functions" class="level2"><h2 class="anchored" data-anchor-id="sec-functions">Functions</h2>
+</section><section id="sec-functions" class="level2 page-columns page-full"><h2 class="anchored" data-anchor-id="sec-functions">Functions</h2>
 <p>Functions are objects that contain commands (instead of values) that are run whenever the function is called. You are without doubt familiar with functions in Excel such as <code>SUM</code> and the idea of functions in R is exactly the same.</p>
-<p>Most functions require some sort of input, such as a dataset or parameter. These inputs are called <em>arguments</em> and are normally named. For example, when we ran <code>sum(cases)</code>, we provided the vector <code>cases</code> as the first (and only) argument to the function <code>sum</code>.</p>
+<p>Most functions require some sort of input, such as a dataset or parameter. These inputs are called <em>arguments</em> and are normally named. For example, when we ran <code>sum(cases)</code>, we provided the vector <code>cases</code> as the first (and only) argument to the function <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code>.</p>
 <p>Often, a function will have a combination of both <em>obligatory</em> and <em>optional</em> arguments. The first argument of a function is almost always obligatory and is typically a dataset. As an obligatory and rather obvious argument, most people omit its name when calling a function; ie: i.e.&nbsp;people will write <code>mean(cases)</code> instead of <code>mean(x = cases)</code>. Optional arguments on the other hand are usually added using their name, i.e.: <code>mean(x = cases, na.rm = TRUE)</code>.</p>
-<p>Optional arguments typically have default values and we only include them when we want to change their defaults (and thus change the default behavior of the function). For example, the <code>na.rm</code> argument of <code>mean</code> determines whether R will ignore missing values when calculating a mean. The default state of the <code>na.rm</code> argument is <code>FALSE</code>, so by default, the mean performed on data with missing values will always return <code>NA</code> as the result:<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p>
-<div class="cell">
+<p>Optional arguments typically have default values and we only include them when we want to change their defaults (and thus change the default behavior of the function). For example, the <code>na.rm =</code> argument of <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> determines whether R will ignore missing values when calculating a mean. The default state of the <code>na.rm =</code> argument is <code>FALSE</code>, so by default, the mean performed on data with missing values will always return <code>NA</code> as the result:<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p>
+<div class="no-row-height column-margin column-container"><div id="fn5"><p><sup>5</sup>&nbsp;this is true for many arithmetic operations in R</p></div></div><div class="cell">
 <div class="sourceCode" id="cb56"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] NA</code></pre>
@@ -1032,14 +1059,7 @@ Note
 </div>
 
 
-</section><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
-<ol>
-<li id="fn1"><p>Integrated Development Environments are a group of softwares that provide a convenient interface to use one or more programming languages. Many IDEs are specialized for a specific language (such as RStudio being specialized for R). Others, like VS Code are more general and can be used for any language.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>You can think of an R session like you would think of starting up a computer. Whenever a session starts, everything is blank and ready for computation in the same way that there aren’t any programs open when you first turn on your computer. In general, we encourge you to stop and start your R sessions regularly, you may just find that <em>turning it off an on again</em> will fix some of your bugs!<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>Readability refers to how easy (or not) it is for a person to read your code and understand it easily. The spacing of characters within and between lines is an important aspect of what makes code readable. In general, the more we include spacing and the shorter we keep our lines of code the easier it will be to read.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4"><p>Mnemonic: <code>c</code> is the first letter of “concatenate”<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn5"><p>this is true for many arithmetic operations in R<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
