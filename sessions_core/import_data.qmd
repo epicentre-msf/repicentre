@@ -441,7 +441,7 @@ str(df_linelist)
 ```
 
 
-### The Environment
+### The Environment {#sec-envt}
 
 We can also check out our data by looking at the *Environment* tab of the top-right  panel. Here, we can see our dataframe in the environment and look at its <span tooltip-position="top" tooltip="This is the same as using the command `str()`">structure</span>. 
 
