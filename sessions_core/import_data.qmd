@@ -2,7 +2,7 @@
 title: Import data
 description: Starting your first project. Creating an Rstudio project, installing packages and importing data
 date: last-modified
-image: ../img/under_construction.svg
+image: ../sessions_core/img/import_000_logo.png
 params: 
   solutions: FALSE
   sub_title: "**------ With Solutions ------**"
