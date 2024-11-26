@@ -2,7 +2,7 @@
 title: Introduction to data visualization with ggplot2
 description: Learn the basics of buidling plots with ggplot2, and create you first epicurve.
 date: last-modified
-image: ../img/under_construction.svg
+image: ../sessions_core/img/ggplot_000_logo.png
 params: 
   solutions: FALSE
   sub_title: "**------ With Solutions ------**"
