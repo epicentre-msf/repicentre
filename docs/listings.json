@@ -2,6 +2,7 @@
   {
     "listing": "/explore.html",
     "items": [
+      "/sessions_extra/dynamic_aes.html",
       "/sessions_core/example.html",
       "/sessions_extra/example.html",
       "/sessions_core/import_data.html",
