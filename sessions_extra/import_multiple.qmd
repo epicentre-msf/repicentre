@@ -47,7 +47,7 @@ You may have already encountered these situations:
 
 - You have multiple Excel file, all formatted the same (one linelist per site, for exemple)
 
-The two first cases can be solved with several calls to the different sheets or files, and storing the files in different dataframes, and it would not be horrible. The two last cases should however be automatized! 
+The two first cases can be solved with several calls to the different sheets or files, and storing the data in different dataframes. If there are not too many files or shit, it is fine. The two last cases should however be automatized! 
 
 The following session will help with all of them anyway: the `{rio}` package has a `import_list()` function that can import several *items* in one go. These items can be files or sheets depending on what you provide as arguments.
 
@@ -103,7 +103,7 @@ lab_data_list <- import_list(here(path_data_raw, "multiple_sheets",
                                   "msf_laboratory_moissala_2023-09-24_first.xlsx")) 
 ```
 
-The object `lab_data_list` is a **list** that contains several dataframes (one dataframe per sheet). Maybe you have not followed the [list](../sessions_extra/lists.qmd) satellite yet and are not sure what to do with it. For now, let's just peak at it. You can inspect its structure with well known tools:
+The object `lab_data_list` is a **list** that contains several dataframes (one dataframe per sheet). Maybe you have not followed the [list](../sessions_extra/lists.qmd) satellite yet and are not sure what to do with it. For now, let's just peek at it. You can inspect its structure with well known tools:
 
 ```{r}
 #| eval: true
@@ -113,7 +113,7 @@ length(lab_data_list)  # Nb of items in the list
 names(lab_data_list)   # Name of the items of the list
 ```
 
-You can also go and click on the list [in the Environment panel](../sessions_core/introduction.qmd#sec-envt) to inspect its structure, and open it in the Viewer, as we did for dataframes. 
+You can also go and click on the list [in the Environment panel](../sessions_core/import_data.qmd#sec-envt) to inspect its structure, and open it in the Viewer, as we did for dataframes. 
 
 ::: {.callout .callout-look}
 **Look.** The View is a bit different. Click on the buttons you see and see what happens.
@@ -121,7 +121,7 @@ You can also go and click on the list [in the Environment panel](../sessions_cor
 **Hint** There are buttons that you can click on both on the left and right of the Viewer pane.
 :::
 
-You can access elements of the list with these commands^[we added the `head()` function to shorten the output, but you can print the whole elements by removing it!]:
+You can access elements of the list with these commands^[we added the `head()` function to shorten the output, but you can remove it to print the whole elements.]:
 
 ```{r}
 #| eval: true
@@ -196,10 +196,11 @@ As you can see the function behaves reasonably:
 - the corrolary is that columns with different names are treated as different columns, so check your names!
 - if a column exist in one sheet and not the others, the column will exist in the final dataframe, but the values will be `NA` for the rows coming from sheets without the column ([don't remember what `NA` means?](../sessions_core/introduction.qmd#sec-missing-values)).
 
+You are now ready to import files with multiple sheets! Now let's tackle data scattered in several files.
 
 ## Import Multiple files
 
-The `import_list()` function can also accept a vector of file names. In this case, it will import each of these files and store them into a [list](../sessions_extra/lists.qmd), unless you can use the `rbind = TRUE`.
+Fortunately, the `import_list()` function can also accept a vector of file names. In this case, it will import each of these files and store them into a [list](../sessions_extra/lists.qmd), unless you can use the `rbind = TRUE`.
 
 ```{r}
 # Create a vector of (fictitious) files
@@ -289,7 +290,7 @@ Note that even if these are absolute paths, we used `{here}` and relative paths 
 
 Now, this is nice and all but there are those pesky files that are not Excel which we would like to avoid. An easy way is to use the `pattern = ` argument of `list.files()`. It takes a string of text that is matched to the names of files, to keep only the ones you want.
 
-The `pattern = ` argument accepts [regular expressions, or regex for short](https://r4ds.hadley.nz/regexps), which are *way* out of our scope here^[Regular expressions have their own syntax that is not limited to R and are super powerfull. They are also hard to use so if you are new to R you should probably wait a bit before diving into them.]. Here we are only giving you pointers to create a simple pattern.
+The `pattern = ` argument accepts [regular expressions, or regex for short](https://r4ds.hadley.nz/regexps), which are *way* out of our scope here^[Regular expressions have their own syntax that is not limited to R and are super powerful. They are also hard to use so if you are new to R you should probably wait a bit before diving into them.]. Here we are only giving you pointers to create a simple pattern.
 
 The function will return file names that match the pattern: 
 
@@ -321,7 +322,7 @@ list.files(path = path_mult, pattern = "\\.doc$")
 
 Here we modified the pattern to make it more restrictive:
 
-- the `\\.` at the start is the regex way of saying that there should be a "." before "doc".^[It sound complicated because the "." alone has a special meaning in regex, so we need to add the "\\\". Go [read on regex](https://r4ds.hadley.nz/regexps), or trust us for now.]
+- the `\\.` at the start is the regex way of saying that there should be a "." before "doc".^[It sound complicated because the "." alone has a special meaning in regex, so we need to add the `\\`. Go [read on regex](https://r4ds.hadley.nz/regexps), or trust us for now.]
 - the `$` at the end of the pattern indicates that this pattern should be at the end of the file name.
 
 So with this pattern we are looking for *files that contain ".doc" at the end of their names*.
