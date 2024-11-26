@@ -18,7 +18,10 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 
 solutions <- params$solutions
 
-# library(...)         # what does this library do?
+library(rio)    # import data easilly
+library(here)   # helps with paths
+
+path_data_raw <- here("data", "raw")
 ```
 
 <!-- ![](../img/under_construction.svg) -->
@@ -43,6 +46,28 @@ You can argue that the two first cases can be solved with several calls to the d
 
 The `{rio}` package has a `import_list()` function that can import several *items* in one go. These items can be files or sheets depending on what you provide as arguments.
 
+
+## Setup
+
+We expect you to be working in the course project. You can add this code to your `import_data.R` script that you created in the [Import data core session](../sessions_core/import_data.qmd), or use it in a new script. 
+
+We will use the 
+::: {.callout .callout-code}
+**Code.** If you are working in a new script, add metadata about it at the top and load the `{rio}` and `{here}` packages. Then create a `path_data_raw` object that points to the directory `data / raw` of the course folder.
+:::
+
+```{r}
+#| include = solutions
+# SOLUTION
+
+# Setup --------------------------
+#  Packages 
+library(here)
+library(rio)
+
+# Paths
+path_data_raw <- here("data", "raw")
+```
 
 
 ## Import Multiple Sheets
@@ -70,7 +95,7 @@ We will tackle the first file, as it is less messy.
 #| eval: true
 # SOLUTION
 lab_data_list <- import_list(here(path_data_raw, "multiple_sheets",
-                               "msf_laboratory_moissala_2023-09-24_first.xlsx")) 
+                                  "msf_laboratory_moissala_2023-09-24_first.xlsx")) 
 ```
 
 The object `lab_data_list` is a **list** that contains several dataframes (one dataframe per sheet). Maybe you have not followed the [list](../sessions_extra/lists.qmd) satellite yet and are not sure what to do with it. For now, let's just peak at it. You can inspect its structure with well known tools:
@@ -222,22 +247,110 @@ vector_paths
 
 # Import the data and concatenate it:
 linelist_data <- import_list(vector_paths,
-            rbind = TRUE)
+                             rbind = TRUE)
 ```
 
 
-### Shortcup for File Paths
+### Get File Paths with `file.path()`
 
+#### List All the Files
+
+Manually listing the files that you want to import was fine for demonstrations purposes so that you understand well what to give to the `import_list()` function, but it is slow and error prone. Better code a way of getting the file names automatically.
+
+The function `list.files()` will help with it. Its main argument, `path = ` takes a file path, and the function returns a simple vector of file names.
+
+```{r}
+#| eval: true
+
+path_mult <- here::here(path_data_raw, "multiple_files") # optional, to shorten the following code
+
+list.files(path = path_mult) # returns a vector of file names
+```
+
+We can ask the function to return the full paths of the files with the argument `full.names = TRUE`:
+
+```{r}
+#| eval: true
+list.files(path = path_mult,
+           full.names = TRUE)
+```
+
+::: {.callout-note}
+Note that even if these are absolute paths, the use of `{here}` and relative paths within the course directory, the absolute paths are personalized to both your and my computer.
+:::
+
+#### Keep Only the Excel files
+
+Now, this is nice and all, but there are thos pesky files that are not Excel and do not contain data and we would like to avoid them. An easy way is to use the `pattern = ` argument of `list.files()`. It takes a string of text that can matched to the names of files, to keep only the ones you want.
+
+The pattern accepts [regular expressions](https://r4ds.hadley.nz/regexps), which are *waaaaayyyy* out of our scope here^[Regular expressions have their own syntax that is not limited to R and are super powerfull. They are also hard to use so if you are new to R you should probably wait a bit before diving into them.]. Here we are only giving you pointers to create a simple pattern.
+
+The function will return file names that match the pattern: 
+
+```{r}
+#| eval: true
+
+# All file names that contain "bedaya":
+list.files(path = path_mult, pattern = "bedaya") 
+
+# All file names that contain "msf_linelist":
+list.files(path = path_mult, pattern = "msf_linelist") 
+
+# All file names that contain "msf_ll":
+list.files(path = path_mult, pattern = "msf_ll") 
+
+```
+
+But you can tell a bit more precise. You can match
+
+```{r}
+#| eval: true
+
+# All file names that contain "bedaya":
+list.files(path = path_mult, pattern = "bedaya") 
+
+# All file names that contain "msf_linelist":
+list.files(path = path_mult, pattern = "msf_linelist") 
+
+# All file names that contain "msf_ll":
+list.files(path = path_mult, pattern = "msf_ll") 
+
+# All the files that contain "doc"
+list.files(path = path_mult, pattern = "doc") 
+```
+
+Did you notice at the end, two files contained "doc" in their name. One it was in the name of the file, the other in the extension. If you want to select only the Word document, you can have a more precise pattern.
 
 
 ```{r}
-list.files(pattern="\\.csv$")
-list.files(pattern="*.csv")
- list.files("path_to_folder", include.dirs = FALSE, recursive = TRUE, pattern = "*.csv") 
- 
- list.files(path = here::here(path_data_raw, "multiple_files"))
-                            recursive = TRUE,
-                            pattern = "\\.csv$",
-                            full.names = TRUE)
+#| eval: true
+# All the files that contain "doc"
+list.files(path = path_mult, pattern = "\\.doc$") 
 ```
 
+Here we modified the pattern to make it more restrictive:
+
+- the `\\.` at the start is the regex way of saying that there should be a "." before "doc".^[It sound complicated because the "." alone has a special meaning in regex, so we need to add the "\\". Go [read on regex](https://r4ds.hadley.nz/regexps), or trust us for now]
+- the `$` at the end of the pattern indicates that this pattern should be at the end of the file name.
+
+So with this pattern we are looking for *files that contain ".doc" at the end of their names*.
+
+
+::: {.callout .callout-code}
+**Code.** Now, write a command using `list.files()` to automatically list all Excel files that end with ".xlsx".
+Then, update your previous code to import all the files in one dataframe, as we did before with this command.
+:::
+
+```{r}
+#| include = solutions
+# SOLUTION
+# Import the data and concatenate it:
+linelist_data <- import_list(
+  list.files(path = path_mult, pattern = "\\.xlsx$",
+             full.names = TRUE),
+  rbind = TRUE)
+```
+
+::: {.coullout-tip}
+The argument `recursive = TRUE` allows you to list files present in subdirectories of your path target.
+:::
