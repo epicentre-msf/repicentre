@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.6.37">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta name="dcterms.date" content="2024-11-26">
+<meta name="dcterms.date" content="2024-12-02">
 <meta name="description" content="Learn the basics of buidling plots with ggplot2, and create you first epicurve.">
 <title>Introduction to data visualization with ggplot2 – Repicentre</title>
 <style>
@@ -150,7 +150,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul>
 </li>
   <li>
-<a href="#building-your-first-ggplot" id="toc-building-your-first-ggplot" class="nav-link" data-scroll-target="#building-your-first-ggplot">Building Your First <code>ggplot</code></a>
+<a href="#sec-epicurve-steps" id="toc-sec-epicurve-steps" class="nav-link" data-scroll-target="#sec-epicurve-steps">Building Your First <code>ggplot</code></a>
   <ul>
 <li><a href="#preparing-your-data-aggreagte-by-week" id="toc-preparing-your-data-aggreagte-by-week" class="nav-link" data-scroll-target="#preparing-your-data-aggreagte-by-week">Preparing Your Data: aggreagte by week</a></li>
   <li><a href="#set-up-a-canvas-initialize-a-plot" id="toc-set-up-a-canvas-initialize-a-plot" class="nav-link" data-scroll-target="#set-up-a-canvas-initialize-a-plot">Set up a Canvas: Initialize a Plot</a></li>
@@ -197,7 +197,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 26, 2024</p>
+      <p class="date">December 2, 2024</p>
     </div>
   </div>
   
@@ -257,13 +257,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 4 Yellow (115 - 124 mm)          No       &lt;NA&gt;      &lt;NA&gt;   2022-08-25
 5       Green (125+ mm)          No       &lt;NA&gt; recovered   2022-09-04
 6       Green (125+ mm)          No       &lt;NA&gt; recovered   2022-09-05
-  epi_classification week
-1          confirmed   33
-2          suspected   33
-3          suspected   33
-4           probable   34
-5          suspected   35
-6          confirmed   35</code></pre>
+  epi_classification week_admission week_outcome
+1          confirmed             33           33
+2          suspected             33           34
+3          suspected             33           33
+4           probable             34           34
+5          suspected             35           35
+6          confirmed             35           36</code></pre>
 </div>
 </div>
 </section><section id="paradigms-of-plotting" class="level2 page-columns page-full"><h2 class="anchored" data-anchor-id="paradigms-of-plotting">Paradigms of Plotting</h2>
@@ -337,10 +337,10 @@ Note
 <figcaption class="margin-caption">The main components of a plot, with their associated functions</figcaption></figure>
 </div>
 <p>In the next part of the tutorial we will go through each of these steps (layers) individually using our course dataset to make your first epicurve.</p>
-</section></section><section id="building-your-first-ggplot" class="level2 page-columns page-full"><h2 class="anchored" data-anchor-id="building-your-first-ggplot">Building Your First <code>ggplot</code>
+</section></section><section id="sec-epicurve-steps" class="level2 page-columns page-full"><h2 class="anchored" data-anchor-id="sec-epicurve-steps">Building Your First <code>ggplot</code>
 </h2>
 <section id="preparing-your-data-aggreagte-by-week" class="level3 page-columns page-full"><h3 class="anchored" data-anchor-id="preparing-your-data-aggreagte-by-week">Preparing Your Data: aggreagte by week</h3>
-<p>Ultimately we would like to plot an epicurve of <em>weekly cases</em>. You may have noticed, however, that our current data is daily, so we need to do some aggregation. To start let’s determine the week associated with each notification date using the function <code>isoweek()</code> from <a href="https://lubridate.tidyverse.org">lubridate</a>, which takes a date (or a vector of dates) and returns the associated ISO week.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
+<p>Ultimately we would like to plot an epicurve of <em>weekly cases</em>. You may have noticed, however, that our current data is daily, so we need to do some aggregation. To start let’s determine the week associated with each admission date using the function <code>isoweek()</code> from <a href="https://lubridate.tidyverse.org">lubridate</a>, which takes a date (or a vector of dates) and returns the associated ISO week.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
 <div class="no-row-height column-margin column-container"><div id="fn3"><p><sup>3</sup>&nbsp;ISO weeks offer an internationally standardized approach to dates that avoid differences between countries on when a week starts and how to define the first week of the year. ISO weeks begin on Monday.</p></div></div><div class="cell">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">example_date</span> <span class="op">&lt;-</span> <span class="st">'27-01-2023'</span></span>
 <span></span>
@@ -355,19 +355,19 @@ Note
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<p><strong>Code.</strong> Create a new section in your script called <code># PREPARE DATA</code>, then use <code>mutate()</code> and <code>isoweek()</code> to create a new column in your dataframe called <code>week</code> that contains the ISO week associated with every <em>notification date</em>. The head of <code>date_admission</code> and <code>week</code> should look like this:</p>
+<p><strong>Code.</strong> Create a new section in your script called <code># PREPARE DATA</code>, then use <code>mutate()</code> and <code>isoweek()</code> to create a new column in your dataframe called <code>week_admission</code> that contains the ISO week associated with every <em>admission date</em>. The head of <code>date_admission</code> and <code>week_admission</code> should look like this:</p>
 </div>
 </div>
 </div>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>  date_admission week
-1     2022-08-18   33
-2     2022-08-19   33
-3     2022-08-18   33
-4     2022-08-23   34
-5     2022-08-31   35
-6     2022-09-02   35</code></pre>
+<pre><code>  date_admission week_admission
+1     2022-08-18             33
+2     2022-08-19             33
+3     2022-08-18             33
+4     2022-08-23             34
+5     2022-08-31             35
+6     2022-09-02             35</code></pre>
 </div>
 </div>
 <p>Now we need to aggregate the total number of cases that were observed each week; because we are using linelist data, the number of cases is simply the number of rows.</p>
@@ -383,16 +383,13 @@ Note
 </div>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 2
-# Groups:   week [6]
-   week     n
-  &lt;dbl&gt; &lt;int&gt;
-1     1    32
-2     2    34
-3     3    41
-4     4    49
-5     5    58
-6     6    86</code></pre>
+<pre><code>  week_admission  n
+1              1 32
+2              2 34
+3              3 41
+4              4 49
+5              5 58
+6              6 86</code></pre>
 </div>
 </div>
 <p>Great! Now we are ready to make our epicurve. In the following steps, <em>you</em>’ll be asked to use <code>df_cases</code> to plot a classic epicurve of the <em>number of weekly cases</em>. To demonstrate the functions you’ll be using, <em>I</em> will plot the curve of the number of weekly <em>dates outcomes</em> as an example. To do that, I’ve build myself another dataframe, <code>df_outcome</code>, which looks like this:</p>
@@ -569,8 +566,8 @@ Note
 <span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">week_outcome</span>,</span>
 <span>             y <span class="op">=</span> <span class="va">patients</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_col</span><span class="op">(</span>fill <span class="op">=</span> <span class="st">'#2E4573'</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">'ISO Week'</span>,</span>
-<span>       y <span class="op">=</span> <span class="st">'Outcomes'</span>,</span>
+<span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"ISO Week"</span>,</span>
+<span>       y <span class="op">=</span> <span class="st">"Outcomes"</span>,</span>
 <span>       title <span class="op">=</span> <span class="st">"Measles outcomes in Moissala"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
@@ -611,8 +608,8 @@ Note
 <span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">week_outcome</span>,</span>
 <span>             y <span class="op">=</span> <span class="va">patients</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_col</span><span class="op">(</span>fill <span class="op">=</span> <span class="st">'#2E4573'</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">'ISO Week'</span>,</span>
-<span>       y <span class="op">=</span> <span class="st">'Outcomes'</span>,</span>
+<span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"ISO Week"</span>,</span>
+<span>       y <span class="op">=</span> <span class="st">"Outcomes"</span>,</span>
 <span>       title <span class="op">=</span> <span class="st">'Measles outcomes in Moissala'</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">theme_classic</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -628,8 +625,8 @@ Note
 <span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">week_outcome</span>,</span>
 <span>             y <span class="op">=</span> <span class="va">patients</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_col</span><span class="op">(</span>fill <span class="op">=</span> <span class="st">'#2E4573'</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">'ISO Week'</span>,</span>
-<span>       y <span class="op">=</span> <span class="st">'Outcomes'</span>,</span>
+<span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"ISO Week"</span>,</span>
+<span>       y <span class="op">=</span> <span class="st">"Outcomes"</span>,</span>
 <span>       title <span class="op">=</span> <span class="st">'Measles outcomes in Moissala'</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">theme_classic</span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -679,10 +676,10 @@ Note
 6            6       75</code></pre>
 </div>
 </div>
-<p>Let’s create a new summarised dataset that has the number of outcomes by week <em>and by site</em>!</p>
+<p>Let’s create a new summarized dataset that has the number of outcomes by week <em>and by site</em>!</p>
 <div class="cell">
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Summarise the data</span></span>
-<span><span class="va">df_outcome_site</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op">%&gt;%</span></span>
+<span><span class="va">df_outcome_site</span> <span class="op">&lt;-</span> <span class="va">df_linelist</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">mutate</span><span class="op">(</span>week_outcome <span class="op">=</span> <span class="fu">isoweek</span><span class="op">(</span><span class="va">date_outcome</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">count</span><span class="op">(</span><span class="va">week_outcome</span>, <span class="va">site</span>,</span>
 <span>        name <span class="op">=</span> <span class="st">'patients'</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
@@ -719,8 +716,8 @@ Note
 <span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">week_outcome</span>,</span>
 <span>             y <span class="op">=</span> <span class="va">patients</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_col</span><span class="op">(</span>fill <span class="op">=</span> <span class="st">'#2E4573'</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">'ISO Week'</span>,</span>
-<span>       y <span class="op">=</span> <span class="st">'Outcomes'</span>,</span>
+<span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"ISO Week"</span>,</span>
+<span>       y <span class="op">=</span> <span class="st">"Outcomes"</span>,</span>
 <span>       title <span class="op">=</span> <span class="st">'Measles outcomes in Moissala'</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">theme_classic</span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">15</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  </span>

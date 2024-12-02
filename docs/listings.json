@@ -3,6 +3,7 @@
     "listing": "/explore.html",
     "items": [
       "/sessions_extra/dynamic_aes.html",
+      "/sessions_extra/epicurves_dates.html",
       "/sessions_core/example.html",
       "/sessions_extra/example.html",
       "/sessions_core/import_data.html",
@@ -11,6 +12,7 @@
       "/sessions_core/introduction.html",
       "/sessions_core/ggplot.html",
       "/sessions_extra/lists.html",
+      "/sessions_extra/common_scales.html",
       "/sessions_core/template.html"
     ]
   },

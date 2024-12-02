@@ -58,5 +58,14 @@
   },
   "sessions_core/ggplot.qmd": {
     "ggplot.html": "69ceaa48"
+  },
+  "sessions_extra/common_scales.qmd": {
+    "common_scales.html": "381fb831"
+  },
+  "sessions_extra/dynamic_aes.qmd": {
+    "dynamic_aes.html": "29c4efde"
+  },
+  "sessions_extra/epicurves_dates.qmd": {
+    "epicurves_dates.html": "c2fdfbbe"
   }
 }
