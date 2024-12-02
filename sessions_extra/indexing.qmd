@@ -1,0 +1,52 @@
+---
+title: Indexing
+description: A more complete introduction to indexing in base R
+date: last-modified
+image: ../img/under_construction.svg
+params: 
+  solutions: FALSE
+  sub_title: "**------ With Solutions ------**"
+categories:
+  - Satellite
+  - R basics
+  - Vectors
+  - Dataframes
+  - Lists
+---
+
+```{r setup}
+#| include: false
+#| eval: true
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+
+solutions <- params$solutions
+```
+
+
+![](../img/under_construction.svg)
+
+<!-- In R, there are several methods for accessing the rows and/or columns of a dataframe. For a column, we use the `$` syntax used in a named list: -->
+
+<!-- ```{r} -->
+<!-- data_cases$province -->
+<!-- ``` -->
+
+<!-- > 💻 Write a command to calculate the sum of the `cases` column of your dataframe. -->
+
+
+<!-- ::: {.callout .callout-code} -->
+<!-- **Code.** Write a command to calculate the sum of the `cases` column of your dataframe. -->
+<!-- ::: -->
+
+<!-- ```{r} -->
+<!-- #| include = solutions -->
+<!-- # SOLUTION -->
+<!-- sum(data_cases[ , "cases"]) -->
+<!-- ``` -->
+
+<!-- Notice that these commands returned single-column dataframes. If we’d like to return the column as a **simple vector** we can use double brackets (or `$` notation): -->
+
+<!-- ```{r} -->
+<!-- data_cases[[2]] -->
+<!-- data_cases[["province"]] -->
+<!-- ``` -->
