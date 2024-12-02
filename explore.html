@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="An intro to R starting from the very beginning">
+<meta name="description" content="Everything everywhere all at once">
 
-<title>Pathway – Repicentre</title>
+<title>Explore – Repicentre</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -72,20 +72,20 @@ ul.task-list li input[type="checkbox"] {
 <script>
 
   window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-articles-links .list');
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
     if (!listingTargetEl) {
       // No listing discovered, do not attach.
       return; 
     }
 
     const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-title','listing-author','listing-date','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description"],
+      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description","listing-categories"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-articles-links'] = new List('listing-articles-links', options);
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
 
     if (window['quarto-listing-loaded']) {
       window['quarto-listing-loaded']();
@@ -154,11 +154,11 @@ window.Quarto = {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./pathway.html" aria-current="page"> 
+    <a class="nav-link" href="./pathway.html"> 
 <span class="menu-text">Pathway</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./explore.html"> 
+    <a class="nav-link active" href="./explore.html" aria-current="page"> 
 <span class="menu-text">Explore</span></a>
   </li>  
   <li class="nav-item">
@@ -180,20 +180,20 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-    </div>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-unnumbered"><div class="category" data-category="Q2F0ZWdvcnklMjAx">Category 1</div><div class="category" data-category="Q2F0ZWdvcnklMjAy">Category 2</div><div class="category" data-category="Q29yZQ==">Core</div><div class="category" data-category="Q29yZSUyRlNhdGVsbGl0ZQ==">Core/Satellite</div><div class="category" data-category="RGF0YSUyMHR5cGVz">Data types</div><div class="category" data-category="RGF0YWZyYW1lcw==">Dataframes</div><div class="category" data-category="RXhhbXBsZQ==">Example</div><div class="category" data-category="Rm9yJTIwZnVu">For fun</div><div class="category" data-category="R3JhcGhz">Graphs</div><div class="category" data-category="SW1wb3J0JTIwZGF0YQ==">Import data</div><div class="category" data-category="TGlzdHM=">Lists</div><div class="category" data-category="TXVsdGlwbGUlMjBmaWxlcw==">Multiple files</div><div class="category" data-category="UGFja2FnZXM=">Packages</div><div class="category" data-category="UiUyMGJhc2ljcw==">R basics</div><div class="category" data-category="UlN0dWRpbyUyMHByb2plY3Rz">RStudio projects</div><div class="category" data-category="UnN0dWRpbyUyMGludGVyZmFjZQ==">Rstudio interface</div><div class="category" data-category="U2F0ZWxsaXRl">Satellite</div><div class="category" data-category="VmVjdG9ycw==">Vectors</div><div class="category" data-category="ZGF0ZXM=">dates</div><div class="category" data-category="ZXBpY3VydmU=">epicurve</div><div class="category" data-category="Z2dwbG90Mg==">ggplot2</div><div class="category" data-category="bGlzdC5maWxlcw==">list.files</div><div class="category" data-category="c2NhbGVz">scales</div></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 <script type="text/javascript" src="../script.js"></script>
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Pathway</h1>
+<h1 class="title">Explore</h1>
 </div>
 
 <div>
   <div class="description">
-    An intro to R starting from the very beginning
+    Everything everywhere all at once
   </div>
 </div>
 
@@ -210,113 +210,472 @@ window.Quarto = {
 </header>
 
 
-<p>These sessions can be followed in order to get a baseline level in R. The series assumes <strong>no prior experience in R</strong> and is suitable for beginners.</p>
-<p>Looking for more? Want more flexibility? Consider browsing the <a href="explore.html">full session catalog</a>.</p>
+<p>Choose your own adventure by browsing all available sessions.</p>
 
 
 
 
-<div class="quarto-listing quarto-listing-container-default" id="listing-articles-links">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="Q29yZSUyQ0V4YW1wbGU=" data-listing-date-sort="1732619247000" data-listing-file-modified-sort="1732619247689" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="386">
-<div class="thumbnail">
-<p><a href="./sessions_core/example.html" class="no-external"></a></p><a href="./sessions_core/example.html" class="no-external">
-<p><img loading="lazy" src="./img/under_construction.svg" class="thumbnail-image"></p>
-</a><p><a href="./sessions_core/example.html" class="no-external"></a></p>
+<div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
+<div class="list grid quarto-listing-cols-3">
+<div class="g-col-1" data-index="0" data-categories="U2F0ZWxsaXRlJTJDR3JhcGhzJTJDZ2dwbG90Mg==" data-listing-date-sort="1733156026000" data-listing-file-modified-sort="1733156026678" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="56">
+<a href="./sessions_extra/dynamic_aes.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./img/under_construction.svg" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Dynamic aesthetics
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('U2F0ZWxsaXRl'); return false;">
+Satellite
 </div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./sessions_core/example.html" class="no-external">Example Core Session</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./sessions_core/example.html" class="no-external"></a>
+<div class="listing-category" onclick="window.quartoListingCategory('R3JhcGhz'); return false;">
+Graphs
 </div>
-<div class="listing-description">
-<a href="./sessions_core/example.html" class="no-external">Just an example</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./sessions_core/example.html" class="no-external">
-<div class="listing-date">
-Nov 26, 2024
-</div>
-</a>
+<div class="listing-category" onclick="window.quartoListingCategory('Z2dwbG90Mg=='); return false;">
+ggplot2
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="Q29yZSUyQ0dyYXBocyUyQ2dncGxvdDIlMkNlcGljdXJ2ZQ==" data-listing-date-sort="1733153454000" data-listing-file-modified-sort="1733153454210" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="21" data-listing-word-count-sort="4063">
-<div class="thumbnail">
-<p><a href="./sessions_core/ggplot.html" class="no-external"></a></p><a href="./sessions_core/ggplot.html" class="no-external">
-<p><img loading="lazy" src="./sessions_core/img/ggplot_000_logo.png" class="thumbnail-image"></p>
-</a><p><a href="./sessions_core/ggplot.html" class="no-external"></a></p>
+<div class="card-text listing-description">
+Assign aesthetics elements of a graph to a variable
 </div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./sessions_core/ggplot.html" class="no-external">Introduction to data visualization with ggplot2</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./sessions_core/ggplot.html" class="no-external"></a>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+
 </div>
-<div class="listing-description">
-<a href="./sessions_core/ggplot.html" class="no-external">Learn the basics of buidling plots with ggplot2, and create your first epicurve.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./sessions_core/ggplot.html" class="no-external">
 <div class="listing-date">
 Dec 2, 2024
 </div>
+</div>
+</div>
+</div>
 </a>
 </div>
+<div class="g-col-1" data-index="1" data-categories="U2F0ZWxsaXRlJTJDR3JhcGhzJTJDZ2dwbG90MiUyQ2VwaWN1cnZlJTJDZGF0ZXMlMkNzY2FsZXM=" data-listing-date-sort="1733156076000" data-listing-file-modified-sort="1733156076714" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="14" data-listing-word-count-sort="2655">
+<a href="./sessions_extra/epicurves_dates.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./sessions_core/img/ggplot_000_logo.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Epicurves with dates in x axis
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('U2F0ZWxsaXRl'); return false;">
+Satellite
 </div>
-<div class="quarto-post image-right" data-index="2" data-categories="Q29yZSUyQ1JTdHVkaW8lMjBwcm9qZWN0cyUyQ1BhY2thZ2VzJTJDSW1wb3J0JTIwZGF0YQ==" data-listing-date-sort="1733145429000" data-listing-file-modified-sort="1733145429026" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="19" data-listing-word-count-sort="3671">
-<div class="thumbnail">
-<p><a href="./sessions_core/import_data.html" class="no-external"></a></p><a href="./sessions_core/import_data.html" class="no-external">
-<p><img loading="lazy" src="./sessions_core/img/import_000_logo.png" class="thumbnail-image"></p>
-</a><p><a href="./sessions_core/import_data.html" class="no-external"></a></p>
+<div class="listing-category" onclick="window.quartoListingCategory('R3JhcGhz'); return false;">
+Graphs
 </div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./sessions_core/import_data.html" class="no-external">Import data</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./sessions_core/import_data.html" class="no-external"></a>
+<div class="listing-category" onclick="window.quartoListingCategory('Z2dwbG90Mg=='); return false;">
+ggplot2
 </div>
-<div class="listing-description">
-<a href="./sessions_core/import_data.html" class="no-external">Starting your first project. Creating an Rstudio project, installing packages and importing data</a>
+<div class="listing-category" onclick="window.quartoListingCategory('ZXBpY3VydmU='); return false;">
+epicurve
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('ZGF0ZXM='); return false;">
+dates
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('c2NhbGVz'); return false;">
+scales
 </div>
 </div>
-<div class="metadata">
-<a href="./sessions_core/import_data.html" class="no-external">
+<div class="card-text listing-description">
+Display dates rather than epiweeks numbers on your epicurves
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+
+</div>
 <div class="listing-date">
 Dec 2, 2024
 </div>
+</div>
+</div>
+</div>
 </a>
 </div>
+<div class="g-col-1" data-index="2" data-categories="Q29yZSUyQ0V4YW1wbGU=" data-listing-date-sort="1732619247000" data-listing-file-modified-sort="1732619247689" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="386">
+<a href="./sessions_core/example.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./img/under_construction.svg" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Example Core Session
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Q29yZQ=='); return false;">
+Core
 </div>
-<div class="quarto-post image-right" data-index="3" data-categories="Q29yZSUyQ1JzdHVkaW8lMjBpbnRlcmZhY2UlMkNSJTIwYmFzaWNzJTJDRGF0YSUyMHR5cGVz" data-listing-date-sort="1732619247000" data-listing-file-modified-sort="1732619247787" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="26" data-listing-word-count-sort="5064">
-<div class="thumbnail">
-<p><a href="./sessions_core/introduction.html" class="no-external"></a></p><a href="./sessions_core/introduction.html" class="no-external">
-<p class="card-img-top"><img src="sessions_core\img\intro_001_rstudio_interface_screenshot_EN.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./sessions_core/introduction.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./sessions_core/introduction.html" class="no-external">Introduction to R</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./sessions_core/introduction.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./sessions_core/introduction.html" class="no-external">Your first steps in R. Learn your way around Rstudio, and meet some common R objects</a>
+<div class="listing-category" onclick="window.quartoListingCategory('RXhhbXBsZQ=='); return false;">
+Example
 </div>
 </div>
-<div class="metadata">
-<a href="./sessions_core/introduction.html" class="no-external">
+<div class="card-text listing-description">
+Just an example
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+
+</div>
 <div class="listing-date">
 Nov 26, 2024
 </div>
+</div>
+</div>
+</div>
 </a>
 </div>
+<div class="g-col-1" data-index="3" data-categories="U2F0ZWxsaXRlJTJDRXhhbXBsZSUyQ0ZvciUyMGZ1bg==" data-listing-date-sort="1732123598000" data-listing-file-modified-sort="1732123598541" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="386">
+<a href="./sessions_extra/example.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./img/under_construction.svg" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Example Satellite Session
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('U2F0ZWxsaXRl'); return false;">
+Satellite
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('RXhhbXBsZQ=='); return false;">
+Example
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Rm9yJTIwZnVu'); return false;">
+For fun
+</div>
+</div>
+<div class="card-text listing-description">
+Just an example
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+
+</div>
+<div class="listing-date">
+Nov 20, 2024
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="4" data-categories="Q29yZSUyQ1JTdHVkaW8lMjBwcm9qZWN0cyUyQ1BhY2thZ2VzJTJDSW1wb3J0JTIwZGF0YQ==" data-listing-date-sort="1733156026000" data-listing-file-modified-sort="1733156026675" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="19" data-listing-word-count-sort="3671">
+<a href="./sessions_core/import_data.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./sessions_core/img/import_000_logo.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Import data
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Q29yZQ=='); return false;">
+Core
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('UlN0dWRpbyUyMHByb2plY3Rz'); return false;">
+RStudio projects
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('UGFja2FnZXM='); return false;">
+Packages
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('SW1wb3J0JTIwZGF0YQ=='); return false;">
+Import data
+</div>
+</div>
+<div class="card-text listing-description">
+Starting your first project. Creating an Rstudio project, installing packages and importing data
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+
+</div>
+<div class="listing-date">
+Dec 2, 2024
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="5" data-categories="U2F0ZWxsaXRlJTJDSW1wb3J0JTIwZGF0YSUyQ011bHRpcGxlJTIwZmlsZXMlMkNsaXN0LmZpbGVz" data-listing-date-sort="1733156026000" data-listing-file-modified-sort="1733156026681" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2081">
+<a href="./sessions_extra/import_multiple.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./sessions_core/img/import_multiple_000_logo.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Import multiple files and sheets
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('U2F0ZWxsaXRl'); return false;">
+Satellite
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('SW1wb3J0JTIwZGF0YQ=='); return false;">
+Import data
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('TXVsdGlwbGUlMjBmaWxlcw=='); return false;">
+Multiple files
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('bGlzdC5maWxlcw=='); return false;">
+list.files
+</div>
+</div>
+<div class="card-text listing-description">
+Learn how to import multiple sheets from an Excel file, or several Excel files.
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+
+</div>
+<div class="listing-date">
+Dec 2, 2024
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="6" data-categories="U2F0ZWxsaXRlJTJDUiUyMGJhc2ljcyUyQ1ZlY3RvcnMlMkNEYXRhZnJhbWVzJTJDTGlzdHM=" data-listing-date-sort="1732619247000" data-listing-file-modified-sort="1732619247793" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="138">
+<a href="./sessions_extra/indexing.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./img/under_construction.svg" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Indexing
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('U2F0ZWxsaXRl'); return false;">
+Satellite
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('UiUyMGJhc2ljcw=='); return false;">
+R basics
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('VmVjdG9ycw=='); return false;">
+Vectors
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('RGF0YWZyYW1lcw=='); return false;">
+Dataframes
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('TGlzdHM='); return false;">
+Lists
+</div>
+</div>
+<div class="card-text listing-description">
+A more complete introduction to indexing in base R
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+
+</div>
+<div class="listing-date">
+Nov 26, 2024
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="7" data-categories="Q29yZSUyQ1JzdHVkaW8lMjBpbnRlcmZhY2UlMkNSJTIwYmFzaWNzJTJDRGF0YSUyMHR5cGVz" data-listing-date-sort="1732619247000" data-listing-file-modified-sort="1732619247787" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="26" data-listing-word-count-sort="5064">
+<a href="./sessions_core/introduction.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<!-- img(9CEB782EFEE6)[progressive=false, height=150px]:listing:sessions_core/introduction.html -->
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Introduction to R
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Q29yZQ=='); return false;">
+Core
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('UnN0dWRpbyUyMGludGVyZmFjZQ=='); return false;">
+Rstudio interface
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('UiUyMGJhc2ljcw=='); return false;">
+R basics
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('RGF0YSUyMHR5cGVz'); return false;">
+Data types
+</div>
+</div>
+<div class="card-text listing-description">
+Your first steps in R. Learn your way around Rstudio, and meet some common R objects
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+
+</div>
+<div class="listing-date">
+Nov 26, 2024
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="8" data-categories="Q29yZSUyQ0dyYXBocyUyQ2dncGxvdDIlMkNlcGljdXJ2ZQ==" data-listing-date-sort="1733156013000" data-listing-file-modified-sort="1733156013524" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="21" data-listing-word-count-sort="4063">
+<a href="./sessions_core/ggplot.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./sessions_core/img/ggplot_000_logo.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Introduction to data visualization with ggplot2
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Q29yZQ=='); return false;">
+Core
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('R3JhcGhz'); return false;">
+Graphs
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Z2dwbG90Mg=='); return false;">
+ggplot2
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('ZXBpY3VydmU='); return false;">
+epicurve
+</div>
+</div>
+<div class="card-text listing-description">
+Learn the basics of buidling plots with ggplot2, and create your first epicurve.
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+
+</div>
+<div class="listing-date">
+Dec 2, 2024
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="9" data-categories="U2F0ZWxsaXRlJTJDUiUyMGJhc2ljcyUyQ0RhdGElMjB0eXBlcyUyQ0xpc3Rz" data-listing-date-sort="1732619247000" data-listing-file-modified-sort="1732619247798" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="444">
+<a href="./sessions_extra/lists.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./img/under_construction.svg" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Lists
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('U2F0ZWxsaXRl'); return false;">
+Satellite
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('UiUyMGJhc2ljcw=='); return false;">
+R basics
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('RGF0YSUyMHR5cGVz'); return false;">
+Data types
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('TGlzdHM='); return false;">
+Lists
+</div>
+</div>
+<div class="card-text listing-description">
+Learn about the basic about R lists.
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+
+</div>
+<div class="listing-date">
+Nov 26, 2024
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="10" data-categories="U2F0ZWxsaXRlJTJDR3JhcGhzJTJDZ2dwbG90MiUyQ3NjYWxlcw==" data-listing-date-sort="1733156026000" data-listing-file-modified-sort="1733156026676" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="13">
+<a href="./sessions_extra/common_scales.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./img/under_construction.svg" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Modify scales in ggplot
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('U2F0ZWxsaXRl'); return false;">
+Satellite
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('R3JhcGhz'); return false;">
+Graphs
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Z2dwbG90Mg=='); return false;">
+ggplot2
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('c2NhbGVz'); return false;">
+scales
+</div>
+</div>
+<div class="card-text listing-description">
+Change the labels of axis, or the colours of a guide.
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+
+</div>
+<div class="listing-date">
+Dec 2, 2024
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="11" data-categories="Q29yZSUyRlNhdGVsbGl0ZSUyQ0NhdGVnb3J5JTIwMSUyQ0NhdGVnb3J5JTIwMg==" data-listing-date-sort="1732123598000" data-listing-file-modified-sort="1732123598535" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="81">
+<a href="./sessions_core/template.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./img/under_construction.svg" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Session Title
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Q29yZSUyRlNhdGVsbGl0ZQ=='); return false;">
+Core/Satellite
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Q2F0ZWdvcnklMjAx'); return false;">
+Category 1
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Q2F0ZWdvcnklMjAy'); return false;">
+Category 2
+</div>
+</div>
+<div class="card-text listing-description">
+Short description (appears on cards in pathway / explore pages)
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+
+</div>
+<div class="listing-date">
+Nov 20, 2024
+</div>
+</div>
+</div>
+</div>
+</a>
 </div>
 </div>
 <div class="listing-no-matching d-none">

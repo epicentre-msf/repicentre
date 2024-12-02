@@ -419,4 +419,4 @@ df_linelist %>%
 
 ## Resources
 
-Chapter of the [Elegant graphics for sata analyses book](https://ggplot2-book.org/scales-position#sec-date-scales) on date scales
+Chapter of the [Elegant graphics for data analyses](https://ggplot2-book.org/scales-position#sec-date-scales) book on date scales
