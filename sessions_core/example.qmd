@@ -74,6 +74,10 @@ Things are a bit quick and dirty at the moment. Ultimately I will make nice new 
 **This is a callout** using `{.callout-note}`
 :::
 
+::: {.callout-caution}
+Comment about best practice.
+:::
+
 ::: {.callout .callout-look}
 **Look.** This callout can be used for "observation activities" (ie: look at this thing in the console). Eventually it will be more beautiful, just make sure you use this class. 
 
