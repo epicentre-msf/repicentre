@@ -1,0 +1,27 @@
+---
+title: Dynamic aesthetics
+description: Assign aesthetics elements of a graph to a variable
+date: last-modified
+image: ../img/under_construction.svg
+params: 
+  solutions: FALSE
+  sub_title: "**------ With Solutions ------**"
+categories:
+  - Satellite
+  - Graphs
+  - ggplot2
+---
+
+```{r setup}
+#| include: false
+#| eval: true
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+
+solutions <- params$solutions
+
+library(here)        # Better paths
+library(rio)         # Import files
+library(dplyr)       # Data manipulation
+library(lubridate)   # Deal with dates
+library(ggplot2)     # Todays workhorse
+```
