@@ -137,14 +137,14 @@
     "href": "sessions_core/template.html#main-section",
     "title": "Session Title",
     "section": "Main Section",
-    "text": "Main Section\nLorem ipsum…\n\nprint('some example code')\n\n\n\n\n\n\n\nNote\n\n\n\nNote about something of interest, like a best practice or helpful hint.\n\n\n\n\n\n\n\n\nLook. Description of something participants should observe.\n\n\n\n…lorem ispum again !\n\n\n\n\n\n\nCode. Description of something participants should code themselves.\n\n\n\nDon’t forget to include a solution"
+    "text": "Main Section\nLorem ipsum…\n\nprint('some example code')\n\n\n\n\n\n\n\nNote\n\n\n\nNote about something of interest, like helpful hint or a relevant warning.\n\n\n\n\n\n\n\n\nCaution\n\n\n\nComment about best practice.\n\n\n\n\n\n\n\n\nLook. Description of something participants should observe.\n\n\n\n…lorem ispum again !\n\n\n\n\n\n\nCode. Description of something participants should code themselves.\n\n\n\nDon’t forget to include a solution"
   },
   {
     "objectID": "explore.html",
     "href": "explore.html",
     "title": "Explore",
     "section": "",
-    "text": "Choose your own adventure by browsing all available sessions.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nExample Core Session\n\n\n\nCore\n\n\nExample\n\n\n\nJust an example\n\n\n\n\n\n\nNov 20, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nExample Satellite Session\n\n\n\nSatellite\n\n\nExample\n\n\nFor fun\n\n\n\nJust an example\n\n\n\n\n\n\nNov 20, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSession Title\n\n\n\nCore/Satellite\n\n\nCategory 1\n\n\nCategory 2\n\n\n\nShort description (appears on cards in pathway / explore pages)\n\n\n\n\n\n\nNov 20, 2024\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Choose your own adventure by browsing all available sessions.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nExample Core Session\n\n\n\nCore\n\n\nExample\n\n\n\nJust an example\n\n\n\n\n\n\nNov 20, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nExample Satellite Session\n\n\n\nSatellite\n\n\nExample\n\n\nFor fun\n\n\n\nJust an example\n\n\n\n\n\n\nNov 20, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSession Title\n\n\n\nCore/Satellite\n\n\nCategory 1\n\n\nCategory 2\n\n\n\nShort description (appears on cards in pathway / explore pages)\n\n\n\n\n\n\nNov 25, 2024\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "index.html",
