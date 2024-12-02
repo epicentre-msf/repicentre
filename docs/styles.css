@@ -74,11 +74,35 @@ div.callout-note.callout {
   background-color: #e7f1ff;
 }
 
-/* TODO: center icon in line */
 div.callout-note.callout-titled .callout-icon::before {
   background-image: url("img/icons/info.svg");
   background-size: 100%;
 }
+
+
+/* best practices */
+div.callout-caution.callout-style-default>.callout-header {
+  background-color: #616161;
+}
+
+div.callout-caution.callout {
+  border-left-color: #616161;
+  background-color: #EEEEEE;
+}
+
+div.callout-caution.callout-titled .callout-icon::before {
+  background-image: url("img/icons/best.svg");
+  background-size: 100%;
+}
+
+
+/* callout general styling */
+
+.callout.callout-style-default:not(.no-icon) div.callout-icon-container {
+  padding-top: 0em !important;
+}
+
+/*.callout.callout-style-default.callout-caution:not(.no-icon) div.callout-icon-container*/
 
 
 div.callout-look.callout {
