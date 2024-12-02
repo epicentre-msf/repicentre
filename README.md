@@ -1,6 +1,4 @@
-<img src=https://github.com/user-attachments/assets/b51559e6-31f3-490a-8755-5c65357afddb width=200px>
-
-## What up buttercups.
+## What up buttercups. <img src='www/llama.svg' align='right' alt='' width='200' />
 This is the repo for the revision of the FETCH R course *and* the development of a broader set of R training material for MSF/Epicentre. The ultimate goal is to have a website hosting self contained tutorials providing two possible learning pathways:
 1. **Linear:** A specific set of ordered core sessions designed to take students from zero to basic competency
 2. **Choose-Your-Own-Adventure**: A repository of core and satellite sessions ranging from basic to advanced topics.
