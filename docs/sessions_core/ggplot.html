@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.6.37">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="dcterms.date" content="2024-12-02">
-<meta name="description" content="Learn the basics of buidling plots with ggplot2, and create you first epicurve.">
+<meta name="description" content="Learn the basics of buidling plots with ggplot2, and create your first epicurve.">
 <title>Introduction to data visualization with ggplot2 – Repicentre</title>
 <style>
 code{white-space: pre-wrap;}
@@ -152,7 +152,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li>
 <a href="#sec-epicurve-steps" id="toc-sec-epicurve-steps" class="nav-link" data-scroll-target="#sec-epicurve-steps">Building Your First <code>ggplot</code></a>
   <ul>
-<li><a href="#preparing-your-data-aggreagte-by-week" id="toc-preparing-your-data-aggreagte-by-week" class="nav-link" data-scroll-target="#preparing-your-data-aggreagte-by-week">Preparing Your Data: aggreagte by week</a></li>
+<li><a href="#preparing-your-data-aggregate-by-week" id="toc-preparing-your-data-aggregate-by-week" class="nav-link" data-scroll-target="#preparing-your-data-aggregate-by-week">Preparing Your Data: Aggregate by Week</a></li>
   <li><a href="#set-up-a-canvas-initialize-a-plot" id="toc-set-up-a-canvas-initialize-a-plot" class="nav-link" data-scroll-target="#set-up-a-canvas-initialize-a-plot">Set up a Canvas: Initialize a Plot</a></li>
   <li><a href="#plot-the-bars" id="toc-plot-the-bars" class="nav-link" data-scroll-target="#plot-the-bars">Plot the Bars</a></li>
   <li><a href="#add-some-labels" id="toc-add-some-labels" class="nav-link" data-scroll-target="#add-some-labels">Add Some Labels</a></li>
@@ -163,7 +163,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li>
 <a href="#facetting-this-plot-by-age-group-or-site" id="toc-facetting-this-plot-by-age-group-or-site" class="nav-link" data-scroll-target="#facetting-this-plot-by-age-group-or-site">Facetting: This Plot By Age Group or Site</a>
   <ul>
-<li><a href="#get-the-data-ready" id="toc-get-the-data-ready" class="nav-link" data-scroll-target="#get-the-data-ready">Get the data ready</a></li>
+<li><a href="#get-the-data-ready" id="toc-get-the-data-ready" class="nav-link" data-scroll-target="#get-the-data-ready">Get the Data Ready</a></li>
   <li><a href="#add-the-facet-layer-to-the-plot" id="toc-add-the-facet-layer-to-the-plot" class="nav-link" data-scroll-target="#add-the-facet-layer-to-the-plot">Add the Facet Layer to the Plot</a></li>
   </ul>
 </li>
@@ -186,7 +186,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div>
   <div class="description">
-    Learn the basics of buidling plots with ggplot2, and create you first epicurve.
+    Learn the basics of buidling plots with ggplot2, and create your first epicurve.
   </div>
 </div>
 
@@ -212,10 +212,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
 <li>Build a basic epicurve</li>
 </ul></section><section id="introduction" class="level2 page-columns page-full"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>This session is a short introduction to data visualization using the popular <a href="https://ggplot2.tidyverse.org">ggplot2</a> package. Keep in mind that visualization in general and even <a href="https://ggplot2.tidyverse.org">ggplot2</a> in particular are huge subjects that we can’t cover in a single core session. This tutorial is intended as taster to give you a feel for how plotting is typically done. To do that, we will come back to one of our most beloved epidemiological plots: <strong>the epicurve</strong>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
-<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;Remember that an epicurve is a particular type of plot that shows the number of daily (or weekly) cases observed during an outbreak. These curves are fundamental in epidemiology and often use multicolored (stacked) bars to indicate not only the number of cases but also the proportion that were suspected/confirmed, alive/dead, etc.</p></div></div><p>Our final plot will look like this: <img src="../sessions_core/img/ggplot_001_final_output.png" class="img-fluid quarto-figure quarto-figure-center" alt="A simple but nice epicurve"></p>
+<p>This session is a short introduction to data visualization using the popular <a href="https://ggplot2.tidyverse.org">ggplot2</a> package. Keep in mind that visualization in general and even <a href="https://ggplot2.tidyverse.org">ggplot2</a> in particular are huge subjects that we can’t cover in a single core session. This tutorial is intended as a taster to give you a feel for how plotting is typically done. To do that, we will come back to one of our most beloved epidemiological plots: <strong>the epicurve</strong>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;An epicurve is a particular type of plot that shows the number of daily (or weekly) cases observed during an outbreak. These curves are fundamental in epidemiology and often use multicolored (stacked) bars to indicate not only the number of cases but also the proportion that were suspected/confirmed, alive/dead, etc.</p></div></div><p>Our final plot will look like this: <img src="../sessions_core/img/ggplot_001_final_output.png" class="img-fluid quarto-figure quarto-figure-center" alt="A simple but nice epicurve"></p>
 </section><section id="setup" class="level2"><h2 class="anchored" data-anchor-id="setup">Setup</h2>
-<p>Before we get into the theory, let’s get your data and script ready:</p>
+<p>Before we get into the theory, let’s get your data and script ready.</p>
 <div class="callout callout-style-simple callout-none no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -274,7 +274,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;This paradigm is sometimes refered to as a ‘Grammar of Graphics’ approach as it it was first articulated in a book of the same name.</p></div></div><p>An in depth discussion of why one might use one approach versus another is beyond the scope of this course, though we will note that most modern visualization packages <span class="hoverinfo" data-toggle="tooltip" title="This is because layered models tend to be more convenient when building complex or highly customized visualizations.">tend to use a layered model</span>. With that in mind, let’s take a look at the types of layers we are talking about in our “layered” approach.</p>
 <section id="breaking-it-down-a-visualization-and-its-parts" class="level3 page-columns page-full"><h3 class="anchored" data-anchor-id="breaking-it-down-a-visualization-and-its-parts">Breaking it Down: A Visualization and its Parts</h3>
-<p>For the purpose of this tutorial we will talk about only four visualization components (layers) :</p>
+<p>For the purpose of this tutorial we will talk about only four visualization components (layers):</p>
 <ol type="1">
 <li>
 <strong>Canvas</strong> / <strong>Data</strong>
@@ -288,7 +288,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <figure class="figure page-columns page-full"><p><img src="../sessions_core/img/ggplot_002_theory.png" class="img-fluid figure-img"></p>
 <figcaption class="margin-caption">The main components of a plot</figcaption></figure>
 </div>
-<p>The most conceptually complex of the above layers is probably <strong>the canvas itself</strong>. Much as an artist needs to buy a canvas and conceptualize what they want to paint before they start painting, so too does a user of <a href="https://ggplot2.tidyverse.org">ggplot2</a>. Creating the canvas is where we tell R that we want to start making a plot and what parts of the data that plot will use. Here, for example, we will tell R <em>“I want to make a plot where the x axis represents date and the y axis represents cases”</em>. Once that canvas is set up we can start adding our other layers in the same way that an artist would begin adding paint, their signature, or a frame.</p>
+<p>The most conceptually complex of the above layers is probably <strong>the canvas itself</strong>. Much as an artist needs to buy a canvas and conceptualize what they want to paint before they start painting, so too does a user of <a href="https://ggplot2.tidyverse.org">ggplot2</a>. Creating the canvas is where we tell R that we want to start making a plot and what parts of the data that plot will use. Here, for example, we will tell R <em>“I want to make a plot where the x axis represents weeks and the y axis represents cases”</em>. Once that canvas is set up we can start adding other layers in the same way that an artist would begin adding paint, their signature, or a frame.</p>
 <p>Now, let’s look at the syntax for these layers in <a href="https://ggplot2.tidyverse.org">ggplot2</a> and how to put them together.</p>
 </section><section id="getting-started-with-ggplot2" class="level3 page-columns page-full"><h3 class="anchored" data-anchor-id="getting-started-with-ggplot2">Getting Started with <code>{ggplot2}</code>
 </h3>
@@ -298,7 +298,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
 <li>Add things to the canvas</li>
 </ol>
-<p><a href="https://ggplot2.tidyverse.org">ggplot2</a> takes the idea of “adding something to your canvas” very literally: each new layer will be introduced to your plot using the <code>+</code> sign.</p>
+<p><a href="https://ggplot2.tidyverse.org">ggplot2</a> takes the idea of “adding something to the canvas” very literally: each new layer will be introduced to your plot using the <code>+</code> sign.</p>
 <p>The general syntax of a <code>ggplot</code> is then:</p>
 <div class="cell">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># PSEUDO CODE -- DO NOT RUN</span></span>
@@ -329,7 +329,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Notice that in the above example our very first line is actually our dataset being piped into the <code>ggplot()</code> function. This makes sense since <a href="https://ggplot2.tidyverse.org">ggplot2</a> needs to know what data you’d like to visualize. <strong>But be careful,</strong> make sure that <strong>this line ends in a pipe</strong> (<code>%&gt;%</code>) and not in a <code>+</code> sign like the other ones.</p>
+<p>Notice that in the above example, our very first line is actually our dataset being piped into the <code>ggplot()</code> function. This makes sense since <a href="https://ggplot2.tidyverse.org">ggplot2</a> needs to know what data you’d like to visualize. <strong>But be careful,</strong> make sure that <strong>this line ends in a pipe</strong> (<code>%&gt;%</code>) and not in a <code>+</code> sign like the other ones.</p>
 </div>
 </div>
 <div class="quarto-figure quarto-figure-center page-columns page-full">
@@ -339,8 +339,8 @@ Note
 <p>In the next part of the tutorial we will go through each of these steps (layers) individually using our course dataset to make your first epicurve.</p>
 </section></section><section id="sec-epicurve-steps" class="level2 page-columns page-full"><h2 class="anchored" data-anchor-id="sec-epicurve-steps">Building Your First <code>ggplot</code>
 </h2>
-<section id="preparing-your-data-aggreagte-by-week" class="level3 page-columns page-full"><h3 class="anchored" data-anchor-id="preparing-your-data-aggreagte-by-week">Preparing Your Data: aggreagte by week</h3>
-<p>Ultimately we would like to plot an epicurve of <em>weekly cases</em>. You may have noticed, however, that our current data is daily, so we need to do some aggregation. To start let’s determine the week associated with each admission date using the function <code>isoweek()</code> from <a href="https://lubridate.tidyverse.org">lubridate</a>, which takes a date (or a vector of dates) and returns the associated ISO week.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
+<section id="preparing-your-data-aggregate-by-week" class="level3 page-columns page-full"><h3 class="anchored" data-anchor-id="preparing-your-data-aggregate-by-week">Preparing Your Data: Aggregate by Week</h3>
+<p>Ultimately we would like to plot an epicurve of <em>weekly cases</em>. You may have noticed, however, that our current data is daily, so we need to do some aggregation. To start let’s determine the week associated with each admission date using the function <code>isoweek()</code> from the <a href="https://lubridate.tidyverse.org">lubridate</a> package, which takes a date (or a vector of dates) and returns the associated ISO week.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
 <div class="no-row-height column-margin column-container"><div id="fn3"><p><sup>3</sup>&nbsp;ISO weeks offer an internationally standardized approach to dates that avoid differences between countries on when a week starts and how to define the first week of the year. ISO weeks begin on Monday.</p></div></div><div class="cell">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">example_date</span> <span class="op">&lt;-</span> <span class="st">'27-01-2023'</span></span>
 <span></span>
@@ -355,7 +355,7 @@ Note
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<p><strong>Code.</strong> Create a new section in your script called <code># PREPARE DATA</code>, then use <code>mutate()</code> and <code>isoweek()</code> to create a new column in your dataframe called <code>week_admission</code> that contains the ISO week associated with every <em>admission date</em>. The head of <code>date_admission</code> and <code>week_admission</code> should look like this:</p>
+<p><strong>Code.</strong> Create a new section in your script called <code># PREPARE DATA</code>, then use <code>mutate()</code> and <code>isoweek()</code> to create a new column in your dataframe called <code>week_admission</code> that contains the ISO week associated with every <em>admission date</em>. The head of <code>date_admission</code> and <code>week_admission</code> columns should look like this:</p>
 </div>
 </div>
 </div>
@@ -377,7 +377,7 @@ Note
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<p><strong>Code.</strong> Using <code>group_by()</code> and <code>count()</code>, create a new dataframe called <code>df_cases</code> that summarizes the total number of cases observed each week. The head of this data frame should look like this:</p>
+<p><strong>Code.</strong> Using <code>count()</code>, create a new dataframe called <code>df_cases</code> that summarizes the total number of cases observed each week. The head of this data frame should look like this:</p>
 </div>
 </div>
 </div>
@@ -392,7 +392,7 @@ Note
 6              6 86</code></pre>
 </div>
 </div>
-<p>Great! Now we are ready to make our epicurve. In the following steps, <em>you</em>’ll be asked to use <code>df_cases</code> to plot a classic epicurve of the <em>number of weekly cases</em>. To demonstrate the functions you’ll be using, <em>I</em> will plot the curve of the number of weekly <em>dates outcomes</em> as an example. To do that, I’ve build myself another dataframe, <code>df_outcome</code>, which looks like this:</p>
+<p>Great! Now we are ready to make our epicurve. In the following steps, <em>you</em>’ll be asked to use <code>df_cases</code> to plot a classic epicurve of the <em>number of weekly admissions</em>. To demonstrate the functions you’ll be using, <em>I</em> will plot the curve of the number of weekly <em>outcomes</em> as an example. To do that, I’ve build myself another dataframe, <code>df_outcome</code>, which looks like this:</p>
 <div class="cell">
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">df_outcome</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -406,14 +406,14 @@ Note
 </div>
 </div>
 </section><section id="set-up-a-canvas-initialize-a-plot" class="level3 page-columns page-full"><h3 class="anchored" data-anchor-id="set-up-a-canvas-initialize-a-plot">Set up a Canvas: Initialize a Plot</h3>
-<p>The first step is creating your canvas by specifying your dataset and the names of the columns you’d like to visualize. This is done using <code>ggplot(aes())</code> with the following syntax:</p>
+<p>The first step is creating your canvas by specifying your dataset and the names of the columns you’d like to visualize. This is done using <code>ggplot(aes(...))</code> with the following syntax:</p>
 <div class="cell">
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># PSEUDO CODE -- DO NOT RUN</span></span>
 <span><span class="va">df_data</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">x_axis_variable_name</span>,</span>
 <span>             y <span class="op">=</span> <span class="va">y_axis_variable_name</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>For my plot of date of onset, I’d like to plot the ISO week (<code>week_outcome</code>) on the x-axis and the number of patients hospitalized (<code>patients</code>) on the y-axis. Let’s update our pseudo-code to do that:</p>
+<p>For an epicurve of outcomes, I’d like to plot the ISO week (<code>week_outcome</code>) on the x-axis and the number of patients hospitalized (<code>patients</code>) on the y-axis. Let’s update our pseudo-code to do that:</p>
 <div class="cell">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df_outcome</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">week_outcome</span>,</span>
@@ -453,9 +453,9 @@ What does aes stands for?
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Now, you may be asking yourself: “what is this weird <code>aes()</code> function that we’ve nested inside of <code>ggplot()</code>?”. The short answer is that <code>aes()</code> creates an <strong>AESthetic mapping</strong> that tells <a href="https://ggplot2.tidyverse.org">ggplot2</a> which columns of our data should be represented by which visual elements of our plot (like the axes, for example).</p>
-<p>Aesthetic mappings create a map that defines how <em>data elements</em> (variables) are to be represented by <em>visual elements</em> (like axes, colors, and sizes). For example, here we are mapping the week number to the x axis and the number of patients to the y axis. We could also imagine, for example, an epicurve where bars are colored based on whether patients lived or died. This would be an example where the variable exit status is being mapped to the visual element of color.</p>
-<p>For now it is enough to know that <code>aes()</code> is the place where you will define your x and y axis.</p>
+<p>Now, you may be wondering what is this <code>aes()</code> function that we’ve nested inside of <code>ggplot()</code>? The short answer is that <code>aes()</code> creates an <strong>AESthetic mapping</strong> that tells <a href="https://ggplot2.tidyverse.org">ggplot2</a> which columns of our data should be represented by which visual elements of our plot (like the axes, for example).</p>
+<p>Aesthetic mappings create a map that defines how <em>data elements</em> (variables) are to be represented by <em>visual elements</em> (like axes, colors, and sizes). For example, here we are mapping the ISO week number to the x-axis and the number of patients to the y-axis. We could also imagine, for example, an epicurve where bars are colored based on whether patients lived or died. This would be an example where the variable <code>outcome</code> is being mapped to the visual element of color.</p>
+<p>For now it is enough to know that <code>aes()</code> is the place where you will define your x-and y-axis.</p>
 </div>
 </div>
 <div class="callout callout-style-simple callout-none no-icon">
@@ -479,7 +479,7 @@ What does aes stands for?
 </div>
 <p>Excellent! Now let’s add some bars.</p>
 </section><section id="plot-the-bars" class="level3 page-columns page-full"><h3 class="anchored" data-anchor-id="plot-the-bars">Plot the Bars</h3>
-<p>Now that we have our canvas, it’s time to add some shapes. In <a href="https://ggplot2.tidyverse.org">ggplot2</a>, the shapes plotted on a figure are called <em>geometries</em>.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. Geometries are the primary visual representation of your data and should feel pretty familiar. A few common types of geometries include:</p>
+<p>Now that we have our canvas, it’s time to add some shapes. In <a href="https://ggplot2.tidyverse.org">ggplot2</a>, the shapes plotted on a figure are called <em>geometries</em>.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> Geometries are the primary visual representation of your data and should feel pretty familiar. A few common types of geometries include:</p>
 <div class="no-row-height column-margin column-container"><div id="fn4"><p><sup>4</sup>&nbsp;You’ll notice in the below examples that the function for all geometries starts with <code>geom_</code>. This is designed to improve human readability and indeed all geometries in <a href="https://ggplot2.tidyverse.org">ggplot2</a> start this way for consistency</p></div></div><ul>
 <li>
 <span class="hoverinfo" data-toggle="tooltip" title="Including epicurves!">Bar Plots</span> (<code>geom_col()</code> or <code>geom_bar()</code>)</li>
@@ -488,7 +488,7 @@ What does aes stands for?
 <li>Line Plots (<code>geom_line()</code>)</li>
 <li>Boxplots (<code>geom_boxplot()</code>)</li>
 </ul>
-<p>Today, we’re doing epicurves so we are most interested in learning how to make a bar plot. In our case, we will be using <code>geom_col()</code>.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> Remember that adding a new layer (in this case a geometry) to our <code>ggplot</code> is as simple as using a <code>+</code>, so we can add bars to my epicurve of hospitalized cases in the following way:</p>
+<p>Today, we’re doing epicurves so we are most interested in learning how to make a bar plot. In our case, we will be using <code>geom_col()</code>.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> Remember that adding a new layer (in this case a geometry) to our <code>ggplot</code> is as simple as using a <code>+</code>, so we can add bars to the epicurve of hospitalized cases in the following way:</p>
 <div class="no-row-height column-margin column-container"><div id="fn5"><p><sup>5</sup>&nbsp;The exact difference between <code>geom_bar()</code> and <code>geom_col()</code> is a bit beyond our scope. But, in essence, whereas <code>geom_col()</code> is designed to work with pre-aggregated data, <code>geom_bar()</code> will do some degree of aggregation on its own.</p></div></div><div class="cell">
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df_outcome</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">week_outcome</span>,</span>
@@ -502,12 +502,12 @@ What does aes stands for?
 </div>
 </div>
 <p>Brilliant! That sure looks like an epicurve to me. Though it does look a bit…grey. If we’d like to update the color of our bars (called the <code>fill</code>), we simply need to add the <code>fill =</code> argument to <code>geom_col()</code>.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></p>
-<div class="no-row-height column-margin column-container"><div id="fn6"><p><sup>6</sup>&nbsp;Fills and border colors in <a href="https://ggplot2.tidyverse.org">ggplot2</a> can be specified in several ways. Here we have used a <a href="https://www.w3schools.com/colors/colors_picker.asp">hex code</a>, which allows us to give a unique code for specific colors. In a pinch, however, you can also specify simple colors by name. For example, arguments like ‘blue’ or ‘green’ would also be accepted (see <a href="https://r-charts.com/colors/">a list of R named colors</a>).</p></div></div><p>Let’s give it a try:</p>
+<div class="no-row-height column-margin column-container"><div id="fn6"><p><sup>6</sup>&nbsp;Fills and border colors in <a href="https://ggplot2.tidyverse.org">ggplot2</a> can be specified in several ways. Here we have used a <a href="https://www.w3schools.com/colors/colors_picker.asp">hex code</a>, which allows us to give a unique code for specific colors. In a pinch, however, you can also specify simple colors by name. For example, arguments like <code>"blue"</code> or <code>"green"</code> would also be accepted (see <a href="https://r-charts.com/colors/">a list of R named colors</a>).</p></div></div><p>Let’s give it a try:</p>
 <div class="cell">
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df_outcome</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">week_outcome</span>,</span>
 <span>             y <span class="op">=</span> <span class="va">patients</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">geom_col</span><span class="op">(</span>fill <span class="op">=</span> <span class="st">'#2E4573'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu">geom_col</span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"#2E4573"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="ggplot_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
@@ -565,7 +565,7 @@ Note
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df_outcome</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">week_outcome</span>,</span>
 <span>             y <span class="op">=</span> <span class="va">patients</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">geom_col</span><span class="op">(</span>fill <span class="op">=</span> <span class="st">'#2E4573'</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_col</span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"#2E4573"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"ISO Week"</span>,</span>
 <span>       y <span class="op">=</span> <span class="st">"Outcomes"</span>,</span>
 <span>       title <span class="op">=</span> <span class="st">"Measles outcomes in Moissala"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -607,7 +607,7 @@ Note
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df_outcome</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">week_outcome</span>,</span>
 <span>             y <span class="op">=</span> <span class="va">patients</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">geom_col</span><span class="op">(</span>fill <span class="op">=</span> <span class="st">'#2E4573'</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_col</span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"#2E4573"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"ISO Week"</span>,</span>
 <span>       y <span class="op">=</span> <span class="st">"Outcomes"</span>,</span>
 <span>       title <span class="op">=</span> <span class="st">'Measles outcomes in Moissala'</span><span class="op">)</span> <span class="op">+</span></span>
@@ -624,7 +624,7 @@ Note
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df_outcome</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">week_outcome</span>,</span>
 <span>             y <span class="op">=</span> <span class="va">patients</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">geom_col</span><span class="op">(</span>fill <span class="op">=</span> <span class="st">'#2E4573'</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_col</span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"#2E4573"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"ISO Week"</span>,</span>
 <span>       y <span class="op">=</span> <span class="st">"Outcomes"</span>,</span>
 <span>       title <span class="op">=</span> <span class="st">'Measles outcomes in Moissala'</span><span class="op">)</span> <span class="op">+</span></span>
@@ -656,13 +656,13 @@ Note
 </section></section><section id="facetting-this-plot-by-age-group-or-site" class="level2"><h2 class="anchored" data-anchor-id="facetting-this-plot-by-age-group-or-site">Facetting: This Plot By Age Group or Site</h2>
 <p>Now, this plot is cool, but in you sitrep you want to show the data by age group, or by site. There are several ways to do that.</p>
 <ul>
-<li>The intuitive way, which you already have the skill to do is to copy and reuse the graph code, passing different, filtered dataframes to the <code>ggplot()</code> command</li>
-<li>Use a for loop or <code>apply</code> or <code>map</code> familly functions: these are ways to automatize actions that involve less copy and pasting</li>
+<li>The intuitive way, which you already have the skill to do, is to copy and reuse the graph code, passing different, filtered dataframes to the <code>ggplot()</code> command</li>
+<li>Use a <code>for</code> loop or <code>apply</code> or <code>map</code> family functions: these are ways to automatize actions that involve less copy and pasting</li>
 <li>Trust <a href="https://ggplot2.tidyverse.org">ggplot2</a> to have a solution</li>
 </ul>
-<p>The first option is tedious and it is easy to make errors; the second option can be quite powerfull and I hope that at some point you will learn some of these tools, but it is quite out of the scope of this tutorial. We will focus on the third option, which is powerfull and sufficient for many contexts.</p>
-<p>The function <code>facet_wrap()</code> allow you to replicate a graph based on the categories of a variable. For example, you could make the outcome graph <em>by sex</em>, or <em>by site</em>. As other layers of a ggplot graph, you add it to your existing graph with a <code>+</code>. It will create a a figure with multiple small graphs, that <a href="https://ggplot2.tidyverse.org">ggplot2</a> call <em>facets</em> or small multiples.</p>
-<section id="get-the-data-ready" class="level4"><h4 class="anchored" data-anchor-id="get-the-data-ready">Get the data ready</h4>
+<p>The first option is tedious and it is easy to make errors; the second option can be quite powerfull and I hope that at some point you will learn some of these tools, but it is out of the scope of this tutorial. We will focus on the third option, which is powerfull and sufficient for many contexts.</p>
+<p>The function <code>facet_wrap()</code> allow you to replicate a graph based on the categories of a variable. For example, you could make the outcome graph <em>by sex</em>, or <em>by site</em>. As other layers of a ggplot graph, you add it to your existing graph with a <code>+</code>. It will create a a figure with multiple small graphs, that <a href="https://ggplot2.tidyverse.org">ggplot2</a> calls <em>facets</em> or <em>small multiples</em>.</p>
+<section id="get-the-data-ready" class="level4"><h4 class="anchored" data-anchor-id="get-the-data-ready">Get the Data Ready</h4>
 <p>If we want to to plot anything <em>by site</em>, the site variable must be present in the aggregated datadata. Our current summarised dataset is only summarised by week though:</p>
 <div class="cell">
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">df_outcome</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -696,26 +696,14 @@ Note
 5            1  Moïssala Hospital        7
 6            2    Bedaya Hospital        2</code></pre>
 </div>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Quick sanity check...</span></span>
-<span><span class="va">df_outcome_site</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">count</span><span class="op">(</span><span class="va">site</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>                site  n
-1    Bedaya Hospital 51
-2  Bekourou Hospital 37
-3     Bouna Hospital 52
-4 Danamadji Hospital 27
-5   Koumogo Hospital 10
-6  Moïssala Hospital 52</code></pre>
-</div>
 </div>
 </section><section id="add-the-facet-layer-to-the-plot" class="level4"><h4 class="anchored" data-anchor-id="add-the-facet-layer-to-the-plot">Add the Facet Layer to the Plot</h4>
 <p>Now, let’s plot this data. Look at the code bellow: it is exactly the same as before but for the last line, which creates the facets:</p>
 <div class="cell">
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df_outcome_site</span> <span class="op">%&gt;%</span></span>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df_outcome_site</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">week_outcome</span>,</span>
 <span>             y <span class="op">=</span> <span class="va">patients</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">geom_col</span><span class="op">(</span>fill <span class="op">=</span> <span class="st">'#2E4573'</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_col</span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"#2E4573"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"ISO Week"</span>,</span>
 <span>       y <span class="op">=</span> <span class="st">"Outcomes"</span>,</span>
 <span>       title <span class="op">=</span> <span class="st">'Measles outcomes in Moissala'</span><span class="op">)</span> <span class="op">+</span></span>
@@ -736,7 +724,7 @@ Note
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>Now is your turn, you will draw a plot of the number of admissions by age group.</p>
+<p>Now is your turn, you will draw a plot of the number of admissions by age group:</p>
 <p><strong>Code.</strong> Prepare a new aggregated dataframe, summarized by week and age. Then, draw the epicurve by age group (still keeping all the plots improvement: labels, themes etc.)</p>
 </div>
 </div>
@@ -752,7 +740,7 @@ Tip
 </div>
 <div class="callout-body-container callout-body">
 <p><strong>To go further</strong> Check out the function <a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">help page</a> to learn how to control the number of facets by row with <code>nrow =</code>, or column with <code>ncol =</code>, and how to control the maximum values of the axes with <code>scales =</code>.</p>
-<p>Check out the examples, one of them show how to adapt your code to do this:</p>
+<p><strong>To go even further</strong> Check out their examples in detail: one of them show how to adapt your code to do this:</p>
 <div class="cell">
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 6 rows containing missing values or values outside the scale range
