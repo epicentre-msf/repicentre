@@ -45,7 +45,11 @@ print('some example code')
 ```
 
 ::: {.callout-note}
-Note about something of interest, like a best practice or helpful hint.
+Note about something of interest, like helpful hint or a relevant warning.
+:::
+
+::: {.callout-caution}
+Comment about best practice.
 :::
 
 ::: {.callout .callout-look}
