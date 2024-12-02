@@ -584,3 +584,7 @@ ggplot(data = df_cases_age,     # general dataset
 ## Done!
 
 Very well done team! You have build your first epicurve!
+
+## Resources
+
+A [full book](https://ggplot2-book.org/) on using `{ggplot2}`
