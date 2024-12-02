@@ -53,7 +53,7 @@
     "href": "pathway.html",
     "title": "Pathway",
     "section": "",
-    "text": "These sessions can be followed in order to get a baseline level in R. The series assumes no prior experience in R and is suitable for beginners.\nLooking for more? Want more flexibility? Consider browsing the full session catalog.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nExample Core Session\n\n\n\n\n\nJust an example\n\n\n\n\n\nNov 20, 2024\n\n\n\n\n\n\nNo matching items"
+    "text": "These sessions can be followed in order to get a baseline level in R. The series assumes no prior experience in R and is suitable for beginners.\nLooking for more? Want more flexibility? Consider browsing the full session catalog.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nExample Core Session\n\n\n\n\n\nJust an example\n\n\n\n\n\nDec 2, 2024\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "about.html",
@@ -88,7 +88,7 @@
     "href": "sessions_core/example.html#callouts",
     "title": "Example Core Session",
     "section": "Callouts",
-    "text": "Callouts\nThings are a bit quick and dirty at the moment. Ultimately I will make nice new classes in a full repicentre theme that can be used for exercised etc. For the moment we will just frankenstine some existing callouts.\n\n\n\n\n\n\nNote\n\n\n\nThis is a callout using {.callout-note}\n\n\n\n\n\n\n\n\nLook. This callout can be used for “observation activities” (ie: look at this thing in the console). Eventually it will be more beautiful, just make sure you use this class.\nWARNING. For the moment this class looks just like the “code activities” class, please make sure you use the right one.\n\n\n\n\n\n\n\n\n\nCode. This callout can be used for “code activities”. Eventually it will be more beautiful, just make sure you use this class.\nWARNING. For the moment this class looks just like the “observation activities” class, please make sure you use the right one."
+    "text": "Callouts\nThings are a bit quick and dirty at the moment. Ultimately I will make nice new classes in a full repicentre theme that can be used for exercised etc. For the moment we will just frankenstine some existing callouts.\n\n\n\n\n\n\nNote\n\n\n\nThis is a callout using {.callout-note}\n\n\n\n\n\n\n\n\nCaution\n\n\n\nComment about best practice.\n\n\n\n\n\n\n\n\nLook. This callout can be used for “observation activities” (ie: look at this thing in the console). Eventually it will be more beautiful, just make sure you use this class.\nWARNING. For the moment this class looks just like the “code activities” class, please make sure you use the right one.\n\n\n\n\n\n\n\n\n\nCode. This callout can be used for “code activities”. Eventually it will be more beautiful, just make sure you use this class.\nWARNING. For the moment this class looks just like the “observation activities” class, please make sure you use the right one."
   },
   {
     "objectID": "sessions_core/example.html#tabsets",
@@ -144,7 +144,7 @@
     "href": "explore.html",
     "title": "Explore",
     "section": "",
-    "text": "Choose your own adventure by browsing all available sessions.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nExample Core Session\n\n\n\nCore\n\n\nExample\n\n\n\nJust an example\n\n\n\n\n\n\nNov 20, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nExample Satellite Session\n\n\n\nSatellite\n\n\nExample\n\n\nFor fun\n\n\n\nJust an example\n\n\n\n\n\n\nNov 20, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSession Title\n\n\n\nCore/Satellite\n\n\nCategory 1\n\n\nCategory 2\n\n\n\nShort description (appears on cards in pathway / explore pages)\n\n\n\n\n\n\nNov 25, 2024\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Choose your own adventure by browsing all available sessions.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nExample Core Session\n\n\n\nCore\n\n\nExample\n\n\n\nJust an example\n\n\n\n\n\n\nDec 2, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nExample Satellite Session\n\n\n\nSatellite\n\n\nExample\n\n\nFor fun\n\n\n\nJust an example\n\n\n\n\n\n\nNov 20, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSession Title\n\n\n\nCore/Satellite\n\n\nCategory 1\n\n\nCategory 2\n\n\n\nShort description (appears on cards in pathway / explore pages)\n\n\n\n\n\n\nNov 25, 2024\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "index.html",
