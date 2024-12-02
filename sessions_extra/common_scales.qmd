@@ -1,0 +1,24 @@
+---
+title: Modify scales in ggplot
+description: Change the labels of axis, or the colours of a guide.
+date: last-modified
+image: ../img/under_construction.svg
+params: 
+  solutions: FALSE
+  sub_title: "**------ With Solutions ------**"
+categories:
+  - Satellite
+  - Graphs
+  - ggplot2
+  - scales
+---
+
+```{r setup}
+#| include: false
+#| eval: true
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+
+solutions <- params$solutions
+
+# library(...)         # what does this library do?
+```
