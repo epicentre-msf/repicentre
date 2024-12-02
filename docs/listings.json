@@ -1,5 +1,14 @@
 [
   {
+    "listing": "/pathway.html",
+    "items": [
+      "/sessions_core/example.html",
+      "/sessions_core/ggplot.html",
+      "/sessions_core/import_data.html",
+      "/sessions_core/introduction.html"
+    ]
+  },
+  {
     "listing": "/explore.html",
     "items": [
       "/sessions_extra/dynamic_aes.html",
@@ -14,15 +23,6 @@
       "/sessions_extra/lists.html",
       "/sessions_extra/common_scales.html",
       "/sessions_core/template.html"
-    ]
-  },
-  {
-    "listing": "/pathway.html",
-    "items": [
-      "/sessions_core/example.html",
-      "/sessions_core/ggplot.html",
-      "/sessions_core/import_data.html",
-      "/sessions_core/introduction.html"
     ]
   }
 ]

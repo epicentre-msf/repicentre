@@ -187,13 +187,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 </header><section id="objective" class="level2"><h2 class="anchored" data-anchor-id="objective">Objective</h2>
-<p>Learn to display dates on the bottom axis of your graphs, and how to tweak the labels.</p>
+<p>Learn to display dates on the x-axis of your graphs, and how to tweak the date labels.</p>
 <p>In the <a href="../sessions_core/ggplot.html">introduction to ggplot session</a> you learned how to plot an epicurve of the number of cases across time.</p>
 <div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
-(`geom_col()`).</code></pre>
-</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="epicurves_dates_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
@@ -202,33 +198,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>In that graph we chose to represent epiweeks in the bottom axis, as it is a common task. In this session we will show how to code a variant of this graph with dates instead.</p>
-<div class="cell">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># df_linelist %&gt;% </span></span>
-<span><span class="co">#   count(week_first_day_outcome, name = "cases") %&gt;% </span></span>
-<span><span class="co">#   ggplot(aes(x = week_fist_day,</span></span>
-<span><span class="co">#              y = cases)) +</span></span>
-<span><span class="co">#   geom_col(fill = "#2E4573") +</span></span>
-<span><span class="co">#   labs(x = "Date of admission",</span></span>
-<span><span class="co">#        y = "Cas hebdomadaires") +</span></span>
-<span><span class="co">#   scale_x_date(date_breaks = '4 weeks') +</span></span>
-<span><span class="co">#   theme_classic(base_size = 15)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <p>As in the core session, the examples will plot the epicurve for outcomes, and you will code the epicurve for hospitalizations.</p>
 </section><section id="dependancies" class="level2"><h2 class="anchored" data-anchor-id="dependancies">Dependancies</h2>
-<p>We will use the following packages in this session: - <a href="https://here.r-lib.org/">here</a> to write robust absolute paths, - <a href="https://gesistsa.github.io/rio/">rio</a> to import the data, - <a href="https://dplyr.tidyverse.org">dplyr</a> for general tool to manipulate data, - <a href="https://ggplot2.tidyverse.org">ggplot2</a> to create the graphs, - <a href="https://lubridate.tidyverse.org">lubridate</a> to manage dates and times</p>
-</section><section id="setup" class="level2"><h2 class="anchored" data-anchor-id="setup">Setup</h2>
+<p>We will use the following packages in this session:</p>
+<ul>
+<li>
+<a href="https://here.r-lib.org/">here</a> to write robust absolute paths,</li>
+<li>
+<a href="https://gesistsa.github.io/rio/">rio</a> to import the data,</li>
+<li>
+<a href="https://dplyr.tidyverse.org">dplyr</a> to manipulate data,</li>
+<li>
+<a href="https://ggplot2.tidyverse.org">ggplot2</a> to create the graphs,</li>
+<li>
+<a href="https://lubridate.tidyverse.org">lubridate</a> to manage dates and times</li>
+</ul></section><section id="setup" class="level2"><h2 class="anchored" data-anchor-id="setup">Setup</h2>
 <p>We use the same setup as the one from the <a href="../sessions_core/ggplot.html#sec-epicurve-steps">ggplot core session</a>.</p>
 <div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Import clean data ----------------------------------------</span></span>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Import clean data ----------------------------------------</span></span>
 <span><span class="va">df_linelist</span> <span class="op">&lt;-</span> <span class="fu">rio</span><span class="fu">::</span><span class="fu"><a href="http://gesistsa.github.io/rio/reference/import.html">import</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">'data'</span>, <span class="st">'clean'</span>,</span>
-<span>                                      <span class="st">'linelist_moissala_2023-09-24_clean.rds'</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>                                      <span class="st">'linelist_moissala_2023-09-24_clean.rds'</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na</a></span><span class="op">(</span><span class="va">date_admission</span>, <span class="va">date_outcome</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">mutate</span><span class="op">(</span>week_admission <span class="op">=</span> <span class="fu">isoweek</span><span class="op">(</span><span class="va">date_admission</span><span class="op">)</span><span class="op">)</span>  <span class="co"># Used to plot the weeks ISO</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>To avoid the warnings all along the session, we removed the missing values <em>both</em> in the admission date and outcome date columns. When you analyse and plot data, always be aware of how many missing data you have and how a <code><a href="https://tidyr.tidyverse.org/reference/drop_na.html">tidyr::drop_na()</a></code> command affects your dataframe.</p>
+</div>
+</div>
 </section><section id="create-the-time-variable" class="level2 page-columns page-full"><h2 class="anchored" data-anchor-id="create-the-time-variable">Create the time variable</h2>
-<p>In the core session we used the function <code>isoweek()</code> from the <a href="https://lubridate.tidyverse.org">lubridate</a> package to derive the week ISO <em>number</em>. In this session, we need to aggregate data by week, but also to still retain information on dates. To do that we will use the function <code>floor_date()</code>, which also belong to the <a href="https://lubridate.tidyverse.org">lubridate</a> package. This function returns the <em>first date</em> of a given period (day, month, year etc.). You can think of it as a sort of rounding to the smallest value, but for dates.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>In the core session we used the function <code>isoweek()</code> from the <a href="https://lubridate.tidyverse.org">lubridate</a> package to derive the week ISO <em>number</em>. In this session, we need to aggregate data by week, and yet still retain information on dates. To do that we will use the function <code>floor_date()</code>, which also belong to the <a href="https://lubridate.tidyverse.org">lubridate</a> package. This function returns the <em>first date</em> of a given period (day, month, year etc.). You can think of it as a sort of rounding to the smallest value, but for dates.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;Predictably, there also is a <code>ceiling_date()</code> function that rounds dates to the highest value of a period</p></div></div><p>The function has a <code>unit =</code> argument that allows you to choose the period of interest (week, month…) and a <code>week_start =</code> period where you can pass the first day of the week (mondays are <code>1</code>).</p>
 <div class="cell">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df_linelist</span> <span class="op">&lt;-</span> <span class="va">df_linelist</span> <span class="op">%&gt;%</span> </span>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df_linelist</span> <span class="op">&lt;-</span> <span class="va">df_linelist</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">mutate</span><span class="op">(</span></span>
 <span>    <span class="co"># Week number (ISO)</span></span>
 <span>    week_outcome <span class="op">=</span> <span class="fu">isoweek</span><span class="op">(</span><span class="va">date_outcome</span><span class="op">)</span>,</span>
@@ -241,10 +251,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Let’s look at all these time variables:</p>
 <div class="cell">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df_linelist</span> <span class="op">%&gt;%</span> </span>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df_linelist</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">select</span><span class="op">(</span><span class="va">id</span>, <span class="va">date_outcome</span>, <span class="va">week_outcome</span>, <span class="va">week_first_day_outcome</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">arrange</span><span class="op">(</span><span class="va">date_outcome</span><span class="op">)</span> <span class="op">%&gt;%</span>     <span class="co"># Sort the data by date</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">15</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   id date_outcome week_outcome week_first_day_outcome
 1   3   2022-08-19           33             2022-08-15
@@ -256,17 +266,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 7   7   2022-09-04           35             2022-08-29
 8  10   2022-09-05           36             2022-09-05
 9  15   2022-09-06           36             2022-09-05
-10 19   2022-09-09           36             2022-09-05
-11 13   2022-09-10           36             2022-09-05
-12 22   2022-09-11           36             2022-09-05
-13 17   2022-09-12           37             2022-09-12
-14 21   2022-09-13           37             2022-09-12
-15 14   2022-09-14           37             2022-09-12</code></pre>
+10 19   2022-09-09           36             2022-09-05</code></pre>
 </div>
 </div>
 <p>It is even easier to understand if we calculate the day of thee week associated with each date with the function <code>wday()</code> that <em>also</em> belong to the <a href="https://lubridate.tidyverse.org">lubridate</a> package:<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
-<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;The <a href="https://lubridate.tidyverse.org">lubridate</a> package is an extremely useful tool to manage dates in R.</p></div></div><div class="cell">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df_linelist</span> <span class="op">%&gt;%</span> </span>
+<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;The <a href="https://lubridate.tidyverse.org">lubridate</a> package is an extremely useful tool to manage dates in R…</p></div></div><div class="cell">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df_linelist</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">mutate</span><span class="op">(</span></span>
 <span>    day_outcome <span class="op">=</span> <span class="fu">wday</span><span class="op">(</span><span class="va">date_outcome</span>, </span>
 <span>                       label <span class="op">=</span> <span class="cn">TRUE</span>, </span>
@@ -274,29 +279,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>    day_floor   <span class="op">=</span> <span class="fu">wday</span><span class="op">(</span><span class="va">week_first_day_outcome</span>, </span>
 <span>                       label <span class="op">=</span> <span class="cn">TRUE</span>, </span>
 <span>                       abbr <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">arrange</span><span class="op">(</span><span class="va">date_outcome</span><span class="op">)</span> <span class="op">%&gt;%</span>     <span class="co"># Sort the data by date</span></span>
 <span>  <span class="fu">select</span><span class="op">(</span><span class="va">date_outcome</span>,</span>
 <span>         <span class="va">day_outcome</span>,</span>
 <span>         <span class="va">week_outcome</span>,</span>
 <span>         <span class="va">week_first_day_outcome</span>,</span>
 <span>         <span class="va">day_floor</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">15</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   date_outcome day_outcome week_outcome week_first_day_outcome day_floor
-1    2022-08-21    dimanche           33             2022-08-15     lundi
-2    2022-08-22       lundi           34             2022-08-22     lundi
-3    2022-08-19    vendredi           33             2022-08-15     lundi
+1    2022-08-19    vendredi           33             2022-08-15     lundi
+2    2022-08-21    dimanche           33             2022-08-15     lundi
+3    2022-08-22       lundi           34             2022-08-22     lundi
 4    2022-08-25       jeudi           34             2022-08-22     lundi
 5    2022-09-04    dimanche           35             2022-08-29     lundi
-6    2022-09-05       lundi           36             2022-09-05     lundi
+6    2022-09-04    dimanche           35             2022-08-29     lundi
 7    2022-09-04    dimanche           35             2022-08-29     lundi
-8    2022-09-04    dimanche           35             2022-08-29     lundi
-9    2022-09-10      samedi           36             2022-09-05     lundi
-10   2022-09-14    mercredi           37             2022-09-12     lundi
-11   2022-09-06       mardi           36             2022-09-05     lundi
-12         &lt;NA&gt;        &lt;NA&gt;           NA                   &lt;NA&gt;      &lt;NA&gt;
-13   2022-09-12       lundi           37             2022-09-12     lundi
-14         &lt;NA&gt;        &lt;NA&gt;           NA                   &lt;NA&gt;      &lt;NA&gt;
-15   2022-09-09    vendredi           36             2022-09-05     lundi</code></pre>
+8    2022-09-05       lundi           36             2022-09-05     lundi
+9    2022-09-06       mardi           36             2022-09-05     lundi
+10   2022-09-09    vendredi           36             2022-09-05     lundi</code></pre>
 </div>
 </div>
 <p>This illustrate how <code>week_outcome</code> and <code>week_first_day_outcome</code> are two ways to have only one value by week, which makes aggregation possible at the week scale.</p>
@@ -320,7 +321,7 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Go in the help page to checkout the list of possible unit, it’s big!</p>
+<p>Go read the help page for <code>floor_date()</code> to check out the list of possible units.</p>
 </div>
 </div>
 </section><section id="aggregate-by-week" class="level2"><h2 class="anchored" data-anchor-id="aggregate-by-week">Aggregate by week</h2>
@@ -362,6 +363,18 @@ Tip
 </div>
 </div>
 <p>It should look like that:</p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
+(`geom_col()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="epicurves_dates_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -377,10 +390,10 @@ Note
 </div>
 </section><section id="improve-the-date-labels" class="level2"><h2 class="anchored" data-anchor-id="improve-the-date-labels">Improve the date labels</h2>
 <p><a href="https://ggplot2.tidyverse.org">ggplot2</a> automatically provided labels for the x axis, trying to adjust for the range of data. We can manually force it to make the labels more or less frequent.</p>
-<p>To modify the appearance of the axis, we once again use function from the <code>scales_xxx</code> family: <code>scale_x_date()</code>.</p>
-<p>This function has a <code>date_breaks =</code> argument that accepts the interval between two labels in a string. The string can have the following format: <code>"1 week"</code>, <code>"4 months"</code>, <code>"2 years"</code> etc.</p>
+<p>To modify the appearance of the axis, we once again use function from the <a href="../sessions_extra/common_scales.html">scale_ familly</a>: <code>scale_x_date()</code>.</p>
+<p>This function has a <code>date_breaks =</code> argument that accepts the interval between two labels in a string. The string can have the following format: <code>"1 week"</code>, <code>"2 weeks"</code>, <code>"4 months"</code>, <code>"2 years"</code> etc.</p>
 <div class="cell">
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df_linelist</span> <span class="op">%&gt;%</span> </span>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df_linelist</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">count</span><span class="op">(</span><span class="va">week_first_day_outcome</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">week_first_day_outcome</span>,</span>
 <span>             y <span class="op">=</span> <span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -388,7 +401,7 @@ Note
 <span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Date of outcome"</span>,</span>
 <span>       y <span class="op">=</span> <span class="st">"Measles cases"</span>,</span>
 <span>       title <span class="op">=</span> <span class="st">'Measles outcomes in Moissala'</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">scale_x_date</span><span class="op">(</span>date_breaks <span class="op">=</span> <span class="st">'4 month'</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">scale_x_date</span><span class="op">(</span>date_breaks <span class="op">=</span> <span class="st">'4 months'</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">theme_classic</span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">16</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
@@ -396,7 +409,7 @@ Note
 </div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="epicurves_dates_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="epicurves_dates_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -418,7 +431,7 @@ Note
 </div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="epicurves_dates_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="epicurves_dates_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
