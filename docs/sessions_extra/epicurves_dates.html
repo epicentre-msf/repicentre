@@ -145,7 +145,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#create-the-time-variable" id="toc-create-the-time-variable" class="nav-link" data-scroll-target="#create-the-time-variable">Create the time variable</a></li>
   <li><a href="#aggregate-by-week" id="toc-aggregate-by-week" class="nav-link" data-scroll-target="#aggregate-by-week">Aggregate by week</a></li>
   <li><a href="#draw-the-epicurve" id="toc-draw-the-epicurve" class="nav-link" data-scroll-target="#draw-the-epicurve">Draw the epicurve</a></li>
-  <li><a href="#improve-the-date-labels" id="toc-improve-the-date-labels" class="nav-link" data-scroll-target="#improve-the-date-labels">Improve the date labels</a></li>
+  <li>
+<a href="#improve-the-axis-appearance-breaksand-labels" id="toc-improve-the-axis-appearance-breaksand-labels" class="nav-link" data-scroll-target="#improve-the-axis-appearance-breaksand-labels">Improve the axis appearance (breaksand labels)</a>
+  <ul>
+<li><a href="#change-breaks" id="toc-change-breaks" class="nav-link" data-scroll-target="#change-breaks">Change breaks</a></li>
+  <li>
+<a href="#labels" id="toc-labels" class="nav-link" data-scroll-target="#labels">Labels</a>
+  <ul>
+<li><a href="#with-the-scales-package." id="toc-with-the-scales-package." class="nav-link" data-scroll-target="#with-the-scales-package.">With the <code>{scales}</code> package.</a></li>
+  <li><a href="#with-the-strptime-syntax" id="toc-with-the-strptime-syntax" class="nav-link" data-scroll-target="#with-the-strptime-syntax">With the <code>strptime</code> syntax</a></li>
+  </ul>
+</li>
+  </ul>
+</li>
+  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">Resources</a></li>
   </ul></nav>
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
@@ -212,6 +225,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <a href="https://ggplot2.tidyverse.org">ggplot2</a> to create the graphs,</li>
 <li>
 <a href="https://lubridate.tidyverse.org">lubridate</a> to manage dates and times</li>
+<li>
+<a href="https://scales.r-lib.org">scales</a> to create prettier lables</li>
 </ul></section><section id="setup" class="level2"><h2 class="anchored" data-anchor-id="setup">Setup</h2>
 <p>We use the same setup as the one from the <a href="../sessions_core/ggplot.html#sec-epicurve-steps">ggplot core session</a>.</p>
 <div class="cell">
@@ -247,7 +262,7 @@ Warning
 <span>    week_first_day_outcome <span class="op">=</span> <span class="fu">floor_date</span><span class="op">(</span><span class="va">date_outcome</span>,</span>
 <span>                                        unit <span class="op">=</span> <span class="st">"week"</span>,</span>
 <span>                                        week_start <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
-<span>    <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let’s look at all these time variables:</p>
 <div class="cell">
@@ -342,11 +357,11 @@ Tip
 1          2022-08-15  3
 2          2022-08-22  1
 3          2022-08-29  4
-4          2022-09-05 10
-5          2022-09-12 11
-6          2022-09-19  6
+4          2022-09-05  8
+5          2022-09-12 10
+6          2022-09-19  3
 7          2022-09-26 23
-8          2022-10-03 16
+8          2022-10-03 15
 9          2022-10-10 18
 10         2022-10-17 17</code></pre>
 </div>
@@ -364,10 +379,6 @@ Tip
 </div>
 <p>It should look like that:</p>
 <div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
-(`geom_col()`).</code></pre>
-</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="epicurves_dates_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
@@ -388,25 +399,24 @@ Note
 <p>Notice that the bars are identical to the epicurve with weeks number. This is normal, are we are aggregating by week in both cases. It is only the information use to represent the week (ISO number or start date) that changes.</p>
 </div>
 </div>
-</section><section id="improve-the-date-labels" class="level2"><h2 class="anchored" data-anchor-id="improve-the-date-labels">Improve the date labels</h2>
-<p><a href="https://ggplot2.tidyverse.org">ggplot2</a> automatically provided labels for the x axis, trying to adjust for the range of data. We can manually force it to make the labels more or less frequent.</p>
+</section><section id="improve-the-axis-appearance-breaksand-labels" class="level2"><h2 class="anchored" data-anchor-id="improve-the-axis-appearance-breaksand-labels">Improve the axis appearance (breaksand labels)</h2>
+<p><a href="https://ggplot2.tidyverse.org">ggplot2</a> automatically provided labels for the x axis, trying to adjust for the range of data. We can manually force it to make the labels more or less frequent, and we can manually change the format of the labels.</p>
 <p>To modify the appearance of the axis, we once again use function from the <a href="../sessions_extra/common_scales.html">scale_ familly</a>: <code>scale_x_date()</code>.</p>
-<p>This function has a <code>date_breaks =</code> argument that accepts the interval between two labels in a string. The string can have the following format: <code>"1 week"</code>, <code>"2 weeks"</code>, <code>"4 months"</code>, <code>"2 years"</code> etc.</p>
+<section id="change-breaks" class="level3"><h3 class="anchored" data-anchor-id="change-breaks">Change breaks</h3>
+<p>The breaks controls the frequency of ticks on the axis.</p>
+<p>The <code>scale_x_date()</code> function has a <code>date_breaks =</code> argument that accepts the interval between two labels in a string. The string can have the following format: <code>"1 week"</code>, <code>"2 weeks"</code>, <code>"4 months"</code>, <code>"2 years"</code> etc.</p>
 <div class="cell">
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df_linelist</span> <span class="op">%&gt;%</span> </span>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Outcome graph</span></span>
+<span><span class="va">df_linelist</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">count</span><span class="op">(</span><span class="va">week_first_day_outcome</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">week_first_day_outcome</span>,</span>
 <span>             y <span class="op">=</span> <span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_col</span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"#2E4573"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Date of outcome"</span>,</span>
 <span>       y <span class="op">=</span> <span class="st">"Measles cases"</span>,</span>
-<span>       title <span class="op">=</span> <span class="st">'Measles outcomes in Moissala'</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">scale_x_date</span><span class="op">(</span>date_breaks <span class="op">=</span> <span class="st">'4 months'</span><span class="op">)</span> <span class="op">+</span></span>
+<span>       title <span class="op">=</span> <span class="st">"Measles outcomes in Moissala"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">scale_x_date</span><span class="op">(</span>date_breaks <span class="op">=</span> <span class="st">"4 months"</span><span class="op">)</span> <span class="op">+</span>  <span class="co"># Define breaks</span></span>
 <span>  <span class="fu">theme_classic</span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">16</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
-(`geom_col()`).</code></pre>
-</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="epicurves_dates_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
@@ -420,22 +430,144 @@ Note
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<p><strong>Code.</strong> Add the code so that the x axis displays one date every four weeks.</p>
+<p><strong>Code.</strong> Add the code so that the x-axis displays labels at reasonable intervals on your screen.</p>
 </div>
 </div>
 </div>
 <div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
-(`geom_col()`).</code></pre>
-</div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="epicurves_dates_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="epicurves_dates_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="1152"></p>
 </figure>
 </div>
 </div>
 </div>
+</section><section id="labels" class="level3"><h3 class="anchored" data-anchor-id="labels">Labels</h3>
+<p>Now that we changed the interval between ticks, let’s improve the labels themselves (the way dates are displayed on the axis). By default the labels are in the form “year-month-day”. It is possible to change this. We are going to show you two ways to do that.</p>
+<section id="with-the-scales-package." class="level4"><h4 class="anchored" data-anchor-id="with-the-scales-package.">With the <code>{scales}</code> package.</h4>
+<p>The <code>scale_x_date()</code> function has a <code>label =</code> argument, that accepts several entries, among which a vector containing the dates, but also a function that generates labels from the breaks. The <a href="https://scales.r-lib.org">scales</a> package has such a function, <code>label_date_short()</code> that attempts to create efficient and short labels for dates (by not repeating the year all the time for example).</p>
+<div class="cell">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Outcome graph</span></span>
+<span><span class="va">df_linelist</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">count</span><span class="op">(</span><span class="va">week_first_day_outcome</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">week_first_day_outcome</span>,</span>
+<span>             y <span class="op">=</span> <span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_col</span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"#2E4573"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Date of outcome"</span>,</span>
+<span>       y <span class="op">=</span> <span class="st">"Measles cases"</span>,</span>
+<span>       title <span class="op">=</span> <span class="st">"Measles outcomes in Moissala"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">scale_x_date</span><span class="op">(</span>date_breaks <span class="op">=</span> <span class="st">"2 months"</span>,</span>
+<span>               labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/label_date.html">label_date_short</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="co"># Short labels</span></span>
+<span>  <span class="fu">theme_classic</span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">16</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="epicurves_dates_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Code.</strong> Modify you code use <code>label_date_short()</code> to generate labels.</p>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="epicurves_dates_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="with-the-strptime-syntax" class="level4"><h4 class="anchored" data-anchor-id="with-the-strptime-syntax">With the <code>strptime</code> syntax</h4>
+<p>If you prefer to have full control on how to format dates, R has a syntax to describe date and time formats. There is a long help page with all the syntax items accessible at <code><a href="https://rdrr.io/r/base/strptime.html">help(strptime)</a></code>, but here are a few of the most useful elements to format a date label:</p>
+<p><strong>Day</strong>:</p>
+<ul>
+<li>
+<code>%d</code>: from 01 to 31</li>
+<li>
+<code>%e</code>: from 1 to 31</li>
+</ul>
+<p><strong>Month</strong>:</p>
+<ul>
+<li>
+<code>%b</code>: abbreviated month name (current locale on your computer)</li>
+<li>
+<code>%B</code>: full month name (current locale on your computer)</li>
+<li>
+<code>%m</code>: month as a decimal number</li>
+</ul>
+<p><strong>Year</strong></p>
+<ul>
+<li>
+<code>%y</code>: Year without the century (two digits)</li>
+<li>
+<code>%Y</code>: year in four digits</li>
+</ul>
+<p><strong>Special separators</strong>:</p>
+<ul>
+<li>
+<code>%n</code>: newline</li>
+<li>
+<code>%t</code>: tab</li>
+</ul>
+<p>You can assemble these items in a string, that you pass to different functions that accept a format as argument. Here we will pass it to the <code><a href="https://rdrr.io/r/base/format.html">format()</a></code> function to quickly see what display it creates, but after that we will use them in our graph command.</p>
+<div class="cell">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">some_dates</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"2024-10-06"</span>, <span class="st">"2024-12-15"</span>, <span class="st">"2025-01-20"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/format.html">format</a></span><span class="op">(</span><span class="va">some_dates</span>, <span class="st">"%Y-%b-%d"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/format.html">format</a></span><span class="op">(</span><span class="va">some_dates</span>, <span class="st">"%Y-%b"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/format.html">format</a></span><span class="op">(</span><span class="va">some_dates</span>, <span class="st">"%Y %B %d"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/format.html">format</a></span><span class="op">(</span><span class="va">some_dates</span>, <span class="st">"%y/%m/%d"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/format.html">format</a></span><span class="op">(</span><span class="va">some_dates</span>, <span class="st">"%d/%m/%Y"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Back to the graph, the <code>scale_x_date()</code> function has an argument <code>date_labels =</code> that accept a string of text in the above format for the date labels.</p>
+<div class="cell">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Outcome graph</span></span>
+<span><span class="va">df_linelist</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">count</span><span class="op">(</span><span class="va">week_first_day_outcome</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">week_first_day_outcome</span>,</span>
+<span>             y <span class="op">=</span> <span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_col</span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"#2E4573"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Date of outcome"</span>,</span>
+<span>       y <span class="op">=</span> <span class="st">"Measles cases"</span>,</span>
+<span>       title <span class="op">=</span> <span class="st">"Measles outcomes in Moissala"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">scale_x_date</span><span class="op">(</span></span>
+<span>    date_breaks <span class="op">=</span> <span class="st">"2 months"</span>,      <span class="co"># Define intervals betw. labels</span></span>
+<span>    date_labels <span class="op">=</span> <span class="st">"%Y%n%b%n%d"</span><span class="op">)</span> <span class="op">+</span>  <span class="co"># Define format of labels</span></span>
+<span>  <span class="fu">theme_classic</span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">16</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="epicurves_dates_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Code.</strong> Modify the code of you graph to have labels look like this:</p>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="epicurves_dates_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section></section></section><section id="resources" class="level2"><h2 class="anchored" data-anchor-id="resources">Resources</h2>
+<p>Chapter of the <a href="https://ggplot2-book.org/scales-position#sec-date-scales">Elegant graphics for sata analyses book</a> on date scales</p>
 
 
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
