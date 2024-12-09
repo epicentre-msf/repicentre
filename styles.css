@@ -71,12 +71,13 @@ p.subtitle {
 }
 
 
-/* notes */
-div.callout-note.callout-style-default>.callout-header {
+/* notes and tips */
+div.callout-note.callout-style-default > .callout-header,
+div.callout-tip.callout-style-default > .callout-header {
   background-color: #819cbb;
 }
 
-div.callout-note.callout {
+div.callout-note.callout, div.callout-tip.callout {
   border-left-color: #819cbb;
   background-color: #e7f1ff;
 }
@@ -87,18 +88,23 @@ div.callout-note.callout-titled .callout-icon::before {
 }
 
 
-/* best practices */
-div.callout-caution.callout-style-default>.callout-header {
+div.callout-tip.callout-titled .callout-icon::before {
+  background-image: url("img/icons/best.svg");
+  background-size: 100%;
+}
+
+/* important points */
+div.callout-important.callout-style-default > .callout-header {
   background-color: #616161;
 }
 
-div.callout-caution.callout {
+div.callout-important.callout {
   border-left-color: #616161;
   background-color: #EEEEEE;
 }
 
-div.callout-caution.callout-titled .callout-icon::before {
-  background-image: url("img/icons/best.svg");
+div.callout-important.callout-titled .callout-icon::before {
+  background-image: url("img/icons/important.svg");
   background-size: 100%;
 }
 
