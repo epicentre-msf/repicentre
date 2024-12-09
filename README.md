@@ -74,7 +74,6 @@ git merge [your-issue] main
 - Create a pull request to merge into the main. This can be done either through GitHub on the page of the branch or via:
 ```
 gh pr create
-
 ```
 
 **5. Request a review from a code owner**
