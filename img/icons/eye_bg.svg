@@ -7,12 +7,12 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="1125.0131pt"
-   height="750.00775pt"
+   width="1626.5027pt"
+   height="28620.336pt"
    version="1.1"
-   viewBox="0 0 1125.0131 750.00774"
+   viewBox="0 0 1626.5028 28620.336"
    id="svg6"
-   sodipodi:docname="eye.svg"
+   sodipodi:docname="eye_bg.svg"
    inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)">
   <metadata
      id="metadata12">
@@ -41,9 +41,9 @@
      inkscape:window-height="2096"
      id="namedview8"
      showgrid="false"
-     inkscape:zoom="0.1475"
-     inkscape:cx="-242.80244"
-     inkscape:cy="-1422.0758"
+     inkscape:zoom="0.052149125"
+     inkscape:cx="-5845.6032"
+     inkscape:cy="18442.284"
      inkscape:window-x="40"
      inkscape:window-y="27"
      inkscape:window-maximized="0"
@@ -52,9 +52,16 @@
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0" />
+  <rect
+     style="fill:#94854d;fill-opacity:0.98584906;stroke:#000000;stroke-width:3.73711395;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0.3999995;stroke-opacity:1"
+     id="rect822"
+     width="1622.7656"
+     height="28616.6"
+     x="1.868557"
+     y="1.868557" />
   <g
      id="g891"
-     transform="translate(-37.4409,-224.99452)">
+     transform="translate(209.1286,13710.171)">
     <path
        id="path877"
        d="M 1158.2,580.45 C 1063.747,374.63 854.26,228.47 604.6,225.05 373.65,221.8625 144.66,356.21 41.73,580.45 c -5.7188,12.422 -5.7188,26.672 0,39.094 100.12,218.21 324.89,358.74 563.29,355.4 237.84,-1.9219 454.97,-141.42 553.18,-355.4 5.6719,-12.422 5.6719,-26.672 0,-39.094 z M 599.96,881.24 C 442.46,880.91188 318.7,751.96 318.7,599.98 c 0,-159.19 133.45,-284.34 284.9,-281.26 153.05,1.9688 277.6,128.11 277.6,281.26 0,154.5 -126.66,281.26 -281.26,281.26 z M 136.41,599.98 c 30.469,-59.484 72.047,-111.56 121.55,-154.18 -43.969,97.453 -44.062,210.79 0,308.39 -49.5,-42.656 -91.078,-94.734 -121.55,-154.22 z M 941.96,754.2 c 43.969,-97.453 44.062,-210.79 0,-308.39 49.5,42.656 91.078,94.734 121.55,154.18 -30.469,59.484 -72.047,111.56 -121.55,154.22 z"
