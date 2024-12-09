@@ -77,8 +77,12 @@ Things are a bit quick and dirty at the moment. Ultimately I will make nice new 
 **This is a callout** using `{.callout-note}`
 :::
 
-::: {.callout-caution}
-Comment about best practice.
+::: {.callout-tip}
+Comment about a genral tip / trick or best practice.
+:::
+
+::: {.callout-important}
+Warning / comment on something really important.
 :::
 
 
@@ -90,7 +94,7 @@ Description of something participants need to setup, primarily used at the begin
 :::
 
 ::: {.look}
-Description of something participants should observe, investiage, etc.
+Description of something participants should observe, investigate, etc.
 :::
 
 
