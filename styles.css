@@ -1,4 +1,4 @@
-/*fonts*/
+/* fonts -----------------------------------------------------------------------------------------*/
 h1, h2, h3 {
   color: #819CBB;
 }
@@ -35,17 +35,19 @@ p.subtitle {
 }
 
 
-/*block quotes*/
+/* block quotes*/
 .blockquote {
   font-size: 1em;
   color: #819CBB;
   border-left-color: #819CBB;
 }
 
-/* Inline code */
+
+/* code ------------------------------------------------------------------------------------------*/
+/* inline code */
 .code {
   border-radius: 5px;
-  color: #819CBB;
+  color: #819CBB !important;
 }
 
 .code .solution {
@@ -53,7 +55,8 @@ p.subtitle {
   color: grey;
 }
 
-/* call outs style */ 
+/* callouts --------------------------------------------------------------------------------------*/
+/* general */ 
 .callout {
   border-radius: 5px;
 }
@@ -61,6 +64,10 @@ p.subtitle {
 .callout-header {
   color: white;
   font-size: 1.25em !important;
+}
+
+.callout.callout-style-default:not(.no-icon) div.callout-icon-container {
+  padding-top: 0em !important;
 }
 
 
@@ -96,28 +103,39 @@ div.callout-caution.callout-titled .callout-icon::before {
 }
 
 
-/* callout general styling */
 
-.callout.callout-style-default:not(.no-icon) div.callout-icon-container {
-  padding-top: 0em !important;
+/* action-box ------------------------------------------------------------------------------------*/
+div.setup, div.write, div.look {
+  border-radius: 5px;
+ 	padding: 1em;
+ 	padding-left: 110px;
+ 	min-height: 100px;
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+ 	background-size: 100px auto;
+ 	background-repeat: no-repeat;
+ 	background-position: left;
+ 	background-color: #FEFCF7;
+ 	border: solid 1px #E4DCCC;
+  border-left: solid 5px #635A38;
 }
 
-/*.callout.callout-style-default.callout-caution:not(.no-icon) div.callout-icon-container*/
-
-
-div.callout-look.callout {
-  border-left-color: #94854d;
-  background-color: #f2eacb;
+div.setup > p, div.write > p, div.look > p {
+  margin: 0px;
 }
 
-
-div.callout-code.callout {
-  border-left-color: #94854d;
-  background-color: #f2eacb;
+div.setup {
+  background-image: url("img/icons/setup_bg.svg")
 }
 
+div.write {
+  background-image: url("img/icons/code_bg.svg")
+}
+div.look {
+  background-image: url("img/icons/eye_bg.svg")
+}
 
-/* TOC styling */
+/* TOC styling -----------------------------------------------------------------------------------*/
 h2#toc-title{
   font-weight: 700;
 }
@@ -127,7 +145,7 @@ h2#toc-title{
   color: #819CBB;
 }
 
-.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
   background-color: #819cbb;
 }
 
@@ -135,7 +153,8 @@ h2#toc-title{
   color: #819cbb;
 }
 
-.sidebar nav[role=doc-toc] ul>li>a.active, .sidebar nav[role=doc-toc] ul>li>ul>li>a.active {
+.sidebar nav[role=doc-toc] ul > li > a.active,
+.sidebar nav[role=doc-toc] ul > li > ul > li > a.active {
   border-left: #94854d;
   color: #94854d !important;
 }

@@ -68,7 +68,10 @@ Note, this website has **code linking** activated, so you can click on functions
 
 
 ## Callouts
-Things are a bit quick and dirty at the moment. Ultimately I will make nice new classes in a full **repicentre** theme that can be used for exercised etc. For the moment we will just frankenstine some existing callouts.
+Things are a bit quick and dirty at the moment. Ultimately I will make nice new classes in a full **repicentre** theme that can be used for exercised etc. For the moment we will just frankenstine some existing callouts. 
+
+**IMPORTANT: please do _not_ use callouts not explicitly defined here; they have not been included in the css theme and therefore will not render well in the final document.** If you think that there is another callout outside these three options that should be included, please [submit an issue](https://github.com/epicentre-msf/repicentre/issues).
+
 
 ::: {.callout-note}
 **This is a callout** using `{.callout-note}`
@@ -78,18 +81,22 @@ Things are a bit quick and dirty at the moment. Ultimately I will make nice new 
 Comment about best practice.
 :::
 
-::: {.callout .callout-look}
-**Look.** This callout can be used for "observation activities" (ie: look at this thing in the console). Eventually it will be more beautiful, just make sure you use this class. 
 
-**WARNING.** For the moment this class looks just like the "code activities" class, please make sure you use the right one.
+## Action Boxes
+These are used for things participants are expected to *actually do*, ie: exercises. They are split into three categories.
+
+::: {.setup}
+Description of something participants need to setup, primarily used at the beginning of a section but can also be used for tasks like setting up an `Rproject` file, folder structure, etc.
 :::
 
-::: {.callout .callout-code}
-**Code.** This callout can be used for "code activities". Eventually it will be more beautiful, just make sure you use this class. 
-
-**WARNING.** For the moment this class looks just like the "observation activities" class, please make sure you use the right one.
+::: {.look}
+Description of something participants should observe, investiage, etc.
 :::
 
+
+::: {.write}
+Description of a coding exercise that participants are expected to complete.
+:::
 
 
 
@@ -118,3 +125,6 @@ HTML style syntax (with specification of desired size):
 
 <img src='../img/under_construction.svg' alt='example image alt (html)' width='200'/>
 
+
+## Linking to Other Pages
+Easy, use relative paths within a standard href, ie: [link to template](template.html) or [link to satilite example](../sessions_extra/example.html).
