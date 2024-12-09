@@ -50,12 +50,16 @@ Here are the validated callouts that you can use, **please do not use any callou
 Note about something of interest, like helpful hint or a relevant warning.
 :::
 
-::: {.callout-caution}
-Comment about best practice.
+::: {.callout-tip}
+Comment about a genral tip / trick or best practice.
+:::
+
+::: {.callout-important}
+Warning / comment on something really important.
 :::
 
 ::: {.look}
-Description of something participants should observe, investiage, etc.
+Description of something participants should observe, investigate, etc.
 :::
 
 ...lorem ispum again !
