@@ -1,6 +1,6 @@
 ---
 title: Introduction to R
-description: Your first steps in R. Learn your way around Rstudio, and meet some common R objects
+description: Your first steps in R. Learn your way around Rstudio, and meet some common R objects.
 date: last-modified
 # image: 
 params: 
@@ -37,15 +37,25 @@ These exercises are in the format of a self-paced tutorial containing short expl
 
 Instructions for exercices will be given in the following formats: 
 
-::: {.callout .callout-code}
-**Code.** This box is used for active coding exercise
+::: {.setup}
+This is a **general action block**. You will typically see it at the beginning of a session with instructions about the setup for that lesson.
+
+
+**Example:** Open a blank new script and name it `my_first_script.R`.
+:::
+
+
+::: {.write}
+This is a **code block**, it indicates a coding exercise where you will actually write your own code.
+
 
 **Example:** Create an object called `region` that contains the value `"Mandoul"`.
 :::
 
 
-::: {.callout .callout-look}
-**Look.** This box is used for exercices where you need to explore and observe
+::: {.look}
+This is an **observation block**, it will have instructions about something that you are expected to look at or investigate. 
+
 
 **Example:** Inspect the RStudio interface.
 :::
@@ -59,23 +69,23 @@ At the end of each session, we ask that you **email us your tutorial code**. Thi
 
 *R* is a functional programming language[Functional programming languages are designed primarily to run analyses and focus on tools for data manipulation, computation, and visualization. This can be contrasted with object oriented languages which are more adept at building complex programs (such as operating systems).] that can be used to clean and manipulate data, run analyses (especially statistical ones), visualize results, and much more. 
 
-*RStudio* is a piece of software that provides a user-friendly interface (or <span class='hoverinfo' data-toggle='tooltip' title='Integrated Development Environments'>IDE</span> to be precise) for R.^[Integrated Development Environments are a group of softwares that provide a convenient interface to use one or more programming languages. Many IDEs are specialized for a specific language (such as RStudio being specialized for R). Others, like VS Code are more general and can be used for any language.] While using a graphical interface isn’t technically required, it is **strongly recommended** for beginners.
+*RStudio* is a piece of software that provides a user-friendly interface (or [IDE]{.hoverinfo toggle='tooltip' title='Integrated Development Environments'} to be precise) for [R]{.hoverinfo toggle='tooltip' title='Integrated Development Environments are a group of softwares that provide a convenient interface to use one or more programming languages. Many IDEs are specialized for a specific language (such as RStudio being specialized for R). Others, like VS Code are more general and can be used for any language.'}. While using a graphical interface isn’t technically required, it is **strongly recommended** for beginners.
 
 
 ### Getting Started with RStudio
 
 Let’s get started! 
 
-::: {.callout .callout-code}
-**Do.** Open RStudio using the start menu or desktop shortcut; if RStudio is already open, please close it open a new session.
+::: {.setup}
+Open RStudio using the start menu or desktop shortcut; if RStudio is already open, please close it open a new session.
 :::
 
 You should see an interface that looks something like this:
 
-![View of the Rstudio IDE interface at opening](../sessions_core/img/intro_001_rstudio_interface_screenshot_EN.png){fig-align="center"}
+![View of the Rstudio IDE interface at opening](../img/core/01_introduction/01_rstudio_interface_en.png){fig-align="center"}
 
-::: {.callout .callout-look}
-**Look.** Inspect the RStudio interface.
+::: {.look}
+Inspect the RStudio interface.
 :::
 
 You will have either three or four panels, including:
@@ -85,7 +95,7 @@ You will have either three or four panels, including:
 
 To the upper right there will be a panel with several tabs. Many of these are beyond the scope of this course, and we will focus on these two:
 
-- *Environment.* A list of the <span class='hoverinfo' data-toggle='tooltip' title='You will learn later this lesson that in R, pretty much everything is an object, including functions, scalar values, and other more complex data structures'>objects</span> saved by the user in the current session.^[You can think of an R session like you would think of starting up a computer. Whenever a session starts, everything is blank and ready for computation in the same way that there aren't any programs open when you first turn on your computer. In general, we encourge you to stop and start your R sessions regularly, you may just find that _turning it off an on again_ will fix some of your bugs!] Because you’ve just started a new session, your environment should be empty.
+- *Environment.* A list of the objects{.hoverinfo toggle='tooltip' title='You will learn later this lesson that in R, pretty much everything is an object, including functions, scalar values, and other more complex data structures'} saved by the user in the current [session]{.hoverinfo toggle='tooltip' title='You can think of an R session like you would think of starting up a computer. Whenever a session starts, everything is blank and ready for computation in the same way that there aren't any programs open when you first turn on your computer. In general, we encourge you to stop and start your R sessions regularly, you may just find that _turning it off an on again_ will fix some of your bugs!'}. Because you’ve just started a new session, your environment should be empty.
 
 - *History.* A record of all the commands you have executed during the current session.
 
@@ -93,11 +103,11 @@ To the upper right there will be a panel with several tabs. Many of these are be
 
 To the bottom right there will be another multi tab panel, including:
 
-- *Files.* A file explorer for the <span class='hoverinfo' data-toggle='tooltip' title="The working directory is the folder location (directory) where R is currently working. We will talk more about the idea of paths and working directories in the next session">working directory</span>.
+- *Files.* A file explorer for the [working directory]{.hoverinfo toggle='tooltip' title="The working directory is the folder location (directory) where R is currently working. We will talk more about the idea of paths and working directories in the next session"}.
 - *Plots.* A location where RStudio will display *static* visualizations; this tab should be empty for the moment.
-- *Packages.* A list of all the R <span class='hoverinfo' data-toggle='tooltip' title="Packages are simply collections of functions that help extend the functionality of R. We will discuss them in greater detail in the next lesson.">packages</span> installed on your computer.
+- *Packages.* A list of all the [R packages]{.hoverinfo toggle='tooltip' title="Packages are simply collections of functions that help extend the functionality of R. We will discuss them in greater detail in the next lesson."} installed on your computer.
 - *Help.* A place to read help pages and documentation for functions and packages.[Documentation refers to additional narrative text either in a code file or an external document that is written to help folks understand what a piece of code, function, or package does and how it should be used. Code documentation is a bit analogous to creating a data dictionary for a set of survey data and is an invaluable part of making robust and reusable code]{.aside}
-- *Viewer.* A location where RStudio will display <span class='hoverinfo' data-toggle='tooltip' title="These could include, for example, tables, interactive widgets, or even full on dashboards.">html outputs</span>.
+- *Viewer.* A location where RStudio will display [html outputs]{.hoverinfo toggle='data' title="These could include, for example, tables, interactive widgets, or even full on dashboards."}.
 
 #### Left Side
 To the left or bottom left (if you have four panels) you should see the *console* (we will come back to it in @sec-console).
@@ -111,14 +121,12 @@ The console is **where R itself is run**.
 
 Whenever you open a new session, R will start by printing a bit of information about your set up, such as your R version number. Below this there should be a line containing the `>` symbol and a blinking cursor. To run a command in R, you simply need to type it in after this `>` and press `Enter`. R will then process your code and print the result (if there is one). A new `>` line will then appear ready for the next command.
 
-::: {.callout-warning title="Beware of unfinished commands"}
-If the last line shown in the console starts with a `+` instead of a `>` that means the console is not ready for a new command either because it is still processing a previous one or because it received a bit of <span class='hoverinfo' data-toggle='tooltip' title="Incomplete code is the R equivalent of an incomplete sentence. Typically this will occur when we forget to close a paired character, such as a parenthesis or quotation.">incomplete code</span>. If at any point you would like to cancel an ongoing or incomplete command, press `Esc`.
+::: {.callout-important}
+If the last line shown in the console starts with a `+` instead of a `>` that means the console is not ready for a new command either because it is still processing a previous one or because it received a bit of [incomplete code]{.hoverinfo toggle='tooltip' title="Incomplete code is the R equivalent of an incomplete sentence. Typically this will occur when we forget to close a paired character, such as a parenthesis or quotation."}. If at any point you would like to cancel an ongoing or incomplete command, press `Esc`.
 :::
 
-::: {.callout .callout-code}
-**Code.** Run the following commands in the console and observe the output.
-:::
-
+::: {.write}
+Run the following commands in the console and observe the output.
 
 ```{r}
 5 + 90
@@ -131,22 +139,22 @@ If the last line shown in the console starts with a `+` instead of a `>` that me
 
 (12 + 9)^4 / 1000
 ```
-
-::: {.callout .callout-code}
-**Code.** Run the following command. Note that the final `)` is missing, making the command incomplete. What happens when you do this?
 :::
+
+::: {.write}
+Run the following command. Note that the final `)` is missing, making the command incomplete. What happens when you do this?
 
 ```{r}
 #| error: true
 3 / (2 + 97
 ```
-
-
-We can also run <span class='hoverinfo' data-toggle='tooltip' title="Functions are R objects that contain commands instead of values. We will discuss them in more depth later in this lesson.">*functions*</span> in the console:
-
-::: {.callout .callout-code}
-**Code.** Run the following commands in the console (one line at a time).
 :::
+
+
+We can also run [*functions*]{.hoverinfo toggle='tooltip' title="Functions are R objects that contain commands instead of values. We will discuss them in more depth later in this lesson."} in the console:
+
+::: {.write}
+Run the following commands in the console (one line at a time).
 
 ```{r}
 # Find the minimum value
@@ -156,9 +164,10 @@ min(1, 8, 56, 0.3)
 # Find the maximum value
 max(568, 258, 314)
 ```
+:::
 
-::: {.callout .callout-best title="Let your code breathe"}
-**Best Practices.** You may have noticed in the above examples that our code includes a lot of spaces between characters. This is not by accident. It is considered <span class='hoverinfo' data-toggle='tooltip' title="Best practices refer to a set of conventions related to code style. These can include stylistic rules around syntax, aesthetic, the way you name objects, etc. Most of the time failing to follow best practices will not result in errors, but we still strongly encourage you to follow the recommendations laid out in this course.">best practice</span> to include spaces around most operators, such as `+`, `-`, `*`, `/`, `<`, `>`, `=`, and `<-`. Not only do these spaces make your code more readable^[Readability refers to how easy (or not) it is for a person to read your code and understand it easily. The spacing of characters within and between lines is an important aspect of what makes code readable. In general, the more we include spacing and the shorter we keep our lines of code the easier it will be to read.], in some cases they may even be necessary to avoid errors. That said, do be aware that there are a small number of operators that should *not* be surrounded by spaces, such as `^` and `.`. 
+::: {.callout-tip}
+You may have noticed in the above examples that our code includes a lot of spaces between characters. This is not by accident. It is considered [best practice]{.hoverinfo toggle='tooltip' title="Best practices refer to a set of conventions related to code style. These can include stylistic rules around syntax, aesthetic, the way you name objects, etc. Most of the time failing to follow best practices will not result in errors, but we still strongly encourage you to follow the recommendations laid out in this course."} to include spaces around most operators, such as `+`, `-`, `*`, `/`, `<`, `>`, `=`, and `<-`. Not only do these spaces make your code more [readable]{.hoverinfo toggle='tooltip' title="Readability refers to how easy (or not) it is for a person to read your code and understand it easily. The spacing of characters within and between lines is an important aspect of what makes code readable. In general, the more we include spacing and the shorter we keep our lines of code the easier it will be to read."}, in some cases they may even be necessary to avoid errors. That said, do be aware that there are a small number of operators that should *not* be surrounded by spaces, such as `^` and `.`. 
 
 ```{r}
 1+29+4.8/3*3           # BAD
@@ -172,14 +181,14 @@ Scripts are text files that contain a **series of commands** for a particular pr
 
 #### Writing Your First Script
 
-![Steps to create a new script in the RStudio IDE](../sessions_core/img/intro_002_rstudio_new_script.png){fig-align="center"}
+![Steps to create a new script in the RStudio IDE](../img/core/01_introduction/02_new_script.png){fig-align="center"}
 
 To create a new script, follow the menu `File > New File > R Script`. Alternatively, you can also click on the small green `+` sign just below the `File` menu or use the keyboard shortcut `CTRL+SHIFT+N`. This new and **unsaved** script will appear as a blank document in the top left panel.
 
 To save your script, either use the menu `File > Save As` our the keyboard shortcut `CTRL+S`.
 
-::: {.callout .callout-code}
-**Code.** Create and save a new script called `discovery.R`. Don’t forget to include the `.R` extension.
+::: {.setup}
+Create and save a new script called `discovery.R`. Don’t forget to include the `.R` extension.
 :::
 
 #### Executing Code from a Script
@@ -189,8 +198,8 @@ To run code from a script simply place your cursor on the line you wish to run (
 * Use the shortcut `CTRL+Enter` (cursor will move to the next line)
 * Use the shortcut `ALT+Enter` (cursor will stay on the current line)
 
-::: {.callout .callout-code}
-**Code.** Copy the code you ran in the previous exercises into your script and try running it using each of the above methods.
+::: {.write}
+Copy the code you ran in the previous exercises into your script and try running it using each of the above methods.
 :::
 
 #### Comments
@@ -204,8 +213,8 @@ In R, any text prefaced by a `#` (until the end of a line) is called a *comment*
 2 + 3  # This is also a comment
 ```
 
-::: {.callout .callout-best}
-**Best Practice.** You should start your scripts with a few commented lines providing some information about the file.
+::: {.callout-tip}
+You should start your scripts with a few commented lines providing some information about the file.
 
 ```{r}
 #### IMPORT & PREPARE DATA ####
@@ -216,8 +225,8 @@ In R, any text prefaced by a `#` (until the end of a line) is called a *comment*
 ```
 :::
 
-::: {.callout .callout-code}
-**Code.** Add some comments to the top of your script describing it.
+::: {.write}
+Add some comments to the top of your script describing it.
 :::
 
 Comments are also a handy way to split longer scripts into thematic sections, such as “Data Importation”, “Analysis”, “Visualization”, etc. For example:
@@ -228,8 +237,8 @@ Comments are also a handy way to split longer scripts into thematic sections, su
 # NAME OF SECTION 2 -----------------------------------------------             
 ```
 
-::: {.callout .callout-code}
-**Code.** Use comments to create sections in your script that correspond to the sections in this tutorial. 
+::: {.write}
+Use comments to create sections in your script that correspond to the sections in this tutorial. 
 :::
 
 Finally, comments allow us write helpful notes for our colleagues (and our future selves!) that can help them understand the code and why we wrote it the way we did. While the exact style and amount of comments that is “best” is debatable, the general rule is to focus on comments that explain “why” rather than “what”. This is because the “what” of well written code should be relatively self explanatory.
@@ -246,17 +255,17 @@ By comparison, here are a few use cases that would warrant comments:
 - Your code contains a value or filename that needs to be updated every week. You should indicate this with a comment to ensure that anyone else using the code is aware.
 - You think of an additional bit of analysis or plot that you’d like to add to a particular part of your script. You can use a comment to add a `TODO:` (to do) reminding you to come back later.
 
-::: {.callout-tip}
+::: {.callout-note}
 While “what” comments aren’t per se recommended in final scripts that we will use for projects or share with our colleagues, do feel free to use them at will during this course to add additional notes that you might helpful during the learning process.
 :::
 
-::: {.callout .callout-code}
-**Code.** Add some comments to describe the code that you’ve written thus far.
+::: {.write}
+Add some comments to describe the code that you’ve written thus far.
 :::
 
 ## Data Types
 
-R has several different <span class='hoverinfo' data-toggle='tooltip' title="Just like Excel, R can tell the difference between a date and a number. These differences refer to differences in the type of a piece of data.">data types</span>. The ones we will see most often in this course include:
+R has several different [data types]{.hoverinfo toggle='tooltip' title="Just like Excel, R can tell the difference between a date and a number. These differences refer to differences in the type of a piece of data."}. The ones we will see most often in this course include:
 
 - numeric
 - string (text)
@@ -272,26 +281,26 @@ The numeric type includes both integers and doubles (numbers that include a deci
 
 Strings are the R version of text and can be created by surounding text with single or double quotation marks, for example `'"istrict"` or `"cases"`. 
 
-::: {.callout .callout-best}
-**Best Practice.** While both single and double quotations can be used to create strings, double quotations are typically considered best practice.
+::: {.callout-tip}
+While both single and double quotations can be used to create strings, double quotations are typically considered best practice.
 :::
 
 If you would like to create a string that **contains a quotation mark** the best practice is to escape the character by putting a '\' in front of it, ie: `"She said \"Hello\" then left"` or `'it\’s a beautiful day'`. [Certain characters in R (and in most programming languages) are special, meaning that they are usually a type of command unto themselves. Quotation marks are a good example of this as they are used to tell R to treat a certain word or phrase as a string rather than the name of a variable. Whenever you'd like to use one of these special characters in normal text, you need to explicitly tell R to ignore the 'special functionality' of the character. This process is called *escaping* the special character and is done by placing a '\' directly in front of the character in question.]{.aside} Equivalently, if you used a double quotation to create the string you can use single quotes inside of it freely (ie: `"it’s a beautiful day"`) and vice versa (i.e.: `'She said "Hello" then left'`).
 
 
-::: {.callout .callout-code}
-**Code.** Compare the output in the console for the following commands.
-:::
+::: {.write}
+Compare the output in the console for the following commands.
 
 ```{r}
 28         # numeric
 "28"       # text
 28 + "28"  # produces an error
 ```
+:::
 
 The last command above will give an error because we cannot perform arithmetic operations that combine text and numbers.
 
-::: {.callout .coullout-warning}
+::: {.callout-note}
 R is case sensitive, meaning that the string `"ABC"` is not the same as `"abc"`.
 :::
 
@@ -303,9 +312,8 @@ Internally, R thinks of `TRUE` and `FALSE` as being a special version of `1` and
 ### Determining the Type of an Object
 There are several functions to determine the type of an object (often called the *class* of the object in R).
 
-::: {.callout .callout-code}
-**Code.** Run the following commands: 
-:::
+::: {.write}
+Run the following commands: 
 
 ```{r}
 # Get the Type of an Object
@@ -321,6 +329,7 @@ is.numeric(TRUE)
 is.character(TRUE)
 is.logical(FALSE)
 ```
+:::
 
 ## Saving an Object
 
@@ -328,21 +337,21 @@ Before continuing with more complex data structures, we need to take an importan
 
 Often, we will want to reuse the same values or data throughout a script and it is therefore useful to store them as objects in our environment. To do this we use the *assignment operator*, `<-`. 
 
-::: {.callout .callout-look}
-**Look.** Look at the environment panel on the top right, verifying that it is empty.
+::: {.look}
+Look at the environment panel on the top right, verifying that it is empty.
 :::
 
-::: {.callout .callout-code}
-**Code.** Type the following command to save a variable called `cases` into your environment.
-:::
+::: {.write}
+Type the following command to save a variable called `cases` into your environment.
 
 ```{r}
 #| eval: true
 cases <- 28
 ```
+:::
 
-::: {.callout .callout-look}
-**Look.** Look at the environment again. Is it still empty?
+::: {.look}
+Look at the environment again. Is it still empty?
 :::
 
 If you’d like to access the value of your new object, `cases`, you simply need to **execute it’s name**.
@@ -363,8 +372,8 @@ Once created, objects can be used in other commands:
 cases + 5
 ```
 
-::: {.callout .callout-code}
-**Code.** Create an object called `region` that contains the value `"Mandoul"`. Do you see it in your environment?
+::: {.write}
+Create an object called `region` that contains the value `"Mandoul"`. Do you see it in your environment?
 :::
 
 ```{r}
@@ -373,8 +382,8 @@ cases + 5
 region <- "Mandoul"
 ```
 
-::: {.callout .callout-best}
-**Best Practice.** Don’t forget that we should always surround `<-` with spaces to improve readability and avoid errors.
+::: {.callout-tip}
+Don’t forget that we should always surround `<-` with spaces to improve readability and avoid errors.
 
 ```{r}
 x<-3     # BAD
@@ -390,8 +399,8 @@ We often want to update the value stored in an object. To do this, we simply ass
 cases <- 32
 ```
 
-::: {.callout .callout-code}
-**Code.** Update the value of `region` to `"Moyen Chari"`.
+::: {.write}
+Update the value of `region` to `"Moyen Chari"`.
 :::
 
 ```{r}
@@ -436,15 +445,15 @@ This course will not go into detail on the more abstract concepts behind these s
 #### Simple Vectors
 Simple vectors can contain one or more values of a single data type, they thus have two key properties: **length** and **type**. For the purpose of this class, we will use the terms “simple vector” and “vector” interchangeably (as is typical in the R community). 
 
-You’ve technically already created your very first simple vectors when you built `cases` and `region`. These were simply vectors with a **length of one**. To create a vector with more than one value, we will use the function `c()`:^[Mnemonic: `c` is the first letter of “concatenate”] 
+You’ve technically already created your very first simple vectors when you built `cases` and `region`. These were simply vectors with a **length of one**. To create a vector with more than one value, we will use the function [`c()`]{.hoverinfo toggle='tooltip' title="Mnemonic: `c` is the first letter of “concatenate”"}:
 
 ```{r}
 #| eval: true
 cases <- c(2, 5, 8, 0, 4)
 ```
 
-::: {.callout .callout-code}
-**Code.** Update `cases` with the above values and update `region` to create a string vector containing the values: Mandoul, Moyen-Chari, Logone Oriental, Tibesti, Logone Occidental.
+::: {.write}
+Update `cases` with the above values and update `region` to create a string vector containing the values: Mandoul, Moyen-Chari, Logone Oriental, Tibesti, Logone Occidental.
 :::
 
 ```{r}
@@ -472,8 +481,8 @@ toupper(region)  # convert all the values in region to lower case
 ```
 
 
-::: {.callout .callout-code}
-**Code.** Use the function `sum()` to calculate the sum of `cases`
+::: {.write}
+Use the function `sum()` to calculate the sum of `cases`
 :::
 
 ```{r}
@@ -482,8 +491,8 @@ toupper(region)  # convert all the values in region to lower case
 sum(cases)
 ```
 
-::: {.callout .callout-code}
-**Code.**  Pass `region` to the function `tolower()`
+::: {.write}
+Pass `region` to the function `tolower()`
 :::
 
 ```{r}
@@ -511,10 +520,8 @@ We can also access a *range* of values, just as we might do in Excel. To create 
 cases[2:4]  # 2nd to 4th values of cases
 ```
 
-::: {.callout .callout-code}
-**Code.** Get the 3rd value of `region`.
-
-**Code.** Write code to access the values "Mandoul" and "Moyen-Chari" in the vector `region`.
+::: {.write}
+Get the 3rd value of `region`. Write code to access the values "Mandoul" and "Moyen-Chari" in the vector `region`.
 :::
 
 ```{r}
@@ -539,8 +546,8 @@ data.frame(col1 = c(1, 4, 2, 9),
            col2 = c("a bit of text", "some more text", "hello", "epidemiologists"))
 ```
 
-::: {.callout .callout-code}
-**Code.** In your script, create a dataframe called `data_cases` that contains `cases` in one column and `region` in the other.
+::: {.write}
+In your script, create a dataframe called `data_cases` that contains `cases` in one column and `region` in the other.
 :::
 
 ```{r}
@@ -571,14 +578,13 @@ data_cases <- data.frame(
 
 `data_cases` should now appear in your environment. You can click on its name to see some additional information, or click on the blue circle with a white triangle in it to open the object in the *Viewer*. 
 
-![The data_case dataframe now appears in the Environment pane](../sessions_core/img/intro_003_environment_screenshot.png){fig-align="center"}
+![The data_case dataframe now appears in the Environment pane](../img/core/01_introduction/03_environment.png){fig-align="center"}
 
 
 There are several handy functions we can use to explore a dataframe:
 
-::: {.callout .callout-code}
-**Code.** Run the following commands and try to determine what they type of information they are returning.
-:::
+::: {.write}
+Run the following commands and try to determine what they type of information they are returning.
 
 ```{r}
 str(data_cases)     # STRucture of the object
@@ -587,6 +593,7 @@ nrow(data_cases)    # Number of ROWs
 ncol(data_cases)    # Number of COLumns
 names(data_cases)   # column NAMES
 ```
+:::
 
 R comes with several built in data sets that can be accessed directly, including one called `iris`.[The `iris` dataset is convenient because we don't need to use extra functions to enable you to use it but its content not really interesting to us. Be reassured, we will learn how to import a dataset in the next core session, and work on linelist data onwards.]{.aside} We can see the first few lines of this dataset using the function `head()`:
 
@@ -595,8 +602,8 @@ R comes with several built in data sets that can be accessed directly, including
 head(iris)
 ```
 
-::: {.callout .callout-code}
-**Code.** How many rows and columns are there in `iris`? What are the names of its columns?
+::: {.write}
+How many rows and columns are there in `iris`? What are the names of its columns?
 :::
 
 ```{r}
@@ -630,8 +637,8 @@ data_cases[2:4, ]         # values of all columns for rows 2 through 4
 data_cases[ , "region"]    # values of all rows for the region column
 ```
 
-::: {.callout .callout-code}
-**Code.** Write a command to calculate the sum of the `cases` column of your dataframe.
+::: {.write}
+Write a command to calculate the sum of the `cases` column of your dataframe.
 :::
 
 ```{r}
@@ -665,10 +672,8 @@ data_cases["region"]    # returns the region column (as a dataframe)
 
 Notice that these commands returned single-column dataframes. 
 
-::: {.callout .callout-code}
-**Code.** Write a command to access the third value in the `region` column of your dataframe.
-
-**Code.** Write a command to return the second and third values of the `cases` column.
+::: {.write}
+Write a command to access the third value in the `region` column of your dataframe. Then, write a command to return the second and third values of the `cases` column.
 :::
 
 ```{r}
@@ -696,7 +701,7 @@ Most functions require some sort of input, such as a dataset or parameter. These
 
 Often, a function will have a combination of both *obligatory* and *optional* arguments. The first argument of a function is almost always obligatory and is typically a dataset. As an obligatory and rather obvious argument, most people omit its name when calling a function; ie: i.e. people will write `mean(cases)` instead of `mean(x = cases)`. Optional arguments on the other hand are usually added using their name, i.e.: `mean(x = cases, na.rm = TRUE)`.
 
-Optional arguments typically have default values and we only include them when we want to change their defaults (and thus change the default behavior of the function). For example, the `na.rm` argument of `mean` determines whether R will ignore missing values when calculating a mean. The default state of the `na.rm` argument is `FALSE`, so by default, the mean performed on data with missing values will always return `NA` as the result:^[this is true for many arithmetic operations in R]
+Optional arguments typically have default values and we only include them when we want to change their defaults (and thus change the default behavior of the function). For example, the `na.rm` argument of `mean` determines whether R will ignore missing values when calculating a mean. The default state of the `na.rm` argument is `FALSE`, so by default, the mean performed on data with missing values will always return `NA` as the result:[This is true for many arithmetic operations in R]{.aside}
 
 ```{r}
 #| eval: true
@@ -710,8 +715,8 @@ If we want R to calculate the mean on whatever data *is* available (and ignore t
 mean(c(1, 3, NA), na.rm = TRUE)
 ```
 
-::: {.callout .callout-best}
-**Best Practice.** Notice that arguments are separated by commas. These commas should always be followed by a space and whenever a named argument is used the `=` should be surrounded by spaces:
+::: {.callout-tip}
+Notice that arguments are separated by commas. These commas should always be followed by a space and whenever a named argument is used the `=` should be surrounded by spaces:
 
 ```{r}
 mean(cases,na.rm=TRUE)     # BAD
