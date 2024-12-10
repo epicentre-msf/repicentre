@@ -31,8 +31,8 @@ Objectives
 
 Setup
 ----------------------------------------------------------------------------------------------------
-::: {.callout .callout-code}
-**SETUP.** Description of setup for the tutorial (what packages to use, what to name the file, etc.).
+::: {.setup}
+Description of something participants need to setup, primarily used at the beginning of a section but can also be used for tasks like setting up an `Rproject` file, folder structure, etc.
 :::
 
 
@@ -44,23 +44,28 @@ Lorem ipsum...
 print('some example code')
 ```
 
+Here are the validated callouts that you can use, **please do not use any callouts not defined here**. If you think there is an important callout that is missing, please [submit an issue](https://github.com/epicentre-msf/repicentre/issues).
+
 ::: {.callout-note}
 Note about something of interest, like helpful hint or a relevant warning.
 :::
 
-::: {.callout-caution}
-Comment about best practice.
+::: {.callout-tip}
+Comment about a genral tip / trick or best practice.
 :::
 
-::: {.callout .callout-look}
-**Look.** Description of something participants should observe.
+::: {.callout-important}
+Warning / comment on something really important.
+:::
+
+::: {.look}
+Description of something participants should observe, investigate, etc.
 :::
 
 ...lorem ispum again !
 
-
-::: {.callout .callout-code}
-**Code.** Description of something participants should code themselves.
+::: {.write}
+Description of a coding exercise that participants are expected to complete.
 :::
 
 **Don't forget to include a solution**
