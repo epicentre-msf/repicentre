@@ -1,23 +1,20 @@
 [
   {
-    "listing": "/explore.html",
-    "items": [
-      "/sessions_core/example.html",
-      "/sessions_extra/example.html",
-      "/sessions_core/import_data.html",
-      "/sessions_extra/import_multiple.html",
-      "/sessions_extra/indexing.html",
-      "/sessions_core/introduction.html",
-      "/sessions_extra/lists.html",
-      "/sessions_core/template.html"
-    ]
-  },
-  {
     "listing": "/pathway.html",
     "items": [
       "/sessions_core/example.html",
       "/sessions_core/import_data.html",
       "/sessions_core/introduction.html"
+    ]
+  },
+  {
+    "listing": "/explore.html",
+    "items": [
+      "/sessions_core/example.html",
+      "/sessions_extra/example.html",
+      "/sessions_core/import_data.html",
+      "/sessions_core/introduction.html",
+      "/sessions_core/template.html"
     ]
   }
 ]
