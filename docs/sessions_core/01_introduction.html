@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.4.551">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta name="dcterms.date" content="2024-12-02">
-<meta name="description" content="Your first steps in R. Learn your way around Rstudio, and meet some common R objects">
+<meta name="dcterms.date" content="2024-12-10">
+<meta name="description" content="Your first steps in R. Learn your way around Rstudio, and meet some common R objects.">
 <title>Repicentre - Introduction to R</title>
 <style>
 code{white-space: pre-wrap;}
@@ -98,7 +98,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script><link rel="stylesheet" href="../styles.css">
 </head>
-<body class="nav-fixed">
+<body class="floating nav-fixed slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
@@ -136,9 +136,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </div> <!-- /container-fluid -->
     </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
 <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
@@ -178,6 +176,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#sec-missing-values" id="toc-sec-missing-values" class="nav-link" data-scroll-target="#sec-missing-values">Missing Values</a></li>
   <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions">Functions</a></li>
   </ul></nav>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content"><script type="text/javascript" src="../script.js"></script><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
@@ -192,7 +193,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div>
   <div class="description">
-    Your first steps in R. Learn your way around Rstudio, and meet some common R objects
+    Your first steps in R. Learn your way around Rstudio, and meet some common R objects.
   </div>
 </div>
 
@@ -203,7 +204,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">December 2, 2024</p>
+      <p class="date">December 10, 2024</p>
     </div>
   </div>
   
@@ -221,65 +222,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></section><section id="exercise-format" class="level2 page-columns page-full"><h2 class="anchored" data-anchor-id="exercise-format">Exercise Format</h2>
 <p>These exercises are in the format of a self-paced tutorial containing short explanations of key concepts, examples, and exercises for you to follow. The course uses a “learning by doing” approach, and while this first session will start a slow, giving you time to explore the RStudio interface, future sessions will focus heavily on having you write your own code.</p>
 <p>Instructions for exercices will be given in the following formats:</p>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
+<div class="setup">
+<p>This is a <strong>general action block</strong>. You will typically see it at the beginning of a session with instructions about the setup for that lesson.</p>
+<p><strong>Example:</strong> Open a blank new script and name it <code>my_first_script.R</code>.</p>
 </div>
-<div class="callout-body-container">
-<p><strong>Code.</strong> This box is used for active coding exercise</p>
+<div class="write">
+<p>This is a <strong>code block</strong>, it indicates a coding exercise where you will actually write your own code.</p>
 <p><strong>Example:</strong> Create an object called <code>region</code> that contains the value <code>"Mandoul"</code>.</p>
 </div>
-</div>
-</div>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>Look.</strong> This box is used for exercices where you need to explore and observe</p>
+<div class="look">
+<p>This is an <strong>observation block</strong>, it will have instructions about something that you are expected to look at or investigate.</p>
 <p><strong>Example:</strong> Inspect the RStudio interface.</p>
-</div>
-</div>
 </div>
 <div class="page-columns page-full"><p>As you move through these exercises, you may run into some errors. This is completely normal and happens to <strong>all programmers</strong>, novice and expert. Much like a natural language, R is something you will get better at the more you practice and work through your mistakes.</p><div class="no-row-height column-margin column-container"><span class="margin-aside">Errors occur when R is unable to complete a command. This can happen for a lot of reasons, for example because you mispelled the name of an object: you’ve asked R to look for a data file that doesn’t exist, or you’ve provided the wrong type of data to a function. Whenever an error occurs, R will stop any ongoing calculation and give you a message explaining what went wrong. We will see and discuss a lot of different errors throughout this course.</span></div></div>
 <p>At the end of each session, we ask that you <strong>email us your tutorial code</strong>. This will help us to assess how everyone is doing as the course progresses and allow us to provide feedbacks or come back on some muddy points.</p>
 </section><section id="rstudio-and-r" class="level2 page-columns page-full"><h2 class="anchored" data-anchor-id="rstudio-and-r">RStudio and R</h2>
 <p><em>R</em> is a functional programming language[Functional programming languages are designed primarily to run analyses and focus on tools for data manipulation, computation, and visualization. This can be contrasted with object oriented languages which are more adept at building complex programs (such as operating systems).] that can be used to clean and manipulate data, run analyses (especially statistical ones), visualize results, and much more.</p>
-<p><em>RStudio</em> is a piece of software that provides a user-friendly interface (or <span class="hoverinfo" data-toggle="tooltip" title="Integrated Development Environments">IDE</span> to be precise) for R.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> While using a graphical interface isn’t technically required, it is <strong>strongly recommended</strong> for beginners.</p>
+<p><em>RStudio</em> is a piece of software that provides a user-friendly interface (or <span class="hoverinfo" data-toggle="tooltip" title="Integrated Development Environments">IDE</span> to be precise) for <span class="hoverinfo" data-toggle="tooltip" title="Integrated Development Environments are a group of softwares that provide a convenient interface to use one or more programming languages. Many IDEs are specialized for a specific language (such as RStudio being specialized for R). Others, like VS Code are more general and can be used for any language.">R</span>. While using a graphical interface isn’t technically required, it is <strong>strongly recommended</strong> for beginners.</p>
 <section id="getting-started-with-rstudio" class="level3 page-columns page-full"><h3 class="anchored" data-anchor-id="getting-started-with-rstudio">Getting Started with RStudio</h3>
 <p>Let’s get started!</p>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>Do.</strong> Open RStudio using the start menu or desktop shortcut; if RStudio is already open, please close it open a new session.</p>
-</div>
-</div>
+<div class="setup">
+<p>Open RStudio using the start menu or desktop shortcut; if RStudio is already open, please close it open a new session.</p>
 </div>
 <p>You should see an interface that looks something like this:</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="../sessions_core/img/intro_001_rstudio_interface_screenshot_EN.png" class="img-fluid figure-img"></p>
+<figure class="figure"><p><img src="../img/core/01_introduction/01_rstudio_interface_en.png" class="img-fluid figure-img"></p>
 <figcaption>View of the Rstudio IDE interface at opening</figcaption></figure>
 </div>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>Look.</strong> Inspect the RStudio interface.</p>
-</div>
-</div>
+<div class="look">
+<p>Inspect the RStudio interface.</p>
 </div>
 <p>You will have either three or four panels, including:</p>
 <section id="uper-right-corner" class="level4"><h4 class="anchored" data-anchor-id="uper-right-corner">Uper Right Corner</h4>
 <p>To the upper right there will be a panel with several tabs. Many of these are beyond the scope of this course, and we will focus on these two:</p>
 <ul>
-<li><p><em>Environment.</em> A list of the <span class="hoverinfo" data-toggle="tooltip" title="You will learn later this lesson that in R, pretty much everything is an object, including functions, scalar values, and other more complex data structures">objects</span> saved by the user in the current session.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> Because you’ve just started a new session, your environment should be empty.</p></li>
+<li><p><em>Environment.</em> A list of the objects{.hoverinfo toggle=‘tooltip’ title=‘You will learn later this lesson that in R, pretty much everything is an object, including functions, scalar values, and other more complex data structures’} saved by the user in the current [session]{.hoverinfo toggle=‘tooltip’ title=‘You can think of an R session like you would think of starting up a computer. Whenever a session starts, everything is blank and ready for computation in the same way that there aren’t any programs open when you first turn on your computer. In general, we encourge you to stop and start your R sessions regularly, you may just find that <em>turning it off an on again</em> will fix some of your bugs!’}. Because you’ve just started a new session, your environment should be empty.</p></li>
 <li><p><em>History.</em> A record of all the commands you have executed during the current session.</p></li>
 </ul></section><section id="bottom-right-corner" class="level4 page-columns page-full"><h4 class="anchored" data-anchor-id="bottom-right-corner">Bottom Right Corner</h4>
 <p>To the bottom right there will be another multi tab panel, including:</p>
@@ -289,41 +266,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>
 <em>Plots.</em> A location where RStudio will display <em>static</em> visualizations; this tab should be empty for the moment.</li>
 <li>
-<em>Packages.</em> A list of all the R <span class="hoverinfo" data-toggle="tooltip" title="Packages are simply collections of functions that help extend the functionality of R. We will discuss them in greater detail in the next lesson.">packages</span> installed on your computer.</li>
+<em>Packages.</em> A list of all the <span class="hoverinfo" data-toggle="tooltip" title="Packages are simply collections of functions that help extend the functionality of R. We will discuss them in greater detail in the next lesson.">R packages</span> installed on your computer.</li>
 <li>
 <em>Help.</em> A place to read help pages and documentation for functions and packages.
 </li>
 <li>
-<em>Viewer.</em> A location where RStudio will display <span class="hoverinfo" data-toggle="tooltip" title="These could include, for example, tables, interactive widgets, or even full on dashboards.">html outputs</span>.</li>
+<em>Viewer.</em> A location where RStudio will display <span class="hoverinfo" data-toggle="data" title="These could include, for example, tables, interactive widgets, or even full on dashboards.">html outputs</span>.</li>
 </ul><div class="no-row-height column-margin column-container"><span class="margin-aside">Documentation refers to additional narrative text either in a code file or an external document that is written to help folks understand what a piece of code, function, or package does and how it should be used. Code documentation is a bit analogous to creating a data dictionary for a set of survey data and is an invaluable part of making robust and reusable code</span></div></section><section id="left-side" class="level4"><h4 class="anchored" data-anchor-id="left-side">Left Side</h4>
 <p>To the left or bottom left (if you have four panels) you should see the <em>console</em> (we will come back to it in <a href="#sec-console" class="quarto-xref">Section&nbsp;3.2</a>).</p>
 <p>To the top left (if you have four panels) will be any open <em>scripts</em> (we will come back to it in <a href="#sec-scripts" class="quarto-xref">Section&nbsp;3.3</a>).</p>
 </section></section><section id="sec-console" class="level3"><h3 class="anchored" data-anchor-id="sec-console">The Console</h3>
 <p>The console is <strong>where R itself is run</strong>.</p>
 <p>Whenever you open a new session, R will start by printing a bit of information about your set up, such as your R version number. Below this there should be a line containing the <code>&gt;</code> symbol and a blinking cursor. To run a command in R, you simply need to type it in after this <code>&gt;</code> and press <code>Enter</code>. R will then process your code and print the result (if there is one). A new <code>&gt;</code> line will then appear ready for the next command.</p>
-<div class="callout callout-style-default callout-warning callout-titled" title="Beware of unfinished commands">
+<div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Beware of unfinished commands
+Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p>If the last line shown in the console starts with a <code>+</code> instead of a <code>&gt;</code> that means the console is not ready for a new command either because it is still processing a previous one or because it received a bit of <span class="hoverinfo" data-toggle="tooltip" title="Incomplete code is the R equivalent of an incomplete sentence. Typically this will occur when we forget to close a paired character, such as a parenthesis or quotation.">incomplete code</span>. If at any point you would like to cancel an ongoing or incomplete command, press <code>Esc</code>.</p>
 </div>
 </div>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>Code.</strong> Run the following commands in the console and observe the output.</p>
-</div>
-</div>
-</div>
+<div class="write">
+<p>Run the following commands in the console and observe the output.</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fl">5</span> <span class="op">+</span> <span class="fl">90</span>
 
@@ -335,30 +304,16 @@ Beware of unfinished commands
 
 <span class="op">(</span><span class="fl">12</span> <span class="op">+</span> <span class="fl">9</span><span class="op">)</span><span class="op">^</span><span class="fl">4</span> <span class="op">/</span> <span class="fl">1000</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
 </div>
-<div class="callout-body-container">
-<p><strong>Code.</strong> Run the following command. Note that the final <code>)</code> is missing, making the command incomplete. What happens when you do this?</p>
-</div>
-</div>
-</div>
+<div class="write">
+<p>Run the following command. Note that the final <code>)</code> is missing, making the command incomplete. What happens when you do this?</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="sc">/</span> (<span class="dv">2</span> <span class="sc">+</span> <span class="dv">97</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</div>
 <p>We can also run <span class="hoverinfo" data-toggle="tooltip" title="Functions are R objects that contain commands instead of values. We will discuss them in more depth later in this lesson."><em>functions</em></span> in the console:</p>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>Code.</strong> Run the following commands in the console (one line at a time).</p>
-</div>
-</div>
-</div>
+<div class="write">
+<p>Run the following commands in the console (one line at a time).</p>
 <div class="cell">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="co"># Find the minimum value</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">10</span><span class="op">)</span>
@@ -367,17 +322,18 @@ Beware of unfinished commands
 <span class="co"># Find the maximum value</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="fl">568</span>, <span class="fl">258</span>, <span class="fl">314</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="callout callout-style-simple callout-none no-icon callout-titled" title="Let your code breathe">
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
+<i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Let your code breathe
+Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Best Practices.</strong> You may have noticed in the above examples that our code includes a lot of spaces between characters. This is not by accident. It is considered <span class="hoverinfo" data-toggle="tooltip" title="Best practices refer to a set of conventions related to code style. These can include stylistic rules around syntax, aesthetic, the way you name objects, etc. Most of the time failing to follow best practices will not result in errors, but we still strongly encourage you to follow the recommendations laid out in this course.">best practice</span> to include spaces around most operators, such as <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>&lt;</code>, <code>&gt;</code>, <code>=</code>, and <code>&lt;-</code>. Not only do these spaces make your code more readable<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>, in some cases they may even be necessary to avoid errors. That said, do be aware that there are a small number of operators that should <em>not</em> be surrounded by spaces, such as <code>^</code> and <code>.</code>.</p>
+<p>You may have noticed in the above examples that our code includes a lot of spaces between characters. This is not by accident. It is considered <span class="hoverinfo" data-toggle="tooltip" title="Best practices refer to a set of conventions related to code style. These can include stylistic rules around syntax, aesthetic, the way you name objects, etc. Most of the time failing to follow best practices will not result in errors, but we still strongly encourage you to follow the recommendations laid out in this course.">best practice</span> to include spaces around most operators, such as <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>&lt;</code>, <code>&gt;</code>, <code>=</code>, and <code>&lt;-</code>. Not only do these spaces make your code more <span class="hoverinfo" data-toggle="tooltip" title="Readability refers to how easy (or not) it is for a person to read your code and understand it easily. The spacing of characters within and between lines is an important aspect of what makes code readable. In general, the more we include spacing and the shorter we keep our lines of code the easier it will be to read.">readable</span>, in some cases they may even be necessary to avoid errors. That said, do be aware that there are a small number of operators that should <em>not</em> be surrounded by spaces, such as <code>^</code> and <code>.</code>.</p>
 <div class="cell">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fl">1</span><span class="op">+</span><span class="fl">29</span><span class="op">+</span><span class="fl">4.8</span><span class="op">/</span><span class="fl">3</span><span class="op">*</span><span class="fl">3</span>           <span class="co"># BAD</span>
 <span class="fl">1</span> <span class="op">+</span> <span class="fl">29</span> <span class="op">+</span> <span class="fl">4.8</span> <span class="op">/</span> <span class="fl">3</span> <span class="op">*</span> <span class="fl">3</span>   <span class="co"># GOOD</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -388,20 +344,13 @@ Let your code breathe
 <p>Scripts are text files that contain a <strong>series of commands</strong> for a particular programming language. The extension of the file indicates which language the commands were written in, and we will be using <code>.R</code>. Scripts allow us to create code that can be reused, shared, and even automated.</p>
 <section id="writing-your-first-script" class="level4"><h4 class="anchored" data-anchor-id="writing-your-first-script">Writing Your First Script</h4>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="../sessions_core/img/intro_002_rstudio_new_script.png" class="img-fluid figure-img"></p>
+<figure class="figure"><p><img src="../img/core/01_introduction/02_new_script.png" class="img-fluid figure-img"></p>
 <figcaption>Steps to create a new script in the RStudio IDE</figcaption></figure>
 </div>
 <p>To create a new script, follow the menu <code>File &gt; New File &gt; R Script</code>. Alternatively, you can also click on the small green <code>+</code> sign just below the <code>File</code> menu or use the keyboard shortcut <code>CTRL+SHIFT+N</code>. This new and <strong>unsaved</strong> script will appear as a blank document in the top left panel.</p>
 <p>To save your script, either use the menu <code>File &gt; Save As</code> our the keyboard shortcut <code>CTRL+S</code>.</p>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>Code.</strong> Create and save a new script called <code>discovery.R</code>. Don’t forget to include the <code>.R</code> extension.</p>
-</div>
-</div>
+<div class="setup">
+<p>Create and save a new script called <code>discovery.R</code>. Don’t forget to include the <code>.R</code> extension.</p>
 </div>
 </section><section id="executing-code-from-a-script" class="level4"><h4 class="anchored" data-anchor-id="executing-code-from-a-script">Executing Code from a Script</h4>
 <p>To run code from a script simply place your cursor on the line you wish to run (or select multiple lines) and do one of the following:</p>
@@ -410,15 +359,8 @@ Let your code breathe
 <li>Use the shortcut <code>CTRL+Enter</code> (cursor will move to the next line)</li>
 <li>Use the shortcut <code>ALT+Enter</code> (cursor will stay on the current line)</li>
 </ul>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>Code.</strong> Copy the code you ran in the previous exercises into your script and try running it using each of the above methods.</p>
-</div>
-</div>
+<div class="write">
+<p>Copy the code you ran in the previous exercises into your script and try running it using each of the above methods.</p>
 </div>
 </section><section id="comments" class="level4"><h4 class="anchored" data-anchor-id="comments">Comments</h4>
 <p>In R, any text prefaced by a <code>#</code> (until the end of a line) is called a <em>comment</em>. R does not consider comments to be code and will ignore them whenever you run your scripts. This makes comments an excellent way to document your code.</p>
@@ -430,13 +372,17 @@ Let your code breathe
 <pre><code>[1] 5</code></pre>
 </div>
 </div>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
+<i class="callout-icon"></i>
 </div>
-<div class="callout-body-container">
-<p><strong>Best Practice.</strong> You should start your scripts with a few commented lines providing some information about the file.</p>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You should start your scripts with a few commented lines providing some information about the file.</p>
 <div class="cell">
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="co">#### IMPORT &amp; PREPARE DATA ####</span>
 <span class="co"># Author :  Mathilde Mousset</span>
@@ -446,16 +392,8 @@ Let your code breathe
 </div>
 </div>
 </div>
-</div>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>Code.</strong> Add some comments to the top of your script describing it.</p>
-</div>
-</div>
+<div class="write">
+<p>Add some comments to the top of your script describing it.</p>
 </div>
 <p>Comments are also a handy way to split longer scripts into thematic sections, such as “Data Importation”, “Analysis”, “Visualization”, etc. For example:</p>
 <div class="cell">
@@ -463,15 +401,8 @@ Let your code breathe
 
 <span class="co"># NAME OF SECTION 2 -----------------------------------------------             </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>Code.</strong> Use comments to create sections in your script that correspond to the sections in this tutorial.</p>
-</div>
-</div>
+<div class="write">
+<p>Use comments to create sections in your script that correspond to the sections in this tutorial.</p>
 </div>
 <p>Finally, comments allow us write helpful notes for our colleagues (and our future selves!) that can help them understand the code and why we wrote it the way we did. While the exact style and amount of comments that is “best” is debatable, the general rule is to focus on comments that explain “why” rather than “what”. This is because the “what” of well written code should be relatively self explanatory.</p>
 <p>This comment, for example, is completely superfluous:</p>
@@ -484,28 +415,21 @@ Let your code breathe
 <li>Your code contains a value or filename that needs to be updated every week. You should indicate this with a comment to ensure that anyone else using the code is aware.</li>
 <li>You think of an additional bit of analysis or plot that you’d like to add to a particular part of your script. You can use a comment to add a <code>TODO:</code> (to do) reminding you to come back later.</li>
 </ul>
-<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Tip
+Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p>While “what” comments aren’t per se recommended in final scripts that we will use for projects or share with our colleagues, do feel free to use them at will during this course to add additional notes that you might helpful during the learning process.</p>
 </div>
 </div>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>Code.</strong> Add some comments to describe the code that you’ve written thus far.</p>
-</div>
-</div>
+<div class="write">
+<p>Add some comments to describe the code that you’ve written thus far.</p>
 </div>
 </section></section></section><section id="data-types" class="level2"><h2 class="anchored" data-anchor-id="data-types">Data Types</h2>
 <p>R has several different <span class="hoverinfo" data-toggle="tooltip" title="Just like Excel, R can tell the difference between a date and a number. These differences refer to differences in the type of a piece of data.">data types</span>. The ones we will see most often in this course include:</p>
@@ -519,41 +443,40 @@ Tip
 <p>The numeric type includes both integers and doubles (numbers that include a decimal) and can be created by simply writing the value into your script.</p>
 <section id="strings" class="level3 page-columns page-full"><h3 class="anchored" data-anchor-id="strings">Strings</h3>
 <p>Strings are the R version of text and can be created by surounding text with single or double quotation marks, for example <code>'"istrict"</code> or <code>"cases"</code>.</p>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
+<i class="callout-icon"></i>
 </div>
-<div class="callout-body-container">
-<p><strong>Best Practice.</strong> While both single and double quotations can be used to create strings, double quotations are typically considered best practice.</p>
+<div class="callout-title-container flex-fill">
+Tip
 </div>
+</div>
+<div class="callout-body-container callout-body">
+<p>While both single and double quotations can be used to create strings, double quotations are typically considered best practice.</p>
 </div>
 </div>
 <div class="page-columns page-full"><p>If you would like to create a string that <strong>contains a quotation mark</strong> the best practice is to escape the character by putting a ’' in front of it, ie: <code>"She said \"Hello\" then left"</code> or <code>'it\’s a beautiful day'</code>.  Equivalently, if you used a double quotation to create the string you can use single quotes inside of it freely (ie: <code>"it’s a beautiful day"</code>) and vice versa (i.e.: <code>'She said "Hello" then left'</code>).</p><div class="no-row-height column-margin column-container"><span class="margin-aside">Certain characters in R (and in most programming languages) are special, meaning that they are usually a type of command unto themselves. Quotation marks are a good example of this as they are used to tell R to treat a certain word or phrase as a string rather than the name of a variable. Whenever you’d like to use one of these special characters in normal text, you need to explicitly tell R to ignore the ‘special functionality’ of the character. This process is called <em>escaping</em> the special character and is done by placing a ’' directly in front of the character in question.</span></div></div>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>Code.</strong> Compare the output in the console for the following commands.</p>
-</div>
-</div>
-</div>
+<div class="write">
+<p>Compare the output in the console for the following commands.</p>
 <div class="cell">
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fl">28</span>         <span class="co"># numeric</span>
 <span class="st">"28"</span>       <span class="co"># text</span>
 <span class="fl">28</span> <span class="op">+</span> <span class="st">"28"</span>  <span class="co"># produces an error</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</div>
 <p>The last command above will give an error because we cannot perform arithmetic operations that combine text and numbers.</p>
-<div class="coullout-warning callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
+<i class="callout-icon"></i>
 </div>
-<div class="callout-body-container">
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>R is case sensitive, meaning that the string <code>"ABC"</code> is not the same as <code>"abc"</code>.</p>
-</div>
 </div>
 </div>
 </section><section id="boolean-logical" class="level3"><h3 class="anchored" data-anchor-id="boolean-logical">Boolean (Logical)</h3>
@@ -561,16 +484,8 @@ Tip
 <p>Internally, R thinks of <code>TRUE</code> and <code>FALSE</code> as being a special version of <code>1</code> and <code>0</code> respectively, and boolean values can be easily translated to these numeric equivalents for arithmetic operations.</p>
 </section><section id="determining-the-type-of-an-object" class="level3"><h3 class="anchored" data-anchor-id="determining-the-type-of-an-object">Determining the Type of an Object</h3>
 <p>There are several functions to determine the type of an object (often called the <em>class</em> of the object in R).</p>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>Code.</strong> Run the following commands:</p>
-</div>
-</div>
-</div>
+<div class="write">
+<p>Run the following commands:</p>
 <div class="cell">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="co"># Get the Type of an Object</span>
 <span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="fl">28</span><span class="op">)</span>  
@@ -585,41 +500,21 @@ Tip
 <span class="fu"><a href="https://rdrr.io/r/base/character.html">is.character</a></span><span class="op">(</span><span class="cn">TRUE</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/logical.html">is.logical</a></span><span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</div>
 </section></section><section id="saving-an-object" class="level2"><h2 class="anchored" data-anchor-id="saving-an-object">Saving an Object</h2>
 <p>Before continuing with more complex data structures, we need to take an important detour to discuss how objects are saved into your environment.</p>
 <p>Often, we will want to reuse the same values or data throughout a script and it is therefore useful to store them as objects in our environment. To do this we use the <em>assignment operator</em>, <code>&lt;-</code>.</p>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
+<div class="look">
+<p>Look at the environment panel on the top right, verifying that it is empty.</p>
 </div>
-<div class="callout-body-container">
-<p><strong>Look.</strong> Look at the environment panel on the top right, verifying that it is empty.</p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>Code.</strong> Type the following command to save a variable called <code>cases</code> into your environment.</p>
-</div>
-</div>
-</div>
+<div class="write">
+<p>Type the following command to save a variable called <code>cases</code> into your environment.</p>
 <div class="cell">
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">cases</span> <span class="op">&lt;-</span> <span class="fl">28</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
 </div>
-<div class="callout-body-container">
-<p><strong>Look.</strong> Look at the environment again. Is it still empty?</p>
-</div>
-</div>
+<div class="look">
+<p>Look at the environment again. Is it still empty?</p>
 </div>
 <p>If you’d like to access the value of your new object, <code>cases</code>, you simply need to <strong>execute it’s name</strong>.</p>
 <div class="cell">
@@ -648,27 +543,23 @@ Note
 <pre><code>[1] 33</code></pre>
 </div>
 </div>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
+<div class="write">
+<p>Create an object called <code>region</code> that contains the value <code>"Mandoul"</code>. Do you see it in your environment?</p>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
+<i class="callout-icon"></i>
 </div>
-<div class="callout-body-container">
-<p><strong>Code.</strong> Create an object called <code>region</code> that contains the value <code>"Mandoul"</code>. Do you see it in your environment?</p>
+<div class="callout-title-container flex-fill">
+Tip
 </div>
 </div>
-</div>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>Best Practice.</strong> Don’t forget that we should always surround <code>&lt;-</code> with spaces to improve readability and avoid errors.</p>
+<div class="callout-body-container callout-body">
+<p>Don’t forget that we should always surround <code>&lt;-</code> with spaces to improve readability and avoid errors.</p>
 <div class="cell">
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">x</span><span class="op">&lt;-</span><span class="fl">3</span>     <span class="co"># BAD</span>
 <span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">3</span>   <span class="co"># GOOD</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </div>
 </div>
 </div>
@@ -677,15 +568,8 @@ Note
 <div class="cell">
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">cases</span> <span class="op">&lt;-</span> <span class="fl">32</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>Code.</strong> Update the value of <code>region</code> to <code>"Moyen Chari"</code>.</p>
-</div>
-</div>
+<div class="write">
+<p>Update the value of <code>region</code> to <code>"Moyen Chari"</code>.</p>
 </div>
 </section><section id="object-names" class="level3"><h3 class="anchored" data-anchor-id="object-names">Object Names</h3>
 <p>When naming your objects, there are a few (relatively) hard rules:</p>
@@ -711,25 +595,18 @@ Note
 <li>
 <em>Simple vectors</em> (or <em>atomic vectors</em>) can only contain one type of values. For example, a numeric vector <code>2, 4, 6</code> or a string vector <code>"Mandoul", "Moyen Chari"</code>.</li>
 <li>
-<em>Recursive vectors</em> (usually called <em>lists</em>) are far more complex and can contain multiple dimensions and types of data. We will not learn about them in this lesson, but there is a <a href="../sessions_extra/lists.html">satellite module introducing them</a>
+<em>Recursive vectors</em> (usually called <em>lists</em>) are far more complex and can contain multiple dimensions and types of data. We will not learn about them in this lesson, but there is a <a href="../sessions_extra/lists.qmd">satellite module introducing them</a>
 </li>
 </ul>
 <p>This course will not go into detail on the more abstract concepts behind these structures and instead focus only on those you will encounter most often in your daily work.</p>
 <section id="simple-vectors" class="level4"><h4 class="anchored" data-anchor-id="simple-vectors">Simple Vectors</h4>
 <p>Simple vectors can contain one or more values of a single data type, they thus have two key properties: <strong>length</strong> and <strong>type</strong>. For the purpose of this class, we will use the terms “simple vector” and “vector” interchangeably (as is typical in the R community).</p>
-<p>You’ve technically already created your very first simple vectors when you built <code>cases</code> and <code>region</code>. These were simply vectors with a <strong>length of one</strong>. To create a vector with more than one value, we will use the function <code><a href="https://rdrr.io/r/base/c.html">c()</a></code>:<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
+<p>You’ve technically already created your very first simple vectors when you built <code>cases</code> and <code>region</code>. These were simply vectors with a <strong>length of one</strong>. To create a vector with more than one value, we will use the function <span class="hoverinfo" data-toggle="tooltip" title="Mnemonic: `c` is the first letter of “concatenate”"><code><a href="https://rdrr.io/r/base/c.html">c()</a></code></span>:</p>
 <div class="cell">
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">cases</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">5</span>, <span class="fl">8</span>, <span class="fl">0</span>, <span class="fl">4</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>Code.</strong> Update <code>cases</code> with the above values and update <code>region</code> to create a string vector containing the values: Mandoul, Moyen-Chari, Logone Oriental, Tibesti, Logone Occidental.</p>
-</div>
-</div>
+<div class="write">
+<p>Update <code>cases</code> with the above values and update <code>region</code> to create a string vector containing the values: Mandoul, Moyen-Chari, Logone Oriental, Tibesti, Logone Occidental.</p>
 </div>
 <p>We can now use functions on the objects we have created:</p>
 <div class="cell">
@@ -743,25 +620,11 @@ Note
 [4] "TIBESTI"           "LOGONE OCCIDENTAL"</code></pre>
 </div>
 </div>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
+<div class="write">
+<p>Use the function <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code> to calculate the sum of <code>cases</code></p>
 </div>
-<div class="callout-body-container">
-<p><strong>Code.</strong> Use the function <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code> to calculate the sum of <code>cases</code></p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>Code.</strong> Pass <code>region</code> to the function <code><a href="https://rdrr.io/r/base/chartr.html">tolower()</a></code></p>
-</div>
-</div>
+<div class="write">
+<p>Pass <code>region</code> to the function <code><a href="https://rdrr.io/r/base/chartr.html">tolower()</a></code></p>
 </div>
 </section></section><section id="accessing-the-values-of-a-vector" class="level3"><h3 class="anchored" data-anchor-id="accessing-the-values-of-a-vector">Accessing the Values of a Vector</h3>
 <p>It is possible to access the value of a vector using square brackets containing the index (position) of the desired value, ie: <code>[3]</code> or <code>[189]</code>.</p>
@@ -783,16 +646,8 @@ Note
 <pre><code>[1] 5 8 0</code></pre>
 </div>
 </div>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>Code.</strong> Get the 3rd value of <code>region</code>.</p>
-<p><strong>Code.</strong> Write code to access the values “Mandoul” and “Moyen-Chari” in the vector <code>region</code>.</p>
-</div>
-</div>
+<div class="write">
+<p>Get the 3rd value of <code>region</code>. Write code to access the values “Mandoul” and “Moyen-Chari” in the vector <code>region</code>.</p>
 </div>
 </section><section id="dataframes" class="level3 page-columns page-full"><h3 class="anchored" data-anchor-id="dataframes">Dataframes</h3>
 <p><em>Dataframes</em> are a special type of list that is composed of multiple simple vectors of the same length. Dataframes take the shape of a table where each of these vectors is a named column, similar to a table in Excel. As epidemiologists, this type of data structure is perhaps the most useful and you will likely use them on a daily basis.</p>
@@ -809,39 +664,25 @@ Note
 4    9 epidemiologists</code></pre>
 </div>
 </div>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>Code.</strong> In your script, create a dataframe called <code>data_cases</code> that contains <code>cases</code> in one column and <code>region</code> in the other.</p>
-</div>
-</div>
+<div class="write">
+<p>In your script, create a dataframe called <code>data_cases</code> that contains <code>cases</code> in one column and <code>region</code> in the other.</p>
 </div>
 </section><section id="exploring-a-dataframe" class="level4 page-columns page-full"><h4 class="anchored" data-anchor-id="exploring-a-dataframe">Exploring a Dataframe</h4>
 <p><code>data_cases</code> should now appear in your environment. You can click on its name to see some additional information, or click on the blue circle with a white triangle in it to open the object in the <em>Viewer</em>.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="../sessions_core/img/intro_003_environment_screenshot.png" class="img-fluid figure-img"></p>
+<figure class="figure"><p><img src="../img/core/01_introduction/03_environment.png" class="img-fluid figure-img"></p>
 <figcaption>The data_case dataframe now appears in the Environment pane</figcaption></figure>
 </div>
 <p>There are several handy functions we can use to explore a dataframe:</p>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>Code.</strong> Run the following commands and try to determine what they type of information they are returning.</p>
-</div>
-</div>
-</div>
+<div class="write">
+<p>Run the following commands and try to determine what they type of information they are returning.</p>
 <div class="cell">
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">data_cases</span><span class="op">)</span>     <span class="co"># STRucture of the object</span>
 <span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">data_cases</span><span class="op">)</span>     <span class="co"># DIMension of the object</span>
 <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">data_cases</span><span class="op">)</span>    <span class="co"># Number of ROWs</span>
 <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">data_cases</span><span class="op">)</span>    <span class="co"># Number of COLumns</span>
 <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">data_cases</span><span class="op">)</span>   <span class="co"># column NAMES</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </div>
 <div class="page-columns page-full"><p>R comes with several built in data sets that can be accessed directly, including one called <code>iris</code>. We can see the first few lines of this dataset using the function <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code>:</p><div class="no-row-height column-margin column-container"><span class="margin-aside">The <code>iris</code> dataset is convenient because we don’t need to use extra functions to enable you to use it but its content not really interesting to us. Be reassured, we will learn how to import a dataset in the next core session, and work on linelist data onwards.</span></div></div>
 <div class="cell">
@@ -856,18 +697,11 @@ Note
 6          5.4         3.9          1.7         0.4  setosa</code></pre>
 </div>
 </div>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>Code.</strong> How many rows and columns are there in <code>iris</code>? What are the names of its columns?</p>
-</div>
-</div>
+<div class="write">
+<p>How many rows and columns are there in <code>iris</code>? What are the names of its columns?</p>
 </div>
 </section><section id="accessing-data-in-a-dataframe" class="level4"><h4 class="anchored" data-anchor-id="accessing-data-in-a-dataframe">Accessing Data in a Dataframe</h4>
-<p>In R, there are several methods for accessing the rows and/or columns of a dataframe. We will present a versatile one, and redirect you to the <a href="../sessions_extra/indexing.html">indexing satellite</a> to learn about the use of <code>[[ ]]</code> and <code>$</code>.</p>
+<p>In R, there are several methods for accessing the rows and/or columns of a dataframe. We will present a versatile one, and redirect you to the <a href="../sessions_extra/indexing.qmd">indexing satellite</a> to learn about the use of <code>[[ ]]</code> and <code>$</code>.</p>
 <p>We use square brackets to access single values or ranges within our dataframe. To do this we must give R both a row number (or range of rows) and column number/name (or range of columns), using the syntax <code>[row, column]</code>.</p>
 <div class="cell">
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">data_cases</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">]</span>          <span class="co"># the value of row one, column 2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -899,15 +733,8 @@ Note
 [5] "Haut Katanga"  </code></pre>
 </div>
 </div>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>Code.</strong> Write a command to calculate the sum of the <code>cases</code> column of your dataframe.</p>
-</div>
-</div>
+<div class="write">
+<p>Write a command to calculate the sum of the <code>cases</code> column of your dataframe.</p>
 </div>
 <p>We can even select multiple non-consecutive indices by using a numeric vector:</p>
 <div class="cell">
@@ -953,24 +780,16 @@ Note
 </div>
 </div>
 <p>Notice that these commands returned single-column dataframes.</p>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>Code.</strong> Write a command to access the third value in the <code>region</code> column of your dataframe.</p>
-<p><strong>Code.</strong> Write a command to return the second and third values of the <code>cases</code> column.</p>
-</div>
-</div>
+<div class="write">
+<p>Write a command to access the third value in the <code>region</code> column of your dataframe. Then, write a command to return the second and third values of the <code>cases</code> column.</p>
 </div>
 </section></section></section><section id="sec-missing-values" class="level2"><h2 class="anchored" data-anchor-id="sec-missing-values">Missing Values</h2>
 <p>As epidemiologists, we work with missing data all the time. In R, missing values are coded using a special value: <code>NA</code> (meaning <strong>N</strong>ot <strong>A</strong>vailable). <code>NA</code> is somewhat unique in R as it doesn’t per se have a fixed type, rather, it will take on the type of the values around it. For example, an <code>NA</code> in a numeric column will then take on the numeric type. We will discuss the idea of missing data in more depth in later sessions of the course.</p>
-</section><section id="functions" class="level2"><h2 class="anchored" data-anchor-id="functions">Functions</h2>
+</section><section id="functions" class="level2 page-columns page-full"><h2 class="anchored" data-anchor-id="functions">Functions</h2>
 <p>Functions are objects that contain commands (instead of values) that are run whenever the function is called. You are without doubt familiar with functions in Excel such as <code>SUM</code> and the idea of functions in R is exactly the same.</p>
 <p>Most functions require some sort of input, such as a dataset or parameter. These inputs are called <em>arguments</em> and are normally named. For example, when we ran <code>sum(cases)</code>, we provided the vector <code>cases</code> as the first (and only) argument to the function <code>sum</code>.</p>
 <p>Often, a function will have a combination of both <em>obligatory</em> and <em>optional</em> arguments. The first argument of a function is almost always obligatory and is typically a dataset. As an obligatory and rather obvious argument, most people omit its name when calling a function; ie: i.e.&nbsp;people will write <code>mean(cases)</code> instead of <code>mean(x = cases)</code>. Optional arguments on the other hand are usually added using their name, i.e.: <code>mean(x = cases, na.rm = TRUE)</code>.</p>
-<p>Optional arguments typically have default values and we only include them when we want to change their defaults (and thus change the default behavior of the function). For example, the <code>na.rm</code> argument of <code>mean</code> determines whether R will ignore missing values when calculating a mean. The default state of the <code>na.rm</code> argument is <code>FALSE</code>, so by default, the mean performed on data with missing values will always return <code>NA</code> as the result:<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p>
+<div class="page-columns page-full"><p>Optional arguments typically have default values and we only include them when we want to change their defaults (and thus change the default behavior of the function). For example, the <code>na.rm</code> argument of <code>mean</code> determines whether R will ignore missing values when calculating a mean. The default state of the <code>na.rm</code> argument is <code>FALSE</code>, so by default, the mean performed on data with missing values will always return <code>NA</code> as the result:</p><div class="no-row-height column-margin column-container"><span class="margin-aside">This is true for many arithmetic operations in R</span></div></div>
 <div class="cell">
 <div class="sourceCode" id="cb56"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -984,13 +803,17 @@ Note
 <pre><code>[1] 2</code></pre>
 </div>
 </div>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
+<i class="callout-icon"></i>
 </div>
-<div class="callout-body-container">
-<p><strong>Best Practice.</strong> Notice that arguments are separated by commas. These commas should always be followed by a space and whenever a named argument is used the <code>=</code> should be surrounded by spaces:</p>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Notice that arguments are separated by commas. These commas should always be followed by a space and whenever a named argument is used the <code>=</code> should be surrounded by spaces:</p>
 <div class="cell">
 <div class="sourceCode" id="cb60"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">cases</span>,na.rm<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>     <span class="co"># BAD</span>
 <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">cases</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>  <span class="co"># GOOD</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -999,7 +822,6 @@ Note
 <div class="cell">
 <div class="sourceCode" id="cb61"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">cases</span>, 
      na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </div>
 </div>
 </div>
@@ -1019,14 +841,7 @@ Note
 </div>
 
 
-</section><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
-<ol>
-<li id="fn1"><p>Integrated Development Environments are a group of softwares that provide a convenient interface to use one or more programming languages. Many IDEs are specialized for a specific language (such as RStudio being specialized for R). Others, like VS Code are more general and can be used for any language.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>You can think of an R session like you would think of starting up a computer. Whenever a session starts, everything is blank and ready for computation in the same way that there aren’t any programs open when you first turn on your computer. In general, we encourge you to stop and start your R sessions regularly, you may just find that <em>turning it off an on again</em> will fix some of your bugs!<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>Readability refers to how easy (or not) it is for a person to read your code and understand it easily. The spacing of characters within and between lines is an important aspect of what makes code readable. In general, the more we include spacing and the shorter we keep our lines of code the easier it will be to read.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4"><p>Mnemonic: <code>c</code> is the first letter of “concatenate”<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn5"><p>this is true for many arithmetic operations in R<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");

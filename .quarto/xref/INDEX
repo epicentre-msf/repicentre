@@ -49,5 +49,9 @@
   },
   "sessions_extra/lists.qmd": {
     "lists.html": "9929e068"
+  },
+  "sessions_core/01_introduction.qmd": {
+    "01_introduction.html": "b40fb5cb",
+    "01_introduction.docx": "9598f686"
   }
 }
