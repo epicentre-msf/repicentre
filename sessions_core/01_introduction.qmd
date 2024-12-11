@@ -618,7 +618,7 @@ names(iris)
 
 #### Accessing Data in a Dataframe
 
-In R, there are several methods for accessing the rows and/or columns of a dataframe. We will present a versatile one, and redirect you to the [indexing satellite](../sessions_extra/indexing.qmd) to learn about the use of `[[ ]]` and `$`.
+In R, there are several methods for accessing the rows and/or columns of a dataframe. In this introductory session we will focus on the `[ ]` syntax.
 
 We use square brackets to access single values or ranges within our dataframe. To do this we must give R both a row number (or range of rows) and column number/name (or range of columns), using the syntax `[row, column]`. 
 
