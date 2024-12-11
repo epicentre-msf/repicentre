@@ -127,7 +127,7 @@ Remember that any commands or outputs that is needed for the cleaning and analys
 ::: {.callout .callout-code}
 **Do** Open a new script and save it in the `R` folder of your project under the name `import_data.R`. 
 
-**Code.** Add some metadata to the top as seen in the first session using [comments](introduction.qmd#sec-comments). Be sure to include:
+**Code.** Add some metadata to the top as seen in the first session using [comments](01_introduction.qmd#sec-comments). Be sure to include:
 
 - Title
 - Author
@@ -143,7 +143,7 @@ Packages are collections of functions that extend the functionality of R. You'll
 
 ### Installation
 
-We can install a new package using the [function](../sessions_core/introduction.qmd#sec-functions) `install.packages()`, which downloads and installs it into the package library on your computer. 
+We can install a new package using the [function](../sessions_core/01_introduction.qmd#sec-functions) `install.packages()`, which downloads and installs it into the package library on your computer. 
 
 ```{r}
 #| eval = FALSE
@@ -331,7 +331,7 @@ Notice that we have nested the command `here()` **inside** the `import()` comman
 **Code.** Import the file `msf_linelist_moissala_2023-09-24.xlsx` that is in your raw data subfolder into R using `here()` and `import()`.
 :::
 
-If your import worked correctly, R will print the data into the console but not save it into the environment because we have not [assigned them to an object](../sessions_core/introduction.qmd#sec-assignement-operator).
+If your import worked correctly, R will print the data into the console but not save it into the environment because we have not [assigned them to an object](../sessions_core/01_introduction.qmd#sec-assignement-operator).
 
 ::: {.callout-warning}
 You may not want to have R print very large datasets into the console and assign them directly to an object.
@@ -417,7 +417,7 @@ Actually, the default value of `n` is already 6, meaning our above code was equi
 head(df_linelist, n = 12)
 ```
 
-We can also use the functions we learned in the [introduction session](introduction.qmd#sec-dataframe-functions) to learn more about the shape of our dataframe and the type of data it contains. 
+We can also use the functions we learned in the [introduction session](../sessions_core/01_introduction.qmd#sec-dataframe-functions) to learn more about the shape of our dataframe and the type of data it contains. 
 
 ::: {.callout .callout-code}
 **Code.** Using `dim()` and `names()`, check the dimensions and column names of `df_linelist`. Do these results match what you see when you open the data in Excel? 
