@@ -438,7 +438,7 @@ We can collect multiple values (such as numerics or strings) into a single objec
 Technically, there are several types of vectors, for example: 
 
 * *Simple vectors* (or *atomic vectors*) can only contain one type of values. For example, a numeric vector `2, 4, 6` or a string vector `"Mandoul", "Moyen Chari"`.
-* *Recursive vectors* (usually called *lists*) are far more complex and can contain multiple dimensions and types of data. We will not learn about them in this lesson, but there is a [satellite module introducing them](../sessions_extra/lists.qmd)
+* *Recursive vectors* (usually called *lists*) are far more complex and can contain multiple dimensions and types of data. We will not learn about them in this lesson.
 
 This course will not go into detail on the more abstract concepts behind these structures and instead focus only on those you will encounter most often in your daily work.
 
