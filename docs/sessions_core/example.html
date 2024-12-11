@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.4.551">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta name="dcterms.date" content="2024-11-20">
+<meta name="dcterms.date" content="2024-12-09">
 <meta name="description" content="Just an example">
 <title>Repicentre - Example Core Session</title>
 <style>
@@ -98,7 +98,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script><link rel="stylesheet" href="../styles.css">
 </head>
-<body class="nav-fixed">
+<body class="floating nav-fixed slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
@@ -136,17 +136,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </div> <!-- /container-fluid -->
     </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
 <li><a href="#text-formatting" id="toc-text-formatting" class="nav-link active" data-scroll-target="#text-formatting">Text Formatting</a></li>
   <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a></li>
   <li><a href="#callouts" id="toc-callouts" class="nav-link" data-scroll-target="#callouts">Callouts</a></li>
+  <li><a href="#action-boxes" id="toc-action-boxes" class="nav-link" data-scroll-target="#action-boxes">Action Boxes</a></li>
   <li><a href="#tabsets" id="toc-tabsets" class="nav-link" data-scroll-target="#tabsets">Tabsets</a></li>
   <li><a href="#images" id="toc-images" class="nav-link" data-scroll-target="#images">Images</a></li>
+  <li><a href="#linking-to-other-pages" id="toc-linking-to-other-pages" class="nav-link" data-scroll-target="#linking-to-other-pages">Linking to Other Pages</a></li>
   </ul></nav>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content"><script type="text/javascript" src="../script.js"></script><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
@@ -170,7 +173,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 20, 2024</p>
+      <p class="date">December 9, 2024</p>
     </div>
   </div>
   
@@ -224,6 +227,7 @@ Surprise !
 <p>Note, this website has <strong>code linking</strong> activated, so you can click on functions to get their documentation.</p>
 </section><section id="callouts" class="level2"><h2 class="anchored" data-anchor-id="callouts">Callouts</h2>
 <p>Things are a bit quick and dirty at the moment. Ultimately I will make nice new classes in a full <strong>repicentre</strong> theme that can be used for exercised etc. For the moment we will just frankenstine some existing callouts.</p>
+<p><strong>IMPORTANT: please do <em>not</em> use callouts not explicitly defined here; they have not been included in the css theme and therefore will not render well in the final document.</strong> If you think that there is another callout outside these three options that should be included, please <a href="https://github.com/epicentre-msf/repicentre/issues">submit an issue</a>.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -237,27 +241,42 @@ Note
 <p><strong>This is a callout</strong> using <code>{.callout-note}</code></p>
 </div>
 </div>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
+<i class="callout-icon"></i>
 </div>
-<div class="callout-body-container">
-<p><strong>Look.</strong> This callout can be used for “observation activities” (ie: look at this thing in the console). Eventually it will be more beautiful, just make sure you use this class.</p>
-<p><strong>WARNING.</strong> For the moment this class looks just like the “code activities” class, please make sure you use the right one.</p>
-</div>
+<div class="callout-title-container flex-fill">
+Tip
 </div>
 </div>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
+<div class="callout-body-container callout-body">
+<p>Comment about a genral tip / trick or best practice.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
+<i class="callout-icon"></i>
 </div>
-<div class="callout-body-container">
-<p><strong>Code.</strong> This callout can be used for “code activities”. Eventually it will be more beautiful, just make sure you use this class.</p>
-<p><strong>WARNING.</strong> For the moment this class looks just like the “observation activities” class, please make sure you use the right one.</p>
+<div class="callout-title-container flex-fill">
+Important
 </div>
 </div>
+<div class="callout-body-container callout-body">
+<p>Warning / comment on something really important.</p>
+</div>
+</div>
+</section><section id="action-boxes" class="level2"><h2 class="anchored" data-anchor-id="action-boxes">Action Boxes</h2>
+<p>These are used for things participants are expected to <em>actually do</em>, ie: exercises. They are split into three categories.</p>
+<div class="setup">
+<p>Description of something participants need to setup, primarily used at the beginning of a section but can also be used for tasks like setting up an <code>Rproject</code> file, folder structure, etc.</p>
+</div>
+<div class="look">
+<p>Description of something participants should observe, investigate, etc.</p>
+</div>
+<div class="write">
+<p>Description of a coding exercise that participants are expected to complete.</p>
 </div>
 </section><section id="tabsets" class="level2"><h2 class="anchored" data-anchor-id="tabsets">Tabsets</h2>
 <div class="tabset-margin-container"></div><div class="panel-tabset nav-pills">
@@ -287,6 +306,8 @@ Note
 </div>
 <p>HTML style syntax (with specification of desired size):</p>
 <p><img src="../img/under_construction.svg" alt="example image alt (html)" width="200"></p>
+</section><section id="linking-to-other-pages" class="level2"><h2 class="anchored" data-anchor-id="linking-to-other-pages">Linking to Other Pages</h2>
+<p>Easy, use relative paths within a standard href, ie: <a href="template.html">link to template</a> or <a href="../sessions_extra/example.html">link to satilite example</a>.</p>
 
 
 </section><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
