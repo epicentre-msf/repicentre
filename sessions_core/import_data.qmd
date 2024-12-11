@@ -501,6 +501,6 @@ If you want to learn about importing several sheets in one go, or several simila
 
 ## Resources
 
-- The `rio` [ website](https://gesistsa.github.io/rio/index.html#supported-file-formats)
+- The `rio` [website](https://gesistsa.github.io/rio/index.html#supported-file-formats)
 
 - [More examples](https://epirhandbook.com/en/new_pages/importing.html) on importing data of various file types
