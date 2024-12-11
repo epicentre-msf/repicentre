@@ -1,0 +1,441 @@
+---
+title: Epicurve with moving average line
+description: Add a moving average line to an epicurve and make it look nice
+date: last-modified
+image: ../sessions_extra/img/smooth-000-logo.png
+params: 
+  solutions: FALSE
+  sub_title: "**------ With Solutions ------**"
+categories:
+  - Satellite
+  - Graphs
+  - ggplot2
+  - epicurve
+  - smoothing
+---
+
+
+```{r setup}
+#| include: false
+#| eval: true
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+
+solutions <- params$solutions
+
+library(here)        # Better paths
+library(rio)         # Import files
+library(dplyr)       # Data manipulation
+library(lubridate)   # Deal with dates
+library(ggplot2)     # Todays workhorse
+library(scales)      # prettier labels
+library(zoo)         # moving average
+
+
+# The data
+df_linelist <- rio::import(here::here('data', 'clean',
+                                      'linelist_moissala_2023-09-24_clean.rds')) %>% 
+  tidyr::drop_na(date_admission) %>% 
+  mutate(
+    # Week number (ISO)
+    week_admission = isoweek(date_admission),  # Their code
+    week_outcome = isoweek(date_outcome)       # Examples
+  )
+```
+
+
+## Objectives
+
+- Calculate a moving average on temporal data
+- Display a moving average line on an epicurve
+- Tweak the legend options (change title, colors, labels and position)
+
+
+## Dependancies
+
+We will use the following packages in this session:
+
+- `{here}` to write robust absolute paths,
+- `{rio}` to import the data, 
+- `{dplyr}` to manipulate data,
+- `{ggplot2}` to create the graphs, 
+- `{lubridate}` to manage dates and times
+- `{zoo}` to calculate rolling averages 
+
+
+## Setup
+
+We use the same setup as the one from the [ggplot core session](../sessions_core/ggplot.qmd#sec-epicurve-steps).
+
+```{r}
+# Import clean data ----------------------------------------
+df_linelist <- rio::import(here::here('data', 'clean',
+                                      'linelist_moissala_2023-09-24_clean.rds')) %>%
+  tidyr::drop_na(date_admission) %>% 
+  mutate(week_admission = isoweek(date_admission))
+```
+
+::: {.callout .callout-caution}
+**Caution** To avoid the warnings all along the session, we removed the missing values in the admission date column. When you analyse and plot data, always be aware of how many missing values you have and how a `tidyr::drop_na()` command affects your dataframe!
+:::
+
+Remember that you used the following code in the [introduction to ggplot session](../sessions_core/ggplot.qmd) to plot an epicurve of the number of admitted cases by week.
+
+```{r}
+#| eval: true
+
+df_linelist %>%
+  count(week_admission) %>%
+  ggplot(aes(x = week_admission,
+             y = n)) +
+  geom_col(fill = "#2E4573") +
+  labs(x = "ISO Week",
+       y = "Measles Cases",
+       title = "Measles in Moissala") +
+  theme_classic(base_size = 16) 
+```
+
+We now want to add a moving average smoothed line on the top of this graph:
+
+```{r}
+#| echo: false
+#| eval: true
+#| warning: false
+
+
+df_linelist %>%
+  count(week_admission) %>%
+  mutate(cases_smooth = zoo::rollmean(n,
+                                      k = 3,
+                                      fill = NA)) %>% 
+  ggplot(aes(x = week_admission,
+             y = n)) +
+  geom_col(fill = "#2E4573") +
+  geom_line(aes(y = cases_smooth,
+                color = '3 Week Rolling Average'),
+            linewidth = 1.5) +
+  scale_color_manual(values = '#ACAC3A') +
+  labs(x     = "ISO Week",
+       y     = "Measles Cases",
+       color = "") +
+  theme_classic(base_size = 16) +
+  theme(legend.position = "top")
+```
+
+
+## Smoothing: moving averages
+
+Smoothing out random fluctuations help highlighting the trends in the data. One common smoothing technique that we are going to use today is the moving average. Several R packages can be used to calculate them, and today we will use the `rollmean()` function from the `{zoo}` package. This function accepts a vector (or column) of data to smooth as input (`x = `) and the size of the rolling window (`k = `). 
+
+We can illustrate the behavior of `rollmean()` on simple vectors:
+
+```{r}
+#| eval: true
+
+
+n_cases <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10) 
+
+rollmean(x = n_cases, k = 2) # moving window of 2
+rollmean(x = n_cases, k = 3) # moving window of 3
+rollmean(x = n_cases, k = 8) # moving window of 8
+```
+
+Notice how the number of elements in the outputs decreases when the size of `k = ` increases.
+
+![Moving averages with different windows sizes](../sessions_extra/img/smooth-001-moving-average-1.png){fig-align="center"}
+This might be a problem if we want the output to be of the same size as the input (to plot a graph for example). We can use the argument `fill = ` to indicates which values to use at the start and end of the moving average as buffer to obtain an output of the same size as the input.
+
+
+```{r}
+#| eval: true
+rollmean(x = n_cases, k = 3, fill = NA) 
+rollmean(x = n_cases, k = 8, fill = NA) 
+```
+
+![Moving averages with different windows sizes and fill = NA](../sessions_extra/img/smooth-001-moving-average-2.png){fig-align="center"}
+
+
+To update the previous graph, we need to add one column to the dataframe that `ggplot()` takes as an input with the data to draw the line; then we need to update the graph command to draw the line on top of the bars.
+
+## Prepare the data
+
+::: {.callout .callout-code}
+**Code.** Add a step to your pipe to create a `smoothed` variable of the number of admissions per week using the `rollmean()` function, and a rolling windows of 3 weeks.
+
+You may create an intermediate dataframe with this data to pipe into the `ggplot()` function or not, as you prefer.
+:::
+
+```{r echo=solutions}
+#| eval: true
+# SOLUTION
+df_linelist %>%
+  count(week_admission) %>%
+  mutate(smoothed = zoo::rollmean(n,
+                                  k = 3,
+                                  fill = NA)) %>% 
+  head(10) # Only show a bit
+```
+
+
+## Plot
+
+### Add the line
+
+Now that we have all the data ready, we need to update the ggplot command to add the line. Remember that `ggplot` graphs are like onions, made of layers. We just need to add a new geometry (a *line* this time) to the command using the `geom_line()` function.
+
+There is a complication, though: while the bars and the line geoms share the same values for the x-axis (week ISO number, stored in the `week_admission` column), they do not share the same data in the y-axis (the height of bars is stored in the column `n` and the smoothed values for the line is stored in the column `smoothed`). This is not a problem for `ggplot`: we can pass an `aes()` function to each geom separately, with its own information.
+
+Because the two geoms share the same x mapping, we can put it in the initial `ggplot()` command, or repeat it within each geom: 
+
+
+```{r}
+# PSEUDO CODE -- DO NOT RUN
+
+# x mapping defined at the top, and y defined in each geom function:
+data %>% 
+  ggplot(aes(x = week_admission)) +
+  geom_col(aes(y = n)) +
+  geom_line(aes(y = smoothed)) +
+  ...
+
+# Equivalent here:
+# x and y mapping defined in their own geoms:
+data %>% 
+  ggplot() +
+  geom_col(aes(x = week_admission,
+               y = n)) +
+  geom_line(aes(x = week_admission,
+                y = smoothed)) +
+  ...
+```
+
+
+::: {.callout .callout-code}
+**Code.** Modify your command to add the line on the epicurve, on top of the bars.
+:::
+
+So far it should look like this:
+
+```{r echo=solutions}
+#| eval: true
+# SOLUTION
+
+df_linelist %>%
+  count(week_admission) %>%
+  mutate(cases_smooth = zoo::rollmean(n,
+                                      k = 3,
+                                      fill = NA)) %>% 
+  ggplot(aes(x = week_admission,
+             y = n)) +
+  geom_col(fill = "#2E4573") +
+  geom_line(aes(y = cases_smooth)) +
+  labs(x     = "ISO Week",
+       y     = "Measles Cases",
+       color = "") +
+  theme_classic(base_size = 16)
+```
+
+::: {.callout-note}
+Wait, why is there a warning message about `NA` values not being plotted, did we not remove the empty weeks? Can you figure out where this warning comes from?
+:::
+
+That's nice, but not easy to read. Let's make the line more noticeable!
+
+### Line width
+
+You can use the argument `linewidth = ` in the `geom_line()` function to modify the width of the line on the plot.
+
+::: {.callout .callout-code}
+**Code.** Increase line width on your epicurve, to a value that you find satisfying.
+:::
+
+```{r echo=solutions}
+# SOLUTION
+
+df_linelist %>%
+  count(week_admission) %>%
+  mutate(cases_smooth = zoo::rollmean(n,
+                                      k = 3,
+                                      fill = NA)) %>% 
+  ggplot(aes(x = week_admission,
+             y = n)) +
+  geom_col(fill = "#2E4573") +
+  geom_line(aes(y = cases_smooth),
+            linewidth = 1.5) +
+  labs(x     = "ISO Week",
+       y     = "Measles Cases",
+       color = "") +
+  theme_classic(base_size = 16)
+```
+
+::: {.callout-note}
+The `linetype = ` argument controls line appearance (dashed, full line etc.). You can find [here](https://ggplot2.tidyverse.org/articles/ggplot2-specs.html#sec:shape-spec) the list of available options
+:::
+
+### Change line colour
+
+You can use the `colour = ` argument to change the line color (or `color = `, both are accepted).
+
+::: {.callout .callout-code}
+**Code.** Draw the line with the color `"#ACAC3A"`.
+:::
+
+```{r echo=solutions}
+#| eval: true
+# SOLUTION
+
+df_linelist %>%
+  count(week_admission) %>%
+  mutate(cases_smooth = zoo::rollmean(n,
+                                      k = 3,
+                                      fill = NA)) %>% 
+  ggplot(aes(x = week_admission,
+             y = n)) +
+  geom_col(fill = "#2E4573") +
+  geom_line(aes(y = cases_smooth),
+            linewidth = 1.5,
+            colour = "#ACAC3A") +
+  labs(x     = "ISO Week",
+       y     = "Measles Cases",
+       color = "") +
+  theme_classic(base_size = 16)
+```
+
+
+### Add a legend for the line
+
+We would like to add a legend for the line, saying that it represent a three weeks moving average. 
+
+This one is trickier than you may originally think. With ggplot the legend is automatically created when the color (or the fill) is mapped to a variable, but not when the  `fill` or `color` argument is assiged to a constant and passed outside of an `aes()` function.^[You probably already noticed that there is no legend for the blue of the bars, because blue is not mapped to a *variable*, just here for style].
+
+We are going to trick `ggplot()` into plotting our legend:
+
+- pretend that the color is mapped to a variable and declare it in the `aes()` (*gasp!*). Since it is not really mapped to a variable you could pass any sting to the argument. Here we will go for an empty string.
+- tweak the legend to make it informative
+
+
+::: {.callout .callout-code}
+**Code.** Move the `colour = ` argument in the `aes()` of the `geom_line()`. Pass an empty string to it (or try keeping the code for the colour and see what happens).
+:::
+
+```{r echo=solutions}
+#| eval: true
+# SOLUTION
+
+df_linelist %>%
+  count(week_admission) %>%
+  mutate(cases_smooth = zoo::rollmean(n,
+                                      k = 3,
+                                      fill = NA)) %>% 
+  ggplot(aes(x = week_admission,
+             y = n)) +
+  geom_col(fill = "#2E4573") +
+  geom_line(aes(y = cases_smooth,
+                colour = ""),    # Force legend creation
+            linewidth = 1.5) +
+  labs(x     = "ISO Week",
+       y     = "Measles Cases") +
+  theme_classic(base_size = 16)
+```
+
+Now we have the legend on the right, but not the yellow color anymore, because `ggplot()` uses the first color of its theme for mapping, a sort of red. 
+
+Now we want to:
+
+- Remove the legend title `"colour"`
+- Add a label to the right of the red line
+- Change the color back to what we had decided before.
+
+
+We are going to use the `scale_colour_manual()` function to *manually* define the color scale. It has three arguments that we will use:
+
+- `name = `: controls the title of the legend. Here we would like to remove it. We can set it to `NULL` or an empty string.
+- `labels = `: controls the labels of the categories in the legend. If your data contained "M" and "F", this would be a place to pass `c("Male", "Female")`. In our case, there is only one category (one colour) that we need to rename
+- `values = `: accepts a string or a vector of strings containing the color codes to use.
+
+::: {.callout .callout-code}
+**Code.** Remove the title of the legend, change the label of the line to `"3 weeks moving average"` and put back the `"#ACAC3A"` color.
+:::
+
+```{r echo=solutions}
+#| eval: true
+# SOLUTION
+
+df_linelist %>%
+  count(week_admission) %>%
+  mutate(cases_smooth = zoo::rollmean(n,
+                                      k = 3,
+                                      fill = NA)) %>% 
+  ggplot(aes(x = week_admission,
+             y = n)) +
+  geom_col(fill = "#2E4573") +
+  geom_line(aes(y = cases_smooth,
+                colour = ""),           # Force legend creation
+            linewidth = 1.5) +
+  labs(x     = "ISO Week",
+       y     = "Measles Cases") +
+  theme_classic(base_size = 16) +
+  scale_color_manual(
+    name = NULL,                        # Title of the legend
+    labels = "3 weeks moving average",  # Label of the legend
+    values =  "#ACAC3A")                # Colour of legend items
+```
+
+
+::: {.callout-note}
+If you don't need to change the whole scale, you can rename (or set to NULL or `""`) a legend title from the `labs()` command).
+:::
+
+
+### Move legend to the top
+
+Here, for aesthetics and space optimization reasons it would be good to move the legend at the top of the graph instead of the right. You can use the theme function `theme()` with the argument `legend.position = ` set to `"top"` to do that.^[There are many theme elements that you can tweak in ggplot. Go [here](https://ggplot2.tidyverse.org/reference/theme.html) for a full list, and [here](https://ggplot2-book.org/themes#modifying-theme-components) for some examples.]
+
+Without surprise, the `theme()` function is added to your ggplot command with a `+`, like all the other layers.
+
+
+```{r}
+# PSEUDO CODE -- DO NOT RUN
+
+# x mapping defined at the top, and y defined in each geom function:
+data %>% 
+  ggplot(aes(x = week_admission)) +
+  geom_col(aes(y = n)) +
+  geom_line(aes(y = smoothed)) +
+  labs(...) +
+  theme_classic(base_size = 16) + 
+  theme(some_argument = some_values)
+```
+
+::: {.callout .callout-code}
+**Code.** Move the legend to the top or the bottom of your graph.
+:::
+
+```{r echo=solutions}
+#| eval: true
+# SOLUTION
+
+df_linelist %>%
+  count(week_admission) %>%
+  mutate(cases_smooth = zoo::rollmean(n,
+                                      k = 3,
+                                      fill = NA)) %>% 
+  ggplot(aes(x = week_admission,
+             y = n)) +
+  geom_col(fill = "#2E4573") +
+  geom_line(aes(y = cases_smooth,
+                colour = ""),           # Force legend creation
+            linewidth = 1.5) +
+  labs(x     = "ISO Week",
+       y     = "Measles Cases") +
+  theme_classic(base_size = 16) +
+  scale_color_manual(
+    name = NULL,                        # Title of the legend
+    labels = "3 weeks moving average",  # Label of the legend
+    values =  "#ACAC3A") +              # Colour of legend items
+  theme(legend.position = "bottom")
+```
+
+
+::: {.callout-note}
+The ggplot layers are ran in the order they are typed. Consequently, you will not get the same result if you place your `theme(legend.position = "bottom")` layer before or after `theme_classic(base_size = 16)`.
+:::
