@@ -67,7 +67,7 @@ At the end of each session, we ask that you **email us your tutorial code**. Thi
 
 ## RStudio and R
 
-*R* is a functional programming language[Functional programming languages are designed primarily to run analyses and focus on tools for data manipulation, computation, and visualization. This can be contrasted with object oriented languages which are more adept at building complex programs (such as operating systems).] that can be used to clean and manipulate data, run analyses (especially statistical ones), visualize results, and much more. 
+*R* is a [functional programming language]{.hoverinfo toggle='tooltip' title='Functional programming languages are designed primarily to run analyses and focus on tools for data manipulation, computation, and visualization. This can be contrasted with object oriented languages which are more adept at building complex programs (such as operating systems).'} that can be used to clean and manipulate data, run analyses (especially statistical ones), visualize results, and much more. 
 
 *RStudio* is a piece of software that provides a user-friendly interface (or [IDE]{.hoverinfo toggle='tooltip' title='Integrated Development Environments'} to be precise) for [R]{.hoverinfo toggle='tooltip' title='Integrated Development Environments are a group of softwares that provide a convenient interface to use one or more programming languages. Many IDEs are specialized for a specific language (such as RStudio being specialized for R). Others, like VS Code are more general and can be used for any language.'}. While using a graphical interface isn’t technically required, it is **strongly recommended** for beginners.
 
@@ -95,7 +95,7 @@ You will have either three or four panels, including:
 
 To the upper right there will be a panel with several tabs. Many of these are beyond the scope of this course, and we will focus on these two:
 
-- *Environment.* A list of the objects{.hoverinfo toggle='tooltip' title='You will learn later this lesson that in R, pretty much everything is an object, including functions, scalar values, and other more complex data structures'} saved by the user in the current [session]{.hoverinfo toggle='tooltip' title='You can think of an R session like you would think of starting up a computer. Whenever a session starts, everything is blank and ready for computation in the same way that there aren't any programs open when you first turn on your computer. In general, we encourge you to stop and start your R sessions regularly, you may just find that _turning it off an on again_ will fix some of your bugs!'}. Because you’ve just started a new session, your environment should be empty.
+- *Environment.* A list of the [objects]{.hoverinfo toggle='tooltip' title='You will learn later this lesson that in R, pretty much everything is an object, including functions, scalar values, and other more complex data structures'} saved by the user in the current [session]{.hoverinfo toggle='tooltip' title="You can think of an R session like you would think of starting up a computer. Whenever a session starts, everything is blank and ready for computation in the same way that there aren't any programs open when you first turn on your computer. In general, we encourge you to stop and start your R sessions regularly, you may just find that _turning it off an on again_ will fix some of your bugs!"}. Because you’ve just started a new session, your environment should be empty.
 
 - *History.* A record of all the commands you have executed during the current session.
 
