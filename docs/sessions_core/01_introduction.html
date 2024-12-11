@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.4.551">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta name="dcterms.date" content="2024-12-10">
+<meta name="dcterms.date" content="2024-12-11">
 <meta name="description" content="Your first steps in R. Learn your way around Rstudio, and meet some common R objects.">
 <title>Repicentre - Introduction to R</title>
 <style>
@@ -204,7 +204,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">December 10, 2024</p>
+      <p class="date">December 11, 2024</p>
     </div>
   </div>
   
@@ -237,7 +237,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="page-columns page-full"><p>As you move through these exercises, you may run into some errors. This is completely normal and happens to <strong>all programmers</strong>, novice and expert. Much like a natural language, R is something you will get better at the more you practice and work through your mistakes.</p><div class="no-row-height column-margin column-container"><span class="margin-aside">Errors occur when R is unable to complete a command. This can happen for a lot of reasons, for example because you mispelled the name of an object: you’ve asked R to look for a data file that doesn’t exist, or you’ve provided the wrong type of data to a function. Whenever an error occurs, R will stop any ongoing calculation and give you a message explaining what went wrong. We will see and discuss a lot of different errors throughout this course.</span></div></div>
 <p>At the end of each session, we ask that you <strong>email us your tutorial code</strong>. This will help us to assess how everyone is doing as the course progresses and allow us to provide feedbacks or come back on some muddy points.</p>
 </section><section id="rstudio-and-r" class="level2 page-columns page-full"><h2 class="anchored" data-anchor-id="rstudio-and-r">RStudio and R</h2>
-<p><em>R</em> is a functional programming language[Functional programming languages are designed primarily to run analyses and focus on tools for data manipulation, computation, and visualization. This can be contrasted with object oriented languages which are more adept at building complex programs (such as operating systems).] that can be used to clean and manipulate data, run analyses (especially statistical ones), visualize results, and much more.</p>
+<p><em>R</em> is a <span class="hoverinfo" data-toggle="tooltip" title="Functional programming languages are designed primarily to run analyses and focus on tools for data manipulation, computation, and visualization. This can be contrasted with object oriented languages which are more adept at building complex programs (such as operating systems).">functional programming language</span> that can be used to clean and manipulate data, run analyses (especially statistical ones), visualize results, and much more.</p>
 <p><em>RStudio</em> is a piece of software that provides a user-friendly interface (or <span class="hoverinfo" data-toggle="tooltip" title="Integrated Development Environments">IDE</span> to be precise) for <span class="hoverinfo" data-toggle="tooltip" title="Integrated Development Environments are a group of softwares that provide a convenient interface to use one or more programming languages. Many IDEs are specialized for a specific language (such as RStudio being specialized for R). Others, like VS Code are more general and can be used for any language.">R</span>. While using a graphical interface isn’t technically required, it is <strong>strongly recommended</strong> for beginners.</p>
 <section id="getting-started-with-rstudio" class="level3 page-columns page-full"><h3 class="anchored" data-anchor-id="getting-started-with-rstudio">Getting Started with RStudio</h3>
 <p>Let’s get started!</p>
@@ -256,7 +256,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="uper-right-corner" class="level4"><h4 class="anchored" data-anchor-id="uper-right-corner">Uper Right Corner</h4>
 <p>To the upper right there will be a panel with several tabs. Many of these are beyond the scope of this course, and we will focus on these two:</p>
 <ul>
-<li><p><em>Environment.</em> A list of the objects{.hoverinfo toggle=‘tooltip’ title=‘You will learn later this lesson that in R, pretty much everything is an object, including functions, scalar values, and other more complex data structures’} saved by the user in the current [session]{.hoverinfo toggle=‘tooltip’ title=‘You can think of an R session like you would think of starting up a computer. Whenever a session starts, everything is blank and ready for computation in the same way that there aren’t any programs open when you first turn on your computer. In general, we encourge you to stop and start your R sessions regularly, you may just find that <em>turning it off an on again</em> will fix some of your bugs!’}. Because you’ve just started a new session, your environment should be empty.</p></li>
+<li><p><em>Environment.</em> A list of the <span class="hoverinfo" data-toggle="tooltip" title="You will learn later this lesson that in R, pretty much everything is an object, including functions, scalar values, and other more complex data structures">objects</span> saved by the user in the current <span class="hoverinfo" data-toggle="tooltip" title="You can think of an R session like you would think of starting up a computer. Whenever a session starts, everything is blank and ready for computation in the same way that there aren't any programs open when you first turn on your computer. In general, we encourge you to stop and start your R sessions regularly, you may just find that _turning it off an on again_ will fix some of your bugs!">session</span>. Because you’ve just started a new session, your environment should be empty.</p></li>
 <li><p><em>History.</em> A record of all the commands you have executed during the current session.</p></li>
 </ul></section><section id="bottom-right-corner" class="level4 page-columns page-full"><h4 class="anchored" data-anchor-id="bottom-right-corner">Bottom Right Corner</h4>
 <p>To the bottom right there will be another multi tab panel, including:</p>
