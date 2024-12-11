@@ -1,6 +1,4 @@
-<img src=https://github.com/user-attachments/assets/b51559e6-31f3-490a-8755-5c65357afddb width=200px>
-
-## What up buttercups.
+## What up buttercups. <img src='img/llama.svg' width=200px align='right'>
 This is the repo for the revision of the FETCH R course *and* the development of a broader set of R training material for MSF/Epicentre. The ultimate goal is to have a website hosting self contained tutorials providing two possible learning pathways:
 1. **Linear:** A specific set of ordered core sessions designed to take students from zero to basic competency
 2. **Choose-Your-Own-Adventure**: A repository of core and satellite sessions ranging from basic to advanced topics.
@@ -23,7 +21,14 @@ For a reminder of what topics we decided to put in to the core vs satellite modu
 Feel free to add new issues whenever they seem relevant. Many tags are available (including session tags as well as things like "help wanted"). For issues that you own, please give an estimate of the number of days you expect to use slash how many you ultimately used. This will help to make sure we are within the budget in the [project](https://github.com/orgs/epicentre-msf/projects/5/).
 
 ## Contribution Protocol and Best Practices
-This is a collaborative coding repository with a live prodocution branch. To avoid messiness and possible downstream merge conflicts, we are using a scrum-esque style of development where new ideas are developed through an issue > branch > pull request pathway. Here is a very quick review of what that type of process looks like:
+This is a collaborative coding repository with a live prodocution branch. To avoid messiness and possible downstream merge conflicts, we are using a scrum-esque style of development where new ideas are developed through an issue > branch > pull request pathway. Bellow is a quick explanation of what that process looks like, but TLDR:
+1. Identify an issue you want to work on
+2. Make a branch named after **and associated** with that issue
+3. Use that branch (and only that branch) to work on that issue (and only that issue)
+4. When done, submit a pull request and request a review from a codeowner
+5. Once the pull request is resolved and merged, delete the branch
+
+If you would like a more detailed explanation of any of these steps, feel free to read on bellow.
 
 **Note.** here I use [`gh`](https://cli.github.com/) and `git` command line examples but all of these tasks can also be handled from other git managers and/or via GitHub.
 
