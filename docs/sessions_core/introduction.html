@@ -2,11 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.37">
+<meta name="generator" content="quarto-1.4.551">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta name="dcterms.date" content="2024-11-22">
+<meta name="dcterms.date" content="2024-12-11">
 <meta name="description" content="Your first steps in R. Learn your way around Rstudio, and meet some common R objects">
-<title>Introduction to R – Repicentre</title>
+<title>Repicentre - Introduction to R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -32,7 +32,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -67,10 +67,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-29e2c20b02301cfff04dc8050bf30c7e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-523b4dc3dad50da7e5c9dee1e7f3f290.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -98,7 +98,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script><link rel="stylesheet" href="../styles.css">
 </head>
-<body class="nav-fixed">
+<body class="floating nav-fixed slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
@@ -108,7 +108,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -131,14 +131,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
 </ul>
 </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
+          <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
     </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
 <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
@@ -178,6 +176,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#sec-missing-values" id="toc-sec-missing-values" class="nav-link" data-scroll-target="#sec-missing-values">Missing Values</a></li>
   <li><a href="#sec-functions" id="toc-sec-functions" class="nav-link" data-scroll-target="#sec-functions">Functions</a></li>
   </ul></nav>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content"><script type="text/javascript" src="../script.js"></script><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
@@ -203,7 +204,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 22, 2024</p>
+      <p class="date">December 11, 2024</p>
     </div>
   </div>
   
@@ -325,15 +326,15 @@ Beware of unfinished commands
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">5</span> <span class="op">+</span> <span class="fl">90</span></span>
-<span></span>
-<span><span class="fl">6</span> <span class="op">*</span> <span class="fl">171</span></span>
-<span></span>
-<span><span class="fl">189</span> <span class="op">/</span> <span class="fl">36.6</span></span>
-<span></span>
-<span><span class="fl">92</span><span class="op">^</span><span class="fl">3</span></span>
-<span></span>
-<span><span class="op">(</span><span class="fl">12</span> <span class="op">+</span> <span class="fl">9</span><span class="op">)</span><span class="op">^</span><span class="fl">4</span> <span class="op">/</span> <span class="fl">1000</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fl">5</span> <span class="op">+</span> <span class="fl">90</span>
+
+<span class="fl">6</span> <span class="op">*</span> <span class="fl">171</span>
+
+<span class="fl">189</span> <span class="op">/</span> <span class="fl">36.6</span>
+
+<span class="fl">92</span><span class="op">^</span><span class="fl">3</span>
+
+<span class="op">(</span><span class="fl">12</span> <span class="op">+</span> <span class="fl">9</span><span class="op">)</span><span class="op">^</span><span class="fl">4</span> <span class="op">/</span> <span class="fl">1000</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-simple callout-none no-icon">
 <div class="callout-body d-flex">
@@ -360,12 +361,12 @@ Beware of unfinished commands
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Find the minimum value</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">10</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">8</span>, <span class="fl">56</span>, <span class="fl">0.3</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Find the maximum value</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="fl">568</span>, <span class="fl">258</span>, <span class="fl">314</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="co"># Find the minimum value</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">10</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">8</span>, <span class="fl">56</span>, <span class="fl">0.3</span><span class="op">)</span>
+
+<span class="co"># Find the maximum value</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="fl">568</span>, <span class="fl">258</span>, <span class="fl">314</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-simple callout-none no-icon callout-titled" title="Let your code breathe">
 <div class="callout-header d-flex align-content-center">
@@ -379,8 +380,8 @@ Let your code breathe
 <div class="callout-body-container callout-body">
 <p><strong>Best Practices.</strong> You may have noticed in the above examples that our code includes a lot of spaces between characters. This is not by accident. It is considered <span class="hoverinfo" data-toggle="tooltip" title="Best practices refer to a set of conventions related to code style. These can include stylistic rules around syntax, aesthetic, the way you name objects, etc. Most of the time failing to follow best practices will not result in errors, but we still strongly encourage you to follow the recommendations laid out in this course.">best practice</span> to include spaces around most operators, such as <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>&lt;</code>, <code>&gt;</code>, <code>=</code>, and <code>&lt;-</code>. Not only do these spaces make your code more readable<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>, in some cases they may even be necessary to avoid errors. That said, do be aware that there are a small number of operators that should <em>not</em> be surrounded by spaces, such as <code>^</code> and <code>.</code>.</p>
 <div class="cell">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">1</span><span class="op">+</span><span class="fl">29</span><span class="op">+</span><span class="fl">4.8</span><span class="op">/</span><span class="fl">3</span><span class="op">*</span><span class="fl">3</span>           <span class="co"># BAD</span></span>
-<span><span class="fl">1</span> <span class="op">+</span> <span class="fl">29</span> <span class="op">+</span> <span class="fl">4.8</span> <span class="op">/</span> <span class="fl">3</span> <span class="op">*</span> <span class="fl">3</span>   <span class="co"># GOOD</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fl">1</span><span class="op">+</span><span class="fl">29</span><span class="op">+</span><span class="fl">4.8</span><span class="op">/</span><span class="fl">3</span><span class="op">*</span><span class="fl">3</span>           <span class="co"># BAD</span>
+<span class="fl">1</span> <span class="op">+</span> <span class="fl">29</span> <span class="op">+</span> <span class="fl">4.8</span> <span class="op">/</span> <span class="fl">3</span> <span class="op">*</span> <span class="fl">3</span>   <span class="co"># GOOD</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -423,9 +424,9 @@ Let your code breathe
 </section><section id="sec-comments" class="level4"><h4 class="anchored" data-anchor-id="sec-comments">Comments</h4>
 <p>In R, any text prefaced by a <code>#</code> (until the end of a line) is called a <em>comment</em>. R does not consider comments to be code and will ignore them whenever you run your scripts. This makes comments an excellent way to document your code.</p>
 <div class="cell">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># This is a comment</span></span>
-<span></span>
-<span><span class="fl">2</span> <span class="op">+</span> <span class="fl">3</span>  <span class="co"># This is also a comment</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="co"># This is a comment</span>
+
+<span class="fl">2</span> <span class="op">+</span> <span class="fl">3</span>  <span class="co"># This is also a comment</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 5</code></pre>
 </div>
@@ -438,11 +439,11 @@ Let your code breathe
 <div class="callout-body-container">
 <p><strong>Best Practice.</strong> You should start your scripts with a few commented lines providing some information about the file.</p>
 <div class="cell">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#### IMPORT &amp; PREPARE DATA ####</span></span>
-<span><span class="co"># Author :  Mathilde Mousset</span></span>
-<span><span class="co"># Creation Date : 23/11/2024</span></span>
-<span><span class="co"># Last Update : 30/11/2024</span></span>
-<span><span class="co"># Description : Import and clean measles surveillance data from Moissala</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="co">#### IMPORT &amp; PREPARE DATA ####</span>
+<span class="co"># Author :  Mathilde Mousset</span>
+<span class="co"># Creation Date : 23/11/2024</span>
+<span class="co"># Last Update : 30/11/2024</span>
+<span class="co"># Description : Import and clean measles surveillance data from Moissala</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -459,9 +460,9 @@ Let your code breathe
 </div>
 <p>Comments are also a handy way to split longer scripts into thematic sections, such as “Data Importation”, “Analysis”, “Visualization”, etc. For example:</p>
 <div class="cell">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># NAME OF SECTION 1 -----------------------------------------------             </span></span>
-<span></span>
-<span><span class="co"># NAME OF SECTION 2 -----------------------------------------------             </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="co"># NAME OF SECTION 1 -----------------------------------------------             </span>
+
+<span class="co"># NAME OF SECTION 2 -----------------------------------------------             </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-simple callout-none no-icon">
 <div class="callout-body d-flex">
@@ -476,7 +477,7 @@ Let your code breathe
 <p>Finally, comments allow us write helpful notes for our colleagues (and our future selves!) that can help them understand the code and why we wrote it the way we did. While the exact style and amount of comments that is “best” is debatable, the general rule is to focus on comments that explain “why” rather than “what”. This is because the “what” of well written code should be relatively self explanatory.</p>
 <p>This comment, for example, is completely superfluous:</p>
 <div class="cell">
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">1</span> <span class="op">+</span> <span class="fl">3</span>  <span class="co"># Code to add one to three</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fl">1</span> <span class="op">+</span> <span class="fl">3</span>  <span class="co"># Code to add one to three</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>By comparison, here are a few use cases that would warrant comments:</p>
 <ul>
@@ -554,9 +555,9 @@ Tip&nbsp;1: Keyborad shortcuts
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">28</span>         <span class="co"># numeric</span></span>
-<span><span class="st">"28"</span>       <span class="co"># text</span></span>
-<span><span class="fl">28</span> <span class="op">+</span> <span class="st">"28"</span>  <span class="co"># produces an error</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fl">28</span>         <span class="co"># numeric</span>
+<span class="st">"28"</span>       <span class="co"># text</span>
+<span class="fl">28</span> <span class="op">+</span> <span class="st">"28"</span>  <span class="co"># produces an error</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The last command above will give an error because we cannot perform arithmetic operations that combine text and numbers.</p>
 <div class="coullout-warning callout callout-style-simple callout-none no-icon">
@@ -585,18 +586,18 @@ Tip&nbsp;1: Keyborad shortcuts
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Get the Type of an Object</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="fl">28</span><span class="op">)</span>  </span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="st">"Mandoul"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Test the Type of an Object</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">is.numeric</a></span><span class="op">(</span><span class="fl">28</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">is.numeric</a></span><span class="op">(</span><span class="st">"Mandoul"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/character.html">is.character</a></span><span class="op">(</span><span class="st">"Mandoul"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">is.numeric</a></span><span class="op">(</span><span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/character.html">is.character</a></span><span class="op">(</span><span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/logical.html">is.logical</a></span><span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="co"># Get the Type of an Object</span>
+<span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="fl">28</span><span class="op">)</span>  
+<span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="st">"Mandoul"</span><span class="op">)</span>
+
+<span class="co"># Test the Type of an Object</span>
+<span class="fu"><a href="https://rdrr.io/r/base/numeric.html">is.numeric</a></span><span class="op">(</span><span class="fl">28</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/numeric.html">is.numeric</a></span><span class="op">(</span><span class="st">"Mandoul"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/character.html">is.character</a></span><span class="op">(</span><span class="st">"Mandoul"</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/numeric.html">is.numeric</a></span><span class="op">(</span><span class="cn">TRUE</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/character.html">is.character</a></span><span class="op">(</span><span class="cn">TRUE</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/logical.html">is.logical</a></span><span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section><section id="sec-assignement-operator" class="level2"><h2 class="anchored" data-anchor-id="sec-assignement-operator">Saving an Object</h2>
 <p>Before continuing with more complex data structures, we need to take an important detour to discuss how objects are saved into your environment.</p>
@@ -622,7 +623,7 @@ Tip&nbsp;1: Keyborad shortcuts
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cases</span> <span class="op">&lt;-</span> <span class="fl">28</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">cases</span> <span class="op">&lt;-</span> <span class="fl">28</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-simple callout-none no-icon">
 <div class="callout-body d-flex">
@@ -636,7 +637,7 @@ Tip&nbsp;1: Keyborad shortcuts
 </div>
 <p>If you’d like to access the value of your new object, <code>cases</code>, you simply need to <strong>execute it’s name</strong>.</p>
 <div class="cell">
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cases</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">cases</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 28</code></pre>
 </div>
@@ -656,7 +657,7 @@ Note
 </div>
 <p>Once created, objects can be used in other commands:</p>
 <div class="cell">
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cases</span> <span class="op">+</span> <span class="fl">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">cases</span> <span class="op">+</span> <span class="fl">5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 33</code></pre>
 </div>
@@ -679,8 +680,8 @@ Note
 <div class="callout-body-container">
 <p><strong>Best Practice.</strong> Don’t forget that we should always surround <code>&lt;-</code> with spaces to improve readability and avoid errors.</p>
 <div class="cell">
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span><span class="op">&lt;-</span><span class="fl">3</span>     <span class="co"># BAD</span></span>
-<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">3</span>   <span class="co"># GOOD</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">x</span><span class="op">&lt;-</span><span class="fl">3</span>     <span class="co"># BAD</span>
+<span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">3</span>   <span class="co"># GOOD</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -688,7 +689,7 @@ Note
 <section id="updating-an-object" class="level3"><h3 class="anchored" data-anchor-id="updating-an-object">Updating an Object</h3>
 <p>We often want to update the value stored in an object. To do this, we simply assign a new value with the same syntax we used to create it in the first place:</p>
 <div class="cell">
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cases</span> <span class="op">&lt;-</span> <span class="fl">32</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">cases</span> <span class="op">&lt;-</span> <span class="fl">32</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-simple callout-none no-icon">
 <div class="callout-body d-flex">
@@ -710,9 +711,9 @@ Note
 </ul>
 <p>Beyond these hard rules, there are also more subjective best practices and personal styles. In general aim for names that are short and descriptive:</p>
 <div class="cell">
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">19</span>                             <span class="co"># BAD (not informative)</span></span>
-<span><span class="va">age_du_patient_a_l_admission</span> <span class="op">&lt;-</span> <span class="fl">19</span>  <span class="co"># BAD (too long)</span></span>
-<span><span class="va">age</span> <span class="op">&lt;-</span> <span class="fl">19</span>                           <span class="co"># GOOD</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">19</span>                             <span class="co"># BAD (not informative)</span>
+<span class="va">age_du_patient_a_l_admission</span> <span class="op">&lt;-</span> <span class="fl">19</span>  <span class="co"># BAD (too long)</span>
+<span class="va">age</span> <span class="op">&lt;-</span> <span class="fl">19</span>                           <span class="co"># GOOD</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Giving your objects clear and informative names helps to make your code readable, making it easy for others to understand without the need for excessive documentation.</p>
 </section></section><section id="data-structures" class="level2 page-columns page-full"><h2 class="anchored" data-anchor-id="data-structures">Data Structures</h2>
@@ -732,7 +733,7 @@ Note
 <p>Simple vectors can contain one or more values of a single data type, they thus have two key properties: <strong>length</strong> and <strong>type</strong>. For the purpose of this class, we will use the terms “simple vector” and “vector” interchangeably (as is typical in the R community).</p>
 <p>You’ve technically already created your very first simple vectors when you built <code>cases</code> and <code>region</code>. These were simply vectors with a <strong>length of one</strong>. To create a vector with more than one value, we will use the function <code><a href="https://rdrr.io/r/base/c.html">c()</a></code>:<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
 <div class="cell">
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cases</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">5</span>, <span class="fl">8</span>, <span class="fl">0</span>, <span class="fl">4</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">cases</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">5</span>, <span class="fl">8</span>, <span class="fl">0</span>, <span class="fl">4</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-simple callout-none no-icon">
 <div class="callout-body d-flex">
@@ -746,11 +747,11 @@ Note
 </div>
 <p>We can now use functions on the objects we have created:</p>
 <div class="cell">
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">cases</span><span class="op">)</span>      <span class="co"># calculate the mean value of the cases vector</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">cases</span><span class="op">)</span>      <span class="co"># calculate the mean value of the cases vector</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 3.8</code></pre>
 </div>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/chartr.html">toupper</a></span><span class="op">(</span><span class="va">region</span><span class="op">)</span>  <span class="co"># convert all the values in region to lower case</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/chartr.html">toupper</a></span><span class="op">(</span><span class="va">region</span><span class="op">)</span>  <span class="co"># convert all the values in region to lower case</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "MANDOUL"           "MOYEN-CHARI"       "LOGONE ORIENTAL"  
 [4] "TIBESTI"           "LOGONE OCCIDENTAL"</code></pre>
@@ -779,11 +780,11 @@ Note
 </section></section><section id="accessing-the-values-of-a-vector" class="level3"><h3 class="anchored" data-anchor-id="accessing-the-values-of-a-vector">Accessing the Values of a Vector</h3>
 <p>It is possible to access the value of a vector using square brackets containing the index (position) of the desired value, ie: <code>[3]</code> or <code>[189]</code>.</p>
 <div class="cell">
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cases</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>   <span class="co"># 2nd value of cases</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">cases</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>   <span class="co"># 2nd value of cases</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 5</code></pre>
 </div>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cases</span><span class="op">[</span><span class="fl">10</span><span class="op">]</span>  <span class="co"># 10th value of cases</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">cases</span><span class="op">[</span><span class="fl">10</span><span class="op">]</span>  <span class="co"># 10th value of cases</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] NA</code></pre>
 </div>
@@ -791,7 +792,7 @@ Note
 <p>Ooops it does not exist! We will come back to what this <code>NA</code> means in <a href="#sec-missing-values" class="quarto-xref">Section&nbsp;8</a>.</p>
 <p>We can also access a <em>range</em> of values, just as we might do in Excel. To create a range we use the <code>:</code> operator to separate the desired minimum and maximum index:</p>
 <div class="cell">
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cases</span><span class="op">[</span><span class="fl">2</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>  <span class="co"># 2nd to 4th values of cases</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">cases</span><span class="op">[</span><span class="fl">2</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>  <span class="co"># 2nd to 4th values of cases</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 5 8 0</code></pre>
 </div>
@@ -812,8 +813,8 @@ Note
 <section id="creating-a-dataframe" class="level4"><h4 class="anchored" data-anchor-id="creating-a-dataframe">Creating a Dataframe</h4>
 <p>We can create a dataframe using the function <code><a href="https://rdrr.io/r/base/data.frame.html">data.frame()</a></code>:</p>
 <div class="cell">
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>col1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">4</span>, <span class="fl">2</span>, <span class="fl">9</span><span class="op">)</span>,</span>
-<span>           col2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"a bit of text"</span>, <span class="st">"some more text"</span>, <span class="st">"hello"</span>, <span class="st">"epidemiologists"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>col1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">4</span>, <span class="fl">2</span>, <span class="fl">9</span><span class="op">)</span>,
+           col2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"a bit of text"</span>, <span class="st">"some more text"</span>, <span class="st">"hello"</span>, <span class="st">"epidemiologists"</span><span class="op">)</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  col1            col2
 1    1   a bit of text
@@ -850,15 +851,15 @@ Note
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">data_cases</span><span class="op">)</span>     <span class="co"># STRucture of the object</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">data_cases</span><span class="op">)</span>     <span class="co"># DIMension of the object</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">data_cases</span><span class="op">)</span>    <span class="co"># Number of ROWs</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">data_cases</span><span class="op">)</span>    <span class="co"># Number of COLumns</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">data_cases</span><span class="op">)</span>   <span class="co"># column NAMES</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">data_cases</span><span class="op">)</span>     <span class="co"># STRucture of the object</span>
+<span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">data_cases</span><span class="op">)</span>     <span class="co"># DIMension of the object</span>
+<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">data_cases</span><span class="op">)</span>    <span class="co"># Number of ROWs</span>
+<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">data_cases</span><span class="op">)</span>    <span class="co"># Number of COLumns</span>
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">data_cases</span><span class="op">)</span>   <span class="co"># column NAMES</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="page-columns page-full"><p>R comes with several built in data sets that can be accessed directly, including one called <code>iris</code>. We can see the first few lines of this dataset using the function <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code>:</p><div class="no-row-height column-margin column-container"><span class="margin-aside">The <code>iris</code> dataset is convenient because we don’t need to use extra functions to enable you to use it but its content not really interesting to us. Be reassured, we will learn how to import a dataset in the next core session, and work on linelist data onwards.</span></div></div>
 <div class="cell">
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
 1          5.1         3.5          1.4         0.2  setosa
@@ -883,30 +884,30 @@ Note
 <p>In R, there are several methods for accessing the rows and/or columns of a dataframe. We will present a versatile one, and redirect you to the <a href="../sessions_extra/indexing.html">indexing satellite</a> to learn about the use of <code>[[ ]]</code> and <code>$</code>.</p>
 <p>We use square brackets to access single values or ranges within our dataframe. To do this we must give R both a row number (or range of rows) and column number/name (or range of columns), using the syntax <code>[row, column]</code>.</p>
 <div class="cell">
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">data_cases</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">]</span>          <span class="co"># the value of row one, column 2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">data_cases</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">]</span>          <span class="co"># the value of row one, column 2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Mandoul"</code></pre>
 </div>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">data_cases</span><span class="op">[</span><span class="fl">1</span>, <span class="st">"region"</span><span class="op">]</span>   <span class="co"># first value in the region column</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">data_cases</span><span class="op">[</span><span class="fl">1</span>, <span class="st">"region"</span><span class="op">]</span>   <span class="co"># first value in the region column</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Mandoul"</code></pre>
 </div>
 </div>
 <p>If we want to access all of the rows (or columns) we can simple leave a space in the place of the number/name:</p>
 <div class="cell">
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">data_cases</span><span class="op">[</span><span class="fl">1</span>, <span class="op">]</span>           <span class="co"># values of all columns in row one</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">data_cases</span><span class="op">[</span><span class="fl">1</span>, <span class="op">]</span>           <span class="co"># values of all columns in row one</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  cases  region
 1     2 Mandoul</code></pre>
 </div>
-<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">data_cases</span><span class="op">[</span><span class="fl">2</span><span class="op">:</span><span class="fl">4</span>, <span class="op">]</span>         <span class="co"># values of all columns for rows 2 through 4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">data_cases</span><span class="op">[</span><span class="fl">2</span><span class="op">:</span><span class="fl">4</span>, <span class="op">]</span>         <span class="co"># values of all columns for rows 2 through 4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  cases         region
 2     5       Sud Kivu
 3     8 Kasai oriental
 4     0          Kasai</code></pre>
 </div>
-<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">data_cases</span><span class="op">[</span> , <span class="st">"region"</span><span class="op">]</span>    <span class="co"># values of all rows for the region column</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">data_cases</span><span class="op">[</span> , <span class="st">"region"</span><span class="op">]</span>    <span class="co"># values of all rows for the region column</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Mandoul"        "Sud Kivu"       "Kasai oriental" "Kasai"         
 [5] "Haut Katanga"  </code></pre>
@@ -924,7 +925,7 @@ Note
 </div>
 <p>We can even select multiple non-consecutive indices by using a numeric vector:</p>
 <div class="cell">
-<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">data_cases</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span>, <span class="op">]</span>  <span class="co"># lines 1 and 3 (all columns)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">data_cases</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span>, <span class="op">]</span>  <span class="co"># lines 1 and 3 (all columns)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  cases         region
 1     2        Mandoul
@@ -933,20 +934,20 @@ Note
 </div>
 <p>Do be careful, as the <em>type</em> of output returned when extracting data from a dataframe can sometimes depend on the style of indexing used:</p>
 <div class="cell">
-<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">data_cases</span><span class="op">[</span><span class="fl">1</span> , <span class="op">]</span><span class="op">)</span>   <span class="co"># returns a dataframe</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">data_cases</span><span class="op">[</span><span class="fl">1</span> , <span class="op">]</span><span class="op">)</span>   <span class="co"># returns a dataframe</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>'data.frame':   1 obs. of  2 variables:
  $ cases : num 2
  $ region: chr "Mandoul"</code></pre>
 </div>
-<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">data_cases</span><span class="op">[</span> , <span class="fl">1</span><span class="op">]</span><span class="op">)</span>   <span class="co"># returns a simple vector</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">data_cases</span><span class="op">[</span> , <span class="fl">1</span><span class="op">]</span><span class="op">)</span>   <span class="co"># returns a simple vector</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> num [1:5] 2 5 8 0 4</code></pre>
 </div>
 </div>
 <p>Another syntaxt to extract the various columns of a dataframe:</p>
 <div class="cell">
-<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">data_cases</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>           <span class="co"># returns the second column (as a dataframe)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">data_cases</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>           <span class="co"># returns the second column (as a dataframe)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          region
 1        Mandoul
@@ -955,7 +956,7 @@ Note
 4          Kasai
 5   Haut Katanga</code></pre>
 </div>
-<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">data_cases</span><span class="op">[</span><span class="st">"region"</span><span class="op">]</span>    <span class="co"># returns the region column (as a dataframe)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">data_cases</span><span class="op">[</span><span class="st">"region"</span><span class="op">]</span>    <span class="co"># returns the region column (as a dataframe)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          region
 1        Mandoul
@@ -985,14 +986,14 @@ Note
 <p>Often, a function will have a combination of both <em>obligatory</em> and <em>optional</em> arguments. The first argument of a function is almost always obligatory and is typically a dataset. As an obligatory and rather obvious argument, most people omit its name when calling a function; ie: i.e.&nbsp;people will write <code>mean(cases)</code> instead of <code>mean(x = cases)</code>. Optional arguments on the other hand are usually added using their name, i.e.: <code>mean(x = cases, na.rm = TRUE)</code>.</p>
 <p>Optional arguments typically have default values and we only include them when we want to change their defaults (and thus change the default behavior of the function). For example, the <code>na.rm</code> argument of <code>mean</code> determines whether R will ignore missing values when calculating a mean. The default state of the <code>na.rm</code> argument is <code>FALSE</code>, so by default, the mean performed on data with missing values will always return <code>NA</code> as the result:<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p>
 <div class="cell">
-<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] NA</code></pre>
 </div>
 </div>
 <p>If we want R to calculate the mean on whatever data <em>is</em> available (and ignore the missing values) we need to explicitly set <code>na.rm = TRUE</code>:</p>
 <div class="cell">
-<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span>, <span class="cn">NA</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span>, <span class="cn">NA</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2</code></pre>
 </div>
@@ -1005,30 +1006,30 @@ Note
 <div class="callout-body-container">
 <p><strong>Best Practice.</strong> Notice that arguments are separated by commas. These commas should always be followed by a space and whenever a named argument is used the <code>=</code> should be surrounded by spaces:</p>
 <div class="cell">
-<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">cases</span>,na.rm<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>     <span class="co"># BAD</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">cases</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>  <span class="co"># GOOD</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">cases</span>,na.rm<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>     <span class="co"># BAD</span>
+<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">cases</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>  <span class="co"># GOOD</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>As you work with increasingly complex functions, you may start to have <em>a lot</em> of arguments. For readability, it is typically recommended to split each argument onto its own line:</p>
 <div class="cell">
-<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">cases</span>, </span>
-<span>     na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">cases</span>, 
+     na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 </div>
 <p>What happens if we put the arguments in the wrong order? Well, if they are named then the function will still work exactly as expected. That being said, doing this would make your code harder to read and we encourage you to stick with a standard order of putting obligatory arguments like data first.</p>
 <div class="cell">
-<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># technically functional but hard to read:</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span>na.rm <span class="op">=</span> <span class="cn">TRUE</span>,  </span>
-<span>     x <span class="op">=</span> <span class="va">cases</span><span class="op">)</span> </span>
-<span></span>
-<span><span class="co"># better:</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">cases</span>,         </span>
-<span>     na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="co"># technically functional but hard to read:</span>
+<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span>na.rm <span class="op">=</span> <span class="cn">TRUE</span>,  
+     x <span class="op">=</span> <span class="va">cases</span><span class="op">)</span> 
+
+<span class="co"># better:</span>
+<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">cases</span>,         
+     na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Of course, if you mess up the ordering of arguments and <em>didn’t</em> include their names your code will throw an error:</p>
 <div class="cell">
-<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="va">cases</span><span class="op">)</span>     <span class="co"># throws an error</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="va">cases</span><span class="op">)</span>     <span class="co"># throws an error</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
@@ -1074,7 +1075,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const onCopySuccess = function(e) {
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1106,27 +1118,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
   });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -1134,7 +1126,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
@@ -1231,6 +1223,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
+      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
