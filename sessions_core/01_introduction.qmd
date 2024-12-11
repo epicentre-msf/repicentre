@@ -35,7 +35,7 @@ solutions <- params$solutions
 
 These exercises are in the format of a self-paced tutorial containing short explanations of key concepts, examples, and exercises for you to follow. The course uses a “learning by doing” approach, and while this first session will start a slow, giving you time to explore the RStudio interface, future sessions will focus heavily on having you write your own code.
 
-Instructions for exercices will be given in the following formats: 
+Instructions for exercises will be given in the following formats: 
 
 ::: {.setup}
 This is a **general action block**. You will typically see it at the beginning of a session with instructions about the setup for that lesson.
@@ -60,7 +60,7 @@ This is an **observation block**, it will have instructions about something that
 **Example:** Inspect the RStudio interface.
 :::
 
-As you move through these exercises, you may run into some errors.[Errors occur when R is unable to complete a command. This can happen for a lot of reasons, for example because you mispelled the name of an object: you've asked R to look for a data file that doesn't exist, or you've provided the wrong type of data to a function. Whenever an error occurs, R will stop any ongoing calculation and give you a message explaining what went wrong. We will see and discuss a lot of different errors throughout this course.]{.aside} This is completely normal and happens to **all programmers**, novice and expert. Much like a natural language, R is something you will get better at the more you practice and work through your mistakes.
+As you move through these exercises, you may run into some errors.[Errors occur when R is unable to complete a command. This can happen for a lot of reasons, for example because you misspelled the name of an object: you've asked R to look for a data file that doesn't exist, or you've provided the wrong type of data to a function. Whenever an error occurs, R will stop any ongoing calculation and give you a message explaining what went wrong. We will see and discuss a lot of different errors throughout this course.]{.aside} This is completely normal and happens to **all programmers**, novice and expert. Much like a natural language, R is something you will get better at the more you practice and work through your mistakes.
 
 At the end of each session, we ask that you **email us your tutorial code**. This will help us to assess how everyone is doing as the course progresses and allow us to provide feedbacks or come back on some muddy points.
 
@@ -354,7 +354,7 @@ cases <- 28
 Look at the environment again. Is it still empty?
 :::
 
-If you’d like to access the value of your new object, `cases`, you simply need to **execute it’s name**.
+If you’d like to access the value of your new object, `cases`, you simply need to **execute its name**.
 
 ```{r}
 #| eval: true
