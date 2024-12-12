@@ -5,8 +5,7 @@ listing:
   - id: articles-links
     sort: false
     contents:
-      - 'sessions_core/*.qmd'
-      - '!sessions_core/template.qmd'
+      - '01_introduction.qmd'
     
 ---
 
