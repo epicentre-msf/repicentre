@@ -2,11 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.551">
+<meta name="generator" content="quarto-1.6.33">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta name="dcterms.date" content="2024-12-11">
-<meta name="description" content="Starting your first project. Creating an Rstudio project, installing packages and importing data">
-<title>Repicentre - Import data</title>
+<meta name="dcterms.date" content="2024-12-18">
+<meta name="description" content="Creating a Rstudio project, installing packages and importing data">
+<title>Import data – Repicentre</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -32,7 +32,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -67,10 +67,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-07ba0ad10f5680c660e360ac31d2f3b6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-a21a96fda2a35a6034e035564d362780.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -96,7 +96,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><link rel="stylesheet" href="../styles.css">
+}</script><script async="" src="https://hypothes.is/embed.js"></script><script>
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    document.body.classList.add('hypothesis-enabled');
+  });
+</script><link rel="stylesheet" href="../styles.css">
 </head>
 <body class="floating nav-fixed slimcontent">
 
@@ -108,7 +112,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -131,7 +135,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
 </ul>
 </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
     </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
@@ -141,7 +145,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
 <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
   <li>
-<a href="#seting-up-your-project" id="toc-seting-up-your-project" class="nav-link" data-scroll-target="#seting-up-your-project">Seting up your Project</a>
+<a href="#setting-up-your-project" id="toc-setting-up-your-project" class="nav-link" data-scroll-target="#setting-up-your-project">Setting up your Project</a>
   <ul class="collapse">
 <li><a href="#folder-structure" id="toc-folder-structure" class="nav-link" data-scroll-target="#folder-structure">Folder Structure</a></li>
   <li><a href="#sec-definitions" id="toc-sec-definitions" class="nav-link" data-scroll-target="#sec-definitions">Definitions</a></li>
@@ -161,7 +165,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li>
 <a href="#data-importation" id="toc-data-importation" class="nav-link" data-scroll-target="#data-importation">Data Importation</a>
   <ul class="collapse">
-<li><a href="#sec-filepaths" id="toc-sec-filepaths" class="nav-link" data-scroll-target="#sec-filepaths">Finding your files: Understanding File Paths</a></li>
+<li><a href="#sec-filepaths" id="toc-sec-filepaths" class="nav-link" data-scroll-target="#sec-filepaths">Understanding File Paths</a></li>
   <li><a href="#sec-import" id="toc-sec-import" class="nav-link" data-scroll-target="#sec-import">Import function</a></li>
   </ul>
 </li>
@@ -179,7 +183,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></nav>
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content"><script type="text/javascript" src="../script.js"></script><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
@@ -194,7 +198,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div>
   <div class="description">
-    Starting your first project. Creating an Rstudio project, installing packages and importing data
+    Creating a Rstudio project, installing packages and importing data
   </div>
 </div>
 
@@ -205,7 +209,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">December 11, 2024</p>
+      <p class="date">December 18, 2024</p>
     </div>
   </div>
   
@@ -216,26 +220,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header><section id="objectives" class="level2"><h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
 <ul>
-<li>Set up organized and well documented code</li>
-<li>Create an RStudio Project</li>
+<li>Create a RStudio Project</li>
+<li>Set up an organized and well documented code</li>
 <li>Install and load packages</li>
 <li>Write robust file paths</li>
 <li>Import and inspect data</li>
 </ul>
-<p>The principles you learned in the Data Management module will apply here as well: we should do our best to ensure that our projects won’t just work today but can also be reused and shared in the future. While doing this is not always easy, there are several best practices that can help us, and one of the most important is to start with a good, organized code base.</p>
-</section><section id="seting-up-your-project" class="level2 page-columns page-full"><h2 class="anchored" data-anchor-id="seting-up-your-project">Seting up your Project</h2>
-<section id="folder-structure" class="level3 page-columns page-full"><h3 class="anchored" data-anchor-id="folder-structure">Folder Structure</h3>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
+<i class="callout-icon"></i>
 </div>
-<div class="callout-body-container">
-<p><strong>Do.</strong> If not done already, download the course folder and save it to a location that is <strong>not connected to OneDrive</strong>.</p>
+<div class="callout-title-container flex-fill">
+Important
 </div>
 </div>
+<div class="callout-body-container callout-body">
+<p>The principles you learned in the Data Management module will apply here as well: we should do our best to ensure that our projects won’t just work today but can also be reused and shared in the future. While doing this is not always easy, there are several best practices that can help us, and one of the most important is to start with a good, organized code base.</p>
 </div>
-<div class="no-row-height column-margin column-container"><span class="margin-aside callout-margin-content callout-margin-content-simple">OneDrive doesn’t play well with R as it will attempt to constantly synchronize certain project files in a way that can cause errors or memory problems.</span></div><p>This folder gives an example of a typical (and highly recommended) structure for your code projects:</p>
+</div>
+</section><section id="setting-up-your-project" class="level2 page-columns page-full"><h2 class="anchored" data-anchor-id="setting-up-your-project">Setting up your Project</h2>
+<section id="folder-structure" class="level3 page-columns page-full"><h3 class="anchored" data-anchor-id="folder-structure">Folder Structure</h3>
+<div class="setup">
+<p>If not done already, download the course folder and save it to a location that is <strong>not connected to OneDrive</strong>.</p>
+</div>
+<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class="margin-aside">OneDrive doesn’t play well with R as it will attempt to constantly synchronize certain project files in a way that can cause errors or memory problems.</span></div></div>
+<p>This folder gives an example of a typical (and highly recommended) structure for your code projects:</p>
 <ul>
 <li>📁 data
 <ul>
@@ -251,12 +261,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This folder will be you working directory for <strong>all the sessions of this course</strong>. You will create an Rstudio project (explanations below) in it, and save all your scripts in <code>/R</code>. The course datasets are already in <code>data/raw</code>. Additionaly, there are a couple of resources (pdfs and links to online books) in the <code>/resources</code> subfolder.</p>
 </section><section id="sec-definitions" class="level3"><h3 class="anchored" data-anchor-id="sec-definitions">Definitions</h3>
 <p>To better understand the concepts from the rest, you need to understand the two following concepts:</p>
-<p><strong>Working directory.</strong> The working directory is the location (folder) where your R session is <em>actively working</em>. If you save a file, for example, it will be saved into this folder by default. Similarly, when you want to open a file, this folder will be shown by default. All relative paths (which will be explained in <a href="#sec-filepaths" class="quarto-xref">Section&nbsp;5.1</a>) will be relative to this working directory.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p><strong>Working directory.</strong> The working directory is the location (folder) where your R session is <em>actively working</em>. If you save a file, for example, it will be saved into this folder by default. Similarly, when you want to open a file, this folder will be shown by default. All relative paths (which will be explained in <a href="#sec-filepaths" class="quarto-xref">Section&nbsp;5.1</a>) will be relative to this <span class="hoverinfo" data-toggle="tooltip" title="By default, R usually picks the &quot;Documents&quot; folder as the working directory on Windows machines">working directory</span>.</p>
 <p><strong>Root.</strong> The root refers to the top-most folder level of the working directory. If your course folder was called <code>FETCHR</code>, the root would then be directly inside it (as opposed to being inside one of its subfolders like <code>R</code> or <code>Data</code>).</p>
 </section><section id="rstudio-projects" class="level3"><h3 class="anchored" data-anchor-id="rstudio-projects">RStudio Projects</h3>
-<p>An RStudio Project can be used to make your life easier and help orient RStudio around the various files used in your code.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<p>An RStudio Project can be used to make your life easier and help orient <span class="hoverinfo" data-toggle="tooltip" title="Technically an RStudio Project is just a file containing some metadata that tell RStudio what files to open and where to set your working directory. It will spare you the headache of managing the working directory yourself">RStudio around the various files used in your code</span>.</p>
 <p>As a quick reminder, your interface should look something like this:</p>
-<div id="fig-interface" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<div id="fig-interface" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-interface-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../sessions_core/img/intro_001_rstudio_interface_screenshot_EN.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
@@ -264,25 +274,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 Figure&nbsp;1: Screenshot of a typical Rstudio interface
 </figcaption></figure>
 </div>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
+<div class="write">
+<p>Open RStudio and create a new project by clicking <code>File &gt; New Project &gt; Existing Directory &gt; Browse</code>, navigating into (opening) the course folder, and clicking <code>Create Project</code>.</p>
+</div>
+<div class="look">
+<p>In the Windows Explorer, look at the course folder. You should now see a new file with the extention <code>.Rproj</code> that has a small blue icon with an R in it.</p>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
+<i class="callout-icon"></i>
 </div>
-<div class="callout-body-container">
-<p><strong>Code.</strong> Open RStudio and create a new project by clicking <code>File &gt; New Project &gt; Existing Directory &gt; Browse</code>, navigating into (opening) the course folder, and clicking <code>Create Project</code>.</p>
+<div class="callout-title-container flex-fill">
+Note
 </div>
 </div>
-</div>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>Look.</strong> In the Windows Explorer, look at the course folder. You should now see a new file with the extention <code>.Rproj</code> that has a small blue icon with an R in it.</p>
-<p><strong>Don’t see?</strong> If you don’t see this file, it’s probably because it is hidden by default on your computer. To change this setting in Windows Explorer, go into the <em>View</em> menu and select <code>Filename Extensions</code>.</p>
-</div>
+<div class="callout-body-container callout-body">
+<p>If you don’t see this file, it’s probably because it is hidden by default on your computer. To change this setting in Windows Explorer, go into the <em>View</em> menu and select <code>Filename Extensions</code>.</p>
 </div>
 </div>
 <div class="quarto-figure quarto-figure-center">
@@ -290,14 +298,17 @@ Figure&nbsp;1: Screenshot of a typical Rstudio interface
 <figcaption>Icon associated with RStudio projects</figcaption></figure>
 </div>
 <p>When you open an RStudio Project, RStudio will start a new R session, open the associated project files, and <strong>set your working directory to the root of the course folder</strong>. At this time, RStudio will also display the subfolders of this directory in the panel on the bottom right.</p>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
+<i class="callout-icon"></i>
 </div>
-<div class="callout-body-container">
-<p><strong>Best Practice.</strong> It is strongly recommended to set up a separate RStudio Project for each of your <span class="hoverinfo" data-toggle="tooltip" title="Here a single analysis would involve the full process of loading, cleaning, analyzing, and reporting on a dataset.">analyses</span> to ensure that your project files remain orgnaized and managable.</p>
+<div class="callout-title-container flex-fill">
+Tip
 </div>
+</div>
+<div class="callout-body-container callout-body">
+<p>It is strongly recommended to set up a separate RStudio Project for each of your <span class="hoverinfo" data-toggle="tooltip" title="Here a single analysis would involve the full process of loading, cleaning, analyzing, and reporting on a dataset.">analyses</span> to ensure that your project files remain orgnaized and managable.</p>
 </div>
 </div>
 <p>There are several ways to open an RStudio Project, including:</p>
@@ -307,15 +318,8 @@ Figure&nbsp;1: Screenshot of a typical Rstudio interface
 <li>Navigating in the folder explorer to the analysis folder and double clicking on the file with the <code>.Rproj</code> extension</li>
 </ul></section><section id="rstudio-options" class="level3"><h3 class="anchored" data-anchor-id="rstudio-options">RStudio Options</h3>
 <p>Before continuing, let’s update some of RStudio’s problematic default settings:</p>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>Code.</strong> Open the globabl options (<code>Tools &gt; Global Options</code>) and open the tab <code>General</code> (left menu). Make sure that <em>none</em> of the boxes in the sections <code>R Sessions</code>, <code>Workspace</code>, or <code>History</code> are checked.</p>
-</div>
-</div>
+<div class="write">
+<p>Open the globabl options (<code>Tools &gt; Global Options</code>) and open the tab <code>General</code> (left menu). Make sure that <em>none</em> of the boxes in the sections <code>R Sessions</code>, <code>Workspace</code>, or <code>History</code> are checked.</p>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="../sessions_core/img/import_002_rstudio_options_do_not_save.png" class="img-fluid figure-img"></p>
@@ -336,14 +340,9 @@ Important
 </div>
 </div>
 </section></section><section id="creating-a-new-script" class="level2"><h2 class="anchored" data-anchor-id="creating-a-new-script">Creating a New Script</h2>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>Do</strong> Open a new script and save it in the <code>R</code> folder of your project under the name <code>import_data.R</code>.</p>
-<p><strong>Code.</strong> Add some metadata to the top as seen in the first session using <a href="../sessions_core/introduction.html#sec-comments">comments</a>. Be sure to include:</p>
+<div class="write">
+<p>Open a new script and save it in the <code>R</code> folder of your project under the name <code>import_data.R</code>.</p>
+<p>Add some metadata to the top as seen in the first session using <a href="01_introduction.qmd#sec-comments">comments</a>. Be sure to include:</p>
 <ul>
 <li>Title</li>
 <li>Author</li>
@@ -351,23 +350,34 @@ Important
 <li>Description</li>
 </ul>
 </div>
-</div>
-</div>
 <p>Now you’re ready to start coding!</p>
 </section><section id="sec-packages" class="level2"><h2 class="anchored" data-anchor-id="sec-packages">Packages</h2>
 <p>Packages are collections of functions that extend the functionality of R. You’ll use them <strong>a lot</strong>, both in this course and in your daily life. Fortunately, as an open source language, R packages can be downloaded and installed for free from the internet.</p>
-<section id="installation" class="level3"><h3 class="anchored" data-anchor-id="installation">Installation</h3>
-<p>We can install a new package using the <a href="../sessions_core/introduction.html#sec-functions">function</a> <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code>, which downloads and installs it into the package library on your computer.</p>
-<div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"here"</span><span class="op">)</span> <span class="co"># install the "here" package</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Warning
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In R, packages are referenced using <code><a href="https://rdrr.io/r/base/Paren.html">{}</a></code>. For example <a href="https://ggplot2.tidyverse.org">ggplot2</a> is the name of the ggplot2 package that contains new plotting functions such as <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code>, <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code> etc…</p>
+</div>
+</div>
+<section id="installation" class="level3"><h3 class="anchored" data-anchor-id="installation">Installation</h3>
+<p>We can install a new package using the <a href="../sessions_core/01_introduction.qmd#sec-functions">function</a> <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code>, which downloads and installs it into the package library on your computer. This is done once per computer.</p>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"here"</span><span class="op">)</span> <span class="co"># install the {here} package</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -389,70 +399,64 @@ Note
 </div>
 </div>
 </section><section id="usage" class="level3"><h3 class="anchored" data-anchor-id="usage">Usage</h3>
-<p>Once a package is installed you can use it by “going to get it from your library” using the function <code><a href="https://rdrr.io/r/base/library.html">library()</a></code>. This process is called <em>loading the package</em>.</p>
+<p>Once a package is installed we can use it but <strong>we have to</strong> specify to R that we will be using it every single session. This process is called <em>loading the package</em> and is achieved using the function <code><a href="https://rdrr.io/r/base/library.html">library()</a></code>.</p>
 <div class="cell">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span> <span class="co"># load the "here" package</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span> <span class="co"># load the "here" package</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
+<div class="write">
+<p>Use the <code><a href="https://rdrr.io/r/base/library.html">library()</a></code> function to load the packages <code>here</code> and <code>rio</code>, which will be used in <a href="#sec-import" class="quarto-xref">Section&nbsp;5.2</a>.</p>
 </div>
-<div class="callout-body-container">
-<p><strong>Code.</strong> Use the <code><a href="https://rdrr.io/r/base/library.html">library()</a></code> function to load the packages <code>here</code> and <code>rio</code>, which will be used in <a href="#sec-import" class="quarto-xref">Section&nbsp;5.2</a>.</p>
-</div>
-</div>
-</div>
-<p>Based on your computer’s set up and the package you are trying to load, you may get a warning message<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> noting that some functions have been <span class="hoverinfo" data-toggle="tooltip" title="Masking occurs when R tries to load more than one function with the same name at the same time. This issue is surprisingly common, for example, there are a large number of packages that have a function called `filter()` or `select()`. When these conflicts occur, R will pick whichever version was loaded last and the other versions will be ignored (masked).">masked</span> or that the current version of the package was built for a different version of R. These messages are not usually a problem but are still important to note.</p>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>Code.</strong> Try to run the following code. Can you work out what the error means?</p>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">ggplot</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>The above code throws an error because you have asked for a library that doesn’t exist. Remember that R is <strong>fickle and case sensitive</strong> and many of your errors will come from small typos in the names of functions or objects. Here, for example, we wanted to load the package <code>ggplot2</code> but wrote <code>ggplot</code> instead.</p>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>Best Practice.</strong> Most of the time, you’ll need to load a number of packages for your script and it is recommended to have a section at the start of your code that loads everything you’ll need in one place:</p>
-<div class="cell">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="co"># Packages ----------------------------</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>   <span class="co"># data manipulation</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org">lubridate</a></span><span class="op">)</span>   <span class="co"># date manipulation</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>This practice makes it easy to tell which packages need to be installed to run a script.</p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>Code.</strong> Use <span class="hoverinfo" data-toggle="tooltip" title="Remember that you can use the keyboard shortcuts CRT+SHIT+C and CTRL+SHIFT+R to insert comments and sections" data-tooltip="top">comments</span> to create a “Packages” section to your script.</p>
-</div>
-</div>
-</div>
-</section><section id="updating-packages" class="level3"><h3 class="anchored" data-anchor-id="updating-packages">Updating Packages</h3>
-<p>R has a very active community of developers and it’s pretty common for packages to be updated from time to time as their owners add in new functions and fix existing bugs. In order to update the packages in your library, you can go into the <span class="hoverinfo" data-toggle="tooltip" title="Remember that this tab shows a list of all the packages you have installed on your computer with their version numbers."><code>Packages</code> tab</span> of the bottom right panel and click <code>Update</code>. Don’t forget that you’ll <strong>need to be connected to the internet</strong> during this process.</p>
-<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Warning
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Based on your computer’s set up and the package you are trying to load, you may get a <span class="hoverinfo" data-toggle="tooltip" title="Unlike error messages, warnings will not cause R to stop an ongoing command. They are used to signal potential but not severe issues and do not always need to be fixed.">warning message</span> noting that some functions have been <span class="hoverinfo" data-toggle="tooltip" title="Masking occurs when R tries to load more than one function with the same name at the same time. This issue is surprisingly common, for example, there are a large number of packages that have a function called `filter()` or `select()`. When these conflicts occur, R will pick whichever version was loaded last and the other versions will be ignored (masked).">masked</span> or that the current version of the package was built for a different version of R. These messages are not usually a problem but are still important to note.</p>
+</div>
+</div>
+<div class="write">
+<p>Try to run the following code. Can you work out what the error means?</p>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">ggplot</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The above code throws an error because you have asked for a library that doesn’t exist. Remember that R is <strong>fickle and case sensitive</strong> and many of your errors will come from small typos in the names of functions or objects. Here, for example, we wanted to load the package <code>ggplot2</code> but wrote <code>ggplot</code> instead.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Most of the time, you’ll need to load a number of packages for your script and it is recommended to have a section at the start of your code that loads everything you’ll need in one place:</p>
+<div class="cell">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Packages ----------------------------</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>   <span class="co"># data manipulation</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org">lubridate</a></span><span class="op">)</span>   <span class="co"># date manipulation</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This practice makes it easy to tell which packages need to be installed to run a script.</p>
+</div>
+</div>
+<div class="write">
+<p>Use <span class="hoverinfo" data-toggle="tooltip" title="Remember that you can use the keyboard shortcuts CRT+SHIT+C and CTRL+SHIFT+R to insert comments and sections" data-tooltip="top">comments</span> to create a “Packages” section to your script.</p>
+</div>
+</section><section id="updating-packages" class="level3"><h3 class="anchored" data-anchor-id="updating-packages">Updating Packages</h3>
+<p>R has a very active community of developers and it’s pretty common for packages to be updated from time to time as their owners add in new functions and fix existing bugs. In order to update the packages in your library, you can go into the <span class="hoverinfo" data-toggle="tooltip" title="Remember that this tab shows a list of all the packages you have installed on your computer with their version numbers."><code>Packages</code> tab</span> of the bottom right panel and click <code>Update</code>. Don’t forget that you’ll <strong>need to be connected to the internet</strong> during this process.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -460,11 +464,11 @@ Warning
 </div>
 </div>
 </section></section><section id="data-importation" class="level2 page-columns page-full"><h2 class="anchored" data-anchor-id="data-importation">Data Importation</h2>
-<section id="sec-filepaths" class="level3"><h3 class="anchored" data-anchor-id="sec-filepaths">Finding your files: Understanding File Paths</h3>
-<p>To open a file in R you need to provide a <strong>file path</strong>. A file path is simply a longer name for a file, that includes not only its name but also its location on your computer. There are several ways of defining these path, including <em>absolute</em>, <em>relative</em>, and <em>absolute</em>.</p>
+<section id="sec-filepaths" class="level3"><h3 class="anchored" data-anchor-id="sec-filepaths">Understanding File Paths</h3>
+<p>To open a file in R you need to provide a <strong>file path</strong>. A file path is simply a longer name for a file, that includes not only its name but also its location on your computer. There are several ways of defining these path, including <em>absolute</em> and <em>relative</em> paths.</p>
 <section id="absolute-paths" class="level4"><h4 class="anchored" data-anchor-id="absolute-paths">Absolute Paths</h4>
 <p>Absolute paths are <strong>specific to your computer</strong> and create a file path that goes all the way up to the level of your <span data-tooltip-position="top" data-tooltip="For example, 'C:' or 'D:' on a Windows computer.">harddrive</span>. For example, an absolute path may look something like this: <code>D:/OneDrive - MSF/Documents/MATHILDE/1_MONITORING/CHOLERA/data/raw/exemple_linelist.xlsx</code>. Clearly, this path will only work on one computer.</p>
-<p>The use of hardcoded absolute paths is <strong>strongly discouraged</strong> as they would all need to be changed any time your code is shared or the project folder is moved; if not, the code would no longer run properly.</p>
+<p>The use of absolute paths is <strong>strongly discouraged</strong> as they would need to be changed every time your code is shared or the project folder is moved; if not, the code would no longer run properly.</p>
 </section><section id="relative-paths" class="level4"><h4 class="anchored" data-anchor-id="relative-paths">Relative Paths</h4>
 <p><em>Relative paths</em> are defined relative to your current working directory (<a href="#sec-definitions" class="quarto-xref">Section&nbsp;2.2</a>). For example, keeping in mind that our handy <code>.Rproj</code> file will set our working directory to the root of our project folder; we could create a relative path that looked like <code>data/raw/exemple_linelist.xlsx</code>. This means that <strong>as long as we maintain the <em>internal</em> structure</strong> of our project folder and have an <code>.Rproj</code> file our code would theoretically run on multiple computers.</p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -477,59 +481,38 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Foreshadowing.</strong> File paths actually work a bit differently in <code>RMarkdown</code> files than they do in <code>R</code> scripts, but this is something we will talk about much later in the course. If you don’t know what <code>RMarkdown</code> is at the moment, don’t worry about it.</p>
+<p><strong>Foreshadowing.</strong> File paths actually work a bit differently in <code>Rmarkdown</code> files than they do in <code>R</code> scripts, but this is something we will talk about much later in the course. If you don’t know what <code>RMarkdown</code> is at the moment, don’t worry about it.</p>
 </div>
 </div>
 </section><section id="robust-paths" class="level4"><h4 class="anchored" data-anchor-id="robust-paths">Robust Paths</h4>
 <p>While using a combination of relative paths and an RStudio project has fixed a lot of our problems, there are still a couple remaining issues. One is that different <span class="hoverinfo" data-toggle="tooltip" title="For example, Windows, MacOS, Debian..." data-tooltip-posiiton="top">operating systems</span> interpret characters like <code>/</code>, <code>\</code>, and <code>//</code> differently, meaning the file paths described above (whether relative or absolute) may not work across multiple systems. Fortunately, we have a few options.</p>
 <p>The first is to use the base R function <code><a href="https://rdrr.io/r/base/file.path.html">file.path()</a></code>, which will accept a set of the relevant parts (folders) in your desired path and combine them into a file path using the syntax of your local operating system, whichever it is:</p>
 <div class="cell">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="st">"data"</span>, <span class="st">"raw"</span>, <span class="st">"exemple_linelist.xlsx"</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="st">"data"</span>, <span class="st">"raw"</span>, <span class="st">"exemple_linelist.xlsx"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "data/raw/exemple_linelist.xlsx"</code></pre>
 </div>
 </div>
 <p>Note that the path is relative, here to the current working directory</p>
-<p>While <code><a href="https://rdrr.io/r/base/file.path.html">file.path()</a></code> works fine, the function <code><a href="https://here.r-lib.org//reference/here.html">here()</a></code> (from the package of <code>here</code>) works even better. One of the other outstanding problems with our relative path solution is that if ever we change our working directory during an R session the relative paths from our scripts will no longer be correct. <code>here</code> accepts a set of names in the same style as <code><a href="https://rdrr.io/r/base/file.path.html">file.path()</a></code> but will then use them to dynamically construct an absolute path adapted to your operating system and based on the location of your <code>.Rproj</code> file. In this course we <strong>strongly encourage you</strong> to use <code><a href="https://here.r-lib.org//reference/here.html">here()</a></code> whenever you need to create a file path.</p>
+<p>While <code><a href="https://rdrr.io/r/base/file.path.html">file.path()</a></code> works fine, the function <code><a href="https://here.r-lib.org//reference/here.html">here()</a></code> (from the package <a href="https://here.r-lib.org/">here</a>) works even better. One of the other outstanding problems with our relative path solution is that if ever we change our working directory during an R session the relative paths from our scripts will no longer be correct. <code>here</code> accepts a set of names in the same style as <code><a href="https://rdrr.io/r/base/file.path.html">file.path()</a></code> but will then use them to dynamically construct an absolute path adapted to your operating system and based on the location of your <code>.Rproj</code> file. In this course we <strong>strongly encourage you</strong> to use <code><a href="https://here.r-lib.org//reference/here.html">here()</a></code> whenever you need to create a file path.</p>
 <div class="cell">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span>
-<span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data"</span>, <span class="st">"raw"</span>, <span class="st">"exemple_linelist.xlsx"</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data"</span>, <span class="st">"raw"</span>, <span class="st">"exemple_linelist.xlsx"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "/home/catherine/Documents/epicentre/training/repicentre/data/raw/exemple_linelist.xlsx"</code></pre>
+<pre><code>[1] "/Users/hugzsoubrier/GitHub/repicentre/data/raw/exemple_linelist.xlsx"</code></pre>
 </div>
 </div>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>Code.</strong> Run the above code in the console. What file path does <code>here("data", "raw")</code> give you?</p>
-</div>
-</div>
+<div class="write">
+<p>Run the above code in the console. What file path does <code>here("data", "raw")</code> give you?</p>
 </div>
 <p>We will often want to source multiple data files in a single project. To make that process easier, it can be helpful to create a variable with the path to your raw (or clean) data.</p>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>Code.</strong> Create a new section in your code called <code>File Paths</code></p>
-<p><strong>Code.</strong> Add the code to create an object called <code>path_data_raw</code> that contains the path to your raw data folder using the function <code><a href="https://here.r-lib.org//reference/here.html">here()</a></code>.</p>
-</div>
-</div>
+<div class="write">
+<p>Create a new section in your code called <code>File Paths</code></p>
+<p>Add the code to create an object called <code>path_data_raw</code> that contains the path to your raw data folder using the function <code><a href="https://here.r-lib.org//reference/here.html">here()</a></code>.</p>
 </div>
 <p>We can now pass our new variable <code>path_data_raw</code> back into <code><a href="https://here.r-lib.org//reference/here.html">here()</a></code> in order to create a full path to a specific data file.</p>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>Code.</strong> Using <code><a href="https://here.r-lib.org//reference/here.html">here()</a></code> and <code>path_data_raw</code>, create a complete filepath for the file <code>msf_linelist_moissala_2023-09-24.xlsx</code>.</p>
-</div>
-</div>
+<div class="write">
+<p>Using <code><a href="https://here.r-lib.org//reference/here.html">here()</a></code> and <code>path_data_raw</code>, create a complete filepath for the file <code>msf_linelist_moissala_2023-09-24.xlsx</code>.</p>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -545,8 +528,20 @@ Note
 </div>
 </div>
 </section></section><section id="sec-import" class="level3 page-columns page-full"><h3 class="anchored" data-anchor-id="sec-import">Import function</h3>
-<div class="page-columns page-full"><p>In R different file formats are often imported using different, often specialized, functions. This can be tedious as it requires you to memorize and load a large number of functions just to get your data imported. To avoid this problem, we recommend that you use the <code>import()</code> function from the package <span data-tooltip-position="top" data-tooltip="`rio` stands for R Inputs and Outputs."><code>rio</code></span>. This function is able to open a large variety of of files (including Excel, csv, Stata, and many others) by recognizing the file extension of your data and calling a relevant specialized function from another package so that you don’t have to..</p><div class="no-row-height column-margin column-container"><span class="margin-aside">This type of function, providing an unified interface to other specific functions is known as a <em>wrapper</em></span></div></div>
+<div class="page-columns page-full"><p>In R different file formats are often imported using different, often specialized, functions. This can be tedious as it requires you to memorize and load a large number of functions just to get your data imported. To avoid this problem, we recommend that you use the <code>import()</code> function from the package <span data-tooltip-position="top" data-tooltip="`rio` stands for R Inputs and Outputs."><a href="https://gesistsa.github.io/rio/">rio</a></span>. This function is able to open a large variety of files (including Excel, csv, Stata, and many others) by recognizing the file extension of your data and calling a relevant specialized function from another package so that you don’t have to. .</p><div class="no-row-height column-margin column-container"><span class="margin-aside">This type of function, providing an unified interface to other specific functions is known as a <em>wrapper</em></span></div></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>To see the full list of all the file types you can load (and save!) with <code>rio</code>, check out their <a href="https://gesistsa.github.io/rio/index.html">website</a> and in particular the list of <a href="https://gesistsa.github.io/rio/index.html#supported-file-formats">supported formats</a>. In the rest of the lesson we will focus on importing data from Excel <code>.xlsx</code> files and <code>.csv</code> text files.</p>
+</div>
+</div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -564,48 +559,34 @@ Note
 <section id="from-the-first-sheet" class="level5"><h5 class="anchored" data-anchor-id="from-the-first-sheet">From the First Sheet</h5>
 <p>In general, the usage of <code>import()</code> is pretty simple:</p>
 <div class="cell">
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu">import</span><span class="op">(</span>file <span class="op">=</span> <span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="va">path_data_raw</span>, <span class="st">"exemple_linelist.xlsx"</span><span class="op">)</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">import</span><span class="op">(</span>file <span class="op">=</span> <span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="va">path_data_raw</span>, <span class="st">"exemple_linelist.xlsx"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Notice that we have nested the command <code><a href="https://here.r-lib.org//reference/here.html">here()</a></code> <strong>inside</strong> the <code>import()</code> command. Nesting functions is absolutely allowed in R and is something you will do <em>all the time</em>. When functions are nested, R will evaluate them in the order of the innermost function (in this case <code><a href="https://here.r-lib.org//reference/here.html">here()</a></code>) to the outermost (in this case <code>import()</code>). In this way, the <em>output</em> of <code><a href="https://here.r-lib.org//reference/here.html">here()</a></code> is being used as the <em>input</em> of <code>import()</code>.</p>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
+<div class="write">
+<p>Import the file <code>msf_linelist_moissala_2023-09-24.xlsx</code> that is in your raw data subfolder into R using <code><a href="https://here.r-lib.org//reference/here.html">here()</a></code> and <code>import()</code>.</p>
 </div>
-<div class="callout-body-container">
-<p><strong>Code.</strong> Import the file <code>msf_linelist_moissala_2023-09-24.xlsx</code> that is in your raw data subfolder into R using <code><a href="https://here.r-lib.org//reference/here.html">here()</a></code> and <code>import()</code>.</p>
-</div>
-</div>
-</div>
-<p>If your import worked correctly, R will print the data into the console but not save it into the environment because we have not <a href="../sessions_core/introduction.html#sec-assignement-operator">assigned them to an object</a>.</p>
-<div class="callout callout-style-default callout-warning callout-titled">
+<p>If your import worked correctly, R will print the data into the console but not save it into the environment because we have not <a href="../sessions_core/01_introduction.qmd#sec-assignement-operator">assigned them to an object</a>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Warning
+Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p>You may not want to have R print very large datasets into the console and assign them directly to an object.</p>
 </div>
 </div>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>Code.</strong> Re-ipmort your data but this time save it to an object called <code>df_linelist</code>.</p>
-</div>
-</div>
+<div class="write">
+<p>Re-ipmort your data but this time save it to an object called <code>df_linelist</code>.</p>
 </div>
 </section><section id="from-any-sheet" class="level5"><h5 class="anchored" data-anchor-id="from-any-sheet">From Any Sheet</h5>
 <p>As you just saw, R selects the first sheet by default. It is however possible to pass the number (or name) of a specific worksheet in your Excel data to <code>import()</code> using the argument <code>which</code>:</p>
 <div class="cell">
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu">import</span><span class="op">(</span>file <span class="op">=</span> <span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="va">path_data_raw</span>, <span class="st">"exemple_linelist.xlsx"</span><span class="op">)</span>,
-       which <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">import</span><span class="op">(</span>file <span class="op">=</span> <span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="va">path_data_raw</span>, <span class="st">"exemple_linelist.xlsx"</span><span class="op">)</span>,</span>
+<span>       which <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -623,96 +604,47 @@ Note
 </section></section><section id="importing-.csv-files" class="level4"><h4 class="anchored" data-anchor-id="importing-.csv-files">Importing <code>.csv</code> files</h4>
 <p>We can import a <code>.csv</code> file in exactly the same way as an <code>.xlsx</code> file, we need only change the extension:</p>
 <div class="cell">
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu">import</span><span class="op">(</span>file <span class="op">=</span> <span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="va">path_data_raw</span>, <span class="st">"exemple_linelist.csv"</span><span class="op">)</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">import</span><span class="op">(</span>file <span class="op">=</span> <span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="va">path_data_raw</span>, <span class="st">"exemple_linelist.csv"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>.csv</code> files sometimes use different <span data-tooltip-position="top" data-tooltip="A delimiter is the character used in a csv file to separate values. Many countries use a comma (,), but some use a semicolon (;).">delimiters</span> and <span data-tooltip-position="top" data-tooltip="Some countries use a decimal point (.) to indicate a number with a decimal, others will use a comma (,). Typically, countries using a comma for decimals will use a semicolon as a delimiter.">decimal characters</span> depending on where the file comes from. You can indicate to <code>import()</code> which characters to use for these using the <code>sep</code> and <code>dec</code> arguments respectively:</p>
 <div class="cell">
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu">import</span><span class="op">(</span>file <span class="op">=</span> <span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="va">path_data_raw</span>, <span class="st">"exemple_linelist.csv"</span><span class="op">)</span>,
-       sep <span class="op">=</span> <span class="st">";"</span>,
-       dec <span class="op">=</span> <span class="st">","</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">import</span><span class="op">(</span>file <span class="op">=</span> <span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="va">path_data_raw</span>, <span class="st">"exemple_linelist.csv"</span><span class="op">)</span>,</span>
+<span>       sep <span class="op">=</span> <span class="st">";"</span>,</span>
+<span>       dec <span class="op">=</span> <span class="st">","</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>Code.</strong> Import the file <code>msf_linelist_moissala_2023-09-24.csv</code> from the raw data folder and store it in an object called <code>df_linelist_csv</code>.</p>
-</div>
-</div>
+<div class="write">
+<p>Import the file <code>msf_linelist_moissala_2023-09-24.csv</code> from the raw data folder and store it in an object called <code>df_linelist_csv</code>.</p>
 </div>
 </section></section></section><section id="taking-a-look-at-your-data" class="level2 page-columns page-full"><h2 class="anchored" data-anchor-id="taking-a-look-at-your-data">Taking a Look at your Data</h2>
 <p>We have now imported a dataset into R and assigned it to a dataframe (<code>df_linelist</code>). The natural next step is to inspect this dataset, to check that the import went well, get to know it a bit better, and assess if it requires any cleaning before analysis.</p>
 <section id="useful-functions" class="level3 page-columns page-full"><h3 class="anchored" data-anchor-id="useful-functions">Useful Functions</h3>
 <p>We can start by taking a quick look at the first few lines of the dataframe using the function <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code>. This function takes a dataframe as its first argument and optionally accepts a second argument <code>n</code> indicating the number of lines we would like to see.</p>
 <div class="cell">
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">df_linelist</span>, n <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">df_linelist</span>, n <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="page-columns page-full"><p>Actually, the default value of <code>n</code> is already 6, meaning our above code was equivalent to <code>head(df_linelist)</code>.</p><div class="no-row-height column-margin column-container"><span class="margin-aside">You can check the default value of an argument (if it exists) by checking the documentation of a function. We well show you how to do this in a later session, but you can read a bit <a href="https://www.r-project.org/help.html">here</a> if you are dying to know.</span></div></div>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
+<div class="write">
+<p>Use <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code> to examine the first 12 lines of <code>df_linelist</code>.</p>
 </div>
-<div class="callout-body-container">
-<p><strong>Code.</strong> Use <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code> to examine the first 12 lines of <code>df_linelist</code>.</p>
+<p>We can also use the functions we learned in the <a href="../sessions_core/01_introduction.qmd#sec-dataframe-functions">introduction session</a> to learn more about the shape of our dataframe and the type of data it contains.</p>
+<div class="write">
+<p>Using <code><a href="https://rdrr.io/r/base/dim.html">dim()</a></code> and <code><a href="https://rdrr.io/r/base/names.html">names()</a></code>, check the dimensions and column names of <code>df_linelist</code>. Do these results match what you see when you open the data in Excel?</p>
 </div>
-</div>
-</div>
-<p>We can also use the functions we learned in the <a href="../sessions_core/introduction.html#sec-dataframe-functions">introduction session</a> to learn more about the shape of our dataframe and the type of data it contains.</p>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>Code.</strong> Using <code><a href="https://rdrr.io/r/base/dim.html">dim()</a></code> and <code><a href="https://rdrr.io/r/base/names.html">names()</a></code>, check the dimensions and column names of <code>df_linelist</code>. Do these results match what you see when you open the data in Excel?</p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>Code.</strong> Use <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> to check the data type of each column. Does anything look odd? Remember that you can also use functions like <code><a href="https://rdrr.io/r/base/character.html">is.character()</a></code> and <code><a href="https://rdrr.io/r/base/numeric.html">is.numeric()</a></code> if you’d like to test the type of a particular column.</p>
-</div>
-</div>
+<div class="write">
+<p>Use <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> to check the data type of each column. Does anything look odd? Remember that you can also use functions like <code><a href="https://rdrr.io/r/base/character.html">is.character()</a></code> and <code><a href="https://rdrr.io/r/base/numeric.html">is.numeric()</a></code> if you’d like to test the type of a particular column.</p>
 </div>
 </section><section id="the-environment" class="level3"><h3 class="anchored" data-anchor-id="the-environment">The Environment</h3>
 <p>We can also check out our data by looking at the <em>Environment</em> tab of the top-right panel. Here, we can see our dataframe in the environment and look at its <span data-tooltip-position="top" data-tooltip="This is the same as using the command `str()`">structure</span>.</p>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>Code.</strong> Click on the round blue button next to <code>df_linelist</code> in your environment to see its structure.</p>
-</div>
-</div>
+<div class="write">
+<p>Click on the round blue button next to <code>df_linelist</code> in your environment to see its structure.</p>
 </div>
 </section><section id="the-viewer" class="level3"><h3 class="anchored" data-anchor-id="the-viewer">The Viewer</h3>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>Code.</strong> Click on the name of your dataframe in the Environment tab. This should open the dataset in a new tab in the same corner as your script (top left).</p>
-</div>
-</div>
+<div class="write">
+<p>Click on the name of your dataframe in the Environment tab. This should open the dataset in a new tab in the same corner as your script (top left).</p>
 </div>
 <p>The <em>Viewer</em> displays dataframes as tables and is a convenient way to quickly look at your data. You can even sort and filter your data in the <em>Viewer</em>, though be aware that these actions will not make any changes to the actual object <code>df_linelist</code>. The <em>Viewer</em> can also be opened by using the function <code><a href="https://rdrr.io/r/utils/View.html">View()</a></code>.</p>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>Code.</strong> Open <code>df_linelist</code> in the viewer using the function <code><a href="https://rdrr.io/r/utils/View.html">View()</a></code>.</p>
-</div>
-</div>
+<div class="write">
+<p>Open <code>df_linelist</code> in the viewer using the function <code><a href="https://rdrr.io/r/utils/View.html">View()</a></code>.</p>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -730,17 +662,10 @@ Note
 </section><section id="data-summaries" class="level3"><h3 class="anchored" data-anchor-id="data-summaries">Data Summaries</h3>
 <p>The function <code>summary</code> accepts a dataframe and is a handy way to get some quick statistics on each of the columns in a dataset:</p>
 <div class="cell">
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>Code.</strong> Use <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> to inspect the minimum and maximum values for each column in <code>df_linelist</code>. Do you notice anything odd?</p>
-</div>
-</div>
+<div class="write">
+<p>Use <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> to inspect the minimum and maximum values for each column in <code>df_linelist</code>. Do you notice anything odd?</p>
 </div>
 <p>Make notes of types of data that you think is not correct and of values to check later, it will save you time in the next session.</p>
 </section></section><section id="done" class="level2"><h2 class="anchored" data-anchor-id="done">Done !</h2>
@@ -753,12 +678,7 @@ Note
 </ul>
 
 
-</section><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
-<ol>
-<li id="fn1"><p>By default, R usually picks the “Documents” folder as the working directory on Windows machines.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>Technically an RStudio Project is just a file containing some metadata that tell RStudio what files to open and where to set your working directory. It will spare you the headache of managing the working directory yourself.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>Unlike error messages, warnings will not cause R to stop an ongoing command. They are used to signal potential but not severe issues and do not always need to be fixed.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -793,18 +713,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -836,7 +745,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -844,7 +775,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
