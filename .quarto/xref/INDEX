@@ -58,5 +58,8 @@
   },
   "sessions_core/ggplot.qmd": {
     "ggplot.html": "69ceaa48"
+  },
+  "sessions_core/06_ggplot.qmd": {
+    "06_ggplot.html": "bc455bed"
   }
 }

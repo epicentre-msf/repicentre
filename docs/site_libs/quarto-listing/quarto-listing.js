@@ -16,9 +16,7 @@ window["quarto-listing-loaded"] = () => {
   if (hash) {
     // If there is a category, switch to that
     if (hash.category) {
-      // category hash are URI encoded so we need to decode it before processing
-      // so that we can match it with the category element processed in JS
-      activateCategory(decodeURIComponent(hash.category));
+      activateCategory(hash.category);
     }
     // Paginate a specific listing
     const listingIds = Object.keys(window["quarto-listings"]);
@@ -61,10 +59,7 @@ window.document.addEventListener("DOMContentLoaded", function (_event) {
   );
 
   for (const categoryEl of categoryEls) {
-    // category needs to support non ASCII characters
-    const category = decodeURIComponent(
-      atob(categoryEl.getAttribute("data-category"))
-    );
+    const category = atob(categoryEl.getAttribute("data-category"));
     categoryEl.onclick = () => {
       activateCategory(category);
       setCategoryHash(category);
@@ -214,9 +209,7 @@ function activateCategory(category) {
 
   // Activate this category
   const categoryEl = window.document.querySelector(
-    `.quarto-listing-category .category[data-category='${btoa(
-      encodeURIComponent(category)
-    )}']`
+    `.quarto-listing-category .category[data-category='${btoa(category)}']`
   );
   if (categoryEl) {
     categoryEl.classList.add("active");
@@ -239,9 +232,7 @@ function filterListingCategory(category) {
         list.filter(function (item) {
           const itemValues = item.values();
           if (itemValues.categories !== null) {
-            const categories = decodeURIComponent(
-              atob(itemValues.categories)
-            ).split(",");
+            const categories = atob(itemValues.categories).split(",");
             return categories.includes(category);
           } else {
             return false;
