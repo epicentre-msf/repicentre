@@ -40,5 +40,8 @@
   },
   "sessions_core/template.qmd": {
     "template.html": "61e6719c"
+  },
+  "sessions_core/06_ggplot.qmd": {
+    "06_ggplot.html": "3d63004a"
   }
 }
