@@ -11,6 +11,8 @@ categories:
   - RStudio projects
   - Packages
   - Import data
+comments:
+  hypothesis: true
 ---
 
 ```{r setup}
@@ -235,7 +237,7 @@ To open a file in R you need to provide a **file path**. A file path is simply a
 
 Absolute paths are **specific to your computer** and create a file path that goes all the way up to the level of your <span tooltip-position="top" tooltip="For example, 'C:' or 'D:' on a Windows computer.">harddrive</span>. For example, an absolute path may look something like this: `D:/OneDrive - MSF/Documents/MATHILDE/1_MONITORING/CHOLERA/data/raw/exemple_linelist.xlsx`. Clearly, this path will only work on one computer.
 
-The use of hardcoded absolute paths is **strongly discouraged** as they would need to be changed every time your code is shared or the project folder is moved; if not, the code would no longer run properly.
+The use of absolute paths is **strongly discouraged** as they would need to be changed every time your code is shared or the project folder is moved; if not, the code would no longer run properly.
 
 #### Relative Paths
 
