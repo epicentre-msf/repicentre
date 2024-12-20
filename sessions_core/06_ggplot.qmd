@@ -51,13 +51,10 @@ df_outcome <- df_linelist %>%
   tidyr::drop_na(week_outcome)
 ```
 
-
-
 ## Objectives
 
 - Grasp the very basics of data visualization in R using `{ggplot2}`
 - Build a basic epicurve
-
 
 ## Introduction
 
