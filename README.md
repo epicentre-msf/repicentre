@@ -1,45 +1,30 @@
-## What up buttercups. <img src='img/llama.svg' width=200px align='right'>
-This is the repo for the revision of the FETCH R course *and* the development of a broader set of R training material for MSF/Epicentre. The ultimate goal is to have a website hosting self contained tutorials providing two possible learning pathways:
-1. **Linear:** A specific set of ordered core sessions designed to take students from zero to basic competency
-2. **Choose-Your-Own-Adventure**: A repository of core and satellite sessions ranging from basic to advanced topics.
+ What up buttercups. <img src='img/llama.svg' width=200px align='right'>
+----------------------------------------------------------------------------------------------------
+Welcome to the R 
 
-Note, this website is **public** with a **[live development version online](https://epicentre-msf.github.io/repicentre/)**.
+Quick Notes
+----------------------------------------------------------------------------------------------------
+- Want to write a new session? Amazing, read the "Notes on Session Development" section. 
+- Someone volontold you to review a session? We thank you for your service, please read the "Session Review Guidelines" section.
+- Need some tips on best practices for collaborative coding? Read the "General Contribution Guidelines"
 
-## Organization
-This project will require several major components, which can be decomposed into *milestones*. Ongoing milestones include:
-1. **Admin.** 
-2. **Core: Splitting Basic Sessions**
-3. **Core: Data Manipulation**
-4. **Core: Tables**
-5. **Satellite Sessions**
-6. **Website and Styling: MVP**
-7. **Data: MVP**
+Note, this website is **public** with a **[live development version online](https://epicentre-msf.github.io/repicentre/)**. Please don't break it.
 
-For a reminder of what topics we decided to put in to the core vs satellite modules, please refer to the [google sheet](https://docs.google.com/spreadsheets/d/1oqAkFwQVuDzfRouxglN-UT9RMDzl7TLfD5_g0ayPhZU/edit?gid=0#gid=0).
 
-## How to Use this Project
-Feel free to add new issues whenever they seem relevant. Many tags are available (including session tags as well as things like "help wanted"). For issues that you own, please give an estimate of the number of days you expect to use slash how many you ultimately used. This will help to make sure we are within the budget in the [project](https://github.com/orgs/epicentre-msf/projects/5/).
+Notes on Session Development
+----------------------------------------------------------------------------------------------------
+Want to write a session? **Amazing.** Here are some tips:
+- Make sure you **open an issue saying that you will draft that session** and assign yourself to it then make a branch to work on it. Please use the naming style `<short_name-session/satellite>`, for example `import-session` or `dates-satellite`.
+- If you are working on a **core session**, put it in `sessions_core` and use the filename convention `[session number]_[session name].qmd`, for example `02_import.qmd`.
+- If you are working on a satellite, put files in `sessions_extra` and give your file a short but discriptive name.
+- If you need to embedd any images, put them in the relevant subfolder of `img` in **the root directory**, every session with images should have it's own subfolder in either `img/core/` or `img/extra/` as appropriate.
+- When you are done building your session, you can move on to the review and pull request process -- more information on those below.
 
-## GitHub development
-This is a collaborative coding repository with a live prodocution branch. To avoid messiness and possible downstream merge conflicts, we are using a scrum-esque style of development where new ideas are developed through an issue > branch > pull request pathway. Bellow is a quick explanation of what that process looks like, but TLDR:
-1. Identify an issue you want to work on
-2. Make a branch named after **and associated** with that issue
-3. Use that branch (and only that branch) to work on that issue (and only that issue)
-4. When done, submit a pull request and request a review from a codeowner
-5. Once the pull request is resolved and merged, delete the branch
+**NB.** For a reminder of what topics we decided to put in to the core vs satellite modules, please refer to the [google sheet](https://docs.google.com/spreadsheets/d/1oqAkFwQVuDzfRouxglN-UT9RMDzl7TLfD5_g0ayPhZU/edit?gid=0#gid=0).
 
-Therefore, anything that is reviewed and approved is **live** on the website by been present on the `main` branch.
 
-### Working on sessions
-
-To develop new core/extra session we create a branch `<short_name-session>` (ie: `import-session`). On this branch will be developped and reviewed the new `.qmd` for the session. This branch will have everything that is present on the `main` (and which shall not be modified in this branch) and **only new files that relate to this new session** !
-
-#### files organisation 
-
-Sessions `.qmd` are stored in `sessions_core` or `sessions_extra`. All images to be included in the `.qmd` are stored in `img` at the root, under a folder labelled (`session-number_session-name`, ie: `01_introduction`). 
-
-#### Session review
-
+Session Review Guidelines
+----------------------------------------------------------------------------------------------------
 Once a session has been developped, it is important that someone reviews it to ensure:  
 
 1. Adequate length (sessions should be done in under 15min by any of us)
@@ -52,7 +37,7 @@ The first thing to do is to open a github issue `review session-name` and assign
 
  More important changes should be flagged (see below commenting with hypothes.is) and discussed with the person who developped the session. Once you are done with the review drop a message on the issue, try to summarise your thoughts on the session and list major suggested changes. If two reviewers disagree on a point we can discuss/resolve/vote as a team in the github issue. 
 
-##### Commenting
+### Commenting
 To review a session we use a commenting system that is used in quarto called [hypothes.is](https://web.hypothes.is/) and which allow us to direclty comment/annotate the `.html` file the same way you would do in a word document. Make sure you have an account (super fast), open the session and hypothes.is should already be set up. 
 
 With hypothes.is we can
@@ -72,7 +57,16 @@ comments:
     hypothesis: false
 ```
 
-### Git workflow
+General Contribution Guidelines
+----------------------------------------------------------------------------------------------------
+This is a collaborative coding repository with a live prodocution branch. To avoid messiness and possible downstream merge conflicts, we are using a scrum-esque style of development where new ideas are developed through an issue > branch > pull request pathway. Bellow is a quick explanation of what that process looks like, but TLDR:
+1. Identify an issue you want to work on
+2. Make a branch named after **and associated** with that issue
+3. Use that branch (and only that branch) to work on that issue (and only that issue)
+4. When done, submit a pull request and request a review from a codeowner
+5. Once the pull request is resolved and merged, delete the branch
+
+Therefore, anything that is reviewed and approved is **live** on the website by been present on the `main` branch.
 
 **Note.** here we use [`gh`](https://cli.github.com/) and `git` command line examples but all of these tasks can also be handled from other git managers (github desktop) and/or via GitHub.
 
