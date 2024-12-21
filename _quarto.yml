@@ -21,7 +21,7 @@ format:
     code-link: true
     toc: true
     toc-location: left
-    include-before-body:
+    include-in-header:
       text: <script type="text/javascript" src="../script.js"></script>
     execute:
       echo: true
