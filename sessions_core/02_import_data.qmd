@@ -81,7 +81,7 @@ As a quick reminder, your interface should look something like this:
 
 ![Screenshot of a typical Rstudio interface](../sessions_core/img/intro_001_rstudio_interface_screenshot_EN.png){fig-align="center" #fig-interface}
 
-::: {.write}
+::: {.setup}
 Open RStudio and create a new project by clicking `File > New Project > Existing Directory > Browse`, navigating into (opening) the course folder, and clicking `Create Project`.
 :::
 
@@ -113,8 +113,8 @@ There are several ways to open an RStudio Project, including:
 
 Before continuing, let's update some of RStudio's problematic default settings:  
 
-::: {.write}
-Open the globabl options (`Tools > Global Options`) and open the tab `General` (left menu). Make sure that *none* of the boxes in the sections `R Sessions`, `Workspace`, or `History` are checked.
+::: {.setup}
+Open the global options (`Tools > Global Options`) and open the tab `General` (left menu). Make sure that *none* of the boxes in the sections `R Sessions`, `Workspace`, or `History` are checked.
 :::
 
 ![Screenshot of the Rstudio options](../sessions_core/img/import_002_rstudio_options_do_not_save.png){fig-align="center"}
@@ -128,7 +128,7 @@ Remember that any commands or outputs that is needed for the cleaning and analys
 
 ## Creating a New Script
 
-::: {.write}
+::: {.setup}
 Open a new script and save it in the `R` folder of your project under the name `import_data.R`. 
 
 Add some metadata to the top as seen in the first session using [comments](01_introduction.qmd#sec-comments). Be sure to include:
@@ -194,12 +194,12 @@ Based on your computer's set up and the package you are trying to load, you may 
 
 ::: {.write}
 Try to run the following code. Can you work out what the error means?
-:::
 
 ```{r}
 #| error: true
 library(ggplot)
 ```
+:::
 
 The above code throws an error because you have asked for a library that doesn't exist. Remember that R is **fickle and case sensitive** and many of your errors will come from small typos in the names of functions or objects. Here, for example, we wanted to load the package `ggplot2` but wrote `ggplot` instead.
 
@@ -345,7 +345,7 @@ You may not want to have R print very large datasets into the console and assign
 :::
 
 ::: {.write}
-Re-ipmort your data but this time save it to an object called `df_linelist`.
+Reimport your data but this time save it to an object called `df_linelist`.
 :::
 
 ```{r}
