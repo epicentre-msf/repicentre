@@ -32,10 +32,10 @@ df_linelist <- import(file = here("data", "raw",
 
 ## Objectives
 
-- Create a RStudio Project
+- Create a RStudio Project 
 - Set up an organized and well documented code 
 - Install and load packages
-- Write robust file paths
+- Write robust file paths   
 - Import and inspect data
 
 :::{.callout-important}
