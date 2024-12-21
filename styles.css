@@ -43,6 +43,27 @@ p.subtitle {
 }
 
 
+/* tooltips --------------------------------------------------------------------------------------*/
+.hovertip {
+  color: #819CBB;
+  font-weight: bold;
+  cursor: help;
+  border-bottom: 2px dotted;
+}
+
+.tooltip-inner {
+  background-color: #E7F1FF !important;
+  color: black;
+  border: .2em solid #819CBB;
+  font-weight: bold;
+}
+
+.tooltip.show {
+  opacity: 1;
+}
+
+
+
 /* code ------------------------------------------------------------------------------------------*/
 /* inline code */
 .code {

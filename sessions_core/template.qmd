@@ -3,9 +3,6 @@ title: Session Title
 description: Short description (appears on cards in pathway / explore pages)
 date: last-modified
 image: ../img/under_construction.svg
-params: 
-  solutions: FALSE
-  sub_title: "**------ With Solutions ------**"
 categories:
   - Core/Satellite
   - Category 1
@@ -16,10 +13,6 @@ categories:
 #| include: false
 #| eval: true
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
-
-solutions <- params$solutions
-
-# library(...)         # what does this library do?
 ```
 
 
@@ -38,14 +31,17 @@ Description of something participants need to setup, primarily used at the begin
 
 Main Section
 ----------------------------------------------------------------------------------------------------
-Lorem ipsum...
+Your main section can (and probably should) be boken down into subsections.
 
+
+### Subsection 1
 ```{r}
 print('some example code')
 ```
 
 Here are the validated callouts that you can use, **please do not use any callouts not defined here**. If you think there is an important callout that is missing, please [submit an issue](https://github.com/epicentre-msf/repicentre/issues).
 
+### Subsection 2
 ::: {.callout-note}
 Note about something of interest, like helpful hint or a relevant warning.
 :::
@@ -58,6 +54,9 @@ Comment about a genral tip / trick or best practice.
 Warning / comment on something really important.
 :::
 
+Have some other information that doesn't quite warrant the main text or a callout? Consider using a [tooltip]{.hovertip bs-toggle='tooltip' bs-title='Example tooltip'}.
+
+
 ::: {.look}
 Description of something participants should observe, investigate, etc.
 :::
@@ -67,15 +66,4 @@ Description of something participants should observe, investigate, etc.
 ::: {.write}
 Description of a coding exercise that participants are expected to complete.
 :::
-
-**Don't forget to include a solution**
-```{r include=solutions}
-#| eval: TRUE
-# Solution
-
-print('hello back!')
-```
-
-
-
 
