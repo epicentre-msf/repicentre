@@ -1,9 +1,6 @@
  What up buttercups. <img src='img/llama.svg' width=200px align='right'>
 ----------------------------------------------------------------------------------------------------
-Welcome to the R 
-
-Quick Notes
-----------------------------------------------------------------------------------------------------
+Welcome to the R training repo, thanks for being here! A few quick notes:
 - Want to write a new session? Amazing, read the "Notes on Session Development" section. 
 - Someone volontold you to review a session? We thank you for your service, please read the "Session Review Guidelines" section.
 - Need some tips on best practices for collaborative coding? Read the "General Contribution Guidelines"
