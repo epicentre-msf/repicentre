@@ -8,7 +8,7 @@ Welcome to the R training repo, thanks for being here! A few quick notes:
 Note, this website is **public** with a **[live development version online](https://epicentre-msf.github.io/repicentre/)**. Please don't break it.
 
 
-Notes on Session Development
+Notes on session development.
 ----------------------------------------------------------------------------------------------------
 Want to write a session? **Amazing.** Here are some tips:
 - Make sure you **open an issue saying that you will draft that session** and assign yourself to it then make a branch to work on it. Please use the naming style `<short_name-session/satellite>`, for example `import-session` or `dates-satellite`.
@@ -20,7 +20,7 @@ Want to write a session? **Amazing.** Here are some tips:
 **NB.** For a reminder of what topics we decided to put in to the core vs satellite modules, please refer to the [google sheet](https://docs.google.com/spreadsheets/d/1oqAkFwQVuDzfRouxglN-UT9RMDzl7TLfD5_g0ayPhZU/edit?gid=0#gid=0).
 
 
-Session Review Guidelines
+Session review guidelines.
 ----------------------------------------------------------------------------------------------------
 Once a session has been developped, it is important that someone reviews it to ensure:  
 
@@ -54,7 +54,7 @@ comments:
     hypothesis: false
 ```
 
-General Contribution Guidelines
+General contribution guidelines.
 ----------------------------------------------------------------------------------------------------
 This is a collaborative coding repository with a live prodocution branch. To avoid messiness and possible downstream merge conflicts, we are using a scrum-esque style of development where new ideas are developed through an issue > branch > pull request pathway. Bellow is a quick explanation of what that process looks like, but TLDR:
 1. Identify an issue you want to work on
