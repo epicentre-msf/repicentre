@@ -43,6 +43,40 @@ p.subtitle {
 }
 
 
+/* tooltips --------------------------------------------------------------------------------------*/
+.hovertip {
+  color: #819CBB;
+  font-weight: bold;
+  cursor: help;
+  border-bottom: 2px dotted;
+}
+
+.tooltip-inner {
+  background-color: #E7F1FF !important;
+  color: black;
+  border: .2em solid #819CBB;
+  font-weight: bold;
+}
+
+.tooltip.bs-tooltip-bottom .tooltip-arrow::before {
+  border-bottom-color: #819CBB !important;
+}
+.tooltip.bs-tooltip-right .tooltip-arrow::before {
+  border-right-color: #819CBB !important;
+}
+.tooltip.bs-tooltip-left .tooltip-arrow::before {
+  border-left-color: #819CBB !important;
+}
+.tooltip.bs-tooltip-top .tooltip-arrow::before {
+  border-top-color: #819CBB !important;
+}
+
+.tooltip.show {
+  opacity: 1;
+}
+
+
+
 /* code ------------------------------------------------------------------------------------------*/
 /* inline code */
 .code {
