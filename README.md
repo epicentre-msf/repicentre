@@ -2,7 +2,7 @@
 ----------------------------------------------------------------------------------------------------
 Welcome to the R training repo, thanks for being here! A few quick notes:
 - Want to write a new session? Amazing, read the "Notes on Session Development" section. 
-- Someone volontold you to review a session? We thank you for your service, please read the "Session Review Guidelines" section.
+- Someone told you to review a session? We thank you for your service, please read the "Session Review Guidelines" section.
 - Need some tips on best practices for collaborative coding? Read the "General Contribution Guidelines"
 
 Note, this website is **public** with a **[live development version online](https://epicentre-msf.github.io/repicentre/)**. Please don't break it.
@@ -13,7 +13,7 @@ Notes on session development.
 Want to write a session? **Amazing.** Here are some tips:
 - Make sure you **open an issue saying that you will draft that session** and assign yourself to it then make a branch to work on it. Please use the naming style `<short_name-session/satellite>`, for example `import-session` or `dates-satellite`.
 - If you are working on a **core session**, put it in `sessions_core` and use the filename convention `[session number]_[session name].qmd`, for example `02_import.qmd`.
-- If you are working on a satellite, put files in `sessions_extra` and give your file a short but discriptive name.
+- If you are working on a satellite, put files in `sessions_extra` and give your file a short but descriptive name.
 - If you need to embedd any images, put them in the relevant subfolder of `img` in **the root directory**, every session with images should have it's own subfolder in either `img/core/` or `img/extra/` as appropriate.
 - When you are done building your session, you can move on to the review and pull request process -- more information on those below.
 
@@ -45,7 +45,7 @@ With hypothes.is we can
 
 Comments are pretty robust and will stay on the html file even when we render again ! If the text that you selected for the comment is not there anymore, the comments will be an *orphan* comment, still visible on the document but not attached to any text, and it looks like we cannot attach it back to a portion of the text but at least there is no lose of information.
 
-Once you are happy with the comments push the changes (you need to push `docs` here) to the remote and the other reviewer should have access to the comments in the `.html` file. 
+When you comment make sure you add `[YOUR-NAME]` in front of it, otherwise we loose track of authors when sharing comments. Once you are happy with the comments, you need to extract them as a `.JSN` format, and drop the file in the github issue that you created earlier (`review session-name`). These can then be downloaded and imported inside hypothes.is to be read by the meian author. He/She can also repply to comments, but please make sure `[YOUR-NAME]` is added in front of all comments. 
 
 Once the session is completed, we need to make sure that the comments are manually deleted, and that the YAML option for hypothesis is set to false. 
 
@@ -56,7 +56,7 @@ comments:
 
 General contribution guidelines.
 ----------------------------------------------------------------------------------------------------
-This is a collaborative coding repository with a live prodocution branch. To avoid messiness and possible downstream merge conflicts, we are using a scrum-esque style of development where new ideas are developed through an issue > branch > pull request pathway. Bellow is a quick explanation of what that process looks like, but TLDR:
+This is a collaborative coding repository with a live production branch. To avoid messiness and possible downstream merge conflicts, we are using a scrum-esque style of development where new ideas are developed through an issue > branch > pull request pathway. Bellow is a quick explanation of what that process looks like, but TLDR:
 1. Identify an issue you want to work on
 2. Make a branch named after **and associated** with that issue
 3. Use that branch (and only that branch) to work on that issue (and only that issue)
