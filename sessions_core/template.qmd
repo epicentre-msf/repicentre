@@ -4,9 +4,7 @@ description: Short description (appears on cards in pathway / explore pages)
 date: last-modified
 image: ../img/under_construction.svg
 categories:
-  - Core/Satellite
-  - Category 1
-  - Category 2
+  - Core
 ---
 
 ```{r setup}
@@ -35,15 +33,49 @@ Your main section can (and probably should) be boken down into subsections.
 
 
 ### Subsection 1
+### Subsection 2
+
+Markdown Reminders
+----------------------------------------------------------------------------------------------------
+The rest of this document is a reminder on qmd syntax and a basic style guide. Enjoy.
+
+### Text Formatting
+
+1. *Italic* and **Bold** will turn out like this
+
+2. Block quotes will look like this:
+
+> This is a `blockquote` made using `>` 
+
+3. [Tooltips]{.hovertip bs-toggle='tooltip' bs-title='Example tooltip'} can be done using spans (please do not use asides or footnotes) 
+
+
+### Code
+Inline coding will turn out `like this`
+
+Code blocks will appear like this:
 ```{r}
-print('some example code')
+print('hello world')
 ```
 
-Here are the validated callouts that you can use, **please do not use any callouts not defined here**. If you think there is an important callout that is missing, please [submit an issue](https://github.com/epicentre-msf/repicentre/issues).
+**Warning:** For these tutorials, code blocks are **not evaluated** by default. If you want to evaluate them, you must indicate it specifically.
+```{r}
+#| eval: TRUE
 
-### Subsection 2
+print('hello back!')
+```
+
+Fun fact, this website has **code linking** activated, so you can click on functions to get their documentation.
+
+**Note.** We are no longer using solution blocks, instead a single code file will be available at the end of each session contiaining code that runs through all the exercises. 
+
+
+## Callouts
+**IMPORTANT: please do _not_ use callouts not explicitly defined here; they have not been included in the css and therefore will not render well in the final document.** 
+
+
 ::: {.callout-note}
-Note about something of interest, like helpful hint or a relevant warning.
+**This is a callout** using `{.callout-note}`
 :::
 
 ::: {.callout-tip}
@@ -54,16 +86,51 @@ Comment about a genral tip / trick or best practice.
 Warning / comment on something really important.
 :::
 
-Have some other information that doesn't quite warrant the main text or a callout? Consider using a [tooltip]{.hovertip bs-toggle='tooltip' bs-title='Example tooltip'}.
 
+## Action Boxes
+These are used for things participants are expected to *actually do*, ie: exercises. They are split into three categories.
+
+::: {.setup}
+Description of something participants need to setup, primarily used at the beginning of a section but can also be used for tasks like setting up an `Rproject` file, folder structure, etc.
+:::
 
 ::: {.look}
 Description of something participants should observe, investigate, etc.
 :::
 
-...lorem ispum again !
 
 ::: {.write}
 Description of a coding exercise that participants are expected to complete.
 :::
+
+
+
+## Tabsets
+::: {.panel-tabset .nav-pills}
+
+## One
+Content that will show under the first tab
+
+## Two
+Content that will show under the second tab
+
+## Three
+Content that will show under the third tab
+:::
+
+
+## Images
+You can insert images by referring to their relative path using markdown syntax or HTML. Note that the markdown syntax does not allow you to modify image size. In either case, make sure to add alt text for accessibility.
+
+Markdown style syntax:
+
+![example image alt text](../img/under_construction.svg)
+
+HTML style syntax (with specification of desired size):
+
+<img src='../img/under_construction.svg' alt='example image alt (html)' width='200'/>
+
+
+## Linking to Other Pages
+Easy, use relative paths within a standard href, ie: [link to home page](../index.html).
 

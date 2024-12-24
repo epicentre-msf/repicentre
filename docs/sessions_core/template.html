@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.6.39">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta name="dcterms.date" content="2024-12-21">
+<meta name="dcterms.date" content="2024-12-24">
 <meta name="description" content="Short description (appears on cards in pathway / explore pages)">
 <title>Session Title – Repicentre</title>
 <style>
@@ -148,6 +148,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#subsection-2" id="toc-subsection-2" class="nav-link" data-scroll-target="#subsection-2">Subsection 2</a></li>
   </ul>
 </li>
+  <li>
+<a href="#markdown-reminders" id="toc-markdown-reminders" class="nav-link" data-scroll-target="#markdown-reminders">Markdown Reminders</a>
+  <ul class="collapse">
+<li><a href="#text-formatting" id="toc-text-formatting" class="nav-link" data-scroll-target="#text-formatting">Text Formatting</a></li>
+  <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a></li>
+  </ul>
+</li>
+  <li><a href="#callouts" id="toc-callouts" class="nav-link" data-scroll-target="#callouts">Callouts</a></li>
+  <li><a href="#action-boxes" id="toc-action-boxes" class="nav-link" data-scroll-target="#action-boxes">Action Boxes</a></li>
+  <li><a href="#tabsets" id="toc-tabsets" class="nav-link" data-scroll-target="#tabsets">Tabsets</a></li>
+  <li><a href="#images" id="toc-images" class="nav-link" data-scroll-target="#images">Images</a></li>
+  <li><a href="#linking-to-other-pages" id="toc-linking-to-other-pages" class="nav-link" data-scroll-target="#linking-to-other-pages">Linking to Other Pages</a></li>
   </ul></nav>
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
@@ -157,9 +169,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title">Session Title</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">Core/Satellite</div>
-    <div class="quarto-category">Category 1</div>
-    <div class="quarto-category">Category 2</div>
+    <div class="quarto-category">Core</div>
   </div>
   </div>
 
@@ -176,7 +186,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">December 21, 2024</p>
+      <p class="date">December 24, 2024</p>
     </div>
   </div>
   
@@ -196,11 +206,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section><section id="main-section" class="level2"><h2 class="anchored" data-anchor-id="main-section">Main Section</h2>
 <p>Your main section can (and probably should) be boken down into subsections.</p>
 <section id="subsection-1" class="level3"><h3 class="anchored" data-anchor-id="subsection-1">Subsection 1</h3>
-<div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">'some example code'</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Here are the validated callouts that you can use, <strong>please do not use any callouts not defined here</strong>. If you think there is an important callout that is missing, please <a href="https://github.com/epicentre-msf/repicentre/issues">submit an issue</a>.</p>
 </section><section id="subsection-2" class="level3"><h3 class="anchored" data-anchor-id="subsection-2">Subsection 2</h3>
+</section></section><section id="markdown-reminders" class="level2"><h2 class="anchored" data-anchor-id="markdown-reminders">Markdown Reminders</h2>
+<p>The rest of this document is a reminder on qmd syntax and a basic style guide. Enjoy.</p>
+<section id="text-formatting" class="level3"><h3 class="anchored" data-anchor-id="text-formatting">Text Formatting</h3>
+<ol type="1">
+<li><p><em>Italic</em> and <strong>Bold</strong> will turn out like this</p></li>
+<li><p>Block quotes will look like this:</p></li>
+</ol>
+<blockquote class="blockquote">
+<p>This is a <code>blockquote</code> made using <code>&gt;</code></p>
+</blockquote>
+<ol start="3" type="1">
+<li>
+<span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Example tooltip">Tooltips</span> can be done using spans (please do not use asides or footnotes)</li>
+</ol></section><section id="code" class="level3"><h3 class="anchored" data-anchor-id="code">Code</h3>
+<p>Inline coding will turn out <code>like this</code></p>
+<p>Code blocks will appear like this:</p>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">'hello world'</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Warning:</strong> For these tutorials, code blocks are <strong>not evaluated</strong> by default. If you want to evaluate them, you must indicate it specifically.</p>
+<div class="cell">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">'hello back!'</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "hello back!"</code></pre>
+</div>
+</div>
+<p>Fun fact, this website has <strong>code linking</strong> activated, so you can click on functions to get their documentation.</p>
+<p><strong>Note.</strong> We are no longer using solution blocks, instead a single code file will be available at the end of each session contiaining code that runs through all the exercises.</p>
+</section></section><section id="callouts" class="level2"><h2 class="anchored" data-anchor-id="callouts">Callouts</h2>
+<p><strong>IMPORTANT: please do <em>not</em> use callouts not explicitly defined here; they have not been included in the css and therefore will not render well in the final document.</strong></p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -211,7 +247,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Note about something of interest, like helpful hint or a relevant warning.</p>
+<p><strong>This is a callout</strong> using <code>{.callout-note}</code></p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -240,17 +276,50 @@ Important
 <p>Warning / comment on something really important.</p>
 </div>
 </div>
-<p>Have some other information that doesn’t quite warrant the main text or a callout? Consider using a <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Example tooltip">tooltip</span>.</p>
+</section><section id="action-boxes" class="level2"><h2 class="anchored" data-anchor-id="action-boxes">Action Boxes</h2>
+<p>These are used for things participants are expected to <em>actually do</em>, ie: exercises. They are split into three categories.</p>
+<div class="setup">
+<p>Description of something participants need to setup, primarily used at the beginning of a section but can also be used for tasks like setting up an <code>Rproject</code> file, folder structure, etc.</p>
+</div>
 <div class="look">
 <p>Description of something participants should observe, investigate, etc.</p>
 </div>
-<p>…lorem ispum again !</p>
 <div class="write">
 <p>Description of a coding exercise that participants are expected to complete.</p>
 </div>
+</section><section id="tabsets" class="level2"><h2 class="anchored" data-anchor-id="tabsets">Tabsets</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset nav-pills">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">One</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Two</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Three</a></li>
+</ul>
+<div class="tab-content nav-pills">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p>Content that will show under the first tab</p>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p>Content that will show under the second tab</p>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<p>Content that will show under the third tab</p>
+</div>
+</div>
+</div>
+</section><section id="images" class="level2"><h2 class="anchored" data-anchor-id="images">Images</h2>
+<p>You can insert images by referring to their relative path using markdown syntax or HTML. Note that the markdown syntax does not allow you to modify image size. In either case, make sure to add alt text for accessibility.</p>
+<p>Markdown style syntax:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="../img/under_construction.svg" class="img-fluid figure-img"></p>
+<figcaption>example image alt text</figcaption></figure>
+</div>
+<p>HTML style syntax (with specification of desired size):</p>
+<p><img src="../img/under_construction.svg" alt="example image alt (html)" width="200"></p>
+</section><section id="linking-to-other-pages" class="level2"><h2 class="anchored" data-anchor-id="linking-to-other-pages">Linking to Other Pages</h2>
+<p>Easy, use relative paths within a standard href, ie: <a href="../index.html">link to home page</a>.</p>
 
 
-</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
