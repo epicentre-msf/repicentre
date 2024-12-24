@@ -58,19 +58,6 @@ p.subtitle {
   font-weight: bold;
 }
 
-.tooltip.bs-tooltip-bottom .tooltip-arrow::before {
-  border-bottom-color: #819CBB !important;
-}
-.tooltip.bs-tooltip-right .tooltip-arrow::before {
-  border-right-color: #819CBB !important;
-}
-.tooltip.bs-tooltip-left .tooltip-arrow::before {
-  border-left-color: #819CBB !important;
-}
-.tooltip.bs-tooltip-top .tooltip-arrow::before {
-  border-top-color: #819CBB !important;
-}
-
 .tooltip.show {
   opacity: 1;
 }
