@@ -27,5 +27,6 @@ format:
       echo: true
       eval: false
 
-
+comments: 
+    hypothesis: false
 
