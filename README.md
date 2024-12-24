@@ -22,32 +22,37 @@ Want to write a session? **Amazing.** Here are some tips:
 
 Session review guidelines.
 ----------------------------------------------------------------------------------------------------
-Once a session has been developped, it is important that someone reviews it to ensure:  
+Once a session has been developped, it is important that someone reviews it to:  
 
-1. Adequate length (sessions should be done in under 15min by any of us)
-2. Covers the main concept of the session 
-3. Check on information load (keep in mind the students just got into R, let's try and only retain essential information as it's already a lot for them)
+1. Make sure the length is appropriate (for example, sessions should take us around 15 minutes to complete)
+2. Verify that the content covers the main concept of the session 
+3. Check on the information load (keep in mind the students just got into R, let's try and only retain essential information as it's already a lot for them)
 4. Check spelling and syntax
-5. Check styling (make sure callouts/tooltip are consistently used and that styling does not bug)
+5. Check styling (make sure callouts/tooltip are used consistently and there are no style bugs)
 
-The first thing to do is to open a github issue `review session-name` and assign the review to you or anyone who accepted to review it. Review both the `.qmd` and the `.html` file (inside `docs`). If you see any spelling or minors mistakes feel free to directly correct them in the `.qmd `.
+The first thing to do is to open a github issue `review session-name` and assign it to yourself. Review both the `.qmd` and the `.html` file (inside `docs`) for the session. If you see any spelling or minors mistakes feel free to correct them directly in the `.qmd `.
 
- More important changes should be flagged (see below commenting with hypothes.is) and discussed with the person who developped the session. Once you are done with the review drop a message on the issue, try to summarise your thoughts on the session and list major suggested changes. If two reviewers disagree on a point we can discuss/resolve/vote as a team in the github issue. 
+More important changes should be introduced as comments (see below commenting with hypothes.is) and discussed with the person who developped the session. Once you are done with the review drop a message on the issue, try to summarise your thoughts on the session and list major suggested changes. The issue can serve as a forum to discuss/resolve/vote on points of contention. 
 
 ### Commenting
-To review a session we use a commenting system that is used in quarto called [hypothes.is](https://web.hypothes.is/) and which allow us to direclty comment/annotate the `.html` file the same way you would do in a word document. Make sure you have an account (super fast), open the session and hypothes.is should already be set up. 
+To review a session we use a commenting system called [hypothes.is](https://web.hypothes.is/) that allows us to direclty comment/annotate the `.html` file the same way you would do in a word document. In order to use it, you need to set the hypothesis comments portion of the YAML to true:
 
-With hypothes.is we can
+```
+comments: 
+    hypothesis: true
+```
+
+With hypothes.is we can:
 
 1. Drop a page note for the overall page 
 2. Highlight some text 
 3. Highlight text and annotate - other users can then reply to this comment
 
-Comments are pretty robust and will stay on the html file even when we render again ! If the text that you selected for the comment is not there anymore, the comments will be an *orphan* comment, still visible on the document but not attached to any text, and it looks like we cannot attach it back to a portion of the text but at least there is no lose of information.
+Comments are pretty robust and will stay on the html file even when we rerender! If the text that you selected for the comment is not there anymore, the comment will be an **orphan**, still visible on the document but not attached to any text. It looks like we cannot attach it back to a portion of the text but at least there is no lose of information.
 
-When you comment make sure you add `[YOUR-NAME]` in front of it, otherwise we loose track of authors when sharing comments. Once you are happy with the comments, you need to extract them as a `.JSN` format, and drop the file in the github issue that you created earlier (`review session-name`). These can then be downloaded and imported inside hypothes.is to be read by the meian author. He/She can also repply to comments, but please make sure `[YOUR-NAME]` is added in front of all comments. 
+Please start all of your comments with `[YOUR-NAME]` in front of it, otherwise we loose track of authors when sharing comments. Once you are happy with the comments, you need to extract them as a `.JOSN` format, and drop the file in the github issue that you created earlier (`review session-name`). These can then be downloaded and imported inside hypothes.is to be read by the session author. They can also reply to comments (including `[THEIR-NAME]`, re-export them, and post them as a reply to the issue. 
 
-Once the session is completed, we need to make sure that the comments are manually deleted, and that the YAML option for hypothesis is set to false. 
+Once the session is completed and feedback resolved, we need to manually delete all of the comments and set the hypothesis option in the YAML back to `false`: 
 
 ```
 comments: 
