@@ -1,5 +1,6 @@
 ---
 title: "About"
+toc: false
 ---
 
 <img src='img/llama_full.svg' id='about'>
@@ -19,7 +20,7 @@ Welcome to `{repicentre}`, an open source site developed by Epicentre to support
 
 Recommendations and Requests
 ----------------------------------------------------------------------------------------------------
-Is there a topic that you would like to see a tutorial on that isn't currently available? Great! Feel free to let us know by opening an issue on the GitHub repository associated with this website. If you aren't familiar with how to open an issue, please get in touch with Cat Eisenhauer instead.
+Is there a topic that you would like to see a tutorial on that isn't currently available? Great! Feel free to let us know by [opening an issue](https://github.com/epicentre-msf/repicentre/issues) on the GitHub repository associated with this website. If you aren't familiar with how to open an issue, please get in touch with Cat Eisenhauer instead.
 
 Contributing
 ----------------------------------------------------------------------------------------------------
