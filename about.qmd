@@ -2,4 +2,25 @@
 title: "About"
 ---
 
-About this site...coming soon.
+<img src='img/llama_full.svg' id='about'>
+
+Hey There
+----------------------------------------------------------------------------------------------------
+Welcome to `{repicentre}`, an open source site developed by Epicentre to support folks learning R for humanitarian contexts. The site is composed of self paced tutorials and has two main options for learning:
+
+1. **Linear.** Designed for people with zero prior experience in R, the linear course will walk you through core R concepts using a case study about measles in Chad. The course covers the following concepts:
+    a. Data Structures and the RStudio Interface
+    b. Data Importation
+    c. Data Manipulation
+    d. Data Cleaning
+    e. Data Aggregation
+    f. Data Visualization
+2. **Choose Your Own Adventure.** If you have a bit more experience or if you are looking for a particular subject, feel free to explore the full range of tutorials. Tutorials are tagged with categories and designed to be self contained.
+
+Recommendations and Requests
+----------------------------------------------------------------------------------------------------
+Is there a topic that you would like to see a tutorial on that isn't currently available? Great! Feel free to let us know by opening an issue on the GitHub repository associated with this website. If you aren't familiar with how to open an issue, please get in touch with Cat Eisenhauer instead.
+
+Contributing
+----------------------------------------------------------------------------------------------------
+Would you like to help write or maintain some tutorials? Increadible! Please get in touch with Cat.
