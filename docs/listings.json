@@ -1,12 +1,12 @@
 [
   {
+    "listing": "/pathway.html",
+    "items": []
+  },
+  {
     "listing": "/explore.html",
     "items": [
       "/sessions_core/template.html"
     ]
-  },
-  {
-    "listing": "/pathway.html",
-    "items": []
   }
 ]
