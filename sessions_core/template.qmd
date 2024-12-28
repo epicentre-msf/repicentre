@@ -55,6 +55,7 @@ Inline coding will turn out `like this`
 
 Code blocks will appear like this:
 ```{r}
+# comment
 print('hello world')
 ```
 
@@ -62,20 +63,27 @@ print('hello world')
 ```{r}
 #| eval: TRUE
 
+# comment
 print('hello back!')
-```
 
-Fun fact, this website has **code linking** activated, so you can click on functions to get their documentation.
+test <- function(x) {
+  if (x > 1) {
+    return(x)
+  } else {
+    print('nothing to see here')
+  }
+}
+```
 
 **Note.** We are no longer using solution blocks, instead a single code file will be available at the end of each session contiaining code that runs through all the exercises. 
 
 
-## Callouts
+### Callouts
 **IMPORTANT: please do _not_ use callouts not explicitly defined here; they have not been included in the css and therefore will not render well in the final document.** 
 
 
 ::: {.callout-note}
-**This is a callout** using `{.callout-note}`
+This is a callout using `{.callout-note}`
 :::
 
 ::: {.callout-tip}
@@ -87,7 +95,7 @@ Warning / comment on something really important.
 :::
 
 
-## Action Boxes
+### Action Boxes
 These are used for things participants are expected to *actually do*, ie: exercises. They are split into three categories.
 
 ::: {.setup}
@@ -105,7 +113,7 @@ Description of a coding exercise that participants are expected to complete.
 
 
 
-## Tabsets
+### Tabsets
 ::: {.panel-tabset .nav-pills}
 
 ## One
@@ -119,7 +127,7 @@ Content that will show under the third tab
 :::
 
 
-## Images
+### Images
 You can insert images by referring to their relative path using markdown syntax or HTML. Note that the markdown syntax does not allow you to modify image size. In either case, make sure to add alt text for accessibility.
 
 Markdown style syntax:
