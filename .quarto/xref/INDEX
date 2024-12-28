@@ -40,5 +40,8 @@
   },
   "sessions_core/template.qmd": {
     "template.html": "61e6719c"
+  },
+  "resources.qmd": {
+    "resources.html": "8de10a3c"
   }
 }

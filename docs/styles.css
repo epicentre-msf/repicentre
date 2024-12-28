@@ -1,28 +1,13 @@
 /* fonts -----------------------------------------------------------------------------------------*/
-h1, h2, h3 {
+h1, h2, h3, h4, h5 {
   color: #819CBB;
+  font-weight: bolder;
 }
 
 h1.title {
   font-size: 50px;
   font-weight: bolder;
   color: #819CBB;
-}
-
-h1 {
-  font-weight: bolder;
-}
-
-h2 {
-  font-weight: bolder;
-}
-
-h3 {
-  font-weight: bolder;
-}
-
-h4{
-  font-weight: bolder;
 }
 
 p.subtitle {
@@ -40,6 +25,11 @@ p.subtitle {
   font-size: 1em;
   color: #819CBB;
   border-left-color: #819CBB;
+}
+
+
+#homepage-text {
+  text-align: center;
 }
 
 
@@ -66,25 +56,22 @@ p.subtitle {
 
 /* code ------------------------------------------------------------------------------------------*/
 /* inline code */
-.code {
+code {
   border-radius: 5px;
-  color: #819CBB !important;
+  color: #819CBB;
 }
 
-.code .solution {
-  border-radius: 5px;
-  color: grey;
-}
 
 /* callouts --------------------------------------------------------------------------------------*/
 /* general */ 
 .callout {
   border-radius: 5px;
+  color: black;
 }
 
 .callout-header {
   color: white;
-  font-size: 1.25em !important;
+	font-size: 1.25em !important;
 }
 
 .callout.callout-style-default:not(.no-icon) div.callout-icon-container {
@@ -133,6 +120,7 @@ div.callout-important.callout-titled .callout-icon::before {
 
 /* action-box ------------------------------------------------------------------------------------*/
 div.setup, div.write, div.look {
+  color: black;
   border-radius: 5px;
  	padding: 1em;
  	padding-left: 110px;
@@ -163,7 +151,7 @@ div.look {
 }
 
 /* TOC styling -----------------------------------------------------------------------------------*/
-h2#toc-title{
+h2#toc-title {
   font-weight: 700;
 }
 
@@ -184,5 +172,83 @@ h2#toc-title{
 .sidebar nav[role=doc-toc] ul > li > ul > li > a.active {
   border-left: #94854d;
   color: #94854d !important;
+}
+
+
+/* about llama -----------------------------------------------------------------------------------*/
+img#about {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 25%;
+}
+  
+
+/* cards -----------------------------------------------------------------------------------------*/
+.homepage-card-grid {
+  display: flex;
+  /*flex-direction: column;*/
+}
+
+.card.homepage-card {
+  width: 27%;
+  border-radius: 10px;
+  margin: 25px;
+  padding: 10px;
+  box-shadow: 5px 5px 10px;
+  transition: 0.5s;
+}
+
+.card.homepage-card:hover {
+  box-shadow: 5px 5px 15px;
+  margin-top: 15px;
+  margin-bottom: 35px;
+}
+
+.card.homepage-card .card-img {
+  padding-top: 35px;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.card.homepage-card .card-body {
+  text-align: center;
+  padding-bottom: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
+  align-items: center;
+}
+
+.card.homepage-card .card-title {
+  color: #819CBB;
+  font-weight: bolder;
+  font-size: 30px;
+}
+
+.card.homepage-card > p {
+  margin-bottom: 0;
+}
+
+
+/* btns ------------------------------------------------------------------------------------------*/
+.btn {
+  background-color: #819CBB !important;
+  font-weight: bolder;
+  color: white;
+  transition: 0.5s;
+  border-radius: 10px;
+}
+
+.btn:hover {
+  background-color: #5A7594 !important;
+  font-weight: bolder;
+  color: white;
+}
+
+/* darkmode toggle -------------------------------------------------------------------------------*/
+.quarto-reader-toggle .bi::before, .quarto-color-scheme-toggle .bi::before {
+	height: 2rem;
+	width: 2rem;
+	background-size: 2rem 2rem;
 }
 

@@ -1,17 +1,38 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Repicentre",
+    "objectID": "resources.html",
+    "href": "resources.html",
+    "title": "Resources",
     "section": "",
-    "text": "work in progress… check back later."
+    "text": "This page will (eventually) contain external resources to continue your R learning journey."
   },
   {
-    "objectID": "explore.html",
-    "href": "explore.html",
-    "title": "Explore",
+    "objectID": "pathway.html",
+    "href": "pathway.html",
+    "title": "Pathway",
     "section": "",
-    "text": "Choose your own adventure by browsing all available sessions.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSession Title\n\n\n\nCore\n\n\n\nShort description (appears on cards in pathway / explore pages)\n\n\n\n\n\n\nDec 24, 2024\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "These sessions can be followed in order to get a baseline level in R. The series assumes no prior experience in R and is suitable for beginners.\nLooking for more? Want more flexibility? Consider browsing the full session catalog.\n\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "about.html#hey-there",
+    "href": "about.html#hey-there",
+    "title": "About",
+    "section": "Hey There",
+    "text": "Hey There\nWelcome to {repicentre}, an open source site developed by Epicentre to support folks learning R for humanitarian contexts. The site is composed of self paced tutorials and has two main options for learning:\n\nLinear. Designed for people with zero prior experience in R, the linear course will walk you through core R concepts using a case study about measles in Chad. The course covers the following concepts:\n\nData Structures and the RStudio Interface\nData Importation\nData Manipulation\nData Cleaning\nData Aggregation\nData Visualization\n\nChoose Your Own Adventure. If you have a bit more experience or if you are looking for a particular subject, feel free to explore the full range of tutorials. Tutorials are tagged with categories and designed to be self contained."
+  },
+  {
+    "objectID": "about.html#recommendations-and-requests",
+    "href": "about.html#recommendations-and-requests",
+    "title": "About",
+    "section": "Recommendations and Requests",
+    "text": "Recommendations and Requests\nIs there a topic that you would like to see a tutorial on that isn’t currently available? Great! Feel free to let us know by opening an issue on the GitHub repository associated with this website. If you aren’t familiar with how to open an issue, please get in touch with Cat Eisenhauer instead."
+  },
+  {
+    "objectID": "about.html#contributing",
+    "href": "about.html#contributing",
+    "title": "About",
+    "section": "Contributing",
+    "text": "Contributing\nWould you like to help write or maintain some tutorials? Increadible! Please get in touch with Cat."
   },
   {
     "objectID": "sessions_core/template.html",
@@ -39,42 +60,14 @@
     "href": "sessions_core/template.html#main-section",
     "title": "Session Title",
     "section": "Main Section",
-    "text": "Main Section\nYour main section can (and probably should) be boken down into subsections.\nSubsection 1\nSubsection 2"
+    "text": "Main Section\nYour main section can (and probably should) be boken down into subsections.\n\nSubsection 1\n\n\nSubsection 2"
   },
   {
     "objectID": "sessions_core/template.html#markdown-reminders",
     "href": "sessions_core/template.html#markdown-reminders",
     "title": "Session Title",
     "section": "Markdown Reminders",
-    "text": "Markdown Reminders\nThe rest of this document is a reminder on qmd syntax and a basic style guide. Enjoy.\nText Formatting\n\nItalic and Bold will turn out like this\nBlock quotes will look like this:\n\n\nThis is a blockquote made using &gt;\n\n\n\nTooltips can be done using spans (please do not use asides or footnotes)\nCode\nInline coding will turn out like this\nCode blocks will appear like this:\n\nprint('hello world')\n\nWarning: For these tutorials, code blocks are not evaluated by default. If you want to evaluate them, you must indicate it specifically.\n\nprint('hello back!')\n\n[1] \"hello back!\"\n\n\nFun fact, this website has code linking activated, so you can click on functions to get their documentation.\nNote. We are no longer using solution blocks, instead a single code file will be available at the end of each session contiaining code that runs through all the exercises."
-  },
-  {
-    "objectID": "sessions_core/template.html#callouts",
-    "href": "sessions_core/template.html#callouts",
-    "title": "Session Title",
-    "section": "Callouts",
-    "text": "Callouts\nIMPORTANT: please do not use callouts not explicitly defined here; they have not been included in the css and therefore will not render well in the final document.\n\n\n\n\n\n\nNote\n\n\n\nThis is a callout using {.callout-note}\n\n\n\n\n\n\n\n\nTip\n\n\n\nComment about a genral tip / trick or best practice.\n\n\n\n\n\n\n\n\nImportant\n\n\n\nWarning / comment on something really important."
-  },
-  {
-    "objectID": "sessions_core/template.html#action-boxes",
-    "href": "sessions_core/template.html#action-boxes",
-    "title": "Session Title",
-    "section": "Action Boxes",
-    "text": "Action Boxes\nThese are used for things participants are expected to actually do, ie: exercises. They are split into three categories.\n\nDescription of something participants need to setup, primarily used at the beginning of a section but can also be used for tasks like setting up an Rproject file, folder structure, etc.\n\n\nDescription of something participants should observe, investigate, etc.\n\n\nDescription of a coding exercise that participants are expected to complete."
-  },
-  {
-    "objectID": "sessions_core/template.html#tabsets",
-    "href": "sessions_core/template.html#tabsets",
-    "title": "Session Title",
-    "section": "Tabsets",
-    "text": "Tabsets\n\n\nOne\nTwo\nThree\n\n\n\nContent that will show under the first tab\n\n\nContent that will show under the second tab\n\n\nContent that will show under the third tab"
-  },
-  {
-    "objectID": "sessions_core/template.html#images",
-    "href": "sessions_core/template.html#images",
-    "title": "Session Title",
-    "section": "Images",
-    "text": "Images\nYou can insert images by referring to their relative path using markdown syntax or HTML. Note that the markdown syntax does not allow you to modify image size. In either case, make sure to add alt text for accessibility.\nMarkdown style syntax:\n\n\nexample image alt text\n\nHTML style syntax (with specification of desired size):"
+    "text": "Markdown Reminders\nThe rest of this document is a reminder on qmd syntax and a basic style guide. Enjoy.\n\nText Formatting\n\nItalic and Bold will turn out like this\nBlock quotes will look like this:\n\n\nThis is a blockquote made using &gt;\n\n\nTooltips can be done using spans (please do not use asides or footnotes)\n\n\n\nCode\nInline coding will turn out like this\nCode blocks will appear like this:\n\n# comment\nprint('hello world')\n\nWarning: For these tutorials, code blocks are not evaluated by default. If you want to evaluate them, you must indicate it specifically.\n\n# comment\nprint('hello back!')\n\n[1] \"hello back!\"\n\ntest &lt;- function(x) {\n  if (x &gt; 1) {\n    return(x)\n  } else {\n    print('nothing to see here')\n  }\n}\n\nNote. We are no longer using solution blocks, instead a single code file will be available at the end of each session contiaining code that runs through all the exercises.\n\n\nCallouts\nIMPORTANT: please do not use callouts not explicitly defined here; they have not been included in the css and therefore will not render well in the final document.\n\n\n\n\n\n\nNote\n\n\n\nThis is a callout using {.callout-note}\n\n\n\n\n\n\n\n\nTip\n\n\n\nComment about a genral tip / trick or best practice.\n\n\n\n\n\n\n\n\nImportant\n\n\n\nWarning / comment on something really important.\n\n\n\n\nAction Boxes\nThese are used for things participants are expected to actually do, ie: exercises. They are split into three categories.\n\nDescription of something participants need to setup, primarily used at the beginning of a section but can also be used for tasks like setting up an Rproject file, folder structure, etc.\n\n\nDescription of something participants should observe, investigate, etc.\n\n\nDescription of a coding exercise that participants are expected to complete.\n\n\n\nTabsets\n\nOneTwoThree\n\n\nContent that will show under the first tab\n\n\nContent that will show under the second tab\n\n\nContent that will show under the third tab\n\n\n\n\n\nImages\nYou can insert images by referring to their relative path using markdown syntax or HTML. Note that the markdown syntax does not allow you to modify image size. In either case, make sure to add alt text for accessibility.\nMarkdown style syntax:\n\n\n\nexample image alt text\n\n\nHTML style syntax (with specification of desired size):"
   },
   {
     "objectID": "sessions_core/template.html#linking-to-other-pages",
@@ -84,17 +77,17 @@
     "text": "Linking to Other Pages\nEasy, use relative paths within a standard href, ie: link to home page."
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
+    "objectID": "explore.html",
+    "href": "explore.html",
+    "title": "Explore",
     "section": "",
-    "text": "About this site…coming soon."
+    "text": "Choose your own adventure by browsing all available sessions.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSession Title\n\n\n\nCore\n\n\n\nShort description (appears on cards in pathway / explore pages)\n\n\n\n\n\n\nDec 28, 2024\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "pathway.html",
-    "href": "pathway.html",
-    "title": "Pathway",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "{repicentre}",
     "section": "",
-    "text": "These sessions can be followed in order to get a baseline level in R. The series assumes no prior experience in R and is suitable for beginners.\nLooking for more? Want more flexibility? Consider browsing the full session catalog.\n\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Welcome to {repicentre}\nAn open source platform to learn R for humanitarian contexts. What would you like to do?\n\n\n\n\n\nLearn Follow a linear path starting with the basics  Start\n\n\n\n\n\nExplore Browse our full catelogue of self paced tutorisals  Start\n\n\n\n\n\nExpand Go even further with a list of external resouces  Start"
   }
 ]
