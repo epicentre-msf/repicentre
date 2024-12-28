@@ -19,7 +19,6 @@ format:
     highlight-style: github
     css: styles.css
     toc: true
-    toc-location: left
     include-in-header:
       text: <script type="text/javascript" src="../script.js"></script>
     execute:
