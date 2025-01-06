@@ -65,9 +65,9 @@ As you move through these exercises, you may run into some errors, which occur w
 
 ## RStudio and R
 
-*R* is a [functional programming language]{.hoverinfo toggle='tooltip' title='As opposed to object oriented languages which are more adept at building complex programs (such as operating systems).'} that can be used to clean and manipulate data, run analyses (especially statistical ones), visualize results, and much more. 
+*R* is a [functional programming language]{.hovertip bs-toggle='tooltip' bs-title='As opposed to object oriented languages which are more adept at building complex programs such as operating systems.'} that can be used to clean and manipulate data, run analyses (especially statistical ones), visualize results, and much more. 
 
-*RStudio* is a piece of software that provides a user-friendly interface for R (also called an IDE, for Integrated Development Environments). While using a graphical interface isn’t technically required, it is strongly recommended for beginners.
+*RStudio* is a piece of software that provides a user-friendly interface for R (also called an IDE, for Integrated Development Environment). While using a graphical interface isn’t required, it is strongly recommended for beginners.
 
 
 ### Getting Started with RStudio
@@ -125,7 +125,7 @@ The console is **where R itself is run**.
 Whenever you open a new session, R will start by printing a bit of information about your set up, such as your R version number. Below this there should be a line containing the `>` symbol and a blinking cursor. To run a command in R, you simply need to type it in after this `>` and press `Enter`. R will then process your code and print the result (if there is one). A new `>` line will then appear ready for the next command.
 
 ::: {.callout-important}
-If the last line shown in the console starts with a `+` instead of a `>` that means the console is not ready for a new command either because it is still processing a previous one or because it received a bit of [incomplete code]{.hoverinfo toggle='tooltip' title="Incomplete code is the R equivalent of an incomplete sentence. Typically this will occur when we forget to close a paired character, such as a parenthesis or quotation."}. If at any point you would like to cancel an ongoing or incomplete command, press `Esc`.
+If the last line shown in the console starts with a `+` instead of a `>` that means the console is not ready for a new command either because it is still processing a previous one or because it received a bit of [incomplete code]{.hovertip bs-toggle='tooltip' bs-title="Incomplete code is the R equivalent of an incomplete sentence. Typically this will occur when we forget to close a paired character, such as a parenthesis or quotation."}. If at any point you would like to cancel an ongoing or incomplete command, press `Esc`.
 :::
 
 ::: {.write}
@@ -154,7 +154,7 @@ Run the following command. Note that the final `)` is missing, making the comman
 :::
 
 
-We can also run [*functions*]{.hoverinfo toggle='tooltip' title="Functions are R objects that contain commands instead of values. We will discuss them in more depth later in this lesson."} in the console:
+We can also run *functions* in the console. We will discuss functions in more depth [later in this lesson](../sessions_core/01_introduction.qmd#sec-functions), but meanwhile know that the idea of functions in R is very similar to the one in Excel, where you no doubt are familiar with functions such as `SUM` or `MEAN`.
 
 ::: {.write}
 Run the following commands in the console (one line at a time).
@@ -282,7 +282,7 @@ Add some comments to describe the code that you’ve written thus far in your sc
 
 ## Data Types
 
-R has several different [data types]{.hoverinfo toggle='tooltip' title="Just like Excel, R can tell the difference between a date and a number. These differences refer to differences in the type of a piece of data."}. The ones we will see most often in this course include:
+R has several different [data types]{.hovertip bs-toggle='tooltip' bs-title="Just like Excel, R can tell the difference between a date and a number. These differences refer to differences in the type of a piece of data."}. The ones we will see most often in this course include:
 
 - numeric
 - string (text)
@@ -468,7 +468,7 @@ This course will not go into detail on the more abstract concepts behind these s
 #### Simple Vectors
 Simple vectors can contain one or more values of a single data type, they thus have two key properties: **length** and **type**. For the purpose of this class, we will use the terms “simple vector” and “vector” interchangeably (as is typical in the R community). 
 
-You’ve technically already created your very first simple vectors when you built `cases` and `region`. These were simply vectors with a **length of one**. To create a vector with more than one value, we will use the function [`c()`]{.hoverinfo toggle='tooltip' title="Mnemonic: `c` is the first letter of “concatenate”"}:
+You’ve technically already created your first simple vector when you built `cases` and `region`. These were simply vectors with a **length of one**. To create a vector with more than one value, we will use the function `c()` ([mnemonic]{.hovertip bs-toggle='tooltip' bs-title='` c` is the first letter of "concatenate"'}):
 
 ```{r}
 #| eval: true
