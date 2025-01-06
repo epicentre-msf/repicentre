@@ -8,7 +8,7 @@ params:
   sub_title: "**------ With Solutions ------**"
 categories:
   - Core
-  - Rstudio interface
+  - Rstudio
   - R basics
   - Data types
 ---
