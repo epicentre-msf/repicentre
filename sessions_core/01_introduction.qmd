@@ -296,7 +296,6 @@ Strings are the R version of text and can be created by surrounding text with si
 While both single and double quotations can be used to create strings, double quotations are typically considered best practice.
 :::
 
-If you would like to create a string that **contains a quotation mark** the best practice is to escape the character by putting a '\' in front of it, ie: `"She said \"Hello\" then left"` or `'it\’s a beautiful day'`. [Certain characters in R (and in most programming languages) are special, meaning that they are usually a type of command unto themselves. Quotation marks are a good example of this as they are used to tell R to treat a certain word or phrase as a string rather than the name of a variable. Whenever you'd like to use one of these special characters in normal text, you need to explicitly tell R to ignore the 'special functionality' of the character. This process is called *escaping* the special character and is done by placing a '\' directly in front of the character in question.]{.aside} Equivalently, if you used a double quotation to create the string you can use single quotes inside of it freely (ie: `"it’s a beautiful day"`) and vice versa (i.e.: `'She said "Hello" then left'`).
 
 
 ::: {.write}
@@ -314,6 +313,11 @@ The last command above will give an error because we cannot perform arithmetic o
 ::: {.callout-important}
 R is case sensitive, meaning that the string `"ABC"` is not the same as `"abc"`.
 :::
+
+::: {callout-note}
+If you would like to create a string that contains a quotation mark the best practice is to [escape]{.hovertip bs-toggle='tooltip' bs-title="Certain characters in R are special, meaning that they are usually a type of command unto themselves. Whenever you'd like to use one of these special characters in normal text, you need to explicitly tell R to ignore the special functionality of the character. This process is called *escaping* the special character"}  the character by putting a '\\\' in front of it, ie: `"She said \"Hello\" then left"` or `'it\’s a beautiful day'`. Equivalently, if you used a double quotation to create the string you can use single quotes inside of it freely (ie: `"it’s a beautiful day"`) and vice versa (i.e.: `'She said "Hello" then left'`).
+:::
+
 
 ### Boolean (Logical)
 The boolean (or “logical”) type stores true/false values and is created by writing either `TRUE` or `FALSE` without quotation marks. 
