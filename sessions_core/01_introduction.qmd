@@ -110,10 +110,11 @@ To the bottom right there will be another multi tab panel, including:
 - *Viewer.* A location where RStudio will display [html outputs]{.hoverinfo toggle='data' title="These could include, for example, tables, interactive widgets, or even full on dashboards."}.
 
 #### Left Side
-To the left or bottom left (if you have four panels) you should see the *console* (we will come back to it in @sec-console).
 
-To the top left (if you have four panels) will be any open *scripts* (we will come back to it in @sec-scripts).
+- To the left or bottom left (if you have four panels) you should see the *console*, where R itself is run.
+- To the top left (if you have four panels) will be any open *scripts*.
 
+In the next two sections, let's talk about the console and scripts in more detail.
 
 ### The Console {#sec-console}
 
@@ -511,7 +512,7 @@ cases[2]   # 2nd value of cases
 cases[10]  # 10th value of cases
 ```
 
-Ooops it does not exist! We will come back to what this `NA` means in @sec-missing-values.
+Ooops it does not exist! We will come back to what this `NA` means in the [Missing Values section](../sessions_core/01_introduction.qmd#sec-missing-values).
 
 We can also access a *range* of values, just as we might do in Excel. To create a range we use the `:` operator to separate the desired minimum and maximum index:
 
