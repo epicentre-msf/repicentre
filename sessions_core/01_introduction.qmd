@@ -272,6 +272,12 @@ By comparison, here are a few use cases that would warrant comments:
 While “what” comments aren’t per se recommended in final scripts that we will use for projects or share with our colleagues, do feel free to use them at will during this course to add additional notes that you might helpful during the learning process.
 :::
 
+::: {.callout-tip}
+You can comment a selected line with the shortcut `CTRL+SHIFT+C`
+You can add a first level section with `CTRL+SHIFT+R` 
+:::
+
+
 ::: {.write}
 Add some comments to describe the code that you’ve written thus far in your script.
 :::
