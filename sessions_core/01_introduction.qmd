@@ -28,7 +28,7 @@ solutions <- params$solutions
 -   Familiarize yourself with RStudio
 -   Learn how to work with the console
 -   Create and execute a script
--   Create basic R objects, including vectors and dataframes
+-   Create basic R objects, including vectors and data frames
 
 
 ## Exercise Format
@@ -185,6 +185,7 @@ You may have noticed in the above examples that our code includes a lot of space
 
 
 ### Scripts {#sec-scripts}
+
 Scripts are text files that contain a **series of commands** for a particular programming language. The extension of the file indicates which language the commands were written in, and we will be using `.R`. Scripts allow us to create code that can be reused, shared, and even automated. 
 
 #### Writing Your First Script
@@ -264,7 +265,7 @@ This comment, for example, is completely superfluous:
 By comparison, here are a few use cases that would warrant comments:
 
 - You define a constant, say a seroprevalence threshold value. You may want to add a comment providing the reference for where the value comes from.
-- Your code contains a value or filename that needs to be updated every week. You should indicate this with a comment to ensure that anyone else using the code is aware.
+- Your code contains a value or file name that needs to be updated every week. You should indicate this with a comment to ensure that anyone else using the code is aware.
 - You think of an additional bit of analysis or plot that you’d like to add to a particular part of your script. You can use a comment to add a `TODO:` (to do) reminding you to come back later.
 
 ::: {.callout-note}
@@ -546,13 +547,13 @@ region[1:2]
 ```
 
 
-### Dataframes
+### data frames
 
-*Dataframes* are a special type of list that is composed of multiple simple vectors of the same length. Dataframes take the shape of a table where each of these vectors is a named column, similar to a table in Excel. As epidemiologists, this type of data structure is perhaps the most useful and you will likely use them on a daily basis.
+*data frames* are a special type of list that is composed of multiple simple vectors of the same length. data frames take the shape of a table where each of these vectors is a named column, similar to a table in Excel. As epidemiologists, this type of data structure is perhaps the most useful and you will likely use them on a daily basis.
 
-#### Creating a Dataframe
+#### Creating a data frame
 
-We can create a dataframe using the function `data.frame()`:
+We can create a data frame using the function `data.frame()`:
 
 ```{r}
 #| eval: true
@@ -561,7 +562,7 @@ data.frame(col1 = c(1, 4, 2, 9),
 ```
 
 ::: {.write}
-In your script, create a dataframe called `data_cases` that contains `cases` in one column and `region` in the other.
+In your script, create a data frame called `data_cases` that contains `cases` in one column and `region` in the other.
 :::
 
 ```{r}
@@ -588,14 +589,14 @@ data_cases <- data.frame(
 ```
 
 
-#### Exploring a Dataframe
+#### Exploring a data frame
 
 `data_cases` should now appear in your environment. You can click on its name to see some additional information, or click on the blue circle with a white triangle in it to open the object in the *Viewer*. 
 
-![The data_case dataframe now appears in the Environment pane](../img/core/01_introduction/03_environment.png){fig-align="center"}
+![The data_case data frame now appears in the Environment pane](../img/core/01_introduction/03_environment.png){fig-align="center"}
 
 
-There are several handy functions we can use to explore a dataframe:
+There are several handy functions we can use to explore a data frame:
 
 ::: {.write}
 Run the following commands and try to determine what they type of information they are returning.
@@ -630,11 +631,11 @@ ncol(iris)
 names(iris)
 ```
 
-#### Accessing Data in a Dataframe
+#### Accessing Data in a data frame
 
-In R, there are several methods for accessing the rows and/or columns of a dataframe. In this introductory session we will focus on the `[ ]` syntax.
+In R, there are several methods for accessing the rows and/or columns of a data frame. In this introductory session we will focus on the `[ ]` syntax.
 
-We use square brackets to access single values or ranges within our dataframe. To do this we must give R both a row number (or range of rows) and column number/name (or range of columns), using the syntax `[row, column]`. 
+We use square brackets to access single values or ranges within our data frame. To do this we must give R both a row number (or range of rows) and column number/name (or range of columns), using the syntax `[row, column]`. 
 
 ```{r}
 #| eval: true
@@ -652,7 +653,7 @@ data_cases[ , "region"]    # values of all rows for the region column
 ```
 
 ::: {.write}
-Write a command to calculate the sum of the `cases` column of your dataframe.
+Write a command to calculate the sum of the `cases` column of your data frame.
 :::
 
 ```{r}
@@ -668,26 +669,26 @@ We can even select multiple non-consecutive indices by using a numeric vector:
 data_cases[c(1, 3), ]  # lines 1 and 3 (all columns)
 ```
 
-Do be careful, as the *type* of output returned when extracting data from a dataframe can sometimes depend on the style of indexing used:
+Do be careful, as the *type* of output returned when extracting data from a data frame can sometimes depend on the style of indexing used:
 
 ```{r}
 #| eval: true
-str(data_cases[1 , ])   # returns a dataframe
+str(data_cases[1 , ])   # returns a data frame
 str(data_cases[ , 1])   # returns a simple vector
 ```
 
-Another syntaxt to extract the various columns of a dataframe:
+Another syntaxt to extract the various columns of a data frame:
 
 ```{r}
 #| eval: true
-data_cases[2]           # returns the second column (as a dataframe)
-data_cases["region"]    # returns the region column (as a dataframe)
+data_cases[2]           # returns the second column (as a data frame)
+data_cases["region"]    # returns the region column (as a data frame)
 ```
 
-Notice that these commands returned single-column dataframes. 
+Notice that these commands returned single-column data frames. 
 
 ::: {.write}
-Write a command to access the third value in the `region` column of your dataframe. Then, write a command to return the second and third values of the `cases` column.
+Write a command to access the third value in the `region` column of your data frame. Then, write a command to return the second and third values of the `cases` column.
 :::
 
 ```{r}
