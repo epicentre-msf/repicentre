@@ -33,7 +33,7 @@ solutions <- params$solutions
 
 ## Exercise Format
 
-These exercises are in the format of a self-paced tutorial containing short explanations of key concepts, examples, and exercises for you to follow. The course uses a "learning by doing" approach, and while this first session will start slow, giving you time to explore the RStudio interface, future sessions will focus heavily on having you write your own code.
+These exercises are in the format of a self-paced tutorial containing short explanations of key concepts, examples, and exercises for you to follow. The course uses a "learning by doing" approach, and while this first session will start with a lot of time exploring the RStudio interface, future sessions will focus heavily on having you write your own code.
 
 Instructions for exercises will be given in the following formats: 
 
@@ -98,7 +98,7 @@ To the upper right there will be a panel with several tabs. Many of these are be
 - *History.* A record of all the commands you have executed during the current session.
 
 ::: {.callout-note}
-You can think of an R session like you would think of starting up a computer. Whenever a session starts, everything is blank and ready for computation in the same way that there aren't any programs open when you first turn on your computer. In general, we encourge you to stop and start your R sessions regularly, you may just find that _turning it off an on again_ will fix some of your bugs!
+You can think of an R session like you would think of starting up a computer. Whenever a session starts, everything is blank and ready for computation in the same way that there aren't any programs open when you first turn on your computer. In general, we encourge you to stop and start your R sessions regularly, you may just find that _turning it off an on again_ will fix some of your bugs.
 :::
 
 #### Bottom Right Corner
@@ -113,7 +113,7 @@ To the bottom right there will be another multi tab panel, including:
 
 #### Left Side
 
-- To the left or bottom left (if you have four panels) you should see the *console*, where R itself is run.
+- To the left (or bottom left if you have four panels) you should see the *console*, where R itself is run.
 - To the top left (if you have four panels) will be any open *scripts*.
 
 In the next two sections, let's talk about the console and scripts in more detail.
@@ -129,7 +129,7 @@ If the last line shown in the console starts with a `+` instead of a `>` that me
 :::
 
 ::: {.write}
-Run the following commands in the console and observe the output.
+Run the following commands in the console one line at a time and observe the output.
 
 ```{r}
 5 + 90
@@ -193,7 +193,7 @@ To create a new script, follow the menu `File > New File > R Script`. Alternativ
 To save your script, either use the menu `File > Save As` or the keyboard shortcut `CTRL+S`.
 
 ::: {.setup}
-Create and save a new script called `discovery.R`. Don’t forget to include the `.R` extension.
+Create and save a new script called `discovery.R`. Don’t forget to include the `.R` extension. For now, you can save it on your Desktop or any convenient location, but we will talk more about organizing your scripts in the [next session](../sessions_core/02_import_data.qmd).
 :::
 
 #### Executing Code from a Script
@@ -201,11 +201,11 @@ Create and save a new script called `discovery.R`. Don’t forget to include the
 To run code from a script simply place your cursor on the line you wish to run (or select multiple lines) and do one of the following:
 
 * Click the `Run` icon at the top right of the script panel
-* Use the shortcut `CTRL+Enter` (cursor will move to the next line)
-* Use the shortcut `ALT+Enter` (cursor will stay on the current line)
+* Use the shortcut `CTRL+Enter` (cursor will move to the next line afterwards)
+* Use the shortcut `ALT+Enter` (cursor will stay on the current line afterwards)
 
 ::: {.write}
-Copy the code you ran in the previous exercises into your script and try running it using each of the above methods.
+Copy the code you ran in the previous exercises into your script and run it using each of the above methods.
 
 From now on, you will write your code in your script and execute it from there, unless told otherwise in the instructions.
 :::
@@ -244,10 +244,10 @@ Comments are also a handy way to split longer scripts into thematic sections, su
 ```
 
 ::: {.write}
-Use comments to create sections in your script that correspond to the sections in this tutorial. 
+Use comments to create sections in your script that correspond to the main sections in this tutorial. 
 :::
 
-Finally, comments allow us write helpful notes for our colleagues (and our future selves!) that can help them understand the code and why we wrote it the way we did. While the exact style and amount of comments that is “best” is debatable, the general rule is to focus on comments that explain “why” rather than “what”. This is because the “what” of well written code should be relatively self explanatory.
+Finally, comments allow us write helpful notes for our colleagues (and our future selves) that can help them understand the code and why we wrote it the way we did. The general guidance is to focus on comments that explain the “why” rather than the “what”. This is because the “what” of well written code should be relatively self explanatory.
 
 This comment, for example, is completely superfluous:
 
@@ -265,8 +265,9 @@ That being said, you are learning, and the scripts you are writing during this c
 
 
 ::: {.callout-tip}
-You can comment a selected line with the shortcut `CTRL+SHIFT+C`
-You can add a first level section with `CTRL+SHIFT+R` 
+You can comment a selected line with the shortcut `CTRL+SHIFT+C`.
+
+You can add a first level section with `CTRL+SHIFT+R`.
 :::
 
 
@@ -286,7 +287,7 @@ R has several different [data types]{.hovertip bs-toggle='tooltip' bs-title="Jus
 
 ### Numerics
 
-The numeric type includes both integers and doubles (numbers that include a decimal) and can be created by simply writing the value into your script.
+The numeric type includes both *integers* and *doubles* (numbers that include a decimal) and can be created by simply writing the "naked" value into your script or console.
 
 ### Strings
 
@@ -328,7 +329,7 @@ You may find people using `T` or `F` but this is discouraged as `T` and `F` can 
 There are several functions to determine the type of an object (often called the *class* of the object in R).
 
 ::: {.write}
-Type the following command in your script and run them: 
+Type the following commands in your script and run them: 
 
 ```{r}
 # Get the Type of an Object
@@ -377,7 +378,7 @@ cases
 ```
 
 ::: {.callout-note}
-The reason we need to wrap strings in quotation marks is actually to allow R to differentiate between strings and object names.
+The reason we need to wrap strings in quotation marks is actually to allow R to differentiate between strings (`"cases"` and object names `cases`).
 :::
 
 Once created, objects can be used in other commands:
@@ -440,7 +441,7 @@ age_du_patient_a_l_admission <- 19  # BAD (too long)
 age <- 19                           # GOOD
 ```
 
-Giving your objects clear and informative names helps to make your code readable, making it easy for others to understand without the need for excessive documentation.
+Giving your objects clear and informative names helps to make your code readable, making it easy for others to understand without the need for checking the data dictionary every two seconds.
 
 
 ## Data Structures
@@ -458,7 +459,7 @@ Technically, there are several types of vectors, for example:
 This course will not go into detail on the more abstract concepts behind these structures and instead focus only on those you will encounter most often in your daily work.
 
 #### Simple Vectors
-Simple vectors can contain one or more values of a single data type, they thus have two key properties: **length** and **type**. For the purpose of this class, we will use the terms “simple vector” and “vector” interchangeably (as is typical in the R community). 
+Simple vectors can contain one or more values *of a single data type*, they thus have two key properties: **length** and **type**. For the purpose of this class, we will use the terms “simple vector” and “vector” interchangeably (as is typical in the R community). 
 
 You’ve technically already created your first simple vector when you built `cases` and `region`. These were simply vectors with a **length of one**. To create a vector with more than one value, we will use the function `c()` ([mnemonic]{.hovertip bs-toggle='tooltip' bs-title='` c` is the first letter of "concatenate"'}):
 
@@ -468,7 +469,7 @@ cases <- c(2, 5, 8, 0, 4)
 ```
 
 ::: {.write}
-Update `cases` with the above values and update `region` to create a string vector containing the values: Mandoul, Moyen-Chari, Logone Oriental, Tibesti, Logone Occidental.
+Update `cases` with the above values and update `region` to create a string vector containing the values: Mandoul, Moyen-Chari, Logone Oriental, Tibesti, and Logone Occidental.
 :::
 
 ```{r}
@@ -492,7 +493,7 @@ We can now use functions on the objects we have created:
 ```{r}
 #| eval: true
 mean(cases)      # calculate the mean value of the cases vector
-toupper(region)  # convert all the values in region to lower case
+toupper(region)  # convert all the values in region to upper case
 ```
 
 
@@ -536,7 +537,9 @@ cases[2:4]  # 2nd to 4th values of cases
 ```
 
 ::: {.write}
-Get the 3rd value of `region`. Write code to access the values "Mandoul" and "Moyen-Chari" in the vector `region`.
+Get the 3rd value of `region`. 
+
+Write code to access the values "Mandoul" and "Moyen-Chari" in the vector `region`.
 :::
 
 ```{r}
@@ -558,7 +561,7 @@ We can create a data frame using the function `data.frame()`:
 ```{r}
 #| eval: true
 data.frame(col1 = c(1, 4, 2, 9),
-           col2 = c("a bit of text", "some more text", "hello", "epidemiologists"))
+           col2 = c("a bit of text", "some more text", "hello", "epidemiologists!"))
 ```
 
 See how `col1` was created from a numeric vector, and `col2` from a vector of strings. Here we chose the names of the columns (`col1` and `col2`), which is the normal was, but you can run the code without to see how R handles names by default.
@@ -613,9 +616,9 @@ names(data_cases)   # column NAMES
 ```
 :::
 
-R comes with several built in data sets that can be accessed directly, including one called `iris`. It is convenient for today's training as we have not learned to import data in R yet (don't worry, we will work on linelist data from the second session then onwards).
+Let's practie a bit more! R comes with several built in data sets that can be accessed directly, including one called `iris`. It is convenient today as we have not learned to import data in R yet (don't worry, we will work on linelist data from the second session then onwards).
 
-We can see the first few lines of this dataset using the function `head()`:
+We can see the first few lines of this data frame using the function `head()`:
 
 ```{r}
 #| eval: true
@@ -712,13 +715,13 @@ Think of this instruction as two steps:
 
 ## Missing Values {#sec-missing-values}
 
-As epidemiologists, we work with missing data all the time. In R, missing values are coded using a special value: `NA` (meaning **N**ot **A**vailable). `NA` is somewhat unique in R as it doesn’t per se have a fixed type, rather, it will take on the type of the values around it. For example, an `NA` in a numeric column will then take on the numeric type. We will discuss the idea of missing data in more depth in later sessions of the course.
+As epidemiologists, we work with missing data all the time. In R, missing values are coded using a special value: `NA` (meaning **N**ot **A**vailable). `NA` is somewhat unique in R as it doesn't per se have a fixed *type*, rather, it will take on the type of the values around it. For example, an `NA` in a numeric column will then take on the numeric type. We will discuss the idea of missing data in more depth in later sessions of the course.
 
 
 
 ## Functions {#sec-functions}
 
-Functions are objects that contain commands (instead of values) that are run whenever the function is called. You are without doubt familiar with functions in Excel such as `SUM` and the idea of functions in R is exactly the same.
+Functions are objects that contain *commands* (instead of values) that are run whenever the function is called. You are without doubt familiar with functions in Excel such as `SUM` or `MEAN` and the idea of functions in R is exactly the same.
 
 Most functions require some sort of input, such as a dataset or parameter. These inputs are called *arguments* and are normally named. For example, when we ran `sum(cases)`, we provided the vector `cases` as the first (and only) argument to the function `sum()`. 
 
@@ -754,7 +757,7 @@ mean(cases,
 ```
 :::
 
-What happens if we put the arguments in the wrong order? Well, if they are named then the function will still work exactly as expected. That being said, doing this would make your code harder to read and we encourage you to stick with a standard order of putting obligatory arguments like data first. 
+What happens if we put the arguments in the wrong order? If you provided the name of the arguments in you command, the function will still work exactly as expected. That being said, doing this would make your code harder to read and we encourage you to stick with a standard order of putting obligatory arguments like data first. 
 
 ```{r}
 # technically functional but hard to read:
@@ -766,11 +769,11 @@ mean(cases,
      na.rm = TRUE)
 ```
 
-Of course, if you mess up the ordering of arguments and *didn’t* include their names your code will throw an error:
+Of course, if you mess up the ordering of arguments and *didn’t* include their names your code will not work as expected, or even throw an error:
 
 ```{r}
 #| error=TRUE
-mean(TRUE, cases)     # throws an error
+mean(TRUE, cases)   # not what you expect
 ```
 
 
