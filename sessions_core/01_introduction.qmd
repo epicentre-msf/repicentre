@@ -319,7 +319,7 @@ Compare the output in the console for the following commands:
 
 The last command above will give an error because we cannot perform arithmetic operations that combine text and numbers.
 
-::: {.callout-note}
+::: {.callout-important}
 R is case sensitive, meaning that the string `"ABC"` is not the same as `"abc"`.
 :::
 
