@@ -91,13 +91,17 @@ Inspect the RStudio interface.
 You will have either three or four panels, including:
 
 
-#### Uper Right Corner
+#### Upper Right Corner
 
-To the upper right there will be a panel with several tabs. Many of these are beyond the scope of this course, and we will focus on these two:
+To the upper right there will be a panel with several tabs. Many of these are beyond the scope of this course, but we will use the following two tabs during the course:
 
-- *Environment.* A list of the [objects]{.hoverinfo toggle='tooltip' title='You will learn later this lesson that in R, pretty much everything is an object, including functions, scalar values, and other more complex data structures'} saved by the user in the current [session]{.hoverinfo toggle='tooltip' title="You can think of an R session like you would think of starting up a computer. Whenever a session starts, everything is blank and ready for computation in the same way that there aren't any programs open when you first turn on your computer. In general, we encourge you to stop and start your R sessions regularly, you may just find that _turning it off an on again_ will fix some of your bugs!"}. Because you’ve just started a new session, your environment should be empty.
+- *Environment.* A list of the objects saved by the user in the current session. Because you’ve just started a new session, your environment should be empty.
 
 - *History.* A record of all the commands you have executed during the current session.
+
+::: {.callout-note}
+You can think of an R session like you would think of starting up a computer. Whenever a session starts, everything is blank and ready for computation in the same way that there aren't any programs open when you first turn on your computer. In general, we encourge you to stop and start your R sessions regularly, you may just find that _turning it off an on again_ will fix some of your bugs!
+:::
 
 #### Bottom Right Corner
 
