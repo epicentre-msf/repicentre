@@ -774,3 +774,9 @@ Of course, if you mess up the ordering of arguments and *didn’t* include their
 #| error=TRUE
 mean(TRUE, cases)     # throws an error
 ```
+
+
+## The end!
+
+That's all for this session! Congratulations, you learned about the Rstudio interface, how to use the console for basic calculations, the most common types of objects and how to explore and manipulate them, and a couple of useful functions already!
+
