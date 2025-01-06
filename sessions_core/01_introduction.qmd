@@ -281,7 +281,7 @@ R has several different [data types]{.hoverinfo toggle='tooltip' title="Just lik
 - date
 - factor
 
-## Numerics
+### Numerics
 
 The numeric type includes both integers and doubles (numbers that include a decimal) and can be created by simply writing the value into your script.
 
