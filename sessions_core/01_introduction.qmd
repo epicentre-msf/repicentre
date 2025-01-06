@@ -107,8 +107,11 @@ You can think of an R session like you would think of starting up a computer. Wh
 
 To the bottom right there will be another multi tab panel, including:
 
+- *Files.* A file explorer for the working directory, which is the folder location (directory) where R is currently working. We will talk more about it in the next session.
 - *Plots.* A location where RStudio will display *static* visualizations; this tab should be empty for the moment.
+- *Packages.* A list of all the R packages installed on your computer. Packages are collections of functions that help extend the functionality of R and we will discuss them in greater detail in the next lesson.
 - *Help.* A place to read help pages and documentation for functions and packages.[Documentation refers to additional narrative text either in a code file or an external document that is written to help folks understand what a piece of code, function, or package does and how it should be used. Code documentation is a bit analogous to creating a data dictionary for a set of survey data and is an invaluable part of making robust and reusable code]{.aside}
+- *Viewer.* A location where RStudio will display html outputs such as tables, interactive widgets, or even full on dashboards.
 
 #### Left Side
 
