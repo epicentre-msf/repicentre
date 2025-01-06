@@ -67,9 +67,9 @@ At the end of each session, we ask that you **email us your tutorial code**. Thi
 
 ## RStudio and R
 
-*R* is a [functional programming language]{.hoverinfo toggle='tooltip' title='Functional programming languages are designed primarily to run analyses and focus on tools for data manipulation, computation, and visualization. This can be contrasted with object oriented languages which are more adept at building complex programs (such as operating systems).'} that can be used to clean and manipulate data, run analyses (especially statistical ones), visualize results, and much more. 
+*R* is a [functional programming language]{.hoverinfo toggle='tooltip' title='As opposed to object oriented languages which are more adept at building complex programs (such as operating systems).'} that can be used to clean and manipulate data, run analyses (especially statistical ones), visualize results, and much more. 
 
-*RStudio* is a piece of software that provides a user-friendly interface (or [IDE]{.hoverinfo toggle='tooltip' title='Integrated Development Environments'} to be precise) for [R]{.hoverinfo toggle='tooltip' title='Integrated Development Environments are a group of softwares that provide a convenient interface to use one or more programming languages. Many IDEs are specialized for a specific language (such as RStudio being specialized for R). Others, like VS Code are more general and can be used for any language.'}. While using a graphical interface isn’t technically required, it is **strongly recommended** for beginners.
+*RStudio* is a piece of software that provides a user-friendly interface for R (also called an IDE, for Integrated Development Environments). While using a graphical interface isn’t technically required, it is strongly recommended for beginners.
 
 
 ### Getting Started with RStudio
