@@ -335,6 +335,8 @@ is.logical(FALSE)
 
 ## Saving an Object
 
+XXXXXXXXXXXXXX {.hoverinfo toggle='tooltip' title='You will learn later this lesson that in R, pretty much everything is an object, including functions, scalar values, and other more complex data structures'}  XXXXXXXXXXXXXXXXXXXXX
+
 Before continuing with more complex data structures, we need to take an important detour to discuss how objects are saved into your environment.
 
 Often, we will want to reuse the same values or data throughout a script and it is therefore useful to store them as objects in our environment. To do this we use the *assignment operator*, `<-`. 
@@ -695,7 +697,7 @@ As epidemiologists, we work with missing data all the time. In R, missing values
 
 
 
-## Functions
+## Functions {#sec-functions}
 
 Functions are objects that contain commands (instead of values) that are run whenever the function is called. You are without doubt familiar with functions in Excel such as `SUM` and the idea of functions in R is exactly the same.
 
