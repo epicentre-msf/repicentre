@@ -616,7 +616,9 @@ names(data_cases)   # column NAMES
 ```
 :::
 
-R comes with several built in data sets that can be accessed directly, including one called `iris`.[The `iris` dataset is convenient because we don't need to use extra functions to enable you to use it but its content not really interesting to us. Be reassured, we will learn how to import a dataset in the next core session, and work on linelist data onwards.]{.aside} We can see the first few lines of this dataset using the function `head()`:
+R comes with several built in data sets that can be accessed directly, including one called `iris`. It is convenient for today's training as we have not learned to import data in R yet (don't worry, we will work on linelist data from the second session then onwards).
+
+We can see the first few lines of this dataset using the function `head()`:
 
 ```{r}
 #| eval: true
