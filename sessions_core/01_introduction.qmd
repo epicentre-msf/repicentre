@@ -215,7 +215,7 @@ From now on, you will write your code in your script and execute it from there, 
 :::
 
 
-#### Comments
+#### Comments {#sec-comments}
 In R, any text prefaced by a `#` (until the end of a line) is called a *comment*. R does not consider comments to be code and will ignore them whenever you run your scripts. This makes comments an excellent way to document your code.
 
 ```{r}
@@ -344,7 +344,7 @@ is.logical(FALSE)
 ```
 :::
 
-## Saving an Object
+## Saving an Object {#sec-assignement-operator}
 
 XXXXXXXXXXXXXX {.hoverinfo toggle='tooltip' title='You will learn later this lesson that in R, pretty much everything is an object, including functions, scalar values, and other more complex data structures'}  XXXXXXXXXXXXXXXXXXXXX
 
@@ -589,7 +589,7 @@ data_cases <- data.frame(
 ```
 
 
-#### Exploring a data frame
+#### Exploring a data frame  {#sec-dataframe-functions}
 
 `data_cases` should now appear in your environment. You can click on its name to see some additional information, or click on the blue circle with a white triangle in it to open the object in the *Viewer*. 
 
