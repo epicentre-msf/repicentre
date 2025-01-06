@@ -259,7 +259,7 @@ By comparison, here are a few use cases that would warrant comments:
 
 - You define a constant, say a seroprevalence threshold value. You may want to add a comment providing the reference for where the value comes from.
 - Your code contains a value or file name that needs to be updated every week. You should indicate this with a comment to ensure that anyone else using the code is aware.
-- You think of an additional bit of analysis or plot that you’d like to add to a particular part of your script. You can use a comment to add a `TODO:` (to do) reminding you to come back later.
+- You use a rare command or package that your colleague may not know or may find counter intuitive. You can use a comment to explain the rational behind that decision.
 
 ::: {.callout-note}
 While “what” comments aren’t per se recommended in final scripts that we will use for projects or share with our colleagues, do feel free to use them at will during this course to add additional notes that you might helpful during the learning process.
