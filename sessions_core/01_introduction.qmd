@@ -77,7 +77,7 @@ At the end of each session, we ask that you **email us your tutorial code**. Thi
 Let’s get started! 
 
 ::: {.setup}
-Open RStudio using the start menu or desktop shortcut; if RStudio is already open, please close it open a new session.
+Open RStudio using the start menu or desktop shortcut; if RStudio is already open, please close it open it again.
 :::
 
 You should see an interface that looks something like this:
