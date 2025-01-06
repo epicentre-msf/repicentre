@@ -200,6 +200,7 @@ Create and save a new script called `discovery.R`. Don’t forget to include the
 :::
 
 #### Executing Code from a Script
+
 To run code from a script simply place your cursor on the line you wish to run (or select multiple lines) and do one of the following:
 
 * Click the `Run` icon at the top right of the script panel
@@ -208,7 +209,10 @@ To run code from a script simply place your cursor on the line you wish to run (
 
 ::: {.write}
 Copy the code you ran in the previous exercises into your script and try running it using each of the above methods.
+
+From now on, you will write your code in your script and execute it from there, unless told otherwise in the instructions.
 :::
+
 
 #### Comments
 In R, any text prefaced by a `#` (until the end of a line) is called a *comment*. R does not consider comments to be code and will ignore them whenever you run your scripts. This makes comments an excellent way to document your code.
@@ -268,7 +272,7 @@ While “what” comments aren’t per se recommended in final scripts that we w
 :::
 
 ::: {.write}
-Add some comments to describe the code that you’ve written thus far.
+Add some comments to describe the code that you’ve written thus far in your script.
 :::
 
 ## Data Types
@@ -297,7 +301,7 @@ If you would like to create a string that **contains a quotation mark** the best
 
 
 ::: {.write}
-Compare the output in the console for the following commands.
+Compare the output in the console for the following commands:
 
 ```{r}
 28         # numeric
@@ -321,7 +325,7 @@ Internally, R thinks of `TRUE` and `FALSE` as being a special version of `1` and
 There are several functions to determine the type of an object (often called the *class* of the object in R).
 
 ::: {.write}
-Run the following commands: 
+Type the following command in your script and run them: 
 
 ```{r}
 # Get the Type of an Object
@@ -352,7 +356,7 @@ Look at the environment panel on the top right, verifying that it is empty.
 :::
 
 ::: {.write}
-Type the following command to save a variable called `cases` into your environment.
+Type the following command in your script and run it to save a variable called `cases` into your environment.
 
 ```{r}
 #| eval: true
@@ -383,7 +387,7 @@ cases + 5
 ```
 
 ::: {.write}
-Create an object called `region` that contains the value `"Mandoul"`. Do you see it in your environment?
+From your script, create an object called `region` that contains the value `"Mandoul"`. Do you see it in your environment?
 :::
 
 ```{r}
