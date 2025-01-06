@@ -348,11 +348,9 @@ is.logical(FALSE)
 
 ## Saving an Object {#sec-assignement-operator}
 
-XXXXXXXXXXXXXX {.hoverinfo toggle='tooltip' title='You will learn later this lesson that in R, pretty much everything is an object, including functions, scalar values, and other more complex data structures'}  XXXXXXXXXXXXXXXXXXXXX
+In R, pretty much everything is an **object**, including functions, scalar values, and other more complex data structures. Before introducing these structures, let's take an important detour to discuss how objects are saved into your environment.
 
-Before continuing with more complex data structures, we need to take an important detour to discuss how objects are saved into your environment.
-
-Often, we will want to reuse the same values or data throughout a script and it is therefore useful to store them as objects in our environment. To do this we use the *assignment operator*, `<-`. 
+Often, we will want to reuse the same values or data throughout a script and it is therefore very useful to store them as objects in our environment. To do this we use the *assignment operator*, `<-`. 
 
 ::: {.look}
 Look at the environment panel on the top right, verifying that it is empty.
