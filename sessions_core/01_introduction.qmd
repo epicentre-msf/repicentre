@@ -220,7 +220,6 @@ In R, any text prefaced by a `#` (until the end of a line) is called a *comment*
 2 + 3  # This is also a comment
 ```
 
-::: {.callout-tip}
 It is helpful to future you and others to start your scripts with a few commented lines providing some information about the file.
 
 ```{r}
@@ -230,7 +229,7 @@ It is helpful to future you and others to start your scripts with a few commente
 # Last Update : 30/11/2024
 # Description : Import and clean measles surveillance data from Moissala
 ```
-:::
+
 
 ::: {.write}
 Add some comments to the top of your script describing it.
