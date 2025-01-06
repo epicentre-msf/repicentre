@@ -549,7 +549,7 @@ region[1:2]
 
 ### Data frames
 
-*Data frames* are a special type of list that is composed of multiple simple vectors of the same length. Data frames take the shape of a table where each of these vectors is a named column, similar to a table in Excel. As epidemiologists, this type of data structure is perhaps the most useful and you will likely use them on a daily basis.
+*Data frames* are tabular [structures]{.hovertip bs-toggle='tooltip' bs-title='Technically they are a special type of list, that is composed of multiple vectors of the same length.'} / 2D tables with rows and columns. It is very similar to a "table" structure in Excel. As epidemiologists, this type of data structure is perhaps the most useful and you will likely use them on a daily basis, to store linelist data for example.
 
 #### Creating a data frame
 
