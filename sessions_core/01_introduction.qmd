@@ -601,7 +601,7 @@ data_cases <- data.frame(
 
 #### Exploring a data frame  {#sec-dataframe-functions}
 
-`data_cases` should now appear in your environment. You can click on its name to see some additional information, or click on the blue circle with a white triangle in it to open the object in the *Viewer*. 
+`data_cases` should now appear in your environment. You can click on the blue circle with a white triangle in to see some additional information, or click on its name to open the object in the *Viewer*. 
 
 ![The data_case data frame now appears in the Environment pane](../img/core/01_introduction/03_environment.png){fig-align="center"}
 
