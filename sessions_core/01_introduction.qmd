@@ -724,14 +724,14 @@ Most functions require some sort of input, such as a dataset or parameter. These
 
 Often, a function will have a combination of both *required* and *optional* arguments. The first argument of a function is almost always required and is typically a dataset. As an obligatory and rather obvious argument, most people omit its name when calling a function; ie: i.e. people will write `mean(cases)` instead of `mean(x = cases)`. Optional arguments on the other hand are usually added using their name, i.e.: `mean(x = cases, na.rm = TRUE)`.
 
-Optional arguments typically have default values and we only include them when we want to change their defaults (and thus change the default behavior of the function). For example, the `na.rm` argument of `mean()` determines whether R will ignore missing values when calculating a mean. The default state of the `na.rm` argument is `FALSE`, so by default, the mean performed on data with missing values will always return `NA` as the result:[This is true for many arithmetic operations in R]{.aside}
+Optional arguments typically have default values and we only include them when we want to change their defaults (and thus change the default behavior of the function). For example, the `na.rm` argument of `mean()` determines whether R will ignore missing values when calculating a mean. The default state of the `na.rm` argument is `FALSE`, so by default, the mean performed on data with missing values will always return `NA` as the result:
 
 ```{r}
 #| eval: true
 mean(c(1, 3, NA))
 ```
 
-If we want R to calculate the mean on whatever data *is* available (and ignore the missing values) we need to explicitly set `na.rm = TRUE`:
+This is true for many arithmetic operations in R. If we want R to calculate the mean on whatever data *is* available (and ignore the missing values) we need to explicitly set `na.rm = TRUE`:
 
 ```{r}
 #| eval: true
