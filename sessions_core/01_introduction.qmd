@@ -191,9 +191,9 @@ Scripts are text files that contain a **series of commands** for a particular pr
 
 ![Steps to create a new script in the RStudio IDE](../img/core/01_introduction/02_new_script.png){fig-align="center"}
 
-To create a new script, follow the menu `File > New File > R Script`. Alternatively, you can also click on the small green `+` sign just below the `File` menu or use the keyboard shortcut `CTRL+SHIFT+N`. This new and **unsaved** script will appear as a blank document in the top left panel.
+To create a new script, follow the menu `File > New File > R Script`. Alternatively, you can click on the small green `+` sign just below the `File` menu or use the keyboard shortcut `CTRL+SHIFT+N`. This new and **unsaved** script will appear as a blank document in the top left panel.
 
-To save your script, either use the menu `File > Save As` our the keyboard shortcut `CTRL+S`.
+To save your script, either use the menu `File > Save As` or the keyboard shortcut `CTRL+S`.
 
 ::: {.setup}
 Create and save a new script called `discovery.R`. Don’t forget to include the `.R` extension.
