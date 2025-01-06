@@ -153,6 +153,16 @@ Run the following command. Note that the final `)` is missing, making the comman
 ```
 :::
 
+You may have noticed in the above examples that our code includes a lot of spaces between characters. This is not by accident. It is considered best practice to include spaces around most operators, such as `+`, `-`, `*`, `/`, `<`, `>`, `=`, and `<-`. Not only do these spaces make your code easier for other people to read and understand, in some (rare) cases they may even be necessary to avoid errors. That said, do be aware that there are a small number of operators that should *not* be surrounded by spaces, such as `^`,  `.` and `:`. 
+
+```{r}
+1+29+4.8/3*3           # BAD
+1 + 29 + 4.8 / 3 * 3   # GOOD
+
+1 ^ 2 # BAD
+1^2   # GOOD
+```
+
 
 We can also run *functions* in the console. We will discuss functions in more depth [later in this lesson](../sessions_core/01_introduction.qmd#sec-functions), but meanwhile know that the idea of functions in R is very similar to the one in Excel, where you no doubt are familiar with functions such as `SUM` or `MEAN`.
 
@@ -166,18 +176,6 @@ min(1, 8, 56, 0.3)
 
 # Find the maximum value
 max(568, 258, 314)
-```
-:::
-
-::: {.callout-tip}
-You may have noticed in the above examples that our code includes a lot of spaces between characters. This is not by accident. It is considered best practice to include spaces around most operators, such as `+`, `-`, `*`, `/`, `<`, `>`, `=`, and `<-`. Not only do these spaces make your code easier for other people to read and understand, in some (rare) cases they may even be necessary to avoid errors. That said, do be aware that there are a small number of operators that should *not* be surrounded by spaces, such as `^`,  `.` and `:`. 
-
-```{r}
-1+29+4.8/3*3           # BAD
-1 + 29 + 4.8 / 3 * 3   # GOOD
-
-1 ^ 2 # BAD
-1^2   # GOOD
 ```
 :::
 
