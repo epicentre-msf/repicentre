@@ -33,7 +33,7 @@ solutions <- params$solutions
 
 ## Exercise Format
 
-These exercises are in the format of a self-paced tutorial containing short explanations of key concepts, examples, and exercises for you to follow. The course uses a “learning by doing” approach, and while this first session will start a slow, giving you time to explore the RStudio interface, future sessions will focus heavily on having you write your own code.
+These exercises are in the format of a self-paced tutorial containing short explanations of key concepts, examples, and exercises for you to follow. The course uses a "learning by doing" approach, and while this first session will start slow, giving you time to explore the RStudio interface, future sessions will focus heavily on having you write your own code.
 
 Instructions for exercises will be given in the following formats: 
 
@@ -553,9 +553,9 @@ region[1:2]
 ```
 
 
-### data frames
+### Data frames
 
-*data frames* are a special type of list that is composed of multiple simple vectors of the same length. data frames take the shape of a table where each of these vectors is a named column, similar to a table in Excel. As epidemiologists, this type of data structure is perhaps the most useful and you will likely use them on a daily basis.
+*Data frames* are a special type of list that is composed of multiple simple vectors of the same length. Data frames take the shape of a table where each of these vectors is a named column, similar to a table in Excel. As epidemiologists, this type of data structure is perhaps the most useful and you will likely use them on a daily basis.
 
 #### Creating a data frame
 
@@ -605,7 +605,7 @@ data_cases <- data.frame(
 There are several handy functions we can use to explore a data frame:
 
 ::: {.write}
-Run the following commands and try to determine what they type of information they are returning.
+Run the following commands and try to determine what type of information they are returning.
 
 ```{r}
 str(data_cases)     # STRucture of the object
@@ -718,11 +718,11 @@ As epidemiologists, we work with missing data all the time. In R, missing values
 
 Functions are objects that contain commands (instead of values) that are run whenever the function is called. You are without doubt familiar with functions in Excel such as `SUM` and the idea of functions in R is exactly the same.
 
-Most functions require some sort of input, such as a dataset or parameter. These inputs are called *arguments* and are normally named. For example, when we ran `sum(cases)`, we provided the vector `cases` as the first (and only) argument to the function `sum`. 
+Most functions require some sort of input, such as a dataset or parameter. These inputs are called *arguments* and are normally named. For example, when we ran `sum(cases)`, we provided the vector `cases` as the first (and only) argument to the function `sum()`. 
 
 Often, a function will have a combination of both *obligatory* and *optional* arguments. The first argument of a function is almost always obligatory and is typically a dataset. As an obligatory and rather obvious argument, most people omit its name when calling a function; ie: i.e. people will write `mean(cases)` instead of `mean(x = cases)`. Optional arguments on the other hand are usually added using their name, i.e.: `mean(x = cases, na.rm = TRUE)`.
 
-Optional arguments typically have default values and we only include them when we want to change their defaults (and thus change the default behavior of the function). For example, the `na.rm` argument of `mean` determines whether R will ignore missing values when calculating a mean. The default state of the `na.rm` argument is `FALSE`, so by default, the mean performed on data with missing values will always return `NA` as the result:[This is true for many arithmetic operations in R]{.aside}
+Optional arguments typically have default values and we only include them when we want to change their defaults (and thus change the default behavior of the function). For example, the `na.rm` argument of `mean()` determines whether R will ignore missing values when calculating a mean. The default state of the `na.rm` argument is `FALSE`, so by default, the mean performed on data with missing values will always return `NA` as the result:[This is true for many arithmetic operations in R]{.aside}
 
 ```{r}
 #| eval: true
