@@ -60,7 +60,7 @@ This is an **observation block**, it will have instructions about something that
 **Example:** Inspect the RStudio interface.
 :::
 
-As you move through these exercises, you may run into some errors.[Errors occur when R is unable to complete a command. This can happen for a lot of reasons, for example because you misspelled the name of an object: you've asked R to look for a data file that doesn't exist, or you've provided the wrong type of data to a function. Whenever an error occurs, R will stop any ongoing calculation and give you a message explaining what went wrong. We will see and discuss a lot of different errors throughout this course.]{.aside} This is completely normal and happens to **all programmers**, novice and expert. Much like a natural language, R is something you will get better at the more you practice and work through your mistakes.
+As you move through these exercises, you may run into some errors, which occur when R is unable to complete a command. This can happen for many reasons: maybe you misspelled the name of an object, asked R to look for a file that doesn't exist, or provided the wrong type of data to a function. Whenever an error occurs, R will **stop** any ongoing calculation and give you a message explaining what went wrong. Having errors is completely normal and happens to **all programmers**, novice and expert. Much like a natural language, R is something you will get better at the more you practice and work through your mistakes.
 
 At the end of each session, we ask that you **email us your tutorial code**. This will help us to assess how everyone is doing as the course progresses and allow us to provide feedbacks or come back on some muddy points.
 
