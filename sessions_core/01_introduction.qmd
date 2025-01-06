@@ -287,7 +287,7 @@ The numeric type includes both integers and doubles (numbers that include a deci
 
 ### Strings
 
-Strings are the R version of text and can be created by surounding text with single or double quotation marks, for example `'"istrict"` or `"cases"`. 
+Strings are the R version of text and can be created by surrounding text with single or double quotation marks, for example `"district"` or `"cases"`. 
 
 ::: {.callout-tip}
 While both single and double quotations can be used to create strings, double quotations are typically considered best practice.
