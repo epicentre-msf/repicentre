@@ -222,7 +222,7 @@ In R, any text prefaced by a `#` (until the end of a line) is called a *comment*
 ```
 
 ::: {.callout-tip}
-You should start your scripts with a few commented lines providing some information about the file.
+It is helpful to future you and others to start your scripts with a few commented lines providing some information about the file.
 
 ```{r}
 #### IMPORT & PREPARE DATA ####
