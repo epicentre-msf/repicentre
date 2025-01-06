@@ -317,11 +317,12 @@ If you would like to create a string that contains a quotation mark the best pra
 ### Boolean (Logical)
 The boolean (or “logical”) type stores true/false values and is created by writing either `TRUE` or `FALSE` without quotation marks. 
 
+Internally, R thinks of `TRUE` and `FALSE` as being a special version of `1` and `0` respectively, and boolean values can be easily translated to these numeric equivalents for arithmetic operations.
+
 ::: {.callout-note}
-You may find people writting `T` or `F` but this is discouraged as `T` and `F` can also be used as object or variable names. `TRUE` and `FALSE`, however, are *protected* in R, meaning they cannot be reassigned to another value.
+You may find people using `T` or `F` but this is discouraged as `T` and `F` can also be used as object or variable names. `TRUE` and `FALSE`, however, are *protected* in R, meaning they cannot be reassigned to another value.
 :::
 
-Internally, R thinks of `TRUE` and `FALSE` as being a special version of `1` and `0` respectively, and boolean values can be easily translated to these numeric equivalents for arithmetic operations.
 
 ### Determining the Type of an Object
 There are several functions to determine the type of an object (often called the *class* of the object in R).
