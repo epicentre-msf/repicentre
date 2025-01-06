@@ -657,16 +657,6 @@ data_cases[2:4, ]         # values of all columns for rows 2 through 4
 data_cases[ , "region"]    # values of all rows for the region column
 ```
 
-::: {.write}
-Write a command to calculate the sum of the `cases` column of your data frame.
-:::
-
-```{r}
-#| include = solutions
-# SOLUTION
-sum(data_cases[ , "cases"])
-```
-
 We can even select multiple non-consecutive indices by using a numeric vector:
 
 ```{r}
@@ -693,7 +683,11 @@ data_cases["region"]    # returns the region column (as a data frame)
 Notice that these commands returned single-column data frames. 
 
 ::: {.write}
-Write a command to access the third value in the `region` column of your data frame. Then, write a command to return the second and third values of the `cases` column.
+Write a command to:
+
+- access the third value in the `region` column of your data frame  
+- return the second and third values of the `cases` column  
+- calculate the sum of the `cases` column of your data frame
 :::
 
 ```{r}
@@ -704,6 +698,8 @@ data_cases[3, 2]         # Works too if you are sure of the position
 
 data_cases[2:3, "cases"]
 data_cases[2:3, 1]
+
+sum(data_cases[ , "cases"])
 ```
 
 
