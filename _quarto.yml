@@ -3,29 +3,28 @@ project:
   output-dir: docs
 
 website:
-  title: "Repicentre"
+  title: "{repicentre}"
   navbar:
     left:
-      - href: index.qmd
-        text: Home
-      - href: pathway.qmd
-        text: Pathway
-      - href: explore.qmd
-        text: Explore
+      - pathway.qmd
+      - explore.qmd
+      - resources.qmd
       - about.qmd
 
 format:
   html:
-    theme: default
+    theme:
+      light: lightly
+      dark: darkly
+    highlight-style: github
     css: styles.css
-    code-link: true
     toc: true
-    toc-location: left
-    include-before-body:
+    include-in-header:
       text: <script type="text/javascript" src="../script.js"></script>
     execute:
       echo: true
       eval: false
 
-
+comments: 
+    hypothesis: false
 

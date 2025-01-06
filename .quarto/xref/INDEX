@@ -41,17 +41,7 @@
   "sessions_core/template.qmd": {
     "template.html": "61e6719c"
   },
-  "sessions_core/introduction.qmd": {
-    "introduction.html": "6b702793"
-  },
-  "sessions_extra/indexing.qmd": {
-    "indexing.html": "f407733b"
-  },
-  "sessions_extra/lists.qmd": {
-    "lists.html": "9929e068"
-  },
-  "sessions_core/01_introduction.qmd": {
-    "01_introduction.html": "b40fb5cb",
-    "01_introduction.docx": "9598f686"
+  "resources.qmd": {
+    "resources.html": "8de10a3c"
   }
 }

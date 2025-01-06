@@ -1,32 +1,76 @@
-<img src=https://github.com/user-attachments/assets/b51559e6-31f3-490a-8755-5c65357afddb width=200px>
+ What up buttercups. <img src='img/llama.svg' width=200px align='right'>
+----------------------------------------------------------------------------------------------------
+Welcome to the R training repo, thanks for being here! A few quick notes:
+- Want to write a new session? Amazing, read the "Notes on Session Development" section. 
+- Someone told you to review a session? We thank you for your service, please read the "Session Review Guidelines" section.
+- Need some tips on best practices for collaborative coding? Read the "General Contribution Guidelines"
 
-## What up buttercups.
-This is the repo for the revision of the FETCH R course *and* the development of a broader set of R training material for MSF/Epicentre. The ultimate goal is to have a website hosting self contained tutorials providing two possible learning pathways:
-1. **Linear:** A specific set of ordered core sessions designed to take students from zero to basic competency
-2. **Choose-Your-Own-Adventure**: A repository of core and satellite sessions ranging from basic to advanced topics.
+Note, this website is **public** with a **[live development version online](https://epicentre-msf.github.io/repicentre/)**. Please don't break it.
 
-Note, this website is **public** with a **[live development version online](https://epicentre-msf.github.io/repicentre/)**.
 
-## Organization
-This project will require several major components, which can be decomposed into *milestones*. Ongoing milestones include:
-1. **Admin.** 
-2. **Core: Splitting Basic Sessions**
-3. **Core: Data Manipulation**
-4. **Core: Tables**
-5. **Satellite Sessions**
-6. **Website and Styling: MVP**
-7. **Data: MVP**
+Notes on session development.
+----------------------------------------------------------------------------------------------------
+Want to write a session? **Amazing.** Here are some tips:
+- Make sure you **open an issue saying that you will draft that session** and assign yourself to it then make a branch to work on it. Please use the naming style `<short_name-session/satellite>`, for example `import-session` or `dates-satellite`.
+- If you are working on a **core session**, put it in `sessions_core` and use the filename convention `[session number]_[session name].qmd`, for example `02_import.qmd`.
+- If you are working on a satellite, put files in `sessions_extra` and give your file a short but descriptive name.
+- If you need to embedd any images, put them in the relevant subfolder of `img` in **the root directory**, every session with images should have it's own subfolder in either `img/core/` or `img/extra/` as appropriate.
+- When you are done building your session, you can move on to the review and pull request process -- more information on those below.
 
-For a reminder of what topics we decided to put in to the core vs satellite modules, please refer to the [google sheet](https://docs.google.com/spreadsheets/d/1oqAkFwQVuDzfRouxglN-UT9RMDzl7TLfD5_g0ayPhZU/edit?gid=0#gid=0).
+**NB.** For a reminder of what topics we decided to put in to the core vs satellite modules, please refer to the [google sheet](https://docs.google.com/spreadsheets/d/1oqAkFwQVuDzfRouxglN-UT9RMDzl7TLfD5_g0ayPhZU/edit?gid=0#gid=0).
 
-## How to Use this Project
-Feel free to add new issues whenever they seem relevant. Many tags are available (including session tags as well as things like "help wanted"). For issues that you own, please give an estimate of the number of days you expect to use slash how many you ultimately used. This will help to make sure we are within the budget in the [project](https://github.com/orgs/epicentre-msf/projects/5/).
 
-## Contribution Protocol and Best Practices
-This is a collaborative coding repository with a live prodocution branch. To avoid messiness and possible downstream merge conflicts, we are using a scrum-esque style of development where new ideas are developed through an issue > branch > pull request pathway. Here is a very quick review of what that type of process looks like:
+Session review guidelines.
+----------------------------------------------------------------------------------------------------
+Once a session has been developped, it is important that someone reviews it to:  
 
-**Note.** here I use [`gh`](https://cli.github.com/) and `git` command line examples but all of these tasks can also be handled from other git managers and/or via GitHub.
+1. Make sure the length is appropriate (for example, sessions should take us around 15 minutes to complete)
+2. Verify that the content covers the main concept of the session 
+3. Check on the information load (keep in mind the students just got into R, let's try and only retain essential information as it's already a lot for them)
+4. Check spelling and syntax
+5. Check styling (make sure callouts/tooltip are used consistently and there are no style bugs)
 
+The first thing to do is to open a github issue `review session-name` and assign it to yourself. Review both the `.qmd` and the `.html` file (inside `docs`) for the session. If you see any spelling or minors mistakes feel free to correct them directly in the `.qmd `.
+
+More important changes should be introduced as comments (see below commenting with hypothes.is) and discussed with the person who developped the session. Once you are done with the review drop a message on the issue, try to summarise your thoughts on the session and list major suggested changes. The issue can serve as a forum to discuss/resolve/vote on points of contention. 
+
+### Commenting
+To review a session we use a commenting system called [hypothes.is](https://web.hypothes.is/) that allows us to direclty comment/annotate the `.html` file the same way you would do in a word document. In order to use it, you need to set the hypothesis comments portion of the YAML to true:
+
+```
+comments: 
+    hypothesis: true
+```
+
+With hypothes.is we can:
+
+1. Drop a page note for the overall page 
+2. Highlight some text 
+3. Highlight text and annotate - other users can then reply to this comment
+
+Comments are pretty robust and will stay on the html file even when we rerender! If the text that you selected for the comment is not there anymore, the comment will be an **orphan**, still visible on the document but not attached to any text. It looks like we cannot attach it back to a portion of the text but at least there is no lose of information.
+
+Please start all of your comments with `[YOUR-NAME]` in front of it, otherwise we loose track of authors when sharing comments. Once you are happy with the comments, you need to extract them as a `.JOSN` format, and drop the file in the github issue that you created earlier (`review session-name`). These can then be downloaded and imported inside hypothes.is to be read by the session author. They can also reply to comments (including `[THEIR-NAME]`, re-export them, and post them as a reply to the issue. 
+
+Once the session is completed and feedback resolved, we need to manually delete all of the comments and set the hypothesis option in the YAML back to `false`: 
+
+```
+comments: 
+    hypothesis: false
+```
+
+General contribution guidelines.
+----------------------------------------------------------------------------------------------------
+This is a collaborative coding repository with a live production branch. To avoid messiness and possible downstream merge conflicts, we are using a scrum-esque style of development where new ideas are developed through an issue > branch > pull request pathway. Bellow is a quick explanation of what that process looks like, but TLDR:
+1. Identify an issue you want to work on
+2. Make a branch named after **and associated** with that issue
+3. Use that branch (and only that branch) to work on that issue (and only that issue)
+4. When done, submit a pull request and request a review from a codeowner
+5. Once the pull request is resolved and merged, delete the branch
+
+Therefore, anything that is reviewed and approved is **live** on the website by been present on the `main` branch.
+
+**Note.** here we use [`gh`](https://cli.github.com/) and `git` command line examples but all of these tasks can also be handled from other git managers (github desktop) and/or via GitHub.
 
 **1. When you have an idea for a change (ie: feature request, bug fix, etc), create a [new issue on the project](https://github.com/orgs/epicentre-msf/projects/5/)**
 
@@ -43,7 +87,7 @@ This can be done either [through GitHub](https://docs.github.com/en/issues/track
 $ gh issue develop 123 --checkout
 ```
 
-When naming your branch, we encourage the best practice of `[issue-number]-[short-title]`. Once created, you can move between your branches using `git checkout [branch-name]`.
+When naming your branch, we encourage the best practice of `[issue-number]-[short-title]`. Once created, you can move between your branches using `git checkout [branch-name]`. You can list all existing branches (and see which one you are on) with `git branch -a`
 
 **Warning.** with **very** rare exception branches **should be based on the `main`. Do not create a branch based on another branch.
 
@@ -51,11 +95,11 @@ When naming your branch, we encourage the best practice of `[issue-number]-[shor
 
 **This part is important**, to avoid messy merges and conflicts please make sure that your branches (issues) are self contained and that the branch contains **exclusively** commits related to its respective issue.
 
-**WARNING.** Git(Hub) doesn't always play well with multi-branch iterations of `docs/`. To avoid unnecessary conflicts during the downstream merge, please **do not add, commit, or push** any changes to `docs`. Please do this by simply adding / commiting selectively rather than using a shortcut like `git add *` or `git add .`, please do not change the `.gitignore` to ignore `docs` as this will create problems on the `main`. Whomever reviews your eventual pull request will handle updating the docs render when mergin to the `main`.
+**WARNING.** Git(Hub) doesn't always play well with multi-branch iterations of `docs/`. To avoid unnecessary conflicts during the downstream merge, please **do not add, commit, or push** any changes to `docs` except for reviewing of sessions. Please do this by simply adding / commiting selectively rather than using a shortcut like `git add *` or `git add .`, please do not change the `.gitignore` to ignore `docs` as this will create problems on the `main`. Whomever reviews your eventual pull request will handle updating the docs render when mergin to the `main`.
 
 **4. Once you have finished working on the issue, submit a pull request and request review**
 
-This requries a couple steps:
+This requires a couple steps:
 
 - Make sure you are up to date with any changes that happened on the main (note, `merge` is preferred to `rebase` because branches are public):
 ```
