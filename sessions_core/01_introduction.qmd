@@ -172,11 +172,14 @@ max(568, 258, 314)
 :::
 
 ::: {.callout-tip}
-You may have noticed in the above examples that our code includes a lot of spaces between characters. This is not by accident. It is considered [best practice]{.hoverinfo toggle='tooltip' title="Best practices refer to a set of conventions related to code style. These can include stylistic rules around syntax, aesthetic, the way you name objects, etc. Most of the time failing to follow best practices will not result in errors, but we still strongly encourage you to follow the recommendations laid out in this course."} to include spaces around most operators, such as `+`, `-`, `*`, `/`, `<`, `>`, `=`, and `<-`. Not only do these spaces make your code more [readable]{.hoverinfo toggle='tooltip' title="Readability refers to how easy (or not) it is for a person to read your code and understand it easily. The spacing of characters within and between lines is an important aspect of what makes code readable. In general, the more we include spacing and the shorter we keep our lines of code the easier it will be to read."}, in some cases they may even be necessary to avoid errors. That said, do be aware that there are a small number of operators that should *not* be surrounded by spaces, such as `^` and `.`. 
+You may have noticed in the above examples that our code includes a lot of spaces between characters. This is not by accident. It is considered best practice to include spaces around most operators, such as `+`, `-`, `*`, `/`, `<`, `>`, `=`, and `<-`. Not only do these spaces make your code easier for other people to read and understand, in some (rare) cases they may even be necessary to avoid errors. That said, do be aware that there are a small number of operators that should *not* be surrounded by spaces, such as `^`,  `.` and `:`. 
 
 ```{r}
 1+29+4.8/3*3           # BAD
 1 + 29 + 4.8 / 3 * 3   # GOOD
+
+1 ^ 2 # BAD
+1^2   # GOOD
 ```
 :::
 
