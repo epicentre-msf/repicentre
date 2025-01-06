@@ -3,9 +3,6 @@ title: Introduction to R
 description: Your first steps in R. Learn your way around Rstudio, and meet some common R objects.
 date: last-modified
 # image: 
-params: 
-  solutions: FALSE
-  sub_title: "**------ With Solutions ------**"
 categories:
   - Core
   - Rstudio
@@ -18,8 +15,6 @@ categories:
 #| include: false
 #| eval: true
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
-
-solutions <- params$solutions
 ```
 
 
@@ -392,11 +387,6 @@ cases + 5
 From your script, create an object called `region` that contains the value `"Mandoul"`. Do you see it in your environment?
 :::
 
-```{r}
-#| include = solutions
-# SOLUTION
-region <- "Mandoul"
-```
 
 ::: {.callout-tip}
 Don’t forget that we should always surround `<-` with spaces to improve readability and avoid errors.
@@ -418,12 +408,6 @@ cases <- 32
 ::: {.write}
 Update the value of `region` to `"Moyen Chari"`.
 :::
-
-```{r}
-#| include = solutions
-# SOLUTION
-region <- "Moyen Chari"
-```
 
 ### Object Names
 When naming your objects, there are a few (relatively) hard rules:
@@ -473,13 +457,6 @@ Update `cases` with the above values and update `region` to create a string vect
 :::
 
 ```{r}
-#| include = solutions
-# SOLUTION
-region <- c("Mandoul", "Moyen-Chari", "Logone Oriental",
-                      "Tibesti", "Logone Occidental")
-```
-
-```{r}
 #| echo: false
 #| eval: true
 # INTERNALS
@@ -501,21 +478,10 @@ toupper(region)  # convert all the values in region to upper case
 Use the function `sum()` to calculate the sum of `cases`
 :::
 
-```{r}
-#| include = solutions
-# SOLUTION
-sum(cases)
-```
-
 ::: {.write}
 Pass `region` to the function `tolower()`
 :::
 
-```{r}
-#| include = solutions
-# SOLUTION
-tolower(region)
-```
 
 ### Accessing the Values of a Vector
 
@@ -542,13 +508,6 @@ Get the 3rd value of `region`.
 Write code to access the values "Mandoul" and "Moyen-Chari" in the vector `region`.
 :::
 
-```{r}
-#| include = solutions
-# SOLUTION
-region[3]
-region[1:2]
-```
-
 
 ### Data frames
 
@@ -571,23 +530,11 @@ See how `col1` was created from a numeric vector, and `col2` from a vector of st
 In your script, create a data frame called `data_cases` that contains `cases` in one column and `region` in the other.
 :::
 
-```{r}
-#| include = solutions
-# SOLUTION
-data_cases <- data.frame(
-  cases = c(2, 5, 8, 0, 4),
-  region = c("Mandoul", "Sud Kivu", "Kasai oriental", 
-               "Kasai", "Haut Katanga"))
-
-# OR
-data_cases <- data.frame(cases, region)
-```
-
 
 ```{r}
 #| echo: false
 #| eval: true
-# INTERNAL
+# INTERNALS
 data_cases <- data.frame(
   cases = c(2, 5, 8, 0, 4),
   region = c("Mandoul", "Sud Kivu", "Kasai oriental", 
@@ -629,15 +576,6 @@ head(iris)
 How many rows and columns are there in `iris`? What are the names of its columns?
 :::
 
-```{r}
-#| include = solutions
-# SOLUTION
-str(iris)
-dim(iris) 
-nrow(iris)
-ncol(iris)
-names(iris)
-```
 
 #### Accessing Data in a data frame
 
@@ -657,7 +595,7 @@ If we want to access all of the rows (or columns) we can simple leave a space in
 #| eval: true
 data_cases[1, ]           # values of all columns in row one
 data_cases[2:4, ]         # values of all columns for rows 2 through 4
-data_cases[ , "region"]    # values of all rows for the region column
+data_cases[ , "region"]   # values of all rows for the region column
 ```
 
 We can even select multiple non-consecutive indices by using a numeric vector:
@@ -692,19 +630,6 @@ Write a command to:
 - return the second and third values of the `cases` column  
 - calculate the sum of the `cases` column of your data frame
 :::
-
-```{r}
-#| include = solutions
-# SOLUTION
-data_cases[3, "region"]  # Works if you are sure of the name of the column
-data_cases[3, 2]         # Works too if you are sure of the position
-
-data_cases[2:3, "cases"]
-data_cases[2:3, 1]
-
-sum(data_cases[ , "cases"])
-```
-
 
 ::: {.callout-tip collapse=true}
 Think of this instruction as two steps: 
