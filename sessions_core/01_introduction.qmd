@@ -215,8 +215,6 @@ From now on, you will write your code in your script and execute it from there, 
 In R, any text prefaced by a `#` (until the end of a line) is called a *comment*. R does not consider comments to be code and will ignore them whenever you run your scripts. This makes comments an excellent way to document your code.
 
 ```{r}
-#| eval: true
-
 # This is a comment
 
 2 + 3  # This is also a comment
