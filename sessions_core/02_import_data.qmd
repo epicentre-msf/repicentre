@@ -61,7 +61,7 @@ This folder gives an example of a typical (and highly recommended) structure for
 - 📁 outputs
 - README
 
-This folder will be you working directory for **all the sessions of this course**. You will create an Rstudio project (explanations below) in it, and save all your scripts in `/R`. The course datasets are already in `data/raw`. Additionaly, there are a couple of resources (pdfs and links to online books) in the `/resources` subfolder.
+This folder will be you working directory for **all the sessions of this course**. You will create an Rstudio project (explanations below) in it, and save all your scripts in `/R`. The course datasets are already in `data/raw`.
 
 
 ### Definitions {#sec-definitions}
