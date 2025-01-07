@@ -289,11 +289,14 @@ here("data", "raw", "msf_linelist_moissala_2023-09-24.xlsx")
 In R different file formats are often imported using different, often specialized, functions. This can be tedious as it requires you to memorize and load a large number of functions just to get your data imported. To avoid this problem, we recommend that you use the `import()` function from the package <span tooltip-position="top" tooltip="`rio` stands for R Inputs and Outputs.">`{rio}`</span>. This function is able to open a large variety of files (including Excel, csv, Stata, and many others) by recognizing the file extension of your data and calling a relevant specialized function from another package so that you don't have to. [This type of function, providing an unified interface to other specific functions is known as a *wrapper*]{.aside}.
 
 ::: {.callout-tip}
-To see the full list of all the file types you can load (and save!) with `rio`, check out their [website](https://gesistsa.github.io/rio/index.html) and in particular the list of [supported formats](https://gesistsa.github.io/rio/index.html#supported-file-formats). In the rest of the lesson we will focus on importing data from Excel `.xlsx` files and `.csv` text files.
 :::
 
 ::: {.callout-note}
 Because `import()` is actually just calling other functions in the background, it is possible that it will need different arguments depending on the type of file you want to load.
+
+
+::: {.callout-tip}
+To see the full list of all the file types you can load (and save!) with `rio`, check out the list of [supported formats](https://gesistsa.github.io/rio/index.html#supported-file-formats) on their bebsite. In the rest of the lesson we will focus on importing data from Excel `.xlsx` files and `.csv` text files.
 :::
 
 #### Importing `.xlsx` files
