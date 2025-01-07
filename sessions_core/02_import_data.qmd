@@ -265,12 +265,6 @@ Run the above code in the console. What file path does `here("data", "raw")` giv
 Using `here()`, create a complete file path for the file `msf_linelist_moissala_2023-09-24.xlsx`. Keep this path around, we will use it soon.
 :::
 
-```{r}
-#| include = solutions
-# SOLUTION
-here("data", "raw", "msf_linelist_moissala_2023-09-24.xlsx")
-```
-
 ::: {.callout-important}
 `here()` simply creates a file path, it doesn't actually check if a file exists on your computer: if the file is absent or there is a typo in your code, the command will yield an error when the path is used. If you would like to use a function to check if a file exists, check out the `file.exists()` function.
 :::
@@ -316,14 +310,6 @@ You may not want to have R print very large datasets into the console and assign
 Reimport your data but this time save it to an object called `df_linelist`.
 :::
 
-```{r}
-#| include = solutions
-# SOLUTION
-df_linelist <- import(
-  file = here("data", "raw",
-              "msf_linelist_moissala_2023-09-24.xlsx"))
-```
-
 ##### From Any Sheet
 
 As you just saw, R selects the first sheet by default. It is however possible to pass the number (or name) of a specific worksheet in your Excel data to `import()` using the argument `which`:
@@ -356,13 +342,6 @@ import(file = here("data", "raw",, "exemple_linelist.csv"),
 Import the file `msf_linelist_moissala_2023-09-24.csv` from the raw data folder and store it in an object called `df_linelist_csv`.
 :::
 
-```{r}
-#| include = solutions
-# SOLUTION
-df_linelist_csv <- import(file = here("data", "raw",,
-                   "msf_linelist_moissala_2023-09-24.csv"))
-```
-
 ## Taking a Look at your Data
 
 We have now imported a dataset into R and assigned it to a dataframe (`df_linelist`). The natural next step is to inspect this dataset, to check that the import went well, get to know it a bit better, and assess if it requires any cleaning before analysis. 
@@ -380,34 +359,15 @@ head(df_linelist, n = 10) # Inspect 10 first lines
 Use `head()` to examine the 12 first lines of `df_linelist`.
 ::: 
 
-```{r}
-#| include = solutions
-# SOLUTION
-head(df_linelist, n = 12)
-```
-
 We can also use the functions we learned in the [introduction session](../sessions_core/01_introduction.qmd#sec-dataframe-functions) to learn more about the shape of our dataframe and the type of data it contains. 
 
 ::: {.write}
 Using `dim()` and `names()`, check the dimensions and column names of `df_linelist`. Do these results match what you see when you open the data in Excel? 
 :::
 
-```{r}
-#| include = solutions
-# SOLUTION
-dim(df_linelist)
-names(df_linelist)
-```
-
 ::: {.write}
 Use `str()` to check the data type of each column. Does anything look odd? Remember that you can also use functions like `is.character()` and `is.numeric()` if you'd like to test the type of a particular column.
 :::
-
-```{r}
-#| include = solutions
-# SOLUTION
-str(df_linelist)
-```
 
 ### The Environment
 
@@ -429,13 +389,6 @@ The *View* displays dataframes as tables and is a convenient way to quickly look
 Open `df_linelist` in the viewer using the function `View()`. 
 :::
 
-```{r}
-#| include = solutions
-# SOLUTION
-View(df_linelist)
-```
-
-
 ### Data Summaries
 
 The function `summary` accepts a dataframe and is a handy way to get some quick statistics on each of the columns in a dataset:
@@ -447,12 +400,6 @@ summary(iris)
 ::: {.write}
 Use `summary()` to inspect the minimum and maximum values for each column in `df_linelist`. Do you notice anything odd?
 :::
-
-```{r}
-#| include = solutions
-# SOLUTION
-summary(df_linelist)
-```
 
 Make notes of types of data that you think is not correct and of values to check later, it will save you time in the next session.
 
