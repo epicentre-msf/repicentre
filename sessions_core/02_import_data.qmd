@@ -45,7 +45,7 @@ The principles you learned in the Data Management module will apply here as well
 ### Folder Structure
 
 ::: {.setup}
-If not done already, download the course folder, save it to a location that is [**not connected to OneDrive**]{.hovertip bs-toggle='tooltip' bs-title='OneDrive doesn't play well with R as it will attempt to constantly synchronize certain project files in a way that can cause errors or memory problems'}.
+If not done already, download the course folder, save it to a location that is [**not connected to OneDrive**]{.hovertip bs-toggle='tooltip' bs-title="OneDrive doesn't play well with R as it will attempt to constantly synchronize certain project files in a way that can cause errors or memory problems"}.
 Unzip the archive and open the uncompressed folder.
 :::
 
@@ -435,9 +435,6 @@ Open `df_linelist` in the viewer using the function `View()`.
 View(df_linelist)
 ```
 
-::: {.callout-note} 
-The overwhelming majority of buttons in RStudio are actually just convenient shortcuts for R functions that are run in the background, as we have now seen in the case of `View()` and `str()`.
-:::
 
 ### Data Summaries
 
