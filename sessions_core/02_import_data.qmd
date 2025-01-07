@@ -105,7 +105,7 @@ It is strongly recommended to set up a separate RStudio Project for each of your
 There are several ways to open an RStudio Project, including:
 
 - Using the RStudio menu `File > Open Project` and then selecting the relevant `.Rproj` file
-- Clicking on <span class='hoverinfo' data-toggle='tooltip' title="You can also refer to this button at any time to see which project you are currently working in.">the `Project: (none)` button</span> on the top right of the RStudio interface (see @fig-interface)
+- Clicking on <span class='hoverinfo' data-toggle='tooltip' title="You can also refer to this button at any time to see which project you are currently working in.">the `Project: (none)` button</span> on the top right of the RStudio interface (see [interface](../sessions_core/02_import_data.qmd#fig-interface)
 - Navigating in the folder explorer to the analysis folder and double clicking on the file with the `.Rproj` extension
 
 ### RStudio Options
@@ -176,7 +176,7 @@ library(here) # load the "here" package
 ```
 
 ::: {.write}
-Use the `library()` function to load the packages `here` and `rio`, which will be used in @sec-import.
+Use the `library()` function to load the packages `here` and `rio`, which will be used in [the import section](../sessions_core/02_import_data.qmd#sec-import).
 :::
 
 ```{r}
@@ -240,7 +240,7 @@ The use of absolute paths is **strongly discouraged** as they would need to be c
 
 #### Relative Paths
 
-*Relative paths* are defined relative to your current working directory (@sec-definitions). For example, keeping in mind that our handy `.Rproj` file will set our working directory to the root of our project folder; we could create a relative path that looked like `data/raw/exemple_linelist.xlsx`. This means that **as long as we maintain the *internal* structure** of our project folder and have an `.Rproj` file our code would theoretically run on multiple computers.
+*Relative paths* are defined relative to your current [working directory] (../sessions_core/02_import_data.qmd#sec-definitions). For example, keeping in mind that our handy `.Rproj` file will set our working directory to the root of our project folder; we could create a relative path that looked like `data/raw/exemple_linelist.xlsx`. This means that **as long as we maintain the *internal* structure** of our project folder and have an `.Rproj` file our code would theoretically run on multiple computers.
 
 ::: {.callout-note}
 **Foreshadowing.** File paths actually work a bit differently in `Rmarkdown` files than they do in `R` scripts, but this is something we will talk about much later in the course. If you don't know what `RMarkdown` is at the moment, don't worry about it.
