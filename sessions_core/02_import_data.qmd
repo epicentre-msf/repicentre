@@ -24,7 +24,6 @@ solutions <- params$solutions
 library(here) # for filepaths
 library(rio)  # import and export files
 
-path_data_raw <- here::here("data", "raw")
 df_linelist <- import(file = here("data", "raw", 
               "msf_linelist_moissala_2023-09-24.xlsx"))
 ```
@@ -234,7 +233,7 @@ To open a file in R you need to provide a **file path**. A file path is simply a
 
 #### Absolute Paths
 
-Absolute paths are **specific to your computer** and create a file path that goes all the way up to the level of your <span tooltip-position="top" tooltip="For example, 'C:' or 'D:' on a Windows computer.">harddrive</span>. For example, an absolute path may look something like this: `D:/OneDrive - MSF/Documents/MATHILDE/1_MONITORING/CHOLERA/data/raw/exemple_linelist.xlsx`. Clearly, this path will only work on one computer.
+Absolute paths are **specific to your computer** and create a file path that goes all the way up to the level of your <span tooltip-position="top" tooltip="For example, 'C:' or 'D:' on a Windows computer.">harddrive</span>. For example, an absolute path may look something like this: `D:/OneDrive - MSF/Documents/MATHILDE/1_MONITORING/CHOLERA/data/raw/example_linelist.xlsx`. Clearly, this path will only work on one computer.
 
 The use of absolute paths is **strongly discouraged** as they would need to be changed every time your code is shared or the project folder is moved; if not, the code would no longer run properly.
 
@@ -254,7 +253,7 @@ The first is to use the base R function `file.path()`, which will accept a set o
 
 ```{r}
 #| eval: true
-file.path("data", "raw", "exemple_linelist.xlsx")
+file.path("data", "raw", "example_linelist.xlsx")
 ```
 
 Note that the path is relative, here to the current working directory
@@ -264,7 +263,7 @@ While `file.path()` works fine, the function `here()` (from the package `{here}`
 ```{r}
 #| eval: true
 library(here)
-here("data", "raw", "exemple_linelist.xlsx")
+here("data", "raw", "example_linelist.xlsx")
 ```
 
 
@@ -277,32 +276,13 @@ We will often want to source multiple data files in a single project. To make th
 ::: {.write}
 Create a new section in your code called `File Paths`
 
-Add the code to create an object called `path_data_raw` that contains the path to your raw data folder using the function `here()`.
+Using `here()`, create a complete filepath for the file `msf_linelist_moissala_2023-09-24.xlsx`.
 :::
 
 ```{r}
 #| include = solutions
 # SOLUTION
-library(here)
-path_data_raw <- here("data", "raw")
-```
-
-```{r}
-#| echo: false
-#| eval: true
-path_data_raw <- here::here("data", "raw")
-```
-
-We can now pass our new variable `path_data_raw` back into `here()` in order to create a full path to a specific data file.
-
-::: {.write}
-Using `here()` and `path_data_raw`, create a complete filepath for the file `msf_linelist_moissala_2023-09-24.xlsx`.
-:::
-
-```{r}
-#| include = solutions
-# SOLUTION
-here(path_data_raw, "msf_linelist_moissala_2023-09-24.xlsx")
+here("data", "raw", "msf_linelist_moissala_2023-09-24.xlsx")
 ```
 
 ::: {.callout-note}
@@ -328,7 +308,7 @@ Because `import()` is actually just calling other functions in the background, i
 In general, the usage of `import()` is pretty simple:
 
 ```{r}
-import(file = here(path_data_raw, "exemple_linelist.xlsx"))
+import(file = here("data", "raw", "example_linelist.xlsx"))
 ```
 
 Notice that we have nested the command `here()` **inside** the `import()` command. Nesting functions is absolutely allowed in R and is something you will do *all the time*. When functions are nested, R will evaluate them in the order of the innermost function (in this case `here()`) to the outermost (in this case `import()`). In this way, the *output* of `here()` is being used as the *input* of `import()`. 
@@ -351,7 +331,7 @@ Reimport your data but this time save it to an object called `df_linelist`.
 #| include = solutions
 # SOLUTION
 df_linelist <- import(
-  file = here(path_data_raw,
+  file = here("data", "raw",
               "msf_linelist_moissala_2023-09-24.xlsx"))
 ```
 
@@ -360,7 +340,7 @@ df_linelist <- import(
 As you just saw, R selects the first sheet by default. It is however possible to pass the number (or name) of a specific worksheet in your Excel data to `import()` using the argument `which`:
 
 ```{r}
-import(file = here(path_data_raw, "exemple_linelist.xlsx"),
+import(file = here("data", "raw",, "example_linelist.xlsx"),
        which = 2)
 ```
 
@@ -374,13 +354,13 @@ The `which` argument is specific to the file types that have multiple sheets, su
 We can import a `.csv` file in exactly the same way as an `.xlsx` file, we need only change the extension:
 
 ```{r}
-import(file = here(path_data_raw, "exemple_linelist.csv"))
+import(file = here("data", "raw",, "exemple_linelist.csv"))
 ```
 
 `.csv` files sometimes use different <span tooltip-position="top" tooltip="A delimiter is the character used in a csv file to separate values. Many countries use a comma (,), but some use a semicolon (;).">delimiters</span> and <span tooltip-position="top" tooltip="Some countries use a decimal point (.) to indicate a number with a decimal, others will use a comma (,). Typically, countries using a comma for decimals will use a semicolon as a delimiter.">decimal characters</span> depending on where the file comes from. You can indicate to `import()` which characters to use for these using the `sep` and `dec` arguments respectively:
 
 ```{r}
-import(file = here(path_data_raw, "exemple_linelist.csv"),
+import(file = here("data", "raw",, "exemple_linelist.csv"),
        sep = ";",
        dec = ",")
 ```
@@ -392,7 +372,7 @@ Import the file `msf_linelist_moissala_2023-09-24.csv` from the raw data folder 
 ```{r}
 #| include = solutions
 # SOLUTION
-df_linelist_csv <- import(file = here(path_data_raw,
+df_linelist_csv <- import(file = here("data", "raw",,
                    "msf_linelist_moissala_2023-09-24.csv"))
 ```
 
@@ -407,6 +387,7 @@ We can start by taking a quick look at the first few lines of the dataframe usin
 ```{r}
 head(df_linelist, n = 6)
 ```
+
 Actually, the default value of `n` is already 6, meaning our above code was equivalent to `head(df_linelist)`.[You can check the default value of an argument (if it exists) by checking the documentation of a function. We well show you how to do this in a later session, but you can read a bit [here](https://www.r-project.org/help.html) if you are dying to know.]{.aside}
 
 
