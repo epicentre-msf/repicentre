@@ -55,8 +55,7 @@ This folder gives an example of a typical (and highly recommended) structure for
 - 📁 data 
   - 📁 clean 
   - 📁 raw 
-- 📁 R 
-- 📁 Rmd 
+- 📁 R
 - 📁 outputs
 - README
 
