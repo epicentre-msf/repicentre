@@ -2,7 +2,7 @@
 title: Import data
 description: Create an Rstudio project, install useful packages and start importing data to work in R
 date: last-modified
-image: ../img/core/02_import/img/import_000_logo.png
+image: ../img/core/02_import/import_000_logo.png
 params: 
   solutions: FALSE
   sub_title: "**------ With Solutions ------**"
@@ -45,7 +45,8 @@ The principles you learned in the Data Management module will apply here as well
 ### Folder Structure
 
 ::: {.setup}
-If not done already, download the course folder, save it to a location that is [**not connected to OneDrive**]{.hovertip bs-toggle='tooltip' bs-title='OneDrive doesn't play well with R as it will attempt to constantly synchronize certain project files in a way that can cause errors or memory problems.'}, unzip it and open the uncompressed folder.
+If not done already, download the course folder, save it to a location that is [**not connected to OneDrive**]{.hovertip bs-toggle='tooltip' bs-title='OneDrive doesn't play well with R as it will attempt to constantly synchronize certain project files in a way that can cause errors or memory problems'}.
+Unzip the archive and open the uncompressed folder.
 :::
 
 This folder gives an example of a typical (and highly recommended) structure for your code projects:
@@ -91,7 +92,7 @@ In the Windows Explorer, look at the course folder. You should now see a new fil
 If you don't see this file, it's probably because it is hidden by default on your computer. To change this setting in Windows Explorer, go into the *View* menu and select `Filename Extensions`.
 :::
 
-When you open an RStudio Project, RStudio starts a new R session, opens the associated project files, and **sets your working directory to the root of the course folder**. At this time, RStudio also displays the subfolders of this directory in the panel on the bottom right.
+When you open an RStudio Project, RStudio starts a new R session, opens the associated project files, and sets your working directory to the root of the course folder. At this time, RStudio also displays the subfolders of this directory in the panel on the bottom right.
 
 
 ::: {.callout-tip}
@@ -158,9 +159,9 @@ Don't forget to wrap the package name in quotation marks when using `install.pac
 
 
 ::: {.callout-note}
-To avoid any potential internet connectivity issues during the training, we already had you install most of the course packages (including the one in the example below). 
+If you are following this session as part of a course, to avoid any potential internet connectivity issues during the training we already had you install most of the course packages. 
 
-If you have not installed the packages used in the course yet, you will have to manually do it each time you encounter a new package.
+If are following this tutorial on your own or have not installed the packages yet, you will have to manually install each new package that we encounter.
 :::
 
 ### Usage
@@ -209,7 +210,7 @@ This practice makes it easy to tell which packages need to be installed to run a
 :::
 
 ::: {.write}
-Use [comments]{.hovertip bs-toggle='tooltip' bs-title='Remember that you can use the keyboard shortcuts CRT+SHIT+C and CTRL+SHIFT+R to insert comments and sections" tooltip="top'} to create a "Packages" section to your script.
+Use [comments]{.hovertip bs-toggle='tooltip' bs-title='Remember that you can use the keyboard shortcuts CRT+SHIT+C and CTRL+SHIFT+R to insert comments and sections'} to create a "Packages" section to your script.
 :::
 
 ### Updating Packages
@@ -217,20 +218,20 @@ Use [comments]{.hovertip bs-toggle='tooltip' bs-title='Remember that you can use
 R has a very active community of developers and it's pretty common for packages to be updated from time to time as their owners add in new functions and fix existing bugs. In order to update the packages in your library, you can go into the [`Packages` tab]{.hovertip bs-toggle='tooltip' bs-title='Remember that this tab shows a list of all the packages you have installed on your computer with their version numbers.'} of the bottom right panel and click `Update`. Don't forget that you'll **need to be connected to the internet** during this process. 
 
 ::: {.callout-important}
-Sometimes packages are updated in a way that might remove or change a function that you used in some of your scripts, causing your code to no longer work. **Don't panic** if this happens: it is always possible to go back and install an older version of a package if you need to. Details on how to do this are beyond the scope of this class, however the **best practice** is always to adapt *your code* rather than [forcibly install an old version of a package]{.hovertip bs-toggle='tooltip' bs-title='This is discouraged as it will make your code hard for others to use.'}.
+Sometimes packages are updated in a way that might remove or change a function that you used in some of your scripts, causing your code to no longer work. **Don't panic** if this happens. The best practice is to adapt *your code*, although in the worst case scenario you can [forcibly install an old version of a package]{.hovertip bs-toggle='tooltip' bs-title='This is discouraged as it will make your code hard for others to use.'}. This is however out of the scope of this session.
 :::
 
 ## Data Importation
 
 ### Understanding File Paths {#sec-filepaths}
 
-To open a file in R you need to provide a **file path**. A file path is simply a longer name for a file, that includes not only its name but also its location on your computer. There are several ways of defining these path, including *absolute* and *relative* paths.
+To open a file in R you need to provide a **file path**. A file path is simply a longer name for a file, that includes not only its name but also its location on your computer. There are several ways of defining these paths, including *absolute* and *relative* paths.
 
 #### Absolute Paths
 
-Absolute paths are **specific to your computer** and create a file path that goes all the way up to the level of your [hard drive]{.hovertip bs-toggle='tooltip' bs-title='For example, 'C:' or 'D:' on a Windows computer.'}. For example, an absolute path may look something like this: `D:/OneDrive - MSF/Documents/monitoring/cholera/fancy_project/data/raw/example_linelist.xlsx`. Clearly, this path will only work on one specific computer.
+Absolute paths are **specific to your computer** and go all the way up to the level of your [hard drive]{.hovertip bs-toggle='tooltip' bs-title="For example, 'C:' or 'D:' on a Windows computer."}. For example, an absolute path may look something like this: `D:/OneDrive - MSF/Documents/monitoring/cholera/fancy_project/data/raw/example_linelist.xlsx`. Clearly, this path will only work on one specific computer.
 
-The use of [hard coded]{.hovertip bs-toggle='tooltip' bs-title='Hardoced means that you wrote the full path in the script, the way it is given above, as opposed to building the paths by bits as we are going to show below.'} absolute paths is **strongly discouraged** as it makes your code inflexible and prone to break: the paths need to be updated every time your code is shared or the project folder is moved on your computer; if not, the code would no longer run properly.
+The use of [hard coded]{.hovertip bs-toggle='tooltip' bs-title='Hardoced means that you wrote the full path in the script, the way it is given above, as opposed to building the paths by bits as we are going to show below.'} absolute paths is **strongly discouraged** as it makes your code inflexible and prone to break: the paths need to be updated every time your code is shared or the project folder is moved on your computer.
 
 
 #### Relative Paths
@@ -241,8 +242,9 @@ Relative paths are defined relatively to your current [working directory](../ses
 #### Robust Paths with the `here()` function
 
 The `{here}` package has a `here()` function that really helps defining paths. It has two advantages:
-- When used with RStudio projects, you can give it only the part of the path within the project (*i.e* within the working directory), that is, the *relative path*, and the function will use it to create the *absolute path* dynamically.
-- It will do so using the separator adapted to you [operating system]{.hovertip bs-toggle='tooltip' bs-title='For example, Windows, MacOS, Debian...'}, whether it's `/`, `\`, or `//` 
+
+- When used with RStudio projects, you can give it only the part of the path within the project, (the *relative path* in other words), and the function uses it to create the *absolute path* dynamically.
+- It does so using the separator adapted to you [operating system]{.hovertip bs-toggle='tooltip' bs-title='For example, Windows, MacOS, Debian...'}, whether it's `/`, `\`, or `//` 
 
 ```{r}
 #| eval: true
@@ -250,7 +252,7 @@ library(here)
 here("data", "raw", "example_linelist.xlsx")
 ```
 
-See how we only defined the relative path and the function created an absolute path. This path will work on your colleague computer, even if they run on another operating system and if their computer documents have different names, as long as you both respect the internal structure of the working directory.
+See how we only defined the relative path and the function created an absolute path. This way of defining the path will work on your colleagues computer, even if they run on another operating system, as long as you both respect the internal structure of the working directory.
 
 We **strongly encourage you** to use `here()` whenever you need to create a file path.
 
@@ -270,7 +272,7 @@ here("data", "raw", "msf_linelist_moissala_2023-09-24.xlsx")
 ```
 
 ::: {.callout-important}
-`here()` simply creates a file path, it doesn't actually check if a file exists on your computer: if the file is absent or there is a typo in your path the code will yield an error when the path is used. If you would like to use a function to check if a file exists, check out the `file.exists()` function.
+`here()` simply creates a file path, it doesn't actually check if a file exists on your computer: if the file is absent or there is a typo in your code, the command will yield an error when the path is used. If you would like to use a function to check if a file exists, check out the `file.exists()` function.
 :::
 
 ::: {.callout-tip}
@@ -292,7 +294,7 @@ To see the full list of all the file types you can load (and save!) with `rio`, 
 
 ##### From the First Sheet
 
-In general, the usage of `import()` is pretty simple, at minima you need to path the path of the file to the `file` argument:
+In general, the usage of `import()` is pretty simple, at minima you need to pass the path of the file to the `file` argument:
 
 ```{r}
 import(file = here("data", "raw", "example_linelist.xlsx"))
