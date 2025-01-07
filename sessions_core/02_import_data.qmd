@@ -68,7 +68,7 @@ This folder will be you working directory for **all the sessions of this course*
 
 To better understand the concepts from the rest, you need to understand the two following concepts:
 
-**Working directory.** The working directory is the location (folder) where your R session is *actively working*. If you save a file, for example, it will be saved into this folder by default. Similarly, when you want to open a file, this folder will be shown by default. All relative paths (which will be explained in @sec-filepaths) will be relative to this <span class= 'hoverinfo' data-toggle= 'tooltip' title='By default, R usually picks the "Documents" folder as the working directory on Windows machines'>working directory</span>.
+**Working directory.** The working directory is the location (folder) where your R session is *actively working*. If you save a file, for example, it will be saved into this folder by default. Similarly, when you want to open a file, this folder will be shown by default. All relative paths will be relative to this working directory. By default, R usually picks the "Documents" folder as the working directory on Windows machines
 
 **Root.** The root refers to the top-most folder level of the working directory. If your course folder was called `FETCHR`, the root would then be directly inside it (as opposed to being inside one of its subfolders like `R` or `Data`).
 
