@@ -284,14 +284,14 @@ here("data", "raw", "msf_linelist_moissala_2023-09-24.xlsx")
 `here()` simply creates a file path stored in a string, it doesn't actually check if a file exists on your computer. What is more, any typos in the file or folder names will result in an error. If you would like to use a function to check if a file exists, check out `file.exists()` function.
 :::
 
-### Import function {#sec-import}
-
-In R different file formats are often imported using different, often specialized, functions. This can be tedious as it requires you to memorize and load a large number of functions just to get your data imported. To avoid this problem, we recommend that you use the `import()` function from the package <span tooltip-position="top" tooltip="`rio` stands for R Inputs and Outputs.">`{rio}`</span>. This function is able to open a large variety of files (including Excel, csv, Stata, and many others) by recognizing the file extension of your data and calling a relevant specialized function from another package so that you don't have to. [This type of function, providing an unified interface to other specific functions is known as a *wrapper*]{.aside}.
-
 ::: {.callout-tip}
+We will often want to source multiple data files in a single project. To make that process easier, it can be helpful to create a section at the start of the script, after loading the packages to define paths and store them in variables.
 :::
 
-::: {.callout-note}
+### Import function {#sec-import}
+
+In R different file formats are often imported using different, often specialized functions. This can be tedious as it requires you to memorize and load a large number of functions just to get your data imported. To avoid this problem, we recommend that you use the `import()` function from the package <span tooltip-position="top" tooltip="`rio` stands for R Inputs and Outputs.">`{rio}`</span>. This function is able to open a large variety of files (including Excel, csv, Stata, and many others) by recognizing the file extension of your data and [calling a relevant specialized function from another package]{.hovertip bs-toggle='tooltip' bs-title='This type of function, providing an unified interface to other specific functions is known as a wrapper.'} so that you don't have to.
+
 Because `import()` is actually just calling other functions in the background, it is possible that it will need different arguments depending on the type of file you want to load.
 
 
