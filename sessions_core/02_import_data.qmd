@@ -8,9 +8,8 @@ params:
   sub_title: "**------ With Solutions ------**"
 categories:
   - Core
-  - RStudio projects
-  - Packages
-  - Import data
+  - RStudio
+  - Data importation
 comments:
   hypothesis: true
 ---
