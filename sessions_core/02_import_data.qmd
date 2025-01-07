@@ -1,6 +1,6 @@
 ---
 title: Import data
-description: Creating a Rstudio project, installing packages and importing data
+description: Create an Rstudio project, install useful packages and start importing data to work in R
 date: last-modified
 image: ../img/core/02_import/img/import_000_logo.png
 params: 
@@ -70,7 +70,8 @@ To work through this session you need to understand the two following concepts:
 
 ### RStudio Projects
 
-An RStudio Project can be used to make your life easier and help orient [RStudio around the various files used in your code]{.hovertip bs-toggle='tooltip' bs-title='Technically an RStudio Project is just a file containing some metadata that tell RStudio what files to open and where to set your working directory. It will spare you the headache of managing the working directory yourself'}.
+An RStudio Project can be used to make your life easier and help orient [RStudio around the various files used in your code]{.hovertip bs-toggle='tooltip' bs-title='Technically an RStudio Project is just a file containing some metadata that tells RStudio what files to open and where to set your working directory. It will spare you the headache of managing the working directory yourself.'}
+
 
 As a quick reminder, your interface should look something like this:
 
@@ -94,14 +95,14 @@ When you open an RStudio Project, RStudio starts a new R session, opens the asso
 
 
 ::: {.callout-tip}
-It is strongly recommended to set up a separate RStudio Project for each of your [analyses]{.hovertip bs-toggle='tooltip' bs-title="Here a single analysis would involve the full process of loading, cleaning, analyzing, and reporting on a dataset."} to ensure that your project files remain orgnaized and managable.  
+It is strongly recommended to set up a separate RStudio Project for each of your [analyses]{.hovertip bs-toggle='tooltip' bs-title="Here a single analysis would involve the full process of loading, cleaning, analyzing, and reporting on a dataset."} to ensure that your project files remain organized and manageable.  
 :::
 
-There are several ways to open an RStudio Project, including:
+There are several ways to open an RStudio Project:
 
-- Using the RStudio menu `File > Open Project` and then selecting the relevant `.Rproj` file
-- Clicking on [the `Project: (none)` button]{.hovertip bs-toggle='tooltip' bs-title='You can also refer to this button at any time to see which project you are currently working in.'} on the top right of the RStudio interface (see [interface](../sessions_core/02_import_data.qmd#fig-interface)
-- Navigating in the folder explorer to the analysis folder and double clicking on the file with the `.Rproj` extension
+- Use the RStudio menu `File > Open Project` and then select the relevant `.Rproj` file
+- Click on [the `Project: (none)` button]{.hovertip bs-toggle='tooltip' bs-title='You can also refer to this button at any time to see which project you are currently working in.'} on the top right of the RStudio interface
+- Navigate in the folder explorer to the analysis folder and double click on the file with the `.Rproj` extension
 
 ### RStudio Options
 
@@ -116,7 +117,7 @@ Open the global options (`Tools > Global Options`) and open the tab `General` (l
 When checked, these options cause RStudio to save the objects in your environment and reload them as well as any files you previously had open when you open a new R session. While these defaults may seem like a good idea, it is better to always start your work from a fresh, empty R session to avoid bugs.
 
 :::{.callout-important}
-Remember that any commands or outputs that is needed for the cleaning and analysis should be saved explicitly in a script, in the correct, functional order.
+Remember that any commands or outputs that is needed for the cleaning and analysis should be saved explicitly in a script in the correct, functional order.
 :::
 
 
@@ -125,7 +126,7 @@ Remember that any commands or outputs that is needed for the cleaning and analys
 ::: {.setup}
 Open a new script and save it in the `R` folder of your project under the name `import_data.R`. 
 
-Add some metadata to the top as seen in the first session using [comments](01_introduction.qmd#sec-comments). Be sure to include:
+Add some metadata to the top of the script as seen in the first session using [comments](01_introduction.qmd#sec-comments). Be sure to include:
 
 - Title
 - Author
@@ -164,7 +165,7 @@ If you have not installed the packages used in the course yet, you will have to 
 
 ### Usage
 
-Once a package is installed we can use it but **we have to** specify to R that we will be using it every single session. This process is called *loading the package* and is achieved using the function `library()`. 
+Once a package is installed we can use it but we have to specify to R that we will be using it *every single session*. This process is called *loading the package* and is achieved using the function `library()`. 
 
 ```{r}
 library(here) # load the "here" package
@@ -195,9 +196,9 @@ library(ggplot)
 ```
 :::
 
-The above code throws an error because you have asked for a library that doesn't exist. Remember that R is **fickle and case sensitive** and many of your errors will come from small typos in the names of functions or objects. Here, for example, we wanted to load the package `ggplot2` but wrote `ggplot` instead.
+The above code throws an error because you have asked for a library that doesn't exist. Remember that **R is fickle and case sensitive** and many of your errors will come from small typos in the names of functions or objects. Here, for example, we wanted to load the package `ggplot2` but wrote `ggplot` instead.
 
-::: {.callout-note}
+::: {.callout-tip}
 Most of the time, you'll need to load a number of packages for your script and it is recommended to have a section at the start of your code that loads everything you'll need in one place:
 
 ```{r}
@@ -218,7 +219,7 @@ Use [comments]{.hovertip bs-toggle='tooltip' bs-title='Remember that you can use
 R has a very active community of developers and it's pretty common for packages to be updated from time to time as their owners add in new functions and fix existing bugs. In order to update the packages in your library, you can go into the [`Packages` tab]{.hovertip bs-toggle='tooltip' bs-title='Remember that this tab shows a list of all the packages you have installed on your computer with their version numbers.'} of the bottom right panel and click `Update`. Don't forget that you'll **need to be connected to the internet** during this process. 
 
 ::: {.callout-important}
-Sometimes packages are updated in a way that might remove or change a function that you used in some of your scripts, causing your code to no longer work. **Don't panic** if this happens: it is always possible to go back and install an older version of a package if you need to. Details on how to do this are beyond the scope of this class, however, and we do note that the **best practice** is always to adapt *your code* rather than [forcibly install an old version of a package]{.hovertip bs-toggle='tooltip' bs-title='This is discouraged as it will make your code hard for others to use.'}.
+Sometimes packages are updated in a way that might remove or change a function that you used in some of your scripts, causing your code to no longer work. **Don't panic** if this happens: it is always possible to go back and install an older version of a package if you need to. Details on how to do this are beyond the scope of this class, however the **best practice** is always to adapt *your code* rather than [forcibly install an old version of a package]{.hovertip bs-toggle='tooltip' bs-title='This is discouraged as it will make your code hard for others to use.'}.
 :::
 
 ## Data Importation
@@ -298,7 +299,7 @@ Because `import()` is actually just calling other functions in the background, i
 
 ##### From the First Sheet
 
-In general, the usage of `import()` is pretty simple:
+In general, the usage of `import()` is pretty simple, at minima you need to path the path of the file to the `file` argument:
 
 ```{r}
 import(file = here("data", "raw", "example_linelist.xlsx"))
@@ -333,21 +334,21 @@ df_linelist <- import(
 As you just saw, R selects the first sheet by default. It is however possible to pass the number (or name) of a specific worksheet in your Excel data to `import()` using the argument `which`:
 
 ```{r}
-import(file = here("data", "raw",, "example_linelist.xlsx"),
-       which = 2)
+import(file = here("data", "raw", "example_linelist.xlsx"),
+       which = 2)  # imports the second sheet
 ```
 
 ::: {.callout-note}
-The `which` argument is specific to the file types that have multiple sheets, such as an Excel or .Rdata file. If you try to use it on a `.csv` file the argument will be ignored.
+The `which` argument is specific to the file types that have multiple sheets, such as Excel or .Rdata files. If you try to use it on a `.csv` file the argument will be ignored.
 :::
 
 
 #### Importing `.csv` files
 
-We can import a `.csv` file in exactly the same way as an `.xlsx` file, we need only change the extension:
+We can import a `.csv` file in exactly the same way as an `.xlsx` file, we need only change the name of our file:
 
 ```{r}
-import(file = here("data", "raw",, "exemple_linelist.csv"))
+import(file = here("data", "raw", "exemple_linelist.csv"))
 ```
 
 `.csv` files sometimes use different <span tooltip-position="top" tooltip="A delimiter is the character used in a csv file to separate values. Many countries use a comma (,), but some use a semicolon (;).">delimiters</span> and <span tooltip-position="top" tooltip="Some countries use a decimal point (.) to indicate a number with a decimal, others will use a comma (,). Typically, countries using a comma for decimals will use a semicolon as a delimiter.">decimal characters</span> depending on where the file comes from. You can indicate to `import()` which characters to use for these using the `sep` and `dec` arguments respectively:
@@ -385,7 +386,7 @@ Actually, the default value of `n` is already 6, meaning our above code was equi
 
 
 ::: {.write}
-Use `head()` to examine the first 12 lines of `df_linelist`.
+Use `head()` to examine the 12 first lines of `df_linelist`.
 ::: 
 
 ```{r}
