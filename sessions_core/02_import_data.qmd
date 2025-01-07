@@ -333,9 +333,7 @@ import(file = here("data", "raw", "example_linelist.xlsx"),
        which = 2)  # imports the second sheet
 ```
 
-::: {.callout-note}
-The `which` argument is specific to the file types that have multiple sheets, such as Excel or .Rdata files. If you try to use it on a `.csv` file the argument will be ignored.
-:::
+Note that the `which` argument is specific to the file types that have multiple sheets, such as Excel or .Rdata files. If you try to use it on a `.csv` file the argument will be ignored.
 
 
 #### Importing `.csv` files
