@@ -228,29 +228,21 @@ To open a file in R you need to provide a **file path**. A file path is simply a
 
 #### Absolute Paths
 
-Absolute paths are **specific to your computer** and create a file path that goes all the way up to the level of your <span tooltip-position="top" tooltip="For example, 'C:' or 'D:' on a Windows computer.">harddrive</span>. For example, an absolute path may look something like this: `D:/OneDrive - MSF/Documents/MATHILDE/1_MONITORING/CHOLERA/data/raw/example_linelist.xlsx`. Clearly, this path will only work on one computer.
+Absolute paths are **specific to your computer** and create a file path that goes all the way up to the level of your [hard drive]{.hovertip bs-toggle='tooltip' bs-title='For example, 'C:' or 'D:' on a Windows computer.'}. For example, an absolute path may look something like this: `D:/OneDrive - MSF/Documents/monitoring/cholera/fancy_project/data/raw/example_linelist.xlsx`. Clearly, this path will only work on one specific computer.
 
-The use of absolute paths is **strongly discouraged** as they would need to be changed every time your code is shared or the project folder is moved; if not, the code would no longer run properly.
+The use of [hard coded]{.hovertip bs-toggle='tooltip' bs-title='Hardoced means that you wrote the full path in the script, the way it is given above, as opposed to building the paths by bits as we are going to show below.'} absolute paths is **strongly discouraged** as it makes your code inflexible and prone to break: the paths need to be updated every time your code is shared or the project folder is moved on your computer; if not, the code would no longer run properly.
+
 
 #### Relative Paths
 
-*Relative paths* are defined relative to your current [working directory] (../sessions_core/02_import_data.qmd#sec-definitions). For example, keeping in mind that our handy `.Rproj` file will set our working directory to the root of our project folder; we could create a relative path that looked like `data/raw/example_linelist.xlsx`. This means that **as long as we maintain the *internal* structure** of our project folder and have an `.Rproj` file our code would theoretically run on multiple computers.
+Relative paths are defined relatively to your current [working directory](../sessions_core/02_import_data.qmd#sec-definitions). For example, keeping in mind that our handy `.Rproj` file set our working directory to the root of our project folder, we could create a relative path that looked like `data/raw/example_linelist.xlsx`. This means that **as long as we maintain the *internal* structure** of our project folder and have an `.Rproj` file, our code would theoretically run on multiple computers.
 
 
-#### Robust Paths
+#### Robust Paths with the `here()` function
 
-While using a combination of relative paths and an RStudio project has fixed a lot of our problems, there are still a couple remaining issues. One is that different [operating systems]{.hovertip bs-toggle='tooltip' bs-title='For example, Windows, MacOS, Debian...'} interpret characters like `/`, `\`, and `//` differently, meaning the file paths described above (whether relative or absolute) may not work across multiple systems. Fortunately, we have a few options.
-
-The first is to use the base R function `file.path()`, which will accept a set of the relevant parts (folders) in your desired path and combine them into a file path using the syntax of your local operating system, whichever it is:
-
-```{r}
-#| eval: true
-file.path("data", "raw", "example_linelist.xlsx")
-```
-
-Note that the path is relative, here to the current working directory
-
-While `file.path()` works fine, the function `here()` (from the package `{here}`) works even better. One of the other outstanding problems with our relative path solution is that if ever we change our working directory during an R session the relative paths from our scripts will no longer be correct. `here` accepts a set of names in the same style as `file.path()` but will then use them to dynamically construct an absolute path adapted to your operating system and based on the location of your `.Rproj` file. In this course we **strongly encourage you** to use `here()` whenever you need to create a file path.
+The `{here}` package has a `here()` function that really helps defining paths. It has two advantages:
+- When used with RStudio projects, you can give it only the part of the path within the project (*i.e* within the working directory), that is, the *relative path*, and the function will use it to create the *absolute path* dynamically.
+- It will do so using the separator adapted to you [operating system]{.hovertip bs-toggle='tooltip' bs-title='For example, Windows, MacOS, Debian...'}, whether it's `/`, `\`, or `//` 
 
 ```{r}
 #| eval: true
@@ -258,17 +250,17 @@ library(here)
 here("data", "raw", "example_linelist.xlsx")
 ```
 
+See how we only defined the relative path and the function created an absolute path. This path will work on your colleague computer, even if they run on another operating system and if their computer documents have different names, as long as you both respect the internal structure of the working directory.
+
+We **strongly encourage you** to use `here()` whenever you need to create a file path.
+
 
 ::: {.write}
-Run the above code in the console. What file path does `here("data", "raw")` give you?
+Run the above code in the console. What file path does `here("data", "raw")` give *you*?
 :::
 
-We will often want to source multiple data files in a single project. To make that process easier, it can be helpful to create a variable with the path to your raw (or clean) data.
-
 ::: {.write}
-Create a new section in your code called `File Paths`
-
-Using `here()`, create a complete filepath for the file `msf_linelist_moissala_2023-09-24.xlsx`.
+Using `here()`, create a complete file path for the file `msf_linelist_moissala_2023-09-24.xlsx`. Keep this path around, we will use it soon.
 :::
 
 ```{r}
@@ -277,8 +269,8 @@ Using `here()`, create a complete filepath for the file `msf_linelist_moissala_2
 here("data", "raw", "msf_linelist_moissala_2023-09-24.xlsx")
 ```
 
-::: {.callout-note}
-`here()` simply creates a file path stored in a string, it doesn't actually check if a file exists on your computer. What is more, any typos in the file or folder names will result in an error. If you would like to use a function to check if a file exists, check out `file.exists()` function.
+::: {.callout-important}
+`here()` simply creates a file path, it doesn't actually check if a file exists on your computer: if the file is absent or there is a typo in your path the code will yield an error when the path is used. If you would like to use a function to check if a file exists, check out the `file.exists()` function.
 :::
 
 ::: {.callout-tip}
