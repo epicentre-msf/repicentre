@@ -86,12 +86,10 @@ Open RStudio and create a new project by clicking `File > New Project > Existing
 In the Windows Explorer, look at the course folder. You should now see a new file with the extention `.Rproj` that has a small blue icon with an R in it.
 :::
 
+![Icon associated with RStudio projects](../sessions_core/img/import_001_rstudio_project_icon.png){fig-align="center"}
 :::{.callout-note}
 If you don't see this file, it's probably because it is hidden by default on your computer. To change this setting in Windows Explorer, go into the *View* menu and select `Filename Extensions`.
 :::
-
-![Icon associated with RStudio projects](../sessions_core/img/import_001_rstudio_project_icon.png){fig-align="center"}
-
 
 When you open an RStudio Project, RStudio will start a new R session, open the associated project files, and **set your working directory to the root of the course folder**. At this time, RStudio will also display the subfolders of this directory in the panel on the bottom right.
 
