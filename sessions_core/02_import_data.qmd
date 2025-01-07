@@ -239,7 +239,7 @@ The use of absolute paths is **strongly discouraged** as they would need to be c
 
 #### Relative Paths
 
-*Relative paths* are defined relative to your current [working directory] (../sessions_core/02_import_data.qmd#sec-definitions). For example, keeping in mind that our handy `.Rproj` file will set our working directory to the root of our project folder; we could create a relative path that looked like `data/raw/exemple_linelist.xlsx`. This means that **as long as we maintain the *internal* structure** of our project folder and have an `.Rproj` file our code would theoretically run on multiple computers.
+*Relative paths* are defined relative to your current [working directory] (../sessions_core/02_import_data.qmd#sec-definitions). For example, keeping in mind that our handy `.Rproj` file will set our working directory to the root of our project folder; we could create a relative path that looked like `data/raw/example_linelist.xlsx`. This means that **as long as we maintain the *internal* structure** of our project folder and have an `.Rproj` file our code would theoretically run on multiple computers.
 
 
 #### Robust Paths
