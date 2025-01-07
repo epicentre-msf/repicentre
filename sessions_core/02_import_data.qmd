@@ -425,13 +425,13 @@ We can also check out our data by looking at the *Environment* tab of the top-ri
 Click on the round blue button next to `df_linelist` in your environment to see its structure.
 :::
 
-### The Viewer
+### Viewing the data
 
 ::: {.write}
 Click on the name of your dataframe in the Environment tab. This should open the dataset in a new tab in the same corner as your script (top left).
 :::
 
-The *Viewer* displays dataframes as tables and is a convenient way to quickly look at your data. You can even sort and filter your data in the *Viewer*, though be aware that these actions will not make any changes to the actual object `df_linelist`. The *Viewer* can also be opened by using the function `View()`.
+The *View* displays dataframes as tables and is a convenient way to quickly look at your data. You can even sort and filter your data in the *View*, though be aware that these actions will not make any changes to the actual object `df_linelist`. The *View* can also be opened by passing the dataframe to the function `View()`.
 
 ::: {.write}
 Open `df_linelist` in the viewer using the function `View()`. 
