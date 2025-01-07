@@ -45,9 +45,7 @@ The principles you learned in the Data Management module will apply here as well
 ### Folder Structure
 
 ::: {.setup}
-If not done already, download the course folder, save it to a location that is **not connected to OneDrive**, unzip it and open the uncompressed folder.
-
-OneDrive doesn't play well with R as it will attempt to constantly synchronize certain project files in a way that can cause errors or memory problems.
+If not done already, download the course folder, save it to a location that is [**not connected to OneDrive**]{.hovertip bs-toggle='tooltip' bs-title='OneDrive doesn't play well with R as it will attempt to constantly synchronize certain project files in a way that can cause errors or memory problems.'}, unzip it and open the uncompressed folder.
 :::
 
 This folder gives an example of a typical (and highly recommended) structure for your code projects:
