@@ -380,10 +380,8 @@ We have now imported a dataset into R and assigned it to a dataframe (`df_lineli
 We can start by taking a quick look at the first few lines of the dataframe using the function `head()`. This function takes a dataframe as its first argument and optionally accepts a second argument `n` indicating the number of lines we would like to see. 
 
 ```{r}
-head(df_linelist, n = 6)
+head(df_linelist, n = 10) # Inspect 10 first lines
 ```
-
-Actually, the default value of `n` is already 6, meaning our above code was equivalent to `head(df_linelist)`.[You can check the default value of an argument (if it exists) by checking the documentation of a function. We well show you how to do this in a later session, but you can read a bit [here](https://www.r-project.org/help.html) if you are dying to know.]{.aside}
 
 
 ::: {.write}
