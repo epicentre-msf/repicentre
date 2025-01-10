@@ -81,9 +81,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: [{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: [],
+      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -218,7 +218,31 @@ window.Quarto = {
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-articles-links">
 <div class="list quarto-listing-default">
-
+<div class="quarto-post image-right" data-index="0" data-categories="Q29yZSUyQ1IlMjBCYXNpY3MlMkNEYXRhJTIwVHlwZXM=" data-listing-date-sort="1736281708000" data-listing-file-modified-sort="1736281708115" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="24" data-listing-word-count-sort="4736">
+<div class="thumbnail">
+<p><a href="./sessions_core/01_introduction.html" class="no-external"></a></p><a href="./sessions_core/01_introduction.html" class="no-external">
+<p class="card-img-top"><img src="img/core/01_introduction/01_rstudio_interface_en.png"  class="thumbnail-image card-img"/></p>
+</a><p><a href="./sessions_core/01_introduction.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./sessions_core/01_introduction.html" class="no-external">Introduction to R</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./sessions_core/01_introduction.html" class="no-external"></a>
+</div>
+<div class="listing-description">
+<a href="./sessions_core/01_introduction.html" class="no-external">Your first steps in R. Learn your way around Rstudio, and meet some common R objects.</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./sessions_core/01_introduction.html" class="no-external">
+<div class="listing-date">
+Jan 7, 2025
+</div>
+</a>
+</div>
+</div>
 </div>
 <div class="listing-no-matching d-none">
 No matching items

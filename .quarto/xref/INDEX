@@ -43,5 +43,8 @@
   },
   "resources.qmd": {
     "resources.html": "8de10a3c"
+  },
+  "sessions_core/01_introduction.qmd": {
+    "01_introduction.html": "db6fa68a"
   }
 }
