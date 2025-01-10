@@ -1,19 +1,19 @@
-# Solutions to the core session 01_introduction
-# Author :  the Fetch team
+# INTRODUCTION SESSION
+# Author :  The repicentre Team
 # Creation Date : 06/05/2025
 # Last Update : 06/05/2025
-# Description : Contains solutions to the coding exercices from the introduction sessions.
+# Description : Model code for the Introduction Session.
+# -------------------------------------------------------------------------------------------------- 
 
 
-# Data types ------------------------------------------
+# Data Types ---------------------------------------------------------------------------------------
 
-# Usefull functions to explore the type of objects
-
-# Get the Type of an Object
+# get the type of an object
 class(28)  
 class("Mandoul")
 
-# Test the Type of an Object
+
+# test the type of an object
 is.numeric(28)
 is.numeric("Mandoul")
 is.character("Mandoul")
@@ -23,80 +23,72 @@ is.character(TRUE)
 is.logical(FALSE)
 
 
-# Saving an object ------------------------------------
 
-# Create an object called region that contains the value "Mandoul".
+# Creating an Object -------------------------------------------------------------------------------
+
+# objects are created using the `<-`
 region <- "Mandoul"
 
-# Update the value of region to "Moyen Chari".
+# they are updated in the same way
 region <- "Moyen Chari"
 
 
 
-# Data structures -------------------------------------
+# Atomic Vectors -----------------------------------------------------------------------------------
 
-## Simple vectors --------------------------------------
 
-# Creates a vector of length one, containing the value 28. 
-# It is a numeric vector because it contains an integer.
+# vector of length one, this is a numeric vector because it contains an integer (28)
 cases <- 28
 
-# Update the cases vector with several values
+# vectors can also have multiple values
 cases <- c(2, 5, 8, 0, 4)
 
-# Update the region vector with several values
+# vectors can don't have to be numeric, they can also be character
 region <- c("Mandoul", "Moyen-Chari", "Logone Oriental",
             "Tibesti", "Logone Occidental")
 
-# Calculate the sum of the cases values
-sum(cases)
-
-# Write the region values in lower case
-tolower(region)
 
 
-## Accessing the Values of a Vector --------------------
-
-# Get the 3rd value of `region`:
-region[3]
-
-# Access the values "Mandoul" and "Moyen-Chari" in the vector `region`.
-region[1:2]
+# [brackets] can be used to access the data in a vector by their numeric index
+region[3]          # extract the third value
+region[1:2]        # extract the first and second value
 
 
-# Data frames -------------------------------------------
+# Dataframes ---------------------------------------------------------------------------------------
 
-# Creating a dataframe ----------------------------------
+# creating a dataframe
 data_cases <- data.frame(
   cases = c(2, 5, 8, 0, 4),
   region = c("Mandoul", "Sud Kivu", "Kasai oriental", 
              "Kasai", "Haut Katanga"))
 
-# OR
-# Since we already had objects that contains these valuses in the environment
+
+# alternatively, we can build the dataframe from existing vectors of equal length
 data_cases <- data.frame(cases, region) 
 
 
-## Exploring a data frame -----------------------------------------
+# some functions to explore the strucutre of a dataframe
+str(iris)          # structure, data types of each column
+dim(iris)          # dimensions, number of rows and columns
+nrow(iris)         # number of rows
+ncol(iris)         # number of columns
+names(iris)        # column names
 
-# How many rows and columns are there in iris? What are the names of its columns?
-str(iris)
-dim(iris) 
-nrow(iris)
-ncol(iris)
-names(iris)
 
-## Accessing rows, columns and values of a data frame -------------------
+# data frames are indexed using brackets to specify the [rows, columns] you want to extract
+data_cases[3, "region"]  # you can specify columns by name
+data_cases[3, 2]         # or by their numerical index
 
-# Access the third value in the region column of your data frame  
-data_cases[3, "region"]  # Works if you are sure of the name of the column
-# OR:
-data_cases[3, 2]         # Works too if you are sure of the position
 
-# Return the second and third values of the `cases` column  
+# you can also extract multiple rows at once
 data_cases[2:3, "cases"]
-# OR:
 data_cases[2:3, 1]
 
-# Calculate the sum of the cases column of your data frame
-sum(data_cases[ , "cases"])
+
+
+# Functions ----------------------------------------------------------------------------------------
+
+# functions can be used to perform a calculation or task
+sum(cases)         # calculate the sum of the vector `cases`
+min(c(2, 0, 6))    # find the minimum value in the vector `c(2, 0, 6)` 
+

@@ -5,9 +5,8 @@ date: last-modified
 # image: 
 categories:
   - Core
-  - Rstudio
-  - R basics
-  - Data types
+  - R Basics
+  - Data Types
 ---
 
 
@@ -35,7 +34,7 @@ Instructions for exercises will be given in the following formats:
 ::: {.setup}
 This is a **general action block**. You will typically see it at the beginning of a session with instructions about the setup for that lesson.
 
-
+<br>
 **Example:** Open a blank new script and name it `my_first_script.R`.
 :::
 
@@ -43,7 +42,7 @@ This is a **general action block**. You will typically see it at the beginning o
 ::: {.write}
 This is a **code block**, it indicates a coding exercise where you will actually write your own code.
 
-
+<br>
 **Example:** Create an object called `region` that contains the value `"Mandoul"`.
 :::
 
@@ -51,7 +50,7 @@ This is a **code block**, it indicates a coding exercise where you will actually
 ::: {.look}
 This is an **observation block**, it will have instructions about something that you are expected to look at or investigate. 
 
-
+<br>
 **Example:** Inspect the RStudio interface.
 :::
 
@@ -137,10 +136,8 @@ Run the following commands in the console one line at a time and observe the out
 
 (12 + 9)^4 / 1000
 ```
-:::
 
-::: {.write}
-Run the following command. Note that the final `)` is missing, making the command incomplete. What happens when you do this?
+Now, run the following command. Note that the final `)` is missing, making the command incomplete. What happens when you do this?
 
 ```{r}
 #| error: true
@@ -342,26 +339,20 @@ is.logical(FALSE)
 ```
 :::
 
-## Saving an Object {#sec-assignement-operator}
+## Creating an Object {#sec-assignement-operator}
 
 In R, pretty much everything is an **object**, including functions, scalar values, and other more complex data structures. Before introducing these structures, let's take an important detour to discuss how objects are saved into your environment.
 
 Often, we will want to reuse the same values or data throughout a script and it is therefore very useful to store them as objects in our environment. To do this we use the *assignment operator*, `<-`. 
 
-::: {.look}
-Look at the environment panel on the top right, verifying that it is empty.
-:::
-
 ::: {.write}
-Type the following command in your script and run it to save a variable called `cases` into your environment.
+Look at the environment panel on the top right, verifying that it is empty, then type the following command in your script and run it to save a variable called `cases` into your environment.
 
 ```{r}
 #| eval: true
 cases <- 28
 ```
-:::
 
-::: {.look}
 Look at the environment again. Is it still empty?
 :::
 
@@ -475,11 +466,10 @@ toupper(region)  # convert all the values in region to upper case
 
 
 ::: {.write}
-Use the function `sum()` to calculate the sum of `cases`
-:::
+Let's use some functions! Try to write code that does the following:
 
-::: {.write}
-Pass `region` to the function `tolower()`
+- Calculate the sum of `cases` using the function `sum()`
+- Convert the text in `region` to lowercase using the function `tolower()`
 :::
 
 
@@ -624,18 +614,11 @@ data_cases["region"]    # returns the region column (as a data frame)
 Notice that these commands returned single-column data frames. 
 
 ::: {.write}
-Write a command to:
+Write some code to:
 
-- access the third value in the `region` column of your data frame  
-- return the second and third values of the `cases` column  
+- extract the third value in the `region` column of your data frame  
+- extract the second and third values of the `cases` column  
 - calculate the sum of the `cases` column of your data frame
-:::
-
-::: {.callout-tip collapse=true}
-Think of this instruction as two steps: 
-
-- accessing the data from the data frame
-- passing it to the `sum` function, which you have already learned in a previous section.
 :::
 
 ## Missing Values {#sec-missing-values}
@@ -702,7 +685,6 @@ mean(TRUE, cases)   # not what you expect
 ```
 
 
-## The end!
+## The End!
 
-That's all for this session! Congratulations, you learned about the Rstudio interface, how to use the console for basic calculations, the most common types of objects and how to explore and manipulate them, and a couple of useful functions already!
-
+That's all for this session, congratulations on taking your first steps in R and RStudio! 
