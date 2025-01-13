@@ -11,7 +11,7 @@
     "href": "pathway.html",
     "title": "Pathway",
     "section": "",
-    "text": "These sessions can be followed in order to get a baseline level in R. The series assumes no prior experience in R and is suitable for beginners.\nLooking for more? Want more flexibility? Consider browsing the full session catalog.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIntroduction to R\n\n\n\n\n\nYour first steps in R. Learn your way around Rstudio, and meet some common R objects.\n\n\n\n\n\nJan 7, 2025\n\n\n\n\n\n\nNo matching items"
+    "text": "These sessions can be followed in order to get a baseline level in R. The series assumes no prior experience in R and is suitable for beginners.\nLooking for more? Want more flexibility? Consider browsing the full session catalog.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIntroduction to R\n\n\n\n\n\nYour first steps in R. Learn your way around Rstudio, and meet some common R objects.\n\n\n\n\n\nJan 10, 2025\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "about.html#hey-there",
@@ -126,32 +126,39 @@
     "text": "Setup\n\nDescription of something participants need to setup, primarily used at the beginning of a section but can also be used for tasks like setting up an Rproject file, folder structure, etc."
   },
   {
-    "objectID": "sessions_core/template.html#main-section",
-    "href": "sessions_core/template.html#main-section",
+    "objectID": "sessions_core/template.html#main-section-1",
+    "href": "sessions_core/template.html#main-section-1",
     "title": "Session Title",
-    "section": "Main Section",
-    "text": "Main Section\nYour main section can (and probably should) be boken down into subsections.\n\nSubsection 1\n\n\nSubsection 2"
+    "section": "Main Section 1",
+    "text": "Main Section 1\nYour main section(s) can (and probably should) be boken down into subsections.\n\nSubsection 1\n\n\nSubsection 2"
+  },
+  {
+    "objectID": "sessions_core/template.html#done",
+    "href": "sessions_core/template.html#done",
+    "title": "Session Title",
+    "section": "Done!",
+    "text": "Done!\nThis last header let’s students know that they are done with the main material for the day. It should also include a link to the solutions (hosted on github)."
+  },
+  {
+    "objectID": "sessions_core/template.html#going-further",
+    "href": "sessions_core/template.html#going-further",
+    "title": "Session Title",
+    "section": "Going Further",
+    "text": "Going Further\nAfter your main content is done you should have a section called called “Going Further” for students who finish the main content early. It should include: 1. A mention of one or two satellite sessions that would be relevant extensions of the current material 2. A section with “extra exercise questions” (these don’t need to use the “action blocks” (see below) and can just be a number list as shown below.\n\nExtra Exercises\n\nDo this.\nThen do that."
   },
   {
     "objectID": "sessions_core/template.html#markdown-reminders",
     "href": "sessions_core/template.html#markdown-reminders",
     "title": "Session Title",
     "section": "Markdown Reminders",
-    "text": "Markdown Reminders\nThe rest of this document is a reminder on qmd syntax and a basic style guide. Enjoy.\n\nText Formatting\n\nItalic and Bold will turn out like this\nBlock quotes will look like this:\n\n\nThis is a blockquote made using &gt;\n\n\nTooltips can be done using spans (please do not use asides or footnotes)\n\n\n\nCode\nInline coding will turn out like this\nCode blocks will appear like this:\n\n# comment\nprint('hello world')\n\nWarning: For these tutorials, code blocks are not evaluated by default. If you want to evaluate them, you must indicate it specifically.\n\n# comment\nprint('hello back!')\n\n[1] \"hello back!\"\n\ntest &lt;- function(x) {\n  if (x &gt; 1) {\n    return(x)\n  } else {\n    print('nothing to see here')\n  }\n}\n\nNote. We are no longer using solution blocks, instead a single code file will be available at the end of each session contiaining code that runs through all the exercises.\n\n\nCallouts\nIMPORTANT: please do not use callouts not explicitly defined here; they have not been included in the css and therefore will not render well in the final document.\n\n\n\n\n\n\nNote\n\n\n\nThis is a callout using {.callout-note}\n\n\n\n\n\n\n\n\nTip\n\n\n\nComment about a genral tip / trick or best practice.\n\n\n\n\n\n\n\n\nImportant\n\n\n\nWarning / comment on something really important.\n\n\n\n\nAction Boxes\nThese are used for things participants are expected to actually do, ie: exercises. They are split into three categories.\n\nDescription of something participants need to setup, primarily used at the beginning of a section but can also be used for tasks like setting up an Rproject file, folder structure, etc.\n\n\nDescription of something participants should observe, investigate, etc.\n\n\nDescription of a coding exercise that participants are expected to complete.\n\n\n\nTabsets\n\nOneTwoThree\n\n\nContent that will show under the first tab\n\n\nContent that will show under the second tab\n\n\nContent that will show under the third tab\n\n\n\n\n\nImages\nYou can insert images by referring to their relative path using markdown syntax or HTML. Note that the markdown syntax does not allow you to modify image size. In either case, make sure to add alt text for accessibility.\nMarkdown style syntax:\n\n\n\nexample image alt text\n\n\nHTML style syntax (with specification of desired size):"
-  },
-  {
-    "objectID": "sessions_core/template.html#linking-to-other-pages",
-    "href": "sessions_core/template.html#linking-to-other-pages",
-    "title": "Session Title",
-    "section": "Linking to Other Pages",
-    "text": "Linking to Other Pages\nEasy, use relative paths within a standard href, ie: link to home page."
+    "text": "Markdown Reminders\nThe rest of this document is a reminder on qmd syntax and a basic style guide. Enjoy.\n\nText Formatting\n\nItalic and Bold will turn out like this\nBlock quotes will look like this:\n\n\nThis is a blockquote made using &gt;\n\n\nTooltips can be done using spans (please do not use asides or footnotes)\n\n\n\nCode\nInline coding will turn out like this\nCode blocks will appear like this:\n\n# comment\nprint('hello world')\n\nWarning: For these tutorials, code blocks are not evaluated by default. If you want to evaluate them, you must indicate it specifically.\n\n# comment\nprint('hello back!')\n\n[1] \"hello back!\"\n\ntest &lt;- function(x) {\n  if (x &gt; 1) {\n    return(x)\n  } else {\n    print('nothing to see here')\n  }\n}\n\nNote. We are no longer using solution blocks, instead a single code file will be available at the end of each session contiaining code that runs through all the exercises.\n\n\nCallouts\nIMPORTANT: please do not use callouts not explicitly defined here; they have not been included in the css and therefore will not render well in the final document.\n\n\n\n\n\n\nNote\n\n\n\nThis is a callout using {.callout-note}\n\n\n\n\n\n\n\n\nTip\n\n\n\nComment about a genral tip / trick or best practice.\n\n\n\n\n\n\n\n\nImportant\n\n\n\nWarning / comment on something really important.\n\n\n\n\nAction Boxes\nThese are used for things participants are expected to actually do, ie: exercises. They are split into three categories.\n\nDescription of something participants need to setup, primarily used at the beginning of a section but can also be used for tasks like setting up an Rproject file, folder structure, etc.\n\n\nDescription of something participants should observe, investigate, etc.\n\n\nDescription of a coding exercise that participants are expected to complete.\n\n\n\nTabsets\n\nOneTwoThree\n\n\nContent that will show under the first tab\n\n\nContent that will show under the second tab\n\n\nContent that will show under the third tab\n\n\n\n\n\nImages\nYou can insert images by referring to their relative path using markdown syntax or HTML. Note that the markdown syntax does not allow you to modify image size. In either case, make sure to add alt text for accessibility.\nMarkdown style syntax:\n\n\n\nexample image alt text\n\n\nHTML style syntax (with specification of desired size):\n\n\n\nLinking to Other Pages\nEasy, use relative paths within a standard href, ie: link to home page."
   },
   {
     "objectID": "explore.html",
     "href": "explore.html",
     "title": "Explore",
     "section": "",
-    "text": "Choose your own adventure by browsing all available sessions.\n\n\n\n\n\n\n\n\n\n\n\n\nIntroduction to R\n\n\n\nCore\n\n\nR Basics\n\n\nData Types\n\n\n\nYour first steps in R. Learn your way around Rstudio, and meet some common R objects.\n\n\n\n\n\n\nJan 7, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSession Title\n\n\n\nCore\n\n\n\nShort description (appears on cards in pathway / explore pages)\n\n\n\n\n\n\nJan 7, 2025\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Choose your own adventure by browsing all available sessions.\n\n\n\n\n\n\n\n\n\n\n\n\nIntroduction to R\n\n\n\nCore\n\n\nR Basics\n\n\nData Types\n\n\n\nYour first steps in R. Learn your way around Rstudio, and meet some common R objects.\n\n\n\n\n\n\nJan 10, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSession Title\n\n\n\nCore\n\n\n\nShort description (appears on cards in pathway / explore pages)\n\n\n\n\n\n\nJan 13, 2025\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "index.html",
