@@ -10,7 +10,7 @@ Note, this website is **public** with a **[live development version online](http
 
 Notes on session development.
 ----------------------------------------------------------------------------------------------------
-Want to write a session? **Amazing.** Here are some tips:
+Want to write a session? **Amazing.** Here are some tips to get you started:
 - Make sure you **open an issue saying that you will draft that session** and assign yourself to it then make a branch to work on it. Please use the naming style `<short_name-session/satellite>`, for example `import-session` or `dates-satellite`.
 - If you are working on a **core session**, put it in `sessions_core` and use the filename convention `[session number]_[session name].qmd`, for example `02_import.qmd`.
 - If you are working on a satellite, put files in `sessions_extra` and give your file a short but descriptive name.
