@@ -11,7 +11,7 @@
     "href": "pathway.html",
     "title": "Pathway",
     "section": "",
-    "text": "These sessions can be followed in order to get a baseline level in R. The series assumes no prior experience in R and is suitable for beginners.\nLooking for more? Want more flexibility? Consider browsing the full session catalog.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIntroduction to R\n\n\n\n\n\nYour first steps in R. Learn your way around Rstudio, and meet some common R objects.\n\n\n\n\n\nJan 10, 2025\n\n\n\n\n\n\nNo matching items"
+    "text": "These sessions can be followed in order to get a baseline level in R. The series assumes no prior experience in R and is suitable for beginners.\nLooking for more? Want more flexibility? Consider browsing the full session catalog.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIntroduction to R\n\n\n\n\n\nYour first steps in R. Learn your way around Rstudio, and meet some common R objects.\n\n\n\n\n\nJan 13, 2025\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "about.html#hey-there",
@@ -102,7 +102,7 @@
     "href": "sessions_core/01_introduction.html#the-end",
     "title": "Introduction to R",
     "section": "The End!",
-    "text": "The End!\nThat’s all for this session, congratulations on taking your first steps in R and RStudio!"
+    "text": "The End!\nThat’s all for this session, congratulations on taking your first steps in R and RStudio!\nSolutions: code on github"
   },
   {
     "objectID": "sessions_core/template.html",
@@ -158,7 +158,7 @@
     "href": "explore.html",
     "title": "Explore",
     "section": "",
-    "text": "Choose your own adventure by browsing all available sessions.\n\n\n\n\n\n\n\n\n\n\n\n\nIntroduction to R\n\n\n\nCore\n\n\nR Basics\n\n\nData Types\n\n\n\nYour first steps in R. Learn your way around Rstudio, and meet some common R objects.\n\n\n\n\n\n\nJan 10, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSession Title\n\n\n\nCore\n\n\n\nShort description (appears on cards in pathway / explore pages)\n\n\n\n\n\n\nJan 13, 2025\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Choose your own adventure by browsing all available sessions.\n\n\n\n\n\n\n\n\n\n\n\n\nIntroduction to R\n\n\n\nCore\n\n\nR Basics\n\n\nData Types\n\n\n\nYour first steps in R. Learn your way around Rstudio, and meet some common R objects.\n\n\n\n\n\n\nJan 13, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSession Title\n\n\n\nCore\n\n\n\nShort description (appears on cards in pathway / explore pages)\n\n\n\n\n\n\nJan 13, 2025\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "index.html",

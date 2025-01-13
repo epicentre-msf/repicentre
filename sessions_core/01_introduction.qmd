@@ -688,3 +688,5 @@ mean(TRUE, cases)   # not what you expect
 ## The End!
 
 That's all for this session, congratulations on taking your first steps in R and RStudio! 
+
+**Solutions:** [code on github](https://github.com/epicentre-msf/repicentre/blob/main/sessions_core/01_introduction_solutions.R)
