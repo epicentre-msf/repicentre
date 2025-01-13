@@ -10,8 +10,6 @@ categories:
   - Core
   - RStudio
   - Data Import
-comments:
-  hypothesis: true
 ---
 
 ```{r setup}
@@ -368,11 +366,6 @@ downloadthis::download_link(
 2. Use `str()` to check the data type of each column. Does anything look odd? Remember that you can also use functions like `is.character()` and `is.numeric()` if you'd like to test the type of a particular column.
 3. Useing a function learned in the first session, can you extract the names of the columns of the dataset? Do these results match what you see when you open the data in Excel? 
 4. Try passing your dataframe to the function `summary()`. What does this function tell you?
-
-### Relevant Satellites
-For more information about data importaion in R, consider completing the following satellites:
-
-- [Multiple Importation](../sessions_extra/import_multiple.qmd): How to import multiple sheets and/or multiple files at a time
 
 ### Additional Resources
 

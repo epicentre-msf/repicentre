@@ -165,7 +165,7 @@
     "href": "sessions_core/02_import_data.html#going-further",
     "title": "Import data",
     "section": "Going Further",
-    "text": "Going Further\n\nExtra Exercises\n\nUse dim() to take a look at the dimensions of your dataset.\nUse str() to check the data type of each column. Does anything look odd? Remember that you can also use functions like is.character() and is.numeric() if you’d like to test the type of a particular column.\nUseing a function learned in the first session, can you extract the names of the columns of the dataset? Do these results match what you see when you open the data in Excel?\nTry passing your dataframe to the function summary(). What does this function tell you?\n\n\n\nRelevant Satellites\nFor more information about data importaion in R, consider completing the following satellites:\n\nMultiple Importation: How to import multiple sheets and/or multiple files at a time\n\n\n\nAdditional Resources\n\nThe rio website\nMore examples on importing data of various file types"
+    "text": "Going Further\n\nExtra Exercises\n\nUse dim() to take a look at the dimensions of your dataset.\nUse str() to check the data type of each column. Does anything look odd? Remember that you can also use functions like is.character() and is.numeric() if you’d like to test the type of a particular column.\nUseing a function learned in the first session, can you extract the names of the columns of the dataset? Do these results match what you see when you open the data in Excel?\nTry passing your dataframe to the function summary(). What does this function tell you?\n\n\n\nAdditional Resources\n\nThe rio website\nMore examples on importing data of various file types"
   },
   {
     "objectID": "sessions_core/template.html",
