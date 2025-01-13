@@ -24,7 +24,3 @@ format:
     execute:
       echo: true
       eval: false
-
-comments:
-  hypothesis: false
-
