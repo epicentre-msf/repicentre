@@ -1,15 +1,16 @@
 [
   {
-    "listing": "/pathway.html",
+    "listing": "/explore.html",
     "items": [
-      "/sessions_core/01_introduction.html"
+      "/sessions_extra/import_csv.html",
+      "/sessions_core/01_introduction.html",
+      "/sessions_core/template.html"
     ]
   },
   {
-    "listing": "/explore.html",
+    "listing": "/pathway.html",
     "items": [
-      "/sessions_core/01_introduction.html",
-      "/sessions_core/template.html"
+      "/sessions_core/01_introduction.html"
     ]
   }
 ]
