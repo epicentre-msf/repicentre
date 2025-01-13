@@ -10,8 +10,6 @@ categories:
   - Core
   - RStudio
   - Data Import
-comments:
-  hypothesis: true
 ---
 
 ```{r setup}
