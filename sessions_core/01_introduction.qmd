@@ -687,7 +687,7 @@ mean(TRUE, cases)   # not what you expect
 
 ## Done!
 
-That's all for this session, congratulations on taking your first steps in R and RStudio! 
+That's all for this session, congratulations on taking your first steps with R and RStudio! 
 
 ```{r}
 #| echo: false
