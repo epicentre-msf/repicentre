@@ -27,13 +27,33 @@ Description of something participants need to setup, primarily used at the begin
 :::
 
 
-Main Section
+Main Section 1
 ----------------------------------------------------------------------------------------------------
-Your main section can (and probably should) be boken down into subsections.
+Your main section(s) can (and probably should) be boken down into subsections.
 
 
 ### Subsection 1
+
 ### Subsection 2
+
+Done!
+----------------------------------------------------------------------------------------------------
+This last header let's students know that they are done with the main material for the day. It should also include a link to the solutions (hosted on github). 
+
+
+Going Further
+----------------------------------------------------------------------------------------------------
+After your main content is done you should have a section called called "Going Further" for students who finish the main content early. It should include:
+1. A mention of one or two satellite sessions that would be relevant extensions of the current material
+2. A section with "extra exercise questions" (these don't need to use the "action blocks" (see below) and can just be a number list as shown below.
+
+### Extra Exercises
+1. Do this.
+2. Then do that.
+
+<hr>
+<hr>
+<hr>
 
 Markdown Reminders
 ----------------------------------------------------------------------------------------------------
@@ -139,6 +159,6 @@ HTML style syntax (with specification of desired size):
 <img src='../img/under_construction.svg' alt='example image alt (html)' width='200'/>
 
 
-## Linking to Other Pages
+### Linking to Other Pages
 Easy, use relative paths within a standard href, ie: [link to home page](../index.html).
 

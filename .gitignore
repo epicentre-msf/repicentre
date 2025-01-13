@@ -1,32 +1,31 @@
 /.quarto/
-.DS_Store
 
-# History files
+# history files
 .Rhistory
 .Rapp.history
 
-# Session Data files
+# session data files
 .RData
 *.RData
 .RDataTmp
 
-# User-specific files
+# user-specific files
 .Ruserdata
 
 
-# RStudio files
+# rstudio files
 .Rproj.user
 .Rproj.user/
 *.Rproj
 
 
-# R Environment Variables
+# r environment variables
 .Renviron
 
-# Mac
+# mac
 .DS_Store
 .Thumbs.db
 Thumbs.db
 
-# R projects 
+# r projects 
 *.Rproj
