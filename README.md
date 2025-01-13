@@ -5,7 +5,7 @@ Welcome to the R training repo, thanks for being here! A few quick notes:
 - Someone told you to review a session? We thank you for your service, please read the "Session Review Guidelines" section.
 - Need some tips on best practices for collaborative coding? Read the "General Contribution Guidelines"
 
-Note, this website is **public** with a **[live development version online](https://epicentre-msf.github.io/repicentre/)**. Please don't break it.
+Note, this website is **public** with a **[live development version online](https://epicentre-msf.github.io/repicentre/)**. Please don't break it!
 
 
 Notes on session development.
