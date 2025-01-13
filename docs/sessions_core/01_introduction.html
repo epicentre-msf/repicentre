@@ -104,6 +104,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script async="" src="https://hypothes.is/embed.js"></script>
+<script>
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    document.body.classList.add('hypothesis-enabled');
+  });
+</script>
+<script src="../site_libs/font-awesome-6.5.2/js/script.js"></script>
 <script type="text/javascript" src="../script.js"></script>
 
 
@@ -188,7 +195,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#sec-missing-values" id="toc-sec-missing-values" class="nav-link" data-scroll-target="#sec-missing-values">Missing Values</a></li>
   <li><a href="#sec-functions" id="toc-sec-functions" class="nav-link" data-scroll-target="#sec-functions">Functions</a></li>
-  <li><a href="#the-end" id="toc-the-end" class="nav-link" data-scroll-target="#the-end">The End!</a></li>
+  <li><a href="#done" id="toc-done" class="nav-link" data-scroll-target="#done">Done!</a></li>
   </ul>
 </nav>
     </div>
@@ -305,7 +312,7 @@ Note
 <ul>
 <li><em>Files.</em> A file explorer for the working directory, which is the folder location where R is currently working.</li>
 <li><em>Plots.</em> A location where RStudio will display <em>static</em> visualizations; this tab should be empty for the moment.</li>
-<li><em>Packages.</em> A list of all the R packages installed on your computer. Packages are collections of functions that help extend the functionality of R, and we will discuss them in greater detail in the <a href="../02_import_data.qmd#sec-packages">next lesson</a>.</li>
+<li><em>Packages.</em> A list of all the R packages installed on your computer. Packages are collections of functions that help extend the functionality of R, and we will discuss them in greater detail in the <a href="02_import_data.html#sec-packages">next lesson</a>.</li>
 <li><em>Help.</em> A place to read help pages and <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Documentation refers to additional narrative text either in a code file or an external document that is written to help folks understand what a piece of code, function, or package does and how it should be used. Code documentation is a bit analogous to creating a data dictionary for a set of survey data and is an invaluable part of making robust and reusable code">documentation</span> for functions and packages.</li>
 <li><em>Viewer.</em> A location where RStudio will display html outputs such as tables, interactive widgets, or even full on dashboards.</li>
 </ul>
@@ -389,7 +396,7 @@ Important
 <p>To create a new script, follow the menu <code>File &gt; New File &gt; R Script</code>. Alternatively, you can click on the small green <code>+</code> sign just below the <code>File</code> menu or use the keyboard shortcut <code>CTRL+SHIFT+N</code>. This new and <strong>unsaved</strong> script will appear as a blank document in the top left panel.</p>
 <p>To save your script, either use the menu <code>File &gt; Save As</code> or the keyboard shortcut <code>CTRL+S</code>.</p>
 <div class="setup">
-<p>Create and save a new script called <code>discovery.R</code>. Don’t forget to include the <code>.R</code> extension. For now, you can save it on your Desktop or any convenient location, but we will talk more about organizing your scripts in the <a href="../sessions_core/02_import_data.qmd">next session</a>.</p>
+<p>Create and save a new script called <code>discovery.R</code>. Don’t forget to include the <code>.R</code> extension. For now, you can save it on your Desktop or any convenient location, but we will talk more about organizing your scripts in the <a href="../sessions_core/02_import_data.html">next session</a>.</p>
 </div>
 </section>
 <section id="executing-code-from-a-script" class="level4">
@@ -914,10 +921,16 @@ Tip
 <div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="cn">TRUE</span>, cases)   <span class="co"># not what you expect</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="the-end" class="level2">
-<h2 class="anchored" data-anchor-id="the-end">The End!</h2>
+<section id="done" class="level2">
+<h2 class="anchored" data-anchor-id="done">Done!</h2>
 <p>That’s all for this session, congratulations on taking your first steps in R and RStudio!</p>
-<p><strong>Solutions:</strong> <a href="https://github.com/epicentre-msf/repicentre/blob/main/sessions_core/01_introduction_solutions.R">code on github</a></p>
+<div class="cell">
+<div class="cell-output-display">
+<a href="https://github.com/epicentre-msf/repicentre/blob/main/sessions_core/01_introduction_solutions.R">
+<button class="btn btn-default"><i class="fa fa-save"></i> Solution File</button>
+</a>
+</div>
+</div>
 
 
 </section>
