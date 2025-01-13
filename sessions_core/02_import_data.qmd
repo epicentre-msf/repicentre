@@ -367,11 +367,6 @@ downloadthis::download_link(
 3. Useing a function learned in the first session, can you extract the names of the columns of the dataset? Do these results match what you see when you open the data in Excel? 
 4. Try passing your dataframe to the function `summary()`. What does this function tell you?
 
-### Relevant Satellites
-For more information about data importaion in R, consider completing the following satellites:
-
-- [Multiple Importation](../sessions_extra/import_multiple.qmd): How to import multiple sheets and/or multiple files at a time
-
 ### Additional Resources
 
 - The `rio` [website](https://gesistsa.github.io/rio/index.html#supported-file-formats)
