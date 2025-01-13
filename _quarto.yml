@@ -26,5 +26,5 @@ format:
       eval: false
 
 comments:
-  hypothesis: true
+  hypothesis: false
 
