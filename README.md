@@ -61,16 +61,12 @@ comments:
 
 General contribution guidelines.
 ----------------------------------------------------------------------------------------------------
-This is a collaborative coding repository with a live production branch. To avoid messiness and possible downstream merge conflicts, we are using a scrum-esque style of development where new ideas are developed through an issue > branch > pull request pathway. Bellow is a quick explanation of what that process looks like, but TLDR:
-1. Identify an issue you want to work on
-2. Make a branch named after **and associated** with that issue
-3. Use that branch (and only that branch) to work on that issue (and only that issue)
-4. When done, submit a pull request and request a review from a codeowner
-5. Once the pull request is resolved and merged, delete the branch
+This is a collaborative coding repository with a live production branch. To avoid messiness and possible downstream merge conflicts, we are using a scrum-esque style of development where new ideas are developed through an issue > branch > pull request pathway. Below is a quick explanation of what that process looks like, but TLDR:
 
-Therefore, anything that is reviewed and approved is **live** on the website by been present on the `main` branch.
+![Image](https://github.com/user-attachments/assets/9d01d859-bdf0-47d8-8a49-e0d217aeff71)
 
-**Note.** here we use [`gh`](https://cli.github.com/) and `git` command line examples but all of these tasks can also be handled from other git managers (github desktop) and/or via GitHub.
+
+Continue reading if you want more information about any of these steps. **Note.** here we use [`gh`](https://cli.github.com/) and `git` command line examples but all of these tasks can also be handled from other git managers (github desktop) and/or via GitHub.
 
 **1. When you have an idea for a change (ie: feature request, bug fix, etc), create a [new issue on the project](https://github.com/orgs/epicentre-msf/projects/5/)**
 
@@ -93,11 +89,10 @@ When naming your branch, we encourage the best practice of `[issue-number]-[shor
 
 **3. Use this branch to develop and make commits about your issue (and _only_ that issue)**
 
-**This part is important**, to avoid messy merges and conflicts please make sure that your branches (issues) are self contained and that the branch contains **exclusively** commits related to its respective issue.
+**This part is important**, to avoid messy merges and conflicts please make sure that your branches (issues) are self contained and that the branch contains **exclusively** commits related to its respective issue. It is worth noting that merge conflicts are pretty common for the `docs` directory. In those cases, it is recommended to checkout the most recent version of `docs` and [commit it to your working branch using `--theirs`](https://nitaym.github.io/ourstheirs/). If you aren't familiar with using `--ours` and `--theirs` please don't hesitate to reach out for help.
 
-**WARNING.** Git(Hub) doesn't always play well with multi-branch iterations of `docs/`. To avoid unnecessary conflicts during the downstream merge, please **do not add, commit, or push** any changes to `docs` except for reviewing of sessions. Please do this by simply adding / commiting selectively rather than using a shortcut like `git add *` or `git add .`, please do not change the `.gitignore` to ignore `docs` as this will create problems on the `main`. Whomever reviews your eventual pull request will handle updating the docs render when mergin to the `main`.
-
-**4. Once you have finished working on the issue, submit a pull request and request review**
+**4. Once you have finished working on the issue, submit a pull request.**
+Note, if you are developing a new session, you should go through the pedagogic review process outlined earlier before proceeding to the pull request.
 
 This requires a couple steps:
 
@@ -120,7 +115,7 @@ git merge [your-issue] main
 gh pr create
 ```
 
-**5. Request a review from a code owner**
+**5. Request a code review from a code owner**
 
 Because this repo has a live `main`, protection rules have been put in place requiring all merges to the `main` to have a pull request with an approved review. Reviews must be conducted by a code owner; right now this list includes Cat. If you would like to become a code owner, please get in touch!
 
