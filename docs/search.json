@@ -102,7 +102,7 @@
     "href": "sessions_core/01_introduction.html#done",
     "title": "Introduction to R",
     "section": "Done!",
-    "text": "Done!\nThat’s all for this session, congratulations on taking your first steps in R and RStudio!\n\n\n\n Solution File"
+    "text": "Done!\nThat’s all for this session, congratulations on taking your first steps with R and RStudio!\n\n\n\n Solution File"
   },
   {
     "objectID": "sessions_core/02_import_data.html",
@@ -200,7 +200,7 @@
     "href": "sessions_core/template.html#done",
     "title": "Session Title",
     "section": "Done!",
-    "text": "Done!\nThis last header let’s students know that they are done with the main material for the day. It should also include a link to the solutions (hosted on github)."
+    "text": "Done!\nThis last header let’s students know that they are done with the main material for the day. It should also include a link to the solutions (hosted on github). For example:\n\n\n\n Solution File\n\n\n\nMake sure this link references the main."
   },
   {
     "objectID": "sessions_core/template.html#going-further",
