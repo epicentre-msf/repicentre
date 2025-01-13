@@ -38,7 +38,22 @@ Your main section(s) can (and probably should) be boken down into subsections.
 
 Done!
 ----------------------------------------------------------------------------------------------------
-This last header let's students know that they are done with the main material for the day. It should also include a link to the solutions (hosted on github). 
+This last header let's students know that they are done with the main material for the day. It should also include a link to the solutions (hosted on github). For example:
+
+```{r}
+#| echo: false
+#| eval: true
+
+downloadthis::download_link(
+  link = 'https://github.com/epicentre-msf/repicentre/blob/main/sessions_core/01_introduction_solutions.R',
+  button_label = 'Solution File',
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  self_contained = FALSE
+)
+```
+
+Make sure this link references the **main**.
 
 
 Going Further
