@@ -110,6 +110,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     document.body.classList.add('hypothesis-enabled');
   });
 </script>
+<script src="../site_libs/font-awesome-6.5.2/js/script.js"></script>
 <script type="text/javascript" src="../script.js"></script>
 
 
@@ -186,15 +187,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#sec-filepaths" id="toc-sec-filepaths" class="nav-link" data-scroll-target="#sec-filepaths">Understanding File Paths</a></li>
   <li><a href="#sec-import" id="toc-sec-import" class="nav-link" data-scroll-target="#sec-import">Import function</a></li>
   </ul></li>
-  <li><a href="#taking-a-look-at-your-data" id="toc-taking-a-look-at-your-data" class="nav-link" data-scroll-target="#taking-a-look-at-your-data">Taking a Look at your Data</a>
+  <li><a href="#taking-a-first-look-at-your-data" id="toc-taking-a-first-look-at-your-data" class="nav-link" data-scroll-target="#taking-a-first-look-at-your-data">Taking a First Look at your Data</a></li>
+  <li><a href="#done" id="toc-done" class="nav-link" data-scroll-target="#done">Done!</a></li>
+  <li><a href="#going-further" id="toc-going-further" class="nav-link" data-scroll-target="#going-further">Going Further</a>
   <ul class="collapse">
-  <li><a href="#useful-functions" id="toc-useful-functions" class="nav-link" data-scroll-target="#useful-functions">Useful Functions</a></li>
-  <li><a href="#the-environment" id="toc-the-environment" class="nav-link" data-scroll-target="#the-environment">The Environment</a></li>
-  <li><a href="#viewing-the-data" id="toc-viewing-the-data" class="nav-link" data-scroll-target="#viewing-the-data">Viewing the data</a></li>
-  <li><a href="#data-summaries" id="toc-data-summaries" class="nav-link" data-scroll-target="#data-summaries">Data Summaries</a></li>
+  <li><a href="#extra-exercises" id="toc-extra-exercises" class="nav-link" data-scroll-target="#extra-exercises">Extra Exercises</a></li>
+  <li><a href="#relevant-satellites" id="toc-relevant-satellites" class="nav-link" data-scroll-target="#relevant-satellites">Relevant Satellites</a></li>
+  <li><a href="#additional-resources" id="toc-additional-resources" class="nav-link" data-scroll-target="#additional-resources">Additional Resources</a></li>
   </ul></li>
-  <li><a href="#done" id="toc-done" class="nav-link" data-scroll-target="#done">Done !</a></li>
-  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">Resources</a></li>
   </ul>
 </nav>
     </div>
@@ -207,7 +207,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="quarto-categories">
     <div class="quarto-category">Core</div>
     <div class="quarto-category">RStudio</div>
-    <div class="quarto-category">Data importation</div>
+    <div class="quarto-category">Data Import</div>
   </div>
   </div>
 
@@ -256,7 +256,7 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The principles you learned in the Data Management module will apply here as well: we should do our best to ensure that our projects won’t just work today but can also be reused and shared in the future. While doing this is not always easy, there are several best practices that can help us, and one of the most important is to start with a good, organized code base.</p>
+<p>The principles you learned in the <a href="01_introduction.html">Introduction to R</a> session will apply here as well: we should do our best to ensure that our projects won’t just work today but can also be reused and shared in the future. While doing this is not always easy, there are several best practices that can help us, and one of the most important is to start with a good, organized code base.</p>
 </div>
 </div>
 </section>
@@ -293,7 +293,7 @@ Important
 <div id="fig-interface" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-interface-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../sessions_core/img/intro_001_rstudio_interface_screenshot_EN.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+<img src="../img/core/01_introduction/01_rstudio_interface_en.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-interface-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1: Screenshot of a typical Rstudio interface
@@ -308,7 +308,7 @@ Figure&nbsp;1: Screenshot of a typical Rstudio interface
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../sessions_core/img/import_001_rstudio_project_icon.png" class="img-fluid figure-img"></p>
+<p><img src="../img/core/02_import/02_rproject.png" class="img-fluid figure-img"></p>
 <figcaption>Icon associated with RStudio projects</figcaption>
 </figure>
 </div>
@@ -354,7 +354,7 @@ Tip
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../sessions_core/img/import_002_rstudio_options_do_not_save.png" class="img-fluid figure-img"></p>
+<p><img src="../img/core/02_import/03_do_not_save.png" class="img-fluid figure-img"></p>
 <figcaption>Screenshot of the Rstudio options</figcaption>
 </figure>
 </div>
@@ -562,13 +562,11 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>To see the full list of all the file types you can load (and save!) with <code>rio</code>, check out the list of <a href="https://gesistsa.github.io/rio/index.html#supported-file-formats">supported formats</a> on their bebsite. In the rest of the lesson we will focus on importing data from Excel <code>.xlsx</code> files and <code>.csv</code> text files.</p>
+<p>To see the full list of all the file types you can load (and save!) with <code>rio</code>, check out the list of <a href="https://gesistsa.github.io/rio/index.html#supported-file-formats">supported formats</a> on their website. In the rest of the lesson we will focus on importing data from Excel <code>.xlsx</code> files.</p>
 </div>
 </div>
-<section id="importing-.xlsx-files" class="level4">
-<h4 class="anchored" data-anchor-id="importing-.xlsx-files">Importing <code>.xlsx</code> files</h4>
-<section id="from-the-first-sheet" class="level5">
-<h5 class="anchored" data-anchor-id="from-the-first-sheet">From the First Sheet</h5>
+<section id="importing-from-the-first-sheet" class="level4">
+<h4 class="anchored" data-anchor-id="importing-from-the-first-sheet">Importing from the First Sheet</h4>
 <p>In general, the usage of <code>import()</code> is pretty simple, at minima you need to pass the path of the file to the <code>file</code> argument:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">import</span>(<span class="at">file =</span> <span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"raw"</span>, <span class="st">"example_linelist.xlsx"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -595,8 +593,8 @@ Tip
 <p>Reimport your data but this time save it to an object called <code>df_linelist</code>.</p>
 </div>
 </section>
-<section id="from-any-sheet" class="level5">
-<h5 class="anchored" data-anchor-id="from-any-sheet">From Any Sheet</h5>
+<section id="importing-data-from-any-sheet" class="level4">
+<h4 class="anchored" data-anchor-id="importing-data-from-any-sheet">Importing Data from Any Sheet</h4>
 <p>As you just saw, R selects the first sheet by default. It is however possible to pass the number (or name) of a specific worksheet in your Excel data to <code>import()</code> using the argument <code>which</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">import</span>(<span class="at">file =</span> <span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"raw"</span>, <span class="st">"example_linelist.xlsx"</span>),</span>
@@ -605,86 +603,61 @@ Tip
 <p>Note that the <code>which</code> argument is specific to the file types that have multiple sheets, such as Excel or .Rdata files. If you try to use it on a <code>.csv</code> file the argument will be ignored.</p>
 </section>
 </section>
-<section id="importing-.csv-files" class="level4">
-<h4 class="anchored" data-anchor-id="importing-.csv-files">Importing <code>.csv</code> files</h4>
-<p>We can import a <code>.csv</code> file in exactly the same way as an <code>.xlsx</code> file, we need only change the name of our file:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">import</span>(<span class="at">file =</span> <span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"raw"</span>, <span class="st">"exemple_linelist.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><code>.csv</code> files sometimes use different <span data-tooltip-position="top" data-tooltip="A delimiter is the character used in a csv file to separate values. Many countries use a comma (,), but some use a semicolon (;).">delimiters</span> and <span data-tooltip-position="top" data-tooltip="Some countries use a decimal point (.) to indicate a number with a decimal, others will use a comma (,). Typically, countries using a comma for decimals will use a semicolon as a delimiter.">decimal characters</span> depending on where the file comes from. You can indicate to <code>import()</code> which characters to use for these using the <code>sep</code> and <code>dec</code> arguments respectively:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">import</span>(<span class="at">file =</span> <span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"raw"</span>,, <span class="st">"exemple_linelist.csv"</span>),</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">sep =</span> <span class="st">";"</span>,</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">dec =</span> <span class="st">","</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="write">
-<p>Import the file <code>msf_linelist_moissala_2023-09-24.csv</code> from the raw data folder and store it in an object called <code>df_linelist_csv</code>.</p>
-</div>
 </section>
-</section>
-</section>
-<section id="taking-a-look-at-your-data" class="level2">
-<h2 class="anchored" data-anchor-id="taking-a-look-at-your-data">Taking a Look at your Data</h2>
+<section id="taking-a-first-look-at-your-data" class="level2">
+<h2 class="anchored" data-anchor-id="taking-a-first-look-at-your-data">Taking a First Look at your Data</h2>
 <p>We have now imported a dataset into R and assigned it to a dataframe (<code>df_linelist</code>). The natural next step is to inspect this dataset, to check that the import went well, get to know it a bit better, and assess if it requires any cleaning before analysis.</p>
-<section id="useful-functions" class="level3">
-<h3 class="anchored" data-anchor-id="useful-functions">Useful Functions</h3>
 <p>We can start by taking a quick look at the first few lines of the dataframe using the function <code>head()</code>. This function takes a dataframe as its first argument and optionally accepts a second argument <code>n</code> indicating the number of lines we would like to see.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_linelist, <span class="at">n =</span> <span class="dv">10</span>) <span class="co"># Inspect 10 first lines</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_linelist, <span class="at">n =</span> <span class="dv">10</span>) <span class="co"># Inspect 10 first lines</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="write">
 <p>Use <code>head()</code> to examine the 12 first lines of <code>df_linelist</code>.</p>
 </div>
-<p>We can also use the functions we learned in the <a href="../sessions_core/01_introduction.html#sec-dataframe-functions">introduction session</a> to learn more about the shape of our dataframe and the type of data it contains.</p>
-<div class="write">
-<p>Using <code>dim()</code> and <code>names()</code>, check the dimensions and column names of <code>df_linelist</code>. Do these results match what you see when you open the data in Excel?</p>
+<p>We can also check out our data by looking at the <em>Environment</em> tab of the top-right panel. Here, we can see our dataframe in the environment, look at its <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="This is the same as using the command `str()`">structure</span>, or open it in the data viewer of RStudio.</p>
+<div class="look">
+<p>Click on the round blue button next to <code>df_linelist</code> in your environment to see its structure. Then click on the name of the dataset to open it in the viewer.</p>
 </div>
-<div class="write">
-<p>Use <code>str()</code> to check the data type of each column. Does anything look odd? Remember that you can also use functions like <code>is.character()</code> and <code>is.numeric()</code> if you’d like to test the type of a particular column.</p>
-</div>
-</section>
-<section id="the-environment" class="level3">
-<h3 class="anchored" data-anchor-id="the-environment">The Environment</h3>
-<p>We can also check out our data by looking at the <em>Environment</em> tab of the top-right panel. Here, we can see our dataframe in the environment and look at its <span data-tooltip-position="top" data-tooltip="This is the same as using the command `str()`">structure</span>.</p>
-<div class="write">
-<p>Click on the round blue button next to <code>df_linelist</code> in your environment to see its structure.</p>
-</div>
-</section>
-<section id="viewing-the-data" class="level3">
-<h3 class="anchored" data-anchor-id="viewing-the-data">Viewing the data</h3>
-<div class="write">
-<p>Click on the name of your dataframe in the Environment tab. This should open the dataset in a new tab in the same corner as your script (top left).</p>
-</div>
-<p>The <em>View</em> displays dataframes as tables and is a convenient way to quickly look at your data. You can even sort and filter your data in the <em>View</em>, though be aware that these actions will not make any changes to the actual object <code>df_linelist</code>. The <em>View</em> can also be opened by passing the dataframe to the function <code>View()</code>.</p>
-<div class="write">
-<p>Open <code>df_linelist</code> in the viewer using the function <code>View()</code>.</p>
-</div>
-</section>
-<section id="data-summaries" class="level3">
-<h3 class="anchored" data-anchor-id="data-summaries">Data Summaries</h3>
-<p>The function <code>summary</code> accepts a dataframe and is a handy way to get some quick statistics on each of the columns in a dataset:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(iris)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="write">
-<p>Use <code>summary()</code> to inspect the minimum and maximum values for each column in <code>df_linelist</code>. Do you notice anything odd?</p>
-</div>
-<p>Make notes of types of data that you think is not correct and of values to check later, it will save you time in the next session.</p>
-</section>
+<p>The data viewer displays dataframes as tables and is a convenient way to quickly look at your data. You can even sort and filter your data in the “View”, though be aware that these actions will not make any changes to the actual object <code>df_linelist</code>. The View can also be opened by passing the dataframe to the function <code>View()</code>.</p>
 </section>
 <section id="done" class="level2">
-<h2 class="anchored" data-anchor-id="done">Done !</h2>
-<p>Don’t forget to save your code!</p>
-<p>If you want to learn about importing several sheets in one go, or several similar files from a folder, go to the <a href="../sessions_extra/import_multiple.qmd">satellite on multiple imports</a>.</p>
+<h2 class="anchored" data-anchor-id="done">Done!</h2>
+<p>Well done and don’t forget to save your code.</p>
+<div class="cell">
+<div class="cell-output-display">
+<a href="https://github.com/epicentre-msf/repicentre/blob/main/sessions_core/02_import_data_solutions.R">
+<button class="btn btn-default"><i class="fa fa-save"></i> Solution File</button>
+</a>
+</div>
+</div>
 </section>
-<section id="resources" class="level2">
-<h2 class="anchored" data-anchor-id="resources">Resources</h2>
+<section id="going-further" class="level2">
+<h2 class="anchored" data-anchor-id="going-further">Going Further</h2>
+<section id="extra-exercises" class="level3">
+<h3 class="anchored" data-anchor-id="extra-exercises">Extra Exercises</h3>
+<ol type="1">
+<li>Use <code>dim()</code> to take a look at the dimensions of your dataset.</li>
+<li>Use <code>str()</code> to check the data type of each column. Does anything look odd? Remember that you can also use functions like <code>is.character()</code> and <code>is.numeric()</code> if you’d like to test the type of a particular column.</li>
+<li>Useing a function learned in the first session, can you extract the names of the columns of the dataset? Do these results match what you see when you open the data in Excel?</li>
+<li>Try passing your dataframe to the function <code>summary()</code>. What does this function tell you?</li>
+</ol>
+</section>
+<section id="relevant-satellites" class="level3">
+<h3 class="anchored" data-anchor-id="relevant-satellites">Relevant Satellites</h3>
+<p>For more information about data importaion in R, consider completing the following satellites:</p>
 <ul>
-<li><p>The <code>rio</code> <a href="https://gesistsa.github.io/rio/index.html#supported-file-formats">website</a></p></li>
-<li><p><a href="https://epirhandbook.com/en/new_pages/importing.html">More examples</a> on importing data of various file types</p></li>
+<li><a href="../sessions_extra/import_multiple.qmd">Multiple Importation</a>: How to import multiple sheets and/or multiple files at a time</li>
+</ul>
+</section>
+<section id="additional-resources" class="level3">
+<h3 class="anchored" data-anchor-id="additional-resources">Additional Resources</h3>
+<ul>
+<li>The <code>rio</code> <a href="https://gesistsa.github.io/rio/index.html#supported-file-formats">website</a></li>
+<li><a href="https://epirhandbook.com/en/new_pages/importing.html">More examples</a> on importing data of various file types</li>
 </ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

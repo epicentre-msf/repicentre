@@ -2,14 +2,14 @@
 title: Import data
 description: Create an Rstudio project, install useful packages and start importing data to work in R
 date: last-modified
-image: ../img/core/02_import/import_000_logo.png
+image: ../img/core/02_import/01_logo.png
 params: 
   solutions: FALSE
   sub_title: "**------ With Solutions ------**"
 categories:
   - Core
   - RStudio
-  - Data importation
+  - Data Import
 comments:
   hypothesis: true
 ---
@@ -37,7 +37,7 @@ df_linelist <- import(file = here("data", "raw",
 - Import and inspect data
 
 :::{.callout-important}
-The principles you learned in the Data Management module will apply here as well: we should do our best to ensure that our projects won't just work today but can also be reused and shared in the future. While doing this is not always easy, there are several best practices that can help us, and one of the most important is to start with a good, organized code base.
+The principles you learned in the [Introduction to R](01_introduction.html) session will apply here as well: we should do our best to ensure that our projects won't just work today but can also be reused and shared in the future. While doing this is not always easy, there are several best practices that can help us, and one of the most important is to start with a good, organized code base.
 :::
 
 ## Setting up your Project
@@ -76,7 +76,7 @@ An RStudio Project can be used to make your life easier and help orient [RStudio
 
 As a quick reminder, your interface should look something like this:
 
-![Screenshot of a typical Rstudio interface](../sessions_core/img/intro_001_rstudio_interface_screenshot_EN.png){fig-align="center" #fig-interface}
+![Screenshot of a typical Rstudio interface](../img/core/01_introduction/01_rstudio_interface_en.png){fig-align="center" #fig-interface}
 
 ::: {.setup}
 Open RStudio and create a new project by clicking `File > New Project > Existing Directory > Browse`, navigating into (opening) the course folder, and clicking `Create Project`.
@@ -86,7 +86,7 @@ Open RStudio and create a new project by clicking `File > New Project > Existing
 In the Windows Explorer, look at the course folder. You should now see a new file with the extention `.Rproj` that has a small blue icon with an R in it.
 :::
 
-![Icon associated with RStudio projects](../sessions_core/img/import_001_rstudio_project_icon.png){fig-align="center"}
+![Icon associated with RStudio projects](../img/core/02_import/02_rproject.png){fig-align="center"}
 
 :::{.callout-note}
 If you don't see this file, it's probably because it is hidden by default on your computer. To change this setting in Windows Explorer, go into the *View* menu and select `Filename Extensions`.
@@ -113,7 +113,7 @@ Before continuing, let's update some of RStudio's problematic default settings:
 Open the global options (`Tools > Global Options`) and open the tab `General` (left menu). Make sure that *none* of the boxes in the sections `R Sessions`, `Workspace`, or `History` are checked.
 :::
 
-![Screenshot of the Rstudio options](../sessions_core/img/import_002_rstudio_options_do_not_save.png){fig-align="center"}
+![Screenshot of the Rstudio options](../img/core/02_import/03_do_not_save.png){fig-align="center"}
 
 When checked, these options cause RStudio to save the objects in your environment and reload them as well as any files you previously had open when you open a new R session. While these default may seem like a good idea, it is better to always start your work from a fresh, [empty R session]{.hovertip bs-toggle='tooltip' bs-title='An empty session means the environment is empty, but you still have your scripts!'} to avoid bugs.
 
@@ -281,12 +281,10 @@ Because `import()` is actually just calling other functions in the background, i
 
 
 ::: {.callout-tip}
-To see the full list of all the file types you can load (and save!) with `rio`, check out the list of [supported formats](https://gesistsa.github.io/rio/index.html#supported-file-formats) on their bebsite. In the rest of the lesson we will focus on importing data from Excel `.xlsx` files and `.csv` text files.
+To see the full list of all the file types you can load (and save!) with `rio`, check out the list of [supported formats](https://gesistsa.github.io/rio/index.html#supported-file-formats) on their website. In the rest of the lesson we will focus on importing data from Excel `.xlsx` files.
 :::
 
-#### Importing `.xlsx` files
-
-##### From the First Sheet
+#### Importing from the First Sheet
 
 In general, the usage of `import()` is pretty simple, at minima you need to pass the path of the file to the `file` argument:
 
@@ -310,7 +308,7 @@ You may not want to have R print very large datasets into the console and assign
 Reimport your data but this time save it to an object called `df_linelist`.
 :::
 
-##### From Any Sheet
+#### Importing Data from Any Sheet
 
 As you just saw, R selects the first sheet by default. It is however possible to pass the number (or name) of a specific worksheet in your Excel data to `import()` using the argument `which`:
 
@@ -322,31 +320,9 @@ import(file = here("data", "raw", "example_linelist.xlsx"),
 Note that the `which` argument is specific to the file types that have multiple sheets, such as Excel or .Rdata files. If you try to use it on a `.csv` file the argument will be ignored.
 
 
-#### Importing `.csv` files
-
-We can import a `.csv` file in exactly the same way as an `.xlsx` file, we need only change the name of our file:
-
-```{r}
-import(file = here("data", "raw", "exemple_linelist.csv"))
-```
-
-`.csv` files sometimes use different <span tooltip-position="top" tooltip="A delimiter is the character used in a csv file to separate values. Many countries use a comma (,), but some use a semicolon (;).">delimiters</span> and <span tooltip-position="top" tooltip="Some countries use a decimal point (.) to indicate a number with a decimal, others will use a comma (,). Typically, countries using a comma for decimals will use a semicolon as a delimiter.">decimal characters</span> depending on where the file comes from. You can indicate to `import()` which characters to use for these using the `sep` and `dec` arguments respectively:
-
-```{r}
-import(file = here("data", "raw",, "exemple_linelist.csv"),
-       sep = ";",
-       dec = ",")
-```
-
-::: {.write}
-Import the file `msf_linelist_moissala_2023-09-24.csv` from the raw data folder and store it in an object called `df_linelist_csv`.
-:::
-
-## Taking a Look at your Data
+## Taking a First Look at your Data
 
 We have now imported a dataset into R and assigned it to a dataframe (`df_linelist`). The natural next step is to inspect this dataset, to check that the import went well, get to know it a bit better, and assess if it requires any cleaning before analysis. 
-
-### Useful Functions
 
 We can start by taking a quick look at the first few lines of the dataframe using the function `head()`. This function takes a dataframe as its first argument and optionally accepts a second argument `n` indicating the number of lines we would like to see. 
 
@@ -359,58 +335,46 @@ head(df_linelist, n = 10) # Inspect 10 first lines
 Use `head()` to examine the 12 first lines of `df_linelist`.
 ::: 
 
-We can also use the functions we learned in the [introduction session](../sessions_core/01_introduction.qmd#sec-dataframe-functions) to learn more about the shape of our dataframe and the type of data it contains. 
 
-::: {.write}
-Using `dim()` and `names()`, check the dimensions and column names of `df_linelist`. Do these results match what you see when you open the data in Excel? 
+We can also check out our data by looking at the *Environment* tab of the top-right panel. Here, we can see our dataframe in the environment, look at its [structure]{.hovertip bs-toggle='tooltip' bs-title='This is the same as using the command `str()`'}, or open it in the data viewer of RStudio.
+
+::: {.look}
+Click on the round blue button next to `df_linelist` in your environment to see its structure. Then click on the name of the dataset to open it in the viewer.
 :::
 
-::: {.write}
-Use `str()` to check the data type of each column. Does anything look odd? Remember that you can also use functions like `is.character()` and `is.numeric()` if you'd like to test the type of a particular column.
-:::
+The data viewer displays dataframes as tables and is a convenient way to quickly look at your data. You can even sort and filter your data in the "View", though be aware that these actions will not make any changes to the actual object `df_linelist`. The View can also be opened by passing the dataframe to the function `View()`.
 
-### The Environment
 
-We can also check out our data by looking at the *Environment* tab of the top-right panel. Here, we can see our dataframe in the environment and look at its <span tooltip-position="top" tooltip="This is the same as using the command `str()`">structure</span>. 
-
-::: {.write}
-Click on the round blue button next to `df_linelist` in your environment to see its structure.
-:::
-
-### Viewing the data
-
-::: {.write}
-Click on the name of your dataframe in the Environment tab. This should open the dataset in a new tab in the same corner as your script (top left).
-:::
-
-The *View* displays dataframes as tables and is a convenient way to quickly look at your data. You can even sort and filter your data in the *View*, though be aware that these actions will not make any changes to the actual object `df_linelist`. The *View* can also be opened by passing the dataframe to the function `View()`.
-
-::: {.write}
-Open `df_linelist` in the viewer using the function `View()`. 
-:::
-
-### Data Summaries
-
-The function `summary` accepts a dataframe and is a handy way to get some quick statistics on each of the columns in a dataset:
+## Done!
+Well done and don't forget to save your code.
 
 ```{r}
-summary(iris)
+#| echo: false
+#| eval: true
+
+downloadthis::download_link(
+  link = 'https://github.com/epicentre-msf/repicentre/blob/main/sessions_core/02_import_data_solutions.R',
+  button_label = 'Solution File',
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  self_contained = FALSE
+)
 ```
 
-::: {.write}
-Use `summary()` to inspect the minimum and maximum values for each column in `df_linelist`. Do you notice anything odd?
-:::
+## Going Further
+### Extra Exercises
 
-Make notes of types of data that you think is not correct and of values to check later, it will save you time in the next session.
+1. Use `dim()` to take a look at the dimensions of your dataset.
+2. Use `str()` to check the data type of each column. Does anything look odd? Remember that you can also use functions like `is.character()` and `is.numeric()` if you'd like to test the type of a particular column.
+3. Useing a function learned in the first session, can you extract the names of the columns of the dataset? Do these results match what you see when you open the data in Excel? 
+4. Try passing your dataframe to the function `summary()`. What does this function tell you?
 
-## Done !
+### Relevant Satellites
+For more information about data importaion in R, consider completing the following satellites:
 
-Don't forget to save your code!
+- [Multiple Importation](../sessions_extra/import_multiple.qmd): How to import multiple sheets and/or multiple files at a time
 
-If you want to learn about importing several sheets in one go, or several similar files from a folder, go to the [satellite on multiple imports](../sessions_extra/import_multiple.qmd).
-
-## Resources
+### Additional Resources
 
 - The `rio` [website](https://gesistsa.github.io/rio/index.html#supported-file-formats)
-
 - [More examples](https://epirhandbook.com/en/new_pages/importing.html) on importing data of various file types
