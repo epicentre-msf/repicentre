@@ -46,5 +46,8 @@
   },
   "sessions_core/01_introduction.qmd": {
     "01_introduction.html": "db6fa68a"
+  },
+  "sessions_core/02_import_data.qmd": {
+    "02_import_data.html": "a7ed54f7"
   }
 }
