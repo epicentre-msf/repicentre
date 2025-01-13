@@ -1,0 +1,50 @@
+{
+  "about.qmd": {
+    "about.html": "383f3d86"
+  },
+  "index.qmd": {
+    "index.html": "1e358ed2"
+  },
+  "sessions/example.qmd": {
+    "example.html": "d94ebd54"
+  },
+  "sessions/index.qmd": {
+    "index.html": "e5d499fb"
+  },
+  "example_rmd.rmd": {
+    "example_rmd.html": "f9ac4dc9"
+  },
+  "sessions/template.qmd": {
+    "template.html": "2e328b2e"
+  },
+  "sessions_index.qmd": {
+    "sessions_index.html": "df3bf7a0"
+  },
+  "sessions_core/example.qmd": {
+    "example.html": "b4fde4e5"
+  },
+  "sessions_extra/example.qmd": {
+    "example.html": "186d292f"
+  },
+  "index_explore.qmd": {
+    "index_explore.html": "987613f6"
+  },
+  "explore.qmd": {
+    "explore.html": "a656a42c"
+  },
+  "pathway.qmd": {
+    "pathway.html": "4be43f4b"
+  },
+  "sessions_core/example_2.qmd": {
+    "example_2.html": "283b9cb2"
+  },
+  "sessions_core/template.qmd": {
+    "template.html": "61e6719c"
+  },
+  "resources.qmd": {
+    "resources.html": "8de10a3c"
+  },
+  "sessions_core/01_introduction.qmd": {
+    "01_introduction.html": "db6fa68a"
+  }
+}

@@ -2,16 +2,24 @@
   {
     "listing": "/pathway.html",
     "items": [
+<<<<<<< HEAD
       "/sessions_core/02_import_data.html",
       "/sessions_core/example.html"
+=======
+      "/sessions_core/01_introduction.html"
+>>>>>>> main
     ]
   },
   {
     "listing": "/explore.html",
     "items": [
+<<<<<<< HEAD
       "/sessions_core/example.html",
       "/sessions_extra/example.html",
       "/sessions_core/02_import_data.html",
+=======
+      "/sessions_core/01_introduction.html",
+>>>>>>> main
       "/sessions_core/template.html"
     ]
   }
