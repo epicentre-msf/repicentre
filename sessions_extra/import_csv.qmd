@@ -1,0 +1,48 @@
+---
+title: Importing CSV Files
+description: Importing csv files into R.
+date: last-modified
+image: ../img/under_construction.svg
+categories:
+  - Satellite
+  - Data Import
+---
+
+
+```{r setup}
+#| include: false
+#| eval: true
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+```
+
+
+## Objectives
+
+
+## Setup
+
+::: {.setup}
+Add text here about any packages or datasets they might need.
+:::
+
+## Main Section 1
+
+We can import a `.csv` file in exactly the same way as an `.xlsx` file, we need only change the name of our file:
+
+```{r}
+import(file = here("data", "raw", "exemple_linelist.csv"))
+```
+
+`.csv` files sometimes use different <span tooltip-position="top" tooltip="A delimiter is the character used in a csv file to separate values. Many countries use a comma (,), but some use a semicolon (;).">delimiters</span> and <span tooltip-position="top" tooltip="Some countries use a decimal point (.) to indicate a number with a decimal, others will use a comma (,). Typically, countries using a comma for decimals will use a semicolon as a delimiter.">decimal characters</span> depending on where the file comes from. You can indicate to `import()` which characters to use for these using the `sep` and `dec` arguments respectively:
+
+```{r}
+import(file = here("data", "raw",, "exemple_linelist.csv"),
+       sep = ";",
+       dec = ",")
+```
+
+::: {.write}
+Import the file `msf_linelist_moissala_2023-09-24.csv` from the raw data folder and store it in an object called `df_linelist_csv`.
+:::
+
+
