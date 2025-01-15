@@ -59,6 +59,92 @@ comments:
     hypothesis: false
 ```
 
+### Translating
+Sessions are developped in english but then need to be translated to french. Translation can be a long process, so we reduce part of the work by an initial semi-automated translation through deepL using a package called `{babeldown}`. It is pretty straightforward to use, and you can use the function in `translate_session_to_french.R` to help you. 
+
+#### Steps
+
+1. We need to make sure the package is installed: 
+
+```
+install.packages('babeldown')
+
+```
+
+2. You need to make sure you have a [DeepL account](https://www.deepl.com/). Make sure you "subscribe" to the free plan, you need to enter card details even for the free plan. 
+
+3. In your account informations > API Keys you can find the API key. __The free plan has a limit of 500,000 characters translated per month__. 
+
+4. Open your `.Renviron` file and set up the following variable for your DeepL API key: 
+
+```
+DEEPL_API_KEY = [YOUR-DEEPL-API-KEY]
+
+```
+Don't forget to restart R if you want to use this variable. 
+
+5. Instal and load `{babeldown}`
+
+6. Use following function to translate one of the sessions - we stick to the `default` level of formality.
+
+```
+babeldown::deepl_translate_quarto(
+  "path-to-session-folder",
+  "session-name.qmd",
+  glossary_name = "glossary-en-fr",
+  render = TRUE,
+  source_lang = "EN",
+  target_lang = "FR",
+  formality = "default"
+)
+
+```
+
+7. This will translate and create a file in the same folder with the added suffix `.fr.qmd`. 
+
+8. **Please Note** there is a final error: 
+
+```
+Error in `file()`:
+! cannot open the connection
+```
+but the translation actaully worked, check your files ! This is simply because the function was designed for quarto books and not single `.qmd` files
+
+8. **Please make sure to render this file and review it completely, translation is far from perfect !**
+
+### Glossary 
+We can specify a glossary for the words we want to manually translate. This is already set up as a `.csv` file: `glossary-en-fr.csv`. You can modify this file, and then run these lines to update it: 
+
+```
+# Update the glossary
+  babeldown::deepl_upsert_glossary(
+    filename = "glossary-en-fr.csv",
+    target_lang = "French",
+    source_lang = "English"
+  )
+```
+This will create a glossary file named `glossary-en-fr` in the porject that can be used by DeepL.
+
+### Known issues
+
+Here is a list of currently noticed issues regarding the translation: 
+
+- Translation errors do occur, and syntax is sometimes goofy - Read through all sentences to fix this. 
+
+- Tooltips do not get translated, so please translate each one of them. You can use the following function to translate strings directly: 
+
+```
+babeldown::deepl_translate_markdown_string(
+
+  "Hey ! it's Hugo talking there", 
+  source_lang = "EN",
+  target_lang = "FR"
+)
+
+```
+
+- Nothing in R chunks gets translated, while this prevents translation of R functions, it is required to translate the `# Comments`. 
+
 General contribution guidelines.
 ----------------------------------------------------------------------------------------------------
 This is a collaborative coding repository with a live production branch. To avoid messiness and possible downstream merge conflicts, we are using a scrum-esque style of development where new ideas are developed through an issue > branch > pull request pathway. Below is a quick explanation of what that process looks like, but TLDR:

@@ -1,0 +1,365 @@
+---
+title: Importer des données
+description: Créez un projet Rstudio, installez les paquets utiles et commencez à
+  importer des données pour travailler dans R.
+date: last-modified
+image: ../img/core/02_import/01_logo.png
+params:
+  solutions: false
+  sub_title: '**------ With Solutions ------**'
+categories:
+- Core
+- RStudio
+- Data Import
+---
+
+```{r setup}
+#| include: false
+#| eval: true
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+
+solutions <- params$solutions
+
+library(here) # for filepaths
+library(rio)  # import and export files
+
+df_linelist <- import(file = here("data", "raw", 
+              "msf_linelist_moissala_2023-09-24.xlsx"))
+```
+
+## Objectifs
+
+- Créer un projet RStudio
+- Mettre en place un code organisé et bien documenté
+- Installer et charger des paquets
+- Écrire des chemins d'accès robustes pour les fichiers
+- Importer et inspecter des données
+
+:: :{.callout-important}
+Les principes que vous avez appris dans le [Introduction à R](01_introduction.html) s'appliquent également ici : nous devons faire de notre mieux pour nous assurer que nos projets ne fonctionneront pas seulement aujourd'hui, mais qu'ils pourront également être réutilisés et partagés à l'avenir. Bien que cela ne soit pas toujours facile, il existe plusieurs bonnes pratiques qui peuvent nous aider, et l'une des plus importantes est de commencer avec une bonne base de code organisée.
+:: :
+
+## Mise en place du projet
+
+### Structure des dossiers
+
+:: : {.setup}
+Si ce n'est pas déjà fait, téléchargez le dossier du cours, sauvegardez-le à un endroit \[**non connecté à OneDrive**\]{.hovertip bs-toggle='tooltip' bs-title="OneDrive doesn't play well with R as it will attempt to constantly synchronize certain project files in a way that can cause errors or memory problems"}.
+Décompressez l'archive et ouvrez le dossier non compressé.
+:: :
+
+Ce dossier donne un exemple de structure typique (et fortement recommandée) pour vos projets de code :
+
+- données
+- propres
+- brut
+- R
+- résultats
+- LISEZ-MOI
+
+Ce dossier sera votre répertoire de travail pour **toutes les sessions de ce cours**. Vous y créerez un projet Rstudio (explications ci-dessous), et y enregistrerez tous vos scripts. `/R`. Les données du cours se trouvent déjà dans `data/raw`.
+
+### Définitions {#sec-definitions}
+
+Pour travailler dans le cadre de cette session, vous devez comprendre les deux concepts suivants :
+
+**Répertoire de travail.** Le répertoire de travail est l'emplacement (dossier) où se trouve votre session R *en train de travailler*. Si vous enregistrez un fichier, par exemple, il sera enregistré dans ce dossier par défaut. De même, lorsque vous souhaitez ouvrir un fichier, ce dossier sera affiché par défaut. Tous les chemins relatifs seront relatifs à ce répertoire de travail. Par défaut, R choisit généralement le dossier "Documents" comme répertoire de travail sur les machines Windows.
+
+**Racine.** La racine fait référence au niveau de dossier le plus élevé du répertoire de travail. Si le dossier de votre cours s'appelle `FETCHR` la racine se trouverait directement à l'intérieur de celui-ci (et non dans l'un de ses sous-dossiers comme `R` ou `Data`).
+
+### Projets RStudio
+
+Un projet RStudio peut être utilisé pour vous faciliter la vie et vous aider à orienter [RStudio autour des différents fichiers utilisés dans votre code.]{.hovertip bs-toggle='tooltip' bs-title='Technically an RStudio Project is just a file containing some metadata that tells RStudio what files to open and where to set your working directory. It will spare you the headache of managing the working directory yourself.'}
+
+Pour rappel, votre interface doit ressembler à ceci :
+
+![Capture d'écran d'une interface Rstudio typique](../img/core/01_introduction/01_rstudio_interface_en.png){fig-align="center" #fig-interface}
+
+:: : {.setup}
+Ouvrez RStudio et créez un nouveau projet en cliquant sur `File > New Project > Existing Directory > Browse`, en naviguant dans le dossier du cours (en l'ouvrant) et en cliquant sur `Create Project`.
+:: :
+
+:: : {.look}
+Dans l'explorateur Windows, regardez le dossier du cours. Vous devriez maintenant voir un nouveau fichier avec l'extension `.Rproj` qui a une petite icône bleue avec un R.
+:: :
+
+![Icône associée aux projets RStudio](../img/core/02_import/02_rproject.png){fig-align="center"}
+
+:: :{.callout-note}
+Si vous ne voyez pas ce fichier, c'est probablement parce qu'il est caché par défaut sur votre ordinateur. Pour modifier ce paramètre dans l'explorateur Windows, allez dans le menu *Afficher* et sélectionnez `Filename Extensions`.
+:: :
+
+Lorsque vous ouvrez un projet RStudio, RStudio démarre une nouvelle session R, ouvre les fichiers de projet associés et définit votre répertoire de travail à la racine du dossier du cours. À ce moment-là, RStudio affiche également les sous-dossiers de ce répertoire dans le panneau en bas à droite.
+
+:: : {.callout-tip}
+ Il est fortement recommandé de mettre en place un projet RStudio distinct pour chacune de vos [analyses]{.hovertip bs-toggle='tooltip' bs-title="Here a single analysis would involve the full process of loading, cleaning, analyzing, and reporting on a dataset."} afin de garantir que les fichiers de votre projet restent organisés et gérables.  
+:: :
+
+Il existe plusieurs façons d'ouvrir un projet RStudio :
+
+- Utiliser le menu RStudio `File > Open Project` puis sélectionnez le projet `.Rproj` fichier
+- Cliquez sur \[le `Project: (none)` bouton\]{.hovertip bs-toggle='tooltip' bs-title='You can also refer to this button at any time to see which project you are currently working in.'} en haut à droite de l'interface RStudio
+- Naviguez dans l'explorateur de dossiers jusqu'au dossier d'analyse et double-cliquez sur le fichier avec l'icône `.Rproj` extension
+
+### RStudio Options
+
+Avant de poursuivre, mettons à jour certains paramètres par défaut de RStudio qui posent problème :
+
+:: : {.setup}
+Ouvrir les options globales (`Tools > Global Options`) et ouvrez l'onglet `General` (menu de gauche). Assurez-vous que l'onglet *aucun* aucune des cases des sections `R Sessions`, `Workspace` ou `History` sont vérifiés.
+:: :
+
+![Capture d'écran des options de Rstudio](../img/core/02_import/03_do_not_save.png){fig-align="center"}
+
+Lorsqu'elles sont cochées, ces options amènent RStudio à enregistrer les objets de votre environnement et à les recharger, ainsi que tous les fichiers précédemment ouverts, lorsque vous ouvrez une nouvelle session R. Bien que ces options par défaut puissent sembler une bonne idée, il est préférable de toujours commencer votre travail à partir d'une session R fraîche, [session R vide]{.hovertip bs-toggle='tooltip' bs-title='An empty session means the environment is empty, but you still have your scripts!'} afin d'éviter les bogues.
+
+:: :{.callout-important}
+N'oubliez pas que toute commande ou sortie nécessaire au nettoyage et à l'analyse doit être enregistrée explicitement dans un script, dans l'ordre fonctionnel correct.
+:: :
+
+## Création d'un nouveau script
+
+:: : {.setup}
+Ouvrez un nouveau script et enregistrez-le dans le répertoire `R` de votre projet sous le nom de `import_data.R`.
+
+Ajoutez quelques métadonnées au début du script, comme indiqué dans la première session, en utilisant la fonction [commentaires](01_introduction.qmd#sec-comments). Veillez à inclure :
+
+- le titre
+- Auteur de l'article
+- Date de création
+- Description du projet
+  :: :
+
+Vous êtes maintenant prêt à commencer à coder !
+
+## Paquets {#sec-packages}
+
+Les paquets sont des collections de fonctions qui étendent les fonctionnalités de R. Vous les utiliserez **beaucoup** dans ce cours et dans votre vie quotidienne. Heureusement, en tant que langage open source, les paquets R peuvent être téléchargés et installés gratuitement sur internet.
+
+:: :{.callout-note}
+Dans R, les paquets sont référencés à l'aide de `{}`. Par exemple `{ggplot2}` est le nom du paquet ggplot2 qui contient de nouvelles fonctions de traçage telles que `ggplot()`, `geom_point()` etc...
+:: :
+
+### Installation
+
+Nous pouvons installer un nouveau paquet à l'aide de la fonction `install.packages()` qui le télécharge et l'installe dans la bibliothèque de paquets de votre ordinateur. Cette opération n'est effectuée qu'une seule fois par ordinateur.
+
+```{r}
+#| eval = FALSE
+install.packages("here") # install the {here} package
+```
+
+N'oubliez pas de mettre le nom du paquet entre guillemets lorsque vous utilisez la commande `install.packages()`. Que se passe-t-il si vous ne le faites pas ?
+
+:: : {.callout-note}
+Si vous suivez cette session dans le cadre d'un cours, pour éviter tout problème potentiel de connectivité internet pendant la formation, nous vous avons déjà fait installer la plupart des paquets du cours.
+
+Si vous suivez ce tutoriel seul ou si vous n'avez pas encore installé les paquets, vous devrez installer manuellement chaque nouveau paquet que nous rencontrerons.
+:: :
+
+### Utilisation
+
+Une fois qu'un paquet est installé, nous pouvons l'utiliser mais nous devons spécifier à R que nous allons l'utiliser *à chaque session*. Ce processus s'appelle *le chargement du paquet* et s'effectue à l'aide de la fonction `library()`.
+
+```{r}
+library(here) # load the "here" package
+```
+
+:: : {.write}
+Utilisez le `library()` pour charger les paquets `here` et `rio` qui sera utilisé dans la section suivante.
+:: :
+
+```{r}
+#| include = solutions
+# SOLUTION
+library(here)
+library(rio)
+```
+
+En fonction de la configuration de votre ordinateur et du paquet que vous essayez de charger, il se peut que vous obteniez un [message d'avertissement]{.hovertip bs-toggle='tooltip' bs-title='Unlike error messages, warnings will not cause R to stop an ongoing command. They are used to signal potential but not severe issues and do not always need to be fixed.'} signalant que certaines fonctions ont été [masquées] {.hovertip bs-toggle='tooltip' bs-title='Le masquage se produit lorsque R essaie de charger plus d'une fonction portant le même nom en même temps. Ce problème est étonnamment courant. Par exemple, il existe un grand nombre de paquets qui ont une fonction appelée`filter()` ou `select()`. Lorsque ces conflits se produisent, R choisira la version qui a été chargée en dernier et les autres versions seront ignorées (masquées). '} ou que la version actuelle du paquet a été construite pour une version différente de R. Ces messages ne posent généralement pas de problème, mais il est tout de même important de les noter.
+
+:: : {.write}
+Essayez d'exécuter le code suivant. Pouvez-vous trouver la signification de l'erreur ?
+
+```{r}
+#| error: true
+library(ggplot)
+```
+
+:: :
+
+Le code ci-dessus génère une erreur car vous avez demandé une bibliothèque qui n'existe pas. Rappelez-vous que **R est capricieux et sensible à la casse** et beaucoup de vos erreurs viendront de petites fautes de frappe dans les noms de fonctions ou d'objets. Ici, par exemple, nous voulions charger le paquet `ggplot2` mais nous avons écrit `ggplot` à la place.
+
+:: : {.callout-tip}
+La plupart du temps, vous aurez besoin de charger un certain nombre de paquets pour votre script et il est recommandé d'avoir une section au début de votre code qui charge tout ce dont vous aurez besoin en un seul endroit :
+
+```{r}
+# Packages ----------------------------
+library(tidyverse)   # data manipulation
+library(lubridate)   # date manipulation
+```
+
+Cette pratique permet de savoir facilement quels paquets doivent être installés pour exécuter un script.
+:: :
+
+:: : {.write}
+ Utilisation [commentaires]{.hovertip bs-toggle='tooltip' bs-title='Remember that you can use the keyboard shortcuts CRT+SHIT+C and CTRL+SHIFT+R to insert comments and sections'} pour créer une section "Paquets" dans votre script.
+:: :
+
+### Mise à jour des paquets
+
+R dispose d'une communauté de développeurs très active et il est assez courant que les paquets soient mis à jour de temps en temps, car leurs propriétaires ajoutent de nouvelles fonctions et corrigent les bogues existants. Pour mettre à jour les paquets de votre bibliothèque, vous pouvez vous rendre dans la section \[`Packages` onglet\]{.hovertip bs-toggle='tooltip' bs-title='Remember that this tab shows a list of all the packages you have installed on your computer with their version numbers.'} du panneau inférieur droit et cliquer sur `Update`. N'oubliez pas que vous **devez être connecté à l'internet** pendant ce processus.
+
+:: : {.callout-important}
+Parfois, les paquets sont mis à jour d'une manière qui peut supprimer ou modifier une fonction que vous avez utilisée dans certains de vos scripts, ce qui fait que votre code ne fonctionne plus. **Pas de panique** si cela se produit. La meilleure pratique consiste à adapter *votre code* bien que, dans le pire des cas, vous puissiez [installer de force une ancienne version d'un paquet]{.hovertip bs-toggle='tooltip' bs-title='This is discouraged as it will make your code hard for others to use.'}. Cette question n'entre toutefois pas dans le cadre de cette session.
+:: :
+
+## Importation de données
+
+### Comprendre les chemins d'accès aux fichiers {#sec-filepaths}
+
+Pour ouvrir un fichier dans R, vous devez fournir une adresse **chemin d'accès au fichier**. Un chemin d'accès est simplement un nom plus long pour un fichier, qui inclut non seulement son nom mais aussi son emplacement sur votre ordinateur. Il existe plusieurs façons de définir ces chemins, notamment *absolu* et *relatif* relatifs.
+
+#### Chemins d'accès absolus
+
+Les chemins absolus sont **spécifiques à votre ordinateur** et vont jusqu'au niveau de votre [disque dur]{.hovertip bs-toggle='tooltip' bs-title="For example, 'C:' or 'D:' on a Windows computer."}. Par exemple, un chemin d'accès absolu peut ressembler à ceci : `D:/OneDrive - MSF/Documents/monitoring/cholera/fancy_project/data/raw/example_linelist.xlsx`. Il est clair que ce chemin ne fonctionnera que sur un seul ordinateur.
+
+L'utilisation de [codé en dur]{.hovertip bs-toggle='tooltip' bs-title='Hardoced means that you wrote the full path in the script, the way it is given above, as opposed to building the paths by bits as we are going to show below.'} absolus codés en dur est **fortement déconseillé** car cela rend votre code inflexible et susceptible de se casser : les chemins doivent être mis à jour chaque fois que votre code est partagé ou que le dossier du projet est déplacé sur votre ordinateur.
+
+#### Chemins relatifs
+
+Les chemins relatifs sont définis par rapport à votre [répertoire de travail](../sessions_core/02_import_data.qmd#sec-definitions). Par exemple, en gardant à l'esprit que notre pratique `.Rproj` a défini notre répertoire de travail à la racine du dossier de notre projet, nous pourrions créer un chemin relatif qui ressemblerait à `data/raw/example_linelist.xlsx`. Cela signifie que **tant que nous conservons le fichier *interne* interne** de notre dossier de projet et d'avoir une `.Rproj` notre code pourrait théoriquement fonctionner sur plusieurs ordinateurs.
+
+#### Chemins d'accès robustes avec la fonction `here()` fonction
+
+Les `{here}` dispose d'un paquet `here()` qui facilite grandement la définition des chemins. Elle présente deux avantages :
+
+- Lorsqu'elle est utilisée avec des projets RStudio, vous ne pouvez lui donner que la partie du chemin à l'intérieur du projet, (la fonction *chemin relatif* en d'autres termes), et la fonction l'utilise pour créer le fichier *chemin absolu* dynamiquement.
+- Il utilise pour cela le séparateur adapté à votre [système d'exploitation]{.hovertip bs-toggle='tooltip' bs-title='For example, Windows, MacOS, Debian...'} qu'il s'agisse de `/`, `\` ou `//`
+
+```{r}
+#| eval: true
+library(here)
+here("data", "raw", "example_linelist.xlsx")
+```
+
+Vous voyez que nous n'avons défini que le chemin relatif et que la fonction a créé un chemin absolu. Cette façon de définir le chemin fonctionnera sur l'ordinateur de vos collègues, même s'ils utilisent un autre système d'exploitation, à condition que vous respectiez tous deux la structure interne du répertoire de travail.
+
+Nous **vous encourageons fortement à** à utiliser `here()` chaque fois que vous devez créer un chemin d'accès à un fichier.
+
+:: : {.write}
+Exécutez le code ci-dessus dans la console. Quel est le chemin d'accès au fichier `here("data", "raw")` donne *vous*?
+:: :
+
+:: : {.write}
+Utilisation `here()` pour créer un chemin d'accès complet au fichier `msf_linelist_moissala_2023-09-24.xlsx`. Conservez ce chemin, nous l'utiliserons bientôt.
+:: :
+
+:: : {.callout-important}
+`here()` crée simplement un chemin de fichier, elle ne vérifie pas réellement si un fichier existe sur votre ordinateur : si le fichier est absent ou s'il y a une faute de frappe dans votre code, la commande produira une erreur lorsque le chemin sera utilisé. Si vous souhaitez utiliser une fonction pour vérifier l'existence d'un fichier, consultez la page de manuel `file.exists()` fonction.
+:: :
+
+:: : {.callout-tip}
+Nous voudrons souvent sourcer plusieurs fichiers de données dans un seul projet. Pour faciliter ce processus, il peut être utile de créer une section au début du script, après le chargement des paquets pour définir les chemins et les stocker dans des variables.
+:: :
+
+### Fonction d'importation {#sec-import}
+
+Dans R, les différents formats de fichiers sont souvent importés à l'aide de différentes fonctions, souvent spécialisées. Cela peut s'avérer fastidieux, car vous devez mémoriser et charger un grand nombre de fonctions simplement pour importer vos données. Pour éviter ce problème, nous vous recommandons d'utiliser la fonction `import()` du paquet <span tooltip-position="top" tooltip="`rio` signifie R Inputs and Outputs.">`{rio}`</span> . Cette fonction est capable d'ouvrir une grande variété de fichiers (y compris Excel, csv, Stata, et bien d'autres) en reconnaissant l'extension de fichier de vos données et en appelant une fonction spécialisée pertinente d'un autre paquetage. [en appelant une fonction spécialisée pertinente d'un autre paquet.]{.hovertip bs-toggle='tooltip' bs-title='This type of function, providing an unified interface to other specific functions is known as a wrapper.'} afin que vous n'ayez pas à le faire.
+
+Parce que `import()` ne fait qu'appeler d'autres fonctions en arrière-plan, il est possible qu'il ait besoin d'arguments différents selon le type de fichier que vous voulez charger.
+
+:: : {.callout-tip}
+Pour voir la liste complète de tous les types de fichiers que vous pouvez charger (et enregistrer !) avec `rio` consultez la liste de [formats pris en charge](https://gesistsa.github.io/rio/index.html#supported-file-formats) sur leur site web. Dans la suite de la leçon, nous nous concentrerons sur l'importation de données à partir d'Excel `.xlsx` dans le reste de la leçon.
+:: :
+
+#### Importation à partir de la première feuille
+
+En général, l'utilisation de `import()` est assez simple, au minimum vous devez passer le chemin du fichier à la fonction `file` à l'argument
+
+```{r}
+import(file = here("data", "raw", "example_linelist.xlsx"))
+```
+
+Remarquez que nous avons imbriqué la commande `here()` **à l'intérieur de** l'intérieur `import()` à l'intérieur de la commande. L'imbrication de fonctions est absolument autorisée dans R et c'est quelque chose que vous ferez *tout le temps*. Lorsque des fonctions sont imbriquées, R les évalue dans l'ordre de la fonction la plus proche (dans le cas présent `here()`) à la plus externe (dans ce cas `import()`). De cette manière, la fonction *sortie* de `here()` est utilisée en tant que *d'entrée* de `import()`.
+
+:: : {.write}
+Importer le fichier `msf_linelist_moissala_2023-09-24.xlsx` qui se trouve dans votre sous-dossier de données brutes dans R en utilisant `here()` et `import()`.
+:: :
+
+Si votre importation a fonctionné correctement, R imprimera les données dans la console mais ne les enregistrera pas dans l'environnement car nous n'avons pas [les avons pas assignées à un objet](../sessions_core/01_introduction.qmd#sec-assignement-operator).
+
+:: : {.callout-tip}
+Il se peut que vous ne souhaitiez pas que R imprime de très grands ensembles de données dans la console et les affecte directement à un objet.
+:: :
+
+:: : {.write}
+Réimportez vos données, mais cette fois-ci, sauvegardez-les dans un objet appelé `df_linelist`.
+:: :
+
+#### Importer des données à partir de n'importe quelle feuille
+
+Comme vous venez de le voir, R sélectionne la première feuille par défaut. Il est cependant possible de passer le numéro (ou le nom) d'une feuille de calcul spécifique dans vos données Excel à `import()` en utilisant l'argument `which`:
+
+```{r}
+import(file = here("data", "raw", "example_linelist.xlsx"),
+       which = 2)  # imports the second sheet
+```
+
+Notez que l'argument `which` est spécifique aux types de fichiers comportant plusieurs feuilles, tels que les fichiers Excel ou .Rdata. Si vous essayez de l'utiliser sur un fichier `.csv` l'argument sera ignoré.
+
+## Un premier aperçu de vos données
+
+Nous avons maintenant importé un ensemble de données dans R et l'avons assigné à un dataframe (`df_linelist`). L'étape suivante consiste naturellement à inspecter cet ensemble de données, à vérifier que l'importation s'est bien déroulée, à le connaître un peu mieux et à évaluer s'il doit être nettoyé avant d'être analysé.
+
+Nous pouvons commencer par jeter un coup d'œil rapide aux premières lignes du cadre de données à l'aide de la fonction `head()`. Cette fonction prend un cadre de données comme premier argument et accepte optionnellement un second argument `n` indiquant le nombre de lignes que nous souhaitons voir.
+
+```{r}
+head(df_linelist, n = 10) # Inspect 10 first lines
+```
+
+:: : {.write}
+Utilisation `head()` pour examiner les 12 premières lignes de `df_linelist`.
+:: :
+
+Nous pouvons également vérifier nos données en regardant le fichier *l'environnement* dans le panneau supérieur droit. Ici, nous pouvons voir notre dataframe dans l'environnement, examiner sa [structure]{.hovertip bs-toggle='tooltip' bs-title='This is the same as using the command 
+'} ou l'ouvrir dans le visualiseur de données de RStudio.`str()`
+
+:: : {.look}
+Cliquez sur le bouton rond bleu à côté de `df_linelist` dans votre environnement pour voir sa structure. Cliquez ensuite sur le nom de l'ensemble de données pour l'ouvrir dans le visualiseur.
+:: :
+
+La visionneuse de données affiche les cadres de données sous forme de tableaux et constitue un moyen pratique d'examiner rapidement vos données. Vous pouvez même trier et filtrer vos données dans la "Vue", mais sachez que ces actions n'apporteront aucune modification à l'objet réel. `df_linelist`. La vue peut également être ouverte en passant le cadre de données à la fonction `View()`.
+
+## C'est fait !
+
+Bravo et n'oubliez pas de sauvegarder votre code.
+
+```{r}
+#| echo: false
+#| eval: true
+
+downloadthis::download_link(
+  link = 'https://github.com/epicentre-msf/repicentre/blob/main/sessions_core/02_import_data_solutions.R',
+  button_label = 'Solution File',
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  self_contained = FALSE
+)
+```
+
+## Aller plus loin
+
+### Exercices supplémentaires
+
+1. Utilisation `dim()` pour examiner les dimensions de votre jeu de données.
+2. Utiliser `str()` pour vérifier le type de données de chaque colonne. Y a-t-il quelque chose d'étrange ? N'oubliez pas que vous pouvez également utiliser des fonctions telles que `is.character()` et `is.numeric()` si vous souhaitez tester le type d'une colonne particulière.
+3. En utilisant une fonction apprise lors de la première session, pouvez-vous extraire les noms des colonnes de l'ensemble de données ? Ces résultats correspondent-ils à ce que vous voyez lorsque vous ouvrez les données dans Excel ?
+4. Essayez de passer votre cadre de données à la fonction `summary()`. Que vous dit cette fonction ?
+
+### Ressources complémentaires
+
+- Les `rio` [site web](https://gesistsa.github.io/rio/index.html#supported-file-formats)
+- [Plus d'exemples](https://epirhandbook.com/en/new_pages/importing.html) sur l'importation de données de différents types de fichiers
+
+
