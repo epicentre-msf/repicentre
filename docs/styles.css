@@ -247,8 +247,8 @@ img#about {
 
 /* darkmode toggle -------------------------------------------------------------------------------*/
 .quarto-reader-toggle .bi::before, .quarto-color-scheme-toggle .bi::before {
-	height: 2rem;
-	width: 2rem;
-	background-size: 2rem 2rem;
+  height: 2rem;
+  width: 2rem;
+  background-size: 2rem 2rem;
 }
 

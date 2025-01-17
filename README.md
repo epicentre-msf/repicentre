@@ -5,7 +5,7 @@ Welcome to the R training repo, thanks for being here! A few quick notes:
 - Someone told you to review a session? We thank you for your service, please read the "Session Review Guidelines" section.
 - Need some tips on best practices for collaborative coding? Read the "General Contribution Guidelines"
 
-Note, this website is **public** with a **[live development version online](https://epicentre-msf.github.io/repicentre/)**. Please don't break it.
+Note, this website is **public** with a **[live development version online](https://epicentre-msf.github.io/repicentre/)**. Please don't break it!
 
 
 Notes on session development.
@@ -18,6 +18,19 @@ Want to write a session? **Amazing.** Here are some tips to get you started:
 - When you are done building your session, you can move on to the review and pull request process -- more information on those below.
 
 **NB.** For a reminder of what topics we decided to put in to the core vs satellite modules, please refer to the [google sheet](https://docs.google.com/spreadsheets/d/1oqAkFwQVuDzfRouxglN-UT9RMDzl7TLfD5_g0ayPhZU/edit?gid=0#gid=0).
+
+
+Multilingual rendering.
+----------------------------------------------------------------------------------------------------
+`{repicentre}` is a **multilingual** website rendered using [`{babelquarto}`]() and [`{babeldown}`](). This makes our lives easier in terms of translation but at the price of a slightly more complicated rendering process. Instead of rendering and previewing with quarto directly, you will need to use `{babelquarto}` and [`{servr}`]() respectively:
+
+```
+# to render the site
+babelquarto::render_website()
+
+# to locally load the website
+servr::httw('docs')
+```
 
 
 Session review guidelines.
@@ -58,6 +71,8 @@ Once the session is completed and feedback resolved, we need to manually delete 
 comments: 
     hypothesis: false
 ```
+
+
 
 General contribution guidelines.
 ----------------------------------------------------------------------------------------------------

@@ -28,3 +28,14 @@ format:
 comments:
   hypothesis: false
 
+
+babelquarto:
+  languagecodes:
+  - name: fr
+    text: "Français"
+  - name: en
+    text: "English"
+  mainlanguage: 'en'
+  languages: ['fr']
+title-fr: "{repicentre}"
+lang: en
