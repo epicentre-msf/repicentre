@@ -1,0 +1,51 @@
+[
+  {
+    "objectID": "resources.html",
+    "href": "resources.html",
+    "title": "Ressources",
+    "section": "",
+    "text": "Cette page contiendra (éventuellement) des ressources externes pour poursuivre votre parcours d’apprentissage du R."
+  },
+  {
+    "objectID": "pathway.html",
+    "href": "pathway.html",
+    "title": "Chemin",
+    "section": "",
+    "text": "Ces sessions peuvent être suivies afin d’obtenir un niveau de base dans R. La série suppose aucune expérience préalable dans R et convient aux débutants.\nVous en voulez plus ? Vous voulez plus de flexibilité ? Consultez le catalogue complet des sessions.\n\n\n\n\n\n\n\n\n\nAucun article correspondant"
+  },
+  {
+    "objectID": "about.html#salut",
+    "href": "about.html#salut",
+    "title": "About",
+    "section": "Salut",
+    "text": "Salut\nBienvenue sur {repicentre}, un site open source développé par Epicentre pour vous aider à apprendre R pour les contextes humanitaires. Le site est composé de tutoriels autodidactes et propose deux options principales d’apprentissage :\n\nLinéaire. Conçu pour les personnes n’ayant aucune expérience préalable de R, le cours linéaire vous guidera à travers les concepts de base de R en utilisant une étude de cas sur la rougeole au Tchad. Le cours couvre les concepts suivants :\n\nStructures de données et l’interface RStudio\nImportation de données\nManipulation de données\nNettoyage des données\nAgrégation de données\nVisualisation des données\n\nExploration. Si vous avez un peu plus d’expérience ou si vous recherchez un sujet particulier, n’hésitez pas à explorer la gamme complète des tutoriels. Les tutoriels sont classés par catégories et sont conçus pour être autonomes."
+  },
+  {
+    "objectID": "about.html#recommandations-et-demandes",
+    "href": "about.html#recommandations-et-demandes",
+    "title": "About",
+    "section": "Recommandations et demandes",
+    "text": "Recommandations et demandes\nY a-t-il un sujet sur lequel vous aimeriez voir un tutoriel qui n’est pas encore disponible ? C’est très bien ! N’hésitez pas à nous le faire savoir en ouvrant un “issue” sur le repo GitHub associé à ce site web. Si vous ne savez pas comment ouvrir un issue, veuillez contacter Cat Eisenhauer."
+  },
+  {
+    "objectID": "about.html#contribuer",
+    "href": "about.html#contribuer",
+    "title": "About",
+    "section": "Contribuer",
+    "text": "Contribuer\nVous souhaitez contribuer à la rédaction ou à la maintenance de tutoriels ? Incroyable ! Veuillez contacter Cat."
+  },
+  {
+    "objectID": "explore.html",
+    "href": "explore.html",
+    "title": "Explorer",
+    "section": "",
+    "text": "Choisissez votre propre aventure en parcourant toutes les sessions disponibles.\n\n\n\n\n\n\n\n\n\nAucun article correspondant"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "{repicentre}",
+    "section": "",
+    "text": "Welcome to {repicentre}\nUne plateforme open source pour apprendre R dans les contextes humanitaires. Qu’aimeriez-vous faire ?\n\n\n\n\n\nApprendre Parcours linéaire en commençant par les bases  Start\n\n\n\n\n\nExplorer Catalogue complet de cours d’autoformation  Start\n\n\n\n\n\nÉlargir Ressources externes pour aller plus loin  Start"
+  }
+]

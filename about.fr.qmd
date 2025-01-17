@@ -1,0 +1,27 @@
+---
+title: "About"
+toc: false
+---
+
+<img src='img/llama_full.svg' id='about'>
+
+Salut
+----------------------------------------------------------------------------------------------------
+Bienvenue sur `{repicentre}`, un site open source développé par Epicentre pour vous aider à apprendre R pour les contextes humanitaires. Le site est composé de tutoriels autodidactes et propose deux options principales d'apprentissage :
+
+1. **Linéaire.** Conçu pour les personnes n'ayant aucune expérience préalable de R, le cours linéaire vous guidera à travers les concepts de base de R en utilisant une étude de cas sur la rougeole au Tchad. Le cours couvre les concepts suivants :
+    a. Structures de données et l'interface RStudio
+    b. Importation de données
+    c. Manipulation de données
+    d. Nettoyage des données
+    e. Agrégation de données
+    f. Visualisation des données
+2. **Exploration.** Si vous avez un peu plus d'expérience ou si vous recherchez un sujet particulier, n'hésitez pas à explorer la gamme complète des tutoriels. Les tutoriels sont classés par catégories et sont conçus pour être autonomes.
+
+Recommandations et demandes
+----------------------------------------------------------------------------------------------------
+Y a-t-il un sujet sur lequel vous aimeriez voir un tutoriel qui n'est pas encore disponible ? C'est très bien ! N'hésitez pas à nous le faire savoir en [ouvrant un "issue"](https://github.com/epicentre-msf/repicentre/issues) sur le repo GitHub associé à ce site web. Si vous ne savez pas comment ouvrir un issue, veuillez contacter Cat Eisenhauer.
+
+Contribuer
+----------------------------------------------------------------------------------------------------
+Vous souhaitez contribuer à la rédaction ou à la maintenance de tutoriels ? Incroyable ! Veuillez contacter Cat.
