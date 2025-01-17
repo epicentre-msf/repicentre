@@ -20,6 +20,19 @@ Want to write a session? **Amazing.** Here are some tips to get you started:
 **NB.** For a reminder of what topics we decided to put in to the core vs satellite modules, please refer to the [google sheet](https://docs.google.com/spreadsheets/d/1oqAkFwQVuDzfRouxglN-UT9RMDzl7TLfD5_g0ayPhZU/edit?gid=0#gid=0).
 
 
+Multilingual rendering.
+----------------------------------------------------------------------------------------------------
+`{repicentre}` is a **multilingual** website rendered using [`{babelquarto}`]() and [`{babeldown}`](). This makes our lives easier in terms of translation but at the price of a slightly more complicated rendering process. Instead of rendering and previewing with quarto directly, you will need to use `{babelquarto}` and [`{servr}`]() respectively:
+
+```
+# to render the site
+babelquarto::render_website()
+
+# to locally load the website
+servr::httw('docs')
+```
+
+
 Session review guidelines.
 ----------------------------------------------------------------------------------------------------
 Once a session has been developped, it is important that someone reviews it to:  
@@ -58,6 +71,8 @@ Once the session is completed and feedback resolved, we need to manually delete 
 comments: 
     hypothesis: false
 ```
+
+
 
 General contribution guidelines.
 ----------------------------------------------------------------------------------------------------
