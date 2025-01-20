@@ -61,9 +61,9 @@ Au cours de ces exercices, vous rencontrerez peut-être des erreurs, qui se prod
 
 Commençons par le commencement !
 
-:: : {.setup}
+::: {.setup}
 Ouvrez RStudio en utilisant le menu de démarrage ou le raccourci du bureau ; si RStudio est déjà ouvert, veuillez le fermer et l'ouvrir à nouveau.
-:: :
+:::
 
 Vous devriez voir une interface qui ressemble à ceci :
 
