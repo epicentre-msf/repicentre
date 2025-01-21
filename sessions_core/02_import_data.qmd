@@ -208,7 +208,7 @@ This practice makes it easy to tell which packages need to be installed to run a
 :::
 
 ::: {.write}
-Use [comments]{.hovertip bs-toggle='tooltip' bs-title='Remember that you can use the keyboard shortcuts CRT+SHIT+C and CTRL+SHIFT+R to insert comments and sections'} to create a "Packages" section to your script.
+Use [comments]{.hovertip bs-toggle='tooltip' bs-title='Remember that you can use the keyboard shortcuts CTRL+SHIFT+C and CTRL+SHIFT+R to insert comments and sections'} to create a "Packages" section to your script.
 :::
 
 ### Updating Packages
