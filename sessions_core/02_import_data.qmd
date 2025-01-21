@@ -229,7 +229,7 @@ To open a file in R you need to provide a **file path**. A file path is simply a
 
 Absolute paths are **specific to your computer** and go all the way up to the level of your [hard drive]{.hovertip bs-toggle='tooltip' bs-title="For example, 'C:' or 'D:' on a Windows computer."}. For example, an absolute path may look something like this: `D:/OneDrive - MSF/Documents/monitoring/cholera/fancy_project/data/raw/example_linelist.xlsx`. Clearly, this path will only work on one specific computer.
 
-The use of [hard coded]{.hovertip bs-toggle='tooltip' bs-title='Hardoced means that you wrote the full path in the script, the way it is given above, as opposed to building the paths by bits as we are going to show below.'} absolute paths is **strongly discouraged** as it makes your code inflexible and prone to break: the paths need to be updated every time your code is shared or the project folder is moved on your computer.
+The use of [hard coded]{.hovertip bs-toggle='tooltip' bs-title='Hardcoded means that you wrote the full path in the script, the way it is given above, as opposed to building the paths by bits as we are going to show below.'} absolute paths is **strongly discouraged** as it makes your code inflexible and prone to break: the paths need to be updated every time your code is shared or the project folder is moved on your computer.
 
 
 #### Relative Paths

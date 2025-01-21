@@ -188,7 +188,7 @@ library(ggplot)
 
 :::
 
-Le code ci-dessus génère une erreur car vous avez demandé une bibliothèque qui n'existe pas. Rappelez-vous que **R est sensible de nombreux éléments, y compris aux majuscules et minuscules** et beaucoup de vos erreurs viendront de petites fautes de frappe dans les noms de fonctions ou d'objets. Ici, par exemple, nous voulions charger le paquet `ggplot2` mais nous avons écrit `ggplot` à la place.
+Le code ci-dessus génère une erreur car vous avez demandé une bibliothèque qui n'existe pas. Rappelez-vous que **R est sensible à de nombreux éléments, y compris aux majuscules et minuscules** et beaucoup de vos erreurs viendront de petites fautes de frappe dans les noms de fonctions ou d'objets. Ici, par exemple, nous voulions charger le paquet `ggplot2` mais nous avons écrit `ggplot` à la place.
 
 ::: {.callout-tip}
 La plupart du temps, vous aurez besoin de charger un certain nombre de paquets pour votre script et il est recommandé d'avoir une section au début de votre code qui charge tout ce dont vous aurez besoin en un seul endroit :
@@ -206,36 +206,36 @@ Cette pratique permet de savoir facilement quels paquets doivent être installé
  Utilisation [commentaires]{.hovertip bs-toggle='tooltip' bs-title='Vous pouvez utiliser les raccourcis clavier CTRL+SHIFT+C and CTRL+SHIFT+R pour insérer des commentaires ou des sections'} pour créer une section "Paquets" dans votre script.
 :::
 
-### Mise à jour des paquets
+### Mettre à jour les paquets
 
-R dispose d'une communauté de développeurs très active et il est assez courant que les paquets soient mis à jour de temps en temps, car leurs propriétaires ajoutent de nouvelles fonctions et corrigent les bogues existants. Pour mettre à jour les paquets de votre bibliothèque, vous pouvez vous rendre dans la section \[`Packages` onglet\]{.hovertip bs-toggle='tooltip' bs-title='Remember that this tab shows a list of all the packages you have installed on your computer with their version numbers.'} du panneau inférieur droit et cliquer sur `Update`. N'oubliez pas que vous **devez être connecté à l'internet** pendant ce processus.
+R dispose d'une communauté de développeurs très active et il est assez courant que les paquets soient mis à jour régulièrement, car leurs propriétaires ajoutent de nouvelles fonctions et corrigent les bugs. Pour mettre à jour les paquets de votre bibliothèque, vous pouvez vous rendre dans \[l'onglet `Packages`\]{.hovertip bs-toggle='tooltip' bs-title='Pour rappel, cet onglet affiche la liste de tous les paquets que vous avez installés sur votre ordinateur, avec leur numéro de version.'} du panneau inférieur droit et cliquer sur `Update`. N'oubliez pas que vous **devez être connecté à internet** pendant ce processus.
 
 ::: {.callout-important}
-Parfois, les paquets sont mis à jour d'une manière qui peut supprimer ou modifier une fonction que vous avez utilisée dans certains de vos scripts, ce qui fait que votre code ne fonctionne plus. **Pas de panique** si cela se produit. La meilleure pratique consiste à adapter *votre code* bien que, dans le pire des cas, vous puissiez [installer de force une ancienne version d'un paquet]{.hovertip bs-toggle='tooltip' bs-title='This is discouraged as it will make your code hard for others to use.'}. Cette question n'entre toutefois pas dans le cadre de cette session.
+Parfois, lorsque les paquets sont mis à jour, il est possible que certaines fonctions que vous avez utilisées dans vos scripts soient supprimées ou modifiées, ce qui fait que votre code ne fonctionnera plus. **Pas de panique** si cela se produit. La meilleure pratique consiste à adapter *votre code* bien que, dans le pire des cas, vous puissiez [installer de force une ancienne version d'un paquet]{.hovertip bs-toggle='tooltip' bs-title='Il est déconseillé de faire cela car cela rendra votre code difficile à utiliser par d'autres.'}. Ceci ne sera pas abordé dans le cadre de cette session.
 :::
 
 ## Importation de données
 
 ### Comprendre les chemins d'accès aux fichiers {#sec-filepaths}
 
-Pour ouvrir un fichier dans R, vous devez fournir une adresse **chemin d'accès au fichier**. Un chemin d'accès est simplement un nom plus long pour un fichier, qui inclut non seulement son nom mais aussi son emplacement sur votre ordinateur. Il existe plusieurs façons de définir ces chemins, notamment *absolu* et *relatif* relatifs.
+Pour ouvrir un fichier dans R, vous devez fournir un **chemin d'accès au fichier**. Un chemin d'accès est simplement un nom plus long pour un fichier, qui inclut non seulement son nom mais aussi son emplacement sur votre ordinateur. Il existe plusieurs façons de définir ces chemins, notamment des chemins *absolus* et *relatifs*.
 
 #### Chemins d'accès absolus
 
-Les chemins absolus sont **spécifiques à votre ordinateur** et vont jusqu'au niveau de votre [disque dur]{.hovertip bs-toggle='tooltip' bs-title="For example, 'C:' or 'D:' on a Windows computer."}. Par exemple, un chemin d'accès absolu peut ressembler à ceci : `D:/OneDrive - MSF/Documents/monitoring/cholera/fancy_project/data/raw/example_linelist.xlsx`. Il est clair que ce chemin ne fonctionnera que sur un seul ordinateur.
+Les chemins d'accès absolus sont **spécifiques à votre ordinateur** et vont jusqu'au niveau de votre [disque dur]{.hovertip bs-toggle='tooltip' bs-title="Par exemple, 'C:' ou 'D:' sur un ordinateur Windows."}. Par exemple, un chemin d'accès absolu peut ressembler à ceci : `D:/OneDrive - MSF/Documents/monitoring/cholera/fancy_project/data/raw/example_linelist.xlsx`. Il est clair que ce chemin ne fonctionnera que sur un seul ordinateur.
 
-L'utilisation de [codé en dur]{.hovertip bs-toggle='tooltip' bs-title='Hardoced means that you wrote the full path in the script, the way it is given above, as opposed to building the paths by bits as we are going to show below.'} absolus codés en dur est **fortement déconseillé** car cela rend votre code inflexible et susceptible de se casser : les chemins doivent être mis à jour chaque fois que votre code est partagé ou que le dossier du projet est déplacé sur votre ordinateur.
+L'utilisation de chemins absolus [codés en dur]{.hovertip bs-toggle='tooltip' bs-title='Le codage en dur correspond au fait l'écrire le chemin d'accès en entier, comme dans l'exemple ci-dessus, au lieu de construire des chemins par morceaux comme nous allons le montrer ci-dessous'} est **fortement déconseillé** car cela rend votre code rigide et susceptible de buguer : en effet, les chemins devront être mis à jour chaque fois que votre code est partagé ou que le dossier du projet est déplacé sur votre ordinateur.
 
 #### Chemins relatifs
 
-Les chemins relatifs sont définis par rapport à votre [répertoire de travail](../sessions_core/02_import_data.qmd#sec-definitions). Par exemple, en gardant à l'esprit que notre pratique `.Rproj` a défini notre répertoire de travail à la racine du dossier de notre projet, nous pourrions créer un chemin relatif qui ressemblerait à `data/raw/example_linelist.xlsx`. Cela signifie que **tant que nous conservons le fichier *interne* interne** de notre dossier de projet et d'avoir une `.Rproj` notre code pourrait théoriquement fonctionner sur plusieurs ordinateurs.
+Les chemins relatifs sont définis par rapport à votre [répertoire de travail](../sessions_core/02_import_data.qmd#sec-definitions). Par exemple, le fichier `.Rproj` a défini notre répertoire de travail à la racine du dossier de notre projet, par conséquent, nous pourrions créer un chemin relatif qui ressemblerait à `data/raw/example_linelist.xlsx`. Cela signifie que **tant que nous conservons la structure *interne* ** de notre dossier de projet et avons un fichier `.Rproj` notre code devrait théoriquement fonctionner sur plusieurs ordinateurs.
 
 #### Chemins d'accès robustes avec la fonction `here()` fonction
 
-Les `{here}` dispose d'un paquet `here()` qui facilite grandement la définition des chemins. Elle présente deux avantages :
+Le paquet `{here}` dispose d'une fonction `here()` qui facilite grandement la définition des chemins. Elle présente deux avantages :
 
-- Lorsqu'elle est utilisée avec des projets RStudio, vous ne pouvez lui donner que la partie du chemin à l'intérieur du projet, (la fonction *chemin relatif* en d'autres termes), et la fonction l'utilise pour créer le fichier *chemin absolu* dynamiquement.
-- Il utilise pour cela le séparateur adapté à votre [système d'exploitation]{.hovertip bs-toggle='tooltip' bs-title='For example, Windows, MacOS, Debian...'} qu'il s'agisse de `/`, `\` ou `//`
+- Lorsqu'elle est utilisée avec des projets RStudio, vous pouvez ne lui donner que la partie du chemin à l'intérieur du projet, (le *chemin relatif*), et la fonction l'utilise pour créer le *chemin absolu*.
+- Il utilise pour cela le séparateur adapté à votre [système d'exploitation]{.hovertip bs-toggle='tooltip' bs-title='Par exemple, Windows, MacOS, Debian...'} qu'il s'agisse de `/`, `\` ou `//`.
 
 ```{r}
 #| eval: true
@@ -243,20 +243,20 @@ library(here)
 here("data", "raw", "example_linelist.xlsx")
 ```
 
-Vous voyez que nous n'avons défini que le chemin relatif et que la fonction a créé un chemin absolu. Cette façon de définir le chemin fonctionnera sur l'ordinateur de vos collègues, même s'ils utilisent un autre système d'exploitation, à condition que vous respectiez tous deux la structure interne du répertoire de travail.
+Ici, nous n'avons défini que le chemin relatif et la fonction a créé un chemin absolu. Cette façon de définir le chemin fonctionnera sur l'ordinateur de vos collègues, même s'ils utilisent un autre système d'exploitation, à condition que vous respectiez tous deux la structure interne du répertoire de travail.
 
-Nous **vous encourageons fortement à** à utiliser `here()` chaque fois que vous devez créer un chemin d'accès à un fichier.
+Nous **vous encourageons fortement** à utiliser `here()` chaque fois que vous devez créer un chemin d'accès à un fichier.
 
 ::: {.write}
-Exécutez le code ci-dessus dans la console. Quel est le chemin d'accès au fichier `here("data", "raw")` donne *vous*?
+Exécutez le code ci-dessus dans la console. Quel le chemin d'accès `here("data", "raw")` vous donne-t-il ?
 :::
 
 ::: {.write}
-Utilisation `here()` pour créer un chemin d'accès complet au fichier `msf_linelist_moissala_2023-09-24.xlsx`. Conservez ce chemin, nous l'utiliserons bientôt.
+Utiliser `here()` permet de créer un chemin d'accès complet au fichier `msf_linelist_moissala_2023-09-24.xlsx`. Conservez ce chemin, nous l'utiliserons bientôt.
 :::
 
 ::: {.callout-important}
-`here()` crée simplement un chemin de fichier, elle ne vérifie pas réellement si un fichier existe sur votre ordinateur : si le fichier est absent ou s'il y a une faute de frappe dans votre code, la commande produira une erreur lorsque le chemin sera utilisé. Si vous souhaitez utiliser une fonction pour vérifier l'existence d'un fichier, consultez la page de manuel `file.exists()` fonction.
+`here()` crée simplement un chemin de fichier, elle ne vérifie pas réellement si un fichier existe sur votre ordinateur : si le fichier est absent ou s'il y a une faute de frappe dans votre code, la commande affichera une erreur lorsque le chemin sera utilisé. Si vous souhaitez utiliser une fonction pour vérifier l'existence d'un fichier, essayez la fonction `file.exists()`.
 :::
 
 ::: {.callout-tip}
