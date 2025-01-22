@@ -265,32 +265,32 @@ Nous voudrons souvent sourcer plusieurs fichiers de données dans un seul projet
 
 ### Fonction d'importation {#sec-import}
 
-Dans R, les différents formats de fichiers sont souvent importés à l'aide de différentes fonctions, souvent spécialisées. Cela peut s'avérer fastidieux, car vous devez mémoriser et charger un grand nombre de fonctions simplement pour importer vos données. Pour éviter ce problème, nous vous recommandons d'utiliser la fonction `import()` du paquet <span tooltip-position="top" tooltip="`rio` signifie R Inputs and Outputs.">`{rio}`</span> . Cette fonction est capable d'ouvrir une grande variété de fichiers (y compris Excel, csv, Stata, et bien d'autres) en reconnaissant l'extension de fichier de vos données et en appelant une fonction spécialisée pertinente d'un autre paquetage. [en appelant une fonction spécialisée pertinente d'un autre paquet.]{.hovertip bs-toggle='tooltip' bs-title='This type of function, providing an unified interface to other specific functions is known as a wrapper.'} afin que vous n'ayez pas à le faire.
+Dans R, les différents formats de fichiers sont souvent importés à l'aide de différentes fonctions, souvent spécialisées. Cela peut s'avérer fastidieux, car vous devez mémoriser et charger un grand nombre de fonctions pour importer vos données. Pour éviter ce problème, nous vous recommandons d'utiliser la fonction `import()` du paquet <span tooltip-position="top" tooltip="`rio` signifie R Inputs and Outputs.">`{rio}`</span> . Cette fonction est capable d'ouvrir de nombreux types de fichiers (y compris Excel, csv, Stata, et bien d'autres) en reconnaissant l'extension de fichier de vos données et [en appelant une fonction spécialisée pertinente d'un autre paquet.]{.hovertip bs-toggle='tooltip' bs-title='Ce type de fonction, qui fournit une interface unifiée à d'autres fonctions spécifiques, est connu sous le nom de « wrapper ».'} afin que vous n'ayez pas à le faire.
 
-Parce que `import()` ne fait qu'appeler d'autres fonctions en arrière-plan, il est possible qu'il ait besoin d'arguments différents selon le type de fichier que vous voulez charger.
+Comme `import()` ne fait qu'appeler d'autres fonctions en arrière-plan, il est possible qu'il ait besoin dautres arguments selon le type de fichier que vous voulez charger.
 
 ::: {.callout-tip}
-Pour voir la liste complète de tous les types de fichiers que vous pouvez charger (et enregistrer !) avec `rio` consultez la liste de [formats pris en charge](https://gesistsa.github.io/rio/index.html#supported-file-formats) sur leur site web. Dans la suite de la leçon, nous nous concentrerons sur l'importation de données à partir d'Excel `.xlsx` dans le reste de la leçon.
+Pour voir la liste complète de tous les types de fichiers que vous pouvez charger (et enregistrer !) avec `rio` consultez la liste des [formats pris en charge](https://gesistsa.github.io/rio/index.html#supported-file-formats) sur leur site web. Dans la suite de la leçon, nous nous concentrerons sur l'importation de données à partir de fichiers Excel `.xlsx`.
 :::
 
 #### Importation à partir de la première feuille
 
-En général, l'utilisation de `import()` est assez simple, au minimum vous devez passer le chemin du fichier à la fonction `file` à l'argument
+En général, l'utilisation de `import()` est assez simple, au minimum vous devez indiquer le chemin du fichier dans l'argument `file`.
 
 ```{r}
 import(file = here("data", "raw", "example_linelist.xlsx"))
 ```
 
-Remarquez que nous avons imbriqué la commande `here()` **à l'intérieur de** l'intérieur `import()` à l'intérieur de la commande. L'imbrication de fonctions est absolument autorisée dans R et c'est quelque chose que vous ferez *tout le temps*. Lorsque des fonctions sont imbriquées, R les évalue dans l'ordre de la fonction la plus proche (dans le cas présent `here()`) à la plus externe (dans ce cas `import()`). De cette manière, la fonction *sortie* de `here()` est utilisée en tant que *d'entrée* de `import()`.
+Remarquez que nous avons imbriqué la commande `here()` **à l'intérieur de** la commande `import()`. L'imbrication de fonctions est absolument autorisée dans R et c'est quelque chose que vous ferez *tout le temps*. Lorsque des fonctions sont imbriquées, R les évalue dans l'ordre de la fonction la plus proche (dans le cas présent `here()`) à la plus externe (dans ce cas `import()`). De cette manière, *sortie* de `here()` est utilisée comme *valeur d'entrée* de `import()`.
 
 ::: {.write}
-Importer le fichier `msf_linelist_moissala_2023-09-24.xlsx` qui se trouve dans votre sous-dossier de données brutes dans R en utilisant `here()` et `import()`.
+Importez le fichier `msf_linelist_moissala_2023-09-24.xlsx` qui se trouve dans votre sous-dossier de données brutes dans R en utilisant `here()` et `import()`.
 :::
 
-Si votre importation a fonctionné correctement, R imprimera les données dans la console mais ne les enregistrera pas dans l'environnement car nous n'avons pas [les avons pas assignées à un objet](../sessions_core/01_introduction.qmd#sec-assignement-operator).
+Si votre importation a fonctionné correctement, R affichera les données dans la console mais ne les enregistrera pas dans l'environnement car nous ne [les avons pas assignées à un objet](../sessions_core/01_introduction.qmd#sec-assignement-operator).
 
 ::: {.callout-tip}
-Il se peut que vous ne souhaitiez pas que R imprime de très grands ensembles de données dans la console et les affecte directement à un objet.
+Il se peut que vous ne souhaitiez pas que R affiche de très grandes bases de données dans la console et les assigne directement à un objet.
 :::
 
 ::: {.write}
@@ -299,39 +299,38 @@ Réimportez vos données, mais cette fois-ci, sauvegardez-les dans un objet appe
 
 #### Importer des données à partir de n'importe quelle feuille
 
-Comme vous venez de le voir, R sélectionne la première feuille par défaut. Il est cependant possible de passer le numéro (ou le nom) d'une feuille de calcul spécifique dans vos données Excel à `import()` en utilisant l'argument `which`:
+Comme vous venez de le voir, R sélectionne la première feuille par défaut. Il est cependant possible de spécifier le numéro (ou le nom) de la feuille de calcul que vous souhaitez dans votre ficher Excel à partir de la fonction `import()` en utilisant l'argument `which`:
 
 ```{r}
 import(file = here("data", "raw", "example_linelist.xlsx"),
-       which = 2)  # imports the second sheet
+       which = 2)  # importe la deuxième feuille
 ```
 
 Notez que l'argument `which` est spécifique aux types de fichiers comportant plusieurs feuilles, tels que les fichiers Excel ou .Rdata. Si vous essayez de l'utiliser sur un fichier `.csv` l'argument sera ignoré.
 
 ## Un premier aperçu de vos données
 
-Nous avons maintenant importé un ensemble de données dans R et l'avons assigné à un dataframe (`df_linelist`). L'étape suivante consiste naturellement à inspecter cet ensemble de données, à vérifier que l'importation s'est bien déroulée, à le connaître un peu mieux et à évaluer s'il doit être nettoyé avant d'être analysé.
+Nous avons maintenant importé un ensemble de données dans R et l'avons assigné à un dataframe (`df_linelist`). Dans l'étape suivante, nous pouvons inspecter cet ensemble de données, vérifier que l'importation s'est bien déroulée, le connaître un peu mieux et évaluer s'il doit être nettoyé avant d'être analysé.
 
-Nous pouvons commencer par jeter un coup d'œil rapide aux premières lignes du cadre de données à l'aide de la fonction `head()`. Cette fonction prend un cadre de données comme premier argument et accepte optionnellement un second argument `n` indiquant le nombre de lignes que nous souhaitons voir.
+Nous pouvons commencer par jeter un coup d'œil rapide aux premières lignes du dataframe à l'aide de la fonction `head()`. Cette fonction prend un dataframe comme premier argument et accepte un second argument `n` en option, indiquant le nombre de lignes que nous souhaitons voir.
 
 ```{r}
-head(df_linelist, n = 10) # Inspect 10 first lines
+head(df_linelist, n = 10) # Inspecte les 10 premières lignes
 ```
 
 ::: {.write}
-Utilisation `head()` pour examiner les 12 premières lignes de `df_linelist`.
+Utilisez `head()` pour examiner les 12 premières lignes de `df_linelist`.
 :::
 
-Nous pouvons également vérifier nos données en regardant le fichier *l'environnement* dans le panneau supérieur droit. Ici, nous pouvons voir notre dataframe dans l'environnement, examiner sa [structure]{.hovertip bs-toggle='tooltip' bs-title='This is the same as using the command 
-'} ou l'ouvrir dans le visualiseur de données de RStudio.`str()`
+Nous pouvons également vérifier nos données en regardant l'onglet *Environnement* dans le panneau supérieur droit. Ici, nous pouvons voir notre dataframe dans l'environnement, examiner sa [structure]{.hovertip bs-toggle='tooltip' bs-title='Cela reivent á utiliser la commande `str()`'} ou l'ouvrir dans le visualiseur de données ("data viewer") de RStudio.
 
 ::: {.look}
-Cliquez sur le bouton rond bleu à côté de `df_linelist` dans votre environnement pour voir sa structure. Cliquez ensuite sur le nom de l'ensemble de données pour l'ouvrir dans le visualiseur.
+Cliquez sur le bouton rond bleu à côté de `df_linelist` dans votre environnement pour voir sa structure. Cliquez ensuite sur le nom de la base de données pour le visualiser.
 :::
 
-La visionneuse de données affiche les cadres de données sous forme de tableaux et constitue un moyen pratique d'examiner rapidement vos données. Vous pouvez même trier et filtrer vos données dans la "Vue", mais sachez que ces actions n'apporteront aucune modification à l'objet réel. `df_linelist`. La vue peut également être ouverte en passant le cadre de données à la fonction `View()`.
+La visualiseur de données affiche les dataframe sous forme de tableaux et constitue un moyen pratique d'examiner rapidement vos données. Vous pouvez même trier et filtrer vos données dans "View", mais sachez que ces actions n'apporteront aucune modification à l'objet réel. `df_linelist`. La "View" peut également être ouverte en utilisant directement la fonction `View()`.
 
-## C'est fait !
+## Fini !
 
 Bravo et n'oubliez pas de sauvegarder votre code.
 
@@ -348,18 +347,18 @@ downloadthis::download_link(
 )
 ```
 
-## Aller plus loin
+## Pour aller plus loin
 
 ### Exercices supplémentaires
 
-1. Utilisation `dim()` pour examiner les dimensions de votre jeu de données.
-2. Utiliser `str()` pour vérifier le type de données de chaque colonne. Y a-t-il quelque chose d'étrange ? N'oubliez pas que vous pouvez également utiliser des fonctions telles que `is.character()` et `is.numeric()` si vous souhaitez tester le type d'une colonne particulière.
+1. Utilisez `dim()` pour examiner les dimensions de votre base de données.
+2. Utilisez `str()` pour vérifier le type de données de chaque colonne. Voyez-vous quelque chose d'étrange ? N'oubliez pas que vous pouvez également utiliser des fonctions telles que `is.character()` et `is.numeric()` si vous souhaitez tester le type d'une colonne particulière.
 3. En utilisant une fonction apprise lors de la première session, pouvez-vous extraire les noms des colonnes de l'ensemble de données ? Ces résultats correspondent-ils à ce que vous voyez lorsque vous ouvrez les données dans Excel ?
-4. Essayez de passer votre cadre de données à la fonction `summary()`. Que vous dit cette fonction ?
+4. Essayez de mettre votre dataframe dans la fonction `summary()`. Que vous dit cette fonction ?
 
 ### Ressources complémentaires
 
-- Les `rio` [site web](https://gesistsa.github.io/rio/index.html#supported-file-formats)
+- Le [site web](https://gesistsa.github.io/rio/index.html#supported-file-formats) `rio`
 - [Plus d'exemples](https://epirhandbook.com/en/new_pages/importing.html) sur l'importation de données de différents types de fichiers
 
 
