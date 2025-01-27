@@ -13,5 +13,20 @@
       "/sessions_core/01_introduction.html",
       "/sessions_core/template.html"
     ]
+  },
+  {
+    "listing": "/pathway.fr.html",
+    "items": [
+      "/sessions_core/01_introduction.html",
+      "/sessions_core/02_import_data.html"
+    ]
+  },
+  {
+    "listing": "/explore.fr.html",
+    "items": [
+      "/sessions_core/02_import_data.html",
+      "/sessions_core/01_introduction.html",
+      "/sessions_core/template.html"
+    ]
   }
 ]

@@ -1,6 +1,6 @@
 ---
 title: Pathway
-description: 'An intro to R starting from the very beginning'
+description: '_An intro to R starting from the very beginning_'
 listing:
   - id: articles-links
     sort: false
@@ -9,7 +9,45 @@ listing:
       - '02_import_data.qmd'
     
 ---
+<div style="text-align: justify;">
 
-These sessions can be followed in order to get a baseline level in R. The series assumes **no prior experience in R** and is suitable for beginners.
+Welcome to the main sessions !
 
-Looking for more? Want more flexibility? Consider browsing the [full session catalog](explore.html).
+They can be followed in order to get a baseline level in R. The series assumes **no prior experience in R** and is suitable for beginners. 
+
+## Context  
+<div style="float: right; margin-left: 1rem; width: 300px;">
+  <img src="img/MSF-chad.png" alt="" style="width: 90%; border-radius: 10px;">
+  <p style="font-size: 0.5em; color: gray;width: 90%;">MSF presence in Chad in 2023.</p>
+</div>
+
+[Médecins Sans Frontières](https://www.msf.org/){.a-red} has been present in Chad since 1981 and still operates in several parts of the country where our teams provide medical care and assistance to displaced people and local communities, who often struggle with a lack of food, in the east and the south of the country.
+
+We work to prevent or help mitigate the seasonal peaks of malnutrition and malaria among children, including across the Sahel region in Adre, on the border with Sudan, which is an area marked by violence and displacement. After the 2023 resurgence of violence in neighbouring Darfur (Sudan), MSF has launched a large-scale emergency response to assist the thousands of refugees arriving in eastern Chad. We also improve healthcare for women and children, and work on preventing and responding to measles outbreaks. 
+
+You can find more information about [MSF activities in Chad here](https://www.msf.org/chad){.a-red}.
+
+## Your mission
+
+<div style="float: left; margin-left: 1rem; width: 360px;">
+  <img src="img/MSF-chad-measles.png" alt="" style="width: 90%; border-radius: 10px;">
+  <p style="font-size: 0.5em; color: gray;width: 90%;">MSF teams vaccinate people against measles at a vaccination point set up in the shade of trees in the village of Mina, Am Timan district. Chad, April 2019.</p>
+</div>
+
+Between August 2022 and November 2023, a (simulated) measles outbreak has been ravaging the Southern region of Mandoul, with the town of Moïssala at its epicenter. Thousands of cases and numerous deaths have been reported, but there is no comprehensive overview of the outbreak or its current status. Robust analyses are urgently needed to assess the situation, identify needs, and plan our response operations effectively!
+
+The teams on the ground have gathered data on suspected measles cases from various health facilities in the region and compiled this information into a linelist. Now, they are seeking an epidemiologist to analyze this data. _This is where you come into the picture_.
+
+Your mission will focus on the following core objectives:
+
+1. _Clean and standardize_ the linelist to ensure the data is ready for further analysis.
+2. Generate _descriptive tables and summaries_ to explore the Person dynamics of this outbreak.
+3. Create simple yet _comprehensive plots_ to visualize the Time dynamics of the outbreak, along with key epidemiological characteristics.
+
+
+You can download the linelist as an `.xlsx` file right here: [Download the data](downloads/Moissalla-measles-linelist-EN.xslx){download="Moissalla-measles-linelist-EN.xslx"}
+
+_Time is of the essence, so let’s get started!_
+
+---
+</div>

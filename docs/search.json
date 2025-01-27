@@ -11,7 +11,7 @@
     "href": "pathway.html",
     "title": "Pathway",
     "section": "",
-    "text": "These sessions can be followed in order to get a baseline level in R. The series assumes no prior experience in R and is suitable for beginners.\nLooking for more? Want more flexibility? Consider browsing the full session catalog.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIntroduction to R\n\n\n\n\n\nYour first steps in R. Learn your way around Rstudio, and meet some common R objects.\n\n\n\n\n\nJan 22, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nImport data\n\n\n\n\n\nCreate an Rstudio project, install useful packages and start importing data to work in R\n\n\n\n\n\nJan 22, 2025\n\n\n\n\n\n\nNo matching items"
+    "text": "Welcome to the main sessions !\nThey can be followed in order to get a baseline level in R. The series assumes no prior experience in R and is suitable for beginners.\n\n\n\n\n\nMSF presence in Chad in 2023.\n\n\nMédecins Sans Frontières has been present in Chad since 1981 and still operates in several parts of the country where our teams provide medical care and assistance to displaced people and local communities, who often struggle with a lack of food, in the east and the south of the country.\nWe work to prevent or help mitigate the seasonal peaks of malnutrition and malaria among children, including across the Sahel region in Adre, on the border with Sudan, which is an area marked by violence and displacement. After the 2023 resurgence of violence in neighbouring Darfur (Sudan), MSF has launched a large-scale emergency response to assist the thousands of refugees arriving in eastern Chad. We also improve healthcare for women and children, and work on preventing and responding to measles outbreaks.\nYou can find more information about MSF activities in Chad here.\n\n\n\n\n\n\nMSF teams vaccinate people against measles at a vaccination point set up in the shade of trees in the village of Mina, Am Timan district. Chad, April 2019.\n\n\nBetween August 2022 and November 2023, a (simulated) measles outbreak has been ravaging the Southern region of Mandoul, with the town of Moïssala at its epicenter. Thousands of cases and numerous deaths have been reported, but there is no comprehensive overview of the outbreak or its current status. Robust analyses are urgently needed to assess the situation, identify needs, and plan our response operations effectively!\nThe teams on the ground have gathered data on suspected measles cases from various health facilities in the region and compiled this information into a linelist. Now, they are seeking an epidemiologist to analyze this data. This is where you come into the picture.\nYour mission will focus on the following core objectives:\n\nClean and standardize the linelist to ensure the data is ready for further analysis.\nGenerate descriptive tables and summaries to explore the Person dynamics of this outbreak.\nCreate simple yet comprehensive plots to visualize the Time dynamics of the outbreak, along with key epidemiological characteristics.\n\nYou can download the linelist as an .xlsx file right here: Download the data\nTime is of the essence, so let’s get started!"
   },
   {
     "objectID": "about.html#hey-there",
@@ -229,5 +229,75 @@
     "title": "{repicentre}",
     "section": "",
     "text": "Welcome to {repicentre}\nAn open source platform to learn R for humanitarian contexts. What would you like to do?\n\n\n\n\n\nLearn Follow a linear path starting with the basics  Start\n\n\n\n\n\nExplore Browse our full catelogue of self paced tutorisals  Start\n\n\n\n\n\nExpand Go even further with a list of external resouces  Start"
+  },
+  {
+    "objectID": "pathway.fr.html",
+    "href": "pathway.fr.html",
+    "title": "Chemin",
+    "section": "",
+    "text": "Ces sessions peuvent être suivies afin d’obtenir un niveau de base dans R. La série suppose aucune expérience préalable dans R et convient bien aux débutants.\nVous en voulez plus ? Vous voulez plus de flexibilité ? Consultez le catalogue complet des sessions.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIntroduction to R\n\n\n\n\n\nYour first steps in R. Learn your way around Rstudio, and meet some common R objects.\n\n\n\n\n\nJan 14, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nImport data\n\n\n\n\n\nCreate an Rstudio project, install useful packages and start importing data to work in R\n\n\n\n\n\nJan 22, 2025\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "about.fr.html#salut",
+    "href": "about.fr.html#salut",
+    "title": "About",
+    "section": "Salut",
+    "text": "Salut\nBienvenue sur {repicentre}, un site open source développé par Epicentre pour vous aider à apprendre R pour les contextes humanitaires. Le site est composé de tutoriels autodidactes et propose deux options principales d’apprentissage :\n\nLinéaire. Conçu pour les personnes n’ayant aucune expérience préalable de R, le cours linéaire vous guidera à travers les concepts de base de R en utilisant une étude de cas sur la rougeole au Tchad. Le cours couvre les concepts suivants :\n\nStructures de données et l’interface RStudio\nImportation de données\nManipulation de données\nNettoyage des données\nAgrégation de données\nVisualisation des données\n\nExploration. Si vous avez un peu plus d’expérience ou si vous recherchez un sujet particulier, n’hésitez pas à explorer la gamme complète des tutoriels. Les tutoriels sont classés par catégories et sont conçus pour être autonomes."
+  },
+  {
+    "objectID": "about.fr.html#recommandations-et-demandes",
+    "href": "about.fr.html#recommandations-et-demandes",
+    "title": "About",
+    "section": "Recommandations et demandes",
+    "text": "Recommandations et demandes\nY a-t-il un sujet sur lequel vous aimeriez voir un tutoriel qui n’est pas encore disponible ? C’est très bien ! N’hésitez pas à nous le faire savoir en ouvrant un “issue” sur le repo GitHub associé à ce site web. Si vous ne savez pas comment ouvrir un issue, veuillez contacter Cat Eisenhauer."
+  },
+  {
+    "objectID": "about.fr.html#contribuer",
+    "href": "about.fr.html#contribuer",
+    "title": "About",
+    "section": "Contribuer",
+    "text": "Contribuer\nVous souhaitez contribuer à la rédaction ou à la maintenance de tutoriels ? Incroyable ! Veuillez contacter Cat."
+  },
+  {
+    "objectID": "explore.fr.html",
+    "href": "explore.fr.html",
+    "title": "Explorer",
+    "section": "",
+    "text": "Choisissez votre propre aventure en parcourant toutes les sessions disponibles.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nImport data\n\n\n\nCore\n\n\nRStudio\n\n\nData Import\n\n\n\nCreate an Rstudio project, install useful packages and start importing data to work in R\n\n\n\n\n\n\nJan 22, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nIntroduction to R\n\n\n\nCore\n\n\nR Basics\n\n\nData Types\n\n\n\nYour first steps in R. Learn your way around Rstudio, and meet some common R objects.\n\n\n\n\n\n\nJan 14, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSession Title\n\n\n\nCore\n\n\n\nShort description (appears on cards in pathway / explore pages)\n\n\n\n\n\n\nJan 14, 2025\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "index.fr.html",
+    "href": "index.fr.html",
+    "title": "{repicentre}",
+    "section": "",
+    "text": "Welcome to {repicentre}\nUne plateforme open source pour apprendre R dans les contextes humanitaires. Qu’aimeriez-vous faire ?\n\n\n\n\n\nApprendre Parcours linéaire en commençant par les bases  Start\n\n\n\n\n\nExplorer Catalogue complet de cours d’autoformation  Start\n\n\n\n\n\nÉlargir Ressources externes pour aller plus loin  Start"
+  },
+  {
+    "objectID": "resources.fr.html",
+    "href": "resources.fr.html",
+    "title": "Ressources",
+    "section": "",
+    "text": "Cette page contiendra (éventuellement) des ressources externes pour poursuivre votre parcours d’apprentissage du R."
+  },
+  {
+    "objectID": "pathway.html#msf-presence-in-chad-in-2023-medecins-sans-frontières-has-been-present-in-chad-since-1981-and-still-operates-in-several-part-of-the-country-where-our-teams-provide-medical-care-and-assistance-to-displaced-people-and-local-communities-who-often-struggle-with-a-lack-of-food-in-the-east-and-the-south-of-the-country.",
+    "href": "pathway.html#msf-presence-in-chad-in-2023-medecins-sans-frontières-has-been-present-in-chad-since-1981-and-still-operates-in-several-part-of-the-country-where-our-teams-provide-medical-care-and-assistance-to-displaced-people-and-local-communities-who-often-struggle-with-a-lack-of-food-in-the-east-and-the-south-of-the-country.",
+    "title": "Pathway",
+    "section": "|  | Medecins Sans Frontières has been present in Chad since 1981 and still operates in several part of the country where our teams provide medical care and assistance to displaced people and local communities, who often struggle with a lack of food, in the east and the south of the country.",
+    "text": "|  | Medecins Sans Frontières has been present in Chad since 1981 and still operates in several part of the country where our teams provide medical care and assistance to displaced people and local communities, who often struggle with a lack of food, in the east and the south of the country.\nWe work to prevent or help mitigate the seasonal peaks of malnutrition and malaria among children, including across the Sahel region in Adre, on the border with Sudan, which is an area marked by violence and displacement. After the 2023 resurgence of violence in neighbouring Darfur (Sudan), MSF has launched a large scale emergency response to assist the thousands of refugees rriving in eastern Chad. We also improve healthcare for women and children, and work on preventing and responding to measles outbreaks. You can find more informations of MSF activities in Chad here\n\nYour mission\nBetween August 2022 and November 2023, a measles outbreak has been ravaging the Southern region of Mandoul, with the town of Moïssala at its epicenter. Thousands of cases and numerous deaths have been reported, but there is no comprehensive overview of the outbreak or its current status. Robust analyses are urgently needed to assess the situation, identify needs, and plan our response operations effectively!\nThe teams on the ground have gathered data on suspected measles cases from various health facilities in the region and compiled this information into a linelist. Now, they are seeking an epidemiologist to analyze this data. This is where you come into the picture.\nYour mission will focus on the following core objectives:\nClean and standardize the linelist to ensure the data is ready for further analysis. Generate descriptive tables and summaries to explore the Person dynamics of this outbreak. Create simple yet comprehensive plots to visualize the Time dynamics of the outbreak, along with key epidemiological characteristics.\nYou’ll be using R programming software to conduct these analyses. Time is of the essence, so let’s get started!\n\n\n\nMSF teams vaccinate people against measles at a vaccination point set up in the shade of trees in the village of Mina, Am Timan district. Chad, April 2019.\n\n\nLooking for more analysis do to to improve this measles outbreak response? Want more flexibility? Consider browsing the full session catalog."
+  },
+  {
+    "objectID": "pathway.html#context",
+    "href": "pathway.html#context",
+    "title": "Pathway",
+    "section": "",
+    "text": "MSF presence in Chad in 2023.\n\n\nMédecins Sans Frontières has been present in Chad since 1981 and still operates in several parts of the country where our teams provide medical care and assistance to displaced people and local communities, who often struggle with a lack of food, in the east and the south of the country.\nWe work to prevent or help mitigate the seasonal peaks of malnutrition and malaria among children, including across the Sahel region in Adre, on the border with Sudan, which is an area marked by violence and displacement. After the 2023 resurgence of violence in neighbouring Darfur (Sudan), MSF has launched a large-scale emergency response to assist the thousands of refugees arriving in eastern Chad. We also improve healthcare for women and children, and work on preventing and responding to measles outbreaks.\nYou can find more information about MSF activities in Chad here."
+  },
+  {
+    "objectID": "pathway.html#your-mission",
+    "href": "pathway.html#your-mission",
+    "title": "Pathway",
+    "section": "",
+    "text": "MSF teams vaccinate people against measles at a vaccination point set up in the shade of trees in the village of Mina, Am Timan district. Chad, April 2019.\n\n\nBetween August 2022 and November 2023, a (simulated) measles outbreak has been ravaging the Southern region of Mandoul, with the town of Moïssala at its epicenter. Thousands of cases and numerous deaths have been reported, but there is no comprehensive overview of the outbreak or its current status. Robust analyses are urgently needed to assess the situation, identify needs, and plan our response operations effectively!\nThe teams on the ground have gathered data on suspected measles cases from various health facilities in the region and compiled this information into a linelist. Now, they are seeking an epidemiologist to analyze this data. This is where you come into the picture.\nYour mission will focus on the following core objectives:\n\nClean and standardize the linelist to ensure the data is ready for further analysis.\nGenerate descriptive tables and summaries to explore the Person dynamics of this outbreak.\nCreate simple yet comprehensive plots to visualize the Time dynamics of the outbreak, along with key epidemiological characteristics.\n\nYou can download the linelist as an .xlsx file right here: Download the data\nTime is of the essence, so let’s get started!"
   }
 ]

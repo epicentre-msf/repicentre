@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="An intro to R starting from the very beginning">
+<meta name="description" content="Tout partout en même temps">
 
-<title>Pathway – {repicentre}</title>
+<title>Explorer – {repicentre}</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -74,20 +74,20 @@ ul.task-list li input[type="checkbox"] {
 <script>
 
   window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-articles-links .list');
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
     if (!listingTargetEl) {
       // No listing discovered, do not attach.
       return; 
     }
 
     const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-title','listing-author','listing-date','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description"],
+      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description","listing-categories"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-articles-links'] = new List('listing-articles-links', options);
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
 
     if (window['quarto-listing-loaded']) {
       window['quarto-listing-loaded']();
@@ -153,7 +153,7 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./pathway.html" aria-current="page"> 
+    <a class="nav-link" href="./pathway.html"> 
 <span class="menu-text">Pathway</span></a>
   </li>  
   <li class="nav-item">
@@ -180,20 +180,20 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    </div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-unnumbered"><div class="category" data-category="Q29yZQ==">Core</div><div class="category" data-category="RGF0YSBJbXBvcnQ=">Data Import</div><div class="category" data-category="RGF0YSBUeXBlcw==">Data Types</div><div class="category" data-category="UiBCYXNpY3M=">R Basics</div><div class="category" data-category="UlN0dWRpbw==">RStudio</div></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Pathway</h1>
+<h1 class="title">Explorer</h1>
 </div>
 
 <div>
   <div class="description">
-    <em>An intro to R starting from the very beginning</em>
+    Tout partout en même temps
   </div>
 </div>
 
@@ -210,97 +210,112 @@ window.Quarto = {
 </header>
 
 
-<div style="text-align: justify;">
-<p>Welcome to the main sessions !</p>
-<p>They can be followed in order to get a baseline level in R. The series assumes <strong>no prior experience in R</strong> and is suitable for beginners.</p>
-<section id="context" class="level2">
-<h2 class="anchored" data-anchor-id="context">Context</h2>
-<div style="float: right; margin-left: 1rem; width: 300px;">
-<img src="img/MSF-chad.png" alt="" style="width: 90%; border-radius: 10px;">
-<p style="font-size: 0.5em; color: gray;width: 90%;">
-MSF presence in Chad in 2023.
+<p>Choisissez votre propre aventure en parcourant toutes les sessions disponibles.</p>
+
+
+
+
+<div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
+<div class="list grid quarto-listing-cols-3">
+<div class="g-col-1" data-index="0" data-categories="Q29yZSxSU3R1ZGlvLERhdGEgSW1wb3J0" data-listing-date-sort="1737578597000" data-listing-file-modified-sort="1737578597156" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="16" data-listing-word-count-sort="3080">
+<a href="./sessions_core/02_import_data.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./img/core/02_import/01_logo.png" class="thumbnail-image card-img" style="height: 150px;">
 </p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Import data
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Q29yZQ=='); return false;">
+Core
 </div>
-<p><a href="https://www.msf.org/" class="a-red">Médecins Sans Frontières</a> has been present in Chad since 1981 and still operates in several parts of the country where our teams provide medical care and assistance to displaced people and local communities, who often struggle with a lack of food, in the east and the south of the country.</p>
-<p>We work to prevent or help mitigate the seasonal peaks of malnutrition and malaria among children, including across the Sahel region in Adre, on the border with Sudan, which is an area marked by violence and displacement. After the 2023 resurgence of violence in neighbouring Darfur (Sudan), MSF has launched a large-scale emergency response to assist the thousands of refugees arriving in eastern Chad. We also improve healthcare for women and children, and work on preventing and responding to measles outbreaks.</p>
-<p>You can find more information about <a href="https://www.msf.org/chad" class="a-red">MSF activities in Chad here</a>.</p>
-</section>
-<section id="your-mission" class="level2">
-<h2 class="anchored" data-anchor-id="your-mission">Your mission</h2>
-<div style="float: left; margin-left: 1rem; width: 360px;">
-<img src="img/MSF-chad-measles.png" alt="" style="width: 90%; border-radius: 10px;">
-<p style="font-size: 0.5em; color: gray;width: 90%;">
-MSF teams vaccinate people against measles at a vaccination point set up in the shade of trees in the village of Mina, Am Timan district. Chad, April 2019.
-</p>
+<div class="listing-category" onclick="window.quartoListingCategory('UlN0dWRpbw=='); return false;">
+RStudio
 </div>
-<p>Between August 2022 and November 2023, a (simulated) measles outbreak has been ravaging the Southern region of Mandoul, with the town of Moïssala at its epicenter. Thousands of cases and numerous deaths have been reported, but there is no comprehensive overview of the outbreak or its current status. Robust analyses are urgently needed to assess the situation, identify needs, and plan our response operations effectively!</p>
-<p>The teams on the ground have gathered data on suspected measles cases from various health facilities in the region and compiled this information into a linelist. Now, they are seeking an epidemiologist to analyze this data. <em>This is where you come into the picture</em>.</p>
-<p>Your mission will focus on the following core objectives:</p>
-<ol type="1">
-<li><em>Clean and standardize</em> the linelist to ensure the data is ready for further analysis.</li>
-<li>Generate <em>descriptive tables and summaries</em> to explore the Person dynamics of this outbreak.</li>
-<li>Create simple yet <em>comprehensive plots</em> to visualize the Time dynamics of the outbreak, along with key epidemiological characteristics.</li>
-</ol>
-<p>You can download the linelist as an <code>.xlsx</code> file right here: <a href="downloads/Moissalla-measles-linelist-EN.xslx" download="Moissalla-measles-linelist-EN.xslx">Download the data</a></p>
-<p><em>Time is of the essence, so let’s get started!</em></p>
-<hr>
-</section>
+<div class="listing-category" onclick="window.quartoListingCategory('RGF0YSBJbXBvcnQ='); return false;">
+Data Import
 </div>
+</div>
+<div class="card-text listing-description">
+Create an Rstudio project, install useful packages and start importing data to work in R
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
 
-
-
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-articles-links">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="Q29yZSxSIEJhc2ljcyxEYXRhIFR5cGVz" data-listing-date-sort="1736872793000" data-listing-file-modified-sort="1736872793742" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="24" data-listing-word-count-sort="4761">
-<div class="thumbnail">
-<p><a href="./sessions_core/01_introduction.html" class="no-external"></a></p><a href="./sessions_core/01_introduction.html" class="no-external">
-<p class="card-img-top"><img src="img/core/01_introduction/01_rstudio_interface_en.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./sessions_core/01_introduction.html" class="no-external"></a></p>
 </div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./sessions_core/01_introduction.html" class="no-external">Introduction to R</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./sessions_core/01_introduction.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./sessions_core/01_introduction.html" class="no-external">Your first steps in R. Learn your way around Rstudio, and meet some common R objects.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./sessions_core/01_introduction.html" class="no-external">
-<div class="listing-date">
-Jan 14, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="Q29yZSxSU3R1ZGlvLERhdGEgSW1wb3J0" data-listing-date-sort="1737578597000" data-listing-file-modified-sort="1737578597156" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="16" data-listing-word-count-sort="3080">
-<div class="thumbnail">
-<p><a href="./sessions_core/02_import_data.html" class="no-external"></a></p><a href="./sessions_core/02_import_data.html" class="no-external">
-<p><img loading="lazy" src="./img/core/02_import/01_logo.png" class="thumbnail-image"></p>
-</a><p><a href="./sessions_core/02_import_data.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./sessions_core/02_import_data.html" class="no-external">Import data</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./sessions_core/02_import_data.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./sessions_core/02_import_data.html" class="no-external">Create an Rstudio project, install useful packages and start importing data to work in R</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./sessions_core/02_import_data.html" class="no-external">
 <div class="listing-date">
 Jan 22, 2025
 </div>
+</div>
+</div>
+</div>
 </a>
 </div>
+<div class="g-col-1" data-index="1" data-categories="Q29yZSxSIEJhc2ljcyxEYXRhIFR5cGVz" data-listing-date-sort="1736872793000" data-listing-file-modified-sort="1736872793742" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="24" data-listing-word-count-sort="4761">
+<a href="./sessions_core/01_introduction.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top"><img src="img/core/01_introduction/01_rstudio_interface_en.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Introduction to R
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Q29yZQ=='); return false;">
+Core
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('UiBCYXNpY3M='); return false;">
+R Basics
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('RGF0YSBUeXBlcw=='); return false;">
+Data Types
+</div>
+</div>
+<div class="card-text listing-description">
+Your first steps in R. Learn your way around Rstudio, and meet some common R objects.
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+
+</div>
+<div class="listing-date">
+Jan 14, 2025
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="2" data-categories="Q29yZQ==" data-listing-date-sort="1736872793000" data-listing-file-modified-sort="1736872793744" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="576">
+<a href="./sessions_core/template.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./img/under_construction.svg" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Session Title
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Q29yZQ=='); return false;">
+Core
+</div>
+</div>
+<div class="card-text listing-description">
+Short description (appears on cards in pathway / explore pages)
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+
+</div>
+<div class="listing-date">
+Jan 14, 2025
+</div>
+</div>
+</div>
+</div>
+</a>
 </div>
 </div>
 <div class="listing-no-matching d-none">

@@ -252,3 +252,29 @@ img#about {
   background-size: 2rem 2rem;
 }
 
+/* nav-link */
+.a-red{
+  cursor: pointer;
+  font-weight: 250;
+  color: black;
+  position: relative;
+}
+
+.a-red::after{
+  text-decoration: none;
+  content: "";
+  background: #f3afaf ;
+  width: 100% + 5px;
+  position: absolute;
+  bottom: 1px;
+  height: 5px;
+  left: -2px; 
+  right: 0;
+  z-index:-1;
+	transition: all .3s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+	text-decoration: none;
+}
+
+.a-red:hover::after{
+	height: calc(100%)
+}
