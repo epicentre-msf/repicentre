@@ -92,7 +92,7 @@ To the upper right there will be a panel with several tabs. Many of these are be
 - *History.* A record of all the commands you have executed during the current session.
 
 ::: {.callout-note}
-You can think of an R session like you would think of starting up a computer. Whenever a session starts, everything is blank and ready for computation in the same way that there aren't any programs open when you first turn on your computer. In general, we encourge you to stop and start your R sessions regularly, you may just find that _turning it off an on again_ will fix some of your bugs.
+You can think of an R session like you would think of starting up a computer. Whenever a session starts, everything is blank and ready for computation in the same way that there aren't any programs open when you first turn on your computer. In general, we encourage you to stop and start your R sessions regularly, you may just find that _turning it off an on again_ will fix some of your bugs.
 :::
 
 #### Bottom Right Corner
