@@ -346,7 +346,7 @@ cases <- 28
 Regardez à nouveau l'environnement. Est-il toujours vide ?
 :::
 
-Si vous souhaitez accéder à la valeur de votre nouvel objet, `cases` il vous suffit de **exécuter son nom**.
+Si vous souhaitez accéder à la valeur de votre nouvel objet, `cases` il vous suffit d'**exécuter son nom**.
 
 ```{r}
 #| eval: true
@@ -354,7 +354,7 @@ cases
 ```
 
 ::: {.callout-note}
-La raison pour laquelle nous devons mettre les chaînes de caractères entre guillemets est en fait pour permettre à R de différencier les chaînes de caractères (`"cases"` et les noms d'objets `cases`).
+Nous écrivons les chaînes de caractères entre guillements pour permettre à R de faire la différence entre un objet `cases` un le mot `"cases"`.
 :::
 
 Une fois créés, les objets peuvent être utilisés dans d'autres commandes :
@@ -365,20 +365,20 @@ cases + 5
 ```
 
 ::: {.write}
-Dans votre script, créez un objet appelé `region` qui contient la valeur `"Mandoul"`. Le voyez-vous dans votre environnement ?
+Dans votre script, créez un objet appelé `region` qui contient la valeur `"Mandoul"`. Est-il bien apparu dans votre environnement ?
 :::
 
 ::: {.callout-tip}
-N'oubliez pas que nous devons toujours entourer `<-` par des espaces afin d'améliorer la lisibilité et d'éviter les erreurs.
+N'oubliez pas que nous devons toujours entourer l'opérateur `<-` par des espaces afin d'améliorer la lisibilité et d'éviter les erreurs.
 
 ```{r}
-x<-3     # BAD
-x <- 3   # GOOD
+x<-3     # PAS BIEN
+x <- 3   # BIEN
 ```
 
 :::
 
-### Mise à jour d'un objet
+### Mettre à jour d'un objet
 
 Nous souhaitons souvent mettre à jour la valeur stockée dans un objet. Pour ce faire, il suffit d'assigner une nouvelle valeur avec la même syntaxe que celle utilisée lors de la création de l'objet :
 
@@ -387,7 +387,7 @@ cases <- 32
 ```
 
 ::: {.write}
-Mettre à jour la valeur de `region` en `"Moyen Chari"`.
+Mettez à jour la valeur de `region` avec `"Moyen Chari"`.
 :::
 
 ### Noms d'objets
@@ -396,22 +396,22 @@ Pour nommer vos objets, il existe quelques règles (relativement) strictes :
 
 - Ne pas commencer par un chiffre
 - Ne pas utiliser d'espaces (utiliser un `_` à la place)
-- N'utilisez pas de valeurs protégées (comme `TRUE` et `FALSE`) ou des noms de fonctions (comme `mean`)
-- N'utilisez pas de majuscules
+- Ne pas utiliser de valeurs protégées  (comme `TRUE` et `FALSE`) ou des noms de fonctions (comme `mean`)
+- Ne pas utiliser de majuscules
 
-Au-delà de ces règles strictes, il existe également des bonnes pratiques plus subjectives et des styles personnels. En règle générale, les noms doivent être courts et descriptifs :
+Au-delà de ces règles, il existe également des bonnes pratiques plus subjectives et des styles personnels. En règle générale, les noms doivent être courts et descriptifs :
 
 ```{r}
-a <- 19                             # BAD (not informative)
-age_du_patient_a_l_admission <- 19  # BAD (too long)
-age <- 19                           # GOOD
+a <- 19                             # Pas informatif (not informative)
+age_du_patient_a_l_admission <- 19  # Trop long
+age <- 19                           # Concis et précis
 ```
 
 Donner à vos objets des noms clairs et informatifs contribue à rendre votre code lisible, ce qui permet aux autres de le comprendre facilement sans avoir à consulter le dictionnaire de données toutes les deux secondes.
 
 ## Structures de données
 
-Jusqu'à présent, nous nous sommes contentés d'étudier des objets simples qui stockent des valeurs individuelles. Nous allons maintenant nous intéresser à des structures plus complexes qui peuvent stocker des ensembles entiers de données.
+Jusqu'à maintenant, nous avons crée des objets simples qui stockaient une seule valeur. A présent nous allons nous intéresser à des structures plus complexes qui peuvent stocker des jeux de données.
 
 ### Vecteurs
 
@@ -419,17 +419,16 @@ Il est possible de rassembler plusieurs valeurs (telles que des valeurs numériq
 
 Techniquement, il existe plusieurs types de vecteurs, par exemple :
 
-- *Vecteurs simples* (ou *vecteurs atomiques*) ne peuvent contenir qu'un seul type de valeurs. Par exemple, un tableau numérique `2, 4, 6` ou un tableau de chaînes de caractères `"Mandoul", "Moyen Chari"`.
-- *Vecteurs récursifs* (généralement appelés *listes*) sont beaucoup plus complexes et peuvent contenir plusieurs dimensions et types de données. Nous ne les aborderons pas dans cette leçon.
+- les *vecteurs simples* (ou *vecteurs atomiques*) ne peuvent contenir qu'un seul type de valeurs. Par exemple, un vecteur d'entier contenant `2, 4, 6` ou un vecteur de texte contenant `"Mandoul", "Moyen Chari"`.
+- les *vecteurs récursifs* (généralement appelés *listes*) sont plus complexes et peuvent contenir plusieurs dimensions et types de données. Nous ne les aborderons pas dans cette leçon.
 
-Ce cours n'entrera pas dans les détails des concepts plus abstraits qui sous-tendent ces structures et se concentrera uniquement sur celles que vous rencontrerez le plus souvent dans votre travail quotidien.
+Ce cours n'entrera pas dans les détails des concepts abstraits qui sous-tendent ces structures et se concentrera sur celles que vous rencontrerez le plus souvent dans votre travail.
 
 #### Vecteurs simples
 
-Les vecteurs simples peuvent contenir une ou plusieurs valeurs *d'un seul type de données* Ils ont donc deux propriétés essentielles : **la longueur** et **type**. Dans le cadre de ce cours, nous utiliserons indifféremment les termes "vecteur simple" et "vecteur" (comme c'est généralement le cas dans la communauté R).
+Les vecteurs simples peuvent contenir une ou plusieurs valeurs *d'un seul type de données*. Ils ont donc deux propriétés essentielles : **la longueur** et **type**. Dans le cadre de ce cours, nous utiliserons indifféremment les termes "vecteur simple" et "vecteur" (comme c'est généralement le cas dans la communauté R).
 
-Techniquement, vous avez déjà créé votre premier vecteur simple lorsque vous avez construit `cases` et `region`. Il s'agissait simplement de vecteurs avec un **longueur d'un**. Pour créer un vecteur avec plus d'une valeur, nous utiliserons la fonction `c()` ( [mnémonique]{.hovertip bs-toggle='tooltip' bs-title='
- is the first letter of "concatenate"'}) :` c`
+Techniquement, vous avez déjà créé votre premier vecteur simple lorsque vous avez construit `cases` et `region`. Il s'agissait de vecteurs avec une **longueur de taille une**. Pour créer un vecteur avec plus d'une valeur, nous utiliserons la fonction `c()` ([moyen mnémotechnique]{.hovertip bs-toggle='tooltip' bs-title='` c` est la première lettre de "concatenater"'}) :
 
 ```{r}
 #| eval: true
