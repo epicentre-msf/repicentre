@@ -407,7 +407,7 @@ age_du_patient_a_l_admission <- 19  # Trop long
 age <- 19                           # Concis et précis
 ```
 
-Donner à vos objets des noms clairs et informatifs contribue à rendre votre code lisible, ce qui permet aux autres de le comprendre facilement sans avoir à consulter le dictionnaire de données toutes les deux secondes.
+Donner à vos objets des noms clairs et informatifs contribue à rendre votre code lisible, ce qui permet aux autres de le comprendre facilement sans avoir à consulter le dictionnaire de données incessament.
 
 ## Structures de données
 
@@ -426,9 +426,9 @@ Ce cours n'entrera pas dans les détails des concepts abstraits qui sous-tendent
 
 #### Vecteurs simples
 
-Les vecteurs simples peuvent contenir une ou plusieurs valeurs *d'un seul type de données*. Ils ont donc deux propriétés essentielles : **la longueur** et **type**. Dans le cadre de ce cours, nous utiliserons indifféremment les termes "vecteur simple" et "vecteur" (comme c'est généralement le cas dans la communauté R).
+Les vecteurs simples peuvent contenir une ou plusieurs valeurs *d'un seul type de données*. Ils ont donc deux propriétés essentielles : une **longueur** et un **type**. Dans le cadre de ce cours, nous utiliserons indifféremment les termes "vecteur simple" et "vecteur" (comme c'est généralement le cas dans la communauté R).
 
-Techniquement, vous avez déjà créé votre premier vecteur simple lorsque vous avez construit `cases` et `region`. Il s'agissait de vecteurs avec une **longueur de taille une**. Pour créer un vecteur avec plus d'une valeur, nous utiliserons la fonction `c()` ([moyen mnémotechnique]{.hovertip bs-toggle='tooltip' bs-title='` c` est la première lettre de "concatenater"'}) :
+Techniquement, vous avez déjà créé vos premiers vecteurs simples lorsque vous avez construit les objets `cases` et `region`. Il s'agissait de vecteurs avec une longueur de taille **une**. Pour créer un vecteur avec plus d'une valeur, nous utiliserons la fonction `c()` ([moyen mnémotechnique]{.hovertip bs-toggle='tooltip' bs-title='` c` est la première lettre de "concatenater"'}) :
 
 ```{r}
 #| eval: true
@@ -436,7 +436,7 @@ cases <- c(2, 5, 8, 0, 4)
 ```
 
 ::: {.write}
-Mise à jour `cases` avec les valeurs ci-dessus et mettre à jour `region` pour créer un vecteur de chaînes de caractères contenant les valeurs suivantes : Mandoul, Moyen-Chari, Logone Oriental, Tibesti et Logone Occidental : Mandoul, Moyen-Chari, Logone Oriental, Tibesti et Logone Occidental.
+Mettez à jour `cases` avec les valeurs ci-dessus et mettez à jour `region` pour créer un vecteur de chaînes de caractères contenant les valeurs suivantes : Mandoul, Moyen-Chari, Logone Oriental, Tibesti et Logone Occidental.
 :::
 
 ```{r}
@@ -451,49 +451,49 @@ Nous pouvons maintenant utiliser des fonctions sur les objets que nous avons cr�
 
 ```{r}
 #| eval: true
-mean(cases)      # calculate the mean value of the cases vector
-toupper(region)  # convert all the values in region to upper case
+mean(cases)      # Calcule la moyenne des valeurs stockées dans le vecteur
+toupper(region)  # Convertit les valeurs du vecteur en majuscules
 ```
 
 ::: {.write}
-Utilisons quelques fonctions ! Essayez d'écrire un code qui fait ce qui suit :
+C'est parti avec les fonctions ! Ecrivez des commandes dans votre script pour effectuer les actions suivantes : 
 
-- Calculer la somme de `cases` en utilisant la fonction `sum()`
-- Convertir le texte en `region` en minuscules à l'aide de la fonction `tolower()`
-  :::
+- calculer la somme des valeurs de `cases` avec la fonction `sum()`
+- convertir le texte de `region` en minuscules à l'aide de la fonction `tolower()`
+:::
 
 ### Accès aux valeurs d'un vecteur
 
-Il est possible d'accéder à la valeur d'un vecteur en utilisant des crochets contenant l'indice (position) de la valeur souhaitée, c'est-à-dire : `[3]` ou `[189]`.
+Il est possible d'accéder à une valeur d'un vecteur en donnant son indice (*i.e.* sa position dans le vecteur) entre crochets. Par exemple, : `[3]` ou `[189]`.
 
 ```{r}
 #| eval: true
-cases[2]   # 2nd value of cases
-cases[10]  # 10th value of cases
+cases[2]   # Deuxième valeur de cases
+cases[10]  # Dixième valeur de cases
 ```
 
-Oups il n'existe pas ! Nous reviendrons sur ce que cette `NA` signifie dans le [Valeurs manquantes](../sessions_core/01_introduction.qmd#sec-missing-values).
+Oups il n'y a pas de dixième valeur dans `cases` ! Nous reviendrons sur ce que ce `NA` signifie dans la section [valeurs manquantes](../sessions_core/01_introduction.qmd#sec-missing-values).
 
-Nous pouvons également accéder à un *gamme* de valeurs, comme nous pourrions le faire dans Excel. Pour créer une plage, nous utilisons la fonction `:` pour séparer les indices minimum et maximum souhaités :
+Nous pouvons également accéder à un *plage* de valeurs, comme nous pourrions le faire dans Excel. Pour créer une plage dans R, nous utilisons l'opérateur `:` séparer la position minimum et maximum de la plage :
 
 ```{r}
 #| eval: true
-cases[2:4]  # 2nd to 4th values of cases
+cases[2:4]  # de la deuxième à la quatrième valeur
 ```
 
 ::: {.write}
-Obtenir la 3ème valeur de `region`.
+Affichez la 3ème valeur du vecteur `region`.
 
-Ecrire du code pour accéder aux valeurs "Mandoul" et "Moyen-Chari" dans le vecteur `region`.
+Ecrivez la commande pour accéder aux valeurs "Mandoul" **et** "Moyen-Chari" du vecteur `region`.
 :::
 
-### Trames de données
+### Dataframes
 
-*Trames de données* sont des str uctures [structures]{.hovertip bs-toggle='tooltip' bs-title='Technically they are a special type of list, that is composed of multiple vectors of the same length.'} / tableaux en 2D avec des lignes et des colonnes. Il s'agit d'une structure très similaire à celle d'un "tableau" dans Excel. En tant qu'épidémiologistes, ce type de structure de données est peut-être le plus utile et vous l'utiliserez probablement au quotidien, pour stocker les données de la liste de diffusion par exemple.
+Les *dataframes* sont des [structures tabulaires]{.hovertip bs-toggle='tooltip' bs-title='Techniquement, ce sont des types de listes spéciales, composées de plusieurs vecteurs de même taille'} / tableaux en 2D avec des lignes et des colonnes. Il s'agit d'une structure très similaire à celle d'un "tableau" dans Excel. En tant qu'épidémiologistes, ce type d'objet est l'un des plus utiles et vous l'utiliserez quotidiennement, pour stocker les données de listes linéaires par exemple.
 
-#### Création d'un cadre de données
+#### Création d'un dataframe
 
-Nous pouvons créer un cadre de données à l'aide de la fonction `data.frame()`:
+Nous créeons un dataframe avec la fonction `data.frame()` :
 
 ```{r}
 #| eval: true
@@ -501,10 +501,10 @@ data.frame(col1 = c(1, 4, 2, 9),
            col2 = c("a bit of text", "some more text", "hello", "epidemiologists!"))
 ```
 
-Voir comment `col1` a été créé à partir d'un tableau numérique, et `col2` à partir d'un tableau de chaînes de caractères. Ici, nous avons choisi les noms des colonnes (`col1` et `col2`), ce qui est normal, mais vous pouvez exécuter le code sans pour voir comment R gère les noms par défaut.
+Ici, on a crée `col1` à partir d'un vecteur numérique, et `col2` à partir d'un vecteur de chaînes de caractères. Nous avons choisi les noms des colonnes (`col1` et `col2`), ce qui est normal, mais vous pouvez exécuter le code sans nommer les colonnes pour voir comment R crée lui même des noms.
 
 ::: {.write}
-Dans votre script, créez un cadre de données appelé `data_cases` qui contient `cases` dans une colonne et `region` dans l'autre.
+Dans votre script, créez un dataframe nomé `data_cases` qui contient `cases` dans une colonne et `region` dans l'autre.
 :::
 
 ```{r}
@@ -517,30 +517,29 @@ data_cases <- data.frame(
                "Kasai", "Haut Katanga"))
 ```
 
-#### Exploration d'un cadre de données {#sec-dataframe-functions}
+#### Exploration d'un dataframe {#sec-dataframe-functions}
 
-`data_cases` devrait maintenant apparaître dans votre environnement. Vous pouvez cliquer sur le cercle bleu avec un triangle blanc pour obtenir des informations supplémentaires, ou cliquer sur son nom pour ouvrir l'objet dans le même volet que les scripts pour le visualiser.
+L'objet `data_cases` devrait maintenant apparaître dans votre environnement. Vous pouvez cliquer sur le cercle bleu avec un triangle blanc pour dérouler des informations supplémentaires, ou cliquer sur son nom pour le visualiser dans un onglet dans le même volet que votre script.
 
-![Le cadre de données data\_case apparaît désormais dans le volet Environnement.](../img/core/01_introduction/03_environment.png){fig-align="center"}
+![dataframe `data_cases` apparaît désormais dans l'onglet Environnement.](../img/core/01_introduction/03_environment.png){fig-align="center"}
 
-Il existe plusieurs fonctions pratiques permettant d'explorer une base de données :
+Il existe plusieurs fonctions pratiques pour explorer un dataframe :
 
 ::: {.write}
 Exécutez les commandes suivantes et essayez de déterminer le type d'informations qu'elles renvoient.
 
 ```{r}
-str(data_cases)     # STRucture of the object
-dim(data_cases)     # DIMension of the object
-nrow(data_cases)    # Number of ROWs
-ncol(data_cases)    # Number of COLumns
-names(data_cases)   # column NAMES
+str(data_cases)     # STRucture de l'object
+dim(data_cases)     # DIMension de l'object
+nrow(data_cases)    # Nombre de lignes (row = ligne)
+ncol(data_cases)    # Nombre de COLonnes
+names(data_cases)   # noms des colonnes
 ```
 
 :::
+Pratiquons un peu plus ! R est livré avec quelques dataframes intégrés, auxquels il est possible d'accéder directement, dont un appelé `iris`. C'est pratique pour cette session car nous n'avons pas encore appris à importer des données dans R (ne vous inquiétez pas, nous travaillerons sur des données de liste linéaire dès la prochaine session !).
 
-Pratiquons un peu plus ! R est livré avec plusieurs ensembles de données intégrés auxquels il est possible d'accéder directement, dont un appelé `iris`. C'est pratique aujourd'hui car nous n'avons pas encore appris à importer des données dans R (ne vous inquiétez pas, nous travaillerons sur les données de listes de lignes à partir de la deuxième session).
-
-Nous pouvons voir les premières lignes de cette base de données à l'aide de la fonction `head()`:
+Nous pouvons afficher les premières lignes de ce dataframe grâce à la fonction `head()` (head = la tête en anglais):
 
 ```{r}
 #| eval: true
@@ -548,62 +547,62 @@ head(iris)
 ```
 
 ::: {.write}
-Combien de lignes et de colonnes y a-t-il dans `iris`? Quels sont les noms de ses colonnes ?
+Combien de lignes et de colonnes y a-t-il dans `iris`? Quels sont les noms des colonnes de ce dataframe ?
 :::
 
-#### Accéder aux données d'un cadre de données
+#### Accéder aux données d'un dataframe
 
-En R, il existe plusieurs méthodes pour accéder aux lignes et/ou aux colonnes d'un cadre de données. Dans cette session d'introduction, nous nous concentrerons sur la méthode `[ ]` syntaxe.
+En R, il existe plusieurs méthodes pour accéder aux lignes et/ou colonnes d'un dataframe. Dans cette session d'introduction, nous nous concentrerons sur la syntaxe `[row, column]`.
 
-Nous utilisons les crochets pour accéder à des valeurs individuelles ou à des plages de valeurs dans notre cadre de données. Pour ce faire, nous devons donner à R un numéro de ligne (ou un intervalle de lignes) et un numéro/nom de colonne (ou un intervalle de colonnes), en utilisant la syntaxe suivante `[row, column]`.
+Nous pouvons utiliser un numéro (ou un intervalle) de ligne pour extraire des lignes, et des numéros (ou un intervalle) de colonnes pour extraire les colonnes. Ont peut également utiliser le **nom** des colonnes pour y accéder.
 
 ```{r}
 #| eval: true
-data_cases[1, 2]          # the value of row one, column 2
-data_cases[1, "region"]   # first value in the region column
+data_cases[1, 2]          # Afficher la valeur de la ligne 1, deuxième colonne
+data_cases[1, "region"]   # Afficher la valeur de la lignbe 1, pour la colonne région
 ```
 
 Si nous voulons accéder à toutes les lignes (ou colonnes), nous pouvons simplement laisser un espace à la place du numéro/nom :
 
 ```{r}
 #| eval: true
-data_cases[1, ]           # values of all columns in row one
-data_cases[2:4, ]         # values of all columns for rows 2 through 4
-data_cases[ , "region"]   # values of all rows for the region column
+data_cases[1, ]           # Extraire la première ligne (garde toutes les colonnes)
+data_cases[2:4, ]         # Valeurs des lignes 2 à 4, pour toutes les colonnes
+data_cases[ , "region"]   # Garde toutes les lignes mais que la colonne région
 ```
 
-Nous pouvons même sélectionner plusieurs indices non consécutifs en utilisant un tableau numérique :
+Nous pouvons même sélectionner plusieurs indices non consécutifs en utilisant un vecteur :
 
 ```{r}
 #| eval: true
-data_cases[c(1, 3), ]  # lines 1 and 3 (all columns)
+data_cases[c(1, 3), ]  # Ligne 1 et 3 (toutes les colonnes)
 ```
 
-Soyez prudent, car l'option *type* de sortie renvoyé lors de l'extraction de données d'un cadre de données peut parfois dépendre du style d'indexation utilisé :
+Soyez attentifs, le *type* de sortie renvoyé lors de l'extraction des parties d'un dataframe dépend de l'indexation utilisée :
 
 ```{r}
 #| eval: true
-str(data_cases[1 , ])   # returns a data frame
-str(data_cases[ , 1])   # returns a simple vector
+str(data_cases[1 , ])   # Renvoit un dataframe
+str(data_cases[ , 1])   # Renvoit un vecteur
 ```
 
-Autre syntaxe pour extraire les différentes colonnes d'une base de données :
+Une syntaxe simplifiée existe pour extraire des colonnes d'un dataframe :
 
 ```{r}
 #| eval: true
-data_cases[2]           # returns the second column (as a data frame)
-data_cases["region"]    # returns the region column (as a data frame)
+data_cases[2]           # Renvoit la deuxième colonne (format dataframe)
+data_cases["region"]    # Renvoit la colonne région (format dataframe)
 ```
 
-Notez que ces commandes renvoient des cadres de données à une seule colonne.
+Notez que ces commandes renvoient des dataframes avec une seule colonne.
 
 ::: {.write}
-Écrire du code pour :
+Ecrivez le code pour :
 
-- extraire la troisième valeur de la `region` de votre cadre de données
-- extraire les deuxième et troisième valeurs de la colonne `cases` colonne
-- calculer la somme des `cases` colonne de votre cadre de données
-  :::
+- extraire la troisième valeur de la colonne `region` de votre dataframe
+- extraire les deuxième et troisième valeurs de la colonne `cases`
+- calculer la somme des valeurs de la colonne `cases`
+:::
 
 ## Valeurs manquantes {#sec-missing-values}
 
