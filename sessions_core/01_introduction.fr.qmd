@@ -606,24 +606,26 @@ Ecrivez le code pour :
 
 ## Valeurs manquantes {#sec-missing-values}
 
-En tant qu'épidémiologistes, nous sommes constamment confrontés aux données manquantes. Dans R, celles-ci sont codées à l'aide d'une valeur spéciale : `NA` (signifiant **N**ot **A**vailable). La valeur `NA` est spéciale en R, car elle n'a pas de *type* fixe, elle prend le *type* des valeurs qui l'entourent. Par exemple, un `NA` dans une colonne numérique prend le type numérique. Nous aurons des occasions de manipuler les `NA` dans la suite du cours.
+En tant qu'épidémiologistes, nous sommes constamment confrontés aux données manquantes. Dans R, celles-ci sont codées à l'aide d'une valeur spéciale : `NA` (signifiant **N**ot **A**vailable). La valeur `NA` n'a pas de *type* fixe, elle prend celui des valeurs qui l'entourent. Par exemple, un `NA` dans une colonne numérique prend le type numérique. Nous aurons des occasions de manipuler les `NA` dans la suite du cours.
 
 ## Les fonctions {#sec-functions}
 
 Les fonctions sont des objets qui contiennent *des commandes* (au lieu de valeurs) qui sont exécutées chaque fois que la fonction est lancée. Vous êtes sans doute familiers avec les fonctions dans Excel, telles que la fonction `SOMME()` ou la fonction `MOYENNE()`. Bonne nouvelle, les fonctions sont similaires dans R !
 
-La plupart des fonctions nécessitent une certaine forme d'entrée, comme un ensemble de données ou un paramètre. Ces entrées sont appelées *arguments* et sont normalement nommés. Par exemple, lorsque nous avons exécuté `sum(cases)` nous avons fourni le vecteur `cases` comme premier (et seul) argument de la fonction `sum()`.
+La majorité des fonctions que vous allez utiliser ont besoin d'informations complémentaires : a minima des données, mais d'autres paramètres. On appelle ces informations des arguments. Les arguments sont normalement nommés.
 
-Souvent, une fonction combinera les deux éléments suivants *nécessaire* et *facultatif* facultatifs. Le premier argument d'une fonction est presque toujours obligatoire et est généralement un ensemble de données. En tant qu'argument obligatoire et plutôt évident, la plupart des gens omettent son nom lorsqu'ils appellent une fonction, c'est-à-dire qu'ils écrivent `mean(cases)` au lieu de `mean(x = cases)`. Les arguments facultatifs, en revanche, sont généralement ajoutés en utilisant leur nom, c'est-à-dire : : `mean(x = cases, na.rm = TRUE)`.
+Par exemple, lorsque nous avons exécuté la commande `sum(cases)`, nous avons fourni le vecteur `cases` comme premier (et seul) argument de la fonction `sum()`.
 
-Les arguments facultatifs ont généralement des valeurs par défaut et nous ne les incluons que lorsque nous voulons modifier leurs valeurs par défaut (et donc modifier le comportement par défaut de la fonction). Par exemple, la fonction `na.rm` de la fonction `mean()` détermine si R ignorera les valeurs manquantes lors du calcul d'une moyenne. L'état par défaut de la fonction `na.rm` est `FALSE` Ainsi, par défaut, la moyenne calculée sur des données avec des valeurs manquantes renverra toujours `NA` comme résultat :
+Parmis les arguments d'une fonction, certains peuvent être *obligatoires*, d'autres *facultatifs*. Le premier argument est presque toujours obligatoire et est souvent un dataframe ou un vecteur de données. Comme c'est un argument évident, on omet souvent son nom (il vous a sans doute semblé naturel de taper `mean(cases)` au lieu de `mean(x = cases)`). 
+
+Les arguments facultatifs, en revanche, sont généralement utilisés avec neur nom. Par exemple :  `mean(cases, na.rm = TRUE)`. Les arguments facultatifs sont souvent fournis avec des valeurs par défaut raisonnables, ce qui fait que l’utilisateur ne les fournit que lorsqu’il a besoin de changer ces valeurs par défaut. Par exemple, l'argument `na.rm` de la fonction `mean()` controle comment les valeurs manquantes sont gérées lors du calcul de la moyenne (“na” en référence aux valeurs manquantes `NA`, et “rm” comme raccourci de “ReMove”, que l’on peut traduire dans ce contexte par enlever ou ignorer). Par défault, la valeur de `na.rm` est `FALSE` Ainsi, par défaut, la moyenne de données avec des valeurs manquantes renverra toujours `NA` :
 
 ```{r}
 #| eval: true
 mean(c(1, 3, NA))
 ```
 
-Ceci est vrai pour de nombreuses opérations arithmétiques dans R. Si nous voulons que R calcule la moyenne sur n'importe quelles données *est* disponibles (et ignorer les valeurs manquantes), nous devons explicitement paramétrer `na.rm = TRUE`:
+Ceci est vrai pour de nombreuses opérations arithmétiques dans R. Si l'on veut que que R calcule la moyenne sur toutes les données disponibles et ignore les valeurs manquantes, nous devons explicitement fournir l'argument `na.rm = TRUE`:
 
 ```{r}
 #| eval: true
@@ -631,14 +633,16 @@ mean(c(1, 3, NA), na.rm = TRUE)
 ```
 
 ::: {.callout-tip}
-Notez que les arguments sont séparés par des virgules. Ces virgules doivent toujours être suivies d'un espace et chaque fois qu'un argument nommé est utilisé, l'attribut `=` doit être entouré d'espaces :
+- Les arguments sont séparés par des virgules. 
+- Ces virgules doivent toujours être suivies d'un espace 
+- Chaque fois qu'un argument nommé est utilisé, l'attribut `=` doit être entouré d'espaces :
 
 ```{r}
-mean(cases,na.rm=TRUE)     # BAD
-mean(cases, na.rm = TRUE)  # GOOD
+mean(cases,na.rm=TRUE)     # MAUVAIS
+mean(cases, na.rm = TRUE)  # BON
 ```
 
-Au fur et à mesure que vous travaillez avec des fonctions de plus en plus complexes, il se peut que vous commenciez à avoir des *beaucoup* d'arguments. Pour des raisons de lisibilité, il est généralement recommandé de séparer chaque argument sur sa propre ligne :
+Si vous travaillez avec des fonctions complexes et fournissez de nombreux arguments, séparez chaque argument sur sa propre ligne pour améliorer la lisibilité : 
 
 ```{r}
 mean(cases, 
@@ -647,28 +651,29 @@ mean(cases,
 
 :::
 
-Que se passe-t-il si nous plaçons les arguments dans le mauvais ordre ? Si vous avez indiqué le nom des arguments dans votre commande, la fonction fonctionnera toujours exactement comme prévu. Ceci étant dit, cela rendrait votre code plus difficile à lire et nous vous encourageons à vous en tenir à un ordre standard en plaçant les arguments obligatoires comme les données en premier.
+Que se passe-t-il si l'on fournit plusieurs arguments dans le désordre ? Si vous avez nommé les arguments la fonction s’exécutera correctement, mais le code sera contre-intuitif et peu lisible. Nous vous conseillons de respecter l'ordre standard, en plaçant les arguments obligatoires tels que les données en premier.
 
 ```{r}
-# technically functional but hard to read:
+# Fonctionnel mais dur à lire
 mean(na.rm = TRUE,  
      x = cases) 
 
-# better:
+# mieux :
 mean(cases,         
      na.rm = TRUE)
 ```
 
-Bien entendu, si vous ne respectez pas l'ordre des arguments et des *n'a pas* n'a pas inclus leurs noms, votre code ne fonctionnera pas comme prévu, voire produira une erreur :
+En revanche, si vous ne nommez pas les arguments et les passez dans le désordre, alors la fonction ne fonctionnera pas comme prévu, voire renverra une erreur :
 
 ```{r}
 #| error=TRUE
-mean(TRUE, cases)   # not what you expect
+mean(TRUE, cases)  # Pas ce que vous attendez
 ```
+
 
 ## Terminé !
 
-C'est tout pour cette session, félicitations pour vos premiers pas avec R et RStudio !
+C'est tout pour cette session, bravo pour vos débuts avec R et RStudio !
 
 ```{r}
 #| echo: false
