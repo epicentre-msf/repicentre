@@ -10,6 +10,6 @@ listing:
     
 ---
 
-Ces sessions peuvent être suivies afin d'obtenir un niveau de base dans R. La série suppose **aucune expérience préalable dans R** et convient aux débutants.
+Ces sessions peuvent être suivies afin d'obtenir un niveau de base dans R. La série suppose **aucune expérience préalable dans R** et convient bien aux débutants.
 
 Vous en voulez plus ? Vous voulez plus de flexibilité ? Consultez le [catalogue complet des sessions](explore.fr.html).
