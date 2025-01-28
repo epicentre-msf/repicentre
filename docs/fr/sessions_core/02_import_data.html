@@ -5,9 +5,9 @@
 <link rel="alternate" hreflang="fr" href="/fr/sessions_core/02_import_data.fr.html" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.40">
+<meta name="generator" content="quarto-1.6.37">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta name="description" content="Créez un projet Rstudio, installez les paquets utiles et commencez à importer des données pour travailler dans R.">
+<meta name="description" content="Créez un projet Rstudio, installez les paquets utiles et importez des données pour travailler dans R.">
 <title>Importer des données – {repicentre}</title>
 <style>
 code{white-space: pre-wrap;}
@@ -58,11 +58,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script><script src="../site_libs/quarto-nav/headroom.min.js"></script><script src="../site_libs/clipboard/clipboard.min.js"></script><script src="../site_libs/quarto-search/autocomplete.umd.js"></script><script src="../site_libs/quarto-search/fuse.min.js"></script><script src="../site_libs/quarto-search/quarto-search.js"></script><meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js"></script><script src="../site_libs/quarto-html/popper.min.js"></script><script src="../site_libs/quarto-html/tippy.umd.min.js"></script><script src="../site_libs/quarto-html/anchor.min.js"></script><link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-86daaaaad7353f9cc0c554efc1dd6d94.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-f8dc6eab18fde03278982b0b35885446.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-697306ee647f3aecb60be57249203282.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-3fe3df12cb322cd60d4f50ab5ce79ec8.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script><link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-6ab5e0891aed6e954066009cd4eecacc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-b92d258d3900ea06ce3f9b55f30b4460.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-d747503b21a9267137dc98650c9a257a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-5131c98158f83ec01234852a3be8e382.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -142,7 +142,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li>
 <a href="#mise-en-place-du-projet" id="toc-mise-en-place-du-projet" class="nav-link" data-scroll-target="#mise-en-place-du-projet">Mise en place du projet</a>
   <ul class="collapse">
-<li><a href="#structure-des-dossiers" id="toc-structure-des-dossiers" class="nav-link" data-scroll-target="#structure-des-dossiers">Structure des dossiers</a></li>
+<li><a href="#folder-structure" id="toc-folder-structure" class="nav-link" data-scroll-target="#folder-structure">Structure des dossiers</a></li>
   <li><a href="#sec-definitions" id="toc-sec-definitions" class="nav-link" data-scroll-target="#sec-definitions">Définitions</a></li>
   <li><a href="#projets-rstudio" id="toc-projets-rstudio" class="nav-link" data-scroll-target="#projets-rstudio">Projets RStudio</a></li>
   <li><a href="#les-options-de-rstudio" id="toc-les-options-de-rstudio" class="nav-link" data-scroll-target="#les-options-de-rstudio">Les options de RStudio</a></li>
@@ -187,7 +187,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div>
   <div class="description">
-    Créez un projet Rstudio, installez les paquets utiles et commencez à importer des données pour travailler dans R.
+    Créez un projet Rstudio, installez les paquets utiles et importez des données pour travailler dans R.
   </div>
 </div>
 
@@ -198,7 +198,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Date de publication</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">22 janvier 2025</p>
+      <p class="date">28 janvier 2025</p>
     </div>
   </div>
   
@@ -229,7 +229,7 @@ Important
 </div>
 </div>
 </section><section id="mise-en-place-du-projet" class="level2"><h2 class="anchored" data-anchor-id="mise-en-place-du-projet">Mise en place du projet</h2>
-<section id="structure-des-dossiers" class="level3"><h3 class="anchored" data-anchor-id="structure-des-dossiers">Structure des dossiers</h3>
+<section id="folder-structure" class="level3"><h3 class="anchored" data-anchor-id="folder-structure">Structure des dossiers</h3>
 <div class="setup">
 <p>Si ce n’est pas déjà fait, téléchargez le dossier du cours, sauvegardez-le à un endroit [<strong>non connecté à OneDrive</strong>]{.hovertip bs-toggle=‘tooltip’ bs-title=“OneDrive ne fonctionne pas bien avec R car il va constamment synchroniser certains dossiers de projets, ce qui peut entraîner des erreurs ou des problèmes de mémoire”}. Décompressez l’archive et ouvrez le dossier non compressé.</p>
 </div>
@@ -443,7 +443,7 @@ Important
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"raw"</span>, <span class="st">"example_linelist.xlsx"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "C:/Users/c-fortas/AppData/Local/Temp/RtmpCEzFW9/file376c4f64499c/data/raw/example_linelist.xlsx"</code></pre>
+<pre><code>[1] "C:/Users/M-MOUSSET/AppData/Local/Temp/RtmpkdfmI9/file4538620d2e04/data/raw/example_linelist.xlsx"</code></pre>
 </div>
 </div>
 <p>Ici, nous n’avons défini que le chemin relatif et la fonction a créé un chemin absolu. Cette façon de définir le chemin fonctionnera sur l’ordinateur de vos collègues, même s’ils utilisent un autre système d’exploitation, à condition que vous respectiez tous deux la structure interne du répertoire de travail.</p>
