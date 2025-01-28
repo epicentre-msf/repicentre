@@ -606,11 +606,11 @@ Ecrivez le code pour :
 
 ## Valeurs manquantes {#sec-missing-values}
 
-En tant qu'épidémiologistes, nous travaillons constamment avec des données manquantes. Dans R, les valeurs manquantes sont codées à l'aide d'une valeur spéciale : `NA` (signifiant **N**ot **A**vailable). `NA` est quelque peu unique dans R, car il n'a pas en soi d'objectif fixe. *type* il prend plutôt le type des valeurs qui l'entourent. Par exemple, un `NA` dans une colonne numérique prendra alors le type numérique. Nous aborderons la notion de données manquantes de manière plus approfondie dans les sessions ultérieures du cours.
+En tant qu'épidémiologistes, nous sommes constamment confrontés aux données manquantes. Dans R, celles-ci sont codées à l'aide d'une valeur spéciale : `NA` (signifiant **N**ot **A**vailable). La valeur `NA` est spéciale en R, car elle n'a pas de *type* fixe, elle prend le *type* des valeurs qui l'entourent. Par exemple, un `NA` dans une colonne numérique prend le type numérique. Nous aurons des occasions de manipuler les `NA` dans la suite du cours.
 
 ## Les fonctions {#sec-functions}
 
-Les fonctions sont des objets qui contiennent *des commandes* (au lieu de valeurs) qui sont exécutées chaque fois que la fonction est appelée. Vous connaissez sans doute les fonctions d'Excel telles que `SUM` ou `MEAN` et l'idée des fonctions dans R est exactement la même.
+Les fonctions sont des objets qui contiennent *des commandes* (au lieu de valeurs) qui sont exécutées chaque fois que la fonction est lancée. Vous êtes sans doute familiers avec les fonctions dans Excel, telles que la fonction `SOMME()` ou la fonction `MOYENNE()`. Bonne nouvelle, les fonctions sont similaires dans R !
 
 La plupart des fonctions nécessitent une certaine forme d'entrée, comme un ensemble de données ou un paramètre. Ces entrées sont appelées *arguments* et sont normalement nommés. Par exemple, lorsque nous avons exécuté `sum(cases)` nous avons fourni le vecteur `cases` comme premier (et seul) argument de la fonction `sum()`.
 
