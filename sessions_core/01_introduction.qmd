@@ -303,7 +303,7 @@ R is case sensitive, meaning that the string `"ABC"` is not the same as `"abc"`.
 :::
 
 ::: {callout-note}
-If you would like to create a string that contains a quotation mark the best practice is to [escape]{.hovertip bs-toggle='tooltip' bs-title="Certain characters in R are special, meaning that they are usually a type of command unto themselves. Whenever you'd like to use one of these special characters in normal text, you need to explicitly tell R to ignore the special functionality of the character. This process is called *escaping* the special character"}  the character by putting a '\\\' in front of it, ie: `"She said \"Hello\" then left"` or `'it\’s a beautiful day'`. Equivalently, if you used a double quotation to create the string you can use single quotes inside of it freely (ie: `"it’s a beautiful day"`) and vice versa (i.e.: `'She said "Hello" then left'`).
+If you would like to create a string that contains a quotation mark the best practice is to [escape]{.hovertip bs-toggle='tooltip' bs-title="Certain characters in R are special, meaning that they are usually a type of command unto themselves. Whenever you'd like to use one of these special characters in normal text, you need to explicitly tell R to ignore the special functionality of the character. This process is called *escaping* the special character"}  the character by putting a `\` in front of it, ie: `"She said \"Hello\" then left"` or `'it\'s a beautiful day'`. Equivalently, if you used a double quotation to create the string you can use single quotes inside of it freely (ie: `"it's a beautiful day"`) and vice versa (i.e.: `'She said "Hello" then left'`).
 :::
 
 
