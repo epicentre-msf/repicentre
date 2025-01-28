@@ -1,7 +1,6 @@
 ---
 title: Importer des données
-description: Créez un projet Rstudio, installez les paquets utiles et commencez à
-  importer des données pour travailler dans R.
+description: Créez un projet Rstudio, installez les paquets utiles et importez des données pour travailler dans R.
 date: last-modified
 image: ../img/core/02_import/01_logo.png
 categories:
@@ -36,7 +35,7 @@ Les principes que vous avez appris dans l' [Introduction à R](01_introduction.h
 
 ## Mise en place du projet
 
-### Structure des dossiers
+### Structure des dossiers {#folder-structure}
 
 ::: {.setup}
 Si ce n'est pas déjà fait, téléchargez le dossier du cours, sauvegardez-le à un endroit \[**non connecté à OneDrive**\]{.hovertip bs-toggle='tooltip' bs-title="OneDrive ne fonctionne pas bien avec R car il va constamment synchroniser certains dossiers de projets, ce qui peut entraîner des erreurs ou des problèmes de mémoire"}.

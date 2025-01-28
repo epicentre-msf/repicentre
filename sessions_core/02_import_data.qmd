@@ -35,7 +35,7 @@ The principles you learned in the [Introduction to R](01_introduction.html) sess
 
 ## Setting up your Project
 
-### Folder Structure
+### Folder Structure {#folder-structure}
 
 ::: {.setup}
 If not done already, download the course folder, save it to a location that is [**not connected to OneDrive**]{.hovertip bs-toggle='tooltip' bs-title="OneDrive doesn't play well with R as it will attempt to constantly synchronize certain project files in a way that can cause errors or memory problems"}.
