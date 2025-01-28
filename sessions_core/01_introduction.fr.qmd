@@ -18,51 +18,50 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 ## Objectifs
 
 - Se familiariser avec RStudio
-- Apprendre à travailler avec la console
+- Apprendre le fonctionnement de la console
 - Créer et exécuter un script
-- Créer des objets R de base, tels que des vecteurs et des dataframes
+- Créer des objets de base dans R, tels que des vecteurs et des data frames
 
-## Format de l'exercice
+## Format des exercices
 
-Ces exercices se présentent sous la forme d'un tutoriel à rythme libre contenant de brèves explications sur des concepts clés, des exemples et des exercices à suivre. Le cours utilise une approche d'apprentissage par la pratique, et bien que cette première session commence par une exploration de l'interface de RStudio, les sessions suivantes se concentreront sur comment écrire votre propre code.
+Ces exercices sont dans le format d’un tutoriel contenant de brèves explications sur les concepts clés, des exemples et des instructions à suivre. Le cours a une approche très orientée sur la pratique, et nous vous ferons beaucoup coder (même si cette première session contient beaucoup d'exploration de l'interface et seulement un peu de code).
 
 Les instructions pour les exercices seront données dans les formats suivants :
 
 ::: {.setup}
-Ceci est un **encadré concernant une action générale**. Vous le verrez généralement au début d'une session avec des instructions pour cette leçon.
+Cette boîte contient des **instructions généralistes**. Vous la trouverez en général au début d'une session, avec des instructions de mise en place.
 
 <br>
-**Exemple:** Ouvrez un nouveau script vierge et nommez-le `mon_premier_script.R`.
+**Exemple :** Ouvrez un script vide et nommez-le `mon_premier_script.R`.
 :::
 
 ::: {.write}
-Ceci est un **encadré concernant du code**, et indique un exercice de codage dans lequel vous écrirez votre propre code.
+Ceci est une boîte contenant des **instructions de code** que vous devez écrire dans votre script ou la console.
 
 <br>
-**Exemple:** Créez un objet appelé `region` qui contient la valeur `"Mandoul"`.
+**Exemple :** Créez un objet appelé `region` qui contient la valeur `"Mandoul"`.
 :::
 
 ::: {.look}
-Ceci est un **encadré concernant un point d'observation** Il contient des instructions sur quelque chose que vous devez observer ou étudier.
+Ceci est une boîte vous demandant **d'observer**. Elle contient des instructions sur quelque chose que vous devez observer ou étudier.
 
 <br>
-**Exemple:** Inspecter l'interface de RStudio.
+**Exemple :** Inspectez l'interface de RStudio.
 :::
 
-Au cours de ces exercices, vous rencontrerez peut-être des erreurs, qui se produisent lorsque R n'est pas en mesure d'exécuter une commande. Cela peut se produire pour de nombreuses raisons : vous avez peut-être mal orthographié le nom d'un objet, demandé à R de rechercher un fichier qui n'existe pas, ou fourni le mauvais type de données à une fonction. Lorsqu'une erreur se produit, R **arrête** les calculs en cours et vous donne un message expliquant ce qu'il s'est passé. **Il est tout à fait normal d'avoir des erreurs et cela arrive à tous les programmeurs** qu'ils soient novices ou experts. À l'instar d'un langage naturel, vous vous améliorerez dans l'utilisation de R au fur et à mesure que vous vous entraînerez et que vous travaillerez sur vos erreurs.
+Au cours de ces exercices, vous rencontrerez certainement des erreurs, qui se produisent lorsque R n'est pas en mesure d'exécuter une commande. Cela peut se produire pour de nombreuses raisons : une faute d'orthographe dans le nom d'un objet ou une fonction, le mauvais type de données fournies etc. Lorsqu'une erreur se produit, R **arrête** les calculs en cours et vous renvoit un message expliquant ce qu'il s'est passé. **Il est tout à fait normal d'avoir des erreurs, ça arrive tout le temps, à tous les programmeurs**, qu'ils soient novices ou experts. Comme lorsque vous apprenez une langue non informatique, vous vous améliorerez avec la pratique et l'entrainement, en faisant des erreurs et en apprenant à les corriger.
 
 ## RStudio et R
 
 *R* est un [langage de programmation fonctionnel]{.hovertip bs-toggle='tooltip' bs-title="Par opposition aux langages orientés objet qui sont plus dédiés à construire des programmes complexes tels que les systèmes d'exploitation"} qui peut être utilisé pour nettoyer et manipuler des données, effectuer des analyses (en particulier des analyses statistiques), visualiser des résultats, et bien plus encore.
 
-*RStudio* est un logiciel qui fournit une interface facile à utiliser pour R (également appelé IDE, pour "Integrated Development Environment"). Bien que l'utilisation d'une interface graphique ne soit pas obligatoire, elle est fortement recommandée pour les débutants.
+*RStudio* est un logiciel qui fournit une interface facile à utiliser pour R (également appelé IDE, pour "Integrated Development Environment"). Son utilisation n’est pas obligatoire, mais très fortement recommandée pour les débutants.
+
 
 ### Premiers pas avec RStudio
 
-Commençons par le commencement !
-
 ::: {.setup}
-Ouvrez RStudio en utilisant le menu de démarrage ou le raccourci du bureau ; si RStudio est déjà ouvert, veuillez le fermer et l'ouvrir à nouveau.
+Ouvrez RStudio en utilisant le menu de démarrage de votre ordinateur ou le raccourci crée par défaut sur le bureau; si RStudio était déjà ouvert sur votre ordinateur, fermer-le et ouvrez-le à nouveau.
 :::
 
 Vous devriez voir une interface qui ressemble à ceci :
@@ -70,48 +69,53 @@ Vous devriez voir une interface qui ressemble à ceci :
 ![Vue de l'interface de l'IDE Rstudio à l'ouverture](../img/core/01_introduction/01_rstudio_interface_en.png){fig-align="center"}
 
 ::: {.look}
-Inspectez l'interface RStudio.
+Inspectez l'interface de RStudio.
 :::
 
-Vous disposerez de trois ou quatre panneaux, dont :
+Vous verrez trois ou quatre panneaux.
 
 #### Panneau supérieur droit
 
-En haut à droite se trouve un panneau avec plusieurs onglets. La plupart d'entre eux dépassent le cadre de ce cours, mais nous utiliserons les deux onglets suivants dans le cadre de ce cours :
+En haut à droite se trouve un panneau avec plusieurs onglets. La plupart d'entre eux dépassent le cadre de ce cours, mais nous utiliserons les deux onglets suivants :
 
-- *Environment.* Liste des objets enregistrés par l'utilisateur dans la session en cours. Comme vous venez de démarrer une nouvelle session, votre environnement doit être vide.
+- *Environment* : liste les objets enregistrés par l'utilisateur dans la session en cours. Comme vous venez de démarrer une nouvelle session, votre environnement devrait être vide.
 
-- *History.* correspond à l'historique de toutes les commandes que vous avez exécutées au cours de la session actuelle.
+- *History* : comprend l'historique de toutes les commandes que vous avez exécutées au cours de la session actuelle.
 
 ::: {.callout-note}
-Vous pouvez considérer une session R comme le démarrage d'un ordinateur. Lorsqu'une session démarre, tout est vierge et prêt pour le calcul, de la même manière qu'il n'y a aucun programme ouvert lorsque vous allumez votre ordinateur pour la première fois. De manière générale, nous vous encourageons à arrêter et à démarrer vos sessions R régulièrement. *Eteindre et rallumer R* permet de corriger certains de vos bugs.
+Une nouvelle session R c'est comme redémarer son ordinateur : lorsqu'une session démarre, tout est vierge et prêt pour le calcul, de la même manière qu'il n'y a aucun programme ouvert lorsque vous allumez votre ordinateur pour la première fois. 
+
+Nous vous encourageons à arrêter et à re-démarrer vos sessions R régulièrement. Parfois ça corrigera certains de vos bugs !
 :::
 
 #### Panneau inférieur droit
 
-En bas à droite se trouve un autre panneau à onglets multiples, comprenant les éléments suivants
+En bas à droite se trouve un autre panneau à onglets multiples, comprenant les éléments suivants :
 
-- *Files.* Un explorateur de fichiers pour le répertoire de travail, qui est l'emplacement du dossier dans lequel R travaille actuellement.
-- *Plots.* Un emplacement où RStudio affichera des graphiques *statiques* Cet onglet doit être vide pour le moment.
-- *Packages.* Liste de tous les paquets R installés sur votre ordinateur. Les paquets sont des collections de fonctions qui permettent d'étendre les fonctionnalités de R. Nous les aborderons plus en détail dans la section [prochaine leçon](02_import_data.html#sec-packages).
-- *Help.* Un endroit pour lire les pages d'aide et la [documentation]{.hovertip bs-toggle='tooltip' bs-title='La documentation fait référence à un texte supplémentaire, soit dans un fichier de code, soit dans un document externe, qui est écrit pour aider les gens à comprendre ce que fait un morceau de code, une fonction ou un paquet et comment il devrait être utilisé. La documentation du code est un peu analogue à la création d'un dictionnaire de données pour une base de données d'enquête et constitue une partie indispensable permettant de rendre son code robuste et réutilisable'} pour les fonctions et les paquets.
-- *Viewer.* Un emplacement où RStudio affichera des sorties html telles que des tableaux, des widgets interactifs ou même des tableaux de bord.
+- *Files* : un explorateur de fichiers pour le répertoire de travail, qui est l'emplacement du dossier dans lequel R travaille actuellement.
+- *Plots* : là où RStudio affichera des graphiques *statiques*. Cet onglet doit être vide pour le moment.
+- *Packages* : liste de tous les paquets R installés sur votre ordinateur. Les paquets sont des collections de fonctions qui permettent d'étendre les fonctionnalités de R. Nous les aborderons plus en détail dans la [prochaine leçon](02_import_data.html#sec-packages).
+- *Help* : un endroit pour lire les pages d'aide et la [documentation]{.hovertip bs-toggle='tooltip' bs-title="La documentation fait référence du texte supplémentaire, soit dans le code, soit dans un document externe, qui est écrit pour aider les gens à comprendre ce que fait un morceau de code, une fonction ou un paquet, et comment il devrait être utilisé. La documentation du code est un peu analogue à la création d'un dictionnaire de données pour une base de données d'enquête et est indispensable pour rendre le code robuste et réutilisable"} pour les fonctions et les paquets.
+- *Viewer* : nn emplacement où RStudio affichera des sorties html telles que des tableaux, des widgets interactifs ou même des tableaux de bord.
 
 #### Partie gauche
 
-- A gauche (ou en bas à gauche si vous avez quatre panneaux), vous devriez voir le bouton *console* où le code R est exécuté.
-- En haut à gauche (si vous avez quatre panneaux) se trouve les scripts R *ouverts*.
+- A gauche (ou en bas à gauche si vous avez déjà quatre panneaux), vous devriez voir l'onglet *console*, où le code R est exécuté.
+- En haut à gauche (si vous avez quatre panneaux) se trouvent les scripts R *ouverts*.
 
-Dans les deux sections suivantes, nous parlerons plus en détail de la console et des scripts.
+Nous parlerons plus en détail de la console et des scripts dans les sections suivantes.
 
 ### La console {#sec-console}
 
-La console est l'endroit **où R est exécuté**.
+La console est l'endroit **où le code R s’exécute**.
 
-Chaque fois que vous ouvrez une nouvelle session, R commence par afficher quelques informations sur votre configuration, telles que le numéro de version de R. En dessous de ces informations, vous trouverez une ligne contenant le numéro de version de R. En dessous de ces informations, il devrait y avoir une ligne avec le symbole `>` et un curseur clignotant. Pour exécuter une commande dans R, il vous suffit de la taper après ceci `>` et d'appuyer sur `Enter`. R traitera alors votre code et affichera le résultat (s'il y en a un). Un nouveau `>` s'affichera alors, prête pour la commande suivante.
+Au début d’une nouvelle session, un texte d’information sur votre cofiguration apparaît tout en haut de la console : numéro et nom de la version de R, etc. En dessous de ces informations, il devrait y avoir une ligne avec le symbole `>` et un curseur clignotant. 
+
+Pour **exécuter une commande** dans R, tapez-la à la suite du `>` et pressez `Entrée`. R traitera alors votre code et affichera le résultat (s'il y en a un). Un nouveau `>` s'affichera alors, idiquant que la console est prête pour la commande suivante.
 
 ::: {.callout-important}
-Si la dernière ligne affichée dans la console commence par un `+` au lieu d'un `>` cela signifie que la console n'est pas prête à recevoir une nouvelle commande, soit parce qu'elle est encore en train de traiter une commande précédente, soit parce qu'elle a reçu un bout de [code incomplet]{.hovertip bs-toggle='tooltip' bs-title="Un code incomplet est l'équivalent en R d'une phrase incomplète. Cela se produit généralement lorsque nous oublions de fermer un caractère comme une parenthèse ou un guillemet"}. A tout moment, vous pouvez annuler une commande en cours ou incomplète, en appuyant sur la touche `Echap`.
+Si la dernière ligne est préfacée d’un `+` au lieu d’un `>`, cela signifie que la console n’est pas prête. Soit elle attend qu’un calculd'une commande précédente finisse, soit elle attend la fin d’une commande [incomplète]{.hovertip bs-toggle='tooltip' bs-title="Un code incomplet est l'équivalent en R d'une phrase incomplète. Cela se produit généralement lorsque nous oublions de fermer un caractère comme une parenthèse ou un guillemet"}. 
+A tout moment, vous pouvez interrompre l'exécution en pressant la touche `Echap`.
 :::
 
 ::: {.write}
@@ -129,32 +133,31 @@ Exécutez les commandes suivantes dans la console, une ligne à la fois, et obse
 (12 + 9)^4 / 1000
 ```
 
-Exécutez maintenant la commande suivante. Notez que la dernière ligne de commande `)` est manquante, ce qui rend la commande incomplète. Que se passe-t-il lorsque vous faites cela ?
+Exécutez maintenant la commande suivante. Notez que la dernière ligne de commande `)` est manquante, ce qui rend la commande incomplète. Que se passe-t-il ?
 
 ```{r}
 #| error: true
 3 / (2 + 97
 ```
-
 :::
 
-Vous avez peut-être remarqué dans les exemples ci-dessus que notre code comporte beaucoup d'espaces entre les caractères. Ce n'est pas un hasard. C'est une bonne pratique d'inclure des espaces autour de la plupart des opérateurs, tels que `+`, `-`, `*`, `/`, `<`, `>`, `=` et `<-`. Non seulement ces espaces facilitent la lecture et la compréhension de votre code, mais dans certains (rares) cas, ils peuvent même être nécessaires pour éviter des erreurs. Cela dit, il faut savoir qu'il y a un petit nombre d'opérateurs qui ne doivent *pas* être entourés d'espaces, tels que `^`, `.` et `:`.
+Vous avez peut-être noté dans les exemples précédents que notre code contient beaucoup d'espaces.  C'est en effet une bonne pratique que d'inclure des espaces autour de la plupart des opérateurs, tels que `+`, `-`, `*`, `/`, `<`, `>`, `=` et `<-`. Ces espaces facilitent la lecture et la compréhension de votre code, et dans certains cas (rares) ils permettent d'éviter des erreurs. Néanmoins, certains opérateurs ne doivent pas être entourés d’espaces, tels que `^`, `.` et `:`.
 
 ```{r}
-1+29+4.8/3*3           # Pas bien
+1+29+4.8/3*3           # Mauvais
 1 + 29 + 4.8 / 3 * 3   # Bien
 
-1 ^ 2 # Pas bien
-1^2   # Bien
+1 ^ 2  # Mauvais
+1^2    # Bien
 ```
 
-Nous pouvons également faire tourner des *fonctions* dans la console. Nous aborderons les fonctions plus en détail [plus loin dans cette leçon](../sessions_core/01_introduction.qmd#sec-functions) mais en attendant, sachez que l'idée des fonctions dans R est très similaire à celle d'Excel, où vous êtes sans doute familier avec des fonctions telles que `SOMME` ou `MOYENNE`.
+Nous pouvons également exécuter des *fonctions* dans la console. Nous aborderons les fonctions plus en détail [plus tard](../sessions_core/01_introduction.qmd#sec-functions) mais sachez que les fonctions dans R sont similaires aux fonctions dans Excel (telles que `SOMME` ou `MOYENNE`).
 
 ::: {.write}
 Exécutez les commandes suivantes dans la console (une ligne à la fois).
 
 ```{r}
-# Trouvez la value minimum
+# Trouvez la value minimale
 min(5, 10)
 min(1, 8, 56, 0.3)
 
@@ -166,37 +169,37 @@ max(568, 258, 314)
 
 ### Scripts {#sec-scripts}
 
-Les scripts sont des fichiers texte qui contiennent une **série de commandes** pour un langage de programmation particulier. L'extension du fichier indique le langage dans lequel les commandes ont été écrites, et nous utiliserons `.R`. Les scripts nous permettent de créer du code qui peut être réutilisé, partagé et même automatisé.
+Les scripts sont des fichiers texte qui contiennent une **série de commandes** pour un langage de programmation particulier. L'extension du fichier indique le langage dans lequel les commandes sont écrites. Ici nous utiliserons l'extension `.R`. Les scripts nous permettent de créer du code qui peut être réutilisé, partagé et même automatisé.
 
 #### Écrire son premier script
 
-![Etapes pour créer un nouveau script dans l'IDE RStudio](../img/core/01_introduction/02_new_script.png){fig-align="center"}
+![Etapes pour créer un nouveau script dans RStudio](../img/core/01_introduction/02_new_script.png){fig-align="center"}
 
-Pour créer un nouveau script, allez dans `File > New File > R Script`. Vous pouvez également cliquer sur la petite icône verte `+` avec une page blanche juste en dessous de `File` ou utiliser le raccourci clavier `CTRL+SHIFT+N`. Ce nouveau script **non sauvegardé** apparaîtra sous la forme d'un document vierge dans le panneau supérieur gauche.
+Pour créer un nouveau script, allez dans le menu `File > New File > R Script`. Alternativement, cliquez sur la petite icône avec un `+` vert sur une page blanche située en dessous du menu `File`. Ou encore, utilisez le raccourci clavier `CTRL + MAJ + N`. Ce nouveau script **non sauvegardé** apparaîtra sous la forme d'un document vierge dans le panneau supérieur gauche.
 
-Pour enregistrer votre script, utilisez le menu `File > Save As` ou le raccourci clavier `CTRL+S`.
+Pour enregistrer votre script, utilisez le menu `File > Save As` ou le raccourci clavier `CTRL + S`.
 
 ::: {.setup}
-Créez et enregistrez un nouveau script appelé `discovery.R`. N'oubliez pas d'inclure l'extension `.R`. Pour l'instant, vous pouvez l'enregistrer sur votre bureau ou à tout autre endroit approprié, mais nous parlerons plus en détail de l'organisation de vos scripts dans la section [prochaine session](../sessions_core/02_import_data.qmd).
+Créez un script et enregistrez-le sous le nom `decouverte.R`. N'oubliez pas d'inclure l'extension `.R`. Pour l'instant, vous pouvez l'enregistrer sur votre bureau ou à tout autre endroit qui vous semble approprié, mais nous aborderons l'organisation des scripts dans la [prochaine session](../sessions_core/02_import_data.qmd).
 :::
 
 #### Exécuter du code à partir d'un script
 
-Pour exécuter du code à partir d'un script, placez simplement votre curseur sur la ligne que vous souhaitez exécuter (ou sélectionnez plusieurs lignes) et effectuez l'une des opérations suivantes :
+Pour exécuter du code à partir d'un script, placez votre curseur sur la ligne que vous souhaitez exécuter (ou sélectionnez plusieurs lignes) et effectuez l'une des opérations suivantes :
 
 - Cliquez sur le bouton `Run` en haut à droite de la fenêtre de script
-- Utilisez le raccourci `CTRL+Enter` (le curseur passera ensuite à la ligne suivante)
-- Utiliser le raccourci `ALT+Enter` (le curseur reste ensuite sur la ligne en cours)
+- Utilisez le raccourci `CTRL + Entrée` (le curseur passera ensuite à la ligne suivante)
+- Utiliser le raccourci `ALT + Entrée` (le curseur restera sur la ligne actuelle)
 
 ::: {.write}
-Copiez le code que vous avez exécuté dans les exercices précédents dans votre script et exécutez-le en utilisant chacune des méthodes ci-dessus.
+Copiez le code que vous avez exécuté dans les exercices précédents dans votre script et exécutez-le en testant les différentes méthodes ci-dessus.
 
-A partir de maintenant, vous écrirez votre code dans votre script et l'exécuterez à partir de là, sauf indication contraire dans les instructions.
+A partir de maintenant, vous écrirez votre code dans votre script et l'exécuterez à partir de là, sauf indication contraire de notre part dans les instructions.
 :::
 
 #### Commentaires {#sec-comments}
 
-En R, tout texte précédé d'un `#` (jusqu'à la fin d'une ligne) est un *commentaire*. R ne considère pas les commentaires comme du code et les ignore lorsque vous exécutez vos scripts. Les commentaires sont donc un excellent moyen de documenter votre code.
+Dans R, le code qui est précédé d'un # (dièse) n’est pas exécuté, il est juste ignoré jusqu’à la fin de la ligne. C’est donc un bon moyen de documenter votre code.
 
 ```{r}
 # Ceci est un commentaire
@@ -204,21 +207,21 @@ En R, tout texte précédé d'un `#` (jusqu'à la fin d'une ligne) est un *comme
 2 + 3  # Ceci est aussi un commentaire
 ```
 
-Il est utile pour l'avenir, pour vous et pour les autres, de commencer vos scripts par quelques lignes commentées fournissant des informations sur le fichier.
+Il est utile pour vous et vos collègues de commencer vos scripts par quelques lignes commentées fournissant des informations importantes sur le contenu de votre script.
 
 ```{r}
-#### IMPORTATION & PREPARATION DES DONNEES ####
+# IMPORT & PREPARATION DES DONNEES #
 # Auteure :  Mathilde Mousset
 # Date de création : 23/11/2024
 # Dernière mise à jour : 30/11/2024
-# Description : Importation et nettoyage des données de surveillance rougeole de Moissala
+# Description : Importat et nettoyage des données de surveillance rougeole de Moissala
 ```
 
 ::: {.write}
 Ajoutez quelques commentaires au début de votre script pour le décrire.
 :::
 
-Les commentaires sont également un moyen pratique de diviser les scripts plus longs en sections thématiques, telles que "Importation de données", "Analyse", "Visualisation", etc. Par exemple :
+Les commentaires sont également un moyen pratique de diviser les scripts longs en sections thématiques, telles que "Import des données", "Analyse", "Visualisation", etc. Par exemple :
 
 ```{r}
 # NOM DE LA SECTION 1 -----------------------------------------------             
@@ -230,9 +233,9 @@ Les commentaires sont également un moyen pratique de diviser les scripts plus l
 Utilisez les commentaires pour créer des sections dans votre script qui correspondent aux sections principales de ce tutoriel.
 :::
 
-Enfin, les commentaires nous permettent d'écrire des notes utiles pour nos collègues (et nos futurs collègues) qui peuvent les aider à comprendre le code et la raison pour laquelle nous l'avons écrit de cette manière. En règle générale, on se concentrer sur les commentaires qui expliquent le "pourquoi" plutôt que le "quoi". En effet, le "quoi" d'un code bien écrit devrait être relativement explicite.
+Enfin, les commentaires nous permettent de prendre des notes sur votre code pour aider à la compréhension (celle de votre “moi futur” et celle de vos collègues). En règle générale, on se concentrer sur les commentaires qui expliquent le "pourquoi" plutôt que le "quoi". En effet, le "quoi" d'un code bien écrit devrait être relativement explicite.
 
-Ce commentaire, par exemple, est tout à fait superflu :
+Par exemple, ce commentaire est superflu :
 
 ```{r}
 1 + 3  # Code pour additionner un et trois
@@ -242,14 +245,14 @@ En comparaison, voici quelques cas d'utilisation qui mériteraient d'être comme
 
 - Vous définissez une constante, par exemple une valeur seuil de séroprévalence. Vous pouvez ajouter un commentaire indiquant la référence d'où provient la valeur.
 - Votre code contient une valeur ou un nom de fichier qui doit être mis à jour chaque semaine. Vous devez l'indiquer dans un commentaire afin que toute personne utilisant le code en soit informée.
-- Vous utilisez une commande ou un paquet rare que votre collègue ne connaît peut-être pas ou qu'il peut trouver contre-intuitif. Vous pouvez utiliser un commentaire pour expliquer le raisonnement qui sous-tend cette décision.
+- Vous utilisez une commande ou un paquet rare que votre collègue ne connaît peut-être pas ou qu'il peut trouver contre-intuitif. Commentez pour expliquer vos raisons.
 
-Ceci étant dit, vous apprenez, et les scripts que vous écrivez pendant ce cours sont vos notes, alors n'hésitez pas à utiliser autant de commentaires (du type "quoi" et "pourquoi") que vous le souhaitez. Vous écrirez naturellement moins de commentaires à l'avenir, lorsque certaines choses qui vous semblent étrangères aujourd'hui deviendront naturelles.
+Ceci étant dit, vous êtes en plein apprentissage, et les scripts que vous écrivez pendant ce cours sont vos notes de cours, alors n'hésitez pas à utiliser autant de commentaires que vous le souhaitez (du type "quoi" et "pourquoi"). Vous écrirez naturellement moins de commentaires à l'avenir, lorsque les choses qui vous sont étrangères aujourd'hui deviendront naturelles avec la pratique.
 
 ::: {.callout-tip}
-Vous pouvez commenter une ligne sélectionnée avec le raccourci `CTRL+SHIFT+C`.
+Commentez une ligne sélectionnée avec le raccourci `CTRL + MAJ +C`.
 
-Vous pouvez ajouter une section de premier niveau avec `CTRL+SHIFT+R`.
+Ajoutez une section de premier niveau avec `CTRL + MAJ + R`.
 :::
 
 ::: {.write}
@@ -258,21 +261,21 @@ Ajoutez quelques commentaires pour décrire le code que vous avez écrit jusqu'�
 
 ## Types de données
 
-R dispose de plusieurs [types de données]{.hovertip bs-toggle='tooltip' bs-title="Tout comme Excel, R peut faire la différence entre une date et un nombre. Ces différences se rapportent à des différences dans le type de données."}. Ceux que nous verrons le plus souvent dans ce cours sont les suivants :
+R dispose de plusieurs [types de données]{.hovertip bs-toggle='tooltip' bs-title="Tout comme Excel, R peut faire la différence entre une date et un nombre. Ces différences se rapportent à des différences dans le type de la donnée."}. Ceux que nous verrons le plus souvent dans ce cours sont les suivants :
 
-- numérique [en anglais, numeric]
-- chaîne de caractères (texte) [string]
-- booléen (VRAI / FAUX) [boolean]
+- numérique [numeric en anglais]
+- chaîne de caractères (texte) [string en anglais]
+- booléen (VRAI / FAUX) [boolean en anglais]
 - date [date]
 - facteur [factor]
 
 ### Numérique
 
-Le type numérique comprend à la fois les *entiers* [en anglais *integers*] et les *doubles* (nombres comprenant une décimale) et peuvent être créés en écrivant simplement la valeur "brut" dans votre script ou votre console.
+Le type numérique englobe les *entiers* [*integers* en anglais] et les *doubles* (nombres décimaux). Les nombres en R n'ont pas de signalétique, utilisez simplement la valeur brute dans votre script ou votre console.
 
 ### Chaînes de caractères [string]
 
-Les *strings* sont la version R du texte et peuvent être créées en entourant le texte de guillemets simples ou doubles, par exemple `"district"` ou `'cases'` (les guillemets doubles sont généralement considérés comme la meilleure pratique).
+Les *chaînes de caractères* [strings] représentent le *texte* en R. Elles sont tapées en entourant votre texte de guillemets simples ou doubles, par exemple `"district"` ou `'cas'` (les guillemets doubles sont généralement considérés comme la meilleure pratique).
 
 ::: {.write}
 Comparez la sortie dans la console pour les commandes suivantes :
@@ -285,39 +288,39 @@ Comparez la sortie dans la console pour les commandes suivantes :
 
 :::
 
-La dernière commande ci-dessus donnera lieu à une erreur car nous ne pouvons pas effectuer d'opérations arithmétiques combinant du texte et des nombres.
+La dernière commande ci-dessus a renvoyé une erreur car nous ne pouvons pas effectuer d'opérations arithmétiques combinant du texte et des nombres.
 
 ::: {.callout-important}
-R est sensible aux majuscules, ce qui signifie que la chaîne `"ABC"` n'est pas équivalente à `"abc"`.
+R est sensible à la casse (majuscules ou minuscules), ce qui signifie que `"ABC"` n'est pas équivalent à `"abc"`.
 :::
 
 ::: {callout-note}
-Si vous souhaitez créer une chaîne de caractères contenant des guillemets, la meilleure pratique consiste à [s'échapper]{.hovertip bs-toggle='tooltip' bs-title="Certains caractères de R sont spéciaux, ce qui signifie qu'ils constituent généralement un type de commande à part entière. Lorsque vous souhaitez utiliser l'un de ces caractères spéciaux dans un texte normal, vous devez explicitement demander à R d'ignorer la fonctionnalité spéciale du caractère. Ce processus est appelé le caractère spécial"}  du caractère en le faisant précéder d'un `\`, par exemple : `"Elle dit \"Bonjour\" et s'en alla"` ou `'C\'est une belle journée'`. Si vous avez utilisé une double citation pour créer la chaîne de caractères, vous pouvez utiliser des guillemets simples à l'intérieur de celle-ci (par exemple : `"C'est une belle journée"`) et vice versa (par exemple : `'Elle dit "Bonjour" et s'en alla'`).
+Si vous souhaitez créer une chaîne de caractères contenant des guillemets, il faut [échapper]{.hovertip bs-toggle='tooltip' bs-title="Certains caractères de R sont spéciaux, ils constituent généralement un type de commande à part entière. Lorsque vous souhaitez utiliser l'un de ces caractères spéciaux dans un texte normal, vous devez explicitement demander à R d'ignorer la fonctionnalité spéciale du caractère. Ce processus est appelé échapper le caractère spécial"} les guillements les faisant précéder d'un '\ ', par exemple : `"Elle dit \"Bonjour\" et s'en alla"` ou `'C\'est une belle journée'`. Si vous avez utilisé des guillements doubles pour créer votre chaîne de caractères, vous pouvez utiliser des guillemets simples à l'intérieur de celle-ci (par exemple : `"C'est une belle journée"`) et vice versa (par exemple : `'Elle dit "Bonjour" et s'en alla'`).
 :::
 
 ### Booléen (logique)
 
-Le type booléen (ou "logique") stocke des valeurs vrai/faux et est créé en écrivant soit `TRUE` ou `FALSE` sans guillemets.
+Le type booléen (ou "logique") stocke des valeurs vrai/faux et est créé en écrivant soit `TRUE` [VRAI] ou `FALSE` [FALSE] sans guillemets.
 
-En interne, R transfome `TRUE` et `FALSE` comme une version spéciale de `1` et `0` respectivement, et les valeurs booléennes peuvent être facilement traduites en ces équivalents numériques pour les opérations arithmétiques.
+En interne, R traduit `TRUE` et `FALSE` en équivalents numériques `1` et `0` respectivement, ce qui peut être utile pour des opérations arithmétiques.
 
 ::: {.callout-note}
-Vous trouverez peut-être des personnes qui utilisent `T` ou `F` mais cela est déconseillé car `T` et `F` peuvent également être utilisés comme noms d'objets ou de variables. `TRUE` et `FALSE` sont cependant *protégés* dans R, ce qui signifie qu'ils ne peuvent pas être réaffectés à une autre valeur.
+Vous verrez peut-être des personnes qui utilisent `T` ou `F` mais c'est déconseillé car `T` et `F` peuvent également être utilisés comme noms d'objets ou de variables. En revanche, `TRUE` et `FALSE` sont cependant *réservées* (protégées) dans R, ce qui signifie qu'ils ne peuvent pas être réaffectés à une autre valeur.
 :::
 
 ### Déterminer le type d'un objet
 
-Il existe plusieurs fonctions permettant de déterminer le type d'un objet (souvent appelé le *classe* de l'objet en R [en anglais, *class*]).
+Il existe plusieurs fonctions permettant de déterminer le type d'un objet (souvent appelé la *classe* de l'objet en R [en anglais, *class*]).
 
 ::: {.write}
 Tapez les commandes suivantes dans votre script et exécutez-les :
 
 ```{r}
-# Get the Type of an Object
+# Obtenir le type
 class(28)  
 class("Mandoul")
 
-# Test the Type of an Object
+# Test du type
 is.numeric(28)
 is.numeric("Mandoul")
 is.character("Mandoul")
@@ -329,39 +332,37 @@ is.logical(FALSE)
 
 :::
 
-## Création d'un objet {#sec-assignement-operator}
+## Enregistre un objet {#sec-assignement-operator}
 
-En R, presque tout est un **objet** y compris les fonctions, les valeurs scalaires et d'autres structures de données plus complexes. Avant de présenter ces structures, faisons un détour important pour discuter de la manière dont les objets sont enregistrés dans votre environnement.
-
-Souvent, nous souhaitons réutiliser les mêmes valeurs ou données tout au long d'un script et il est donc très utile de les stocker sous forme d'objets dans notre environnement. Pour ce faire, nous utilisons un *opérateur d'affectation*, `<-`.
+En R, presque tout est un **objet** y compris les fonctions, les vecteurs et les structures plus complexes. Souvent, nous souhaitons réutiliser certains de ces objets tout au long d'un script (un jeu de données par exemple). Il est donc très utile de les stocker sous forme d'objets dans notre environnement (la mémoire de R). Pour ce faire, nous utilisons l'**opérateur d'assignation** `<-`.
 
 ::: {.write}
-Regardez le panneau d'environnement en haut à droite, vérifiez qu'il est vide, puis tapez la commande suivante dans votre script et exécutez-la pour enregistrer une variable appelée `cases` dans votre environnement.
+Regardez le panneau environnement en haut à droite. Il devrait être vide. Tapez la commande suivante dans votre script et exécutez-la pour enregistrer une variable appelée `cas` dans votre environnement.
 
 ```{r}
 #| eval: true
-cases <- 28
+cas <- 28
 ```
 
-Regardez à nouveau l'environnement. Est-il toujours vide ?
+Inspectez à nouveau l'environnement. Est-il toujours vide ?
 :::
 
-Si vous souhaitez accéder à la valeur de votre nouvel objet, `cases` il vous suffit d'**exécuter son nom**.
+Si vous souhaitez accéder à la valeur de votre nouvel objet, `cas` il vous suffit d'**exécuter son nom**.
 
 ```{r}
 #| eval: true
-cases
+cas
 ```
 
 ::: {.callout-note}
-Nous écrivons les chaînes de caractères entre guillements pour permettre à R de faire la différence entre un objet `cases` un le mot `"cases"`.
+Nous écrivons les chaînes de caractères entre guillements pour permettre à R de faire la différence entre un objet `cas` et le texte `"cas"`.
 :::
 
 Une fois créés, les objets peuvent être utilisés dans d'autres commandes :
 
 ```{r}
 #| eval: true
-cases + 5
+cas + 5
 ```
 
 ::: {.write}
@@ -372,7 +373,7 @@ Dans votre script, créez un objet appelé `region` qui contient la valeur `"Man
 N'oubliez pas que nous devons toujours entourer l'opérateur `<-` par des espaces afin d'améliorer la lisibilité et d'éviter les erreurs.
 
 ```{r}
-x<-3     # PAS BIEN
+x<-3     # MAUVAIS
 x <- 3   # BIEN
 ```
 
@@ -383,7 +384,7 @@ x <- 3   # BIEN
 Nous souhaitons souvent mettre à jour la valeur stockée dans un objet. Pour ce faire, il suffit d'assigner une nouvelle valeur avec la même syntaxe que celle utilisée lors de la création de l'objet :
 
 ```{r}
-cases <- 32
+cas <- 32
 ```
 
 ::: {.write}
@@ -402,9 +403,9 @@ Pour nommer vos objets, il existe quelques règles (relativement) strictes :
 Au-delà de ces règles, il existe également des bonnes pratiques plus subjectives et des styles personnels. En règle générale, les noms doivent être courts et descriptifs :
 
 ```{r}
-a <- 19                             # Pas informatif (not informative)
-age_du_patient_a_l_admission <- 19  # Trop long
-age <- 19                           # Concis et précis
+a <- 19                              # Pas informatif (not informative)
+age_du_patient_a_l_admission <- 19   # Trop long
+age <- 19                            # Concis et précis
 ```
 
 Donner à vos objets des noms clairs et informatifs contribue à rendre votre code lisible, ce qui permet aux autres de le comprendre facilement sans avoir à consulter le dictionnaire de données incessament.
@@ -428,15 +429,15 @@ Ce cours n'entrera pas dans les détails des concepts abstraits qui sous-tendent
 
 Les vecteurs simples peuvent contenir une ou plusieurs valeurs *d'un seul type de données*. Ils ont donc deux propriétés essentielles : une **longueur** et un **type**. Dans le cadre de ce cours, nous utiliserons indifféremment les termes "vecteur simple" et "vecteur" (comme c'est généralement le cas dans la communauté R).
 
-Techniquement, vous avez déjà créé vos premiers vecteurs simples lorsque vous avez construit les objets `cases` et `region`. Il s'agissait de vecteurs avec une longueur de taille **une**. Pour créer un vecteur avec plus d'une valeur, nous utiliserons la fonction `c()` ([moyen mnémotechnique]{.hovertip bs-toggle='tooltip' bs-title='` c` est la première lettre de "concatenater"'}) :
+Techniquement, vous avez déjà créé vos premiers vecteurs simples lorsque vous avez construit les objets `cas` et `region`. Il s'agissait de vecteurs avec une longueur de taille **une**. Pour créer un vecteur avec plus d'une valeur, nous utiliserons la fonction `c()` ([moyen mnémotechnique]{.hovertip bs-toggle='tooltip' bs-title='` c` est la première lettre de "concatenater"'}) :
 
 ```{r}
 #| eval: true
-cases <- c(2, 5, 8, 0, 4)
+cas <- c(2, 5, 8, 0, 4)
 ```
 
 ::: {.write}
-Mettez à jour `cases` avec les valeurs ci-dessus et mettez à jour `region` pour créer un vecteur de chaînes de caractères contenant les valeurs suivantes : Mandoul, Moyen-Chari, Logone Oriental, Tibesti et Logone Occidental.
+Mettez à jour `cas` avec les valeurs ci-dessus et mettez à jour `region` pour créer un vecteur de chaînes de caractères contenant les valeurs suivantes : Mandoul, Moyen-Chari, Logone Oriental, Tibesti et Logone Occidental.
 :::
 
 ```{r}
@@ -451,14 +452,14 @@ Nous pouvons maintenant utiliser des fonctions sur les objets que nous avons cr�
 
 ```{r}
 #| eval: true
-mean(cases)      # Calcule la moyenne des valeurs stockées dans le vecteur
+mean(cas)      # Calcule la moyenne des valeurs stockées dans le vecteur
 toupper(region)  # Convertit les valeurs du vecteur en majuscules
 ```
 
 ::: {.write}
 C'est parti avec les fonctions ! Ecrivez des commandes dans votre script pour effectuer les actions suivantes : 
 
-- calculer la somme des valeurs de `cases` avec la fonction `sum()`
+- calculer la somme des valeurs de `cas` avec la fonction `sum()`
 - convertir le texte de `region` en minuscules à l'aide de la fonction `tolower()`
 :::
 
@@ -468,17 +469,17 @@ Il est possible d'accéder à une valeur d'un vecteur en donnant son indice (*i.
 
 ```{r}
 #| eval: true
-cases[2]   # Deuxième valeur de cases
-cases[10]  # Dixième valeur de cases
+cas[2]   # Deuxième valeur de cas
+cas[10]  # Dixième valeur de cas
 ```
 
-Oups il n'y a pas de dixième valeur dans `cases` ! Nous reviendrons sur ce que ce `NA` signifie dans la section [valeurs manquantes](../sessions_core/01_introduction.qmd#sec-missing-values).
+Oups il n'y a pas de dixième valeur dans `cas` ! Nous reviendrons sur ce que ce `NA` signifie dans la section [valeurs manquantes](../sessions_core/01_introduction.qmd#sec-missing-values).
 
 Nous pouvons également accéder à un *plage* de valeurs, comme nous pourrions le faire dans Excel. Pour créer une plage dans R, nous utilisons l'opérateur `:` séparer la position minimum et maximum de la plage :
 
 ```{r}
 #| eval: true
-cases[2:4]  # de la deuxième à la quatrième valeur
+cas[2:4]  # de la deuxième à la quatrième valeur
 ```
 
 ::: {.write}
@@ -487,13 +488,13 @@ Affichez la 3ème valeur du vecteur `region`.
 Ecrivez la commande pour accéder aux valeurs "Mandoul" **et** "Moyen-Chari" du vecteur `region`.
 :::
 
-### Dataframes
+### Data frames
 
-Les *dataframes* sont des [structures tabulaires]{.hovertip bs-toggle='tooltip' bs-title='Techniquement, ce sont des types de listes spéciales, composées de plusieurs vecteurs de même taille'} / tableaux en 2D avec des lignes et des colonnes. Il s'agit d'une structure très similaire à celle d'un "tableau" dans Excel. En tant qu'épidémiologistes, ce type d'objet est l'un des plus utiles et vous l'utiliserez quotidiennement, pour stocker les données de listes linéaires par exemple.
+Les *data frames* sont des [structures tabulaires]{.hovertip bs-toggle='tooltip' bs-title='Techniquement, ce sont des types de listes spéciales, composées de plusieurs vecteurs de même taille'} / tableaux en 2D avec des lignes et des colonnes. Il s'agit d'une structure très similaire à celle d'un "tableau" dans Excel. En tant qu'épidémiologistes, ce type d'objet est l'un des plus utiles et vous l'utiliserez quotidiennement, pour stocker les données de listes linéaires par exemple.
 
-#### Création d'un dataframe
+#### Création d'un data frame
 
-Nous créeons un dataframe avec la fonction `data.frame()` :
+Nous créeons un data frame avec la fonction `data.frame()` :
 
 ```{r}
 #| eval: true
@@ -504,42 +505,42 @@ data.frame(col1 = c(1, 4, 2, 9),
 Ici, on a crée `col1` à partir d'un vecteur numérique, et `col2` à partir d'un vecteur de chaînes de caractères. Nous avons choisi les noms des colonnes (`col1` et `col2`), ce qui est normal, mais vous pouvez exécuter le code sans nommer les colonnes pour voir comment R crée lui même des noms.
 
 ::: {.write}
-Dans votre script, créez un dataframe nomé `data_cases` qui contient `cases` dans une colonne et `region` dans l'autre.
+Dans votre script, créez un data frame nomé `data_cas` qui contient `cas` dans une colonne et `region` dans l'autre.
 :::
 
 ```{r}
 #| echo: false
 #| eval: true
 # INTERNALS
-data_cases <- data.frame(
-  cases = c(2, 5, 8, 0, 4),
+data_cas <- data.frame(
+  cas = c(2, 5, 8, 0, 4),
   region = c("Mandoul", "Sud Kivu", "Kasai oriental", 
                "Kasai", "Haut Katanga"))
 ```
 
-#### Exploration d'un dataframe {#sec-dataframe-functions}
+#### Exploration d'un data frame {#sec-data frame-functions}
 
-L'objet `data_cases` devrait maintenant apparaître dans votre environnement. Vous pouvez cliquer sur le cercle bleu avec un triangle blanc pour dérouler des informations supplémentaires, ou cliquer sur son nom pour le visualiser dans un onglet dans le même volet que votre script.
+L'objet `data_cas` devrait maintenant apparaître dans votre environnement. Vous pouvez cliquer sur le cercle bleu avec un triangle blanc pour dérouler des informations supplémentaires, ou cliquer sur son nom pour le visualiser dans un onglet dans le même volet que votre script.
 
-![dataframe `data_cases` apparaît désormais dans l'onglet Environnement.](../img/core/01_introduction/03_environment.png){fig-align="center"}
+![Le ddata frame `data_cas` apparaît désormais dans l'onglet Environnement.](../img/core/01_introduction/03_environment.png){fig-align="center"}
 
-Il existe plusieurs fonctions pratiques pour explorer un dataframe :
+Il existe plusieurs fonctions pratiques pour explorer un data frame :
 
 ::: {.write}
 Exécutez les commandes suivantes et essayez de déterminer le type d'informations qu'elles renvoient.
 
 ```{r}
-str(data_cases)     # STRucture de l'object
-dim(data_cases)     # DIMension de l'object
-nrow(data_cases)    # Nombre de lignes (row = ligne)
-ncol(data_cases)    # Nombre de COLonnes
-names(data_cases)   # noms des colonnes
+str(data_cas)     # STRucture de l'object
+dim(data_cas)     # DIMension de l'object
+nrow(data_cas)    # Nombre de lignes (row = ligne)
+ncol(data_cas)    # Nombre de COLonnes
+names(data_cas)   # noms des colonnes
 ```
 
 :::
-Pratiquons un peu plus ! R est livré avec quelques dataframes intégrés, auxquels il est possible d'accéder directement, dont un appelé `iris`. C'est pratique pour cette session car nous n'avons pas encore appris à importer des données dans R (ne vous inquiétez pas, nous travaillerons sur des données de liste linéaire dès la prochaine session !).
+Pratiquons un peu plus ! R est livré avec quelques data frames intégrés, auxquels il est possible d'accéder directement, dont un appelé `iris`. C'est pratique pour cette session car nous n'avons pas encore appris à importer des données dans R (ne vous inquiétez pas, nous travaillerons sur des données de liste linéaire dès la prochaine session !).
 
-Nous pouvons afficher les premières lignes de ce dataframe grâce à la fonction `head()` (head = la tête en anglais):
+Nous pouvons afficher les premières lignes de ce data frame grâce à la fonction `head()` (head = la tête en anglais):
 
 ```{r}
 #| eval: true
@@ -547,61 +548,61 @@ head(iris)
 ```
 
 ::: {.write}
-Combien de lignes et de colonnes y a-t-il dans `iris`? Quels sont les noms des colonnes de ce dataframe ?
+Combien de lignes et de colonnes y a-t-il dans `iris`? Quels sont les noms des colonnes de ce data frame ?
 :::
 
-#### Accéder aux données d'un dataframe
+#### Accéder aux données d'un data frame
 
-En R, il existe plusieurs méthodes pour accéder aux lignes et/ou colonnes d'un dataframe. Dans cette session d'introduction, nous nous concentrerons sur la syntaxe `[row, column]`.
+En R, il existe plusieurs méthodes pour accéder aux lignes et/ou colonnes d'un data frame. Dans cette session d'introduction, nous nous concentrerons sur la syntaxe `[row, column]`.
 
 Nous pouvons utiliser un numéro (ou un intervalle) de ligne pour extraire des lignes, et des numéros (ou un intervalle) de colonnes pour extraire les colonnes. Ont peut également utiliser le **nom** des colonnes pour y accéder.
 
 ```{r}
 #| eval: true
-data_cases[1, 2]          # Afficher la valeur de la ligne 1, deuxième colonne
-data_cases[1, "region"]   # Afficher la valeur de la lignbe 1, pour la colonne région
+data_cas[1, 2]          # Afficher la valeur de la ligne 1, deuxième colonne
+data_cas[1, "region"]   # Afficher la valeur de la lignbe 1, pour la colonne région
 ```
 
 Si nous voulons accéder à toutes les lignes (ou colonnes), nous pouvons simplement laisser un espace à la place du numéro/nom :
 
 ```{r}
 #| eval: true
-data_cases[1, ]           # Extraire la première ligne (garde toutes les colonnes)
-data_cases[2:4, ]         # Valeurs des lignes 2 à 4, pour toutes les colonnes
-data_cases[ , "region"]   # Garde toutes les lignes mais que la colonne région
+data_cas[1, ]           # Extraire la première ligne (garde toutes les colonnes)
+data_cas[2:4, ]         # Valeurs des lignes 2 à 4, pour toutes les colonnes
+data_cas[ , "region"]   # Garde toutes les lignes mais que la colonne région
 ```
 
 Nous pouvons même sélectionner plusieurs indices non consécutifs en utilisant un vecteur :
 
 ```{r}
 #| eval: true
-data_cases[c(1, 3), ]  # Ligne 1 et 3 (toutes les colonnes)
+data_cas[c(1, 3), ]  # Ligne 1 et 3 (toutes les colonnes)
 ```
 
-Soyez attentifs, le *type* de sortie renvoyé lors de l'extraction des parties d'un dataframe dépend de l'indexation utilisée :
+Soyez attentifs, le *type* de sortie renvoyé lors de l'extraction des parties d'un data frame dépend de l'indexation utilisée :
 
 ```{r}
 #| eval: true
-str(data_cases[1 , ])   # Renvoit un dataframe
-str(data_cases[ , 1])   # Renvoit un vecteur
+str(data_cas[1 , ])   # Renvoit un data frame
+str(data_cas[ , 1])   # Renvoit un vecteur
 ```
 
-Une syntaxe simplifiée existe pour extraire des colonnes d'un dataframe :
+Une syntaxe simplifiée existe pour extraire des colonnes d'un data frame :
 
 ```{r}
 #| eval: true
-data_cases[2]           # Renvoit la deuxième colonne (format dataframe)
-data_cases["region"]    # Renvoit la colonne région (format dataframe)
+data_cas[2]           # Renvoit la deuxième colonne (format data frame)
+data_cas["region"]    # Renvoit la colonne région (format data frame)
 ```
 
-Notez que ces commandes renvoient des dataframes avec une seule colonne.
+Notez que ces commandes renvoient des data frames avec une seule colonne.
 
 ::: {.write}
 Ecrivez le code pour :
 
-- extraire la troisième valeur de la colonne `region` de votre dataframe
-- extraire les deuxième et troisième valeurs de la colonne `cases`
-- calculer la somme des valeurs de la colonne `cases`
+- extraire la troisième valeur de la colonne `region` de votre data frame
+- extraire les deuxième et troisième valeurs de la colonne `cas`
+- calculer la somme des valeurs de la colonne `cas`
 :::
 
 ## Valeurs manquantes {#sec-missing-values}
@@ -614,11 +615,11 @@ Les fonctions sont des objets qui contiennent *des commandes* (au lieu de valeur
 
 La majorité des fonctions que vous allez utiliser ont besoin d'informations complémentaires : a minima des données, mais d'autres paramètres. On appelle ces informations des arguments. Les arguments sont normalement nommés.
 
-Par exemple, lorsque nous avons exécuté la commande `sum(cases)`, nous avons fourni le vecteur `cases` comme premier (et seul) argument de la fonction `sum()`.
+Par exemple, lorsque nous avons exécuté la commande `sum(cas)`, nous avons fourni le vecteur `cas` comme premier (et seul) argument de la fonction `sum()`.
 
-Parmis les arguments d'une fonction, certains peuvent être *obligatoires*, d'autres *facultatifs*. Le premier argument est presque toujours obligatoire et est souvent un dataframe ou un vecteur de données. Comme c'est un argument évident, on omet souvent son nom (il vous a sans doute semblé naturel de taper `mean(cases)` au lieu de `mean(x = cases)`). 
+Parmis les arguments d'une fonction, certains peuvent être *obligatoires*, d'autres *facultatifs*. Le premier argument est presque toujours obligatoire et est souvent un data frame ou un vecteur de données. Comme c'est un argument évident, on omet souvent son nom (il vous a sans doute semblé naturel de taper `mean(cas)` au lieu de `mean(x = cas)`). 
 
-Les arguments facultatifs, en revanche, sont généralement utilisés avec neur nom. Par exemple :  `mean(cases, na.rm = TRUE)`. Les arguments facultatifs sont souvent fournis avec des valeurs par défaut raisonnables, ce qui fait que l’utilisateur ne les fournit que lorsqu’il a besoin de changer ces valeurs par défaut. Par exemple, l'argument `na.rm` de la fonction `mean()` controle comment les valeurs manquantes sont gérées lors du calcul de la moyenne (“na” en référence aux valeurs manquantes `NA`, et “rm” comme raccourci de “ReMove”, que l’on peut traduire dans ce contexte par enlever ou ignorer). Par défault, la valeur de `na.rm` est `FALSE` Ainsi, par défaut, la moyenne de données avec des valeurs manquantes renverra toujours `NA` :
+Les arguments facultatifs, en revanche, sont généralement utilisés avec neur nom. Par exemple :  `mean(cas, na.rm = TRUE)`. Les arguments facultatifs sont souvent fournis avec des valeurs par défaut raisonnables, ce qui fait que l’utilisateur ne les fournit que lorsqu’il a besoin de changer ces valeurs par défaut. Par exemple, l'argument `na.rm` de la fonction `mean()` controle comment les valeurs manquantes sont gérées lors du calcul de la moyenne (“na” en référence aux valeurs manquantes `NA`, et “rm” comme raccourci de “ReMove”, que l’on peut traduire dans ce contexte par enlever ou ignorer). Par défault, la valeur de `na.rm` est `FALSE` Ainsi, par défaut, la moyenne de données avec des valeurs manquantes renverra toujours `NA` :
 
 ```{r}
 #| eval: true
@@ -638,14 +639,14 @@ mean(c(1, 3, NA), na.rm = TRUE)
 - Chaque fois qu'un argument nommé est utilisé, l'attribut `=` doit être entouré d'espaces :
 
 ```{r}
-mean(cases,na.rm=TRUE)     # MAUVAIS
-mean(cases, na.rm = TRUE)  # BON
+mean(cas,na.rm=TRUE)     # MAUVAIS
+mean(cas, na.rm = TRUE)  # BON
 ```
 
 Si vous travaillez avec des fonctions complexes et fournissez de nombreux arguments, séparez chaque argument sur sa propre ligne pour améliorer la lisibilité : 
 
 ```{r}
-mean(cases, 
+mean(cas, 
      na.rm = TRUE) 
 ```
 
@@ -656,10 +657,10 @@ Que se passe-t-il si l'on fournit plusieurs arguments dans le désordre ? Si vou
 ```{r}
 # Fonctionnel mais dur à lire
 mean(na.rm = TRUE,  
-     x = cases) 
+     x = cas) 
 
 # mieux :
-mean(cases,         
+mean(cas,         
      na.rm = TRUE)
 ```
 
@@ -667,7 +668,7 @@ En revanche, si vous ne nommez pas les arguments et les passez dans le désordre
 
 ```{r}
 #| error=TRUE
-mean(TRUE, cases)  # Pas ce que vous attendez
+mean(TRUE, cas)  # Pas ce que vous attendez
 ```
 
 
