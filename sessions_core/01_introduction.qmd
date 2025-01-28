@@ -694,8 +694,8 @@ That's all for this session, congratulations on taking your first steps with R a
 #| eval: true
 
 downloadthis::download_link(
-  link = 'https://github.com/epicentre-msf/repicentre/blob/main/sessions_core/01_introduction_solutions.R',
-  button_label = 'Solution File',
+  link = 'https://github.com/epicentre-msf/repicentre/blob/main/sessions_core/01_introduction_solutions.fr.R',
+  button_label = 'Solutions exercices',
   has_icon = TRUE,
   icon = "fa fa-save",
   self_contained = FALSE
