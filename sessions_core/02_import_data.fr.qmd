@@ -4,9 +4,6 @@ description: Créez un projet Rstudio, installez les paquets utiles et commencez
   importer des données pour travailler dans R.
 date: last-modified
 image: ../img/core/02_import/01_logo.png
-params:
-  solutions: false
-  sub_title: '**------ With Solutions ------**'
 categories:
 - Core
 - RStudio
@@ -17,8 +14,6 @@ categories:
 #| include: false
 #| eval: true
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
-
-solutions <- params$solutions
 
 library(here) # for filepaths
 library(rio)  # import and export files
@@ -168,13 +163,6 @@ library(here) # télécharge le paquet "here"
 ::: {.write}
 Utilisez le `library()` pour charger les paquets `here` et `rio` qui seront utilisés dans la section suivante.
 :::
-
-```{r}
-#| include = solutions
-# SOLUTION
-library(here)
-library(rio)
-```
 
 En fonction de la configuration de votre ordinateur et du paquet que vous essayez de charger, il se peut que vous obteniez un [message d'avertissement]{.hovertip bs-toggle='tooltip' bs-title='Contrairement aux messages d'erreur, les avertissements n'interrompent pas la commande en cours. Ils sont utilisés pour signaler des problèmes potentiels, mais non graves, et n'ont pas toujours besoin d'être corrigés.'} signalant que certaines fonctions ont été [masquées] {.hovertip bs-toggle='tooltip' bs-title='Le masquage se produit lorsque R essaie de charger plus d'une fonction portant le même nom en même temps. Ce problème est courant. Par exemple, il existe un grand nombre de paquets qui ont une fonction appelée`filter()` ou `select()`. Lorsque ces conflits se produisent, R choisira la version qui a été chargée en dernier et les autres versions seront ignorées (masquées).'} ou que la version actuelle du paquet a été construite pour une version différente de R. Ces messages ne posent généralement pas de problème, mais il est tout de même important de les noter.
 
