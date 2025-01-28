@@ -53,7 +53,7 @@ Au cours de ces exercices, vous rencontrerez peut-être des erreurs, qui se prod
 
 ## RStudio et R
 
-*R* est un [langage de programmation fonctionnel]{.hovertip bs-toggle='tooltip' bs-title='Par opposition aux langages orientés objet qui sont plus dédiés à construire des programmes complexes tels que les systèmes d'exploitation'} qui peut être utilisé pour nettoyer et manipuler des données, effectuer des analyses (en particulier des analyses statistiques), visualiser des résultats, et bien plus encore.
+*R* est un [langage de programmation fonctionnel]{.hovertip bs-toggle='tooltip' bs-title="Par opposition aux langages orientés objet qui sont plus dédiés à construire des programmes complexes tels que les systèmes d'exploitation"} qui peut être utilisé pour nettoyer et manipuler des données, effectuer des analyses (en particulier des analyses statistiques), visualiser des résultats, et bien plus encore.
 
 *RStudio* est un logiciel qui fournit une interface facile à utiliser pour R (également appelé IDE, pour "Integrated Development Environment"). Bien que l'utilisation d'une interface graphique ne soit pas obligatoire, elle est fortement recommandée pour les débutants.
 
@@ -292,7 +292,7 @@ R est sensible aux majuscules, ce qui signifie que la chaîne `"ABC"` n'est pas 
 :::
 
 ::: {callout-note}
-Si vous souhaitez créer une chaîne de caractères contenant des guillemets, la meilleure pratique consiste à [s'échapper]{.hovertip bs-toggle='tooltip' bs-title="Certains caractères de R sont spéciaux, ce qui signifie qu'ils constituent généralement un type de commande à part entière. Lorsque vous souhaitez utiliser l'un de ces caractères spéciaux dans un texte normal, vous devez explicitement demander à R d'ignorer la fonctionnalité spéciale du caractère. Ce processus est appelé le caractère spécial"}  du caractère en le faisant précéder d'un '\ ', par exemple : `"Elle dit \"Bonjour\" et s'en alla"` ou `'C\'est une belle journée'`. Si vous avez utilisé une double citation pour créer la chaîne de caractères, vous pouvez utiliser des guillemets simples à l'intérieur de celle-ci (par exemple : `"C'est une belle journée"`) et vice versa (par exemple : `'Elle dit "Bonjour" et s'en alla'`).
+Si vous souhaitez créer une chaîne de caractères contenant des guillemets, la meilleure pratique consiste à [s'échapper]{.hovertip bs-toggle='tooltip' bs-title="Certains caractères de R sont spéciaux, ce qui signifie qu'ils constituent généralement un type de commande à part entière. Lorsque vous souhaitez utiliser l'un de ces caractères spéciaux dans un texte normal, vous devez explicitement demander à R d'ignorer la fonctionnalité spéciale du caractère. Ce processus est appelé le caractère spécial"}  du caractère en le faisant précéder d'un `\`, par exemple : `"Elle dit \"Bonjour\" et s'en alla"` ou `'C\'est une belle journée'`. Si vous avez utilisé une double citation pour créer la chaîne de caractères, vous pouvez utiliser des guillemets simples à l'intérieur de celle-ci (par exemple : `"C'est une belle journée"`) et vice versa (par exemple : `'Elle dit "Bonjour" et s'en alla'`).
 :::
 
 ### Booléen (logique)

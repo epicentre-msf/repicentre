@@ -52,5 +52,17 @@
   },
   "about.fr.qmd": {
     "about.fr.html": "7d23b5e8"
+  },
+  "explore.fr.qmd": {
+    "explore.fr.html": "574c8696"
+  },
+  "index.fr.qmd": {
+    "index.fr.html": "d07fd857"
+  },
+  "pathway.fr.qmd": {
+    "pathway.fr.html": "67554c3e"
+  },
+  "resources.fr.qmd": {
+    "resources.fr.html": "483599f5"
   }
 }
