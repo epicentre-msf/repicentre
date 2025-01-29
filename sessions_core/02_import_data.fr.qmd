@@ -63,7 +63,7 @@ Pour travailler dans le cadre de cette session, vous devez comprendre les deux c
 
 ### Projets RStudio
 
-Un projet RStudio peut être utilisé pour vous faciliter la vie et vous aider à orienter [RStudio autour des différents fichiers utilisés dans votre code.]{.hovertip bs-toggle='tooltip' bs-title='Techniquement, un projet RStudio n'est qu'un fichier contenant des métadonnées qui indiquent à RStudio quels fichiers ouvrir et où placer votre répertoire de travail. Cela vous évitera d'avoir à gérer vous-même votre répertoire de travail'}
+Un projet RStudio peut être utilisé pour vous faciliter la vie et vous aider à orienter [RStudio autour des différents fichiers utilisés dans votre code.]{.hovertip bs-toggle='tooltip' bs-title="Techniquement, un projet RStudio n'est qu'un fichier contenant des métadonnées qui indiquent à RStudio quels fichiers ouvrir et où placer votre répertoire de travail. Cela vous évitera d'avoir à gérer vous-même votre répertoire de travail"}
 
 Pour rappel, votre interface doit ressembler à ceci :
 
@@ -92,7 +92,7 @@ Il est fortement recommandé de mettre en place un projet RStudio distinct pour 
 Il existe plusieurs façons d'ouvrir un projet RStudio :
 
 - Utilisez le menu RStudio `File > Open Project` puis sélectionnez le projet que vous souhaitez ouvrir `.Rproj`
-- Cliquez sur \[le bouton `Project: (none)`\]{.hovertip bs-toggle='tooltip' bs-title='Vous pouvez cliquer sur ce bouton à tout moment pour savoir dans quel projet vous travaillez actuellement.'} en haut à droite de l'interface RStudio
+- Cliquez sur [le bouton]{.hovertip bs-toggle='tooltip' bs-title="Vous pouvez cliquer sur ce bouton à tout moment pour savoir dans quel projet vous travaillez actuellement."} `Project: (none)` en haut à droite de l'interface RStudio
 - Naviguez dans l'explorateur de fichiers jusqu'au dossier d'analyse et double-cliquez sur le fichier avec une extension `.Rproj`
 
 ### Les options de RStudio
@@ -105,7 +105,7 @@ Ouvrir les options globales (`Tools > Global Options`) et ouvrez l'onglet `Gener
 
 ![Capture d'écran des options de Rstudio](../img/core/02_import/03_do_not_save.png){fig-align="center"}
 
-Lorsqu'elles sont cochées, ces options amènent RStudio à enregistrer les objets de votre environnement et ils seront chargés de nouveau, chaque fois que vous ouvrirez une nouvelle session R. Bien que ces options par défaut puissent sembler une bonne idée, il est préférable de toujours commencer votre travail à partir d'une [session R vide]{.hovertip bs-toggle='tooltip' bs-title='Une session vide signifie que l'environnement est vide, mais que vous avez toujours vos scripts !'} afin d'éviter les bugs.
+Lorsqu'elles sont cochées, ces options amènent RStudio à enregistrer les objets de votre environnement et ils seront chargés de nouveau, chaque fois que vous ouvrirez une nouvelle session R. Bien que ces options par défaut puissent sembler une bonne idée, il est préférable de toujours commencer votre travail à partir d'une [session R vide]{.hovertip bs-toggle='tooltip' bs-title="Une session vide signifie que l'environnement est vide, mais que vous avez toujours vos scripts !"} afin d'éviter les bugs.
 
 :::{.callout-important}
 N'oubliez pas que toute commande ou sortie nécessaire au nettoyage et à l'analyse doit être enregistrée explicitement dans un script, dans un ordre donné, et fonctionnel.
@@ -163,7 +163,7 @@ library(here) # télécharge le paquet "here"
 Utilisez le `library()` pour charger les paquets `here` et `rio` qui seront utilisés dans la section suivante.
 :::
 
-En fonction de la configuration de votre ordinateur et du paquet que vous essayez de charger, il se peut que vous obteniez un [message d'avertissement]{.hovertip bs-toggle='tooltip' bs-title='Contrairement aux messages d'erreur, les avertissements n'interrompent pas la commande en cours. Ils sont utilisés pour signaler des problèmes potentiels, mais non graves, et n'ont pas toujours besoin d'être corrigés.'} signalant que certaines fonctions ont été [masquées] {.hovertip bs-toggle='tooltip' bs-title='Le masquage se produit lorsque R essaie de charger plus d'une fonction portant le même nom en même temps. Ce problème est courant. Par exemple, il existe un grand nombre de paquets qui ont une fonction appelée`filter()` ou `select()`. Lorsque ces conflits se produisent, R choisira la version qui a été chargée en dernier et les autres versions seront ignorées (masquées).'} ou que la version actuelle du paquet a été construite pour une version différente de R. Ces messages ne posent généralement pas de problème, mais il est tout de même important de les noter.
+En fonction de la configuration de votre ordinateur et du paquet que vous essayez de charger, il se peut que vous obteniez un [message d'avertissement]{.hovertip bs-toggle='tooltip' bs-title="Contrairement aux messages d'erreur, les avertissements n'interrompent pas la commande en cours. Ils sont utilisés pour signaler des problèmes potentiels, mais non graves, et n'ont pas toujours besoin d'être corrigés."} signalant que certaines fonctions ont été [masquées] {.hovertip bs-toggle='tooltip' bs-title="Le masquage se produit lorsque R essaie de charger plus d'une fonction portant le même nom en même temps. Ce problème est courant. Par exemple, il existe un grand nombre de paquets qui ont une fonction appelée`filter()` ou `select()`. Lorsque ces conflits se produisent, R choisira la version qui a été chargée en dernier et les autres versions seront ignorées (masquées)."} ou que la version actuelle du paquet a été construite pour une version différente de R. Ces messages ne posent généralement pas de problème, mais il est tout de même important de les noter.
 
 ::: {.write}
 Essayez d'exécuter le code suivant. Pouvez-vous trouver la signification de du message d'erreur ?
@@ -190,15 +190,15 @@ Cette pratique permet de savoir facilement quels paquets doivent être installé
 :::
 
 ::: {.write}
- Utilisation [commentaires]{.hovertip bs-toggle='tooltip' bs-title='Vous pouvez utiliser les raccourcis clavier CTRL+SHIFT+C and CTRL+SHIFT+R pour insérer des commentaires ou des sections'} pour créer une section "Paquets" dans votre script.
+ Utilisation [commentaires]{.hovertip bs-toggle='tooltip' bs-title="Vous pouvez utiliser les raccourcis clavier CTRL+SHIFT+C and CTRL+SHIFT+R pour insérer des commentaires ou des sections"} pour créer une section "Paquets" dans votre script.
 :::
 
 ### Mettre à jour les paquets
 
-R dispose d'une communauté de développeurs très active et il est assez courant que les paquets soient mis à jour régulièrement, car leurs propriétaires ajoutent de nouvelles fonctions et corrigent les bugs. Pour mettre à jour les paquets de votre bibliothèque, vous pouvez vous rendre dans \[l'onglet `Packages`\]{.hovertip bs-toggle='tooltip' bs-title='Pour rappel, cet onglet affiche la liste de tous les paquets que vous avez installés sur votre ordinateur, avec leur numéro de version.'} du panneau inférieur droit et cliquer sur `Update`. N'oubliez pas que vous **devez être connecté à internet** pendant ce processus.
+R dispose d'une communauté de développeurs très active et il est assez courant que les paquets soient mis à jour régulièrement, car leurs propriétaires ajoutent de nouvelles fonctions et corrigent les bugs. Pour mettre à jour les paquets de votre bibliothèque, vous pouvez vous rendre dans \[l'onglet `Packages`\]{.hovertip bs-toggle='tooltip' bs-title="Pour rappel, cet onglet affiche la liste de tous les paquets que vous avez installés sur votre ordinateur, avec leur numéro de version."} du panneau inférieur droit et cliquer sur `Update`. N'oubliez pas que vous **devez être connecté à internet** pendant ce processus.
 
 ::: {.callout-important}
-Parfois, lorsque les paquets sont mis à jour, il est possible que certaines fonctions que vous avez utilisées dans vos scripts soient supprimées ou modifiées, ce qui fait que votre code ne fonctionnera plus. **Pas de panique** si cela se produit. La meilleure pratique consiste à adapter *votre code* bien que, dans le pire des cas, vous puissiez [installer de force une ancienne version d'un paquet]{.hovertip bs-toggle='tooltip' bs-title='Il est déconseillé de faire cela car cela rendra votre code difficile à utiliser par d'autres.'}. Ceci ne sera pas abordé dans le cadre de cette session.
+Parfois, lorsque les paquets sont mis à jour, il est possible que certaines fonctions que vous avez utilisées dans vos scripts soient supprimées ou modifiées, ce qui fait que votre code ne fonctionnera plus. **Pas de panique** si cela se produit. La meilleure pratique consiste à adapter *votre code* bien que, dans le pire des cas, vous puissiez [installer de force une ancienne version d'un paquet]{.hovertip bs-toggle='tooltip' bs-title="Il est déconseillé de faire cela car cela rendra votre code difficile à utiliser par d'autres."}. Ceci ne sera pas abordé dans le cadre de cette session.
 :::
 
 ## Importation de données
@@ -211,7 +211,7 @@ Pour ouvrir un fichier dans R, vous devez fournir un **chemin d'accès au fichie
 
 Les chemins d'accès absolus sont **spécifiques à votre ordinateur** et vont jusqu'au niveau de votre [disque dur]{.hovertip bs-toggle='tooltip' bs-title="Par exemple, 'C:' ou 'D:' sur un ordinateur Windows."}. Par exemple, un chemin d'accès absolu peut ressembler à ceci : `D:/OneDrive - MSF/Documents/monitoring/cholera/fancy_project/data/raw/example_linelist.xlsx`. Il est clair que ce chemin ne fonctionnera que sur un seul ordinateur.
 
-L'utilisation de chemins absolus [codés en dur]{.hovertip bs-toggle='tooltip' bs-title='Le codage en dur correspond au fait l'écrire le chemin d'accès en entier, comme dans l'exemple ci-dessus, au lieu de construire des chemins par morceaux comme nous allons le montrer ci-dessous'} est **fortement déconseillé** car cela rend votre code rigide et susceptible de buguer : en effet, les chemins devront être mis à jour chaque fois que votre code est partagé ou que le dossier du projet est déplacé sur votre ordinateur.
+L'utilisation de chemins absolus [codés en dur]{.hovertip bs-toggle='tooltip' bs-title="Le codage en dur correspond au fait l'écrire le chemin d'accès en entier, comme dans l'exemple ci-dessus, au lieu de construire des chemins par morceaux comme nous allons le montrer ci-dessous"} est **fortement déconseillé** car cela rend votre code rigide et susceptible de buguer : en effet, les chemins devront être mis à jour chaque fois que votre code est partagé ou que le dossier du projet est déplacé sur votre ordinateur.
 
 #### Chemins relatifs
 
@@ -222,7 +222,7 @@ Les chemins relatifs sont définis par rapport à votre [répertoire de travail]
 Le paquet `{here}` dispose d'une fonction `here()` qui facilite grandement la définition des chemins. Elle présente deux avantages :
 
 - Lorsqu'elle est utilisée avec des projets RStudio, vous pouvez ne lui donner que la partie du chemin à l'intérieur du projet, (le *chemin relatif*), et la fonction l'utilise pour créer le *chemin absolu*.
-- Il utilise pour cela le séparateur adapté à votre [système d'exploitation]{.hovertip bs-toggle='tooltip' bs-title='Par exemple, Windows, MacOS, Debian...'} qu'il s'agisse de `/`, `\` ou `//`.
+- Il utilise pour cela le séparateur adapté à votre [système d'exploitation]{.hovertip bs-toggle='tooltip' bs-title="Par exemple, Windows, MacOS, Debian..."} qu'il s'agisse de `/`, `\` ou `//`.
 
 ```{r}
 #| eval: true
@@ -252,7 +252,7 @@ Nous voudrons souvent sourcer plusieurs fichiers de données dans un seul projet
 
 ### Fonction d'importation {#sec-import}
 
-Dans R, les différents formats de fichiers sont souvent importés à l'aide de différentes fonctions, souvent spécialisées. Cela peut s'avérer fastidieux, car vous devez mémoriser et charger un grand nombre de fonctions pour importer vos données. Pour éviter ce problème, nous vous recommandons d'utiliser la fonction `import()` du paquet <span tooltip-position="top" tooltip="`rio` signifie R Inputs and Outputs.">`{rio}`</span> . Cette fonction est capable d'ouvrir de nombreux types de fichiers (y compris Excel, csv, Stata, et bien d'autres) en reconnaissant l'extension de fichier de vos données et [en appelant une fonction spécialisée pertinente d'un autre paquet.]{.hovertip bs-toggle='tooltip' bs-title='Ce type de fonction, qui fournit une interface unifiée à d'autres fonctions spécifiques, est connu sous le nom de « wrapper ».'} afin que vous n'ayez pas à le faire.
+Dans R, les différents formats de fichiers sont souvent importés à l'aide de différentes fonctions, souvent spécialisées. Cela peut s'avérer fastidieux, car vous devez mémoriser et charger un grand nombre de fonctions pour importer vos données. Pour éviter ce problème, nous vous recommandons d'utiliser la fonction `import()` du paquet <span tooltip-position="top" tooltip="`rio` signifie R Inputs and Outputs.">`{rio}`</span> . Cette fonction est capable d'ouvrir de nombreux types de fichiers (y compris Excel, csv, Stata, et bien d'autres) en reconnaissant l'extension de fichier de vos données et [en appelant une fonction spécialisée pertinente d'un autre paquet.]{.hovertip bs-toggle='tooltip' bs-title="Ce type de fonction, qui fournit une interface unifiée à d'autres fonctions spécifiques, est connu sous le nom de « wrapper »."} afin que vous n'ayez pas à le faire.
 
 Comme `import()` ne fait qu'appeler d'autres fonctions en arrière-plan, il est possible qu'il ait besoin dautres arguments selon le type de fichier que vous voulez charger.
 
@@ -309,7 +309,7 @@ head(df_linelist, n = 10) # Inspecte les 10 premières lignes
 Utilisez `head()` pour examiner les 12 premières lignes de `df_linelist`.
 :::
 
-Nous pouvons également vérifier nos données en regardant l'onglet *Environnement* dans le panneau supérieur droit. Ici, nous pouvons voir notre dataframe dans l'environnement, examiner sa [structure]{.hovertip bs-toggle='tooltip' bs-title='Cela reivent á utiliser la commande `str()`'} ou l'ouvrir dans le visualiseur de données ("data viewer") de RStudio.
+Nous pouvons également vérifier nos données en regardant l'onglet *Environnement* dans le panneau supérieur droit. Ici, nous pouvons voir notre dataframe dans l'environnement, examiner sa [structure]{.hovertip bs-toggle='tooltip' bs-title="Cela reivent á utiliser la commande `str()`"} ou l'ouvrir dans le visualiseur de données ("data viewer") de RStudio.
 
 ::: {.look}
 Cliquez sur le bouton rond bleu à côté de `df_linelist` dans votre environnement pour voir sa structure. Cliquez ensuite sur le nom de la base de données pour le visualiser.
