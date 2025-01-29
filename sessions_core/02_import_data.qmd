@@ -17,8 +17,8 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 library(here) # for filepaths
 library(rio)  # import and export files
 
-df_linelist <- import(file = here("data", "raw", 
-              "msf_linelist_moissala_2023-09-24.xlsx"))
+df_linelist <- import(file = here("data", "raw", "xlsx",
+              "Moissalla-measles-linelist-EN.xlsx"))
 ```
 
 ## Objectives
