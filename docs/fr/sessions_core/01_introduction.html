@@ -236,7 +236,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><em>RStudio</em> est un logiciel qui fournit une interface facile à utiliser pour R (également appelé IDE, pour “Integrated Development Environment”). Son utilisation n’est pas obligatoire, mais très fortement recommandée pour les débutants.</p>
 <section id="premiers-pas-avec-rstudio" class="level3"><h3 class="anchored" data-anchor-id="premiers-pas-avec-rstudio">Premiers pas avec RStudio</h3>
 <div class="setup">
-<p>Ouvrez RStudio en utilisant le menu de démarrage de votre ordinateur ou le raccourci créé par défaut sur le bureau; si RStudio était déjà ouvert, fermez-le et ouvrez-le à nouveau.</p>
+<p>Ouvrez RStudio en utilisant le menu de démarrage de votre ordinateur ou le raccourci créé par défaut sur le bureau ; si RStudio était déjà ouvert, fermez-le et ouvrez-le à nouveau.</p>
 </div>
 <p>Vous devriez voir une interface qui ressemble à ceci :</p>
 <div class="quarto-figure quarto-figure-center">
@@ -264,7 +264,7 @@ Note
 </div>
 <div class="callout-body-container callout-body">
 <p>Ouvrir une nouvelle session R, c’est comme redémarer son ordinateur : tout est vide et prêt pour le calcul, de la même manière qu’il n’y a aucun programme ouvert lorsque vous allumez votre ordinateur pour la première fois.</p>
-<p>Nous vous encourageons à arrêter et à re-démarrer vos sessions R régulièrement. Parfois ça corrigera certains de vos problèmes !</p>
+<p>Nous vous encourageons à arrêter et à re-démarrer vos sessions R régulièrement. Parfois cela corrigera certains de vos problèmes !</p>
 </div>
 </div>
 </section><section id="panneau-inférieur-droit" class="level4"><h4 class="anchored" data-anchor-id="panneau-inférieur-droit">Panneau inférieur droit</h4>
@@ -411,7 +411,7 @@ Astuce
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Commentez une ligne sélectionnée avec le raccourci <code>CTRL + MAJ +C</code>.</p>
+<p>Commentez une ligne sélectionnée avec le raccourci <code>CTRL + MAJ + C</code>.</p>
 <p>Ajoutez une section de premier niveau avec <code>CTRL + MAJ + R</code>.</p>
 </div>
 </div>
@@ -457,7 +457,7 @@ Important
 <p>Si vous souhaitez créer une chaîne de caractères contenant des guillemets, il faut <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Certains caractères de R sont spéciaux, ils constituent généralement un type de commande à part entière. Lorsque vous souhaitez utiliser l'un de ces caractères spéciaux dans un texte normal, vous devez explicitement demander à R d'ignorer la fonctionnalité spéciale du caractère. Ce processus est appelé échapper le caractère spécial">échapper</span> les guillements les faisant précéder d’un <code>\</code>. Par exemple : <code>"Elle dit \"Bonjour\" et s'en alla"</code> ou <code>'C\'est une belle journée'</code>. Si vous avez utilisé des guillements doubles pour créer votre chaîne de caractères, vous pouvez utiliser des guillemets simples à l’intérieur de celle-ci (par exemple : <code>"C'est une belle journée"</code>) et vice versa (par exemple : <code>'Elle dit "Bonjour" et s'en alla'</code>).</p>
 </div>
 </section><section id="booléen-logique" class="level3"><h3 class="anchored" data-anchor-id="booléen-logique">Booléen (logique)</h3>
-<p>Le type <em>booléen</em> (ou <em>logique</em>) stocke des valeurs vrai/faux et est créé en écrivant soit <code>TRUE</code> [VRAI] ou <code>FALSE</code> [FALSE] sans guillemets.</p>
+<p>Le type <em>booléen</em> (ou <em>logique</em>) stocke des valeurs vrai/faux et est créé en écrivant soit <code>TRUE</code> [VRAI] ou <code>FALSE</code> [FAUX] sans guillemets.</p>
 <p>En interne, R traduit <code>TRUE</code> et <code>FALSE</code> en équivalents numériques <code>1</code> et <code>0</code> respectivement, ce qui peut être utile pour des opérations arithmétiques.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -569,7 +569,7 @@ Astuce
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>age_du_patient_a_l_admission <span class="ot">&lt;-</span> <span class="dv">19</span>   <span class="co"># Trop long</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="dv">19</span>                            <span class="co"># Concis et précis</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Des noms clairs et informatifs contribuent à rendre votre code plus lisible, ce qui permet aux autres de le comprendre facilement sans avoir à consulter le dictionnaire de données incessament.</p>
+<p>Des noms clairs et informatifs contribuent à rendre votre code plus lisible, ce qui permet aux autres de le comprendre facilement sans avoir à constamment consulter le dictionnaire de données.</p>
 </section></section><section id="structures-de-données" class="level2"><h2 class="anchored" data-anchor-id="structures-de-données">Structures de données</h2>
 <p>Jusqu’à maintenant, nous avons créé des objets simples qui contenaient une seule valeur. A présent nous allons nous intéresser à des structures plus complexes qui peuvent contenir des jeux de données.</p>
 <section id="vecteurs" class="level3"><h3 class="anchored" data-anchor-id="vecteurs">Vecteurs</h3>
@@ -582,7 +582,7 @@ Astuce
 <p>Cette leçon n’entrera pas dans les détails abstraits de ces structures et se concentrera sur celles que vous rencontrerez le plus souvent dans votre travail.</p>
 <section id="vecteurs-simples" class="level4"><h4 class="anchored" data-anchor-id="vecteurs-simples">Vecteurs simples</h4>
 <p>Les vecteurs simples peuvent contenir une ou plusieurs valeurs <em>d’un seul type de données</em>. Ils ont donc deux propriétés essentielles : une <strong>longueur</strong> et un <strong>type</strong>. Dans le cadre de ce cours, nous utiliserons indifféremment les termes “vecteur simple” et “vecteur”, comme c’est généralement le cas dans la communauté R.</p>
-<p>Techniquement, vous avez déjà créé vos premiers vecteurs simples lorsque vous avez construit les objets <code>cas</code> et <code>region</code>. Il s’agissait de vecteurs avec une longueur de taille une. Pour créer un vecteur avec plus d’une valeur, nous utiliserons la fonction <code>c()</code> (<span class="hovertip" data-bs-toggle="tooltip" data-bs-title='` c` est la première lettre de "concatener"'>moyen mnémotechnique</span>) :</p>
+<p>Techniquement, vous avez déjà créé vos premiers vecteurs simples lorsque vous avez construit les objets <code>cas</code> et <code>region</code>. Il s’agissait de vecteurs avec une longueur de taille une. Pour créer un vecteur avec plus d’une valeur, nous utiliserons la fonction <code>c()</code> (<span class="hovertip" data-bs-toggle="tooltip" data-bs-title='` c` est la première lettre de "concaténer"'>moyen mnémotechnique</span>) :</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>cas <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">8</span>, <span class="dv">0</span>, <span class="dv">4</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
