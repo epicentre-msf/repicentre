@@ -92,7 +92,7 @@ To the upper right there will be a panel with several tabs. Many of these are be
 - *History.* A record of all the commands you have executed during the current session.
 
 ::: {.callout-note}
-You can think of an R session like you would think of starting up a computer. Whenever a session starts, everything is blank and ready for computation in the same way that there aren't any programs open when you first turn on your computer. In general, we encourge you to stop and start your R sessions regularly, you may just find that _turning it off an on again_ will fix some of your bugs.
+You can think of an R session like you would think of starting up a computer. Whenever a session starts, everything is blank and ready for computation in the same way that there aren't any programs open when you first turn on your computer. In general, we encourage you to stop and start your R sessions regularly, you may just find that _turning it off an on again_ will fix some of your bugs.
 :::
 
 #### Bottom Right Corner
@@ -303,7 +303,7 @@ R is case sensitive, meaning that the string `"ABC"` is not the same as `"abc"`.
 :::
 
 ::: {callout-note}
-If you would like to create a string that contains a quotation mark the best practice is to [escape]{.hovertip bs-toggle='tooltip' bs-title="Certain characters in R are special, meaning that they are usually a type of command unto themselves. Whenever you'd like to use one of these special characters in normal text, you need to explicitly tell R to ignore the special functionality of the character. This process is called *escaping* the special character"}  the character by putting a '\\\' in front of it, ie: `"She said \"Hello\" then left"` or `'it\’s a beautiful day'`. Equivalently, if you used a double quotation to create the string you can use single quotes inside of it freely (ie: `"it’s a beautiful day"`) and vice versa (i.e.: `'She said "Hello" then left'`).
+If you would like to create a string that contains a quotation mark the best practice is to [escape]{.hovertip bs-toggle='tooltip' bs-title="Certain characters in R are special, meaning that they are usually a type of command unto themselves. Whenever you'd like to use one of these special characters in normal text, you need to explicitly tell R to ignore the special functionality of the character. This process is called *escaping* the special character"}  the character by putting a `\` in front of it, ie: `"She said \"Hello\" then left"` or `'it\'s a beautiful day'`. Equivalently, if you used a double quotation to create the string you can use single quotes inside of it freely (ie: `"it's a beautiful day"`) and vice versa (i.e.: `'She said "Hello" then left'`).
 :::
 
 
@@ -513,7 +513,7 @@ data.frame(col1 = c(1, 4, 2, 9),
            col2 = c("a bit of text", "some more text", "hello", "epidemiologists!"))
 ```
 
-See how `col1` was created from a numeric vector, and `col2` from a vector of strings. Here we chose the names of the columns (`col1` and `col2`), which is the normal was, but you can run the code without to see how R handles names by default.
+See how `col1` was created from a numeric vector, and `col2` from a vector of strings. Here we chose the names of the columns (`col1` and `col2`), which is the normal way, but you can run the code without to see how R handles names by default.
 
 
 ::: {.write}
@@ -553,7 +553,7 @@ names(data_cases)   # column NAMES
 ```
 :::
 
-Let's practie a bit more! R comes with several built in data sets that can be accessed directly, including one called `iris`. It is convenient today as we have not learned to import data in R yet (don't worry, we will work on linelist data from the second session then onwards).
+Let's practice a bit more! R comes with several built in data sets that can be accessed directly, including one called `iris`. It is convenient today as we have not learned to import data in R yet (don't worry, we will work on linelist data from the second session then onwards).
 
 We can see the first few lines of this data frame using the function `head()`:
 
@@ -695,7 +695,7 @@ That's all for this session, congratulations on taking your first steps with R a
 
 downloadthis::download_link(
   link = 'https://github.com/epicentre-msf/repicentre/blob/main/sessions_core/01_introduction_solutions.R',
-  button_label = 'Solution File',
+  button_label = 'Solutions exercices',
   has_icon = TRUE,
   icon = "fa fa-save",
   self_contained = FALSE
