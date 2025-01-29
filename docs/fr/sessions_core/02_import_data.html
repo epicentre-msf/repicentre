@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
 <head>
-<link rel="alternate" hreflang="en" href="https://epicentre-msf.github.io/repicentre/sessions_core/02_import_data.html" />
-<link rel="alternate" hreflang="fr" href="https://epicentre-msf.github.io/repicentre/fr/sessions_core/02_import_data.fr.html" />
+<link rel="alternate" hreflang="en" href="/sessions_core/02_import_data.html" />
+<link rel="alternate" hreflang="fr" href="/fr/sessions_core/02_import_data.fr.html" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.6.37">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="description" content="Créez un projet Rstudio, installez les paquets utiles et importez des données pour travailler dans R.">
 <title>Importer des données – {repicentre}</title>
@@ -58,11 +58,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script><script src="../site_libs/quarto-nav/headroom.min.js"></script><script src="../site_libs/clipboard/clipboard.min.js"></script><script src="../site_libs/quarto-search/autocomplete.umd.js"></script><script src="../site_libs/quarto-search/fuse.min.js"></script><script src="../site_libs/quarto-search/quarto-search.js"></script><meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js"></script><script src="../site_libs/quarto-html/popper.min.js"></script><script src="../site_libs/quarto-html/tippy.umd.min.js"></script><script src="../site_libs/quarto-html/anchor.min.js"></script><link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-0626ff4d7a71b55c8707dcae1d04a9b6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-e25cc82807363e79c52e96bc8b7855f1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-697306ee647f3aecb60be57249203282.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-3fe3df12cb322cd60d4f50ab5ce79ec8.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script><link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-b814d3e578892f16fb585af6f47f426f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-35dfec4a88a4a8552367c65e80eaa027.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-d747503b21a9267137dc98650c9a257a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-5131c98158f83ec01234852a3be8e382.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -107,7 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
 <li class="nav-item"><div class="dropdown" id="languages-links-parent">
-<button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="languages-button"><i class="bi bi-globe2"></i></button><ul class="dropdown-menu" id="languages-links"><li><a class="dropdown-item" href="https://epicentre-msf.github.io/repicentre/sessions_core/02_import_data.html" id="language-link-en">English</a></li></ul>
+<button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="languages-button"><i class="bi bi-globe2"></i></button><ul class="dropdown-menu" id="languages-links"><li><a class="dropdown-item" href="/sessions_core/02_import_data.html" id="language-link-en">English</a></li></ul>
 </div></li>
 <li class="nav-item">
     <a class="nav-link" href="../pathway.html"> 
@@ -211,9 +211,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Créer un projet RStudio</li>
 <li>Mettre en place un code organisé et bien documenté</li>
-<li>Installer et charger des paquets</li>
-<li>Écrire des chemins d’accès robustes pour les fichiers</li>
-<li>Importer et inspecter des données</li>
+<li>Installer et charger des paquets dans la session</li>
+<li>écrire des chemins d’accès aux fichiers robustes</li>
+<li>Importer et inspecter des données dans R</li>
 </ul>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -225,44 +225,52 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Les principes que vous avez appris dans l’ <a href="01_introduction.html">Introduction à R</a> s’appliquent également ici : nous devons faire de notre mieux pour nous assurer que nos projets ne fonctionneront pas seulement aujourd’hui, mais qu’ils pourront également être réutilisés et partagés à l’avenir. Bien que cela ne soit pas toujours facile, il existe plusieurs bonnes pratiques qui peuvent nous aider, et l’une des plus importantes est de commencer avec une bonne base de code organisée.</p>
+<p>Les principes vus dans le module FETCH de gestion des données s’appliquent aussi à votre code : on veut écrire un script qui fonctionne maintenant, mais également dans le futur, et qu’il soit partageable. Bien que cela ne soit pas toujours facile, il existe plusieurs bonnes pratiques qui peuvent nous aider, et la première est d’avoir un code source propre et bien organisé.</p>
 </div>
 </div>
 </section><section id="mise-en-place-du-projet" class="level2"><h2 class="anchored" data-anchor-id="mise-en-place-du-projet">Mise en place du projet</h2>
 <section id="folder-structure" class="level3"><h3 class="anchored" data-anchor-id="folder-structure">Structure des dossiers</h3>
 <div class="setup">
-<p>Si ce n’est pas déjà fait, téléchargez le dossier du cours, sauvegardez-le à un endroit <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="OneDrive ne fonctionne pas bien avec R car il va constamment synchroniser certains dossiers de projets, ce qui peut entraîner des erreurs ou des problèmes de mémoire"><strong>non connecté à OneDrive</strong></span>. Décompressez l’archive et ouvrez le dossier non compressé.</p>
+<p>Si ce n’est pas déjà fait, téléchargez le dossier du cours et sauvegardez-le à un endroit <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="OneDrive ne fonctionne pas bien avec R car il va constamment synchroniser certains fichiers, ce qui peut entraîner des erreurs ou des problèmes de mémoire"><strong>non connecté à OneDrive</strong></span>. Décompressez l’archive et ouvrez le dossier non compressé.</p>
 </div>
-<p>Ce dossier donne un exemple de structure typique (et fortement recommandée) pour vos projets de code :</p>
+<p>Ce dossier illustre une structure typique et recommandée pour vos projets de code :</p>
 <ul>
-<li>données</li>
-<li>propres</li>
-<li>brut</li>
-<li>R</li>
-<li>résultats</li>
-<li>LISEZ-MOI</li>
+<li>📁 data
+<ul>
+<li>📁 raw</li>
+<li>📁 clean</li>
 </ul>
-<p>Ce dossier sera votre répertoire de travail pour <strong>toutes les sessions de ce cours</strong>. Vous y créerez un projet Rstudio (explications ci-dessous), et y enregistrerez tous vos scripts. <code>/R</code>. Les données du cours se trouvent déjà dans <code>data/raw</code>.</p>
+</li>
+<li>📁 R</li>
+<li>📁 outputs</li>
+<li>README / LISEZ-MOI</li>
+</ul>
+<p>Ce dossier sera votre répertoire de travail pour <strong>toutes les sessions de ce cours</strong>. Vous y créerez un projet Rstudio (explications ci-dessous), et y enregistrerez tous vos scripts (sous dossier <code>/R</code>). Les données brutes se trouvent déjà dans <code>data/raw</code>.</p>
 </section><section id="sec-definitions" class="level3"><h3 class="anchored" data-anchor-id="sec-definitions">Définitions</h3>
-<p>Pour travailler dans le cadre de cette session, vous devez comprendre les deux concepts suivants :</p>
-<p><strong>Répertoire de travail.</strong> Le répertoire de travail est l’emplacement (dossier) où se trouve votre session R <em>en cours</em>. Si vous enregistrez un fichier, par exemple, il sera enregistré dans ce dossier par défaut. De même, lorsque vous souhaitez ouvrir un fichier, ce dossier sera affiché par défaut. Tous les chemins relatifs seront relatifs à ce répertoire de travail. Par défaut, R choisit généralement le dossier “Documents” comme répertoire de travail sur les machines Windows.</p>
-<p><strong>Racine.</strong> La racine fait référence au niveau de dossier le plus élevé du répertoire de travail. Si le dossier de votre cours s’appelle <code>FETCHR</code> la racine se trouverait directement à l’intérieur de celui-ci (et non dans l’un de ses sous-dossiers comme <code>R</code> ou <code>Data</code>).</p>
+<p>Voici deux concepts importants que vous allez rencontrer tout au cours de cette leçon :</p>
+<p><strong>Répertoire de travail.</strong> Le répertoire de travail est l’emplacement (dossier) où se trouve votre session R <em>en cours</em>. Si vous enregistrez un fichier, par exemple, il sera enregistré dans ce dossier par défaut. De même, lorsque vous souhaitez ouvrir un fichier, ce dossier sera affiché par défaut. Tous les chemins relatifs auront ce dossier pour origine. Par défaut, R choisit généralement votre dossier “Documents” comme répertoire de travail sur les machines Windows.</p>
+<p><strong>Racine.</strong> La racine fait référence au niveau de dossier le plus élevé du répertoire de travail. Si le dossier de votre cours s’appelle <code>FETCHR</code> la racine se trouverait directement à l’intérieur de celui-ci (et non dans l’un de ses sous-dossiers comme <code>/R</code> ou <code>/data</code>).</p>
 </section><section id="projets-rstudio" class="level3"><h3 class="anchored" data-anchor-id="projets-rstudio">Projets RStudio</h3>
-<p>Un projet RStudio peut être utilisé pour vous faciliter la vie et vous aider à orienter <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Techniquement, un projet RStudio n'est qu'un fichier contenant des métadonnées qui indiquent à RStudio quels fichiers ouvrir et où placer votre répertoire de travail. Cela vous évitera d'avoir à gérer vous-même votre répertoire de travail">RStudio autour des différents fichiers utilisés dans votre code.</span></p>
+<p>Un <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Techniquement, c'est qu'un fichier contenant des métadonnées qui indiquent à RStudio quels fichiers ouvrir et quel est le répertoire de travail, ce qui vous évite d'avoir à le définir vous même">projet RStudio</span> est outil qui va faciliter votre vie et orienter RStudio autour des différents fichiers utilisés dans votre code.</p>
 <p>Pour rappel, votre interface doit ressembler à ceci :</p>
 <div id="fig-interface" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-interface-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../img/core/01_introduction/01_rstudio_interface_en.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-interface-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure 1: Capture d’écran d’une interface Rstudio typique
+Figure 1: Capture d’écran d’une interface RStudio typique
 </figcaption></figure>
 </div>
 <div class="setup">
-<p>Ouvrez RStudio et créez un nouveau projet en cliquant sur <code>File &gt; New Project &gt; Existing Directory &gt; Browse</code>, en naviguant dans le dossier du cours (en l’ouvrant) et en cliquant sur <code>Create Project</code>.</p>
+<p>Ouvrez RStudio et suivez les étapes pour créer un nouveau projet :</p>
+<ul>
+<li>cliquez sur <code>File &gt; New Project &gt; Existing Directory &gt; Browse</code>,</li>
+<li>naviguez jusqu’au dossier du cours (en l’ouvrant)</li>
+<li>cliquz sur <code>Create Project</code>.</li>
+</ul>
 </div>
 <div class="look">
-<p>Dans l’explorateur Windows, regardez le dossier du cours. Vous devriez maintenant voir un nouveau fichier avec l’extension <code>.Rproj</code> qui a une petite icône bleue avec un R.</p>
+<p>Dans l’explorateur Windows, examinez le dossier du cours. Vous devriez maintenant voir un nouveau fichier avec l’extension <code>.Rproj</code> qui a une petite icône bleue avec un R.</p>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="../img/core/02_import/02_rproject.png" class="img-fluid figure-img"></p>
@@ -278,10 +286,10 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Si vous ne voyez pas ce fichier, c’est probablement parce qu’il est caché par défaut sur votre ordinateur. Pour modifier ce paramètre dans l’explorateur Windows, allez dans le menu <em>Afficher</em> et sélectionnez <code>Filename Extensions</code>.</p>
+<p>Si vous ne voyez pas ce fichier, c’est probablement parce qu’il est caché par défaut sur votre ordinateur. Pour modifier ce paramètre dans l’explorateur Windows, allez dans le menu <em>Afficher</em> et sélectionnez <code>Extensions de noms de fichier</code>.</p>
 </div>
 </div>
-<p>Lorsque vous ouvrez un projet RStudio, RStudio démarre une nouvelle session R, ouvre les fichiers de projet associés et définit votre répertoire de travail à la racine du dossier du cours. À ce moment-là, RStudio affiche également les sous-dossiers de ce répertoire dans le panneau en bas à droite.</p>
+<p>Lorsque vous ouvrez un projet RStudio, RStudio démarre une nouvelle session R spécifique à ce projet, ouvre les fichiers associés et définit la racine de votre dossier de cours comme répertoire de travail. Une conséquence immédiate est que le panneau <em>Files</em> en bas à droite de l’interface montre les sous dossiers présents dans le répertoire de travail, <em>i.e.</em> votre dossier de cours.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -292,26 +300,25 @@ Astuce
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Il est fortement recommandé de mettre en place un projet RStudio distinct pour chacune de vos <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Ici, une analyse unique implique l'ensemble du processus de chargement, de nettoyage, d'analyse et de production de rapports sur une base de données.">analyses</span> afin de garantir que les fichiers de votre projet restent organisés et gérables.</p>
+<p>Il est fortement recommandé de mettre en place un projet RStudio distinct pour <em>chacune</em> de vos <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Ici, un projet d'analyse implique l'ensemble du processus de chargement, de nettoyage, d'analyse et de production de rapports sur un jeu de données.">analyses</span> afin de garantir que les fichiers de votre projet restent organisés.</p>
 </div>
 </div>
 <p>Il existe plusieurs façons d’ouvrir un projet RStudio :</p>
 <ul>
-<li>Utilisez le menu RStudio <code>File &gt; Open Project</code> puis sélectionnez le projet que vous souhaitez ouvrir <code>.Rproj</code>
-</li>
-<li>Cliquez sur <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Vous pouvez cliquer sur ce bouton à tout moment pour savoir dans quel projet vous travaillez actuellement.">le bouton</span> <code>Project: (none)</code> en haut à droite de l’interface RStudio</li>
-<li>Naviguez dans l’explorateur de fichiers jusqu’au dossier d’analyse et double-cliquez sur le fichier avec une extension <code>.Rproj</code>
+<li>Utilisez le menu RStudio <code>File &gt; Open Project</code> puis sélectionnez le fichier <code>.Rproj</code> approprié</li>
+<li>Cliquez sur <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Examinez ce bouton pour savoir dans quel projet vous travaillez actuellement.">le bouton <code>Project: (none)</code></span> en haut à droite de l’interface RStudio</li>
+<li>Naviguez dans l’explorateur de fichiers Windows jusqu’à votre dossier de cours et double-cliquez sur le fichier avec l’extension <code>.Rproj</code>
 </li>
 </ul></section><section id="les-options-de-rstudio" class="level3"><h3 class="anchored" data-anchor-id="les-options-de-rstudio">Les options de RStudio</h3>
-<p>Avant de poursuivre, mettons à jour certains paramètres par défaut de RStudio qui posent problème :</p>
+<p>Avant de poursuivre, allons modifier certaines des options de RStudio qui peuvent causer des problèmes.</p>
 <div class="setup">
-<p>Ouvrir les options globales (<code>Tools &gt; Global Options</code>) et ouvrez l’onglet <code>General</code> (menu de gauche). Assurez-vous qu’<em>aucune</em> des cases des sections <code>R Sessions</code>, <code>Workspace</code> ou <code>History</code> sont cochées.</p>
+<p>Ouvrir les options globales (<code>Tools &gt; Global Options</code>) et ouvrez l’onglet <code>General</code> (menu de gauche). Déselectionnez toutes les cases des sections <code>R Sessions</code>, <code>Workspace</code> et <code>History</code>.</p>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="../img/core/02_import/03_do_not_save.png" class="img-fluid figure-img"></p>
-<figcaption>Capture d’écran des options de Rstudio</figcaption></figure>
+<figcaption>Capture d’écran des options de RStudio</figcaption></figure>
 </div>
-<p>Lorsqu’elles sont cochées, ces options amènent RStudio à enregistrer les objets de votre environnement et ils seront chargés de nouveau, chaque fois que vous ouvrirez une nouvelle session R. Bien que ces options par défaut puissent sembler une bonne idée, il est préférable de toujours commencer votre travail à partir d’une <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Une session vide signifie que l'environnement est vide, mais que vous avez toujours vos scripts !">session R vide</span> afin d’éviter les bugs.</p>
+<p>Lorsque ces options sont activées, RStudio enregistre les objets de votre environnement et les charge à chaque fois que vous ouvrez une nouvelle session R. Ca semble être une bonne idée, mais il est en fait préférable de toujours commencer votre travail à partir d’une <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Une session vide signifie que l'environnement est vide, mais vos scripts avec toutes les instructions sont toujours là !">session R vide</span> afin d’éviter les erreurs.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -322,23 +329,23 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>N’oubliez pas que toute commande ou sortie nécessaire au nettoyage et à l’analyse doit être enregistrée explicitement dans un script, dans un ordre donné, et fonctionnel.</p>
+<p>N’oubliez pas que toutes les commandes nécessaires au nettoyage et à l’analyse de vos données doit être enregistrée explicitement dans un script, dans le bon ordre. Faire retourner le script devrait arriver aux mêmes résultats.</p>
 </div>
 </div>
 </section></section><section id="création-dun-nouveau-script" class="level2"><h2 class="anchored" data-anchor-id="création-dun-nouveau-script">Création d’un nouveau script</h2>
 <div class="setup">
-<p>Ouvrez un nouveau script et enregistrez-le dans le répertoire <code>R</code> de votre projet sous le nom <code>import_data.R</code>.</p>
-<p>Ajoutez quelques métadonnées au début du script, comme indiqué dans la première session, en utilisant la fonction <a href="../sessions_core/01_introduction.html#sec-comments">commentaires</a>. Veillez à inclure :</p>
+<p>Ouvrez un nouveau script et enregistrez-le dans le sous-dossier <code>R</code> de votre projet sous le nom <code>import_data.R</code>.</p>
+<p>Ajoutez des métadonnées au début du script, comme recommandé lors première session, en utilisant des <a href="../sessions_core/01_introduction.html#sec-comments">commentaires</a>. Veillez à inclure :</p>
 <ul>
 <li>Le titre</li>
-<li>L’auteur de l’article</li>
+<li>L’auteur du script</li>
 <li>La date de création</li>
-<li>La description du projet</li>
+<li>Une description rapide de ce que fait le script</li>
 </ul>
 </div>
-<p>Vous êtes maintenant prêt à commencer à coder !</p>
+<p>Nous sommes prêts à commencer à coder</p>
 </section><section id="sec-packages" class="level2"><h2 class="anchored" data-anchor-id="sec-packages">Paquets</h2>
-<p>Les paquets sont un ensemble de fonctions qui qui permettent d’aller plus loin qu’avec les fonctionnalités basiques de R. Vous les utiliserez <strong>beaucoup</strong> dans ce cours et dans votre vie quotidienne. Heureusement, en tant que langage open source, les paquets R peuvent être téléchargés et installés gratuitement sur internet.</p>
+<p>Les paquets [<em>packages</em>] sont des collections de fonctions qui étendent les fonctionalités de R. Vous en utiliserez un grand nombre pendant ce cours et dans votre travail quotidien. R étant open-souce, les packages sont téléchargeable et utilisable gratuitement.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -349,11 +356,11 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Dans R, les paquets sont référencés à l’aide de <code>{}</code>. Par exemple <code>{ggplot2}</code> est le nom du paquet ggplot2 qui contient de nouvelles fonctions de traçage telles que <code>ggplot()</code>, <code>geom_point()</code> etc…</p>
+<p>Dans R, la convention est de référencer les paquets à l’aide de <code>{}</code> dans les explications. Par exemple <code>{ggplot2}</code> est le nom du paquet ggplot2 qui contient des fonctions pour créer des graphes, telles que <code>ggplot()</code>, <code>geom_point()</code> etc…</p>
 </div>
 </div>
 <section id="installation" class="level3"><h3 class="anchored" data-anchor-id="installation">Installation</h3>
-<p>Nous pouvons installer un nouveau paquet à l’aide de la fonction <code>install.packages()</code> qui le télécharge et l’installe dans la bibliothèque de paquets de votre ordinateur. Cette opération n’est effectuée qu’une seule fois par ordinateur.</p>
+<p>La fonction <code>install.packages()</code> télécharge et installe un nouveau paquet sur votre ordinateur, dans la bibliothèque de paquets. Vous n’avez à faire cette opération qu’une seule fois par paquet et ordinateur.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"here"</span>) <span class="co"># installe le paquet {here} </span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -443,7 +450,7 @@ Important
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"raw"</span>, <span class="st">"example_linelist.xlsx"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "/tmp/RtmpcIdvUv/file46e192c8e63f3/data/raw/example_linelist.xlsx"</code></pre>
+<pre><code>[1] "C:/Users/M-MOUSSET/AppData/Local/Temp/RtmpkdfmI9/file453874014e53/data/raw/example_linelist.xlsx"</code></pre>
 </div>
 </div>
 <p>Ici, nous n’avons défini que le chemin relatif et la fonction a créé un chemin absolu. Cette façon de définir le chemin fonctionnera sur l’ordinateur de vos collègues, même s’ils utilisent un autre système d’exploitation, à condition que vous respectiez tous deux la structure interne du répertoire de travail.</p>
