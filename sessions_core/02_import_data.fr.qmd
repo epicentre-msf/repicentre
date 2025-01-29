@@ -49,7 +49,6 @@ Ce dossier illustre une structure typique et recommandée pour vos projets de co
   - 📁 clean
 - 📁 R
 - 📁 outputs
-- README / LISEZ-MOI
 
 Ce dossier sera votre répertoire de travail pour **toutes les sessions de ce cours**. Vous y créerez un projet Rstudio (explications ci-dessous), et y enregistrerez tous vos scripts (sous dossier `/R`). Les données brutes se trouvent déjà dans `data/raw`.
 
@@ -340,7 +339,7 @@ Bravo et n'oubliez pas de sauvegarder votre code !
 #| eval: true
 
 downloadthis::download_link(
-  link = 'https://github.com/epicentre-msf/repicentre/blob/main/sessions_core/02_import_data_solutions.R',
+  link = 'https://github.com/epicentre-msf/repicentre/blob/main/sessions_core/02_import_data_solutions.fr.R',
   button_label = 'Solution File',
   has_icon = TRUE,
   icon = "fa fa-save",
