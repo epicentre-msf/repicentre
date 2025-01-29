@@ -61,7 +61,7 @@ Au cours de ces exercices, vous rencontrerez certainement des **erreurs**, qui s
 ### Premiers pas avec RStudio
 
 ::: {.setup}
-Ouvrez RStudio en utilisant le menu de démarrage de votre ordinateur ou le raccourci créé par défaut sur le bureau; si RStudio était déjà ouvert, fermez-le et ouvrez-le à nouveau.
+Ouvrez RStudio en utilisant le menu de démarrage de votre ordinateur ou le raccourci créé par défaut sur le bureau ; si RStudio était déjà ouvert, fermez-le et ouvrez-le à nouveau.
 :::
 
 Vous devriez voir une interface qui ressemble à ceci :
@@ -249,7 +249,7 @@ En comparaison, voici quelques cas où un commentaire est mérité :
 Ceci étant dit, vous êtes en plein apprentissage, et les scripts que vous écrivez pendant ce cours sont l'équivalent de vos notes de cours, alors n'hésitez pas à utiliser autant de commentaires que vous le souhaitez pour expliquer les commandes et vous rappeler de ce qu'elles font. Vous écrirez naturellement moins de commentaires avec la pratique, lorsque les choses qui nouvelles aujourd'hui deviendront naturelles.
 
 ::: {.callout-tip}
-Commentez une ligne sélectionnée avec le raccourci `CTRL + MAJ +C`.
+Commentez une ligne sélectionnée avec le raccourci `CTRL + MAJ + C`.
 
 Ajoutez une section de premier niveau avec `CTRL + MAJ + R`.
 :::
@@ -299,7 +299,7 @@ Si vous souhaitez créer une chaîne de caractères contenant des guillemets, il
 
 ### Booléen (logique)
 
-Le type *booléen* (ou *logique*) stocke des valeurs vrai/faux et est créé en écrivant soit `TRUE` [VRAI] ou `FALSE` [FALSE] sans guillemets.
+Le type *booléen* (ou *logique*) stocke des valeurs vrai/faux et est créé en écrivant soit `TRUE` [VRAI] ou `FALSE` [FAUX] sans guillemets.
 
 En interne, R traduit `TRUE` et `FALSE` en équivalents numériques `1` et `0` respectivement, ce qui peut être utile pour des opérations arithmétiques.
 
@@ -407,7 +407,7 @@ age_du_patient_a_l_admission <- 19   # Trop long
 age <- 19                            # Concis et précis
 ```
 
-Des noms clairs et informatifs contribuent à rendre votre code plus lisible, ce qui permet aux autres de le comprendre facilement sans avoir à consulter le dictionnaire de données incessament.
+Des noms clairs et informatifs contribuent à rendre votre code plus lisible, ce qui permet aux autres de le comprendre facilement sans avoir à constamment consulter le dictionnaire de données.
 
 ## Structures de données
 
@@ -428,7 +428,7 @@ Cette leçon n'entrera pas dans les détails abstraits de ces structures et se c
 
 Les vecteurs simples peuvent contenir une ou plusieurs valeurs *d'un seul type de données*. Ils ont donc deux propriétés essentielles : une **longueur** et un **type**. Dans le cadre de ce cours, nous utiliserons indifféremment les termes "vecteur simple" et "vecteur", comme c'est généralement le cas dans la communauté R.
 
-Techniquement, vous avez déjà créé vos premiers vecteurs simples lorsque vous avez construit les objets `cas` et `region`. Il s'agissait de vecteurs avec une longueur de taille une. Pour créer un vecteur avec plus d'une valeur, nous utiliserons la fonction `c()` ([moyen mnémotechnique]{.hovertip bs-toggle='tooltip' bs-title='` c` est la première lettre de "concatener"'}) :
+Techniquement, vous avez déjà créé vos premiers vecteurs simples lorsque vous avez construit les objets `cas` et `region`. Il s'agissait de vecteurs avec une longueur de taille une. Pour créer un vecteur avec plus d'une valeur, nous utiliserons la fonction `c()` ([moyen mnémotechnique]{.hovertip bs-toggle='tooltip' bs-title='` c` est la première lettre de "concaténer"'}) :
 
 ```{r}
 #| eval: true
