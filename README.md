@@ -22,8 +22,9 @@ Want to write a session? **Amazing.** Here are some tips to get you started:
 
 Multilingual rendering.
 ----------------------------------------------------------------------------------------------------
-`{repicentre}` is a **multilingual** website rendered using [`{babelquarto}`]() and [`{babeldown}`](). This makes our lives easier in terms of translation but at the price of a slightly more complicated rendering process. Instead of rendering and previewing with quarto directly, you will need to use `{babelquarto}` and [`{servr}`]() respectively:
+`{repicentre}` is a **multilingual** website rendered using [`{babelquarto}`](https://docs.ropensci.org/babelquarto/) and [`{babeldown}`](https://docs.ropensci.org/babeldown/). This makes our lives easier in terms of translation but at the price of a slightly more complicated rendering process. Instead of rendering and previewing with quarto directly, you will need to use `{babelquarto}` and [`{servr}`](https://git.yihui.org/servr/) respectively. 
 
+**These commands should be run in the console/terminal from the root of the repository:**
 ```
 # to render the site
 babelquarto::render_website()
@@ -32,6 +33,7 @@ babelquarto::render_website()
 servr::httw('docs')
 ```
 
+Note that to look at the site locally you **must** use `servr`, otherwise the drop down to switch languages **will not work**. You can however navigate to a specific rendered page in the `docs` folder and open that, for example `docs/fr/sessions_core/01_introduction.html` for the french version of the introductory session.
 
 Session review guidelines.
 ----------------------------------------------------------------------------------------------------
