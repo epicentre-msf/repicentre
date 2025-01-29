@@ -498,13 +498,13 @@ Nous créons un data frame avec la fonction `data.frame()` :
 ```{r}
 #| eval: true
 data.frame(col1 = c(1, 4, 2, 9),
-           col2 = c("un peu de texte", "plus de text", "Salut !", "les epidemiologistes !"))
+           col2 = c("un peu de texte", "plus de texte", "Salut !", "les epidemiologistes !"))
 ```
 
 Ici, on a crée `col1` à partir d'un vecteur numérique, et `col2` à partir d'un vecteur de chaînes de caractères. Nous avons choisi les noms des colonnes (`col1` et `col2`), ce qui est normal, mais vous pouvez exécuter le code sans nommer les colonnes pour voir comment R crée lui même des noms.
 
 ::: {.write}
-Dans votre script, créez un data frame nomé `data_cas` qui contient `cas` dans une colonne et `region` dans l'autre.
+Dans votre script, créez un data frame nommé `data_cas` qui contient `cas` dans une colonne et `region` dans l'autre.
 :::
 
 ```{r}
@@ -559,7 +559,7 @@ Nous pouvons utiliser un numéro (ou un intervalle) de ligne pour extraire des l
 ```{r}
 #| eval: true
 data_cas[1, 2]    # Afficher la valeur de la ligne 1, deuxième colonne
-data_cas[1, "region"]   # Afficher la valeur de la lignbe 1, pour la colonne région
+data_cas[1, "region"]   # Afficher la valeur de la ligne 1, pour la colonne région
 ```
 
 Si nous voulons isoler toutes les lignes (ou colonnes), nous pouvons simplement laisser un espace à la place du numéro/nom :
@@ -604,7 +604,7 @@ Ecrivez le code pour :
 
 ## Valeurs manquantes {#sec-missing-values}
 
-En tant qu'épidémiologistes, nous sommes constamment confrontés aux données manquantes. Dans R, celles-ci sont codées à l'aide d'une valeur spéciale : `NA` [signifiant **N**ot **A**vailable]. La valeur `NA` n'a pas de *type* fixe, elle prend celui des valeurs qui l'entourent. Par exemple, un `NA` dans une colonne numérique est traitée comme une valeur numérique. Nous aurons des occasions de manipuler les `NA` dans la suite du cours.
+En tant qu'épidémiologistes, nous sommes constamment confrontés aux données manquantes. Dans R, celles-ci sont codées à l'aide d'une valeur spéciale : `NA` [signifiant **N**ot **A**vailable]. La valeur `NA` n'a pas de *type* fixe, elle prend celui des valeurs qui l'entourent. Par exemple, un `NA` dans une colonne numérique est traitée comme une valeur numérique. Nous aurons plusieurs occasions de manipuler les `NA` dans la suite du cours.
 
 ## Fonctions {#sec-functions}
 

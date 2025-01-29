@@ -235,12 +235,15 @@ Important
 </div>
 <p>Ce dossier donne un exemple de structure typique (et fortement recommandée) pour vos projets de code :</p>
 <ul>
-<li>données</li>
-<li>propres</li>
-<li>brut</li>
-<li>R</li>
-<li>résultats</li>
-<li>LISEZ-MOI</li>
+<li>📁 data
+<ul>
+<li>📁 clean</li>
+<li>📁 raw</li>
+</ul>
+</li>
+<li>📁 R</li>
+<li>📁 outputs</li>
+<li>README</li>
 </ul>
 <p>Ce dossier sera votre répertoire de travail pour <strong>toutes les sessions de ce cours</strong>. Vous y créerez un projet Rstudio (explications ci-dessous), et y enregistrerez tous vos scripts. <code>/R</code>. Les données du cours se trouvent déjà dans <code>data/raw</code>.</p>
 </section><section id="sec-definitions" class="level3"><h3 class="anchored" data-anchor-id="sec-definitions">Définitions</h3>
@@ -408,7 +411,7 @@ Astuce
 </div>
 </div>
 <div class="write">
-<p>Utilisation <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Vous pouvez utiliser les raccourcis clavier CTRL+SHIFT+C and CTRL+SHIFT+R pour insérer des commentaires ou des sections">commentaires</span> pour créer une section “Paquets” dans votre script.</p>
+<p>Utilisez <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Vous pouvez utiliser les raccourcis clavier CTRL+SHIFT+C and CTRL+SHIFT+R pour insérer des commentaires ou des sections">des commentaires</span> pour créer une section “Paquets” dans votre script.</p>
 </div>
 </section><section id="mettre-à-jour-les-paquets" class="level3"><h3 class="anchored" data-anchor-id="mettre-à-jour-les-paquets">Mettre à jour les paquets</h3>
 <p>R dispose d’une communauté de développeurs très active et il est assez courant que les paquets soient mis à jour régulièrement, car leurs propriétaires ajoutent de nouvelles fonctions et corrigent les bugs. Pour mettre à jour les paquets de votre bibliothèque, vous pouvez vous rendre dans <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Pour rappel, cet onglet affiche la liste de tous les paquets que vous avez installés sur votre ordinateur, avec leur numéro de version.">l’onglet <code>Packages</code></span> du panneau inférieur droit et cliquer sur <code>Update</code>. N’oubliez pas que vous <strong>devez être connecté à internet</strong> pendant ce processus.</p>
@@ -443,7 +446,7 @@ Important
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"raw"</span>, <span class="st">"example_linelist.xlsx"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "C:/Users/c-fortas/AppData/Local/Temp/Rtmp0UxUpk/file4734ff74d8d/data/raw/example_linelist.xlsx"</code></pre>
+<pre><code>[1] "C:/Users/c-fortas/AppData/Local/Temp/Rtmp0UxUpk/file47346b715f85/data/raw/example_linelist.xlsx"</code></pre>
 </div>
 </div>
 <p>Ici, nous n’avons défini que le chemin relatif et la fonction a créé un chemin absolu. Cette façon de définir le chemin fonctionnera sur l’ordinateur de vos collègues, même s’ils utilisent un autre système d’exploitation, à condition que vous respectiez tous deux la structure interne du répertoire de travail.</p>
@@ -538,11 +541,11 @@ Astuce
 <div class="write">
 <p>Utilisez <code>head()</code> pour examiner les 12 premières lignes de <code>df_linelist</code>.</p>
 </div>
-<p>Nous pouvons également vérifier nos données en regardant l’onglet <em>Environnement</em> dans le panneau supérieur droit. Ici, nous pouvons voir notre dataframe dans l’environnement, examiner sa <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Cela reivent á utiliser la commande `str()`">structure</span> ou l’ouvrir dans le visualiseur de données (“data viewer”) de RStudio.</p>
+<p>Nous pouvons également vérifier nos données en regardant l’onglet <em>Environment</em> dans le panneau supérieur droit. Ici, nous pouvons voir notre dataframe dans l’environnement, examiner sa <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Cela reivent á utiliser la commande `str()`">structure</span> ou l’ouvrir dans le visualiseur de données (“data viewer”) de RStudio.</p>
 <div class="look">
 <p>Cliquez sur le bouton rond bleu à côté de <code>df_linelist</code> dans votre environnement pour voir sa structure. Cliquez ensuite sur le nom de la base de données pour le visualiser.</p>
 </div>
-<p>La visualiseur de données affiche les dataframe sous forme de tableaux et constitue un moyen pratique d’examiner rapidement vos données. Vous pouvez même trier et filtrer vos données dans “View”, mais sachez que ces actions n’apporteront aucune modification à l’objet réel. <code>df_linelist</code>. La “View” peut également être ouverte en utilisant directement la fonction <code>View()</code>.</p>
+<p>Le visualiseur de données affiche les dataframe sous forme de tableaux et constitue un moyen pratique d’examiner rapidement vos données. Vous pouvez même trier et filtrer vos données dans “View”, mais sachez que ces actions n’apporteront aucune modification à l’objet réel. <code>df_linelist</code>.”View” peut également être ouvert en utilisant directement la fonction <code>View()</code>.</p>
 </section><section id="fini" class="level2"><h2 class="anchored" data-anchor-id="fini">Fini !</h2>
 <p>Bravo et n’oubliez pas de sauvegarder votre code.</p>
 <div class="cell">

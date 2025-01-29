@@ -44,12 +44,13 @@ Décompressez l'archive et ouvrez le dossier non compressé.
 
 Ce dossier donne un exemple de structure typique (et fortement recommandée) pour vos projets de code :
 
-- données
-- propres
-- brut
-- R
-- résultats
-- LISEZ-MOI
+- 📁 data 
+  - 📁 clean 
+  - 📁 raw 
+- 📁 R
+- 📁 outputs
+- README
+
 
 Ce dossier sera votre répertoire de travail pour **toutes les sessions de ce cours**. Vous y créerez un projet Rstudio (explications ci-dessous), et y enregistrerez tous vos scripts. `/R`. Les données du cours se trouvent déjà dans `data/raw`.
 
@@ -190,7 +191,7 @@ Cette pratique permet de savoir facilement quels paquets doivent être installé
 :::
 
 ::: {.write}
- Utilisation [commentaires]{.hovertip bs-toggle='tooltip' bs-title="Vous pouvez utiliser les raccourcis clavier CTRL+SHIFT+C and CTRL+SHIFT+R pour insérer des commentaires ou des sections"} pour créer une section "Paquets" dans votre script.
+ Utilisez [des commentaires]{.hovertip bs-toggle='tooltip' bs-title="Vous pouvez utiliser les raccourcis clavier CTRL+SHIFT+C and CTRL+SHIFT+R pour insérer des commentaires ou des sections"} pour créer une section "Paquets" dans votre script.
 :::
 
 ### Mettre à jour les paquets
@@ -309,13 +310,13 @@ head(df_linelist, n = 10) # Inspecte les 10 premières lignes
 Utilisez `head()` pour examiner les 12 premières lignes de `df_linelist`.
 :::
 
-Nous pouvons également vérifier nos données en regardant l'onglet *Environnement* dans le panneau supérieur droit. Ici, nous pouvons voir notre dataframe dans l'environnement, examiner sa [structure]{.hovertip bs-toggle='tooltip' bs-title="Cela reivent á utiliser la commande `str()`"} ou l'ouvrir dans le visualiseur de données ("data viewer") de RStudio.
+Nous pouvons également vérifier nos données en regardant l'onglet *Environment* dans le panneau supérieur droit. Ici, nous pouvons voir notre dataframe dans l'environnement, examiner sa [structure]{.hovertip bs-toggle='tooltip' bs-title="Cela reivent á utiliser la commande `str()`"} ou l'ouvrir dans le visualiseur de données ("data viewer") de RStudio.
 
 ::: {.look}
 Cliquez sur le bouton rond bleu à côté de `df_linelist` dans votre environnement pour voir sa structure. Cliquez ensuite sur le nom de la base de données pour le visualiser.
 :::
 
-La visualiseur de données affiche les dataframe sous forme de tableaux et constitue un moyen pratique d'examiner rapidement vos données. Vous pouvez même trier et filtrer vos données dans "View", mais sachez que ces actions n'apporteront aucune modification à l'objet réel. `df_linelist`. La "View" peut également être ouverte en utilisant directement la fonction `View()`.
+Le visualiseur de données affiche les dataframe sous forme de tableaux et constitue un moyen pratique d'examiner rapidement vos données. Vous pouvez même trier et filtrer vos données dans "View", mais sachez que ces actions n'apporteront aucune modification à l'objet réel. `df_linelist`."View" peut également être ouvert en utilisant directement la fonction `View()`.
 
 ## Fini !
 
