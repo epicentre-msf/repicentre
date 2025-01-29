@@ -1,52 +1,38 @@
 [
   {
-    "objectID": "sessions_core/template.html",
-    "href": "sessions_core/template.html",
-    "title": "Session Title",
+    "objectID": "resources.html",
+    "href": "resources.html",
+    "title": "Resources",
     "section": "",
-    "text": "Objective 1\nObjective 2"
+    "text": "This page will (eventually) contain external resources to continue your R learning journey."
   },
   {
-    "objectID": "sessions_core/template.html#objectives",
-    "href": "sessions_core/template.html#objectives",
-    "title": "Session Title",
+    "objectID": "pathway.html",
+    "href": "pathway.html",
+    "title": "Pathway",
     "section": "",
-    "text": "Objective 1\nObjective 2"
+    "text": "These sessions can be followed in order to get a baseline level in R. The series assumes no prior experience in R and is suitable for beginners.\nLooking for more? Want more flexibility? Consider browsing the full session catalog.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIntroduction to R\n\n\n\n\n\nYour first steps in R. Learn your way around Rstudio, and meet some common R objects.\n\n\n\n\n\nJan 29, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nImport data\n\n\n\n\n\nCreate an Rstudio project, install useful packages and start importing data to work in R\n\n\n\n\n\nJan 29, 2025\n\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "sessions_core/template.html#setup",
-    "href": "sessions_core/template.html#setup",
-    "title": "Session Title",
-    "section": "Setup",
-    "text": "Setup\n\nDescription of something participants need to setup, primarily used at the beginning of a section but can also be used for tasks like setting up an Rproject file, folder structure, etc."
+    "objectID": "about.html#hey-there",
+    "href": "about.html#hey-there",
+    "title": "About",
+    "section": "Hey There",
+    "text": "Hey There\nWelcome to {repicentre}, an open source site developed by Epicentre to support folks learning R for humanitarian contexts. The site is composed of self paced tutorials and has two main options for learning:\n\nLinear. Designed for people with zero prior experience in R, the linear course will walk you through core R concepts using a case study about measles in Chad. The course covers the following concepts:\n\nData Structures and the RStudio Interface\nData Importation\nData Manipulation\nData Cleaning\nData Aggregation\nData Visualization\n\nChoose Your Own Adventure. If you have a bit more experience or if you are looking for a particular subject, feel free to explore the full range of tutorials. Tutorials are tagged with categories and designed to be self contained."
   },
   {
-    "objectID": "sessions_core/template.html#main-section-1",
-    "href": "sessions_core/template.html#main-section-1",
-    "title": "Session Title",
-    "section": "Main Section 1",
-    "text": "Main Section 1\nYour main section(s) can (and probably should) be boken down into subsections.\n\nSubsection 1\n\n\nSubsection 2"
+    "objectID": "about.html#recommendations-and-requests",
+    "href": "about.html#recommendations-and-requests",
+    "title": "About",
+    "section": "Recommendations and Requests",
+    "text": "Recommendations and Requests\nIs there a topic that you would like to see a tutorial on that isn’t currently available? Great! Feel free to let us know by opening an issue on the GitHub repository associated with this website. If you aren’t familiar with how to open an issue, please get in touch with Cat Eisenhauer instead."
   },
   {
-    "objectID": "sessions_core/template.html#done",
-    "href": "sessions_core/template.html#done",
-    "title": "Session Title",
-    "section": "Done!",
-    "text": "Done!\nThis last header let’s students know that they are done with the main material for the day. It should also include a link to the solutions (hosted on github). For example:\n\n\n\n Solution File\n\n\n\nMake sure this link references the main."
-  },
-  {
-    "objectID": "sessions_core/template.html#going-further",
-    "href": "sessions_core/template.html#going-further",
-    "title": "Session Title",
-    "section": "Going Further",
-    "text": "Going Further\nAfter your main content is done you should have a section called called “Going Further” for students who finish the main content early. It should include: 1. A mention of one or two satellite sessions that would be relevant extensions of the current material 2. A section with “extra exercise questions” (these don’t need to use the “action blocks” (see below) and can just be a number list as shown below.\n\nExtra Exercises\n\nDo this.\nThen do that."
-  },
-  {
-    "objectID": "sessions_core/template.html#markdown-reminders",
-    "href": "sessions_core/template.html#markdown-reminders",
-    "title": "Session Title",
-    "section": "Markdown Reminders",
-    "text": "Markdown Reminders\nThe rest of this document is a reminder on qmd syntax and a basic style guide. Enjoy.\n\nText Formatting\n\nItalic and Bold will turn out like this\nBlock quotes will look like this:\n\n\nThis is a blockquote made using &gt;\n\n\nTooltips can be done using spans (please do not use asides or footnotes)\n\n\n\nCode\nInline coding will turn out like this\nCode blocks will appear like this:\n\n# comment\nprint('hello world')\n\nWarning: For these tutorials, code blocks are not evaluated by default. If you want to evaluate them, you must indicate it specifically.\n\n# comment\nprint('hello back!')\n\n[1] \"hello back!\"\n\ntest &lt;- function(x) {\n  if (x &gt; 1) {\n    return(x)\n  } else {\n    print('nothing to see here')\n  }\n}\n\nNote. We are no longer using solution blocks, instead a single code file will be available at the end of each session contiaining code that runs through all the exercises.\n\n\nCallouts\nIMPORTANT: please do not use callouts not explicitly defined here; they have not been included in the css and therefore will not render well in the final document.\n\n\n\n\n\n\nNote\n\n\n\nThis is a callout using {.callout-note}\n\n\n\n\n\n\n\n\nTip\n\n\n\nComment about a genral tip / trick or best practice.\n\n\n\n\n\n\n\n\nImportant\n\n\n\nWarning / comment on something really important.\n\n\n\n\nAction Boxes\nThese are used for things participants are expected to actually do, ie: exercises. They are split into three categories.\n\nDescription of something participants need to setup, primarily used at the beginning of a section but can also be used for tasks like setting up an Rproject file, folder structure, etc.\n\n\nDescription of something participants should observe, investigate, etc.\n\n\nDescription of a coding exercise that participants are expected to complete.\n\n\n\nTabsets\n\nOneTwoThree\n\n\nContent that will show under the first tab\n\n\nContent that will show under the second tab\n\n\nContent that will show under the third tab\n\n\n\n\n\nImages\nYou can insert images by referring to their relative path using markdown syntax or HTML. Note that the markdown syntax does not allow you to modify image size. In either case, make sure to add alt text for accessibility.\nMarkdown style syntax:\n\n\n\nexample image alt text\n\n\nHTML style syntax (with specification of desired size):\n\n\n\nLinking to Other Pages\nEasy, use relative paths within a standard href, ie: link to home page."
+    "objectID": "about.html#contributing",
+    "href": "about.html#contributing",
+    "title": "About",
+    "section": "Contributing",
+    "text": "Contributing\nWould you like to help write or maintain some tutorials? Increadible! Please get in touch with Cat."
   },
   {
     "objectID": "sessions_core/01_introduction.html",
@@ -119,55 +105,6 @@
     "text": "Done!\nThat’s all for this session, congratulations on taking your first steps with R and RStudio!\n\n\n\n Solutions exercices"
   },
   {
-    "objectID": "pathway.html",
-    "href": "pathway.html",
-    "title": "Pathway",
-    "section": "",
-    "text": "These sessions can be followed in order to get a baseline level in R. The series assumes no prior experience in R and is suitable for beginners.\nLooking for more? Want more flexibility? Consider browsing the full session catalog.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIntroduction to R\n\n\n\n\n\nYour first steps in R. Learn your way around Rstudio, and meet some common R objects.\n\n\n\n\n\nJan 28, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nImport data\n\n\n\n\n\nCreate an Rstudio project, install useful packages and start importing data to work in R\n\n\n\n\n\nJan 29, 2025\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "explore.html",
-    "href": "explore.html",
-    "title": "Explore",
-    "section": "",
-    "text": "Choose your own adventure by browsing all available sessions.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nImport data\n\n\n\nCore\n\n\nRStudio\n\n\nData Import\n\n\n\nCreate an Rstudio project, install useful packages and start importing data to work in R\n\n\n\n\n\n\nJan 29, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nIntroduction to R\n\n\n\nCore\n\n\nR Basics\n\n\nData Types\n\n\n\nYour first steps in R. Learn your way around Rstudio, and meet some common R objects.\n\n\n\n\n\n\nJan 28, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSession Title\n\n\n\nCore\n\n\n\nShort description (appears on cards in pathway / explore pages)\n\n\n\n\n\n\nJan 17, 2025\n\n\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "about.html#hey-there",
-    "href": "about.html#hey-there",
-    "title": "About",
-    "section": "Hey There",
-    "text": "Hey There\nWelcome to {repicentre}, an open source site developed by Epicentre to support folks learning R for humanitarian contexts. The site is composed of self paced tutorials and has two main options for learning:\n\nLinear. Designed for people with zero prior experience in R, the linear course will walk you through core R concepts using a case study about measles in Chad. The course covers the following concepts:\n\nData Structures and the RStudio Interface\nData Importation\nData Manipulation\nData Cleaning\nData Aggregation\nData Visualization\n\nChoose Your Own Adventure. If you have a bit more experience or if you are looking for a particular subject, feel free to explore the full range of tutorials. Tutorials are tagged with categories and designed to be self contained."
-  },
-  {
-    "objectID": "about.html#recommendations-and-requests",
-    "href": "about.html#recommendations-and-requests",
-    "title": "About",
-    "section": "Recommendations and Requests",
-    "text": "Recommendations and Requests\nIs there a topic that you would like to see a tutorial on that isn’t currently available? Great! Feel free to let us know by opening an issue on the GitHub repository associated with this website. If you aren’t familiar with how to open an issue, please get in touch with Cat Eisenhauer instead."
-  },
-  {
-    "objectID": "about.html#contributing",
-    "href": "about.html#contributing",
-    "title": "About",
-    "section": "Contributing",
-    "text": "Contributing\nWould you like to help write or maintain some tutorials? Increadible! Please get in touch with Cat."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "{repicentre}",
-    "section": "",
-    "text": "Welcome to {repicentre}\nAn open source platform to learn R for humanitarian contexts. What would you like to do?\n\n\n\n\n\nLearn Follow a linear path starting with the basics  Start\n\n\n\n\n\nExplore Browse our full catelogue of self paced tutorisals  Start\n\n\n\n\n\nExpand Go even further with a list of external resouces  Start"
-  },
-  {
-    "objectID": "resources.html",
-    "href": "resources.html",
-    "title": "Resources",
-    "section": "",
-    "text": "This page will (eventually) contain external resources to continue your R learning journey."
-  },
-  {
     "objectID": "sessions_core/02_import_data.html",
     "href": "sessions_core/02_import_data.html",
     "title": "Import data",
@@ -207,7 +144,7 @@
     "href": "sessions_core/02_import_data.html#data-importation",
     "title": "Import data",
     "section": "Data Importation",
-    "text": "Data Importation\n\nUnderstanding File Paths\nTo open a file in R you need to provide a file path. A file path is simply a longer name for a file, that includes not only its name but also its location on your computer. There are several ways of defining these paths, including absolute and relative paths.\n\nAbsolute Paths\nAbsolute paths are specific to your computer and go all the way up to the level of your hard drive. For example, an absolute path may look something like this: D:/OneDrive - MSF/Documents/monitoring/cholera/fancy_project/data/raw/example_linelist.xlsx. Clearly, this path will only work on one specific computer.\nThe use of hard coded absolute paths is strongly discouraged as it makes your code inflexible and prone to break: the paths need to be updated every time your code is shared or the project folder is moved on your computer.\n\n\nRelative Paths\nRelative paths are defined relatively to your current working directory. For example, keeping in mind that our handy .Rproj file set our working directory to the root of our project folder, we could create a relative path that looked like data/raw/example_linelist.xlsx. This means that as long as we maintain the internal structure of our project folder and have an .Rproj file, our code would theoretically run on multiple computers.\n\n\nRobust Paths with the here() function\nThe {here} package has a here() function that really helps defining paths. It has two advantages:\n\nWhen used with RStudio projects, you can give it only the part of the path within the project, (the relative path in other words), and the function uses it to create the absolute path dynamically.\nIt does so using the separator adapted to you operating system, whether it’s /, \\, or //\n\n\nlibrary(here)\nhere(\"data\", \"raw\", \"example_linelist.xlsx\")\n\n[1] \"C:/Users/M-MOUSSET/AppData/Local/Temp/RtmpkdfmI9/file453845006613/data/raw/example_linelist.xlsx\"\n\n\nSee how we only defined the relative path and the function created an absolute path. This way of defining the path will work on your colleagues computer, even if they run on another operating system, as long as you both respect the internal structure of the working directory.\nWe strongly encourage you to use here() whenever you need to create a file path.\n\nRun the above code in the console. What file path does here(\"data\", \"raw\") give you?\n\n\nUsing here(), create a complete file path for the file msf_linelist_moissala_2023-09-24.xlsx. Keep this path around, we will use it soon.\n\n\n\n\n\n\n\nImportant\n\n\n\nhere() simply creates a file path, it doesn’t actually check if a file exists on your computer: if the file is absent or there is a typo in your code, the command will yield an error when the path is used. If you would like to use a function to check if a file exists, check out the file.exists() function.\n\n\n\n\n\n\n\n\nTip\n\n\n\nWe will often want to source multiple data files in a single project. To make that process easier, it can be helpful to create a section at the start of the script, after loading the packages to define paths and store them in variables.\n\n\n\n\n\nImport function\nIn R different file formats are often imported using different, often specialized functions. This can be tedious as it requires you to memorize and load a large number of functions just to get your data imported. To avoid this problem, we recommend that you use the import() function from the package {rio}. This function is able to open a large variety of files (including Excel, csv, Stata, and many others) by recognizing the file extension of your data and calling a relevant specialized function from another package so that you don’t have to.\nBecause import() is actually just calling other functions in the background, it is possible that it will need different arguments depending on the type of file you want to load.\n\n\n\n\n\n\nTip\n\n\n\nTo see the full list of all the file types you can load (and save!) with rio, check out the list of supported formats on their website. In the rest of the lesson we will focus on importing data from Excel .xlsx files.\n\n\n\nImporting from the First Sheet\nIn general, the usage of import() is pretty simple, at minima you need to pass the path of the file to the file argument:\n\nimport(file = here(\"data\", \"raw\", \"example_linelist.xlsx\"))\n\nNotice that we have nested the command here() inside the import() command. Nesting functions is absolutely allowed in R and is something you will do all the time. When functions are nested, R will evaluate them in the order of the innermost function (in this case here()) to the outermost (in this case import()). In this way, the output of here() is being used as the input of import().\n\nImport the file msf_linelist_moissala_2023-09-24.xlsx that is in your raw data subfolder into R using here() and import().\n\nIf your import worked correctly, R will print the data into the console but not save it into the environment because we have not assigned them to an object.\n\n\n\n\n\n\nTip\n\n\n\nYou may not want to have R print very large datasets into the console and assign them directly to an object.\n\n\n\nReimport your data but this time save it to an object called df_linelist.\n\n\n\nImporting Data from Any Sheet\nAs you just saw, R selects the first sheet by default. It is however possible to pass the number (or name) of a specific worksheet in your Excel data to import() using the argument which:\n\nimport(file = here(\"data\", \"raw\", \"example_linelist.xlsx\"),\n       which = 2)  # imports the second sheet\n\nNote that the which argument is specific to the file types that have multiple sheets, such as Excel or .Rdata files. If you try to use it on a .csv file the argument will be ignored."
+    "text": "Data Importation\n\nUnderstanding File Paths\nTo open a file in R you need to provide a file path. A file path is simply a longer name for a file, that includes not only its name but also its location on your computer. There are several ways of defining these paths, including absolute and relative paths.\n\nAbsolute Paths\nAbsolute paths are specific to your computer and go all the way up to the level of your hard drive. For example, an absolute path may look something like this: D:/OneDrive - MSF/Documents/monitoring/cholera/fancy_project/data/raw/example_linelist.xlsx. Clearly, this path will only work on one specific computer.\nThe use of hard coded absolute paths is strongly discouraged as it makes your code inflexible and prone to break: the paths need to be updated every time your code is shared or the project folder is moved on your computer.\n\n\nRelative Paths\nRelative paths are defined relatively to your current working directory. For example, keeping in mind that our handy .Rproj file set our working directory to the root of our project folder, we could create a relative path that looked like data/raw/example_linelist.xlsx. This means that as long as we maintain the internal structure of our project folder and have an .Rproj file, our code would theoretically run on multiple computers.\n\n\nRobust Paths with the here() function\nThe {here} package has a here() function that really helps defining paths. It has two advantages:\n\nWhen used with RStudio projects, you can give it only the part of the path within the project, (the relative path in other words), and the function uses it to create the absolute path dynamically.\nIt does so using the separator adapted to you operating system, whether it’s /, \\, or //\n\n\nlibrary(here)\nhere(\"data\", \"raw\", \"example_linelist.xlsx\")\n\n[1] \"/tmp/RtmpcIdvUv/file46e197477be1d/data/raw/example_linelist.xlsx\"\n\n\nSee how we only defined the relative path and the function created an absolute path. This way of defining the path will work on your colleagues computer, even if they run on another operating system, as long as you both respect the internal structure of the working directory.\nWe strongly encourage you to use here() whenever you need to create a file path.\n\nRun the above code in the console. What file path does here(\"data\", \"raw\") give you?\n\n\nUsing here(), create a complete file path for the file msf_linelist_moissala_2023-09-24.xlsx. Keep this path around, we will use it soon.\n\n\n\n\n\n\n\nImportant\n\n\n\nhere() simply creates a file path, it doesn’t actually check if a file exists on your computer: if the file is absent or there is a typo in your code, the command will yield an error when the path is used. If you would like to use a function to check if a file exists, check out the file.exists() function.\n\n\n\n\n\n\n\n\nTip\n\n\n\nWe will often want to source multiple data files in a single project. To make that process easier, it can be helpful to create a section at the start of the script, after loading the packages to define paths and store them in variables.\n\n\n\n\n\nImport function\nIn R different file formats are often imported using different, often specialized functions. This can be tedious as it requires you to memorize and load a large number of functions just to get your data imported. To avoid this problem, we recommend that you use the import() function from the package {rio}. This function is able to open a large variety of files (including Excel, csv, Stata, and many others) by recognizing the file extension of your data and calling a relevant specialized function from another package so that you don’t have to.\nBecause import() is actually just calling other functions in the background, it is possible that it will need different arguments depending on the type of file you want to load.\n\n\n\n\n\n\nTip\n\n\n\nTo see the full list of all the file types you can load (and save!) with rio, check out the list of supported formats on their website. In the rest of the lesson we will focus on importing data from Excel .xlsx files.\n\n\n\nImporting from the First Sheet\nIn general, the usage of import() is pretty simple, at minima you need to pass the path of the file to the file argument:\n\nimport(file = here(\"data\", \"raw\", \"example_linelist.xlsx\"))\n\nNotice that we have nested the command here() inside the import() command. Nesting functions is absolutely allowed in R and is something you will do all the time. When functions are nested, R will evaluate them in the order of the innermost function (in this case here()) to the outermost (in this case import()). In this way, the output of here() is being used as the input of import().\n\nImport the file msf_linelist_moissala_2023-09-24.xlsx that is in your raw data subfolder into R using here() and import().\n\nIf your import worked correctly, R will print the data into the console but not save it into the environment because we have not assigned them to an object.\n\n\n\n\n\n\nTip\n\n\n\nYou may not want to have R print very large datasets into the console and assign them directly to an object.\n\n\n\nReimport your data but this time save it to an object called df_linelist.\n\n\n\nImporting Data from Any Sheet\nAs you just saw, R selects the first sheet by default. It is however possible to pass the number (or name) of a specific worksheet in your Excel data to import() using the argument which:\n\nimport(file = here(\"data\", \"raw\", \"example_linelist.xlsx\"),\n       which = 2)  # imports the second sheet\n\nNote that the which argument is specific to the file types that have multiple sheets, such as Excel or .Rdata files. If you try to use it on a .csv file the argument will be ignored."
   },
   {
     "objectID": "sessions_core/02_import_data.html#taking-a-first-look-at-your-data",
@@ -229,5 +166,68 @@
     "title": "Import data",
     "section": "Going Further",
     "text": "Going Further\n\nExtra Exercises\n\nUse dim() to take a look at the dimensions of your dataset.\nUse str() to check the data type of each column. Does anything look odd? Remember that you can also use functions like is.character() and is.numeric() if you’d like to test the type of a particular column.\nUsing a function learned in the first session, can you extract the names of the columns of the dataset? Do these results match what you see when you open the data in Excel?\nTry passing your dataframe to the function summary(). What does this function tell you?\n\n\n\nAdditional Resources\n\nThe rio website\nMore examples on importing data of various file types"
+  },
+  {
+    "objectID": "sessions_core/template.html",
+    "href": "sessions_core/template.html",
+    "title": "Session Title",
+    "section": "",
+    "text": "Objective 1\nObjective 2"
+  },
+  {
+    "objectID": "sessions_core/template.html#objectives",
+    "href": "sessions_core/template.html#objectives",
+    "title": "Session Title",
+    "section": "",
+    "text": "Objective 1\nObjective 2"
+  },
+  {
+    "objectID": "sessions_core/template.html#setup",
+    "href": "sessions_core/template.html#setup",
+    "title": "Session Title",
+    "section": "Setup",
+    "text": "Setup\n\nDescription of something participants need to setup, primarily used at the beginning of a section but can also be used for tasks like setting up an Rproject file, folder structure, etc."
+  },
+  {
+    "objectID": "sessions_core/template.html#main-section-1",
+    "href": "sessions_core/template.html#main-section-1",
+    "title": "Session Title",
+    "section": "Main Section 1",
+    "text": "Main Section 1\nYour main section(s) can (and probably should) be boken down into subsections.\n\nSubsection 1\n\n\nSubsection 2"
+  },
+  {
+    "objectID": "sessions_core/template.html#done",
+    "href": "sessions_core/template.html#done",
+    "title": "Session Title",
+    "section": "Done!",
+    "text": "Done!\nThis last header let’s students know that they are done with the main material for the day. It should also include a link to the solutions (hosted on github). For example:\n\n\n\n Solution File\n\n\n\nMake sure this link references the main."
+  },
+  {
+    "objectID": "sessions_core/template.html#going-further",
+    "href": "sessions_core/template.html#going-further",
+    "title": "Session Title",
+    "section": "Going Further",
+    "text": "Going Further\nAfter your main content is done you should have a section called called “Going Further” for students who finish the main content early. It should include: 1. A mention of one or two satellite sessions that would be relevant extensions of the current material 2. A section with “extra exercise questions” (these don’t need to use the “action blocks” (see below) and can just be a number list as shown below.\n\nExtra Exercises\n\nDo this.\nThen do that."
+  },
+  {
+    "objectID": "sessions_core/template.html#markdown-reminders",
+    "href": "sessions_core/template.html#markdown-reminders",
+    "title": "Session Title",
+    "section": "Markdown Reminders",
+    "text": "Markdown Reminders\nThe rest of this document is a reminder on qmd syntax and a basic style guide. Enjoy.\n\nText Formatting\n\nItalic and Bold will turn out like this\nBlock quotes will look like this:\n\n\nThis is a blockquote made using &gt;\n\n\nTooltips can be done using spans (please do not use asides or footnotes)\n\n\n\nCode\nInline coding will turn out like this\nCode blocks will appear like this:\n\n# comment\nprint('hello world')\n\nWarning: For these tutorials, code blocks are not evaluated by default. If you want to evaluate them, you must indicate it specifically.\n\n# comment\nprint('hello back!')\n\n[1] \"hello back!\"\n\ntest &lt;- function(x) {\n  if (x &gt; 1) {\n    return(x)\n  } else {\n    print('nothing to see here')\n  }\n}\n\nNote. We are no longer using solution blocks, instead a single code file will be available at the end of each session contiaining code that runs through all the exercises.\n\n\nCallouts\nIMPORTANT: please do not use callouts not explicitly defined here; they have not been included in the css and therefore will not render well in the final document.\n\n\n\n\n\n\nNote\n\n\n\nThis is a callout using {.callout-note}\n\n\n\n\n\n\n\n\nTip\n\n\n\nComment about a genral tip / trick or best practice.\n\n\n\n\n\n\n\n\nImportant\n\n\n\nWarning / comment on something really important.\n\n\n\n\nAction Boxes\nThese are used for things participants are expected to actually do, ie: exercises. They are split into three categories.\n\nDescription of something participants need to setup, primarily used at the beginning of a section but can also be used for tasks like setting up an Rproject file, folder structure, etc.\n\n\nDescription of something participants should observe, investigate, etc.\n\n\nDescription of a coding exercise that participants are expected to complete.\n\n\n\nTabsets\n\nOneTwoThree\n\n\nContent that will show under the first tab\n\n\nContent that will show under the second tab\n\n\nContent that will show under the third tab\n\n\n\n\n\nImages\nYou can insert images by referring to their relative path using markdown syntax or HTML. Note that the markdown syntax does not allow you to modify image size. In either case, make sure to add alt text for accessibility.\nMarkdown style syntax:\n\n\n\nexample image alt text\n\n\nHTML style syntax (with specification of desired size):\n\n\n\nLinking to Other Pages\nEasy, use relative paths within a standard href, ie: link to home page."
+  },
+  {
+    "objectID": "explore.html",
+    "href": "explore.html",
+    "title": "Explore",
+    "section": "",
+    "text": "Choose your own adventure by browsing all available sessions.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nImport data\n\n\n\nCore\n\n\nRStudio\n\n\nData Import\n\n\n\nCreate an Rstudio project, install useful packages and start importing data to work in R\n\n\n\n\n\n\nJan 29, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nIntroduction to R\n\n\n\nCore\n\n\nR Basics\n\n\nData Types\n\n\n\nYour first steps in R. Learn your way around Rstudio, and meet some common R objects.\n\n\n\n\n\n\nJan 29, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSession Title\n\n\n\nCore\n\n\n\nShort description (appears on cards in pathway / explore pages)\n\n\n\n\n\n\nJan 29, 2025\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "{repicentre}",
+    "section": "",
+    "text": "Welcome to {repicentre}\nAn open source platform to learn R for humanitarian contexts. What would you like to do?\n\n\n\n\n\nLearn Follow a linear path starting with the basics  Start\n\n\n\n\n\nExplore Browse our full catelogue of self paced tutorisals  Start\n\n\n\n\n\nExpand Go even further with a list of external resouces  Start"
   }
 ]
