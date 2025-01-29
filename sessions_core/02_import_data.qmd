@@ -357,5 +357,5 @@ downloadthis::download_link(
 
 ### Additional Resources
 
-- The `rio` [website](https://gesistsa.github.io/rio/index.html#supported-file-formats)
+- The `{rio}` [website](https://gesistsa.github.io/rio/index.html#supported-file-formats)
 - [More examples](https://epirhandbook.com/en/new_pages/importing.html) on importing data of various file types
