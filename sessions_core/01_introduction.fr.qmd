@@ -85,7 +85,7 @@ En haut à droite se trouve un panneau avec plusieurs onglets. La plupart d'entr
 ::: {.callout-note}
 Ouvrir une nouvelle session R, c'est comme redémarer son ordinateur : tout est vide et prêt pour le calcul, de la même manière qu'il n'y a aucun programme ouvert lorsque vous allumez votre ordinateur pour la première fois. 
 
-Nous vous encourageons à arrêter et à re-démarrer vos sessions R régulièrement. Parfois ça corrigera certains de vos problèmes !
+Nous vous encourageons à arrêter et à re-démarrer vos sessions R régulièrement. Parfois cela corrigera certains de vos problèmes !
 :::
 
 #### Panneau inférieur droit
