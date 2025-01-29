@@ -1,0 +1,185 @@
+---
+title: Data summaries
+description: Create summary tables.
+date: last-modified
+# image: 
+categories:
+  - Core
+  - R Basics
+  - Data Types
+---
+
+```{r setup}
+#| include: false
+#| eval: true
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+```
+
+## Objectives
+
+- Create frequency and contingency tables with `count()`
+- Compute groups summary using `summarize()`
+- Review how to subset rows using `filter()` and create/modify variable with `mutate()`
+- Create ordered categorical variables
+
+:::{.callout-important}
+To make sure that everyone start at the same level, and that you will see the same results as in the exercises, we will be using a clean version of the data. [Download the data from the website](https://epicentre-msf.github.io/repicentre/) and store them in `data/clean` in your project !
+:::
+
+## Setup
+
+:::{.setup}
+Open your RStudio Project and create a new script in the R folder called `tables.R` with appropriate metadata and a "Packages" section that imports: `{rio}`, `{here}` and `{dplyr}`. Add an "Import Data" section that loads the *cleaned* version of the measles linelist.
+:::
+
+```{r, include = FALSE}
+library(rio)
+library(here)
+library(dplyr)
+
+# Import data
+df_linelist <- import(here("data", "clean", "simulated_measles_ll.rds")) |> as_tibble()
+
+```
+
+## Introduction: Data aggregation
+
+OK so let's recap, you have just performed one of the most <span tooltip-position="top" tooltip="some consider it to be 80% of the work !">important task</span> of an epidemiologist: the **data cleaning**. Now that you have clean and standardise data, we can get into the real business and start analysing them. Analyses typically start with some tables and summaries to describe our data. This initial exploratory phase often includes:
+
+- Univariate frequency tables to count occurrences of different values
+- Summary statistics (mean, median, standard deviation) of numerical variables
+- Cross-tabulations to examine relationships between categorical variables
+- Group-wise summaries to compare statistics across different subsets of the data
+
+## Counting a Single Column
+
+Let's look at the frequency table for a single categorical variable. This is handy as i) it allows us to quiclky see the unique values in a categorical variable and ii) the number of observations for each of those categories. This is done using `count()`, which accepts the name of a column as an argument and will then count the **number of observations** of each unique element in that column. For example, it would be interesting to see i) how many different age group are in the data and ii) how many patients belong to each group. Using the `age_group` variable we could run: 
+
+```{r}
+df_linelist %>%
+  count(age_group)
+```
+
+The output is a new, smaller dataframe containing the number of patients observed stratified by `age_group`. This kind of table would be considered a <span tooltip-position="top" tooltip="Summary tables are small tables providing summary statistics for a particular dataset, such as counts, median values, or proportions.">summary table</span>.  Because this output is itself a dataframe, we can of course pass it to other functions using the pipe `%>%` operator. We might, for example, want to add a column indicating the proportion of overall observations attributable to each `age_group`:
+
+```{r}
+df_linelist %>%
+  count(age_group) %>%
+  mutate(prop = n / sum(n))
+```
+
+::: {.write}
+Using your linelist data, create a summary table of the number and proportion of all patients stratified by `sub_prefecture`. Now, try adding the argument `sort = TRUE` to the `count()` function. What did this argument do? <span tooltip-position="top" tooltip="Remember that assignment is done using the `<-` operator.">Assign</span> this table to an object called `df_sub_prefecture`.
+:::
+
+```{r, echo = FALSE}
+df_sub_prefecture <- df_linelist %>%
+  count(sub_prefecture, sort = TRUE) %>%
+  mutate(prop = n / sum(n))
+
+```
+
+## Counting Multiple Columns (Contingency Tables)
+
+Counting one variable is nice, but we often want to count the number observations based on two (or more!) factors. These tables are called <span tooltip-position="top" tooltip=" It shows how observations are distributed across different combinations of categories.">contingency tables</span>. For example, knowing the number of patients by `sub_prefecture` is great but we might want to stratify by both `sub_prefecture` *and* `age_group` to see if certain areas have <span tooltip-position="top" tooltip="This type of stratification is a useful way of trying to find areas that may be good candidates for catch up campaigns.">unusually old patients</span>. Doing this is easy, you just need to pass multiple column names to `count()`; for example:
+
+```{r}
+df_linelist %>%
+  count(sub_prefecture, age_group)
+```
+
+:::{.write}
+Create a new summary table counting the number of patients stratified by `sub_prefecture` and `hospitalisation`. What happens if you change the order of the arguments given to `count()`?
+:::
+
+```{r, echo = FALSE}
+df_linelist %>%
+  count(sub_prefecture, hospitalisation)
+```
+
+:::{.write}
+Using `count()` answer the following questions:
+
+- How many patients were Female ? What is the proportion ?
+
+- What are all the values of the `outcome` variable ?
+
+- How many patients between 1 - 4 years have recovered ?
+:::
+
+```{r, echo = FALSE}
+df_linelist %>%
+  count(sex)
+
+df_linelist |>
+  count(outcome)
+
+df_linelist |>
+  count(age_group, outcome) |>
+  print(n = Inf)
+
+```
+
+## Filtering out `NA`s
+
+When looking at the categories of `outcome`, you should have spotted that some patients have missing value (`NA`):
+
+```{r}
+df_linelist |>
+  count(outcome) |> 
+  mutate(prop = n/sum(n))
+```
+
+::: {.look}
+Observe the output of the code above - How can you also call the proportion of dead patients ? Are you happy with this calculation ? 
+:::
+
+The proportion of cases that died is also referred to as the <span tooltip-position="top" tooltip="the CFR is a ratio (or a risk) but not a rate !">Case Fatality Ratio (CFR)</span>. However, to precisely calculate the CFR we need to make sure that the denominator only includes patient for wich we are sure of their outcome (ie remove all cases with `NA` or `left aginst medical advice`). 
+
+Remember that we can do this using `filter()`. To filter for missing values (`NA`) in a variable we can use the small function `is.na(outcome)`. Adding a `!`in front will do the opposire: *remove missing values from `outcome`*:
+
+```{r}
+df_linelist |> 
+  filter( outcome != "left against medical advice", !is.na(outcome) )  |> 
+  count(outcome)
+```
+
+Now that this remove the patients with unclear outcomes, we can add this before creating our frequency table to get the right CFR. 
+
+:::{.write}
+Combine the filtering of rows and the creation of the frequency table with the proportions into a unique pipe. Save this object as `cfr_df`. 
+:::
+
+```{r}
+cfr_df <- df_linelist |> 
+  filter( outcome != "left against medical advice", !is.na(outcome) )  |> 
+  count(outcome)|> 
+  mutate(prop = n/sum(n))
+```
+
+::: {.callout-tip}
+**Bonus.** Another useful "shortcut" function is `drop_na()` from the package `{tidyr}` that equates to `filter(!is.na())`.
+
+```{r}
+df_linelist %>% 
+  drop_na(outcome)  |> 
+  count(outcome)
+```
+
+`drop_na()` is particularly useful as you can give it multiple column names to filter by. But be careful that doing so will remove **all** rows where **one or more** of those columns have a missing value. 
+:::
+
+## Summary Table: Statistics by sub prefecture
+
+Ok now that we have done some simple frequency and contingency tables we may want to increase the complexity. A common task of an epidemiologist is to look at summary statistics within subsets of the data. 
+
+For example, we may be asked to produce patients statistics at the sub-prefecture level, ie: *for each of the sub-prefecture in the data*, we need to answer the following question: 
+
+- How many patients have been hospitalised ? 
+
+- What is the average age ? 
+
+- What is the earliest symptoms onset date ? 
+
+- Among Children under 6 months, how many have died ? 
+
