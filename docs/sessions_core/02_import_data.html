@@ -233,7 +233,14 @@ Important
 </section><section id="setting-up-your-project" class="level2"><h2 class="anchored" data-anchor-id="setting-up-your-project">Setting up your Project</h2>
 <section id="folder-structure" class="level3"><h3 class="anchored" data-anchor-id="folder-structure">Folder Structure</h3>
 <div class="setup">
-<p>If not done already, download the course folder, save it to a location that is <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="OneDrive doesn't play well with R as it will attempt to constantly synchronize certain project files in a way that can cause errors or memory problems"><strong>not connected to OneDrive</strong></span>. Unzip the archive and open the uncompressed folder.</p>
+<p>If not done already, download and unzip the course folder. Save the uncompressed folder to a location that is <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="OneDrive doesn't play well with R as it will attempt to constantly synchronize certain project files in a way that can cause errors or memory problems"><strong>not connected to OneDrive</strong></span> and navigate into it.</p>
+<div class="cell">
+<div class="cell-output-display">
+<a href="https://github.com/epicentre-msf/repicentre/raw/main/data/FETCHR.zip">
+<button class="btn btn-default"><i class="fa fa-save"></i>  Course Folder</button>
+</a>
+</div>
+</div>
 </div>
 <p>This folder gives an example of a typical (and highly recommended) structure for your code projects:</p>
 <ul>
@@ -446,7 +453,7 @@ Important
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"raw"</span>, <span class="st">"example_linelist.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "/tmp/RtmpcIdvUv/file46e193be7391c/data/raw/example_linelist.xlsx"</code></pre>
+<pre><code>[1] "/tmp/RtmpcIdvUv/file46e1977f3b60/data/raw/example_linelist.xlsx"</code></pre>
 </div>
 </div>
 <p>See how we only defined the relative path and the function created an absolute path. This way of defining the path will work on your colleagues computer, even if they run on another operating system, as long as you both respect the internal structure of the working directory.</p>
@@ -455,7 +462,7 @@ Important
 <p>Run the above code in the console. What file path does <code>here("data", "raw")</code> give <em>you</em>?</p>
 </div>
 <div class="write">
-<p>Using <code>here()</code>, create a complete file path for the file <code>msf_linelist_moissala_2023-09-24.xlsx</code>. Keep this path around, we will use it soon.</p>
+<p>Using <code>here()</code>, create a complete file path for the file <code>Moissalla-measles-linelist-EN.xlsx</code>. Keep this path around, we will use it soon.</p>
 </div>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -506,7 +513,7 @@ Tip
 </div>
 <p>Notice that we have nested the command <code>here()</code> <strong>inside</strong> the <code>import()</code> command. Nesting functions is absolutely allowed in R and is something you will do <em>all the time</em>. When functions are nested, R will evaluate them in the order of the innermost function (in this case <code>here()</code>) to the outermost (in this case <code>import()</code>). In this way, the <em>output</em> of <code>here()</code> is being used as the <em>input</em> of <code>import()</code>.</p>
 <div class="write">
-<p>Import the file <code>msf_linelist_moissala_2023-09-24.xlsx</code> that is in your raw data subfolder into R using <code>here()</code> and <code>import()</code>.</p>
+<p>Import the file <code>Moissalla-measles-linelist-EN.xlsx</code> that is in your raw data subfolder into R using <code>here()</code> and <code>import()</code>.</p>
 </div>
 <p>If your import worked correctly, R will print the data into the console but not save it into the environment because we have not <a href="../sessions_core/01_introduction.html#sec-assignement-operator">assigned them to an object</a>.</p>
 <div class="callout callout-style-default callout-tip callout-titled">

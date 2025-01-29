@@ -38,8 +38,20 @@ Les principes vus dans le module FETCH sur la gestion des données s’appliquen
 ### Structure des dossiers {#folder-structure}
 
 ::: {.setup}
-Si ce n'est pas déjà fait, téléchargez le dossier du cours et sauvegardez-le à un endroit [**non connecté à OneDrive**]{.hovertip bs-toggle='tooltip' bs-title="OneDrive ne fonctionne pas bien avec R car il va constamment synchroniser certains fichiers, ce qui peut entraîner des erreurs ou des problèmes de mémoire"}.
-Décompressez l'archive et ouvrez le dossier non compressé.
+Si ce n'est pas déjà fait, téléchargez le dossier du cours décompressez-le. Sauvegardez le dossier non compressé à un endroit [**non connecté à OneDrive**]{.hovertip bs-toggle='tooltip' bs-title="OneDrive ne fonctionne pas bien avec R car il va constamment synchroniser certains fichiers, ce qui peut entraîner des erreurs ou des problèmes de mémoire"} et ouvrez-le.
+
+```{r}
+#| echo: false
+#| eval: true
+
+downloadthis::download_link(
+  link = 'https://github.com/epicentre-msf/repicentre/raw/main/data/FETCHR.zip',
+  button_label = ' Dossier du cours',
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  self_contained = FALSE
+)
+```
 :::
 
 Ce dossier illustre une structure typique et recommandée pour vos projets de code :

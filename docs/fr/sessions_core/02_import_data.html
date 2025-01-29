@@ -231,7 +231,14 @@ Important
 </section><section id="mise-en-place-du-projet" class="level2"><h2 class="anchored" data-anchor-id="mise-en-place-du-projet">Mise en place du projet</h2>
 <section id="folder-structure" class="level3"><h3 class="anchored" data-anchor-id="folder-structure">Structure des dossiers</h3>
 <div class="setup">
-<p>Si ce n’est pas déjà fait, téléchargez le dossier du cours et sauvegardez-le à un endroit <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="OneDrive ne fonctionne pas bien avec R car il va constamment synchroniser certains fichiers, ce qui peut entraîner des erreurs ou des problèmes de mémoire"><strong>non connecté à OneDrive</strong></span>. Décompressez l’archive et ouvrez le dossier non compressé.</p>
+<p>Si ce n’est pas déjà fait, téléchargez le dossier du cours décompressez-le. Sauvegardez le dossier non compressé à un endroit <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="OneDrive ne fonctionne pas bien avec R car il va constamment synchroniser certains fichiers, ce qui peut entraîner des erreurs ou des problèmes de mémoire"><strong>non connecté à OneDrive</strong></span> et ouvrez-le.</p>
+<div class="cell">
+<div class="cell-output-display">
+<a href="https://github.com/epicentre-msf/repicentre/raw/main/data/FETCHR.zip">
+<button class="btn btn-default"><i class="fa fa-save"></i>  Dossier du cours</button>
+</a>
+</div>
+</div>
 </div>
 <p>Ce dossier illustre une structure typique et recommandée pour vos projets de code :</p>
 <ul>
@@ -451,14 +458,14 @@ Important
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"raw"</span>, <span class="st">"example_linelist.xlsx"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "/tmp/RtmpcIdvUv/file46e195a3537d8/data/raw/example_linelist.xlsx"</code></pre>
+<pre><code>[1] "/tmp/RtmpcIdvUv/file46e1925a71e54/data/raw/example_linelist.xlsx"</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"raw"</span>, <span class="st">"example_linelist.xlsx"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "/tmp/RtmpcIdvUv/file46e195a3537d8/data/raw/example_linelist.xlsx"</code></pre>
+<pre><code>[1] "/tmp/RtmpcIdvUv/file46e1925a71e54/data/raw/example_linelist.xlsx"</code></pre>
 </div>
 </div>
 <p>Voyez comme nous n’avons défini que le chemin relatif et la fonction a reconstitué le chemin absolu. Celà marchera donc sur l’ordinateur d’un collègue, y compris sur un autre système d’exploitation, du moment que la structure du répertoire de travail est intacte.</p>
