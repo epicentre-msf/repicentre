@@ -14,7 +14,7 @@ categories:
 #| eval: true
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 
-library(here) # for filepaths
+library(here) # for file paths
 library(rio)  # import and export files
 
 df_linelist <- import(file = here("data", "raw", "xlsx",
@@ -25,12 +25,12 @@ df_linelist <- import(file = here("data", "raw", "xlsx",
 
 - Créer un projet RStudio
 - Mettre en place un code organisé et bien documenté
-- Installer et charger des paquets
-- Écrire des chemins d'accès robustes pour les fichiers
-- Importer et inspecter des données
+- Installer et charger des paquets dans la session
+- écrire des chemins d’accès aux fichiers robustes
+- Importer et inspecter des données dans R
 
 :::{.callout-important}
-Les principes que vous avez appris dans l' [Introduction à R](01_introduction.html) s'appliquent également ici : nous devons faire de notre mieux pour nous assurer que nos projets ne fonctionneront pas seulement aujourd'hui, mais qu'ils pourront également être réutilisés et partagés à l'avenir. Bien que cela ne soit pas toujours facile, il existe plusieurs bonnes pratiques qui peuvent nous aider, et l'une des plus importantes est de commencer avec une bonne base de code organisée.
+Les principes vus dans le module FETCH de gestion des données s’appliquent aussi à votre code : on veut écrire un script qui fonctionne maintenant, mais également dans le futur, et qu’il soit partageable. Bien que cela ne soit pas toujours facile, il existe plusieurs bonnes pratiques qui peuvent nous aider, et la première est d’avoir un code source propre et bien organisé.
 :::
 
 ## Mise en place du projet
@@ -38,105 +38,109 @@ Les principes que vous avez appris dans l' [Introduction à R](01_introduction.h
 ### Structure des dossiers {#folder-structure}
 
 ::: {.setup}
-Si ce n'est pas déjà fait, téléchargez le dossier du cours, sauvegardez-le à un endroit \[**non connecté à OneDrive**\]{.hovertip bs-toggle='tooltip' bs-title="OneDrive ne fonctionne pas bien avec R car il va constamment synchroniser certains dossiers de projets, ce qui peut entraîner des erreurs ou des problèmes de mémoire"}.
+Si ce n'est pas déjà fait, téléchargez le dossier du cours, sauvegardez-le à un endroit [non connecté à OneDrive]{.hovertip bs-toggle='tooltip' bs-title="OneDrive ne fonctionne pas bien avec R car il va constamment synchroniser certains dossiers de projets, ce qui peut entraîner des erreurs ou des problèmes de mémoire"}.
 Décompressez l'archive et ouvrez le dossier non compressé.
 :::
 
-Ce dossier donne un exemple de structure typique (et fortement recommandée) pour vos projets de code :
+Ce dossier illustre une structure typique et recommandée pour vos projets de code :
 
-- données
-- propres
-- brut
-- R
-- résultats
-- LISEZ-MOI
+- 📁 data
+  - 📁 raw
+  - 📁 clean
+- 📁 R
+- 📁 outputs
+- README / LISEZ-MOI
 
-Ce dossier sera votre répertoire de travail pour **toutes les sessions de ce cours**. Vous y créerez un projet Rstudio (explications ci-dessous), et y enregistrerez tous vos scripts. `/R`. Les données du cours se trouvent déjà dans `data/raw`.
+Ce dossier sera votre répertoire de travail pour **toutes les sessions de ce cours**. Vous y créerez un projet Rstudio (explications ci-dessous), et y enregistrerez tous vos scripts (sous dossier `/R`). Les données brutes se trouvent déjà dans `data/raw`.
 
 ### Définitions {#sec-definitions}
 
-Pour travailler dans le cadre de cette session, vous devez comprendre les deux concepts suivants :
+Voici deux concepts importants que vous allez rencontrer tout au cours de cette leçon :
 
-**Répertoire de travail.** Le répertoire de travail est l'emplacement (dossier) où se trouve votre session R *en cours*. Si vous enregistrez un fichier, par exemple, il sera enregistré dans ce dossier par défaut. De même, lorsque vous souhaitez ouvrir un fichier, ce dossier sera affiché par défaut. Tous les chemins relatifs seront relatifs à ce répertoire de travail. Par défaut, R choisit généralement le dossier "Documents" comme répertoire de travail sur les machines Windows.
+**Répertoire de travail.** Le répertoire de travail est l'emplacement (dossier) où se trouve votre session R *en cours*. Si vous enregistrez un fichier, par exemple, il sera enregistré dans ce dossier par défaut. De même, lorsque vous souhaitez ouvrir un fichier, ce dossier sera affiché par défaut. Tous les chemins relatifs auront ce dossier pour origine. Par défaut, R choisit généralement votre dossier "Documents" comme répertoire de travail sur les machines Windows.
 
-**Racine.** La racine fait référence au niveau de dossier le plus élevé du répertoire de travail. Si le dossier de votre cours s'appelle `FETCHR` la racine se trouverait directement à l'intérieur de celui-ci (et non dans l'un de ses sous-dossiers comme `R` ou `Data`).
+**Racine.** La racine fait référence au niveau de dossier le plus élevé du répertoire de travail. Si le dossier de votre cours s'appelle `FETCHR` la racine se trouverait directement à l'intérieur de celui-ci (et non dans l'un de ses sous-dossiers comme `/R` ou `/data`).
 
 ### Projets RStudio
 
-Un projet RStudio peut être utilisé pour vous faciliter la vie et vous aider à orienter [RStudio autour des différents fichiers utilisés dans votre code.]{.hovertip bs-toggle='tooltip' bs-title='Techniquement, un projet RStudio n'est qu'un fichier contenant des métadonnées qui indiquent à RStudio quels fichiers ouvrir et où placer votre répertoire de travail. Cela vous évitera d'avoir à gérer vous-même votre répertoire de travail'}
+Un projet RStudio est outil qui va faciliter votre vie et orienter [RStudio autour des différents fichiers utilisés dans votre code]{.hovertip bs-toggle='tooltip' bs-title="Techniquement, un projet RStudio n'est qu'un fichier contenant des métadonnées qui indiquent à RStudio quels fichiers ouvrir et où placer votre répertoire de travail. Cela vous évite d'avoir à gérer vous-même votre répertoire de travail"}.
 
 Pour rappel, votre interface doit ressembler à ceci :
 
-![Capture d'écran d'une interface Rstudio typique](../img/core/01_introduction/01_rstudio_interface_en.png){fig-align="center" #fig-interface}
+![Capture d'écran d'une interface RStudio typique](../img/core/01_introduction/01_rstudio_interface_en.png){fig-align="center" #fig-interface}
 
 ::: {.setup}
-Ouvrez RStudio et créez un nouveau projet en cliquant sur `File > New Project > Existing Directory > Browse`, en naviguant dans le dossier du cours (en l'ouvrant) et en cliquant sur `Create Project`.
+Ouvrez RStudio et suivez les étapes pour créer un nouveau projet :
+
+- cliquez sur `File > New Project > Existing Directory > Browse`, 
+- naviguez jusqu'au dossier du cours (en l'ouvrant) 
+- cliquz sur `Create Project`.
 :::
 
 ::: {.look}
-Dans l'explorateur Windows, regardez le dossier du cours. Vous devriez maintenant voir un nouveau fichier avec l'extension `.Rproj` qui a une petite icône bleue avec un R.
+Dans l'explorateur Windows, examinez le dossier du cours. Vous devriez maintenant voir un nouveau fichier avec l'extension `.Rproj` qui a une petite icône bleue avec un R.
 :::
 
 ![Icône associée aux projets RStudio](../img/core/02_import/02_rproject.png){fig-align="center"}
 
 :::{.callout-note}
-Si vous ne voyez pas ce fichier, c'est probablement parce qu'il est caché par défaut sur votre ordinateur. Pour modifier ce paramètre dans l'explorateur Windows, allez dans le menu *Afficher* et sélectionnez `Filename Extensions`.
+Si vous ne voyez pas ce fichier, c'est probablement parce qu'il est caché par défaut sur votre ordinateur. Pour modifier ce paramètre dans l'explorateur Windows, allez dans le menu *Afficher* et sélectionnez `Extensions de noms de fichier`.
 :::
 
-Lorsque vous ouvrez un projet RStudio, RStudio démarre une nouvelle session R, ouvre les fichiers de projet associés et définit votre répertoire de travail à la racine du dossier du cours. À ce moment-là, RStudio affiche également les sous-dossiers de ce répertoire dans le panneau en bas à droite.
+Lorsque vous ouvrez un projet RStudio, RStudio démarre une nouvelle session R spécifique à ce projet, ouvre les fichiers associés et définit la racine de votre dossier de cours comme répertoire de travail. Une conséquence immédiate est que le panneau *Files* en bas à droite de l'interface montre les sous dossiers présents dans le répertoire de travail, *i.e.* votre dossier de cours.
 
 ::: {.callout-tip}
-Il est fortement recommandé de mettre en place un projet RStudio distinct pour chacune de vos [analyses]{.hovertip bs-toggle='tooltip' bs-title="Ici, une analyse unique implique l'ensemble du processus de chargement, de nettoyage, d'analyse et de production de rapports sur une base de données."} afin de garantir que les fichiers de votre projet restent organisés et gérables.  
+Il est fortement recommandé de mettre en place un projet RStudio distinct pour *chacune* de vos [analyses]{.hovertip bs-toggle='tooltip' bs-title="Ici, un projet d'analyse implique l'ensemble du processus de chargement, de nettoyage, d'analyse et de production de rapports sur un jeu de données."} afin de garantir que les fichiers de votre projet restent organisés.  
 :::
 
 Il existe plusieurs façons d'ouvrir un projet RStudio :
 
-- Utilisez le menu RStudio `File > Open Project` puis sélectionnez le projet que vous souhaitez ouvrir `.Rproj`
-- Cliquez sur \[le bouton `Project: (none)`\]{.hovertip bs-toggle='tooltip' bs-title='Vous pouvez cliquer sur ce bouton à tout moment pour savoir dans quel projet vous travaillez actuellement.'} en haut à droite de l'interface RStudio
-- Naviguez dans l'explorateur de fichiers jusqu'au dossier d'analyse et double-cliquez sur le fichier avec une extension `.Rproj`
+- Utilisez le menu RStudio `File > Open Project` puis sélectionnez le fichier `.Rproj` approprié
+- Cliquez sur [le bouton `Project: (none)`]{.hovertip bs-toggle='tooltip' bs-title="Examinez ce bouton pour savoir dans quel projet vous travaillez actuellement."} en haut à droite de l'interface RStudio
+- Naviguez dans l'explorateur de fichiers Windows jusqu'à votre dossier de cours et double-cliquez sur le fichier avec l'extension `.Rproj`
 
 ### Les options de RStudio
 
-Avant de poursuivre, mettons à jour certains paramètres par défaut de RStudio qui posent problème :
+Avant de poursuivre, allons modifier certaines des options de RStudio qui peuvent causer des problèmes.
 
 ::: {.setup}
-Ouvrir les options globales (`Tools > Global Options`) et ouvrez l'onglet `General` (menu de gauche). Assurez-vous qu'*aucune* des cases des sections `R Sessions`, `Workspace` ou `History` sont cochées.
+Ouvrir les options globales (`Tools > Global Options`) et ouvrez l'onglet `General` (menu de gauche). Déselectionnez toutes les cases des sections `R Sessions`, `Workspace` et `History`.
 :::
 
-![Capture d'écran des options de Rstudio](../img/core/02_import/03_do_not_save.png){fig-align="center"}
+![Capture d'écran des options de RStudio](../img/core/02_import/03_do_not_save.png){fig-align="center"}
 
-Lorsqu'elles sont cochées, ces options amènent RStudio à enregistrer les objets de votre environnement et ils seront chargés de nouveau, chaque fois que vous ouvrirez une nouvelle session R. Bien que ces options par défaut puissent sembler une bonne idée, il est préférable de toujours commencer votre travail à partir d'une [session R vide]{.hovertip bs-toggle='tooltip' bs-title='Une session vide signifie que l'environnement est vide, mais que vous avez toujours vos scripts !'} afin d'éviter les bugs.
+Lorsque ces options sont activées, RStudio enregistre les objets de votre environnement et les charge à chaque fois que vous ouvrez une nouvelle session R. Ca pourrait sembler une bonne idée, mais il est préférable de toujours commencer votre travail à partir d'une [session R vide]{.hovertip bs-toggle='tooltip' bs-title="Une session vide signifie que l'environnement est vide, mais vos scripts avec toutes les instructions sont toujours là !"} afin d'éviter les bugs.
 
 :::{.callout-important}
-N'oubliez pas que toute commande ou sortie nécessaire au nettoyage et à l'analyse doit être enregistrée explicitement dans un script, dans un ordre donné, et fonctionnel.
+N'oubliez pas que toutes les commandes nécessaires au nettoyage et à l'analyse de vos données doit être enregistrée explicitement dans un script, dans le bon ordre. Faire retourner le script devrait arriver aux mêmes résultats.
 :::
 
 ## Création d'un nouveau script
 
 ::: {.setup}
-Ouvrez un nouveau script et enregistrez-le dans le répertoire `R` de votre projet sous le nom `import_data.R`.
+Ouvrez un nouveau script et enregistrez-le dans le sous-dossier `R` de votre projet sous le nom `import_data.R`.
 
-Ajoutez quelques métadonnées au début du script, comme indiqué dans la première session, en utilisant la fonction [commentaires](01_introduction.qmd#sec-comments). Veillez à inclure :
+Ajoutez des métadonnées au début du script, comme recommandé lors première session, en utilisant des [commentaires](01_introduction.qmd#sec-comments). Veillez à inclure :
 
 - Le titre
-- L'auteur de l'article
+- L'auteur du script
 - La date de création
-- La description du projet
+- Une description rapide de ce que fait le script
 :::
 
-Vous êtes maintenant prêt à commencer à coder !
+Nous sommes prêts à commencer à coder
 
 ## Paquets {#sec-packages}
 
-Les paquets sont un ensemble de fonctions qui qui permettent d'aller plus loin qu'avec les fonctionnalités basiques de R. Vous les utiliserez **beaucoup** dans ce cours et dans votre vie quotidienne. Heureusement, en tant que langage open source, les paquets R peuvent être téléchargés et installés gratuitement sur internet.
+Les paquets [*packages*] sont des collections de fonctions qui étendent les fonctionalités de R. Vous en utiliserez un grand nombre pendant ce cours et dans votre travail quotidien. R étant open-souce, les packages sont téléchargeable et utilisable gratuitement.
 
 :::{.callout-note}
-Dans R, les paquets sont référencés à l'aide de `{}`. Par exemple `{ggplot2}` est le nom du paquet ggplot2 qui contient de nouvelles fonctions de traçage telles que `ggplot()`, `geom_point()` etc...
+Dans R, la convention est de référencer les paquets à l'aide de `{}` dans les explications. Par exemple `{ggplot2}` est le nom du paquet ggplot2 qui contient des fonctions pour créer des graphes, telles que `ggplot()`, `geom_point()` etc...
 :::
 
 ### Installation
 
-Nous pouvons installer un nouveau paquet à l'aide de la fonction `install.packages()` qui le télécharge et l'installe dans la bibliothèque de paquets de votre ordinateur. Cette opération n'est effectuée qu'une seule fois par ordinateur.
+La fonction `install.packages()` télécharge et installe un nouveau paquet sur votre ordinateur, dans la bibliothèque de paquets. Vous n'avez à faire cette opération qu'une seule fois par paquet et ordinateur.
 
 ```{r}
 #| eval = FALSE
