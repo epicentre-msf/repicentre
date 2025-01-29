@@ -8,7 +8,7 @@ format:
 ---
 
 ::: {.div #homepage-text}
-[Welcome to `{repicentre}`]{.h1}
+[Bienvenue à `{repicentre}`]{.h1}
 
 Une plateforme open source pour apprendre R dans les contextes humanitaires. Qu'aimeriez-vous faire ?
 :::
