@@ -137,12 +137,12 @@ Nous sommes prêts à commencer à coder
 Les paquets [*packages*] sont des collections de fonctions qui étendent les fonctionalités de R. Vous en utiliserez un grand nombre pendant ce cours et dans votre travail quotidien. R étant open-souce, les packages sont téléchargeable et utilisable gratuitement.
 
 :::{.callout-note}
-Dans R, la convention est de référencer les paquets à l'aide de `{}` dans les explications. Par exemple `{ggplot2}` est le nom du paquet ggplot2 qui contient des fonctions pour créer des graphes, telles que `ggplot()`, `geom_point()` etc...
+Dans ce cours, nous utiliserons une convention commune qui est de référencer les paquets entre `{}`. Par exemple `{ggplot2}` est le nom du paquet ggplot2 qui contient des fonctions pour créer des graphes, telles que `ggplot()`, `geom_point()` etc...
 :::
 
 ### Installation
 
-La fonction `install.packages()` télécharge et installe un nouveau paquet sur votre ordinateur, dans la bibliothèque de paquets. Vous n'avez à faire cette opération qu'une seule fois par paquet et ordinateur.
+La fonction `install.packages()` télécharge et installe un nouveau paquet sur votre ordinateur, dans la bibliothèque de paquets associée à R. Vous n'avez à faire cette opération qu'une seule fois par paquet et ordinateur.
 
 ```{r}
 #| eval = FALSE
@@ -154,19 +154,19 @@ N'oubliez pas de mettre le nom du paquet entre guillemets lorsque vous utilisez 
 ::: {.callout-note}
 Si vous suivez cette session dans le cadre d'un cours, pour éviter tout problème potentiel de connectivité internet pendant la formation, nous vous avons déjà fait installer la plupart des paquets du cours.
 
-Si vous suivez ce tutoriel seul ou si vous n'avez pas encore installé les paquets, vous devrez installer manuellement chaque nouveau paquet que nous rencontrerons.
+Si vous suivez ce tutoriel seul ou si vous n'avez pas encore installé les paquets, vous devrez installer manuellement chaque nouveau paquet que nous rencontrerons avec la fonction `install.packages()`.
 :::
 
 ### Utilisation
 
-Une fois qu'un paquet est installé, nous pouvons l'utiliser mais nous devons spécifier à R que nous allons l'utiliser *à chaque session*. Ce processus s'appelle *le chargement du paquet* et s'effectue à l'aide de la fonction `library()`.
+Une fois qu'un paquet est installé, il faut indiquer à R que nous souhaiton l'utiliser pour une  session donnée. C'est ce qu'on appelle *le chargement du paquet*,  qui s'effectue avec la fonction `library()`.
 
 ```{r}
-library(here) # télécharge le paquet "here"
+library(here) # charge le paquet "here" dans la session
 ```
 
 ::: {.write}
-Utilisez le `library()` pour charger les paquets `here` et `rio` qui seront utilisés dans la section suivante.
+Utilisez la fonction `library()` pour charger les paquets `here` et `rio` qui seront utilisés dans la section suivante.
 :::
 
 En fonction de la configuration de votre ordinateur et du paquet que vous essayez de charger, il se peut que vous obteniez un [message d'avertissement]{.hovertip bs-toggle='tooltip' bs-title="Contrairement aux messages d'erreur, les avertissements n'interrompent pas la commande en cours. Ils sont utilisés pour signaler des problèmes potentiels, mais non graves, et n'ont pas toujours besoin d'être corrigés."} signalant que certaines fonctions ont été [masquées]{.hovertip bs-toggle='tooltip' bs-title="Le masquage se produit lorsque R essaie de charger plus d'une fonction portant le même nom en même temps. Ce problème est courant. Par exemple, il existe un grand nombre de paquets qui ont une fonction appelée`filter()` ou `select()`. Lorsque ces conflits se produisent, R choisira la version qui a été chargée en dernier et les autres versions seront ignorées (masquées)."} ou que la version actuelle du paquet a été construite pour une version différente de R. Ces messages ne posent généralement pas de problème, mais il est tout de même important de les noter.
