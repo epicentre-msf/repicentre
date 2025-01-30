@@ -437,23 +437,28 @@ sub_pref_df
 
 ```
 
-::: {.callout-tip}
- You should be proud of yourselves, making summary table is an important skill to an epidemiologist, making it in R is very efficient !!
-:::
+## Done!
 
-### Factors
+You should be proud of yourselves, making summary table is an important skill to an epidemiologist, making it in R is very efficient !! Don't forget to save your code !
 
-Before letting you go let me bother you with one last thing ! This table that you have just produced is very nice, however we have some internal rules and we have to display the `sub_prefecture` in a specific order ! I know ... annoying but very often a real case. Let's say that is the desired order:
+## Going Further
 
-- Goundi
-- Koumra
-- Bedaya
-- Bouna
-- Bedjondo
-- Bekourou
-- Moissala
+### Extra Exercises
 
-It is rather straightforward to adress this in R. What we want to do is convert the `sub_prefecture` into a special class called an **ordered factor**. **Factors** are an atomic data type in R similar to a string but where values can only be one of a specific set of options (like our seven sub-prefectures). These options are called *levels*, and we can decide on the order of these levels, and for *most* tables and graphs they will be displayed in this order ! pretty handy and settles our problem ! 
+- Make a summary table that summarises: 
+  - The number of patients
+  - The proportion of male
+  - The Number of deaths
+  - The CFR
+  - The Number of deaths among patients that had pneumonia
 
-Factors can be created using the `factor()` function. Let's look at an example
+in all the different *Age groups* ! 
+
+### Additional Resources
+
+- The [EpiR Handbook chapter on grouping data](https://epirhandbook.com/en/new_pages/grouping.html)
+
+- Once you have tables, you can extensively customise them for display/publication using `{gt}` package: 
+  - [Website of `gt`](https://gt.rstudio.com/index.html)
+  - [Book about `gt`](https://gt.albert-rapp.de/)
 
