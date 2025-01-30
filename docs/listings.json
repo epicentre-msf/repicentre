@@ -9,8 +9,22 @@
   {
     "listing": "/explore.html",
     "items": [
+      "/sessions_core/05_summaries.html",
       "/sessions_core/02_import_data.html",
+      "/sessions_core/02_import_data.fr.html",
       "/sessions_core/01_introduction.html",
+      "/sessions_core/01_introduction.fr.html",
+      "/sessions_core/template.html"
+    ]
+  },
+  {
+    "listing": "/explore.fr.html",
+    "items": [
+      "/sessions_core/05_summaries.html",
+      "/sessions_core/02_import_data.html",
+      "/sessions_core/02_import_data.fr.html",
+      "/sessions_core/01_introduction.html",
+      "/sessions_core/01_introduction.fr.html",
       "/sessions_core/template.html"
     ]
   }
