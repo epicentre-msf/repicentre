@@ -503,5 +503,5 @@ downloadthis::download_link(
 
 ## Resources
 
-A [full book](https://ggplot2-book.org/) on using `{ggplot2}`
-A [whole chapter](https://www.epirhandbook.com/en/new_pages/epicurves.html) on epicurves
+- A [full book](https://ggplot2-book.org/) on using `{ggplot2}`  
+- A [whole chapter](https://www.epirhandbook.com/en/new_pages/epicurves.html) on epicurves
