@@ -417,7 +417,7 @@ Let's create a new summarized dataset that has the number of outcomes by week *a
 # Summarise the data
 df_outcome_site <- df_linelist %>%
   mutate(week_outcome = isoweek(date_outcome)) %>%
-  count(week_outcome, site,
+  count(week_outcome, sub_prefecture,
         name = 'patients') %>%
   tidyr::drop_na(week_outcome)
 
@@ -442,7 +442,7 @@ df_outcome_site %>%
        title = 'Measles outcomes in Moissala') +
   theme_classic(base_size = 15) +
   
-  facet_wrap(vars(site))   # Make the plot by site!
+  facet_wrap(vars(sub_prefecture))   # Make the plot by site!
 ```
 
 Isn't that incredible? As you can see, the function `facer_wrap()` takes as argument a variable name wrapped in the `vars()` function.
