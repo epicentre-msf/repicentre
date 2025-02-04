@@ -410,6 +410,21 @@ df_linelist %>%
   theme_classic(base_size = 15)
 ```
 
+## Done!
+
+```{r}
+#| echo: false
+#| eval: true
+
+downloadthis::download_link(
+  link = 'https://github.com/epicentre-msf/repicentre/blob/main/sessions_core/epicurves_dates_solutions.R',
+  button_label = 'Solution File',
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  self_contained = FALSE
+)
+```
+
 
 ## Resources
 
