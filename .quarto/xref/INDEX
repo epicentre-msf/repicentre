@@ -40,5 +40,29 @@
   },
   "sessions_core/template.qmd": {
     "template.html": "61e6719c"
+  },
+  "resources.qmd": {
+    "resources.html": "8de10a3c"
+  },
+  "sessions_core/01_introduction.qmd": {
+    "01_introduction.html": "db6fa68a"
+  },
+  "sessions_core/02_import_data.qmd": {
+    "02_import_data.html": "a7ed54f7"
+  },
+  "about.fr.qmd": {
+    "about.fr.html": "7d23b5e8"
+  },
+  "explore.fr.qmd": {
+    "explore.fr.html": "574c8696"
+  },
+  "index.fr.qmd": {
+    "index.fr.html": "d07fd857"
+  },
+  "pathway.fr.qmd": {
+    "pathway.fr.html": "67554c3e"
+  },
+  "resources.fr.qmd": {
+    "resources.fr.html": "483599f5"
   }
 }

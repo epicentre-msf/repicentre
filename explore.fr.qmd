@@ -1,0 +1,13 @@
+---
+title: Explorer
+description: 'Tout partout en même temps'
+listing:
+  categories: unnumbered
+  type: grid
+  image-placeholder: img/under-construction.svg
+  contents:
+    - 'sessions_core/*.qmd'
+    - 'sessions_extra/*.qmd'
+---
+
+Choisissez votre propre aventure en parcourant toutes les sessions disponibles.
