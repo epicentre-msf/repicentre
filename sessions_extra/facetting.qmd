@@ -1,0 +1,313 @@
+---
+title: Introduction to facetting
+description: Create a plot with multiple subplots (facets)
+date: last-modified
+# image: ../img/satellite/facetting/ggplot_000_logo.png
+categories:
+  - Core
+  - Graphs
+  - ggplot2
+  - epicurve
+---
+
+```{r setup}
+#| include: false
+#| eval: true
+
+library(dplyr)       # Data manipulation
+library(lubridate)   # Deal with dates
+library(ggplot2)     # Todays workhorse
+
+
+# Data
+df_linelist <- rio::import(here::here('data', 'clean', 'simulated_measles_ll.rds')) %>% 
+  mutate(
+    week_admission = isoweek(date_admission), # For their example
+    week_outcome   = isoweek(date_outcome)    # For session example
+    )
+
+# Our exemple
+df_pref <- df_linelist %>%
+  count(week_admission, sub_prefecture,
+        name = 'patients') %>%
+  tidyr::drop_na(week_admission)
+
+# Their exemple
+df_age <- df_linelist %>% 
+  count(week_admission, age_group) %>% 
+  tidyr::drop_na(week_admission)
+
+# For the extra exercice at the end
+df_cases <- df_linelist %>% 
+  count(week_admission)
+```
+
+## Objectives
+
+- Learn the syntax to make subplots real quick in `{ggplot2}`
+- Learn arguments to modify the appearance of the subplots
+
+
+## Introduction
+
+This satellite builds on the core [epicurve session](../session_core/06_ggplot.qmd), which is a prerequiste. In that session, we learned how to create an epicurve of measles cases across time: 
+
+```{r}
+#| echo: false
+#| eval: true
+
+df_linelist %>%
+  tidyr::drop_na(week_admission) %>% 
+  count(week_admission) %>%
+  ggplot(aes(x = week_admission,
+             y = n)) +
+  geom_col(fill = '#2E4573') +
+  labs(x = 'ISO Week',
+       y = 'Measles Cases',
+       title = 'Measles in Moissala',
+       caption = 'Ficticious data') +
+  theme_classic(base_size = 18) 
+```
+
+
+Now, this plot is cool, but in your sitrep you would like to show the data by age group. There are several ways to do that:
+
+- You _could_, for each age group, filter your data frame and copy and paste the plotting command to create specific plots
+- You could learn to use `for` loops or `apply()` or `map()` family functions, which are very useful ways to automatize actions, and involve less copy and pasting
+- Or you could trust `{ggplot2}` to have a solution...
+
+The first option is tedious and it is error prone, and we advise against it; learning the tools of the second option will be a good investment of you time at some point as they are really powerful, but they are *way* out of the scope of this tutorial because a much simpler option already exist in `{ggplot2}`.
+
+
+## Setup
+
+Let's get your data and script ready.
+
+::: {.write}
+Open your RStudio project and create a new script called `facetting.R` with appropriate metadata. Alternatively, work in your `epicurves.R` script, in a new section.
+
+In any case, make sure you load the following packages: `{here}`, `{rio}`, `{dplyr}`, `{lubridate}`, `{ggplot2}` and that you imported the clean dataset `simulated_measles_ll.rds`. 
+
+Add a `week_admission` variable to that data frame that contains the ISO week of the date of admission, as we did in the  [epicurve session](../session_core/06_ggplot.qmd).
+:::
+
+
+## Facetting
+
+The function `facet_wrap()` allows you to replicate a graph based on the categories of a variable. For example, you could make the epicurve graph *by sex*, or *by site*. As other layers of a ggplot graph, you add it to your existing graph with a `+`. It creates a a figure with multiple small graphs, that `{ggplot2}` calls *facets* or *small multiples*.
+
+
+### Get the Data Ready
+
+In the following session, *we* will explain the code by creating subplots by sub-prefecture, and _you_ will be plotting the epicurve by age group.
+
+
+If we want to to plot anything *by sub-prefecture*, the `sub_prefecture` variable must be present in the aggregated data frame that we use to plot. 
+
+
+Let's create a new summarized dataset that has the number of patients by week *and by sub-prefecture*!
+
+```{r}
+df_pref <- df_linelist %>%
+  count(week_admission, sub_prefecture,
+        name = 'patients') %>%
+  tidyr::drop_na(week_admission)  # drop the NA ou, shortcut to filter(!is.na(week_admission))
+```
+
+
+
+```{r}
+#| eval: true
+#| echo: false
+
+head(df_pref)
+```
+
+
+::: {.write}
+You will draw a plot of the number of admissions by age group, so you need a new data frame summarized by week and age group. Create this data frame, and call it `df_age`
+:::
+
+
+### Add the Facet Layer to the Plot
+
+Now, let's plot this data. Look at the code bellow: it is exactly the same as before but for the last line, which creates the facets:
+
+```{r}
+#| eval: true
+
+df_pref %>%
+  ggplot(aes(x = week_admission,
+             y = patients)) +
+  geom_col(fill = "#2E4573") +
+  labs(x = "ISO Week",
+       y = "Measles cases",
+       title = 'Measles cases in Chad') +
+  theme_classic(base_size = 15) +
+  
+  facet_wrap(vars(sub_prefecture))   # Make the plot by sub-prefecture!
+```
+
+Isn't that incredible? As you can see, the function `facer_wrap()` takes as argument a variable name wrapped in the `vars()` function.
+
+::: {.write}
+Now is your turn, draw the epicurve by age group (still keeping all the plots improvement: labels, themes etc.)
+:::
+
+## Customize Facets
+
+Check out the function [help page](https://ggplot2.tidyverse.org/reference/facet_wrap.html) to learn about the arguments that `facet_wrap()` accepts. We will cover a couple here.
+
+### Number of Rows or Columns
+
+The arguments `nrow` and `ncol` allow you to decide how many facets there should be on one row, respectively one column.
+
+For exemple, we could have all plots on two rows, for a wide figure: 
+
+```{r}
+#| eval: true
+
+df_pref %>%
+  ggplot(aes(x = week_admission,
+             y = patients)) +
+  geom_col(fill = "#2E4573") +
+  labs(x = "ISO Week",
+       y = "Measles cases",
+       title = 'Measles cases in Chad') +
+  theme_classic(base_size = 15) +
+  
+  facet_wrap(vars(sub_prefecture),
+             nrow = 2)  
+```
+
+Or force the number of rows to four, which forces a taller figure:
+
+```{r}
+#| eval: true
+#| fig-height: 7
+
+df_pref %>%
+  ggplot(aes(x = week_admission,
+             y = patients)) +
+  geom_col(fill = "#2E4573") +
+  labs(x = "ISO Week",
+       y = "Measles cases",
+       title = 'Measles cases in Chad') +
+  theme_classic(base_size = 15) +
+  
+  facet_wrap(vars(sub_prefecture),
+             nrow = 4)  
+```
+
+
+::: {.write}
+Using one of the mentioned argument, create a graph with three columns.
+:::
+
+### Axis Ranges
+
+Did you notice that in the graph we produced, all facets share the same axis in x and y? This is often a desired feature, as playing with axes is one of the best ways to mislead readers. 
+
+That being said, if you are more interesting in seeing the shape of the epicurve by category and less by comparing categories to each other, zooming on the available data can be appropriate (alert your reader to the scale variation though!)
+
+The `scales` argument accepts the following strings:
+
+- `"fixed"`: the default, same limits on x and y for all facets
+- `"free_x"`: the x axis may have different limits in different facets
+- `"free_y"`: the y axis may have different limits in different facets
+- `"free"`: both axis may vary in different facets
+
+Look at this graph:  
+
+```{r}
+#| eval: true
+#| echo: false
+#| fig-height: 7
+
+df_pref %>%
+  ggplot(aes(x = week_admission,
+             y = patients)) +
+  geom_col(fill = "#2E4573") +
+  labs(x = "ISO Week",
+       y = "Measles cases",
+       title = 'Measles cases in Chad',
+       subtitle = "Note the y axis") +
+  theme_classic(base_size = 15) +
+  
+  facet_wrap(vars(sub_prefecture),
+             ncol = 2,
+             scales = "free_y")  
+```
+
+We kept time window on the x axis fixed but allowed the y axis to vary to better read the number of cases by sub-prefecture.
+
+
+::: {.write}
+Your turn! Draw you graph with age group as facets with a free y axis, and a fixed x axis.
+:::
+
+
+## Done!
+
+Very well done team! You have learned how to facet plots! This will work not only on bar plots such as epicurves, but also on other types of plots made by `{ggplot2}`.
+
+```{r}
+#| echo: false
+#| eval: true
+
+downloadthis::download_link(
+  link = 'https://github.com/epicentre-msf/repicentre/blob/main/sessions_extra/facetting_solutions.R',
+  button_label = 'Solutions file',
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  self_contained = FALSE
+)
+```
+
+
+
+
+## Extra exercice
+
+The help pages from `{tidyverse}` packages tend to be well written. We advise you to go and read them when you learn a new function, you are bound to learn a couple of tricks each time.
+
+::: {.callout-important}
+Reading code written by others, figuring out what it does and then adapting it to your own code are **very important skills** to develop, whether the code comes from the official documentation, StakOverflow, tutorials from random people on the web or Large Language Models outputs (such as Github Copilot, or ChatGPT).
+:::
+
+Here is an exercise to train these skills. Checkout the examples of the [help page](https://ggplot2.tidyverse.org/reference/facet_wrap.html) for the `facet_wrap()` function: one of them show how to adapt your code to do this:
+
+```{r}
+#| eval: true
+#| echo: false
+
+df_cases <- df_linelist %>% 
+  count(week_admission) %>% 
+   tidyr::drop_na(week_admission)
+
+ggplot(data = df_age,     # general dataset
+       aes(x = week_admission,
+           y = n)) +
+
+  # Plot the gray bars:
+  geom_col(data = df_cases,     # dataset for just this layer
+           fill = "grey80") +
+
+  # Plot the blue bars
+  geom_col(fill = "#2E4573") +  # uses the general dataset
+
+  labs(x = "ISO Week",
+       y = "Measles Cases",
+       title = "Measles in Moissala",
+       caption = "Ficticious data") +
+  theme_classic(base_size = 15) +
+  facet_wrap(vars(age_group))
+```
+
+Can you modify your code do do something similar?
+
+
+::: {.callout-tip collapse="true"}
+You will need two aggregated data frames, one created today and one created in the [epicurve session](../session_core/06_ggplot.qmd).
+:::
+
