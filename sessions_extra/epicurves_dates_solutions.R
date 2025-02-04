@@ -45,7 +45,7 @@ df_linelist <- df_linelist %>%
                                         unit = "week",
                                         week_start = 1)
   )  %>% 
-  filter(year(date_consultation) == 2022)  # Keep 2022 data
+  filter(date_consultation < as.Date("2023-01-01"))  # Keep 2022 data
 
 
 # Aggregated dataset (alternatively you could just summarise 
