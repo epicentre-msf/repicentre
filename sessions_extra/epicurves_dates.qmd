@@ -6,7 +6,6 @@ image: ../sessions_extra/img/epicurve-dates-000-logo.png
 categories:
   - Satellite
   - Graphs
-  - ggplot2
   - epicurve
   - dates
 ---
@@ -41,7 +40,8 @@ df_linelist <- rio::import(here::here("data", "clean",
     week_first_day_outcome = floor_date(date_outcome,   # Examples
                                         unit = "week",
                                         week_start = 1)
-  )
+  ) %>% 
+   filter(year(date_consultation) == 2022)
 
 # Data for our examples
 df_outcome <- df_linelist %>%
@@ -50,9 +50,9 @@ df_outcome <- df_linelist %>%
 ```
 
 
-## Objective
+## Objectives
 
-Learn to display dates on the x-axis of your graphs, and how to tweak the date labels.
+In this tutorial we will Learn to **display dates** on the x-axis of your graphs, and how to **tweak the date labels**.
 
 In the [epicurve session](../sessions_core/07_epicurves.qmd) you learned how to plot an epicurve of the number of cases across time:
 
@@ -68,19 +68,24 @@ df_linelist %>%
   geom_col(fill = '#2E4573') +
   labs(x = 'ISO Week',
        y = 'Measles Cases',
-       title = 'Measles in Moissala',
+       title = 'Measles in Moissala - 2022',
        caption = 'Ficticious data') +
   theme_classic(base_size = 18) 
 ```
 
 In that graph we chose to represent epiweeks in the bottom axis, as it is a common task. In this session we will show how to code a variant of this graph with dates instead.
 
-As in the core session, the examples will plot the epicurve for outcomes, and you will code the epicurve for hospitalizations.
+As in the core session, the examples will plot the epicurve for outcomes, and you will code the epicurve for consultations.
 
 
 ## Setup
 
-We will use the following packages in this session:
+We will build on code from the [epicurve session](../sessions_core/07_epicurves.qmd) so you may code in the script associated or create a new script.
+
+::: {.setup}
+Create a new script for this tutorial or open the script from the epicurve lesson.
+
+Make sure the following packages are installed and loaded:
 
 - `{here}` to write robust absolute paths,
 - `{rio}` to import the data, 
@@ -89,35 +94,24 @@ We will use the following packages in this session:
 - `{lubridate}` to manage dates and times
 - `{scales} ` to create prettier labels
 
-
-We use the same setup as the one from the [ggplot core session](../sessions_core/ggplot.qmd#sec-epicurve-steps).
-
-```{r}
-# Import clean data ----------------------------------------
-df_linelist <- rio::import(here::here("data", "clean",
-                                      "simulated_measles_ll.rds")) %>%
-  tidyr::drop_na(date_consultation, date_outcome) %>% 
-  mutate(week_consultation = isoweek(date_consultation))  # Used to plot the weeks ISO
-```
-
-::: {.callout-important}
-To avoid the warnings all along the session, we removed the missing values *both* in the admission date and outcome date columns. When you analyse and plot data, always be aware of how many missing data you have and how a `tidyr::drop_na()` command affects your dataframe.
+Import the clean data, create a `week_consultation` variable (if not done already) and filter the data to keep only patients that consulted in 2022.
 :::
 
 
-## Create the time variable
+::: {.callout-important}
+To avoid the warnings all along the session, we removed the missing valuesfrom the outcome date columns in the examples. When you analyse and plot data, always be aware of how many missing data you have and how a `tidyr::drop_na()` command affects your dataframe.
+:::
 
-In the core session we used the function `isoweek()` from the `{lubridate}` package to derive the week ISO *number*. In this session, we want to aggregate data by week and yet still retain information on dates. To do that we will use the function `floor_date()`, which also belong to the `{lubridate}` package. This function returns the *first date* of a given period (day, month, year etc.). You can think of it as a sort of [rounding to the smallest value]{.hovertip bs-toggle='tooltip' bs-title="Predictably, there also is a `ceiling_date()` function that rounds dates to the highest value of a period"}, but for dates.
+
+## First Day of the Week Variable
+
+In the core session we used the function `isoweek()` from the `{lubridate}` package to derive the week ISO *number*, which is one way of aggregating data by week. In this session, we also want to aggregate data by week and yet still retain information on dates. To do that we will use the function `floor_date()` (also from the `{lubridate}` package),which returns the *first date* of a given period. You can think of it as a sort of [rounding to the smallest value]{.hovertip bs-toggle='tooltip' bs-title="Predictably, there also is a `ceiling_date()` function that rounds dates to the highest value of a period"}, but for dates.
 
 The function has a `unit` argument that allows you to choose the period of interest (week, month...) and a `week_start` period where you can pass the first day of the week (mondays are `1`).
 
 ```{r}
 df_linelist <- df_linelist %>% 
   mutate(
-    # Week number (ISO)
-    week_outcome = isoweek(date_outcome),
-    
-    # First DATE of the week
     week_first_day_outcome = floor_date(date_outcome,
                                         unit = "week",
                                         week_start = 1)
@@ -125,21 +119,23 @@ df_linelist <- df_linelist %>%
 ```
 
 
-Let's look at all these time variables:
+Let's look at all these different time variables to figure out what's happening:
 
 ```{r}
 #| eval: true
+
 df_linelist %>% 
   select(id, date_outcome, week_outcome, week_first_day_outcome) %>%
   arrange(date_outcome) %>%     # Sort the data by date
   head(n = 10)
 ```
 
-It is even easier to understand if we calculate the day of thee week associated with each date with the function `wday()` that *also* belong to the [`{lubridate}` package]{.hovertip bs-toggle='tooltip' bs-title="The {lubridate} package is an extremely useful tool to manage dates in R..."}:  
+It might be even easier to understand if we calculate the day of thee week associated with each date using the function `wday()` (that *also* belong to the `{lubridate}` package, are you maybe seeing a pattern here 😉?):  
 
 ```{r}
 #| eval: true
 df_linelist %>% 
+  # Get the name of the day for several date variables, to understand a bit better
   mutate(
     day_outcome = wday(date_outcome, 
                        label = TRUE, 
@@ -159,19 +155,21 @@ df_linelist %>%
 This illustrate how `week_outcome` and `week_first_day_outcome` are two ways to have only one value by week, which makes aggregation possible at the week scale. One difference between the two options is that week numbers are not unique (2022 and 2023 have a first week) while dates are.
 
 ::: {.write}
-In the import data section of your script, add a new command to your `mutate()` call and create the variable `week_first_day_cons` that contains the first day of the week each patient had consulted. Choose your argument as if the first day of the week is a Monday.
+In the import data section of your script, add a new command to your `mutate()` call and create the variable `week_first_day_cons` that contains the first day of the week each patient has consulted. Choose your argument as if the first day of the week is a Monday.
 :::
-
 
 ::: {.callout-tip}
 Go read the [help page](https://lubridate.tidyverse.org/reference/round_date.html) for `floor_date()` to check out the list of possible units.
 :::
 
 
-## Aggregate by week
+## Aggregate by Week
+
+Now that we have an alternative to `week_outcome`, we are going to follow the same steps that we did to create the epicurve, and the first one is to aggregate data by week.
+
 
 ::: {.write}
-Count the number of patients per week of consultation, this time using the week start instead of the week number.
+Count the number of patients per week of consultation, this time using the week start instead of the week number (`week_first_day_cons`).
 :::
 
 Here are the first ten lines of what it should look like:
@@ -186,7 +184,9 @@ df_linelist %>%
 ```
 
 
-## Draw the epicurve
+## Draw the Epicurve
+
+So far so good, now we can pipe that aggregated data frame into our plot commands, making a couple ajustments to make it work.
 
 ::: {.write}
 Create a `ggplot` with the same look at the epicurve from the [epicurve core session](../sessions_core/07_epicurves.qmd#sec-epicurve-steps), but with the first day of the week on the x-axis. Don't forget to update axes names.
@@ -205,25 +205,26 @@ df_linelist %>%
   geom_col(fill = "#2E4573") +
   labs(x = "Date of consultation",
        y = "Measles cases",
-       title = "Measles in Moissala",
+       title = "Measles in Moissala - 2022",
        caption = "Ficticious data") +
   theme_classic(base_size = 16)
 ```
 
-::: {.callout-note}
+
 Notice that the bars are identical to the epicurve with weeks numbers. This is normal, are we are aggregating by week in both cases. It is only the information used to represent the week (ISO number or start date) that changes.
-:::
 
 
-## Improve the axis appearance (breaks and labels)
 
-`{ggplot2}` automatically provided labels for the x-axis, trying to adjust for the range of data. We can manually force it to make the labels more or less frequent, and we can manually change the format of the labels.
+## Improve the Axis
+
+Now, let's learn how to tweak the appearance of that date axis! `{ggplot2}` automatically provided labels for the x-axis, trying to adjust for the range of data. That default may not please us, so we may want to manually force the labels to be more or less frequent, or change the *format* of the labels.
 
 To modify the appearance of the axis, we use a function from the scale family, `scale_x_date()`.
 
-### Change breaks
 
-The breaks controls the frequency of ticks on the axis.
+### Modify breaks
+
+The breaks controls the *frequency* of ticks on the axis.
 
 The `scale_x_date()` function has a `date_breaks` argument that accepts the interval between two labels in a string. The string can have the following format: `"1 week"`, `"2 weeks"`, `"4 months"`, `"2 years"` etc.
 
@@ -238,25 +239,25 @@ df_linelist %>%
   geom_col(fill = "#2E4573") +
   labs(x = "Date of outcome",
        y = "Measles cases",
-       title = "Measles outcomes in Moissala") +
-  scale_x_date(date_breaks = "4 months") +  # Define breaks
+       title = "Measles outcomes in Moissala - 2022") +
+  scale_x_date(date_breaks = "1 months") +  # Define breaks
   theme_classic(base_size = 16)
 ```
 
 
 ::: {.write}
-Add the code so that the x-axis displays labels at reasonable intervals on your screen.
+Your turn! Modify your code so that the x-axis displays labels at reasonable intervals on your screen.
 :::
 
 
-### Labels
+### Improve Labels
 
-Now that we changed the interval between ticks, let's improve the labels themselves (the way dates are displayed on the axis). By default the labels are in the form "year-month-day". It is possible to change this. We are going to show you two ways to do that.
+Now that we changed the interval between ticks, let's improve the *labels* themselves (the way dates are displayed on the axis). By default the labels are in the form "year-month-day". We are going to show you two ways to change that.
 
 
-#### With the `{scales}` package.
+#### With the `{scales}` Package.
 
-The `scale_x_date()` function has a `label` argument, that accepts several entries, among which a vector containing the dates, but also a function that generates labels from the breaks. The `{scales}` package has such a function, `label_date_short()`, that attempts to create efficient and short labels for dates.
+The `scale_x_date()` function has a `label` argument, that accepts several entries, among which a vector containing the dates, but also a function that generates labels from the breaks. The `{scales}` package provides such a function, `label_date_short()`, that attempts to create efficient and short labels for dates.
 
 ```{r}
 #| eval: true
@@ -269,20 +270,20 @@ df_linelist %>%
   geom_col(fill = "#2E4573") +
   labs(x = "Date of outcome",
        y = "Measles cases",
-       title = "Measles outcomes in Moissala") +
-  scale_x_date(date_breaks = "2 months",
+       title = "Measles outcomes in Moissala - 2022") +
+  scale_x_date(date_breaks = "2 weeks",
                labels = scales::label_date_short()) + # Short labels
   theme_classic(base_size = 16)
 ```
 
 ::: {.write}
-Modify you code and use `label_date_short()` to generate labels.
+Modify your code and use `label_date_short()` to generate labels.
 :::
 
 
-#### With the `strptime` syntax
+#### With the `strptime` Syntax
 
-If you prefer to have full control on how to format dates, R has a syntax to describe date and time formats. There is a long help page with all the syntax items accessible at `help(strptime)`, but here are a few of the most useful elements to format a date label:
+If you prefer to have full control on how to format dates, R has a *syntax* to describe date and time formats. There is a long help page with all the syntax items accessible with the `help(strptime)` command, but here are a few of the most useful elements to format a date label:
 
 **Day**: 
 
@@ -295,7 +296,7 @@ If you prefer to have full control on how to format dates, R has a syntax to des
 - `%B`: full month name (current locale on your computer)
 - `%m`: month as a decimal number
 
-**Year**
+**Year**:
 
 - `%y`: Year without the century (two digits)
 - `%Y`: year in four digits
@@ -308,8 +309,10 @@ If you prefer to have full control on how to format dates, R has a syntax to des
 You can assemble these items in a string, that you pass to different functions that accept a format as argument. Here we will pass it to the `format()` function to quickly see what display it creates, but after that we will use them in our graph command.
 
 ```{r}
+# Create a date vector to explore different formats
 some_dates <- as.Date(c("2024-10-06", "2024-12-15", "2025-01-20"))
 
+# Let's try out different syntax
 format(some_dates, "%Y-%b-%d")
 format(some_dates, "%Y-%b")
 format(some_dates, "%Y %B %d")
@@ -331,9 +334,9 @@ df_linelist %>%
   geom_col(fill = "#2E4573") +
   labs(x = "Date of outcome",
        y = "Measles cases",
-       title = "Measles outcomes in Moissala") +
+       title = "Measles outcomes in Moissala - 2022") +
   scale_x_date(
-    date_breaks = "2 months",      # Define intervals betw. labels
+    date_breaks = "1 months",      # Define intervals betw. labels
     date_labels = "%Y%n%b%n%d") +  # Define format of labels
   theme_classic(base_size = 16)
 ```
@@ -354,9 +357,9 @@ df_linelist %>%
   geom_col(fill = "#2E4573") +
   labs(x = "Date of consultation",
        y = "Measles cases",
-       title = "Measles in Moissala",
+       title = "Measles in Moissala - 2022",
        caption = "Ficticious data") +
-  scale_x_date(date_breaks = "2 months",
+  scale_x_date(date_breaks = "1 months",
                date_labels = "%m/%d%n%y") +
   theme_classic(base_size = 15)
 ```
@@ -381,4 +384,5 @@ downloadthis::download_link(
 
 ## Resources
 
-Chapter of the [Elegant graphics for data analyses](https://ggplot2-book.org/scales-position#sec-date-scales) book on date scales
+- Chapter of the [Elegant graphics for data analyses](https://ggplot2-book.org/scales-position#sec-date-scales) book on date scales
+- [Get started with lubridate](https://lubridate.tidyverse.org/articles/lubridate.html) from the package homepage.
