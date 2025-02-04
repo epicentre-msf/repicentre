@@ -2,7 +2,7 @@
 title: Introduction to facetting
 description: Create a plot with multiple subplots (facets)
 date: last-modified
-# image: ../img/satellite/facetting/ggplot_000_logo.png
+image: ../img/satellite/facetting/facetting_000_logo.png
 categories:
   - Core
   - Graphs
