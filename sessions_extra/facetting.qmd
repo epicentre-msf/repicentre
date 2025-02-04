@@ -50,7 +50,7 @@ df_cases <- df_linelist %>%
 
 ## Introduction
 
-This satellite builds on the core [epicurve session](../session_core/06_ggplot.qmd), which is a prerequiste. In that session, we learned how to create an epicurve of measles cases across time: 
+This satellite builds on the core [epicurve session](../session_core/07_epicurves.qmd), which is a prerequiste. In that session, we learned how to create an epicurve of measles cases across time: 
 
 ```{r}
 #| echo: false
@@ -88,7 +88,7 @@ Open your RStudio project and create a new script called `facetting.R` with appr
 
 In any case, make sure you load the following packages: `{here}`, `{rio}`, `{dplyr}`, `{lubridate}`, `{ggplot2}` and that you imported the clean dataset `simulated_measles_ll.rds`. 
 
-Add a `week_admission` variable to that data frame that contains the ISO week of the date of admission, as we did in the  [epicurve session](../session_core/06_ggplot.qmd).
+Add a `week_admission` variable to that data frame that contains the ISO week of the date of admission, as we did in the  [epicurve session](../session_core/07_epicurves.qmd).
 :::
 
 
@@ -308,6 +308,6 @@ Can you modify your code do do something similar?
 
 
 ::: {.callout-tip collapse="true"}
-You will need two aggregated data frames, one created today and one created in the [epicurve session](../session_core/06_ggplot.qmd).
+You will need two aggregated data frames, one created today and one created in the [epicurve session](../session_core/07_epicurves.qmd).
 :::
 
