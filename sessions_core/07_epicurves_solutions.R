@@ -1,7 +1,7 @@
-# Solutions to the core session 06_ggplot
+# Solutions to the core session 07_epicurves
 # Author: the Fetch team
 # Creation Date: 03/02/2025
-# Last Update: 03/02/2025
+# Last Update: 04/02/2025
 # Description: Model code associated with the epicurve session
 
 

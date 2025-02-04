@@ -7,7 +7,7 @@ listing:
     contents:
       - '01_introduction.qmd'
       - '02_import_data.qmd'
-      - '06_ggplot.qmd'
+      - '07_epicurves.qmd'
     
 ---
 
