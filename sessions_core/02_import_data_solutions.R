@@ -2,7 +2,7 @@
 # Author:  the Fetch team
 # Creation Date: 07/01/2025
 # Last Update: 07/01/2025
-# Description: Contains solutions to the coding exercices
+# Description: Contains solutions to the coding exercises
 
 
 
@@ -21,7 +21,7 @@ library(rio)
 
 # Define path -----------------------------------------
 
-# Path to the data (not save in an object for now)
+# Path to the data (not saved in an object for now)
 here("data", "raw", "xlsx", "Moissalla-measles-linelist-EN.xlsx")
 
 
@@ -33,7 +33,7 @@ here("data", "raw", "xlsx", "Moissalla-measles-linelist-EN.xlsx")
 import(file = here("data", "raw", "xlsx",
               "Moissalla-measles-linelist-EN.xlsx"))
 
-# Import data an save it in an object
+# Import data and save it in an object
 df_linelist <- import(file = here("data", "raw", "xlsx",
               "Moissalla-measles-linelist-EN.xlsx"))
 
@@ -46,7 +46,7 @@ df_linelist_csv <- import(file = here("data", "raw", "csv",
 
 # Explore data ---------------------------------------
 
-# Show the top of the files
+# Show the top of the file
 head(df_linelist, n = 12)
 
 dim(df_linelist)    # Dimensions
