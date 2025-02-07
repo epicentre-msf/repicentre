@@ -251,7 +251,7 @@ By comparison, here are a few use cases that would warrant comments:
 
 - You define a constant, say a seroprevalence threshold value. You may want to add a comment providing the reference for where the value comes from.
 - Your code contains a value or file name that needs to be updated every week. You should indicate this with a comment to ensure that anyone else using the code is aware.
-- You use a rare command or package that your colleague may not know or may find counter intuitive. You can use a comment to explain the rational behind that decision.
+- You use a rare command or package that your colleague may not know or may find counter intuitive. You can use a comment to explain the rationale behind that decision.
 
 That being said, you are learning, and the scripts you are writing during this course are your notes, so feel free to us as many comments (of the "what" and "why" sort) as you need. You will naturally write less comments in the future, when some of the things that seem alien now become natural.
 
