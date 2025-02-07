@@ -23,7 +23,7 @@ df_linelist <- import(file = here("data", "raw", "xlsx",
 
 ## Objectives
 
-- Create a RStudio Project 
+- Create an RStudio Project 
 - Set up an organized and well documented code 
 - Install and load packages
 - Write robust file paths   
@@ -88,7 +88,7 @@ Open RStudio and create a new project by clicking `File > New Project > Existing
 :::
 
 ::: {.look}
-In the Windows Explorer, look at the course folder. You should now see a new file with the extention `.Rproj` that has a small blue icon with an R in it.
+In the Windows Explorer, look at the course folder. You should now see a new file with the extension `.Rproj` that has a small blue icon with an R in it.
 :::
 
 ![Icon associated with RStudio projects](../img/core/02_import/02_rproject.png){fig-align="center"}
@@ -120,11 +120,11 @@ Open the global options (`Tools > Global Options`) and open the tab `General` (l
 
 ![Screenshot of the Rstudio options](../img/core/02_import/03_do_not_save.png){fig-align="center"}
 
-When checked, these options cause RStudio to save the objects in your environment and reload them as well as any files you previously had open when you open a new R session. While these default may seem like a good idea, it is better to always start your work from a fresh, [empty R session]{.hovertip bs-toggle='tooltip' bs-title='An empty session means the environment is empty, but you still have your scripts!'} to avoid bugs.
+When checked, these options cause RStudio to save the objects in your environment and reload them as well as any files you previously had open when you open a new R session. While these defaults may seem like a good idea, it is better to always start your work from a fresh, [empty R session]{.hovertip bs-toggle='tooltip' bs-title='An empty session means the environment is empty, but you still have your scripts!'} to avoid bugs.
 
 
 :::{.callout-important}
-Remember that any commands or outputs that is needed for the cleaning and analysis should be saved explicitly in a script in the correct, functional order.
+Remember that any commands or outputs needed for the cleaning and analysis should be saved explicitly in a script in the correct, functional order.
 :::
 
 
@@ -284,7 +284,7 @@ To see the full list of all the file types you can load (and save!) with `rio`, 
 
 #### Importing from the First Sheet
 
-In general, the usage of `import()` is pretty simple, at minima you need to pass the path of the file to the `file` argument:
+In general, the usage of `import()` is pretty simple, at a minimum, you need to pass the path of the file to the `file` argument:
 
 ```{r}
 import(file = here("data", "raw", "example_linelist.xlsx"))
