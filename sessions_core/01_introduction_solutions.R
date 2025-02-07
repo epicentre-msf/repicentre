@@ -3,13 +3,13 @@
 # Creation Date : 06/05/2025
 # Last Update : 06/05/2025
 # Description : Model code for the Introduction Session.
-# -------------------------------------------------------------------------------------------------- 
+# --------------------------------------------------------------------------------------------------
 
 
 # Data Types ---------------------------------------------------------------------------------------
 
 # get the type of an object
-class(28)  
+class(28)
 class("Mandoul")
 
 
@@ -59,15 +59,15 @@ region[1:2]        # extract the first and second value
 # creating a dataframe
 data_cases <- data.frame(
   cases = c(2, 5, 8, 0, 4),
-  region = c("Mandoul", "Sud Kivu", "Kasai oriental", 
+  region = c("Mandoul", "Sud Kivu", "Kasai oriental",
              "Kasai", "Haut Katanga"))
 
 
 # alternatively, we can build the dataframe from existing vectors of equal length
-data_cases <- data.frame(cases, region) 
+data_cases <- data.frame(cases, region)
 
 
-# some functions to explore the strucutre of a dataframe
+# some functions to explore the structure of a dataframe
 str(iris)          # structure, data types of each column
 dim(iris)          # dimensions, number of rows and columns
 nrow(iris)         # number of rows
@@ -90,5 +90,5 @@ data_cases[2:3, 1]
 
 # functions can be used to perform a calculation or task
 sum(cases)         # calculate the sum of the vector `cases`
-min(c(2, 0, 6))    # find the minimum value in the vector `c(2, 0, 6)` 
+min(c(2, 0, 6))    # find the minimum value in the vector `c(2, 0, 6)`
 
