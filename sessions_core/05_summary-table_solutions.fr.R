@@ -1,5 +1,5 @@
-# Solutions pour la session 05_tableaux-résumés
-# Auteur :  the Fetch team
+# Solutions pour la session 05 tableaux-résumés
+# Auteur :  l'equipe FETCH
 # Date de création : 08/02/2025
 # Derniere mise a jour : 08/02/2025
 # Description : Code modèle pour la session 5 (tableaux résumés)

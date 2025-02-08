@@ -41,17 +41,3 @@ df_linelist <- import(file = here("data", "raw",
 #### CSV ####
 df_linelist_csv <- import(file = here("data", "raw",,
                                       "msf_linelist_moissala_2023-09-24.csv"))
-
-
-
-# Explore data ---------------------------------------
-
-# Show the top of the files
-head(df_linelist, n = 12)
-
-dim(df_linelist)    # Dimensions
-names(df_linelist)  # Names of columns
-str(df_linelist)    # Structure
-View(df_linelist)   # View the data in tabular form
-
-summary(df_linelist)  # Make summaries of columns

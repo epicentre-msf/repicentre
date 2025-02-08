@@ -1,4 +1,4 @@
-# Solutions to the core session 05_summaries
+# Solutions to the core session 05_summary-table
 # Author :  the Fetch team
 # Creation Date : 08/02/2025
 # Last Update : 08/02/2025

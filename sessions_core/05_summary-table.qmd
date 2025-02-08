@@ -1,5 +1,5 @@
 ---
-title: Data summaries
+title: Summary tables
 description: Create summary tables.
 date: last-modified
 # image: 
