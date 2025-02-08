@@ -17,7 +17,7 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 
 ## Objectives
 
-- Create frequency and contingency tables with `count()`
+- Create contingency tables with `count()`
 - Compute summary statistics by group using `summarize()`
 - Review how to subset rows using `filter()` and create/modify variables with `mutate()`
 - Create ordered categorical variables
@@ -56,7 +56,7 @@ library(here)
 library(tidyverse)
 
 # Import data
-df_linelist <- import(here("data", "clean", "simulated_measles_ll.rds")) %>% as_tibble()
+df_linelist <- import(here("data", "clean", "simulated_measles_ll.rds")) |> as_tibble()
 
 ```
 
@@ -69,47 +69,14 @@ OK so let's recap, you have just performed one of the most [important tasks]{.ho
 - Cross-tabulations to examine relationships between categorical variables
 - Group-wise summaries to compare statistics across different subsets of the data
 
-## Counting a Single Column
-
-Let's look at the frequency table for a single categorical variable. This is handy as:
-
-1. It allows us to quickly see the unique values in a categorical variable, and 
-2. The number of observations for each of those categories
-
-This is done using `count()`, which accepts the name of a column as an argument and will then count the **number of observations** of each unique element in that column. For example, it would be interesting to see both how many different age groups are in the data and how many patients belong to each group. Using the `age_group` variable we could run: 
-
-```{r}
-df_linelist %>%
-  count(age_group)
-```
-
-The output is a new, smaller dataframe containing the number of patients observed stratified by `age_group`. This kind of table would be considered a <span tooltip-position="top" tooltip="Summary tables are small tables providing summary statistics for a particular dataset, such as counts, median values, or proportions.">summary table</span>.  Because this output is itself a dataframe, we can of course pass it to other functions using the pipe `%>%` operator. We might, for example, want to take this output dataframe and then add a column indicating the proportion of overall observations attributable to each `age_group`:
-
-```{r}
-df_linelist %>%
-  count(age_group) %>%
-  mutate(prop = n / sum(n))
-```
-
-::: {.write}
-Using your linelist data, create a summary table of the number and proportion of all patients stratified by `sub_prefecture`. 
-
-Now, try adding the argument `sort = TRUE` to the `count()` function. What did this argument do? <span tooltip-position="top" tooltip="Remember that assignment is done using the `<-` operator.">Assign</span> this table to an object called `df_sub_prefecture`.
-:::
-
-```{r, echo = FALSE}
-df_sub_prefecture <- df_linelist %>%
-  count(sub_prefecture, sort = TRUE) %>%
-  mutate(prop = n / sum(n))
-
-```
-
 ## Counting Multiple Columns (Contingency Tables)
 
-Counting one variable is nice, but we often want to count the number observations based on two (or more!) factors. These tables are called <span tooltip-position="top" tooltip=" It shows how observations are distributed across different combinations of categories.">contingency tables</span>. For example, knowing the number of patients by `sub_prefecture` is great but we might want to stratify by both `sub_prefecture` *and* `age_group` to see if certain areas have <span tooltip-position="top" tooltip="This type of stratification is a useful way of trying to find areas that may be good candidates for catch up campaigns.">unusually old patients</span>. Doing this is easy, you just need to pass multiple column names to `count()`; for example:
+During the data exploration session, wyoue have learned to create frequency table for a single categorical variable using the `count()` function. Counting one variable is nice, but we often want to count the number observations based on two (or more!) variables.
+
+ These tables are called [contingency tables]{.hovertip bs-toggle='tooltip' bs-title= 'It shows how observations are distributed across different combinations of categories.'}. For example, knowing the number of patients by `sub_prefecture` is great but we might want to stratify by both `sub_prefecture` *and* `age_group` to see if certain areas have [unusually old patients]{.hovertip bs-toggle='tooltip' bs-title= 'This type of stratification is a useful way of trying to find areas that may be good candidates for catch up campaigns.'}. Doing this is easy, you just need to pass multiple column names to `count()`; for example:
 
 ```{r}
-df_linelist %>%
+df_linelist |>
   count(sub_prefecture, age_group)
 ```
 
@@ -118,7 +85,7 @@ Create a new summary table counting the number of patients stratified by `sub_pr
 :::
 
 ```{r, echo = FALSE}
-df_linelist %>%
+df_linelist |>
   count(sub_prefecture, hospitalisation)
 ```
 
@@ -131,14 +98,14 @@ Using `count()` answer the following questions:
 :::
 
 ```{r, echo = FALSE}
-df_linelist %>%
+df_linelist |>
   count(sex)
 
-df_linelist %>%
+df_linelist |>
   count(outcome)
 
-df_linelist %>%
-  count(age_group, outcome) %>%
+df_linelist |>
+  count(age_group, outcome) |>
   print(n = Inf)
 
 ```
@@ -148,27 +115,30 @@ df_linelist %>%
 When looking at the categories of `outcome`, you should have spotted that some patients have missing values (`NA`):
 
 ```{r}
-df_linelist %>%
-  count(outcome) %>%
+df_linelist |>
+  count(outcome) |>
   mutate(prop = n / sum(n))
 ```
 
 ::: {.look}
-Observe the output of the code above. How can you also call the proportion of dead patients ? Are you happy with this calculation ? 
-:::
+Observe the output of the code above. How can you also call the proportion of patients who died ? Are you happy with this calculation ? 
+::: 
 
-The proportion of cases that died is also referred to as the <span tooltip-position="top" tooltip="the CFR is a ratio (or a risk) but not a rate !">Case Fatality Ratio (CFR)</span>. However, to precisely calculate the CFR we need to make sure that the denominator only includes patient for whom we are sure of their outcome (ie we need to remove all cases with `NA` or `left aginst medical advice`). 
+The proportion of cases that died is also referred to as the [Case Fatality Ratio (CFR)]{.hovertip bs-toggle='tooltip' bs-title='the CFR is a ratio (or a risk) but not a rate!'}. However, to precisely calculate the CFR we need to make sure that the denominator only includes patient for whom we are sure of their outcome (ie we need to remove all cases with `NA` or `left aginst medical advice`). 
 
 Remember that we can do this using `filter()`. To filter for missing values (`NA`) in a variable we can use the small function `is.na(outcome)`. Adding a `!` in front will do the opposite: *removing missing values from `outcome`*:
 
 ```{r}
-df_linelist %>%
-  filter(outcome != "left against medical advice", !is.na(outcome)) %>%
+df_linelist |>
+  filter(
+    outcome != "left against medical advice", 
+    !is.na(outcome)
+  ) |>
   count(outcome)
 ```
 
 ::: {.write}
-Can you think of a way of using `filter()` to obtain the same results ? 
+Which other conditionnal statement could you use in `filter()` to obtain the same results
 :::
 
 Now that we have removed the patients with unknown outcomes, we can add this before creating our frequency table to get the right CFR. 
@@ -178,9 +148,9 @@ Using your filter, update your code to summarize the observed number of patients
 :::
 
 ```{r, echo = FALSE}
-cfr_df <- df_linelist %>%
-  filter(outcome != "left against medical advice", !is.na(outcome)) %>%
-  count(outcome) %>%
+cfr_df <- df_linelist |>
+  filter(outcome != "left against medical advice", !is.na(outcome)) |>
+  count(outcome) |>
   mutate(prop = n / sum(n))
 ```
 
@@ -188,8 +158,8 @@ cfr_df <- df_linelist %>%
 **Bonus.** Another useful "shortcut" function is `drop_na()` from the package `{tidyr}` that equates to `filter(!is.na())`.
 
 ```{r}
-df_linelist %>%
-  drop_na(outcome) %>%
+df_linelist |>
+  drop_na(outcome) |>
   count(outcome)
 ```
 
@@ -212,11 +182,11 @@ This is exactly what the function `summarize()` has been made for! It allows us 
 
 ```{r}
 # DO NOT RUN (PSEUDO-CODE)
-df %>%
+df |>
   mutate(new_col = function_to_create(existing_col))
 
-df %>%
-  summarise(
+df |>
+  summarize(
     .by = grouping_variable,
     new_col = summary_function(existing_col)
   )
@@ -227,21 +197,17 @@ Consider the following code, here we are **summarising the data** to calculate t
 ```{r}
 #| eval: true
 
-df_linelist %>%
+df_linelist |>
   summarize(mean_age = mean(age))
 
 ```
 
-::: {.hint}
-**Note.** You can write either `summarize()` (US spelling) or `summarise()` (British spelling) in R.
-:::
-
-You might notice that this code yields a single value for average age. When the data are not grouped, `summarise()` will consider the full dataset as a single group and return one summary statistic for the whole dataset. To calculate the average age by a specific strata, we need to specify a "grouping variable" using the `.by =` argument:
+You might notice that this code yields a single value for average age. When the data are not grouped, `summarize()` will consider the full dataset as a single group and return one summary statistic for the whole dataset. To calculate the average age by a specific strata, we need to specify a "grouping variable" using the `.by =` argument:
 
 ```{r}
 #| eval: true
 
-df_linelist %>%
+df_linelist |>
   summarize(
     .by = sex,
     mean_age = mean(age)
@@ -260,13 +226,13 @@ Now that we can use `summarize()` we can use it to calculate some proper summary
 Run the following code:
 
 ```{r}
-df_linelist %>%
-  summarise(
+df_linelist |>
+  summarize(
     .by = sub_prefecture
   )
 
 ```
-What happens when you run these lines? That's the new rows of our data now that we have grouped them.
+What happens when you run these lines?
 :::
 
 ### Counts
@@ -274,7 +240,7 @@ What happens when you run these lines? That's the new rows of our data now that 
 We first want to look at the number of cases in each `sub_prefecture`. This can be done using the helper function `n()`: 
 
 ```{r}
-df_linelist %>%
+df_linelist |>
   summarize(
     .by = sub_prefecture,
     n_patients = n()
@@ -282,12 +248,16 @@ df_linelist %>%
 
 ```
 
+::: {.write}
+Ok now let's build a summary table for each `sub_prefecture`. First start by replicating the above lines
+:::
+
 ### Continuous Summaries
 
 We can then use the simple `mean`, `median`, `min`, `max` functions to produce summaries for continuous variables. For example the average age:
 
 ```{r}
-df_linelist %>%
+df_linelist |>
   summarize(
     .by = sub_prefecture,
     n_patients = n(),
@@ -297,7 +267,7 @@ df_linelist %>%
 ```
 
 ::: {.write}
-Add the minimum date of admission for each of the `sub_prefecture`? Are you happy with the results? 
+Add the minimum date of admission to your table for each of the `sub_prefecture`? Are you happy with the results? 
 :::
 
 ::: {.callout-tip}
@@ -310,7 +280,8 @@ We may also be interested in looking at the number of patients (rows) that fit a
 
 ```{r}
 # DO NOT RUN (PSEUDO-CODE)
-summarise(sum_category = sum(LOGIC_TEST,
+summarize(
+  sum_category = sum(LOGIC_TEST,
   na.rm = TRUE
 ))
 ```
@@ -318,57 +289,16 @@ summarise(sum_category = sum(LOGIC_TEST,
 This sum allows us to count all the lines where our condition was met. For example:
 
 ```{r}
-df_linelist %>%
+df_linelist |>
   summarize(
     .by = sub_prefecture,
-    n_patients = n(),
-    mean_age = mean(age),
-    min_admission = min(date_admission, na.rm = TRUE),
     n_female = sum(sex == "f", na.rm = TRUE)
   )
 ```
 
-A reminder that `summarise()` returns a dataframe that we can then further manipulate. For axample, we can use `mutate()` to add the proportions of females: 
-
-```{r}
-df_linelist %>%
-  summarise(
-    .by = sub_prefecture,
-    n_patients = n(),
-    mean_age = mean(age),
-    min_admission = min(date_admission, na.rm = TRUE),
-    n_female = sum(sex == "f", na.rm = TRUE),
-  ) %>%
-  mutate(
-    prop_female = n_female / n_patients
-  )
-```    
-
 ::: {.write}
-Using `summarize()`: 
-
-- Add a variable that counts the number of patients that have been hospitalised? (ie: rows that have `yes` in variable `hospitalisation`) 
-- Add a variable that calculates the overall proportion of hospitalised patients?
-
+Add a variable to your table that counts the number of patients that have been hospitalised? (ie: rows that have `yes` in variable `hospitalisation`) 
 :::
-
-```{r, echo = FALSE}
-
-df_linelist %>%
-  summarize(
-    .by = sub_prefecture,
-    n_patients = n(),
-    mean_age = mean(age),
-    min_admission = min(date_admission, na.rm = TRUE),
-    n_female = sum(sex == "f", na.rm = TRUE),
-    n_hosp = sum(hospitalisation == "yes", na.rm = TRUE)
-  ) %>%
-  mutate(
-    prop_female = n_female / n_patients,
-    prop_hosp = n_hosp / n_patients
-  )
-
-```
 
 ### Other Statistics
 
@@ -376,8 +306,9 @@ Sometimes we want to produce a statistic *other than counting* given a condition
 
 ```{r}
 # DO NOT RUN (PSEUDO-CODE)
-df %>%
-  summarise(mean_category = mean(col_to_use[LOGIC_TEST],
+df |>
+  summarize(
+    mean_category = mean(col_to_use[LOGIC_TEST],
     na.rm = TRUE
   ))
 ```
@@ -390,47 +321,45 @@ Here, we have:
 For example to compute the `mean()` of the `age` variable but *only* in rows where `hospitalisation == "yes"` we would write it like this:
 
 ```{r}
-df_linelist %>%
-  summarise(
+df_linelist |>
+  summarize(
     .by = sub_prefecture,
     n_patients = n(),
-    mean_age = mean(age),
-    min_admission = min(date_admission, na.rm = TRUE),
-    n_female = sum(sex == "f", na.rm = TRUE),
-    n_hosp = sum(hospitalisation == "yes", na.rm = TRUE),
     mean_age_hosp = mean(age[hospitalisation == "yes"], na.rm = TRUE)
-  ) %>%
-  mutate(
-    prop_female = n_female / n_patients,
-    prop_hosp = n_hosp / n_patients
   )
 ```    
 
 ::: {.write}
-Can you use this syntax to calculate the mean age of female patients?
+Can you use this syntax to calculate the mean age of female patients in your table ?
 :::
 
 That is looking great! We are starting to get a pretty exhaustive grouped summary table with a lot of useful information by `sub_prefecture`! An extra challenge for you: 
 
 ::: {.write}
-**CHALLENGE**: Use `summarise()` to **count** the number of patients that died *among* the ones that are **< 6 months old**.  
-:::
+**CHALLENGE**: Could you add a variable to your table that **counts** the number of patients that died *among* the ones that are *< 6 months old*.  
 
 ::: {.callout-tip}
 You want to count rows (so use `sum()`) that fill a specific condition for outcome (`outcome == "dead"`), but *only* when `age_group == "< 6 months"`
 :::
 
-Finally, a reminder that as usual `summarise()` returns a dataframe, which can be further used and modified using `mutate()` - this means that we should be able to add a variable about the proportion of female in each `sub_prefecture` using our newly created `n_female` ! 
+:::
+
+### Use the output 
+
+Finally, a reminder that `summarize()` returns a dataframe that we can then further manipulate (eg: with `filter` and `mutate`). 
 
 ::: {.write}
-Can you add a `mutate()` after your `summarise()` to make this happen ? 
+Can you add a `mutate()` after producing your summary table to calculate: 
+
+- The proportion of hospitalised patients per sub-prefecture
+- The proportion of female patients per sub-prefecture 
 :::
 
 Here is our final table !
 
-```{r, eval = TRUE}
-sub_pref_df <- df_linelist %>%
-  summarise(
+```{r, eval = TRUE, echo = FALSE }
+sub_pref_df <- df_linelist |>
+  summarize(
     .by = sub_prefecture,
     n_patients = n(),
     mean_age = mean(age),
@@ -439,14 +368,22 @@ sub_pref_df <- df_linelist %>%
     n_hosp = sum(hospitalisation == "yes", na.rm = TRUE),
     mean_age_hosp = mean(age[hospitalisation == "yes"], na.rm = TRUE),
     mean_age_female = mean(age[sex == "f"], na.rm = TRUE),
-    n_death_u6m = sum(outcome[age_group == "< 6 months"] == "dead", na.rm = TRUE)
-  ) %>%
-  mutate(
+    n_death_u6m = sum(outcome[age_group == "< 6 months"] == "dead", na.rm = TRUE),
     prop_female = n_female / n_patients,
     prop_hosp = n_hosp / n_patients
   )
 
-sub_pref_df
+sub_pref_df |>
+  DT::datatable(
+    options = list(
+      scrollX = TRUE,
+      pageLength = 10,
+      autoWidth = TRUE
+    ),
+    style = "bootstrap"
+  ) |>
+  DT::formatRound(columns = names(which(sapply(sub_pref_df, is.numeric))), 
+  digits = 2)
 
 ```
 
@@ -458,7 +395,7 @@ You should be proud of yourselves, making summary tables is an important skill t
 
 ### Extra Exercises
 
-Make a summary table that summarises: 
+Make a summary table that summarizes: 
   - The number of patients
   - The proportion of male
   - The number of deaths
