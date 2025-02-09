@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
-<link rel="alternate" hreflang="en" href="/sessions_core/05_summaries.html" />
-<link rel="alternate" hreflang="fr" href="/fr/sessions_core/05_summaries.fr.html" />
+<link rel="alternate" hreflang="en" href="https://epicentre-msf.github.io/repicentre/sessions_core/05_summary-table.html" />
+<link rel="alternate" hreflang="fr" href="https://epicentre-msf.github.io/repicentre/fr/sessions_core/05_summary-table.fr.html" />
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-02-06">
+<meta name="dcterms.date" content="2025-02-09">
 <meta name="description" content="Create summary tables.">
 
-<title>Data summaries – {repicentre}</title>
+<title>Summary tables – {repicentre}</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -106,13 +106,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script async="" src="https://hypothes.is/embed.js"></script>
-<script>
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    document.body.classList.add('hypothesis-enabled');
-  });
-</script>
 <script src="../site_libs/font-awesome-6.5.2/js/script.js"></script>
+<link href="../site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<script src="../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="../site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="../site_libs/datatables-binding-0.23/datatables.js"></script>
+<script src="../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="../site_libs/dt-core-bootstrap-1.11.3/css/dataTables.bootstrap.min.css" rel="stylesheet">
+<link href="../site_libs/dt-core-bootstrap-1.11.3/css/dataTables.bootstrap.extra.css" rel="stylesheet">
+<script src="../site_libs/dt-core-bootstrap-1.11.3/js/jquery.dataTables.min.js"></script>
+<script src="../site_libs/dt-core-bootstrap-1.11.3/js/dataTables.bootstrap.min.js"></script>
+<link href="../site_libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet">
+<script src="../site_libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
 <script type="text/javascript" src="../script.js"></script>
 
 
@@ -172,7 +177,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
   <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
   <li><a href="#introduction-data-aggregation" id="toc-introduction-data-aggregation" class="nav-link" data-scroll-target="#introduction-data-aggregation">Introduction: Data aggregation</a></li>
-  <li><a href="#counting-a-single-column" id="toc-counting-a-single-column" class="nav-link" data-scroll-target="#counting-a-single-column">Counting a Single Column</a></li>
   <li><a href="#counting-multiple-columns-contingency-tables" id="toc-counting-multiple-columns-contingency-tables" class="nav-link" data-scroll-target="#counting-multiple-columns-contingency-tables">Counting Multiple Columns (Contingency Tables)</a></li>
   <li><a href="#filtering-out-nas" id="toc-filtering-out-nas" class="nav-link" data-scroll-target="#filtering-out-nas">Filtering out <code>NA</code>s</a></li>
   <li><a href="#summary-table-statistics-by-sub-prefecture" id="toc-summary-table-statistics-by-sub-prefecture" class="nav-link" data-scroll-target="#summary-table-statistics-by-sub-prefecture">Summary Table: Statistics by sub prefecture</a>
@@ -181,6 +185,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#continuous-summaries" id="toc-continuous-summaries" class="nav-link" data-scroll-target="#continuous-summaries">Continuous Summaries</a></li>
   <li><a href="#counting-with-a-condition" id="toc-counting-with-a-condition" class="nav-link" data-scroll-target="#counting-with-a-condition">Counting with a Condition</a></li>
   <li><a href="#other-statistics" id="toc-other-statistics" class="nav-link" data-scroll-target="#other-statistics">Other Statistics</a></li>
+  <li><a href="#use-the-output" id="toc-use-the-output" class="nav-link" data-scroll-target="#use-the-output">Use the output</a></li>
   </ul></li>
   <li><a href="#done" id="toc-done" class="nav-link" data-scroll-target="#done">Done!</a></li>
   <li><a href="#going-further" id="toc-going-further" class="nav-link" data-scroll-target="#going-further">Going Further</a>
@@ -196,7 +201,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Data summaries</h1>
+<h1 class="title">Summary tables</h1>
   <div class="quarto-categories">
     <div class="quarto-category">Core</div>
     <div class="quarto-category">R Basics</div>
@@ -217,7 +222,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 6, 2025</p>
+      <p class="date">February 9, 2025</p>
     </div>
   </div>
   
@@ -232,7 +237,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="objectives" class="level2">
 <h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
 <ul>
-<li>Create frequency and contingency tables with <code>count()</code></li>
+<li>Create contingency tables with <code>count()</code></li>
 <li>Compute summary statistics by group using <code>summarize()</code></li>
 <li>Review how to subset rows using <code>filter()</code> and create/modify variables with <code>mutate()</code></li>
 <li>Create ordered categorical variables</li>
@@ -241,7 +246,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This session will use the clean version of the Moissala measles dataset. Download the data and store them in <code>data/clean</code> in your practice project:</p>
 <div class="cell">
 <div class="cell-output-display">
-<a href="https://github.com/epicentre-msf/repicentre/raw/refs/heads/main/data/clean/simulated_measles_ll.rds">
+<a href="https://github.com/epicentre-msf/repicentre/raw/refs/heads/main/data/clean/moissala_linelist_clean_EN.rds">
 <button class="btn btn-default"><i class="fa fa-save"></i> Clean Measles Linelist</button>
 </a>
 </div>
@@ -256,7 +261,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="introduction-data-aggregation" class="level2">
 <h2 class="anchored" data-anchor-id="introduction-data-aggregation">Introduction: Data aggregation</h2>
-<p>OK so let’s recap, you have just performed one of the most <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Some consider it to be 80% of the work!">important tasks</span> of an epidemiologist: the <strong>data cleaning</strong>. Now that you have clean and standardise data, we can get into the real business and start analysing them. Analyses typically start with some tables and summaries to describe our data. This initial exploratory phase often includes:</p>
+<p>OK so let’s recap, you have just performed one of the most <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Some consider it to be 80% of the work!">important tasks</span> of an epidemiologist: the <strong>data cleaning</strong>. Now that you have clean and standardise data, we can get into the real business and start analysing them. Analyses typically start with some tables and summaries to describe our data:</p>
 <ul>
 <li>Univariate frequency tables to count occurrences of different values</li>
 <li>Summary statistics (mean, median, standard deviation) of numerical variables</li>
@@ -264,35 +269,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Group-wise summaries to compare statistics across different subsets of the data</li>
 </ul>
 </section>
-<section id="counting-a-single-column" class="level2">
-<h2 class="anchored" data-anchor-id="counting-a-single-column">Counting a Single Column</h2>
-<p>Let’s look at the frequency table for a single categorical variable. This is handy as:</p>
-<ol type="1">
-<li>It allows us to quickly see the unique values in a categorical variable, and</li>
-<li>The number of observations for each of those categories</li>
-</ol>
-<p>This is done using <code>count()</code>, which accepts the name of a column as an argument and will then count the <strong>number of observations</strong> of each unique element in that column. For example, it would be interesting to see both how many different age groups are in the data and how many patients belong to each group. Using the <code>age_group</code> variable we could run:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">%&gt;%</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(age_group)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>The output is a new, smaller dataframe containing the number of patients observed stratified by <code>age_group</code>. This kind of table would be considered a <span data-tooltip-position="top" data-tooltip="Summary tables are small tables providing summary statistics for a particular dataset, such as counts, median values, or proportions.">summary table</span>. Because this output is itself a dataframe, we can of course pass it to other functions using the pipe <code>%&gt;%</code> operator. We might, for example, want to take this output dataframe and then add a column indicating the proportion of overall observations attributable to each <code>age_group</code>:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">%&gt;%</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(age_group) <span class="sc">%&gt;%</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="write">
-<p>Using your linelist data, create a summary table of the number and proportion of all patients stratified by <code>sub_prefecture</code>.</p>
-<p>Now, try adding the argument <code>sort = TRUE</code> to the <code>count()</code> function. What did this argument do? <span data-tooltip-position="top" data-tooltip="Remember that assignment is done using the `<-` operator.">Assign</span> this table to an object called <code>df_sub_prefecture</code>.</p>
-</div>
-</section>
 <section id="counting-multiple-columns-contingency-tables" class="level2">
 <h2 class="anchored" data-anchor-id="counting-multiple-columns-contingency-tables">Counting Multiple Columns (Contingency Tables)</h2>
-<p>Counting one variable is nice, but we often want to count the number observations based on two (or more!) factors. These tables are called <span data-tooltip-position="top" data-tooltip=" It shows how observations are distributed across different combinations of categories.">contingency tables</span>. For example, knowing the number of patients by <code>sub_prefecture</code> is great but we might want to stratify by both <code>sub_prefecture</code> <em>and</em> <code>age_group</code> to see if certain areas have <span data-tooltip-position="top" data-tooltip="This type of stratification is a useful way of trying to find areas that may be good candidates for catch up campaigns.">unusually old patients</span>. Doing this is easy, you just need to pass multiple column names to <code>count()</code>; for example:</p>
+<p>During the data exploration session, you have learned to create frequency table for a single categorical variable using the <code>count()</code> function. Counting one variable is nice, but we often want to count the number observations based on two (or more!) variables.</p>
+<p>These tables are called <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="It shows how observations are distributed across different combinations of categories.">contingency tables</span>. For example, knowing the number of patients by <code>sub_prefecture</code> is great but we might want to stratify by both <code>sub_prefecture</code> <em>and</em> <code>age_group</code> to see if certain areas have <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="This type of stratification is a useful way of trying to find areas that may be good candidates for catch up campaigns.">unusually old patients</span>. Doing this is easy, you just need to pass multiple column names to <code>count()</code>; for example:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">%&gt;%</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(sub_prefecture, age_group)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">|&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(sub_prefecture, age_group)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="write">
 <p>Create a new summary table counting the number of patients stratified by <code>sub_prefecture</code> and <code>hospitalisation</code>. What happens if you change the order of the arguments given to <code>count()</code>?</p>
@@ -310,22 +293,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="filtering-out-nas">Filtering out <code>NA</code>s</h2>
 <p>When looking at the categories of <code>outcome</code>, you should have spotted that some patients have missing values (<code>NA</code>):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">%&gt;%</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(outcome) <span class="sc">%&gt;%</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(outcome) <span class="sc">|&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="look">
-<p>Observe the output of the code above. How can you also call the proportion of dead patients ? Are you happy with this calculation ?</p>
+<p>Observe the output of the code above. How can you also call the proportion of patients who died ? Are you happy with this calculation ?</p>
 </div>
-<p>The proportion of cases that died is also referred to as the <span data-tooltip-position="top" data-tooltip="the CFR is a ratio (or a risk) but not a rate !">Case Fatality Ratio (CFR)</span>. However, to precisely calculate the CFR we need to make sure that the denominator only includes patient for whom we are sure of their outcome (ie we need to remove all cases with <code>NA</code> or <code>left aginst medical advice</code>).</p>
+<p>The proportion of cases that died is also referred to as the <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="the CFR is a ratio (or a risk) but not a rate!">Case Fatality Ratio (CFR)</span>. However, to precisely calculate the CFR we need to make sure that the denominator only includes patient for whom we are sure of their outcome (ie we need to remove all cases with <code>NA</code> or <code>left aginst medical advice</code>).</p>
 <p>Remember that we can do this using <code>filter()</code>. To filter for missing values (<code>NA</code>) in a variable we can use the small function <code>is.na(outcome)</code>. Adding a <code>!</code> in front will do the opposite: <em>removing missing values from <code>outcome</code></em>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">%&gt;%</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(outcome <span class="sc">!=</span> <span class="st">"left against medical advice"</span>, <span class="sc">!</span><span class="fu">is.na</span>(outcome)) <span class="sc">%&gt;%</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(outcome)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    outcome <span class="sc">!=</span> <span class="st">"left against medical advice"</span>, </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="sc">!</span><span class="fu">is.na</span>(outcome)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(outcome)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="write">
-<p>Can you think of a way of using <code>filter()</code> to obtain the same results ?</p>
+<p>Which other conditionnal statement could you use in <code>filter()</code> to obtain the same results</p>
 </div>
 <p>Now that we have removed the patients with unknown outcomes, we can add this before creating our frequency table to get the right CFR.</p>
 <div class="write">
@@ -343,9 +329,9 @@ Tip
 <div class="callout-body-container callout-body">
 <p><strong>Bonus.</strong> Another useful “shortcut” function is <code>drop_na()</code> from the package <code>{tidyr}</code> that equates to <code>filter(!is.na())</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">%&gt;%</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(outcome) <span class="sc">%&gt;%</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(outcome)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(outcome) <span class="sc">|&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(outcome)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>drop_na()</code> is particularly useful as you can give it multiple column names to filter by. But be careful that doing so will remove <strong>all</strong> rows where <strong>one or more</strong> of those columns have a missing value.</p>
 </div>
@@ -364,43 +350,40 @@ Tip
 </ul>
 <p>This is exactly what the function <code>summarize()</code> has been made for! It allows us to calculate summary statistics on a dataset, and the syntax is similar to that of <code>mutate()</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DO NOT RUN (PSEUDO-CODE)</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">new_col =</span> <span class="fu">function_to_create</span>(existing_col))</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> grouping_variable,</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">new_col =</span> <span class="fu">summary_function</span>(existing_col)</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DO NOT RUN (PSEUDO-CODE)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">new_col =</span> <span class="fu">function_to_create</span>(existing_col))</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> grouping_variable,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">new_col =</span> <span class="fu">summary_function</span>(existing_col)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Consider the following code, here we are <strong>summarising the data</strong> to calculate the average age across all patients.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">%&gt;%</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_age =</span> <span class="fu">mean</span>(age))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_age =</span> <span class="fu">mean</span>(age))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 1
   mean_age
      &lt;dbl&gt;
-1     6.89</code></pre>
+1     6.82</code></pre>
 </div>
 </div>
-<div class="hint">
-<p><strong>Note.</strong> You can write either <code>summarize()</code> (US spelling) or <code>summarise()</code> (British spelling) in R.</p>
-</div>
-<p>You might notice that this code yields a single value for average age. When the data are not grouped, <code>summarise()</code> will consider the full dataset as a single group and return one summary statistic for the whole dataset. To calculate the average age by a specific strata, we need to specify a “grouping variable” using the <code>.by =</code> argument:</p>
+<p>You might notice that this code yields a single value for average age. When the data are not grouped, <code>summarize()</code> will consider the full dataset as a single group and return one summary statistic for the whole dataset. To calculate the average age by a specific strata, we need to specify a “grouping variable” using the <code>.by =</code> argument:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">%&gt;%</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> sex,</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_age =</span> <span class="fu">mean</span>(age)</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> sex,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_age =</span> <span class="fu">mean</span>(age)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 2
   sex   mean_age
   &lt;chr&gt;    &lt;dbl&gt;
-1 f         6.89
-2 m         6.90</code></pre>
+1 f         6.77
+2 m         6.87</code></pre>
 </div>
 </div>
 <div class="look">
@@ -410,37 +393,40 @@ Tip
 <div class="write">
 <p>Run the following code:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">%&gt;%</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> sub_prefecture</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> sub_prefecture</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>What happens when you run these lines? That’s the new rows of our data now that we have grouped them.</p>
+<p>What happens when you run these lines?</p>
 </div>
 <section id="counts" class="level3">
 <h3 class="anchored" data-anchor-id="counts">Counts</h3>
 <p>We first want to look at the number of cases in each <code>sub_prefecture</code>. This can be done using the helper function <code>n()</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">%&gt;%</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> sub_prefecture,</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_patients =</span> <span class="fu">n</span>()</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> sub_prefecture,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_patients =</span> <span class="fu">n</span>()</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="write">
+<p>Ok now let’s build a summary table for each <code>sub_prefecture</code>. First start by replicating the above lines</p>
 </div>
 </section>
 <section id="continuous-summaries" class="level3">
 <h3 class="anchored" data-anchor-id="continuous-summaries">Continuous Summaries</h3>
 <p>We can then use the simple <code>mean</code>, <code>median</code>, <code>min</code>, <code>max</code> functions to produce summaries for continuous variables. For example the average age:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">%&gt;%</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> sub_prefecture,</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_patients =</span> <span class="fu">n</span>(),</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_age =</span> <span class="fu">mean</span>(age)</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> sub_prefecture,</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_patients =</span> <span class="fu">n</span>(),</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_age =</span> <span class="fu">mean</span>(age)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="write">
-<p>Add the minimum date of admission for each of the <code>sub_prefecture</code>? Are you happy with the results?</p>
+<p>Add the minimum date of admission to your table for each of the <code>sub_prefecture</code>? Are you happy with the results?</p>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -460,53 +446,34 @@ Tip
 <h3 class="anchored" data-anchor-id="counting-with-a-condition">Counting with a Condition</h3>
 <p>We may also be interested in looking at the number of patients (rows) that fit a condition: the <em>number of patients that were female</em>. Counting by a logical condition can be done with the following syntax:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DO NOT RUN (PSEUDO-CODE)</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(<span class="at">sum_category =</span> <span class="fu">sum</span>(LOGIC_TEST,</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">na.rm =</span> <span class="cn">TRUE</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DO NOT RUN (PSEUDO-CODE)</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">sum_category =</span> <span class="fu">sum</span>(LOGIC_TEST,</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">na.rm =</span> <span class="cn">TRUE</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This sum allows us to count all the lines where our condition was met. For example:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">%&gt;%</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> sub_prefecture,</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_patients =</span> <span class="fu">n</span>(),</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_age =</span> <span class="fu">mean</span>(age),</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">min_admission =</span> <span class="fu">min</span>(date_admission, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_female =</span> <span class="fu">sum</span>(sex <span class="sc">==</span> <span class="st">"f"</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>A reminder that <code>summarise()</code> returns a dataframe that we can then further manipulate. For axample, we can use <code>mutate()</code> to add the proportions of females:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">%&gt;%</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> sub_prefecture,</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_patients =</span> <span class="fu">n</span>(),</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_age =</span> <span class="fu">mean</span>(age),</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">min_admission =</span> <span class="fu">min</span>(date_admission, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_female =</span> <span class="fu">sum</span>(sex <span class="sc">==</span> <span class="st">"f"</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">prop_female =</span> n_female <span class="sc">/</span> n_patients</span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> sub_prefecture,</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_female =</span> <span class="fu">sum</span>(sex <span class="sc">==</span> <span class="st">"f"</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="write">
-<p>Using <code>summarize()</code>:</p>
-<ul>
-<li>Add a variable that counts the number of patients that have been hospitalised? (ie: rows that have <code>yes</code> in variable <code>hospitalisation</code>)</li>
-<li>Add a variable that calculates the overall proportion of hospitalised patients?</li>
-</ul>
+<p>Add a variable to your table that counts the number of patients that have been hospitalised? (ie: rows that have <code>yes</code> in variable <code>hospitalisation</code>)</p>
 </div>
 </section>
 <section id="other-statistics" class="level3">
 <h3 class="anchored" data-anchor-id="other-statistics">Other Statistics</h3>
 <p>Sometimes we want to produce a statistic <em>other than counting</em> given a condition, let’s say the <em>mean age of all hospitalised patients</em>. Here the syntax is a bit different:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DO NOT RUN (PSEUDO-CODE)</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_category =</span> <span class="fu">mean</span>(col_to_use[LOGIC_TEST],</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">na.rm =</span> <span class="cn">TRUE</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DO NOT RUN (PSEUDO-CODE)</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_category =</span> <span class="fu">mean</span>(col_to_use[LOGIC_TEST],</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">na.rm =</span> <span class="cn">TRUE</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Here, we have:</p>
 <ul>
@@ -515,28 +482,19 @@ Tip
 </ul>
 <p>For example to compute the <code>mean()</code> of the <code>age</code> variable but <em>only</em> in rows where <code>hospitalisation == "yes"</code> we would write it like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">%&gt;%</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> sub_prefecture,</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_patients =</span> <span class="fu">n</span>(),</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_age =</span> <span class="fu">mean</span>(age),</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">min_admission =</span> <span class="fu">min</span>(date_admission, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_female =</span> <span class="fu">sum</span>(sex <span class="sc">==</span> <span class="st">"f"</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_hosp =</span> <span class="fu">sum</span>(hospitalisation <span class="sc">==</span> <span class="st">"yes"</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_age_hosp =</span> <span class="fu">mean</span>(age[hospitalisation <span class="sc">==</span> <span class="st">"yes"</span>], <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">prop_female =</span> n_female <span class="sc">/</span> n_patients,</span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">prop_hosp =</span> n_hosp <span class="sc">/</span> n_patients</span>
-<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> sub_prefecture,</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_patients =</span> <span class="fu">n</span>(),</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_age_hosp =</span> <span class="fu">mean</span>(age[hospitalisation <span class="sc">==</span> <span class="st">"yes"</span>], <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="write">
-<p>Can you use this syntax to calculate the mean age of female patients?</p>
+<p>Can you use this syntax to calculate the mean age of female patients in your table ?</p>
 </div>
 <p>That is looking great! We are starting to get a pretty exhaustive grouped summary table with a lot of useful information by <code>sub_prefecture</code>! An extra challenge for you:</p>
 <div class="write">
-<p><strong>CHALLENGE</strong>: Use <code>summarise()</code> to <strong>count</strong> the number of patients that died <em>among</em> the ones that are <strong>&lt; 6 months old</strong>.</p>
-</div>
+<p><strong>CHALLENGE</strong>: Could you add a variable to your table that <strong>counts</strong> the number of patients that died <em>among</em> the ones that are <em>&lt; 6 months old</em>.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -550,43 +508,23 @@ Tip
 <p>You want to count rows (so use <code>sum()</code>) that fill a specific condition for outcome (<code>outcome == "dead"</code>), but <em>only</em> when <code>age_group == "&lt; 6 months"</code></p>
 </div>
 </div>
-<p>Finally, a reminder that as usual <code>summarise()</code> returns a dataframe, which can be further used and modified using <code>mutate()</code> - this means that we should be able to add a variable about the proportion of female in each <code>sub_prefecture</code> using our newly created <code>n_female</code> !</p>
+</div>
+</section>
+<section id="use-the-output" class="level3">
+<h3 class="anchored" data-anchor-id="use-the-output">Use the output</h3>
+<p>Finally, a reminder that <code>summarize()</code> returns a dataframe that we can then further manipulate (eg: with <code>filter</code> and <code>mutate</code>).</p>
 <div class="write">
-<p>Can you add a <code>mutate()</code> after your <code>summarise()</code> to make this happen ?</p>
+<p>Can you add a <code>mutate()</code> after producing your summary table to calculate:</p>
+<ul>
+<li>The proportion of hospitalised patients per sub-prefecture</li>
+<li>The proportion of female patients per sub-prefecture</li>
+</ul>
 </div>
 <p>Here is our final table !</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>sub_pref_df <span class="ot">&lt;-</span> df_linelist <span class="sc">%&gt;%</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> sub_prefecture,</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_patients =</span> <span class="fu">n</span>(),</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_age =</span> <span class="fu">mean</span>(age),</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">min_admission =</span> <span class="fu">min</span>(date_admission, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_female =</span> <span class="fu">sum</span>(sex <span class="sc">==</span> <span class="st">"f"</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_hosp =</span> <span class="fu">sum</span>(hospitalisation <span class="sc">==</span> <span class="st">"yes"</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_age_hosp =</span> <span class="fu">mean</span>(age[hospitalisation <span class="sc">==</span> <span class="st">"yes"</span>], <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_age_female =</span> <span class="fu">mean</span>(age[sex <span class="sc">==</span> <span class="st">"f"</span>], <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_death_u6m =</span> <span class="fu">sum</span>(outcome[age_group <span class="sc">==</span> <span class="st">"&lt; 6 months"</span>] <span class="sc">==</span> <span class="st">"dead"</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">prop_female =</span> n_female <span class="sc">/</span> n_patients,</span>
-<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">prop_hosp =</span> n_hosp <span class="sc">/</span> n_patients</span>
-<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>sub_pref_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 7 × 11
-  sub_prefecture n_patients mean_age min_admission n_female n_hosp mean_age_hosp
-  &lt;chr&gt;               &lt;int&gt;    &lt;dbl&gt; &lt;date&gt;           &lt;int&gt;  &lt;int&gt;         &lt;dbl&gt;
-1 Moissala             1798     6.87 2022-08-31         878    617          5.76
-2 Bouna                1401     6.98 2023-01-07         719    513          5.75
-3 Bedjondo              544     6.78 2023-06-11         267    211          5.48
-4 Bekourou              461     6.93 2023-06-16         226    177          5.76
-5 Bedaya                443     7.01 2023-07-03         215    137          5.28
-6 Goundi                185     7.17 2023-08-19          92     72          6.35
-7 Koumra                248     6.40 2023-08-15         132     91          5.26
-# ℹ 4 more variables: mean_age_female &lt;dbl&gt;, n_death_u6m &lt;int&gt;,
-#   prop_female &lt;dbl&gt;, prop_hosp &lt;dbl&gt;</code></pre>
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-f952d1d1355c5aeed54b" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-f952d1d1355c5aeed54b">{"x":{"style":"bootstrap","filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7"],["Moissala","Bouna","Bedjondo","Bekourou","Bedaya","Koumra","Goundi"],[1808,1376,534,496,435,253,178],[6.8429203539823,6.55595930232558,7.07303370786517,6.8366935483871,7.09885057471264,7.10671936758893,6.79213483146067],["2022-08-14","2023-01-11","2023-06-09","2023-06-17","2023-07-04","2023-08-14","2023-08-22"],[923,669,251,251,209,138,88],[612,412,184,164,147,84,66],[5.48529411764706,5.66504854368932,5.21195652173913,6.04268292682927,6.15646258503401,6.26190476190476,5.53030303030303],[6.74864572047671,6.63378176382661,6.94820717131474,6.8406374501992,7.10526315789474,6.45652173913043,7.125],[71,61,22,25,17,7,6],[0.510508849557522,0.486191860465116,0.470037453183521,0.506048387096774,0.480459770114943,0.545454545454545,0.49438202247191],[0.338495575221239,0.299418604651163,0.344569288389513,0.330645161290323,0.337931034482759,0.33201581027668,0.370786516853933]],"container":"<table class=\"table table-striped table-hover row-border order-column display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>sub_prefecture<\/th>\n      <th>n_patients<\/th>\n      <th>mean_age<\/th>\n      <th>min_admission<\/th>\n      <th>n_female<\/th>\n      <th>n_hosp<\/th>\n      <th>mean_age_hosp<\/th>\n      <th>mean_age_female<\/th>\n      <th>n_death_u6m<\/th>\n      <th>prop_female<\/th>\n      <th>prop_hosp<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"pageLength":10,"autoWidth":true,"columnDefs":[{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":7,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":8,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":9,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":10,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":11,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"className":"dt-right","targets":[2,3,5,6,7,8,9,10,11]},{"orderable":false,"targets":0}],"order":[],"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render","options.columnDefs.4.render","options.columnDefs.5.render","options.columnDefs.6.render","options.columnDefs.7.render","options.columnDefs.8.render"],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -594,12 +532,19 @@ Tip
 <section id="done" class="level2">
 <h2 class="anchored" data-anchor-id="done">Done!</h2>
 <p>You should be proud of yourselves, making summary tables is an important skill to an epidemiologist, making it in R is very efficient !! Don’t forget to save your code !</p>
+<div class="cell">
+<div class="cell-output-display">
+<a href="https://github.com/epicentre-msf/repicentre/blob/main/sessions_core/05_summary-table_solutions.R">
+<button class="btn btn-default"><i class="fa fa-save"></i> Solution File</button>
+</a>
+</div>
+</div>
 </section>
 <section id="going-further" class="level2">
 <h2 class="anchored" data-anchor-id="going-further">Going Further</h2>
 <section id="extra-exercises" class="level3">
 <h3 class="anchored" data-anchor-id="extra-exercises">Extra Exercises</h3>
-<p>Make a summary table that summarises: - The number of patients - The proportion of male - The number of deaths - The CFR - The number of deaths among patients that had pneumonia</p>
+<p>Make a summary table that summarizes: - The number of patients - The proportion of male - The number of deaths - The CFR - The number of deaths among patients that had pneumonia</p>
 <p>in all the different <em>age groups</em> !</p>
 </section>
 <section id="additional-resources" class="level3">
