@@ -7,7 +7,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.6.39">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta name="dcterms.date" content="2025-01-29">
+<meta name="dcterms.date" content="2025-02-09">
 <meta name="description" content="Create an Rstudio project, install useful packages and start importing data to work in R">
 <title>Import data – {repicentre}</title>
 <style>
@@ -199,7 +199,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 29, 2025</p>
+      <p class="date">February 9, 2025</p>
     </div>
   </div>
   
@@ -453,7 +453,7 @@ Important
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"raw"</span>, <span class="st">"example_linelist.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "/tmp/RtmpcIdvUv/file46e1977f3b60/data/raw/example_linelist.xlsx"</code></pre>
+<pre><code>[1] "/tmp/RtmputA2xd/file6a5ec71229ef1/data/raw/example_linelist.xlsx"</code></pre>
 </div>
 </div>
 <p>See how we only defined the relative path and the function created an absolute path. This way of defining the path will work on your colleagues computer, even if they run on another operating system, as long as you both respect the internal structure of the working directory.</p>
@@ -507,7 +507,7 @@ Tip
 </div>
 </div>
 <section id="importing-from-the-first-sheet" class="level4"><h4 class="anchored" data-anchor-id="importing-from-the-first-sheet">Importing from the First Sheet</h4>
-<p>In general, the usage of <code>import()</code> is pretty simple, at minima you need to pass the path of the file to the <code>file</code> argument:</p>
+<p>In general, the usage of <code>import()</code> is pretty simple, at minima you need to pass the path of the file to the <code>file</code> argument</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">import</span>(<span class="at">file =</span> <span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"raw"</span>, <span class="st">"example_linelist.xlsx"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
