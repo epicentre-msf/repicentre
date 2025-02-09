@@ -64,5 +64,8 @@
   },
   "resources.fr.qmd": {
     "resources.fr.html": "483599f5"
+  },
+  "sessions_extra/data_exploration_satellite.qmd": {
+    "data_exploration_satellite.html": "922efb79"
   }
 }
