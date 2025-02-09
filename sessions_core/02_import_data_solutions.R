@@ -22,7 +22,8 @@ library(rio)
 # Define path -----------------------------------------
 
 # Path to the data (not save in an object for now)
-here("data", "raw", "xlsx", "Moissalla-measles-linelist-EN.xlsx")
+
+here("data", "raw", "moissala_linelist_EN.xlsx")
 
 
 # Import data -----------------------------------------
@@ -30,19 +31,17 @@ here("data", "raw", "xlsx", "Moissalla-measles-linelist-EN.xlsx")
 #### EXCEL ####
 
 # Import data but do not save it in an object
-import(file = here("data", "raw", "xlsx",
-              "Moissalla-measles-linelist-EN.xlsx"))
+import(file = here("data", "raw",
+              "moissala_linelist_EN.xlsx"))
 
 # Import data an save it in an object
-df_linelist <- import(file = here("data", "raw", "xlsx",
-              "Moissalla-measles-linelist-EN.xlsx"))
+df_linelist <- import(file = here("data", "raw",
+              "moissala_linelist_EN.xlsx"))
 
 
 #### CSV ####
-df_linelist_csv <- import(file = here("data", "raw", "csv",
-                                      "Moissalla-measles-linelist-EN.csv"))
-
-
+df_linelist_csv <- import(file = here("data", "raw",
+                                      "moissala_linelist_EN.csv"))
 
 # Explore data ---------------------------------------
 
