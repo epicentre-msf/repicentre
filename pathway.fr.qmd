@@ -1,5 +1,5 @@
 ---
-title: Chemin
+title: Cours
 description: 'Une introduction à R en commençant par le début'
 listing:
   - id: articles-links

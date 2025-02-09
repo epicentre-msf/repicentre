@@ -1,8 +1,8 @@
 # Solutions to the core session 02_import_data
-# Author :  the Fetch team
-# Creation Date : 07/01/2025
-# Last Update : 07/01/2025
-# Description : Contains solutions to the coding exercices
+# Author:  the Fetch team
+# Creation Date: 07/01/2025
+# Last Update: 07/01/2025
+# Description: Contains solutions to the coding exercices
 
 
 
@@ -22,6 +22,7 @@ library(rio)
 # Define path -----------------------------------------
 
 # Path to the data (not save in an object for now)
+
 here("data", "raw", "moissala_linelist_EN.xlsx")
 
 
