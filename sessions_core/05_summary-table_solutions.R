@@ -15,7 +15,7 @@ library(tidyverse)
 # Import data -----------------------------------------
 
 # Import the clean data stored in data/clean
-df_linelist <- import(file = here("data", "clean", "simulated_measles_ll.rds"))
+df_linelist <- import(file = here("data", "clean", "moissala_linelist_clean_EN.rds"))
 
 # Contingency tables -----------------------------------------
 

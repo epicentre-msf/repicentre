@@ -18,7 +18,7 @@ library(rio)
 # Definir un chemin -----------------------------------------
 
 # Chemin aux données (pas encore assigner à un objet)
-here("data", "raw", "Moissalla-rougeole-liste-lineaire-FR.xlsx")
+here("data", "raw", "moissala_linelist_FR.xlsx")
 
 # Importer les données  -----------------------------------------
 
@@ -26,13 +26,13 @@ here("data", "raw", "Moissalla-rougeole-liste-lineaire-FR.xlsx")
 
 # Importer les données mais ne pas encore assigner à un objet 
 (file = here("data", "raw",
-              "Moissalla-rougeole-liste-lineaire-FR.xlsx"))
+              "moissala_linelist_FR.xlsx"))
 
 # Importer les données et assigner à un objet
 df_linelist <- import(file = here("data", "raw",
-              "Moissalla-rougeole-liste-lineaire-FR.xlsx"))
+              "moissala_linelist_FR.xlsx"))
 
 
 #### CSV ####
 df_linelist_csv <- import(file = here("data", "raw",,
-                                      "Moissalla-rougeole-liste-lineaire-FR.csv"))
+                                      "moissala_linelist_FR.csv"))

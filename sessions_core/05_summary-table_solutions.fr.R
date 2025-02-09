@@ -16,10 +16,9 @@ library(tidyverse)
 
 # Importer les données propres après les avoir mes dans le dossier data/clean
 
-df_linelist <- import(file = here("data", "clean", "simulated_measles_ll_fr.rds"))
+df_linelist <- import(file = here("data", "clean", "moissala_linelist_clean_FR.rds"))
 
 # Tableaux croisés -----------------------------------------
-
 
 df_linelist |>
   count(sous_prefecture, age_groupe)

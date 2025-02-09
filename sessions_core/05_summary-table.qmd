@@ -30,7 +30,7 @@ This session will use the clean version of the Moissala measles dataset. Downloa
 #| eval: true
 
 downloadthis::download_link(
-  link = "https://github.com/epicentre-msf/repicentre/raw/refs/heads/main/data/clean/simulated_measles_ll.rds",
+  link = "https://github.com/epicentre-msf/repicentre/raw/refs/heads/main/data/clean/moissala_linelist_clean_EN.rds",
   button_label = "Clean Measles Linelist",
   has_icon = TRUE,
   icon = "fa fa-save",
@@ -56,7 +56,7 @@ library(here)
 library(tidyverse)
 
 # Import data
-df_linelist <- import(here("data", "clean", "simulated_measles_ll.rds")) |> as_tibble()
+df_linelist <- import(here("data", "clean", "moissala_linelist_clean_EN.rds")) |> as_tibble()
 
 ```
 
