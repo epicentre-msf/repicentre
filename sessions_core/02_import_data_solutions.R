@@ -22,7 +22,7 @@ library(rio)
 # Define path -----------------------------------------
 
 # Path to the data (not save in an object for now)
-here("data", "raw", "msf_linelist_moissala_2023-09-24.xlsx")
+here("data", "raw", "moissala_linelist_EN.xlsx")
 
 
 # Import data -----------------------------------------
@@ -31,18 +31,16 @@ here("data", "raw", "msf_linelist_moissala_2023-09-24.xlsx")
 
 # Import data but do not save it in an object
 import(file = here("data", "raw",
-              "msf_linelist_moissala_2023-09-24.xlsx"))
+              "moissala_linelist_EN.xlsx"))
 
 # Import data an save it in an object
 df_linelist <- import(file = here("data", "raw",
-              "msf_linelist_moissala_2023-09-24.xlsx"))
+              "moissala_linelist_EN.xlsx"))
 
 
 #### CSV ####
-df_linelist_csv <- import(file = here("data", "raw",,
-                                      "msf_linelist_moissala_2023-09-24.csv"))
-
-
+df_linelist_csv <- import(file = here("data", "raw",
+                                      "moissala_linelist_EN.csv"))
 
 # Explore data ---------------------------------------
 
