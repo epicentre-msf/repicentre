@@ -1,3 +1,4 @@
+
 # Solutions Solutions pour la session 02 importer données
 # Auteur :  the Fetch team
 # Date de création : 08/02/2025
@@ -34,5 +35,5 @@ df_linelist <- import(file = here("data", "raw",
 
 
 #### CSV ####
-df_linelist_csv <- import(file = here("data", "raw",,
+df_linelist_csv <- import(file = here("data", "raw",
                                       "moissala_linelist_FR.csv"))

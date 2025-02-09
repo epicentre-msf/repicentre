@@ -38,8 +38,21 @@ The principles you learned in the [Introduction to R](01_introduction.html) sess
 ### Folder Structure {#folder-structure}
 
 ::: {.setup}
-If not done already, download the course folder, save it to a location that is [**not connected to OneDrive**]{.hovertip bs-toggle='tooltip' bs-title="OneDrive doesn't play well with R as it will attempt to constantly synchronize certain project files in a way that can cause errors or memory problems"}.
-Unzip the archive and open the uncompressed folder.
+If not done already, download and unzip the course folder. Save the uncompressed folder to a location that is [**not connected to OneDrive**]{.hovertip bs-toggle='tooltip' bs-title="OneDrive doesn't play well with R as it will attempt to constantly synchronize certain project files in a way that can cause errors or memory problems"} and navigate into it.
+
+```{r}
+#| echo: false
+#| eval: true
+
+downloadthis::download_link(
+  link = 'https://github.com/epicentre-msf/repicentre/raw/main/data/FETCHR.zip',
+  button_label = ' Course Folder',
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  self_contained = FALSE
+)
+```
+
 :::
 
 This folder gives an example of a typical (and highly recommended) structure for your code projects:
@@ -49,7 +62,6 @@ This folder gives an example of a typical (and highly recommended) structure for
   - 📁 raw 
 - 📁 R
 - 📁 outputs
-- README
 
 This folder will be you working directory for **all the sessions of this course**. You will create an Rstudio project in it (explanations below), and save all your scripts in `/R`. The course datasets are already in `data/raw`.
 
@@ -248,7 +260,7 @@ Run the above code in the console. What file path does `here("data", "raw")` giv
 :::
 
 ::: {.write}
-Using `here()`, create a complete file path for the file `msf_linelist_moissala_2023-09-24.xlsx`. Keep this path around, we will use it soon.
+Using `here()`, create a complete file path for the file `Moissalla-measles-linelist-EN.xlsx`. Keep this path around, we will use it soon.
 :::
 
 ::: {.callout-important}
@@ -281,7 +293,7 @@ import(file = here("data", "raw", "example_linelist.xlsx"))
 Notice that we have nested the command `here()` **inside** the `import()` command. Nesting functions is absolutely allowed in R and is something you will do *all the time*. When functions are nested, R will evaluate them in the order of the innermost function (in this case `here()`) to the outermost (in this case `import()`). In this way, the *output* of `here()` is being used as the *input* of `import()`. 
 
 ::: {.write}
-Import the file `msf_linelist_moissala_2023-09-24.xlsx` that is in your raw data subfolder into R using `here()` and `import()`.
+Import the file `Moissalla-measles-linelist-EN.xlsx` that is in your raw data subfolder into R using `here()` and `import()`.
 :::
 
 If your import worked correctly, R will print the data into the console but not save it into the environment because we have not [assigned them to an object](../sessions_core/01_introduction.qmd#sec-assignement-operator).
@@ -357,5 +369,5 @@ downloadthis::download_link(
 
 ### Additional Resources
 
-- The `rio` [website](https://gesistsa.github.io/rio/index.html#supported-file-formats)
+- The `{rio}` [website](https://gesistsa.github.io/rio/index.html#supported-file-formats)
 - [More examples](https://epirhandbook.com/en/new_pages/importing.html) on importing data of various file types

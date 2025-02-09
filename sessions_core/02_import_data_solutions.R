@@ -1,8 +1,8 @@
 # Solutions to the core session 02_import_data
-# Author :  the Fetch team
-# Creation Date : 07/01/2025
-# Last Update : 07/01/2025
-# Description : Contains solutions to the coding exercices
+# Author:  the Fetch team
+# Creation Date: 07/01/2025
+# Last Update: 07/01/2025
+# Description: Contains solutions to the coding exercices
 
 
 
@@ -22,7 +22,7 @@ library(rio)
 # Define path -----------------------------------------
 
 # Path to the data (not save in an object for now)
-here("data", "raw", "msf_linelist_moissala_2023-09-24.xlsx")
+here("data", "raw", "xlsx", "Moissalla-measles-linelist-EN.xlsx")
 
 
 # Import data -----------------------------------------
@@ -30,12 +30,12 @@ here("data", "raw", "msf_linelist_moissala_2023-09-24.xlsx")
 #### EXCEL ####
 
 # Import data but do not save it in an object
-import(file = here("data", "raw",
-              "msf_linelist_moissala_2023-09-24.xlsx"))
+import(file = here("data", "raw", "xlsx",
+              "Moissalla-measles-linelist-EN.xlsx"))
 
 # Import data an save it in an object
-df_linelist <- import(file = here("data", "raw",
-              "msf_linelist_moissala_2023-09-24.xlsx"))
+df_linelist <- import(file = here("data", "raw", "xlsx",
+              "Moissalla-measles-linelist-EN.xlsx"))
 
 
 #### CSV ####
