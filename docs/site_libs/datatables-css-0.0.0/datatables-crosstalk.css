@@ -21,6 +21,7 @@ See https://github.com/DataTables/DataTablesSrc/issues/160
 table.dataTable {
   display: table;
 }
+<<<<<<< HEAD
 
 
 /*
@@ -30,3 +31,5 @@ When DTOutput(fill = TRUE), it receives a .html-fill-item class (via htmltools::
 .html-fill-container > .html-fill-item.datatables {
   flex-basis: 400px;
 }
+=======
+>>>>>>> main
