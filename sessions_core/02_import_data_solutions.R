@@ -22,6 +22,7 @@ library(rio)
 # Define path -----------------------------------------
 
 # Path to the data (not save in an object for now)
+
 here("data", "raw", "moissala_linelist_EN.xlsx")
 
 
@@ -41,3 +42,4 @@ df_linelist <- import(file = here("data", "raw",
 #### CSV ####
 df_linelist_csv <- import(file = here("data", "raw",,
                                       "moissala_linelist_EN.csv"))
+
