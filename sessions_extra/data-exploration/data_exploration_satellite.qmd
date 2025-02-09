@@ -59,7 +59,7 @@ Right after importing some data into R, it is good practice to perform some have
 
 This process is crucial and will allow us to familiarise with our data and identify issues that will be adressed during the data cleaning step. 
 
-```{r, eval = TRUE, echo = FALSE}
+```{r, eval = TRUE, echo = FALSE, message = FALSE, warning = FALSE}
 library(here)
 library(rio)
 library(dplyr)
