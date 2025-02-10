@@ -12,7 +12,7 @@ library(tidyverse)
 
 
 # IMPORT -------------------------------------------------------------------------------------------
-df_linelist <- import(file = here("data", "clean", "moissala_linelist_clean_EN.rds"))
+df <- import(file = here("data", "clean", "moissala_linelist_clean_EN.rds"))
 
 
 
