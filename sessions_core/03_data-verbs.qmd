@@ -71,9 +71,8 @@ In R, the package `{dplyr}` provides a large number of functions to help us mani
 - Renaming certain variables
 - Adding or modifying a variable
 - Removing duplicate entries
-- Filtering our dataset to extract observations of interest
 
-In `{dplyr}` each of these actions can be done with a particular function, which typically have an [intuitive verb for a name]{.hovertip bs-toggle='tooltip' bs-title="These verbs, as with everything in R, are in English and will admittedly be less intuitive for learners coming from a non-anglophone background."}. For example, renaming columns will use the function `rename()` and filtering will use the function `filter()`.
+In `{dplyr}` each of these actions can be done with a particular function, which typically have an [intuitive verb for a name]{.hovertip bs-toggle='tooltip' bs-title="These verbs, as with everything in R, are in English and will admittedly be less intuitive for learners coming from a non-anglophone background."}. For example, renaming columns will use the function `rename()`.
 
 In today's session we will look at the "data manipulation verb", ie the function, needed for each of the above tasks as well as how to chain them all together into an efficient data pipeline.
 
