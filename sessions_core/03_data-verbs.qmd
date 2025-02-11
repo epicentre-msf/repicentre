@@ -446,9 +446,9 @@ Going Further
 
 ### Extra Exercises
 
-1. A a line to your mutate to update the `hospitalisation` variable so that its text would be in title case as well.
+1. A a line to your `mutate()` to update the `hospitalisation` variable so that its text would be in title case as well.
 
-2. Assuming that you would prefer to use lower case for the  `region` column rather than the title case, write the code command that would update that column. **Hint**: we saw a function in the [first session](../session_core/01_introduction.qmd) that turns a string of text to lower case. Alternatively, the `{stringr}` packages provide its own `str_to_lower()` function, that does the same, with a name and syntax similar to its `str_to_title()` function.
+2. Perhaps you would prefer to use lower case for the  `region` column rather than the title case, update your code to do this instead. **Hint**: you might want to check out `str_to_lower()` from `{stringr}`.
 
 3. Create a `delay_consultation` column, that contains the number of days between the onset of symptoms and the consultation.
 
