@@ -408,14 +408,14 @@ downloadthis::download_link(
 
 ### Extra Exercises
 
-Make a summary table that summarizes: 
+Make a summary table that compute the following statistics by *age groups*: 
+
   - The number of patients
-  - The proportion of male
+  - The proportion of males
   - The number of deaths
   - The CFR
   - The number of deaths among patients that had pneumonia
 
-in all the different *age groups* ! 
 
 ### Additional Resources
 
