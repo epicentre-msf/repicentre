@@ -259,25 +259,6 @@ Important
 <li>Understand the possible values in each categorical variables.</li>
 </ul>
 <p>This process is crucial and will allow us to familiarise with our data and identify issues that will be adressed during the data cleaning step.</p>
-<div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'dplyr' was built under R version 4.3.1</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-Attaching package: 'dplyr'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:stats':
-
-    filter, lag</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:base':
-
-    intersect, setdiff, setequal, union</code></pre>
-</div>
-</div>
 </section>
 <section id="basic-exploration" class="level1">
 <h1>Basic exploration</h1>
@@ -296,7 +277,7 @@ Attaching package: 'dplyr'</code></pre>
 <h1>Variable names</h1>
 <p>Because we are going to use the variable names very often during our analysis, we want to get familiar with them pretty early on. Also, we need to identify the ones that will need to be renamed during our data cleaning. The function <code>names()</code> returns a vector of our all the variable names in our dataframe:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(df_linelist)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(df_linelist)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "id"                   "full_name"            "sex"                 
  [4] "age"                  "age_unit"             "region"              
@@ -343,14 +324,14 @@ Tip
 <h1>Variable class</h1>
 <p>We now want to check the class of my different variables. This is important as part of the data cleaning involves making sure that numerical variables are class <code>numeric</code>, dates <code>Date</code>, and categorical variables are <code>factor</code> or <code>character</code>. You have already seen the <code>class()</code> function, to check the class of a vector. Turns out that in R, each variable of a dataframe is itself a vector ! We can extract all the values of that vector using the <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="This is called base R indexing"><code>$</code> sign</span>, and pass it to the class function:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(df_linelist<span class="sc">$</span>age)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(df_linelist<span class="sc">$</span>age)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="write">
 <p>Try extracting all the values from the <code>sex</code> variable - what is the class of that variable ?</p>
 </div>
 <p>Now you can also use <code>str()</code> on your dataframe to check all the variables class at once:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df_linelist)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df_linelist)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="write">
 <p>Use <code>str()</code> to check the data type of each column. Does anything look odd? Remember that you can also use functions like <code>is.character()</code> and <code>is.numeric()</code> if you’d like to test the type of a particular column.</p>
@@ -469,7 +450,7 @@ Tip
 </ol>
 <p>This is done using <code>count()</code> from <code>{dplyr}</code>, which accepts the a dataframe and a name of a column as arguments and will then count the <strong>number of observations</strong> of each unique element in that column. For example, let’s see what are the possible values of the variable <code>sex</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(df_linelist, sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(df_linelist, sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The output is a new, smaller dataframe containing the number of patients observed stratified by <code>sex</code>. It seems like this variable requires some recoding.</p>
 <div class="write">

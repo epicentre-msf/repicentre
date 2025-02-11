@@ -67,7 +67,17 @@
   },
   "sessions_core/05_summaries.qmd": {
     "05_summaries.html": "ae1c5d29"
-  }, 
+  },
   "sessions_extra/data_exploration_satellite.qmd": {
     "data_exploration_satellite.html": "922efb79"
+  },
+  "sessions_core/05_summary-table.qmd": {
+    "05_summary-table.html": "c6c57a89"
+  },
+  "sessions_core/02_import_data.fr.qmd": {
+    "02_import_data.fr.html": "a6e105c7"
+  },
+  "sessions_extra/data-exploration/data_exploration_satellite.qmd": {
+    "data_exploration_satellite.html": "bc0d6652"
+  }
 }
