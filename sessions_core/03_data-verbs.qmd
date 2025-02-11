@@ -95,7 +95,7 @@ Here is the basic syntax, note that this is [pseudo-code]{.hovertip bs-toggle='t
 select(df_raw, first_column_to_keep, second_column_to_keep)
 ```
 
-Here we see that the first argument is our dataset and each subsequent argumen is the name of a column that we would like to keep. In the tidyverse, variables (ie column names) don't need to be put into quotation marks. So for example, if we want to select the columns `id`, `sex`, and `age` we can use the following:
+Here we see that the first argument is our dataset and each subsequent argument is the name of a column that we would like to keep. In the tidyverse, variables (ie column names) don't need to be put into quotation marks. So for example, if we want to select the columns `id`, `sex`, and `age` we can use the following:
 
 ```{r}
 select(df_raw, id, sex, age)
@@ -113,7 +113,7 @@ head(select(df_raw, id, sex, age, date_onset, outcome))
 Take a look at this output and then at `df_raw`. We can see that `df_raw` still contains all of the columns, which is what we want. But can you tell why it didn't change?
 :::
 
-Often, we want to keep most of the variables in our dataset and only remove one or two. We can use the aabove syntax to do this, but it can become pretty tedious to [write out every column name]{.hovertip bs-toggle='tooltip' bs-title="Anyone who has worked with complex linelists or survey data can certainly feel the pain here."}. In these cases, instead of telling select what to **keep**, we can use a subtraction sign (`-`) to tell it what to **remove**. For example, if we wanted to remove the `village_commune` column from our dataframe we can use the following:
+Often, we want to keep most of the variables in our dataset and only remove one or two. We can use the above syntax to do this, but it can become pretty tedious to [write out every column name]{.hovertip bs-toggle='tooltip' bs-title="Anyone who has worked with complex linelists or survey data can certainly feel the pain here."}. In these cases, instead of telling select what to **keep**, we can use a subtraction sign (`-`) to tell it what to **remove**. For example, if we wanted to remove the `village_commune` column from our dataframe we can use the following:
 
 ```{r}
 select(df_raw, -village_commune)
