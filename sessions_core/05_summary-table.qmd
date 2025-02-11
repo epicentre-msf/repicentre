@@ -207,7 +207,7 @@ You might notice that this code yields a single value for average age. When the 
 
 df_linelist |>
   summarize(
-    .by = sex,
+    .by = sex,  # Make the summary (here, the mean) by sex
     mean_age = mean(age)
   )
 
@@ -241,7 +241,7 @@ We first want to look at the number of cases in each `sub_prefecture`. This can 
 df_linelist |>
   summarize(
     .by = sub_prefecture,
-    n_patients = n()
+    n_patients = n() # Count stuffs
   )
 
 ```
