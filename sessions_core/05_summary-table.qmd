@@ -13,6 +13,13 @@ categories:
 #| include: false
 #| eval: true
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+
+library(here)
+library(tidyverse)
+
+# Import data
+df_linelist <- rio::import(here("data", "clean", "moissala_linelist_clean_EN.rds")) |> 
+  as_tibble()
 ```
 
 ## Objectives
@@ -49,19 +56,6 @@ downloadthis::download_link(
 Open your RStudio Project and create a new script in the R folder called `tables.R` with appropriate metadata and a "Packages" section that imports: `{rio}`, `{here}` and `{tidyverse}`. Add an "Import Data" section that loads the *cleaned* version of the measles linelist.
 :::
 
-```{r}
-#| echo: false
-#| eval: true
-#| include: false
-
-library(rio)
-library(here)
-library(tidyverse)
-
-# Import data
-df_linelist <- import(here("data", "clean", "moissala_linelist_clean_EN.rds")) |> as_tibble()
-
-```
 
 ## Introduction: Data aggregation
 
