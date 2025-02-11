@@ -29,7 +29,16 @@ df <- df_raw |>
          date_onset = ymd(date_onset),
          date_consultation = ymd(date_consultation),
          date_admission = ymd(date_admission),
-         date_outcome = ymd(date_outcome)) |>
+         date_outcome = ymd(date_outcome),
+         age_group = case_when(age_months < 6 ~ '< 6 months',
+                               age_months < 12 ~ '6 - 11 months',
+                               age_years < 5 ~ '12 - 59 months',
+                               age_years <= 15 ~ '5 - 15 years',
+                               age_years > 15 ~ '> 15 years',
+                               .default = 'Unknown'),
+         sex = case_when(sex %in% c("f", "female", "femme") ~ "Female",
+                         sex %in% c("m", "male", "homme") ~ "Male",
+                         .default = "Unknown")) |>
   # remove duplicates
   distinct()
 
