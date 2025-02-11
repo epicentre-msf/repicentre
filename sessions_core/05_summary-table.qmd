@@ -33,6 +33,7 @@ df_linelist <- rio::import(here("data", "clean", "moissala_linelist_clean_EN.rds
 
 ## Setup
 
+**Dependencies.** This session assumes that you know how to use RStudio that you are able to import data and that you know th basic data handling verbs that we have seen in the core sessions so far. If you need a refresher on either of these topics, we encourage you to review the core sessions in the learning pathway.
 
 :::{.setup}
 This session will use the clean version of the Moissala measles dataset. Download the data and store them in `data/clean` in your practice project:
