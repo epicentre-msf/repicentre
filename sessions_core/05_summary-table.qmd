@@ -311,7 +311,7 @@ df |>
 
 Here, we have:
 
-- Indicated which column we want to use when caluclating the summary statistic (here a mean)
+- Indicated which column we want to use when calculating the summary statistic (here a mean)
 - Indexed that column using a logical test
 
 For example to compute the mean of the `age` variable but *only* for hospitalized patients (ie in rows where `hospitalisation == "yes"`) we would write:
