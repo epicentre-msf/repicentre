@@ -2,11 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.6.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-02-10">
+<meta name="dcterms.date" content="2025-02-11">
 <meta name="description" content="Créez un projet Rstudio, installez les paquets utiles et importez des données pour travailler dans R.">
 
 <title>Importer des données – {repicentre}</title>
@@ -71,12 +71,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-0626ff4d7a71b55c8707dcae1d04a9b6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-e25cc82807363e79c52e96bc8b7855f1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-697306ee647f3aecb60be57249203282.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-3fe3df12cb322cd60d4f50ab5ce79ec8.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-b814d3e578892f16fb585af6f47f426f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-35dfec4a88a4a8552367c65e80eaa027.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-d747503b21a9267137dc98650c9a257a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-5131c98158f83ec01234852a3be8e382.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -111,6 +111,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   });
 </script>
 <script src="../site_libs/font-awesome-6.5.2/js/script.js"></script>
+
 <script type="text/javascript" src="../script.js"></script>
 
 
@@ -223,7 +224,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 10, 2025</p>
+      <p class="date">February 11, 2025</p>
     </div>
   </div>
   
@@ -519,14 +520,14 @@ Important
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"raw"</span>, <span class="st">"example_linelist.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "/home/catherine/Documents/epicentre/training/repicentre/data/raw/example_linelist.xlsx"</code></pre>
+<pre><code>[1] "D:/MATHILDE_UNPLUGGED/5_OTHER/repicentre/data/raw/example_linelist.xlsx"</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"raw"</span>, <span class="st">"example_linelist.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "/home/catherine/Documents/epicentre/training/repicentre/data/raw/example_linelist.xlsx"</code></pre>
+<pre><code>[1] "D:/MATHILDE_UNPLUGGED/5_OTHER/repicentre/data/raw/example_linelist.xlsx"</code></pre>
 </div>
 </div>
 <p>Voyez comme nous n’avons défini que le chemin relatif et la fonction a reconstitué le chemin absolu. Celà marchera donc sur l’ordinateur d’un collègue, y compris sur un autre système d’exploitation, du moment que la structure du répertoire de travail est intacte.</p>

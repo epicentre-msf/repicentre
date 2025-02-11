@@ -65,9 +65,9 @@ Now that we know how to set up a project and import data, we can finally start t
 ### What is `{dplyr}`
 Data manipulation is the foundation of [working with data in R]{.hovertip bs-toggle='tooltip' bs-title="Or really any other language, including Excel!"} and as such is foundational to the work we do as epidemiologists. In particular, data manipulation skills will be critical when trying clean our data. 
 
-In R, the package `{dplyr}` provides a large number of functions to help us manipulate dataframes and perform many of the tasks that we will need to use on a daily basis, for example:
+In R, the package `{dplyr}` provides a large number of functions to help us manipulate data frames and perform many of the tasks that we will need to use on a daily basis, for example:
 
-- Subsetting our data to remove certain [variables]{.hovertip bs-toggle='tooltip' bs-title="Remember that each variable is a column in the context of a dataframe"}
+- Subsetting our data to remove certain [variables]{.hovertip bs-toggle='tooltip' bs-title="Remember that each variable is a column in the context of a data frame"}
 - Renaming certain variables
 - Adding or modifying a variable
 - Removing duplicate entries
@@ -95,7 +95,7 @@ Here is the basic syntax, note that this is [pseudo-code]{.hovertip bs-toggle='t
 select(df_raw, first_column_to_keep, second_column_to_keep)
 ```
 
-Here we see that the first argument is our dataset and each subsequent argumen is the name of a column that we would like to keep. In the tidyverse, variables (ie column names) don't need to be put into quotation marks. So for example, if we want to select the columns `id`, `sex`, and `age` we can use the following:
+Here we see that the first argument is our dataset and each subsequent argument is the name of a column that we would like to keep. In the tidyverse, variables (ie column names) don't need to be put into quotation marks. So for example, if we want to select the columns `id`, `sex`, and `age` we can use the following:
 
 ```{r}
 select(df_raw, id, sex, age)
@@ -135,7 +135,7 @@ rename(df,
        another_new_name = another_old_name)
 ```
 
-As in the case of `select()`, and indeed in essentially all `{dplyr}` verbs, the first argument is our daframe. Then each subsequent argument is a statement of `new_column_name = old_column_name` telling R which columns to rename and the new names that we want to use, with each pair given it's own line to improve readability. If we wanted to change `village_commune` to simply be `village`, for example, we can write:
+As in the case of `select()`, and indeed in essentially all `{dplyr}` verbs, the first argument is our daframe. Then each subsequent argument is a statement of `new_column_name = old_column_name` telling R which columns to rename and the new names that we want to use, with each pair given its own line to improve readability. If we wanted to change `village_commune` to simply be `village`, for example, we can write:
 
 ```{r}
 rename(df_raw,
@@ -146,7 +146,7 @@ rename(df_raw,
 Use `rename()` on `df_raw` to change the columns `sub_prefecture`, `village_commune`, and `health_facility_name` to be `prefecture`, `village`, and `facility` respectively.
 :::
 
-In the above exercise it may have been difficult to check if the output looked correct because R would have printed out the full dataframe. In these cases it can be helpful to create a temporary object just to check if everything looks alright. You can call this object whatever you want, but a common name is [`tmp`]{.hovertip bs-toggle='tooltip' bs-title="Here `tmp` stands for 'temporary'."}.
+In the above exercise it may have been difficult to check if the output looked correct because R would have printed out the full data frame. In these cases it can be helpful to create a temporary object just to check if everything looks alright. You can call this object whatever you want, but a common name is [`tmp`]{.hovertip bs-toggle='tooltip' bs-title="Here `tmp` stands for 'temporary'."}.
 
 :::{.write}
 Repeat the last exercise but this time assign the output to an object called `tmp` and use `names()` to check that the column names changed as you expected. The output of `names()` should give you something like this:
@@ -164,11 +164,11 @@ df_raw |>
 :::
 
 :::{.callout-important}
-Temporary objects, like the `tmp` dataframe you just created are just that: temporary. They are usually used to test if something has worked and designed to be overwritten each time you need to test something else. As such, you should not use these temporary objects as the input for other parts of your code. If you want to make a dataframe that will be reused, such as a clean version of `df_raw`, this should be done using an object with a proper name like `df` or `df_clean`.
+Temporary objects, like the `tmp` data frame you just created are just that: temporary. They are usually used to test if something has worked and designed to be overwritten each time you need to test something else. As such, you should not use these temporary objects as the input for other parts of your code. If you want to make a data frame that will be reused, such as a clean version of `df_raw`, this should be done using an object with a proper name like `df` or `df_clean`.
 :::
 
 ### Changing and Adding Columns
-So now we know how to selct and rename columns, but how do we modify them? This is where [`mutate()`]{.hovertip bs-toggle='tooltip' bs-title="This name is admittedly less intuitive that other `{dplyr}` verbs. It is called mutate because you are changing (or 'mutating', if you will) parts of the data."} comes into play. This function can be used both to add new columns and to change existing ones.
+So now we know how to select and rename columns, but how do we modify them? This is where [`mutate()`]{.hovertip bs-toggle='tooltip' bs-title="This name is admittedly less intuitive that other `{dplyr}` verbs. It is called mutate because you are changing (or 'mutating', if you will) parts of the data."} comes into play. This function can be used both to add new columns and to change existing ones.
 
 Let's start with the basic `mutate()` syntax needed to add a new column:
 
@@ -199,7 +199,7 @@ df_raw |>
 ```
 :::
 
-Great! But what if instead of creating a new column we instead wanted to change an existing one? Easy, you use need to use the existing column name on the left side of the `=` instead of giving a new column name. For example, in the above MUAC code we would write:
+Great! But what if instead of creating a new column we instead wanted to change an existing one? You just need to use the existing column name on the left side of the `=` instead of giving a new column name. For example, in the above MUAC code we would write:
 
 ```{r}
 mutate(df_raw,
@@ -257,7 +257,7 @@ mutate(df_raw,
 ```
 
 :::{.write}
-Use `mutate()` and `ymd()` to modify `date_onset` and `date_admission` to be `Date` type. Use a temporary dataframe `tmp` to check that your code is doing what you want it to.
+Use `mutate()` and `ymd()` to modify `date_onset` and `date_admission` to be `Date` type. Use a temporary data frame `tmp` to check that your code is doing what you want it to.
 :::
 
 
@@ -269,17 +269,17 @@ Ok great! We know how to select, rename, and modify our data. Another task we wi
 distinct(df)
 ```
 
-Notice that distinct only needs one argument by default, the dataset itself. This will look for and remove any duplicate observations in the dataframe. There are some fancier ways of using `distinct()` that will look for duplication on certain variables only, but that's outside of the scope of today's session.
+Notice that distinct only needs one argument by default, the dataset itself. This will look for and remove any duplicate observations in the data frame. There are some fancier ways of using `distinct()` that will look for duplication on certain variables only, but that's outside of the scope of today's session.
 
 :::{.write}
-Use `distinct()` to create a temporary dataframe, `tmp`, that contains all the unique observations in `df_raw`. Compare the number of rows in `tmp` to that of `df_raw`. Did we have any duplicates?
+Use `distinct()` to create a temporary data frame, `tmp`, that contains all the unique observations in `df_raw`. Compare the number of rows in `tmp` to that of `df_raw`. Did we have any duplicates?
 :::
 
 
 
 The Pipe Operator
 ----------------------------------------------------------------------------------------------------
-Hold on, have we just sneakily learned how to do a lot of basic data cleaning? I sure think so! We should probably try to put some of the above steps together to start building a basic data cleaning pipeline. So far we haven't been saving any of our changes, except perhaps to a temporary dataframe. It would be nice to keep them in a new clean `df` object.
+So it looks like we have actually done quite a bit of cleaning while learning the core `{dplyr}` verbs. We should probably try to put some of the above steps together to start building a basic data cleaning pipeline. So far we haven't been saving any of our changes, except perhaps to a temporary data frame. It would be nice to keep them in a new clean `df` object.
 
 For example, if we want to effect the column renaming we did above to a reusable object we might write something like this:
 
@@ -328,7 +328,7 @@ df <- mutate(df,
              age_years = age / 12)
 ```
 
-Hm, ok well this is working but it is starting to get repetitive. With each step we are reusing the output of the last step and then updating the same dataframe, `df`. It would be better if these actions could be chained together in a simpler way. 
+Hm, ok well this is working but it is starting to get repetitive. With each step we are reusing the output of the last step and then updating the same data frame, `df`. It would be better if these actions could be chained together in a simpler way. 
 
 This is exactly what the pipe operator, `|>` is for! The pipe has the following basic syntax:
 
@@ -364,7 +364,7 @@ df <- df_raw |>
 ```
 
 :::{.callout-tip}
-Notice that here each action in the pipe is given it's own line. This is considered good practice as it makes your code easier to read and understand.
+Notice that here each action in the pipe is given its own line. This is considered good practice as it makes your code easier to read and understand.
 :::
 
 So, if we wanted to chain the example actions we saw above into a single pipe, we might write something like this:
@@ -381,7 +381,7 @@ df <- df_raw |>
 That's a lot easier than reassigning `df` after each step! 
 
 :::{.write}
-Let's see if we can put together what we learned above into a single pipeline! Use the pipe operator `|>`, `select()`, `rename()`, `mutate()`, `str_to_title()`, `ymd()`, and `distinct()` to perform the following actions on `df_raw` and assign the output to a new dataframe called `df`:
+Let's see if we can put together what we learned above into a single pipeline! Use the pipe operator `|>`, `select()`, `rename()`, `mutate()`, `str_to_title()`, `ymd()`, and `distinct()` to perform the following actions on `df_raw` and assign the output to a new data frame called `df`:
 
 - Remove the variables `full_name` and `age_unit`
 - Rename the following variables:
@@ -420,12 +420,12 @@ df_raw |>
 **Hint.** Be careful with your column names here! If you renamed something you will need to use the new names for any subsequent parts of the pipe.
 :::
 
-Amazing! That looks like a great start at a data cleaning pipeline. Keep this code handy, you will use it in the next session where we will look at another compon part of data cleaning: **recoding**.
+Amazing! That looks like a great start at a data cleaning pipeline. Keep this code handy, you will use it in the next session where we will look at another common part of data cleaning: **recoding**.
 
 
 Done!
 ----------------------------------------------------------------------------------------------------
-Well done, you've learned the fundamentals of data manipulation and how to string multiple commands together into a data manipulation pipe. Moving forward, solution files will focus less on being "exercise by exercise" and rather provide an example of what a real script might like in a real world context. In this case, the solutions will then focus only on the final pipe that is created at the end of the session.
+Well done, you've learned the fundamentals of data manipulation and how to string multiple commands together into a data manipulation pipe. Moving forward, solution files will focus less on being "exercise by exercise" and rather provide an example of what a real script might look like in a real world context. In this case, the solutions will then focus only on the final pipe that is created at the end of the session.
 
 ```{r}
 #| echo: false
@@ -445,10 +445,10 @@ Going Further
 ----------------------------------------------------------------------------------------------------
 
 ### Extra Exercises
-1. Do this.
-2. Then do that.
 
-### Challenge Exercises
-1. Do this.
-2. Then do that.
+1. A a line to your mutate to update the `hospitalisation` variable so that its text would be in title case as well.
+
+2. Assuming that you would prefer to use lower case for the  `region` column rather than the title case, write the code command that would update that column. **Hint**: we saw a function in the [first session](../session_core/01_introduction.qmd) that turns a string of text to lower case. Alternatively, the `{stringr}` packages provide its own `str_to_lower()` function, that does the same, with a name and syntax similar to its `str_to_title()` function.
+
+3. Create a `delay_consultation` column, that contains the number of days between the onset of symptoms and the consultation.
 
