@@ -54,24 +54,24 @@ downloadthis::download_link(
 :::
 
 :::{.setup}
-Open your RStudio Project and create a new script in the R folder called `tables.R` with appropriate metadata and a "Packages" section that imports: `{rio}`, `{here}` and `{tidyverse}`. Add an "Import Data" section that loads the *cleaned* version of the measles linelist.
+Open your RStudio Project and create a new script in the R subfolder called `tables.R` with appropriate metadata and a "Packages" section that imports: `{rio}`, `{here}` and `{tidyverse}`. Add an "Import Data" section that loads the *cleaned* version of the measles linelist into R.
 :::
 
 
 ## Introduction: Data aggregation
 
-OK so let's recap, you have just performed one of the most [important tasks]{.hovertip bs-toggle='tooltip' bs-title='Some consider it to be 80% of the work!'} of an epidemiologist: the **data cleaning**. Now that you have clean and standardise data, we can get into the real business and start analysing them. Analyses typically start with some tables and summaries to describe our data:
+OK so let's recap, you have just performed one of the most [important tasks]{.hovertip bs-toggle='tooltip' bs-title='Some consider it to be 80% of the work!'} of an epidemiologist: the **data cleaning**. Now that you have clean and standardized data, you can get into the real business and start analysing them. Analyses typically start with some tables and summaries that describe our data:
 
 - Univariate frequency tables to count occurrences of different values
-- Summary statistics (mean, median, standard deviation) of numerical variables
+- Summary statistics of numerical variables (mean, median, standard deviation)
 - Cross-tabulations to examine relationships between categorical variables
 - Group-wise summaries to compare statistics across different subsets of the data
 
 ## Counting Multiple Columns (Contingency Tables)
 
-During the data exploration session, you have learned to create frequency table for a single categorical variable using the `count()` function. Counting one variable is nice, but we often want to count the number observations based on two (or more!) variables.
+During the data exploration session, you have learned to create a frequency table for a single categorical variable using the `count()` function. This is nice, but we often want to count the number observations based on two (or more!) variables.
 
- These tables are called [contingency tables]{.hovertip bs-toggle='tooltip' bs-title='It shows how observations are distributed across different combinations of categories.'}. For example, knowing the number of patients by `sub_prefecture` is great but we might want to stratify by both `sub_prefecture` *and* `age_group` to see if certain areas have [unusually old patients]{.hovertip bs-toggle='tooltip' bs-title='This type of stratification is a useful way of trying to find areas that may be good candidates for catch up campaigns.'}. Doing this is easy, you just need to pass multiple column names to `count()`; for example:
+These tables are called [contingency tables]{.hovertip bs-toggle='tooltip' bs-title='Or cross tabulation tables. They show how observations are distributed across different combinations of categories.'}. For example, knowing the number of patients by `sub_prefecture` is great but we might want to stratify by both `sub_prefecture` *and* `age_group` to see if certain areas have [unusually old patients]{.hovertip bs-toggle='tooltip' bs-title='This type of stratification is a useful way of trying to find areas that may be good candidates for catch up campaigns.'}. Doing this is easy, you just need to pass multiple column names to `count()`:
 
 ```{r}
 df_linelist |>
@@ -88,7 +88,7 @@ df_linelist |>
 ```
 
 :::{.write}
-Using `count()` answer the following questions:
+Using `count()`, answer the following questions:
 
 - How many patients were female? What is the proportion?
 - What are all the possible values of the `outcome` variable?
@@ -122,7 +122,7 @@ df_linelist |>
 Observe the output of the code above. How can you also call the proportion of patients who died? Are you happy with this calculation? 
 ::: 
 
-The proportion of cases that died is also referred to as the [Case Fatality Ratio (CFR)]{.hovertip bs-toggle='tooltip' bs-title='the CFR is a ratio (or a risk) but not a rate!'}. However, to precisely calculate the CFR we need to make sure that the denominator only includes patient for whom we are sure of their outcome (ie we need to remove all cases with `NA` or `left aginst medical advice`). 
+The proportion of cases that died is also referred to as the [Case Fatality Ratio (CFR)]{.hovertip bs-toggle='tooltip' bs-title='The CFR is a ratio (or a risk) but not a rate!'}. To precisely calculate the CFR we need to make sure that the denominator only includes patient for whom we are sure of their outcome (ie we need to remove all cases with `NA` or `left aginst medical advice`). 
 
 Remember that we can do this using `filter()`. To filter for missing values (`NA`) in a variable we can use the small function `is.na(outcome)`. Adding a `!` in front will do the opposite: *removing missing values from `outcome`*:
 
@@ -153,7 +153,7 @@ cfr_df <- df_linelist |>
 ```
 
 ::: {.callout-tip}
-**Bonus.** Another useful "shortcut" function is `drop_na()` from the package `{tidyr}` that equates to `filter(!is.na())`.
+**Bonus.** A useful "shortcut" function is `drop_na()` from the package `{tidyr}` that equates to `filter(!is.na())`.
 
 ```{r}
 df_linelist |>
@@ -170,7 +170,7 @@ Ok now that we have produced some simple frequency and contingency tables we may
 
 For example, we may be asked to produce patient statistics at the sub-prefecture level, ie: *for each sub-prefecture in the data*, we need to answer the following questions: 
 
-- How many patients?
+- How many patients consulted?
 - What is their average age? 
 - What was the earliest date of admission? 
 - How many patients have been hospitalized? 
@@ -200,7 +200,7 @@ df_linelist |>
 
 ```
 
-You might notice that this code yields a single value for average age. When the data are not grouped, `summarize()` will consider the full dataset as a single group and return one summary statistic for the whole dataset. To calculate the average age by a specific strata, we need to specify a "grouping variable" using the `.by =` argument:
+Notice that this code yields a single value for average age. No grouping variable was provided so `summarize()` returned one summary statistic for the whole dataset. To calculate the average age by a specific strata, we need to specify a **grouping variable** using the `.by` argument:
 
 ```{r}
 #| eval: true
@@ -279,12 +279,11 @@ We may also be interested in looking at the number of patients (rows) that fit a
 ```{r}
 # DO NOT RUN (PSEUDO-CODE)
 summarize(
-  sum_category = sum(LOGIC_TEST,
-  na.rm = TRUE
-))
+  sum_category = sum(LOGIC_TEST, na.rm = TRUE)
+  )
 ```
 
-This sum allows us to count all the lines where our condition was met. For example:
+This sum allows us to count all the lines where our condition was met (returns `TRUE`). For example:
 
 ```{r}
 df_linelist |>
@@ -300,15 +299,14 @@ Add a variable to your table that counts the number of patients that have been h
 
 ### Other Statistics
 
-Sometimes we want to produce a statistic *other than counting* given a condition, let's say the *mean age of all hospitalised patients*. Here the syntax is a bit different: 
+Sometimes we want to produce a statistic *other than counting* given a condition, let's say the *mean age of all hospitalized patients*. Here the syntax is a bit different: 
 
 ```{r}
 # DO NOT RUN (PSEUDO-CODE)
 df |>
   summarize(
-    mean_category = mean(col_to_use[LOGIC_TEST],
-    na.rm = TRUE
-  ))
+    mean_category = mean(col_to_use[LOGIC_TEST], na.rm = TRUE)
+    )
 ```
 
 Here, we have:
@@ -316,7 +314,7 @@ Here, we have:
 - Indicated which column we want to use when caluclating the summary statistic (here a mean)
 - Indexed that column using a logical test
 
-For example to compute the `mean()` of the `age` variable but *only* in rows where `hospitalisation == "yes"` we would write it like this:
+For example to compute the mean of the `age` variable but *only* for hospitalized patients (ie in rows where `hospitalisation == "yes"`) we would write:
 
 ```{r}
 df_linelist |>
@@ -347,7 +345,7 @@ You want to count rows (so use `sum()`) that fill a specific condition for outco
 Finally, a reminder that `summarize()` returns a dataframe that we can then further manipulate (eg: with `filter` and `mutate`). 
 
 ::: {.write}
-Can you add a `mutate()` after producing your summary table to calculate: 
+Add a `mutate()` after producing your summary table to calculate: 
 
 - The proportion of hospitalized patients per sub-prefecture
 - The proportion of female patients per sub-prefecture 
