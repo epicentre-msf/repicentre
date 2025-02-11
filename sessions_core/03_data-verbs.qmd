@@ -44,7 +44,7 @@ This session will work with the **raw** Moissala linelist data, which can be dow
 #| eval: true
 
 downloadthis::download_link(
-  link = 'https://github.com/epicentre-msf/repicentre/raw/main/data/raw/moissala_linelist_EN.xslx',
+  link = 'https://github.com/epicentre-msf/repicentre/raw/refs/heads/main/data/raw/moissala_linelist_EN.xlsx',
   button_label = ' Download Data',
   has_icon = TRUE,
   icon = "fa fa-save",
@@ -52,7 +52,7 @@ downloadthis::download_link(
 )
 ```
 <br>
-Make sure this dataset is saved into the appropriate subdirectory of your R project and create a new script called `data-verbs-practice.R` in your `R` directory. Add an appropriate header and load the following packages: `{here}`, `{rio}`, and `{tidyverse}`.
+Make sure this dataset is saved into the appropriate subdirectory of your R project and create a new script called `data_verbs_practice.R` in your `R` directory. Add an appropriate header and load the following packages: `{here}`, `{rio}`, and `{tidyverse}`.
 <br><br>
 Finally, add an import section where you use `{here}` and `{rio}` to load your data into an object called [`df_raw`]{.hovertip bs-toggle='tooltip' bs-title="Note, that we are calling this our raw data, not `df_linelist` as we did previously. You will see why later."}.
 :::
@@ -78,7 +78,7 @@ In today's session we will look at the "data manipulation verb", ie the function
 
 
 :::{.callout-note}
-You may have noticed that we asked you to load `{tidyverse}` rather than `{dplyr}` in the setup. Don't panic! Loading the tidyverse loads several packages, including `{dplyr}`.
+You may have noticed that we asked you to load a package called `{tidyverse}` rather than `{dplyr}` in the setup. Loading `{tidyverse}` will load [several of the most useful packages]{.hovertip bs-toggle='tooltip' bs-title="The tidyverse is pretty big and loading *all* of it's contents would be impractical for most projects. The package `{tidyverse}` therefore only loads the most useful 'core' packages from the full collection."} from the broader tidyverse, including `{dplyr}` and a couple other packages that we will see later in the session.
 :::
 
 
@@ -113,7 +113,7 @@ head(select(df_raw, id, sex, age, date_onset, outcome))
 Take a look at this output and then at `df_raw`. We can see that `df_raw` still contains all of the columns, which is what we want. But can you tell why it didn't change?
 :::
 
-Often, we want to keep most of the variables in our dataset and only remove one or two. We can use the aabove syntax to do this, but it can become pretty tedious to [write out every column name]{.hovertip bs-toggle='tooltip' bs-title="Anyone who has worked with complex linelists or survey data can certainly feel the pain here."}. In these cases, instead of telling select what to **keep**, we can use a subtraction sign (`-`) to tell it what to **remove**. For example, if we wanted to remove the `village_commune` column from our dataframe we can use the following:
+Often, we want to keep most of the variables in our dataset and only remove one or two. We can use the above syntax to do this, but it can become pretty tedious to [write out every column name]{.hovertip bs-toggle='tooltip' bs-title="Anyone who has worked with complex linelists or survey data can certainly feel the pain here."}. In these cases, instead of telling `select what to **keep**, we can use a subtraction sign (`-`) to tell it what to **remove**. For example, if we wanted to remove the `village_commune` column from our dataframe we can use the following:
 
 ```{r}
 select(df_raw, -village_commune)
@@ -179,7 +179,7 @@ mutate(df,
        another_new_column = another_action(another_existing_column))
 ```
 
-In the above code, we are creating a new column (`new_column`) by performing some sort of action (`action()`) on an existing column in the dataframe (`existing_column`). This action could be anything, it could use a function or be a simple arithmetic operation and can use one or more columns. For example, if we wanted to create a new column expressing [MUAC in cm]{.hovertip bs-toggle='tooltip' bs-title="This is obviously an indicator you probably wouldn't need in practice, but is used here just to illustrate the use of `mutate()`."} we could use the following:
+In the above code, we are creating a new column (`new_column`) by performing some sort of action (`action()`) on an existing column in the dataframe (`existing_column`). This action could be anything, it could use a function or be a simple arithmetic operation and can use one or more columns. For example, if we wanted to create a new column expressing [MUAC in cm]{.hovertip bs-toggle='tooltip' bs-title="This is obviously an indicator you probably wouldn't need in practice, but is used here just to illustrate the use of mutate()."} we could use the following:
 
 ```{r}
 mutate(df_raw,
@@ -247,9 +247,9 @@ Take a look at the data type of your columns, do any of them look strange?
 **Hint.** `str()` may be useful here.
 :::
 
-Most of the columns look ok, but it seems theres something strange with the dates. Some of them are character type and others are something called [POSIXct]{.hovertip bs-toggle='tooltip' bs-title="This is a data type in R that is sometimes used to express dates. It isn't the most convenient way of date handling, though the reasons why are a bit outside of the scope of this course. In general we recommend converting `POSIXct` to `date` whenever working with dates."}. We would much rather have all of these columns use the simple `date` type. 
+Most of the columns look ok, but it seems theres something strange with the dates. Some of them are character type and others are something called [POSIXct]{.hovertip bs-toggle='tooltip' bs-title="This is a data type in R that is sometimes used to express dates. It isn't the most convenient way of date handling, though the reasons why are a bit outside of the scope of this course. In general we recommend converting `POSIXct` to `Date` whenever working with dates."}. We would much rather have all of these columns use the simple `Date` type. 
 
-To convert to dates, we are going to call on yet another package from the the tidyverse, [`{lubridate}`]{.hovertip bs-toggle='tooltip' bs-title="As you can see, the tidyverse contians a lot of convenient packages to make our lives as epidemiologists easier."}. In particular, we are going to use the function [`ymd()`]{.hovertip bs-toggle='tooltip' bs-title="Here the name of the function indicates that it expects dates to be formated as year-month-day. Other functions are available in `{lubridate}` for dates that are constructed differently."}. For example:
+To convert to dates, we are going to call on yet [another package from the the tidyverse, `{lubridate}`]{.hovertip bs-toggle='tooltip' bs-title="As you can see, the tidyverse contians a lot of convenient packages to make our lives as epidemiologists easier."}. In particular, we are going to use the [function `ymd()`]{.hovertip bs-toggle='tooltip' bs-title="Here the name of the function indicates that it expects dates to be formated as year-month-day. Other functions are available in {lubridate} for dates that are constructed differently."}. For example:
 
 ```{r}
 mutate(df_raw,
@@ -292,7 +292,7 @@ df <- rename(df_raw,
 
 
 :::{.callout-tip}
-In general, it's good practice to keep a raw version of your dataset, here `df_raw`, that remains unmodified in your code. This is so that you always have it available in your environment as a reference and is always available at the start of your cleaning pipeline to improve reproducability.
+In general, it's good practice to keep a raw version of your dataset, here `df_raw`, that remains unmodified in your code. This is so that you always have it available in your environment as a reference and is always available at the start of your cleaning pipeline to improve reproducibility.
 :::
 
 
@@ -337,7 +337,7 @@ This is exactly what the pipe operator, `|>` is for! The pipe has the following 
 input |> action()
 ```
 
-Here the input on the left side (`input`) is "piped into" the action on the right side. So for example instead of writing:
+Here the input on the left side (`input`) is "piped into" the action on the right side (`action()`). So for example instead of writing:
 
 ```{r}
 select(df_raw, id, sex)
@@ -392,7 +392,7 @@ Let's see if we can put together what we learned above into a single pipeline! U
 - Add a variable `age_years` with patient age in years
 - Update `region` and `prefecture` to use title case
 - Update all date columns to use `Date` type
-- Remove any duplicated observations
+- Remove any duplicate observations
 
 The head of your final data should look something like this:
 

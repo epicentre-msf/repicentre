@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
-<head>
-<link rel="alternate" hreflang="en" href="/about.html" />
-<link rel="alternate" hreflang="fr" href="/fr/about.fr.html" />
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.6.39">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>À Propos – {repicentre}</title>
+
+<meta name="description" content="Une introduction à R en commençant par le début">
+
+<title>Cours – {repicentre}</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,11 +22,26 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 </style>
-<script src="site_libs/quarto-nav/quarto-nav.js"></script><script src="site_libs/quarto-nav/headroom.min.js"></script><script src="site_libs/clipboard/clipboard.min.js"></script><script src="site_libs/quarto-search/autocomplete.umd.js"></script><script src="site_libs/quarto-search/fuse.min.js"></script><script src="site_libs/quarto-search/quarto-search.js"></script><meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script><script src="site_libs/quarto-html/popper.min.js"></script><script src="site_libs/quarto-html/tippy.umd.min.js"></script><script src="site_libs/quarto-html/anchor.min.js"></script><link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-0626ff4d7a71b55c8707dcae1d04a9b6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-e25cc82807363e79c52e96bc8b7855f1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script><link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-b814d3e578892f16fb585af6f47f426f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark-35dfec4a88a4a8552367c65e80eaa027.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
@@ -42,69 +58,150 @@ ul.task-list li input[type="checkbox"] {
   ],
   "show-item-context": false,
   "language": {
-    "search-no-results-text": "Pas de résultats",
-    "search-matching-documents-text": "documents trouvés",
-    "search-copy-link-title": "Copier le lien vers la recherche",
-    "search-hide-matches-text": "Cacher les correspondances additionnelles",
-    "search-more-match-text": "correspondance de plus dans ce document",
-    "search-more-matches-text": "correspondances de plus dans ce document",
-    "search-clear-button-title": "Effacer",
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
     "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Annuler",
-    "search-submit-button-title": "Envoyer",
-    "search-label": "Recherche"
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
-}</script><script type="text/javascript" src="../script.js"></script><link rel="stylesheet" href="styles.css">
+}</script>
+<script>
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-articles-links .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-articles-links'] = new List('listing-articles-links', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+<script async="" src="https://hypothes.is/embed.js"></script>
+<script>
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    document.body.classList.add('hypothesis-enabled');
+  });
+</script>
+<script type="text/javascript" src="../script.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
 </head>
-<body class="nav-fixed fullcontent">
+
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">{repicentre}</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Recherche"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Basculer la navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-<li class="nav-item"><div class="dropdown" id="languages-links-parent">
-<button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="languages-button"><i class="bi bi-globe2"></i> Français</button><ul class="dropdown-menu" id="languages-links"><li><a class="dropdown-item" href="/about.html" id="language-link-en">English</a></li></ul>
-</div></li>
-<li class="nav-item">
+  <li class="nav-item">
     <a class="nav-link" href="./pathway.html"> 
-<span class="menu-text">Cours</span></a>
+<span class="menu-text">Pathway</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./explore.html"> 
-<span class="menu-text">Explorer</span></a>
+<span class="menu-text">Explore</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./resources.html"> 
-<span class="menu-text">Ressources</span></a>
+<span class="menu-text">Resources</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./about.html" aria-current="page"> 
-<span class="menu-text">À Propos</span></a>
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">About</span></a>
   </li>  
 </ul>
-</div> <!-- /navcollapse -->
+          </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Basculer le mode sombre"><i class="bi"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
-    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
+    </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title">À Propos</h1>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Cours</h1>
 </div>
 
+<div>
+  <div class="description">
+    Une introduction à R en commençant par le début
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
@@ -116,30 +213,73 @@ ul.task-list li input[type="checkbox"] {
   
 
 
-</header><p><img src="img/llama_full.svg" id="about"></p>
-<section id="salut" class="level2"><h2 class="anchored" data-anchor-id="salut">Salut</h2>
-<p>Bienvenue sur <code>{repicentre}</code>, un site open source développé par Epicentre pour vous aider à apprendre R pour les contextes humanitaires. Le site est composé de tutoriels autodidactes et propose deux options principales d’apprentissage :</p>
-<ol type="1">
-<li>
-<strong>Linéaire.</strong> Conçu pour les personnes n’ayant aucune expérience préalable de R, le cours linéaire vous guidera à travers les concepts de base de R en utilisant une étude de cas sur la rougeole au Tchad. Le cours couvre les concepts suivants :
-<ol type="a">
-<li>Structures de données et l’interface RStudio</li>
-<li>Importation de données</li>
-<li>Manipulation de données</li>
-<li>Nettoyage des données</li>
-<li>Agrégation de données</li>
-<li>Visualisation des données</li>
-</ol>
-</li>
-<li>
-<strong>Exploration.</strong> Si vous avez un peu plus d’expérience ou si vous recherchez un sujet particulier, n’hésitez pas à explorer la gamme complète des tutoriels. Les tutoriels sont classés par catégories et sont conçus pour être autonomes.</li>
-</ol></section><section id="recommandations-et-demandes" class="level2"><h2 class="anchored" data-anchor-id="recommandations-et-demandes">Recommandations et demandes</h2>
-<p>Y a-t-il un sujet sur lequel vous aimeriez voir un tutoriel qui n’est pas encore disponible ? C’est très bien ! N’hésitez pas à nous le faire savoir en <a href="https://github.com/epicentre-msf/repicentre/issues">ouvrant un “issue”</a> sur le repo GitHub associé à ce site web. Si vous ne savez pas comment ouvrir un issue, veuillez contacter Cat Eisenhauer.</p>
-</section><section id="contribuer" class="level2"><h2 class="anchored" data-anchor-id="contribuer">Contribuer</h2>
-<p>Vous souhaitez contribuer à la rédaction ou à la maintenance de tutoriels ? Incroyable ! Veuillez contacter Cat.</p>
+</header>
 
 
-</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+<p>Ces sessions peuvent être suivies afin d’obtenir un niveau de base dans R. La série suppose <strong>aucune expérience préalable dans R</strong> et convient bien aux débutants.</p>
+<p>Vous en voulez plus ? Vous voulez plus de flexibilité ? Consultez le <a href="explore.fr.html">catalogue complet des sessions</a>.</p>
+
+
+
+
+<div class="quarto-listing quarto-listing-container-default" id="listing-articles-links">
+<div class="list quarto-listing-default">
+<div class="quarto-post image-right" data-index="0" data-categories="Q29yZSUyQ1IlMjBCYXNpY3MlMkNEYXRhJTIwVHlwZXM=" data-listing-date-sort="1739276875000" data-listing-file-modified-sort="1739276875004" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="24" data-listing-word-count-sort="4761">
+<div class="thumbnail">
+<p><a href="./sessions_core/01_introduction.html" class="no-external"></a></p><a href="./sessions_core/01_introduction.html" class="no-external">
+<p class="card-img-top"><img src="img/core/01_introduction/01_rstudio_interface_en.png"  class="thumbnail-image card-img"/></p>
+</a><p><a href="./sessions_core/01_introduction.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./sessions_core/01_introduction.html" class="no-external">Introduction to R</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./sessions_core/01_introduction.html" class="no-external"></a>
+</div>
+<div class="listing-description">
+<a href="./sessions_core/01_introduction.html" class="no-external">Your first steps in R. Learn your way around Rstudio, and meet some common R objects.</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./sessions_core/01_introduction.html" class="no-external">
+<div class="listing-date">
+Feb 11, 2025
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-categories="Q29yZSUyQ1JTdHVkaW8lMkNEYXRhJTIwSW1wb3J0" data-listing-date-sort="1739209875000" data-listing-file-modified-sort="1739209875813" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="16" data-listing-word-count-sort="3102">
+<div class="thumbnail">
+<p><a href="./sessions_core/02_import_data.html" class="no-external"></a></p><a href="./sessions_core/02_import_data.html" class="no-external">
+<p><img loading="lazy" src="./img/core/02_import/01_logo.png" class="thumbnail-image"></p>
+</a><p><a href="./sessions_core/02_import_data.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./sessions_core/02_import_data.html" class="no-external">Import data</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./sessions_core/02_import_data.html" class="no-external"></a>
+</div>
+<div class="listing-description">
+<a href="./sessions_core/02_import_data.html" class="no-external">Create an Rstudio project, install useful packages and start importing data to work in R</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./sessions_core/02_import_data.html" class="no-external">
+<div class="listing-date">
+Feb 10, 2025
+</div>
+</a>
+</div>
+</div>
+</div>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -326,12 +466,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // flash "checked"
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copié");
+    button.setAttribute("title", "Copied!");
     let tooltip;
     if (window.bootstrap) {
       button.setAttribute("data-bs-toggle", "tooltip");
       button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copié");
+      button.setAttribute("data-bs-title", "Copied!");
       tooltip = new bootstrap.Tooltip(button, 
         { trigger: "manual", 
           customClass: "code-copy-button-tooltip",
@@ -705,5 +845,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-</body>
-</html>
+</body></html>

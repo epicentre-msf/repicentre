@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
-<link rel="alternate" hreflang="en" href="/sessions_core/03_data-verbs.html" />
-<link rel="alternate" hreflang="fr" href="/fr/sessions_core/03_data-verbs.fr.html" />
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.6.39">
 
@@ -106,6 +104,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script async="" src="https://hypothes.is/embed.js"></script>
+<script>
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    document.body.classList.add('hypothesis-enabled');
+  });
+</script>
 <script src="../site_libs/font-awesome-6.5.2/js/script.js"></script>
 <script type="text/javascript" src="../script.js"></script>
 
@@ -244,12 +248,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This session will work with the <strong>raw</strong> Moissala linelist data, which can be downloaded here:</p>
 <div class="cell">
 <div class="cell-output-display">
-<a href="https://github.com/epicentre-msf/repicentre/raw/main/data/raw/moissala_linelist_EN.xslx">
+<a href="https://github.com/epicentre-msf/repicentre/raw/refs/heads/main/data/raw/moissala_linelist_EN.xlsx">
 <button class="btn btn-default"><i class="fa fa-save"></i>  Download Data</button>
 </a>
 </div>
 </div>
-<p><br> Make sure this dataset is saved into the appropriate subdirectory of your R project and create a new script called <code>data-verbs-practice.R</code> in your <code>R</code> directory. Add an appropriate header and load the following packages: <code>{here}</code>, <code>{rio}</code>, and <code>{tidyverse}</code>. <br><br> Finally, add an import section where you use <code>{here}</code> and <code>{rio}</code> to load your data into an object called <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Note, that we are calling this our raw data, not `df_linelist` as we did previously. You will see why later."><code>df_raw</code></span>.</p>
+<p><br> Make sure this dataset is saved into the appropriate subdirectory of your R project and create a new script called <code>data_verbs_practice.R</code> in your <code>R</code> directory. Add an appropriate header and load the following packages: <code>{here}</code>, <code>{rio}</code>, and <code>{tidyverse}</code>. <br><br> Finally, add an import section where you use <code>{here}</code> and <code>{rio}</code> to load your data into an object called <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Note, that we are calling this our raw data, not `df_linelist` as we did previously. You will see why later."><code>df_raw</code></span>.</p>
 </div>
 </section>
 <section id="manipulating-data-with-dplyr" class="level2">
@@ -277,7 +281,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>You may have noticed that we asked you to load <code>{tidyverse}</code> rather than <code>{dplyr}</code> in the setup. Don’t panic! Loading the tidyverse loads several packages, including <code>{dplyr}</code>.</p>
+<p>You may have noticed that we asked you to load a package called <code>{tidyverse}</code> rather than <code>{dplyr}</code> in the setup. Loading <code>{tidyverse}</code> will load <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="The tidyverse is pretty big and loading *all* of it's contents would be impractical for most projects. The package `{tidyverse}` therefore only loads the most useful 'core' packages from the full collection.">several of the most useful packages</span> from the broader tidyverse, including <code>{dplyr}</code> and a couple other packages that we will see later in the session.</p>
 </div>
 </div>
 </section>
@@ -311,7 +315,7 @@ Note
 </div>
 <p><br> Take a look at this output and then at <code>df_raw</code>. We can see that <code>df_raw</code> still contains all of the columns, which is what we want. But can you tell why it didn’t change?</p>
 </div>
-<p>Often, we want to keep most of the variables in our dataset and only remove one or two. We can use the aabove syntax to do this, but it can become pretty tedious to <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Anyone who has worked with complex linelists or survey data can certainly feel the pain here.">write out every column name</span>. In these cases, instead of telling select what to <strong>keep</strong>, we can use a subtraction sign (<code>-</code>) to tell it what to <strong>remove</strong>. For example, if we wanted to remove the <code>village_commune</code> column from our dataframe we can use the following:</p>
+<p>Often, we want to keep most of the variables in our dataset and only remove one or two. We can use the above syntax to do this, but it can become pretty tedious to <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Anyone who has worked with complex linelists or survey data can certainly feel the pain here.">write out every column name</span>. In these cases, instead of telling <code>select what to **keep**, we can use a subtraction sign (</code>-<code>) to tell it what to **remove**. For example, if we wanted to remove the</code>village_commune` column from our dataframe we can use the following:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(df_raw, <span class="sc">-</span>village_commune)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -378,7 +382,7 @@ Important
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">new_column =</span> <span class="fu">action</span>(existing_column),</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">another_new_column =</span> <span class="fu">another_action</span>(another_existing_column))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>In the above code, we are creating a new column (<code>new_column</code>) by performing some sort of action (<code>action()</code>) on an existing column in the dataframe (<code>existing_column</code>). This action could be anything, it could use a function or be a simple arithmetic operation and can use one or more columns. For example, if we wanted to create a new column expressing <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="This is obviously an indicator you probably wouldn't need in practice, but is used here just to illustrate the use of `mutate()`.">MUAC in cm</span> we could use the following:</p>
+<p>In the above code, we are creating a new column (<code>new_column</code>) by performing some sort of action (<code>action()</code>) on an existing column in the dataframe (<code>existing_column</code>). This action could be anything, it could use a function or be a simple arithmetic operation and can use one or more columns. For example, if we wanted to create a new column expressing <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="This is obviously an indicator you probably wouldn't need in practice, but is used here just to illustrate the use of mutate().">MUAC in cm</span> we could use the following:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(df_raw,</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">muac_cm =</span> muac <span class="sc">/</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -444,8 +448,8 @@ Note
 <div class="look">
 <p>Take a look at the data type of your columns, do any of them look strange? <br><br> <strong>Hint.</strong> <code>str()</code> may be useful here.</p>
 </div>
-<p>Most of the columns look ok, but it seems theres something strange with the dates. Some of them are character type and others are something called <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="This is a data type in R that is sometimes used to express dates. It isn't the most convenient way of date handling, though the reasons why are a bit outside of the scope of this course. In general we recommend converting `POSIXct` to `date` whenever working with dates.">POSIXct</span>. We would much rather have all of these columns use the simple <code>date</code> type.</p>
-<p>To convert to dates, we are going to call on yet another package from the the tidyverse, <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="As you can see, the tidyverse contians a lot of convenient packages to make our lives as epidemiologists easier."><code>{lubridate}</code></span>. In particular, we are going to use the function <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Here the name of the function indicates that it expects dates to be formated as year-month-day. Other functions are available in `{lubridate}` for dates that are constructed differently."><code>ymd()</code></span>. For example:</p>
+<p>Most of the columns look ok, but it seems theres something strange with the dates. Some of them are character type and others are something called <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="This is a data type in R that is sometimes used to express dates. It isn't the most convenient way of date handling, though the reasons why are a bit outside of the scope of this course. In general we recommend converting `POSIXct` to `Date` whenever working with dates.">POSIXct</span>. We would much rather have all of these columns use the simple <code>Date</code> type.</p>
+<p>To convert to dates, we are going to call on yet <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="As you can see, the tidyverse contians a lot of convenient packages to make our lives as epidemiologists easier.">another package from the the tidyverse, <code>{lubridate}</code></span>. In particular, we are going to use the <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Here the name of the function indicates that it expects dates to be formated as year-month-day. Other functions are available in {lubridate} for dates that are constructed differently.">function <code>ymd()</code></span>. For example:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(df_raw,</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">date_outcome =</span> <span class="fu">ymd</span>(date_outcome))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -487,7 +491,7 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>In general, it’s good practice to keep a raw version of your dataset, here <code>df_raw</code>, that remains unmodified in your code. This is so that you always have it available in your environment as a reference and is always available at the start of your cleaning pipeline to improve reproducability.</p>
+<p>In general, it’s good practice to keep a raw version of your dataset, here <code>df_raw</code>, that remains unmodified in your code. This is so that you always have it available in your environment as a reference and is always available at the start of your cleaning pipeline to improve reproducibility.</p>
 </div>
 </div>
 <p>Now we have a new object, <code>df</code> that we can do more operations on. Brilliant. For example, if we now wanted to select everything except for <code>full_name</code> we could update the above code like this:</p>
@@ -524,7 +528,7 @@ Tip
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DO NOT RUN (PSEUDO-CODE)</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>input <span class="sc">|&gt;</span> <span class="fu">action</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Here the input on the left side (<code>input</code>) is “piped into” the action on the right side. So for example instead of writing:</p>
+<p>Here the input on the left side (<code>input</code>) is “piped into” the action on the right side (<code>action()</code>). So for example instead of writing:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(df_raw, id, sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -581,7 +585,7 @@ Tip
 <li>Add a variable <code>age_years</code> with patient age in years</li>
 <li>Update <code>region</code> and <code>prefecture</code> to use title case</li>
 <li>Update all date columns to use <code>Date</code> type</li>
-<li>Remove any duplicated observations</li>
+<li>Remove any duplicate observations</li>
 </ul>
 <p>The head of your final data should look something like this:</p>
 <div class="cell">
