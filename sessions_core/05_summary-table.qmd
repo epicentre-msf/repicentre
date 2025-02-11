@@ -252,7 +252,7 @@ Ok now let's build a summary table for each `sub_prefecture`. First start by rep
 
 ### Continuous Summaries
 
-We can then use the simple `mean`, `median`, `min`, `max` functions to produce summaries for continuous variables. For example the average age:
+We can then use the `mean()`, `median()`, `min()`, `max()` functions (and other) to produce summaries for continuous variables. For example the average age:
 
 ```{r}
 df_linelist |>
@@ -269,7 +269,7 @@ Add the minimum date of admission to your table for each of the `sub_prefecture`
 :::
 
 ::: {.callout-tip}
-Remember that with the small functions (`mean`, `median`, `min`, `max`), you need to **explicitly tell R** to remove `NA`. 
+Remember that with the arithmetic functions such as `mean()`, `median()`, `min()`, `max()`, you need to **explicitly tell R** to remove `NA`. 
 :::
 
 ### Counting with a Condition
