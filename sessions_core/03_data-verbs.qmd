@@ -135,7 +135,7 @@ rename(df,
        another_new_name = another_old_name)
 ```
 
-As in the case of `select()`, and indeed in essentially all `{dplyr}` verbs, the first argument is our daframe. Then each subsequent argument is a statement of `new_column_name = old_column_name` telling R which columns to rename and the new names that we want to use, with each pair given it's own line to improve readability. If we wanted to change `village_commune` to simply be `village`, for example, we can write:
+As in the case of `select()`, and indeed in essentially all `{dplyr}` verbs, the first argument is our daframe. Then each subsequent argument is a statement of `new_column_name = old_column_name` telling R which columns to rename and the new names that we want to use, with each pair given its own line to improve readability. If we wanted to change `village_commune` to simply be `village`, for example, we can write:
 
 ```{r}
 rename(df_raw,
@@ -364,7 +364,7 @@ df <- df_raw |>
 ```
 
 :::{.callout-tip}
-Notice that here each action in the pipe is given it's own line. This is considered good practice as it makes your code easier to read and understand.
+Notice that here each action in the pipe is given its own line. This is considered good practice as it makes your code easier to read and understand.
 :::
 
 So, if we wanted to chain the example actions we saw above into a single pipe, we might write something like this:
