@@ -22,6 +22,11 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 - Review how to subset rows using `filter()` and create/modify variables with `mutate()`
 - Create ordered categorical variables
 
+
+
+## Setup
+
+
 :::{.setup}
 This session will use the clean version of the Moissala measles dataset. Download the data and store them in `data/clean` in your practice project:
 
@@ -39,8 +44,6 @@ downloadthis::download_link(
 ```
 
 :::
-
-## Setup
 
 :::{.setup}
 Open your RStudio Project and create a new script in the R folder called `tables.R` with appropriate metadata and a "Packages" section that imports: `{rio}`, `{here}` and `{tidyverse}`. Add an "Import Data" section that loads the *cleaned* version of the measles linelist.
