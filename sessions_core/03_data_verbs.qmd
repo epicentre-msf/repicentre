@@ -432,7 +432,7 @@ Well done, you've learned the fundamentals of data manipulation and how to strin
 #| eval: true
 
 downloadthis::download_link(
-  link = 'https://github.com/epicentre-msf/repicentre/blob/main/sessions_core/03_data-verbs_solutions.R',
+  link = 'https://github.com/epicentre-msf/repicentre/blob/main/sessions_core/03_data_verbs_solutions.R',
   button_label = 'Solution File',
   has_icon = TRUE,
   icon = "fa fa-save",
