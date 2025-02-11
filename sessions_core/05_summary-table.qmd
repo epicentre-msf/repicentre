@@ -119,7 +119,7 @@ df_linelist |>
 ```
 
 ::: {.look}
-Observe the output of the code above. How can you also call the proportion of patients who died ? Are you happy with this calculation ? 
+Observe the output of the code above. How can you also call the proportion of patients who died? Are you happy with this calculation? 
 ::: 
 
 The proportion of cases that died is also referred to as the [Case Fatality Ratio (CFR)]{.hovertip bs-toggle='tooltip' bs-title='the CFR is a ratio (or a risk) but not a rate!'}. However, to precisely calculate the CFR we need to make sure that the denominator only includes patient for whom we are sure of their outcome (ie we need to remove all cases with `NA` or `left aginst medical advice`). 
@@ -388,7 +388,7 @@ sub_pref_df |>
 
 ## Done!
 
-You should be proud of yourselves, making summary tables is an important skill to an epidemiologist, making it in R is very efficient !! Don't forget to save your code !
+You should be proud of yourselves, making summary tables is an important skill to an epidemiologist, making it in R is very efficient! Don't forget to save your code!
 
 ```{r}
 #| echo: false
