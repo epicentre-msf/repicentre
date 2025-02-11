@@ -67,5 +67,14 @@
   },
   "sessions_core/05_summaries.qmd": {
     "05_summaries.html": "ae1c5d29"
+  },
+  "sessions_core/01_introduction.fr.qmd": {
+    "01_introduction.fr.html": "d308608a"
+  },
+  "sessions_core/02_import_data.fr.qmd": {
+    "02_import_data.fr.html": "be9c1a59"
+  },
+  "sessions_core/05_summary-table.qmd": {
+    "05_summary-table.html": "8b2057ed"
   }
 }
