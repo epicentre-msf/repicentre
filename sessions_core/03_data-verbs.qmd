@@ -168,7 +168,7 @@ Temporary objects, like the `tmp` data frame you just created are just that: tem
 :::
 
 ### Changing and Adding Columns
-So now we know how to selct and rename columns, but how do we modify them? This is where [`mutate()`]{.hovertip bs-toggle='tooltip' bs-title="This name is admittedly less intuitive that other `{dplyr}` verbs. It is called mutate because you are changing (or 'mutating', if you will) parts of the data."} comes into play. This function can be used both to add new columns and to change existing ones.
+So now we know how to select and rename columns, but how do we modify them? This is where [`mutate()`]{.hovertip bs-toggle='tooltip' bs-title="This name is admittedly less intuitive that other `{dplyr}` verbs. It is called mutate because you are changing (or 'mutating', if you will) parts of the data."} comes into play. This function can be used both to add new columns and to change existing ones.
 
 Let's start with the basic `mutate()` syntax needed to add a new column:
 
@@ -179,7 +179,7 @@ mutate(df,
        another_new_column = another_action(another_existing_column))
 ```
 
-In the above code, we are creating a new column (`new_column`) by performing some sort of action (`action()`) on an existing column in the data frame (`existing_column`). This action could be anything, it could use a function or be a simple arithmetic operation and can use one or more columns. For example, if we wanted to create a new column expressing [MUAC in cm]{.hovertip bs-toggle='tooltip' bs-title="This is obviously an indicator you probably wouldn't need in practice, but is used here just to illustrate the use of `mutate()`."} we could use the following:
+In the above code, we are creating a new column (`new_column`) by performing some sort of action (`action()`) on an existing column in the data frame (`existing_column`). This action could be anything: it could be a simple arithmetic operation, or use a function, and it could use one or several columns. For example, if we wanted to create a new column expressing [MUAC in cm]{.hovertip bs-toggle='tooltip' bs-title="This is obviously an indicator you probably wouldn't need in practice, but is used here just to illustrate the use of `mutate()`."} we could use the following:
 
 ```{r}
 mutate(df_raw,
@@ -199,7 +199,7 @@ df_raw |>
 ```
 :::
 
-Great! But what if instead of creating a new column we instead wanted to change an existing one? Easy, you use need to use the existing column name on the left side of the `=` instead of giving a new column name. For example, in the above MUAC code we would write:
+Great! But what if instead of creating a new column we instead wanted to change an existing one? You just need to use the existing column name on the left side of the `=` instead of giving a new column name. For example, in the above MUAC code we would write:
 
 ```{r}
 mutate(df_raw,
@@ -247,9 +247,9 @@ Take a look at the data type of your columns, do any of them look strange?
 **Hint.** `str()` may be useful here.
 :::
 
-Most of the columns look ok, but it seems theres something strange with the dates. Some of them are character type and others are something called [POSIXct]{.hovertip bs-toggle='tooltip' bs-title="This is a data type in R that is sometimes used to express dates. It isn't the most convenient way of date handling, though the reasons why are a bit outside of the scope of this course. In general we recommend converting `POSIXct` to `date` whenever working with dates."}. We would much rather have all of these columns use the simple `date` type. 
+Most of the columns look ok, but it seems there's something strange with the dates. Some of them are character type and others are something called [POSIXct]{.hovertip bs-toggle='tooltip' bs-title="This is a data type in R that is sometimes used to express dates. It isn't the most convenient way of date handling, though the reasons why are outside of the scope of this course. In general we recommend converting `POSIXct` to `date` whenever working with dates."}. We would much rather have all of these columns use the simple `date` type. 
 
-To convert to dates, we are going to call on yet another package from the the tidyverse, [`{lubridate}`]{.hovertip bs-toggle='tooltip' bs-title="As you can see, the tidyverse contians a lot of convenient packages to make our lives as epidemiologists easier."}. In particular, we are going to use the function [`ymd()`]{.hovertip bs-toggle='tooltip' bs-title="Here the name of the function indicates that it expects dates to be formated as year-month-day. Other functions are available in `{lubridate}` for dates that are constructed differently."}. For example:
+To convert to dates, we are going to call on yet another package from the the tidyverse, [`{lubridate}`]{.hovertip bs-toggle='tooltip' bs-title="As you can see, the tidyverse contains a lot of convenient packages to make our lives as epidemiologists easier."}. In particular, we are going to use the function [`ymd()`]{.hovertip bs-toggle='tooltip' bs-title="Here the name of the function indicates that it expects dates to be formated as year-month-day. Other functions are available in `{lubridate}` for dates that are constructed differently."}. For example:
 
 ```{r}
 mutate(df_raw,
@@ -420,12 +420,12 @@ df_raw |>
 **Hint.** Be careful with your column names here! If you renamed something you will need to use the new names for any subsequent parts of the pipe.
 :::
 
-Amazing! That looks like a great start at a data cleaning pipeline. Keep this code handy, you will use it in the next session where we will look at another compon part of data cleaning: **recoding**.
+Amazing! That looks like a great start at a data cleaning pipeline. Keep this code handy, you will use it in the next session where we will look at another common part of data cleaning: **recoding**.
 
 
 Done!
 ----------------------------------------------------------------------------------------------------
-Well done, you've learned the fundamentals of data manipulation and how to string multiple commands together into a data manipulation pipe. Moving forward, solution files will focus less on being "exercise by exercise" and rather provide an example of what a real script might like in a real world context. In this case, the solutions will then focus only on the final pipe that is created at the end of the session.
+Well done, you've learned the fundamentals of data manipulation and how to string multiple commands together into a data manipulation pipe. Moving forward, solution files will focus less on being "exercise by exercise" and rather provide an example of what a real script might look like in a real world context. In this case, the solutions will then focus only on the final pipe that is created at the end of the session.
 
 ```{r}
 #| echo: false
