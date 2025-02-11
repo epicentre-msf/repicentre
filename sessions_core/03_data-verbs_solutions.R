@@ -1,8 +1,8 @@
 # Solutions to the core session Data Verbs
-# Author :  the Fetch team
-# Creation Date : 10/02/2025
-# Last Update : 10/02/2025
-# Description : Contains solutions to the coding exercices
+# Author:  the Fetch team
+# Creation Date: 10/02/2025
+# Last Update: 10/02/2025
+# Description: Contains solutions to the coding exercises
 
 # PACKAGES -----------------------------------------------------------------------------------------
 library(here)
@@ -12,7 +12,7 @@ library(tidyverse)
 
 
 # IMPORT -------------------------------------------------------------------------------------------
-df <- import(file = here("data", "clean", "moissala_linelist_clean_EN.rds"))
+df_raw <- import(file = here("data", "clean", "moissala_linelist_clean_EN.rds"))
 
 
 
