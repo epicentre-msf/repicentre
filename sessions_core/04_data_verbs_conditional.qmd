@@ -344,7 +344,7 @@ df_raw |>
                          .default = "Unknown"))
 ```
 
-Well, that works, but it seems awfully repetititve. It would be easier if we could just list all the options that we want to reassign to "Female" and "Male" respectively. This is where the `%in%` operator is here to help. The `%in%` operator will check if a value is in a vector of options using the following basic syntax:
+Well, that works, but it seems awfully repetitive. It would be easier if we could just list all the options that we want to reassign to "Female" and "Male" respectively. This is where the `%in%` operator is here to help. The `%in%` operator will check if a value is in a vector of options using the following basic syntax:
 
 ```{r}
 # DO NOT RUN (PSEUDO-CODE)
@@ -405,7 +405,7 @@ Using what you have learned above and what you practiced in the last session, cr
 - Add a variable `age_years` with patient age in years
 - Update `region` and `prefecture` to use title case
 - Update all date columns to use `Date` type
-- Create a new varialbe `age_group` age to include the groups: < 6 months, 6 - 11 months, 12 - 59 months, 5 - 15 years, and > 15 years (patients with unknown sex should have a value "Unknown")
+- Create a new variable `age_group` age to include the groups: < 6 months, 6 - 11 months, 12 - 59 months, 5 - 15 years, and > 15 years (patients with unknown sex should have a value "Unknown")
 - Recode sex to have only the values: Female, Male, and Unknown
 - Remove any duplicate observations
 
