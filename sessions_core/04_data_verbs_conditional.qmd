@@ -185,7 +185,7 @@ df_raw |>
 
 
 ### Filters with Multiple Conditions
-Want to combine several logic statements in a single filter? Easy. We can create a filter with multiple conditions by simply [separating each condition with a comma]{.hovertip bs-toggle='tooltip' bs-title="And by putting it on it's own line for good readability."}:
+Want to combine several logic statements in a single filter? Easy. We can create a filter with multiple conditions by simply [separating each condition with a comma]{.hovertip bs-toggle='tooltip' bs-title="And by putting it on its own line for good readability."}:
 
 ```{r}
 # DO NOT RUN (PSEUDO-CODE)
