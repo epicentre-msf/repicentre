@@ -79,5 +79,11 @@
   },
   "sessions_extra/data-exploration/data_exploration_satellite.qmd": {
     "data_exploration_satellite.html": "bc0d6652"
+  },
+  "sessions_core/01_introduction.fr.qmd": {
+    "01_introduction.fr.html": "dbbe6c71"
+  },
+  "sessions_core/03_data_verbs.qmd": {
+    "03_data_verbs.html": "593d74a0"
   }
 }
