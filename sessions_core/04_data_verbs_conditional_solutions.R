@@ -1,8 +1,8 @@
 # Solutions to the core session Data Manipulation with Conditional Logic
-# Author :  the Fetch team
-# Creation Date : 10/02/2025
-# Last Update : 10/02/2025
-# Description : Shows a model output for the concepts in the data manipulation with conditional logic session
+# Author:  the Fetch team
+# Creation Date: 10/02/2025
+# Last Update: 12/02/2025
+# Description: Shows a model output for the concepts in the data manipulation with conditional logic session
 
 # PACKAGES -----------------------------------------------------------------------------------------
 library(here)
