@@ -67,7 +67,7 @@ The basic syntax of `filter()` is pretty simple:
 ```{r}
 # DO NOT RUN (PSEUDO-CODE)
 df_raw |>
-  filter([conditional logic statement])
+  filter([conditional logic statement]) # Keep lines where statement is TRUE
 ```
 
 But what is a conditional logic statement? These are statements that ask "Is this thing true?". The simplest conditional logic statement asks "does this variable equal this value?". For example, "was this patient hospitalized?". In R, we can ask if one value equals another [using `==`]{.hovertip bs-toggle='tooltip' bs-title="Notice that there are **two** equals signs, not one."}.
