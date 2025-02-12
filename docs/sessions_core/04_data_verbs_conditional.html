@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.6.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -71,12 +71,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-0626ff4d7a71b55c8707dcae1d04a9b6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-e25cc82807363e79c52e96bc8b7855f1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-697306ee647f3aecb60be57249203282.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-3fe3df12cb322cd60d4f50ab5ce79ec8.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-b814d3e578892f16fb585af6f47f426f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-35dfec4a88a4a8552367c65e80eaa027.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-d747503b21a9267137dc98650c9a257a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-5131c98158f83ec01234852a3be8e382.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -111,6 +111,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   });
 </script>
 <script src="../site_libs/font-awesome-6.5.2/js/script.js"></script>
+
 <script type="text/javascript" src="../script.js"></script>
 
 
@@ -262,7 +263,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DO NOT RUN (PSEUDO-CODE)</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>df_raw <span class="sc">|&gt;</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>([conditional logic statement])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>([conditional logic statement]) <span class="co"># Keep lines where statement is TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>But what is a conditional logic statement? These are statements that ask “Is this thing true?”. The simplest conditional logic statement asks “does this variable equal this value?”. For example, “was this patient hospitalized?”. In R, we can ask if one value equals another <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Notice that there are **two** equals signs, not one.">using <code>==</code></span>.</p>
 <p>To create a filter asking, for each observation, whether the value of <code>hospitalization</code> is equal to <code>yes</code> we can then use the following syntax:</p>
@@ -368,7 +369,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="filters-with-multiple-conditions" class="level3">
 <h3 class="anchored" data-anchor-id="filters-with-multiple-conditions">Filters with Multiple Conditions</h3>
-<p>Want to combine several logic statements in a single filter? Easy. We can create a filter with multiple conditions by simply <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="And by putting it on it's own line for good readability.">separating each condition with a comma</span>:</p>
+<p>Want to combine several logic statements in a single filter? Easy. We can create a filter with multiple conditions by simply <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="And by putting it on its own line for good readability.">separating each condition with a comma</span>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DO NOT RUN (PSEUDO-CODE)</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
@@ -436,7 +437,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="recoding-with-case_when" class="level2">
 <h2 class="anchored" data-anchor-id="recoding-with-case_when">Recoding with <code>{case_when}</code></h2>
-<p>As we have seen, conditional logic statements are increadibly useful when trying to filter our data, but you will find that they have many other uses as well. One of their other major use cases for us as epidemiologists is when we need to [recode our data]{.hovertip bs-toggle=‘tooltip’ bs-title=“Recoding is the process of either standardizing the values of variable (such as making sure”f” and “female” are both coded as “F”) or creating standardized groups of variable values (for example age groups).”}. This is where the <code>{dplyr}</code> function <code>case_when()</code> is here to help us.</p>
+<p>As we have seen, conditional logic statements are incredibly useful when trying to filter our data, but you will find that they have many other uses as well. One of their other major use cases for us as epidemiologists is when we need to <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Recoding is the process of either standardizing the values of variable (such as making sure &quot;f&quot; and &quot;female&quot; are both coded as &quot;F&quot;) or creating standardized groups of variable values (for example age groups).">recode our data</span>. This is where the <code>{dplyr}</code> function <code>case_when()</code> is here to help us.</p>
 <p>The syntax of <code>case_when()</code> is a little more advanced than what we have seen so far, but we will go slowly and break it down. Once you get the hang of it, <code>case_when()</code> will become a very powerful part of your R toolbelt. We will almost always use <code>case_when()</code> inside of a <code>mutate()</code>, because we will use it either to recode an existing variable or to create a new one. The basic syntax works like this:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DO NOT RUN (PSEUDO-CODE)</span></span>
@@ -534,7 +535,7 @@ Note
 <span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>                         sex <span class="sc">==</span> <span class="st">"homme"</span> <span class="sc">~</span> <span class="st">"Male"</span>,</span>
 <span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>                         <span class="at">.default =</span> <span class="st">"Unknown"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Well, that works, but it seems awfully repetititve. It would be easier if we could just list all the options that we want to reassign to “Female” and “Male” respectively. This is where the <code>%in%</code> operator is here to help. The <code>%in%</code> operator will check if a value is in a vector of options using the following basic syntax:</p>
+<p>Well, that works, but it seems awfully repetitive. It would be easier if we could just list all the options that we want to reassign to “Female” and “Male” respectively. This is where the <code>%in%</code> operator is here to help. The <code>%in%</code> operator will check if a value is in a vector of options using the following basic syntax:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DO NOT RUN (PSEUDO-CODE)</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>[value] <span class="sc">%in%</span> [vector_of_options]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -587,7 +588,7 @@ Note
 <li>Add a variable <code>age_years</code> with patient age in years</li>
 <li>Update <code>region</code> and <code>prefecture</code> to use title case</li>
 <li>Update all date columns to use <code>Date</code> type</li>
-<li>Create a new varialbe <code>age_group</code> age to include the groups: &lt; 6 months, 6 - 11 months, 12 - 59 months, 5 - 15 years, and &gt; 15 years (patients with unknown sex should have a value “Unknown”)</li>
+<li>Create a new variable <code>age_group</code> age to include the groups: &lt; 6 months, 6 - 11 months, 12 - 59 months, 5 - 15 years, and &gt; 15 years (patients with unknown sex should have a value “Unknown”)</li>
 <li>Recode sex to have only the values: Female, Male, and Unknown</li>
 <li>Remove any duplicate observations</li>
 </ul>
