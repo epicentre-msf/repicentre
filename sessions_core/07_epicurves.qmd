@@ -23,7 +23,7 @@ library(ggplot2)     # Todays workhorse
 
 # Data
 df_linelist <- rio::import(here::here('data', 'clean',
-                                      'simulated_measles_ll.rds')) 
+                                      'moissala_linelist_clean_EN.rds')) 
   # mutate(
   #   week_admission = isoweek(date_admission), # For their example
   #   week_outcome   = isoweek(date_outcome)    # For session example
@@ -77,7 +77,7 @@ Before we get into the theory, let's get your data and script ready.
 ::: {.write}
 Open your RStudio project and create a new script called `epicurves.R` with appropriate metadata. Load the following packages: `{here}`, `{rio}`, `{dplyr}`, `{lubridate}`, and `{ggplot2}`.
 
-Add a section to your script called `# IMPORT DATA` where you import the *clean course dataset* (`simulated_measles_ll.rds`). Verify that the `head()` of your data looks like this:
+Add a section to your script called `# IMPORT DATA` where you import the *clean course dataset* (`moissala_linelist_clean_EN.rds`). Verify that the `head()` of your data looks like this:
 :::
 
 ```{r}
