@@ -63,7 +63,7 @@ df_linelist %>%
   geom_col(fill = "#2E4573") +
   labs(x = "Date of onset",
        y = "Cases",
-       title = 'Measles cases in Moissala') +
+       title = 'Measles cases in Mandoul region (Chad)') +
   theme_classic(base_size = 15)
 ```
 
