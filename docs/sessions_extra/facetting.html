@@ -6,9 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="An intro to R starting from the very beginning">
+<meta name="dcterms.date" content="2025-02-13">
+<meta name="description" content="Create a plot with multiple subplots (facets)">
 
-<title>Pathway – {repicentre}</title>
+<title>Introduction to facetting – {repicentre}</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,29 +22,61 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-697306ee647f3aecb60be57249203282.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-3fe3df12cb322cd60d4f50ab5ce79ec8.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-d747503b21a9267137dc98650c9a257a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-5131c98158f83ec01234852a3be8e382.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-697306ee647f3aecb60be57249203282.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-3fe3df12cb322cd60d4f50ab5ce79ec8.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-d747503b21a9267137dc98650c9a257a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-5131c98158f83ec01234852a3be8e382.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -71,74 +104,18 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-articles-links .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-articles-links'] = new List('listing-articles-links', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 <script async="" src="https://hypothes.is/embed.js"></script>
 <script>
   window.document.addEventListener("DOMContentLoaded", function (_event) {
     document.body.classList.add('hypothesis-enabled');
   });
 </script>
+<script src="../site_libs/font-awesome-6.5.2/js/script.js"></script>
+
 <script type="text/javascript" src="../script.js"></script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -148,7 +125,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">{repicentre}</span>
     </a>
   </div>
@@ -159,19 +136,19 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./pathway.html" aria-current="page"> 
+    <a class="nav-link" href="../pathway.html"> 
 <span class="menu-text">Pathway</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./explore.html"> 
+    <a class="nav-link" href="../explore.html"> 
 <span class="menu-text">Explore</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./resources.html"> 
+    <a class="nav-link" href="../resources.html"> 
 <span class="menu-text">Resources</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -186,20 +163,46 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
+  <li><a href="#facetting" id="toc-facetting" class="nav-link" data-scroll-target="#facetting">Facetting</a>
+  <ul class="collapse">
+  <li><a href="#get-the-data-ready" id="toc-get-the-data-ready" class="nav-link" data-scroll-target="#get-the-data-ready">Get the Data Ready</a></li>
+  <li><a href="#add-the-facet-layer-to-the-plot" id="toc-add-the-facet-layer-to-the-plot" class="nav-link" data-scroll-target="#add-the-facet-layer-to-the-plot">Add the Facet Layer to the Plot</a></li>
+  </ul></li>
+  <li><a href="#customize-facets" id="toc-customize-facets" class="nav-link" data-scroll-target="#customize-facets">Customize Facets</a>
+  <ul class="collapse">
+  <li><a href="#number-of-rows-or-columns" id="toc-number-of-rows-or-columns" class="nav-link" data-scroll-target="#number-of-rows-or-columns">Number of Rows or Columns</a></li>
+  <li><a href="#axis-ranges" id="toc-axis-ranges" class="nav-link" data-scroll-target="#axis-ranges">Axis Ranges</a></li>
+  </ul></li>
+  <li><a href="#done" id="toc-done" class="nav-link" data-scroll-target="#done">Done!</a></li>
+  <li><a href="#extra-exercice" id="toc-extra-exercice" class="nav-link" data-scroll-target="#extra-exercice">Extra exercice</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Pathway</h1>
-</div>
+<h1 class="title">Introduction to facetting</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Core</div>
+    <div class="quarto-category">Graphs</div>
+    <div class="quarto-category">ggplot2</div>
+    <div class="quarto-category">epicurve</div>
+  </div>
+  </div>
 
 <div>
   <div class="description">
-    An intro to R starting from the very beginning
+    Create a plot with multiple subplots (facets)
   </div>
 </div>
 
@@ -207,6 +210,12 @@ window.Quarto = {
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 13, 2025</p>
+    </div>
+  </div>
   
     
   </div>
@@ -216,94 +225,235 @@ window.Quarto = {
 </header>
 
 
-<p>These sessions can be followed in order to get a baseline level in R. The series assumes <strong>no prior experience in R</strong> and is suitable for beginners.</p>
-<p>Looking for more? Want more flexibility? Consider browsing the <a href="explore.html">full session catalog</a>.</p>
-
-
-
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-articles-links">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="Q29yZSUyQ1IlMjBCYXNpY3MlMkNEYXRhJTIwVHlwZXM=" data-listing-date-sort="1738682782000" data-listing-file-modified-sort="1738682782091" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="24" data-listing-word-count-sort="4761">
-<div class="thumbnail">
-<p><a href="./sessions_core/01_introduction.html" class="no-external"></a></p><a href="./sessions_core/01_introduction.html" class="no-external">
-<p class="card-img-top"><img src="img\core\01_introduction\01_rstudio_interface_en.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./sessions_core/01_introduction.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./sessions_core/01_introduction.html" class="no-external">Introduction to R</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./sessions_core/01_introduction.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./sessions_core/01_introduction.html" class="no-external">Your first steps in R. Learn your way around Rstudio, and meet some common R objects.</a>
+<section id="objectives" class="level2">
+<h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
+<ul>
+<li>Learn the syntax to make subplots real quick in <code>{ggplot2}</code></li>
+<li>Learn arguments to modify the appearance of the subplots</li>
+</ul>
+</section>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>This satellite builds on the core <a href="../session_core/07_epicurves.qmd">epicurve session</a>, which is a prerequisite. In that session, we learned how to create an epicurve of measles cases across time:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="facetting_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
 </div>
-<div class="metadata">
-<a href="./sessions_core/01_introduction.html" class="no-external">
-<div class="listing-date">
-Feb 4, 2025
 </div>
+<p>Now, this plot is cool, but in your sitrep you would like to show the data by age group. There are several ways to do that:</p>
+<ul>
+<li>You <em>could</em>, for each age group, filter your data frame and copy and paste the plotting command to create specific plots</li>
+<li>You could learn to use <code>for</code> loops or <code>apply()</code> or <code>map()</code> family functions, which are very useful ways to automatize actions, and involve less copy and pasting</li>
+<li>Or you could trust <code>{ggplot2}</code> to have a solution…</li>
+</ul>
+<p>The first option is tedious and it is error prone, and we advise against it; learning the tools of the second option will be a good investment of you time at some point as they are really powerful, but they are <em>way</em> out of the scope of this tutorial because a much simpler option already exist in <code>{ggplot2}</code>.</p>
+</section>
+<section id="setup" class="level2">
+<h2 class="anchored" data-anchor-id="setup">Setup</h2>
+<p>Let’s get your data and script ready.</p>
+<div class="write">
+<p>Open your RStudio project and create a new script called <code>facetting.R</code> with appropriate metadata. Alternatively, work in your <code>epicurves.R</code> script, in a new section.</p>
+<p>In any case, make sure you load the following packages: <code>{here}</code>, <code>{rio}</code>, <code>{dplyr}</code>, <code>{lubridate}</code>, <code>{ggplot2}</code> and that you imported the clean dataset <code>moissala_linelist_clean_EN.rds</code>.</p>
+</div>
+</section>
+<section id="facetting" class="level2">
+<h2 class="anchored" data-anchor-id="facetting">Facetting</h2>
+<p>The function <code>facet_wrap()</code> allows you to replicate a graph based on the categories of a variable. For example, you could make the epicurve graph <em>by sex</em>, or <em>by site</em>. As other layers of a ggplot graph, you add it to your existing graph with a <code>+</code>. It creates a a figure with multiple small graphs, that <code>{ggplot2}</code> calls <em>facets</em> or <em>small multiples</em>.</p>
+<section id="get-the-data-ready" class="level3">
+<h3 class="anchored" data-anchor-id="get-the-data-ready">Get the Data Ready</h3>
+<p>In the following session, <em>we</em> will explain the code by creating subplots by sub-prefecture, and <em>you</em> will be plotting the epicurve by age group.</p>
+<p>If we want to to plot anything <em>by sub-prefecture</em>, the <code>sub_prefecture</code> variable must be present in the aggregated data frame that we use to plot.</p>
+<p>Let’s create a new summarized dataset that has the number of patients by day <em>and by sub-prefecture</em>!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>df_pref <span class="ot">&lt;-</span> df_linelist <span class="sc">%&gt;%</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(date_onset, sub_prefecture,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">name =</span> <span class="st">'patients'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>  date_onset sub_prefecture patients
+1          1       Moissala        9
+2          2          Bouna        5
+3          2       Moissala        5
+4          3          Bouna        4
+5          3       Moissala       11
+6          4          Bouna        5</code></pre>
+</div>
+</div>
+<div class="write">
+<p>You will draw a plot of the number of admissions by age group, so you need a new data frame summarized by week and age group. Create this data frame, and call it <code>df_age</code></p>
+</div>
+</section>
+<section id="add-the-facet-layer-to-the-plot" class="level3">
+<h3 class="anchored" data-anchor-id="add-the-facet-layer-to-the-plot">Add the Facet Layer to the Plot</h3>
+<p>Now, let’s plot this data. Look at the code bellow: it is exactly the same as before but for the last line, which creates the facets:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df_pref <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date_onset,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> patients)) <span class="sc">+</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#2E4573"</span>) <span class="sc">+</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Date of onset"</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Measles cases"</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">'Measles cases in Mandoul (Chad)'</span>) <span class="sc">+</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">15</span>) <span class="sc">+</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(sub_prefecture))   <span class="co"># Make the plot by sub-prefecture!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="facetting_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Isn’t that incredible? As you can see, the function <code>facer_wrap()</code> takes as argument a variable name wrapped in the <code>vars()</code> function.</p>
+<div class="write">
+<p>Now is your turn, draw the epicurve by age group (still keeping all the plots improvement: labels, themes etc.)</p>
+</div>
+</section>
+</section>
+<section id="customize-facets" class="level2">
+<h2 class="anchored" data-anchor-id="customize-facets">Customize Facets</h2>
+<p>Check out the function <a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">help page</a> to learn about the arguments that <code>facet_wrap()</code> accepts. We will cover a couple here.</p>
+<section id="number-of-rows-or-columns" class="level3">
+<h3 class="anchored" data-anchor-id="number-of-rows-or-columns">Number of Rows or Columns</h3>
+<p>The arguments <code>nrow</code> and <code>ncol</code> allow you to decide how many facets there should be on one row, respectively one column.</p>
+<p>For exemple, we could have all plots on two rows, for a wide figure:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df_pref <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date_onset,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> patients)) <span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#2E4573"</span>) <span class="sc">+</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Date of onset"</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Measles cases"</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">'Measles cases in Mandoul (Chad)'</span>) <span class="sc">+</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">15</span>) <span class="sc">+</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(sub_prefecture),</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">nrow =</span> <span class="dv">2</span>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="facetting_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Or force the number of rows to four, which forces a taller figure:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df_pref <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date_onset,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> patients)) <span class="sc">+</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#2E4573"</span>) <span class="sc">+</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Date of onset"</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Measles cases"</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">'Measles cases in Mandoul (Chad)'</span>) <span class="sc">+</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">15</span>) <span class="sc">+</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(sub_prefecture),</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">nrow =</span> <span class="dv">4</span>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="facetting_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="write">
+<p>Using one of the mentioned argument, create a graph with three columns.</p>
+</div>
+</section>
+<section id="axis-ranges" class="level3">
+<h3 class="anchored" data-anchor-id="axis-ranges">Axis Ranges</h3>
+<p>Did you notice that in the graph we produced, all facets share the same axis in x and y? This is often a desired feature, as playing with axes is one of the best ways to mislead readers.</p>
+<p>That being said, if you are more interesting in seeing the shape of the epicurve by category and less by comparing categories to each other, zooming on the available data can be appropriate (alert your reader to the scale variation though!)</p>
+<p>The <code>scales</code> argument accepts the following strings:</p>
+<ul>
+<li><code>"fixed"</code>: the default, same limits on x and y for all facets</li>
+<li><code>"free_x"</code>: the x axis may have different limits in different facets</li>
+<li><code>"free_y"</code>: the y axis may have different limits in different facets</li>
+<li><code>"free"</code>: both axis may vary in different facets</li>
+</ul>
+<p>Look at this graph:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="facetting_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We kept time window on the x axis fixed but allowed the y axis to vary to better read the number of cases by sub-prefecture.</p>
+<div class="write">
+<p>Your turn! Draw you graph with age group as facets with a free y axis, and a fixed x axis.</p>
+</div>
+</section>
+</section>
+<section id="done" class="level2">
+<h2 class="anchored" data-anchor-id="done">Done!</h2>
+<p>Very well done team! You have learned how to facet plots! This will work not only on bar plots such as epicurves, but also on other types of plots made by <code>{ggplot2}</code>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<a href="https://github.com/epicentre-msf/repicentre/blob/main/sessions_extra/facetting_solutions.R">
+<button class="btn btn-default"><i class="fa fa-save"></i> Solutions file</button>
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="Q29yZSUyQ1JTdHVkaW8lMkNEYXRhJTIwSW1wb3J0" data-listing-date-sort="1739473012000" data-listing-file-modified-sort="1739473012006" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="16" data-listing-word-count-sort="3102">
-<div class="thumbnail">
-<p><a href="./sessions_core/02_import_data.html" class="no-external"></a></p><a href="./sessions_core/02_import_data.html" class="no-external">
-<p><img loading="lazy" src="./img/core/02_import/01_logo.png" class="thumbnail-image"></p>
-</a><p><a href="./sessions_core/02_import_data.html" class="no-external"></a></p>
+</section>
+<section id="extra-exercice" class="level2">
+<h2 class="anchored" data-anchor-id="extra-exercice">Extra exercice</h2>
+<p>The help pages from <code>{tidyverse}</code> packages tend to be well written. We advise you to go and read them when you learn a new function, you are bound to learn a couple of tricks each time.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./sessions_core/02_import_data.html" class="no-external">Import data</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./sessions_core/02_import_data.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./sessions_core/02_import_data.html" class="no-external">Create an Rstudio project, install useful packages and start importing data to work in R</a>
+<div class="callout-title-container flex-fill">
+Important
 </div>
 </div>
-<div class="metadata">
-<a href="./sessions_core/02_import_data.html" class="no-external">
-<div class="listing-date">
-Feb 13, 2025
-</div>
-</a>
+<div class="callout-body-container callout-body">
+<p>Reading code written by others, figuring out what it does and then adapting it to your own code are <strong>very important skills</strong> to develop, whether the code comes from the official documentation, StakOverflow, tutorials from random people on the web or Large Language Models outputs (such as Github Copilot, or ChatGPT).</p>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-categories="Q29yZSUyQ0RhdGElMjBNYW5pcHVsYXRpb24lMkNEYXRhJTIwQ2xlYW5pbmc=" data-listing-date-sort="1739473012000" data-listing-file-modified-sort="1739473012014" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="18" data-listing-word-count-sort="3469">
-<div class="thumbnail">
-<p><a href="./sessions_core/03_data_verbs.html" class="no-external"></a></p><a href="./sessions_core/03_data_verbs.html" class="no-external">
-<p><img loading="lazy" src="./img/under_construction.svg" class="thumbnail-image"></p>
-</a><p><a href="./sessions_core/03_data_verbs.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./sessions_core/03_data_verbs.html" class="no-external">Basic Data Manipulation</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./sessions_core/03_data_verbs.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./sessions_core/03_data_verbs.html" class="no-external">An introduction to data manipulation and cleaning using <code>{dplyr}</code></a>
-</div>
-</div>
-<div class="metadata">
-<a href="./sessions_core/03_data_verbs.html" class="no-external">
-<div class="listing-date">
-Feb 13, 2025
-</div>
-</a>
+<p>Here is an exercise to train these skills. Checkout the examples of the <a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">help page</a> for the <code>facet_wrap()</code> function: one of them show how to adapt your code to do this:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="facetting_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
 </div>
 </div>
-<div class="listing-no-matching d-none">
-No matching items
+<p>Can you modify your code do do something similar?</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-</div></main> <!-- /main -->
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>You will need two aggregated data frames, one created today and one created in the <a href="../session_core/07_epicurves.qmd">epicurve session</a>.</p>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
