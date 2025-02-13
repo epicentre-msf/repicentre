@@ -20,23 +20,24 @@ library(ggplot2)     # Todays workhorse
 
 
 # Data
-df_linelist <- rio::import(here::here('data', 'clean', 'simulated_measles_ll.rds')) %>% 
-  mutate(week_admission = isoweek(date_admission))
+df_linelist <- rio::import(here::here('data', 'clean',
+                                      'moissala_linelist_clean_EN.rds')) %>% 
+  mutate(date_onset = isoweek(date_admission))
 
 # Our example
 df_pref <- df_linelist %>%
-  count(week_admission, sub_prefecture,
+  count(date_onset, sub_prefecture,
         name = 'patients') %>%
-  tidyr::drop_na(week_admission)
+  tidyr::drop_na(date_onset)
 
 # Their example
 df_age <- df_linelist %>% 
-  count(week_admission, age_group) %>% 
-  tidyr::drop_na(week_admission)
+  count(date_onset, age_group) %>% 
+  tidyr::drop_na(date_onset)
 
 # For the extra exercise at the end
 df_cases <- df_linelist %>% 
-  count(week_admission)
+  count(date_onset)
 ```
 
 ## Objectives
@@ -47,21 +48,21 @@ df_cases <- df_linelist %>%
 
 ## Introduction
 
-This satellite builds on the core [epicurve session](../session_core/07_epicurves.qmd), which is a prerequiste. In that session, we learned how to create an epicurve of measles cases across time: 
+This satellite builds on the core [epicurve session](../session_core/07_epicurves.qmd), which is a prerequisite. In that session, we learned how to create an epicurve of measles cases across time: 
 
 ```{r}
 #| echo: false
 #| eval: true
 
 df_linelist %>%
-  tidyr::drop_na(week_admission) %>% 
-  count(week_admission) %>%
-  ggplot(aes(x = week_admission,
+  tidyr::drop_na(date_onset) %>% 
+  count(date_onset) %>%
+  ggplot(aes(x = date_onset,
              y = n)) +
   geom_col(fill = '#2E4573') +
-  labs(x = 'ISO Week',
+  labs(x = 'Date of onset',
        y = 'Measles Cases',
-       title = 'Measles in Moissala',
+       title = 'Measles in Mandoul region (Chad)',
        caption = 'Ficticious data') +
   theme_classic(base_size = 18) 
 ```
@@ -83,9 +84,7 @@ Let's get your data and script ready.
 ::: {.write}
 Open your RStudio project and create a new script called `facetting.R` with appropriate metadata. Alternatively, work in your `epicurves.R` script, in a new section.
 
-In any case, make sure you load the following packages: `{here}`, `{rio}`, `{dplyr}`, `{lubridate}`, `{ggplot2}` and that you imported the clean dataset `simulated_measles_ll.rds`. 
-
-Add a `week_admission` variable to that data frame that contains the ISO week of the date of admission, as we did in the  [epicurve session](../session_core/07_epicurves.qmd).
+In any case, make sure you load the following packages: `{here}`, `{rio}`, `{dplyr}`, `{lubridate}`, `{ggplot2}` and that you imported the clean dataset `moissala_linelist_clean_EN.rds`.
 :::
 
 
@@ -102,13 +101,12 @@ In the following session, *we* will explain the code by creating subplots by sub
 If we want to to plot anything *by sub-prefecture*, the `sub_prefecture` variable must be present in the aggregated data frame that we use to plot. 
 
 
-Let's create a new summarized dataset that has the number of patients by week *and by sub-prefecture*!
+Let's create a new summarized dataset that has the number of patients by day *and by sub-prefecture*!
 
 ```{r}
 df_pref <- df_linelist %>%
-  count(week_admission, sub_prefecture,
-        name = 'patients') %>%
-  tidyr::drop_na(week_admission)  # drop the NA ou, shortcut to filter(!is.na(week_admission))
+  count(date_onset, sub_prefecture,
+        name = 'patients')
 ```
 
 
@@ -134,12 +132,12 @@ Now, let's plot this data. Look at the code bellow: it is exactly the same as be
 #| eval: true
 
 df_pref %>%
-  ggplot(aes(x = week_admission,
+  ggplot(aes(x = date_onset,
              y = patients)) +
   geom_col(fill = "#2E4573") +
-  labs(x = "ISO Week",
+  labs(x = "Date of onset",
        y = "Measles cases",
-       title = 'Measles cases in Chad') +
+       title = 'Measles cases in Mandoul (Chad)') +
   theme_classic(base_size = 15) +
   
   facet_wrap(vars(sub_prefecture))   # Make the plot by sub-prefecture!
@@ -165,12 +163,12 @@ For exemple, we could have all plots on two rows, for a wide figure:
 #| eval: true
 
 df_pref %>%
-  ggplot(aes(x = week_admission,
+  ggplot(aes(x = date_onset,
              y = patients)) +
   geom_col(fill = "#2E4573") +
-  labs(x = "ISO Week",
+  labs(x = "Date of onset",
        y = "Measles cases",
-       title = 'Measles cases in Chad') +
+       title = 'Measles cases in Mandoul (Chad)') +
   theme_classic(base_size = 15) +
   
   facet_wrap(vars(sub_prefecture),
@@ -184,12 +182,12 @@ Or force the number of rows to four, which forces a taller figure:
 #| fig-height: 7
 
 df_pref %>%
-  ggplot(aes(x = week_admission,
+  ggplot(aes(x = date_onset,
              y = patients)) +
   geom_col(fill = "#2E4573") +
-  labs(x = "ISO Week",
+  labs(x = "Date of onset",
        y = "Measles cases",
-       title = 'Measles cases in Chad') +
+       title = 'Measles cases in Mandoul (Chad)') +
   theme_classic(base_size = 15) +
   
   facet_wrap(vars(sub_prefecture),
@@ -222,12 +220,12 @@ Look at this graph:
 #| fig-height: 7
 
 df_pref %>%
-  ggplot(aes(x = week_admission,
+  ggplot(aes(x = date_onset,
              y = patients)) +
   geom_col(fill = "#2E4573") +
-  labs(x = "ISO Week",
+  labs(x = "Date of onset",
        y = "Measles cases",
-       title = 'Measles cases in Chad',
+        title = 'Measles cases in Mandoul (Chad)',
        subtitle = "Note the y axis") +
   theme_classic(base_size = 15) +
   
@@ -262,9 +260,7 @@ downloadthis::download_link(
 ```
 
 
-
-
-## Extra exercice
+## Challenge
 
 The help pages from `{tidyverse}` packages tend to be well written. We advise you to go and read them when you learn a new function, you are bound to learn a couple of tricks each time.
 
@@ -279,11 +275,11 @@ Here is an exercise to train these skills. Checkout the examples of the [help pa
 #| echo: false
 
 df_cases <- df_linelist %>% 
-  count(week_admission) %>% 
-   tidyr::drop_na(week_admission)
+  count(date_onset) %>% 
+   tidyr::drop_na(date_onset)
 
 ggplot(data = df_age,     # general dataset
-       aes(x = week_admission,
+       aes(x = date_onset,
            y = n)) +
 
   # Plot the gray bars:
@@ -293,7 +289,7 @@ ggplot(data = df_age,     # general dataset
   # Plot the blue bars
   geom_col(fill = "#2E4573") +  # uses the general dataset
 
-  labs(x = "ISO Week",
+  labs(x = "Date of onset",
        y = "Measles Cases",
        title = "Measles in Moissala",
        caption = "Ficticious data") +
