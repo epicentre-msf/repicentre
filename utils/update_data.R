@@ -1,6 +1,6 @@
-# A quick file to download the latest data from the {episimdata} into the website 
+# A quick file to download the latest data from the {episimdata} into the website
 
-#install package if required
+# install package if required
 # remotes::install_github("epicentre-msf/episimdata")
 
 library(episimdata)
@@ -8,22 +8,22 @@ library(episimdata)
 # Use the function to export the data ====================================================================
 
 # .RDS
-# Clean Measles Linelist in English 
-episimdata::export_data("measles_linelist", here::here("data", "clean", "simulated_measles_ll.rds"))
+# Clean Measles Linelist in English
+episimdata::export_data("moissala_linelist_clean_EN", here::here("data", "clean", "moissala_linelist_clean_EN.rds"))
 
 # Clean Measles Linelist in French
-episimdata::export_data("measles_linelist_fr", here::here("data", "clean",  "simulated_measles_ll_fr.rds"))
+episimdata::export_data("moissala_linelist_clean_FR", here::here("data", "clean", "moissala_linelist_clean_FR.rds"))
 
-#.xlsx
+# .xlsx
 # Raw Measles Linelist in English
-episimdata::export_data("measles_linelist_raw", here::here("data", "raw", "xlsx", "Moissalla-measles-linelist-EN.xlsx"))
+episimdata::export_data("moissala_linelist_EN", here::here("data", "raw", "moissala_linelist_EN.xlsx"))
 
 # Raw Measles Linelist in French
-episimdata::export_data("measles_linelist_raw_fr", here::here("data", "raw", "xlsx", "Moissalla-rougeole-liste-lineaire-FR.xlsx"))
+episimdata::export_data("moissala_linelist_FR", here::here("data", "raw", "moissala_linelist_FR.xlsx"))
 
-#.csv
+# .csv
 # Raw Measles Linelist in English
-episimdata::export_data("measles_linelist_raw", here::here("data", "raw", "csv", "Moissalla-measles-linelist-EN.csv"))
+episimdata::export_data("moissala_linelist_EN", here::here("data", "raw", "moissala_linelist_EN.csv"))
 
 # Raw Measles Linelist in French
-episimdata::export_data("measles_linelist_raw_fr", here::here("data", "raw", "csv", "Moissalla-rougeole-liste-lineaire-FR.csv"))
+episimdata::export_data("moissala_linelist_FR", here::here("data", "raw", "moissala_linelist_FR.csv"))

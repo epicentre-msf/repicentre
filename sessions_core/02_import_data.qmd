@@ -16,9 +16,9 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 
 library(here) # for filepaths
 library(rio)  # import and export files
+df_linelist <- import(file = here("data", "raw", 
+              "moissala_linelist_EN.xlsx"))
 
-df_linelist <- import(file = here("data", "raw", "xlsx",
-              "Moissalla-measles-linelist-EN.xlsx"))
 ```
 
 ## Objectives
@@ -284,10 +284,12 @@ To see the full list of all the file types you can load (and save!) with `rio`, 
 
 #### Importing from the First Sheet
 
-In general, the usage of `import()` is pretty simple, at minima you need to pass the path of the file to the `file` argument:
+In general, the usage of `import()` is pretty simple, at minima you need to pass the path of the file to the `file` argument
 
 ```{r}
+
 import(file = here("data", "raw", "example_linelist.xlsx"))
+
 ```
 
 Notice that we have nested the command `here()` **inside** the `import()` command. Nesting functions is absolutely allowed in R and is something you will do *all the time*. When functions are nested, R will evaluate them in the order of the innermost function (in this case `here()`) to the outermost (in this case `import()`). In this way, the *output* of `here()` is being used as the *input* of `import()`. 
