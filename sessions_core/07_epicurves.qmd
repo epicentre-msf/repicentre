@@ -20,15 +20,16 @@ library(ggplot2)     # Todays workhorse
 
 
 # Data
-df_linelist <- rio::import(here::here('data', 'clean', 'simulated_measles_ll.rds')) %>% 
-  mutate(
-    week_admission = isoweek(date_admission), # For their example
-    week_outcome   = isoweek(date_outcome)    # For session example
-    )
+df_linelist <- rio::import(here::here('data', 'clean',
+                                      'simulated_measles_ll.rds')) 
+  # mutate(
+  #   week_admission = isoweek(date_admission), # For their example
+  #   week_outcome   = isoweek(date_outcome)    # For session example
+  #   )
 
 # Their summarised datasets
 df_cases <- df_linelist %>%
-  count(week_admission)
+  count(date_onset)
 
 # Data for our examples
 df_outcome <- df_linelist %>%
@@ -51,7 +52,21 @@ df_cases_age <- df_linelist %>%
 This session is a short introduction to data visualization using the popular `{ggplot2}` package. Keep in mind that visualization in general and even `{ggplot2}` in particular are huge subjects that we can't cover in a single core session. This tutorial is intended as a taster to give you a feel for how plotting is typically done. To do that, we will come back to one of our most beloved epidemiological plots: **the [epicurve]{.hovertip bs-toggle='tooltip' bs-title="An epicurve is a particular type of plot that shows the number of daily (or weekly) cases observed during an outbreak. These curves are fundamental in epidemiology and often use multicolored (stacked) bars to indicate not only the number of cases but also the proportion that were suspected/confirmed, alive/dead, etc."}**.
 
 Our final plot will look like this:
-![A simple but nice epicurve](../img/core/07_epicurves/ggplot_001_final_output.png){fig-align="center"}
+
+```{r}
+#| eval: true
+
+df_linelist %>%
+  count(date_onset) %>% 
+  ggplot(aes(x = date_onset,
+             y = n)) +
+  geom_col(fill = "#2E4573") +
+  labs(x = "Date of onset",
+       y = "Cases",
+       title = 'Measles cases in Moissala') +
+  theme_classic(base_size = 15)
+```
+
 
 ## Setup
 
