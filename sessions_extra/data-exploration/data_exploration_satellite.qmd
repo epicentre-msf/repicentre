@@ -22,7 +22,7 @@ library(rio)  # import and export files
 
 :::{.callout-important}
 
-This extra session assumes that you have been [introduced to R and R studio](01_introduction.html), and [data importation](02_import_data.html). Please go over these sessions first if that is not the case. 
+This extra session assumes that you have seen [introduced to R and R studio](01_introduction.html), and [data importation](02_import_data.html). Please go over these sessions first if that is not the case. 
 :::
 
 ## Setup 
@@ -48,14 +48,14 @@ Make sure it is appropriately stored in `data/raw` of your project. Then open a 
 
 ## Data exploration - the concept 
 
-Right after importing some data into R, it is good practice to perform some have a look at them. When talking of *data exploration* we usually try to answer a few questions about the data: 
+Right after importing some data into R, it is good practice to have a look at them. When talking of *data exploration* we usually try to answer a few questions about the data: 
 
 - What are the dimensions of the data (ie: how many rows and how many columns ?)
 - What are the columns names ? 
 - Visualise the first or last few rows 
-- Understand the class of the variables
-- Understand the range of values in continuous variables
-- Understand the possible values in each categorical variables. 
+- Determine the class of the variables
+- Determine the range of values in continuous variables
+- Observe the possible values in each categorical variables. 
 
 This process is crucial and will allow us to familiarise with our data and identify issues that will be adressed during the data cleaning step. 
 
@@ -73,7 +73,7 @@ df_linelist <- import(here::here("data", "raw", "moissala_linelist_EN.xlsx"))
 
 The very first thing you want to know about your data is the *dimensions*, which refers to the **number of rows** and **number of columns** that make up your data. There are several ways to get this information in R: 
 
-1. Look at your *environment pane* in R studio and check for your data - the number next to it (`5230x25`) tells us its a dataframe with `5230` rows and `25` columns !
+1. Look at your *environment pane* in R studio and check for your data - the number next to it (`5230x25`) tells us it is a dataframe with `5230` rows and `25` columns.
 2. Use `dim()` on your data to return a vector with both i) row numbers and ii) columns numbers
 3. Alternatively, use `ncol()` to get the number of columns and `nrow()` for the number of rows. 
 
@@ -86,7 +86,7 @@ Using the method of your choice, get the dimensions of your dataframe `df_lineli
 
 # Variable names 
 
-Because we are going to use the variable names very often during our analysis, we want to get familiar with them pretty early on. Also, we need to identify the ones that will need to be renamed during our data cleaning. The function `names()` returns a vector of our all the variable names in our dataframe: 
+Because we are going to use the variable names very often during our analysis, we want to get familiar with them pretty early on. Also, we need to identify the ones that will need to be renamed during our data cleaning. The function `names()` returns a vector of all the variable names in our dataframe: 
 
 ```{r, eval = TRUE}
 
@@ -95,21 +95,21 @@ names(df_linelist)
 ```
 
 ::: {.look}
-Are these names clear for you ? Can you already spot some variables names you would like to rename ?
+Are these names clear for you? Can you already spot some variables names you would like to rename?
 :::
 
 # Visualise the data 
 
-It is also good practice to directly visualise your data, it may be easier for you to spot some inconsistencies, variables with a lot of missing values, or it will allow you to see what values to expect in each of them. You can [print]{.hovertip bs-toggle='tooltip' bs-title='Print is a programming word that means displaying output in your console.'} your data in the console by: 
+It is also good practice to visualise your data, it may be easier for you to spot some inconsistencies, variables with a lot of missing values, or it will allow you to see what values to expect in each of them. You can [print]{.hovertip bs-toggle='tooltip' bs-title="Print is a programming word that means displaying output in your console."} your data in the console by: 
 
 1. running the `df_linelist` object alone
 2. Use the `head()` function to see the top 6 rows (you can increase this number using the argument `n =`)
 2. Alternatively, use the `tail()` function to see the last 6 rows (you can increase this number using the argument `n =`)
 
-These methods will only print the first 40 rows of your data because that's the limit of your console. Alternatively, you can use `View()` to see your data in a tabular form. This will open a new data with your data displayed like in an excel spreadsheet - **Importantly**, you can only display the data here and not modify any of them. 
+These methods will only print the first 40 rows of your data because that's the limit of your console. Alternatively, you can use `View()` to see your data in a tabular form. This will open a new window with your data displayed like in an excel spreadsheet - **Importantly**, you can only display the data with this command and not modify any of them. 
 
 :::{.callout-tip}
-Be very careful with `View()` on large dataset as this may crash your R studio session - the best practice is to print the output in the console. 
+Be very careful with `View()` on large dataset as this may crash your R studio session - to avoid this, you can print the output in the console. 
 :::
 
 :::{.write}
@@ -118,7 +118,7 @@ Can you display the first 15 rows of your data ? What happen when you change the
 
 # Variable class 
 
-We now want to check the class of my different variables. This is important as part of the data cleaning involves making sure that numerical variables are class `numeric`, dates `Date`, and categorical variables are `factor` or `character`. You have already seen the `class()` function, to check the class of a vector. Turns out that in R, each variable of a dataframe is itself a vector ! We can extract all the values of that vector using the [`$` sign]{.hovertip bs-toggle='tooltip' bs-title='This is called base R indexing'}, and pass it to the class function: 
+We now want to check the class of the different variables. This is important as part of the data cleaning involves making sure that numerical variables are class `numeric`, dates `Date`, and categorical variables are `factor` or `character`. You have already seen the `class()` function, to check the class of a vector. In R, each variable of a dataframe is a vector. We can extract all the values of that vector using the [`$` sign]{.hovertip bs-toggle='tooltip' bs-title='This is called base R indexing'}, and pass it to the class function: 
 
 ```{r, eval = FALSE}
 
@@ -127,7 +127,7 @@ class(df_linelist$age)
 ```
 
 :::{.write}
-Try extracting all the values from the `sex` variable - what is the class of that variable ? 
+Try extracting all the values from the `sex` variable - what is the class of that variable? 
 :::
 
 Now you can also use `str()` on your dataframe to check all the variables class at once: 
@@ -169,7 +169,7 @@ Use the `$` syntax to get:
 - The minimum value of `age`
 - The maximum of `muac`
 
-*Any problems ?*
+*Any problems?*
 :::
 
 # Explore categorical variables 
@@ -195,7 +195,7 @@ Now, try adding the argument `sort = TRUE` to the `count()` function. What did t
 
 
 ## Done!
-Well done that's a good start with your data !
+Well done that's a good start with your data!
 
 ```{r}
 #| echo: false
