@@ -38,10 +38,10 @@ df_outcome <- df_linelist %>%
   count(week_outcome, name = 'patients') %>%
   tidyr::drop_na(week_outcome)
 
-# Facetting
-df_cases_age <- df_linelist %>% 
-  count(week_admission, age_group) %>% 
-  tidyr::drop_na(week_admission)
+# # Facetting
+# df_cases_age <- df_linelist %>% 
+#   count(week_admission, age_group) %>% 
+#   tidyr::drop_na(week_admission)
 ```
 
 ## Objectives
