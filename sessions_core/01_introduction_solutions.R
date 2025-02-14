@@ -67,7 +67,7 @@ data_cases <- data.frame(
 data_cases <- data.frame(cases, region) 
 
 
-# some functions to explore the strucutre of a dataframe
+# some functions to explore the structure of a dataframe
 str(iris)          # structure, data types of each column
 dim(iris)          # dimensions, number of rows and columns
 nrow(iris)         # number of rows
