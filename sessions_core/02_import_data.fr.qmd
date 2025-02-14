@@ -17,8 +17,8 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 library(here) # for file paths
 library(rio)  # import and export files
 
-df_linelist <- import(file = here("data", "raw", "xlsx",
-              "Moissalla-rougeole-liste-lineaire-FR.xlsx"))
+df_linelist <- import(file = here("data", "raw",
+              "moissala_linelist_FR.xlsx"))
 ```
 
 ## Objectifs
@@ -180,7 +180,7 @@ library(here) # charge le paquet {here} dans la session
 Utilisez la fonction `library()` pour charger les paquets `here` et `rio` qui seront utilisés aujourd'hui.
 :::
 
-Il se peut que vous obteniez parfois un [message d'avertissement]{.hovertip bs-toggle='tooltip' bs-title="Contrairement aux messages d'erreur, les avertissements n'interrompent pas la commande en cours. Ils signalent des problèmes potentiels non graves, et n'ont pas toujours besoin d'être corrigés."} signalant que certaines fonctions ont été [masquées]{.hovertip bs-toggle='tooltip' bs-title="Le masquage se produit lorsque R essaie de charger plusieurs fonction portant le même nom en même temps. Par exemple, plusieurs paquets contiennent une fonction filter() ou select(). Quand un conflit se produit, R choisit la version qui a été chargée en dernier et les autres versions sont ignorées (masquées)."} ou que la version actuelle du paquet a été construite pour une version différente de R. Ces messages ne doivent pas vous inquiéter, mais il faut les lire et essayer de comprendre ce sui se passe.
+Il se peut que vous obteniez parfois un [message d'avertissement]{.hovertip bs-toggle='tooltip' bs-title="Contrairement aux messages d'erreur, les avertissements n'interrompent pas la commande en cours. Ils signalent des problèmes potentiels non graves, et n'ont pas toujours besoin d'être corrigés."} signalant que certaines fonctions ont été [masquées]{.hovertip bs-toggle='tooltip' bs-title="Le masquage se produit lorsque R essaie de charger plusieurs fonction portant le même nom en même temps. Par exemple, plusieurs paquets contiennent une fonction filter() ou select(). Quand un conflit se produit, R choisit la version qui a été chargée en dernier et les autres versions sont ignorées (masquées)."} ou que la version actuelle du paquet a été construite pour une version différente de R. Ces messages ne doivent pas vous inquiéter, mais il faut les lire et essayer de comprendre ce qui se passe.
 
 ::: {.write}
 Exécutez le code suivant. Comprenez-vous le message d'erreur ?
