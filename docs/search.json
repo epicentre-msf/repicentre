@@ -49,11 +49,11 @@
     "text": "Done!\nVery well done team! You have learned how to facet plots! This will work not only on bar plots such as epicurves, but also on other types of plots made by {ggplot2}.\n\n\n\n Solutions file"
   },
   {
-    "objectID": "sessions_extra/facetting.html#extra-exercice",
-    "href": "sessions_extra/facetting.html#extra-exercice",
+    "objectID": "sessions_extra/facetting.html#challenge",
+    "href": "sessions_extra/facetting.html#challenge",
     "title": "Introduction to facetting",
-    "section": "Extra exercice",
-    "text": "Extra exercice\nThe help pages from {tidyverse} packages tend to be well written. We advise you to go and read them when you learn a new function, you are bound to learn a couple of tricks each time.\n\n\n\n\n\n\nImportant\n\n\n\nReading code written by others, figuring out what it does and then adapting it to your own code are very important skills to develop, whether the code comes from the official documentation, StakOverflow, tutorials from random people on the web or Large Language Models outputs (such as Github Copilot, or ChatGPT).\n\n\nHere is an exercise to train these skills. Checkout the examples of the help page for the facet_wrap() function: one of them show how to adapt your code to do this:\n\n\n\n\n\n\n\n\n\nCan you modify your code do do something similar?\n\n\n\n\n\n\nTip\n\n\n\n\n\nYou will need two aggregated data frames, one created today and one created in the epicurve session."
+    "section": "Challenge",
+    "text": "Challenge\nThe help pages from {tidyverse} packages tend to be well written. We advise you to go and read them when you learn a new function, you are bound to learn a couple of tricks each time.\n\n\n\n\n\n\nImportant\n\n\n\nReading code written by others, figuring out what it does and then adapting it to your own code are very important skills to develop, whether the code comes from the official documentation, StakOverflow, tutorials from random people on the web or Large Language Models outputs (such as Github Copilot, or ChatGPT).\n\n\nHere is an exercise to train these skills. Checkout the examples of the help page for the facet_wrap() function: one of them show how to adapt your code to do this:\n\n\n\n\n\n\n\n\n\nCan you modify your code do do something similar?\n\n\n\n\n\n\nTip\n\n\n\n\n\nYou will need two aggregated data frames, one created today and one created in the epicurve session."
   },
   {
     "objectID": "sessions_core/05_summary-table.html",
