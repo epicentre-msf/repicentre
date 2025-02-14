@@ -79,5 +79,11 @@
   },
   "sessions_core/03_data-verbs.qmd": {
     "03_data-verbs.html": "4811ee8c"
+  },
+  "sessions_core/03_data_verbs.qmd": {
+    "03_data_verbs.html": "beae2fca"
+  },
+  "sessions_extra/weekly_epicurves.qmd": {
+    "weekly_epicurves.html": "c1f4fb1a"
   }
 }

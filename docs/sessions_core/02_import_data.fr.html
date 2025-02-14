@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="dcterms.date" content="2025-02-14">
-<meta name="description" content="Create an Rstudio project, install useful packages and start importing data to work in R">
+<meta name="description" content="Créez un projet Rstudio, installez les paquets utiles et importez des données pour travailler dans R.">
 
-<title>Import data – {repicentre}</title>
+<title>Importer des données – {repicentre}</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -168,32 +168,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
-  <li><a href="#setting-up-your-project" id="toc-setting-up-your-project" class="nav-link" data-scroll-target="#setting-up-your-project">Setting up your Project</a>
+  <li><a href="#objectifs" id="toc-objectifs" class="nav-link active" data-scroll-target="#objectifs">Objectifs</a></li>
+  <li><a href="#mise-en-place-du-projet" id="toc-mise-en-place-du-projet" class="nav-link" data-scroll-target="#mise-en-place-du-projet">Mise en place du projet</a>
   <ul class="collapse">
-  <li><a href="#folder-structure" id="toc-folder-structure" class="nav-link" data-scroll-target="#folder-structure">Folder Structure</a></li>
-  <li><a href="#sec-definitions" id="toc-sec-definitions" class="nav-link" data-scroll-target="#sec-definitions">Definitions</a></li>
-  <li><a href="#rstudio-projects" id="toc-rstudio-projects" class="nav-link" data-scroll-target="#rstudio-projects">RStudio Projects</a></li>
-  <li><a href="#rstudio-options" id="toc-rstudio-options" class="nav-link" data-scroll-target="#rstudio-options">RStudio Options</a></li>
+  <li><a href="#folder-structure" id="toc-folder-structure" class="nav-link" data-scroll-target="#folder-structure">Structure des dossiers</a></li>
+  <li><a href="#sec-definitions" id="toc-sec-definitions" class="nav-link" data-scroll-target="#sec-definitions">Définitions</a></li>
+  <li><a href="#projets-rstudio" id="toc-projets-rstudio" class="nav-link" data-scroll-target="#projets-rstudio">Projets RStudio</a></li>
+  <li><a href="#les-options-de-rstudio" id="toc-les-options-de-rstudio" class="nav-link" data-scroll-target="#les-options-de-rstudio">Les options de RStudio</a></li>
+  <li><a href="#création-dun-nouveau-script" id="toc-création-dun-nouveau-script" class="nav-link" data-scroll-target="#création-dun-nouveau-script">Création d’un nouveau script</a></li>
   </ul></li>
-  <li><a href="#creating-a-new-script" id="toc-creating-a-new-script" class="nav-link" data-scroll-target="#creating-a-new-script">Creating a New Script</a></li>
-  <li><a href="#sec-packages" id="toc-sec-packages" class="nav-link" data-scroll-target="#sec-packages">Packages</a>
+  <li><a href="#sec-packages" id="toc-sec-packages" class="nav-link" data-scroll-target="#sec-packages">Paquets</a>
   <ul class="collapse">
   <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation">Installation</a></li>
-  <li><a href="#usage" id="toc-usage" class="nav-link" data-scroll-target="#usage">Usage</a></li>
-  <li><a href="#updating-packages" id="toc-updating-packages" class="nav-link" data-scroll-target="#updating-packages">Updating Packages</a></li>
+  <li><a href="#utilisation" id="toc-utilisation" class="nav-link" data-scroll-target="#utilisation">Utilisation</a></li>
+  <li><a href="#mettre-à-jour-les-paquets" id="toc-mettre-à-jour-les-paquets" class="nav-link" data-scroll-target="#mettre-à-jour-les-paquets">Mettre à jour les paquets</a></li>
   </ul></li>
-  <li><a href="#data-importation" id="toc-data-importation" class="nav-link" data-scroll-target="#data-importation">Data Importation</a>
+  <li><a href="#importation-de-données" id="toc-importation-de-données" class="nav-link" data-scroll-target="#importation-de-données">Importation de données</a>
   <ul class="collapse">
-  <li><a href="#sec-filepaths" id="toc-sec-filepaths" class="nav-link" data-scroll-target="#sec-filepaths">Understanding File Paths</a></li>
-  <li><a href="#sec-import" id="toc-sec-import" class="nav-link" data-scroll-target="#sec-import">Import function</a></li>
+  <li><a href="#sec-filepaths" id="toc-sec-filepaths" class="nav-link" data-scroll-target="#sec-filepaths">Trouver son chemin…</a></li>
+  <li><a href="#sec-import" id="toc-sec-import" class="nav-link" data-scroll-target="#sec-import">Importer les données</a></li>
   </ul></li>
-  <li><a href="#taking-a-first-look-at-your-data" id="toc-taking-a-first-look-at-your-data" class="nav-link" data-scroll-target="#taking-a-first-look-at-your-data">Taking a First Look at your Data</a></li>
-  <li><a href="#done" id="toc-done" class="nav-link" data-scroll-target="#done">Done!</a></li>
-  <li><a href="#going-further" id="toc-going-further" class="nav-link" data-scroll-target="#going-further">Going Further</a>
+  <li><a href="#aperçu-des-données" id="toc-aperçu-des-données" class="nav-link" data-scroll-target="#aperçu-des-données">Aperçu des données</a></li>
+  <li><a href="#cest-fini" id="toc-cest-fini" class="nav-link" data-scroll-target="#cest-fini">C’est fini !</a></li>
+  <li><a href="#pour-aller-plus-loin" id="toc-pour-aller-plus-loin" class="nav-link" data-scroll-target="#pour-aller-plus-loin">Pour aller plus loin</a>
   <ul class="collapse">
-  <li><a href="#extra-exercises" id="toc-extra-exercises" class="nav-link" data-scroll-target="#extra-exercises">Extra Exercises</a></li>
-  <li><a href="#additional-resources" id="toc-additional-resources" class="nav-link" data-scroll-target="#additional-resources">Additional Resources</a></li>
+  <li><a href="#exercices-supplémentaires" id="toc-exercices-supplémentaires" class="nav-link" data-scroll-target="#exercices-supplémentaires">Exercices supplémentaires</a></li>
+  <li><a href="#ressources-complémentaires" id="toc-ressources-complémentaires" class="nav-link" data-scroll-target="#ressources-complémentaires">Ressources complémentaires</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -203,7 +203,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Import data</h1>
+<h1 class="title">Importer des données</h1>
   <div class="quarto-categories">
     <div class="quarto-category">Core</div>
     <div class="quarto-category">RStudio</div>
@@ -213,7 +213,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div>
   <div class="description">
-    Create an Rstudio project, install useful packages and start importing data to work in R
+    Créez un projet Rstudio, installez les paquets utiles et importez des données pour travailler dans R.
   </div>
 </div>
 
@@ -236,15 +236,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="objectives" class="level2">
-<h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
+<section id="objectifs" class="level2">
+<h2 class="anchored" data-anchor-id="objectifs">Objectifs</h2>
 <ul>
-<li>Create a RStudio Project</li>
-<li>Set up an organized and well documented code</li>
-<li>Install and load packages</li>
-<li>Write robust file paths<br>
-</li>
-<li>Import and inspect data</li>
+<li>Créer un projet RStudio</li>
+<li>Mettre en place un code organisé et bien documenté</li>
+<li>Installer et charger des paquets dans la session</li>
+<li>Ecrire des chemins d’accès aux fichiers robustes</li>
+<li>Importer et inspecter des données dans R</li>
 </ul>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -256,66 +255,71 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The principles you learned in the <a href="01_introduction.html">Introduction to R</a> session will apply here as well: we should do our best to ensure that our projects won’t just work today but can also be reused and shared in the future. While doing this is not always easy, there are several best practices that can help us, and one of the most important is to start with a good, organized code base.</p>
+<p>Les principes vus dans le module FETCH sur la gestion des données s’appliquent aussi à votre code : on souhaite écrire un script qui fonctionne maintenant, mais également dans le futur, et qui soit partageable. Il existe quelques bonnes pratiques qui peuvent nous aider à aller dans cette direction, et la première est d’avoir un code source propre et bien organisé.</p>
 </div>
 </div>
 </section>
-<section id="setting-up-your-project" class="level2">
-<h2 class="anchored" data-anchor-id="setting-up-your-project">Setting up your Project</h2>
+<section id="mise-en-place-du-projet" class="level2">
+<h2 class="anchored" data-anchor-id="mise-en-place-du-projet">Mise en place du projet</h2>
 <section id="folder-structure" class="level3">
-<h3 class="anchored" data-anchor-id="folder-structure">Folder Structure</h3>
+<h3 class="anchored" data-anchor-id="folder-structure">Structure des dossiers</h3>
 <div class="setup">
-<p>If not done already, download and unzip the course folder. Save the uncompressed folder to a location that is <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="OneDrive doesn't play well with R as it will attempt to constantly synchronize certain project files in a way that can cause errors or memory problems"><strong>not connected to OneDrive</strong></span> and navigate into it.</p>
+<p>Si ce n’est pas déjà fait, téléchargez le dossier du cours décompressez-le. Sauvegardez le dossier non compressé à un endroit <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="OneDrive ne fonctionne pas bien avec R car il va constamment synchroniser certains fichiers, ce qui peut entraîner des erreurs ou des problèmes de mémoire"><strong>non connecté à OneDrive</strong></span> et ouvrez-le.</p>
 <div class="cell">
 <div class="cell-output-display">
 <a href="https://github.com/epicentre-msf/repicentre/raw/main/data/FETCHR.zip">
-<button class="btn btn-default"><i class="fa fa-save"></i>  Course Folder</button>
+<button class="btn btn-default"><i class="fa fa-save"></i>  Dossier du cours</button>
 </a>
 </div>
 </div>
 </div>
-<p>This folder gives an example of a typical (and highly recommended) structure for your code projects:</p>
+<p>Ce dossier illustre une structure typique et recommandée pour vos projets de code :</p>
 <ul>
 <li>📁 data
 <ul>
-<li>📁 clean</li>
 <li>📁 raw</li>
+<li>📁 clean</li>
 </ul></li>
 <li>📁 R</li>
 <li>📁 outputs</li>
 </ul>
-<p>This folder will be you working directory for <strong>all the sessions of this course</strong>. You will create an Rstudio project in it (explanations below), and save all your scripts in <code>/R</code>. The course datasets are already in <code>data/raw</code>.</p>
+<p>Ce dossier sera votre répertoire de travail pour toutes les sessions de ce cours. Vous y créerez un projet RStudio (explications ci-dessous), et y enregistrerez tous vos scripts (sous dossier <code>R</code>). Les données brutes se trouvent déjà dans <code>data/raw</code>.</p>
 </section>
 <section id="sec-definitions" class="level3">
-<h3 class="anchored" data-anchor-id="sec-definitions">Definitions</h3>
-<p>To work through this session you need to understand the two following concepts:</p>
-<p><strong>Working directory.</strong> The working directory is the location (folder) where your R session is <em>actively working</em>. If you save a file, for example, it will be saved into this folder by default. Similarly, when you want to open a file, this folder will be shown by default. All relative paths will be relative to this working directory. By default, R usually picks the “Documents” folder as the working directory on Windows machines.</p>
-<p><strong>Root.</strong> The root refers to the top-most folder level of the working directory. If your course folder was called <code>FETCHR</code>, the root would then be directly inside it (as opposed to being inside one of its subfolders like <code>R</code> or <code>Data</code>).</p>
+<h3 class="anchored" data-anchor-id="sec-definitions">Définitions</h3>
+<p>Voici deux concepts importants que nous allons rencontrer dans cette session :</p>
+<p><strong>Répertoire de travail.</strong> Le répertoire de travail est l’emplacement (dossier) où votre session R <em>en cours</em> travaille. Si vous enregistrez un fichier, par exemple, il sera enregistré dans ce dossier par défaut. De même, Si vous ouvrez un fichier, ce dossier sera affiché par défaut. Tous les chemins relatifs auront ce dossier pour origine. Par défaut, R choisit généralement votre dossier “Documents” comme répertoire de travail sur les machines Windows.</p>
+<p><strong>Racine.</strong> La racine fait référence au niveau de dossier le plus élevé du répertoire de travail. Si le dossier de votre cours s’appelle <code>FETCHR</code> la racine se trouverait directement à l’intérieur de celui-ci (et non dans l’un de ses sous-dossiers comme <code>R</code> ou <code>data</code>).</p>
 </section>
-<section id="rstudio-projects" class="level3">
-<h3 class="anchored" data-anchor-id="rstudio-projects">RStudio Projects</h3>
-<p>An RStudio Project can be used to make your life easier and help orient <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Technically an RStudio Project is just a file containing some metadata that tells RStudio what files to open and where to set your working directory. It will spare you the headache of managing the working directory yourself.">RStudio around the various files used in your code</span></p>
-<p>As a quick reminder, your interface should look something like this:</p>
+<section id="projets-rstudio" class="level3">
+<h3 class="anchored" data-anchor-id="projets-rstudio">Projets RStudio</h3>
+<p>Un <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Techniquement, c'est un fichier contenant des métadonnées qui indiquent à RStudio quels fichiers ouvrir et quel est le répertoire de travail, ce qui vous évite d'avoir à le définir vous même">projet RStudio</span> est outil qui va faciliter votre vie et aider RStudio à trouver les différents fichiers.</p>
+<p>Pour rappel, votre interface doit ressembler à ceci :</p>
 <div id="fig-interface" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-interface-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../img/core/01_introduction/01_rstudio_interface_en.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-interface-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Screenshot of a typical Rstudio interface
+Figure&nbsp;1: Capture d’écran d’une interface RStudio typique
 </figcaption>
 </figure>
 </div>
 <div class="setup">
-<p>Open RStudio and create a new project by clicking <code>File &gt; New Project &gt; Existing Directory &gt; Browse</code>, navigating into (opening) the course folder, and clicking <code>Create Project</code>.</p>
+<p>Ouvrez RStudio et suivez ces étapes pour créer un nouveau projet :</p>
+<ul>
+<li>cliquez sur <code>File &gt; New Project &gt; Existing Directory &gt; Browse</code>,</li>
+<li>naviguez jusqu’au dossier du cours (en l’ouvrant)</li>
+<li>cliquez sur <code>Create Project</code>.</li>
+</ul>
 </div>
 <div class="look">
-<p>In the Windows Explorer, look at the course folder. You should now see a new file with the extention <code>.Rproj</code> that has a small blue icon with an R in it.</p>
+<p>Dans l’explorateur Windows, examinez le dossier du cours. Vous devriez maintenant voir un nouveau fichier avec l’extension <code>.Rproj</code> qui a une petite icône bleue avec un R au milieu</p>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../img/core/02_import/02_rproject.png" class="img-fluid figure-img"></p>
-<figcaption>Icon associated with RStudio projects</figcaption>
+<figcaption>Icône associée aux projets RStudio</figcaption>
 </figure>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -328,10 +332,10 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>If you don’t see this file, it’s probably because it is hidden by default on your computer. To change this setting in Windows Explorer, go into the <em>View</em> menu and select <code>Filename Extensions</code>.</p>
+<p>Si vous ne voyez pas ce fichier, c’est probablement parce qu’il est caché par défaut sur votre ordinateur. Pour modifier ce paramètre dans l’explorateur Windows, allez dans le menu <em>Afficher</em> et sélectionnez <code>Extensions de noms de fichier</code>.</p>
 </div>
 </div>
-<p>When you open an RStudio Project, RStudio starts a new R session, opens the associated project files, and sets your working directory to the root of the course folder. At this time, RStudio also displays the subfolders of this directory in the panel on the bottom right.</p>
+<p>Lorsque vous ouvrez un projet RStudio, RStudio démarre une nouvelle session R spécifique à ce projet, ouvre les fichiers associés et définit la racine de votre dossier comme répertoire de travail. Une conséquence immédiate est que le panneau <em>Files</em> en bas à droite de l’interface montre les sous dossiers présents dans le répertoire de travail, <em>i.e.</em> votre dossier de cours.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -342,29 +346,29 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>It is strongly recommended to set up a separate RStudio Project for each of your <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Here a single analysis would involve the full process of loading, cleaning, analyzing, and reporting on a dataset.">analyses</span> to ensure that your project files remain organized and manageable.</p>
+<p>Il est fortement recommandé de mettre en place un projet RStudio distinct pour <em>chacune</em> de vos <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Ici, un projet d'analyse implique l'ensemble du processus de chargement, de nettoyage, d'analyse et de production de rapports sur un jeu de données.">analyses</span> afin de garantir que les fichiers de vos projets restent organisés.</p>
 </div>
 </div>
-<p>There are several ways to open an RStudio Project:</p>
+<p>Il existe plusieurs façons d’ouvrir un projet RStudio :</p>
 <ul>
-<li>Use the RStudio menu <code>File &gt; Open Project</code> and then select the relevant <code>.Rproj</code> file</li>
-<li>Click on <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="You can also refer to this button at any time to see which project you are currently working in.">the <code>Project: (none)</code> button</span> on the top right of the RStudio interface</li>
-<li>Navigate in the folder explorer to the analysis folder and double click on the file with the <code>.Rproj</code> extension</li>
+<li>Utilisez le menu RStudio <code>File &gt; Open Project</code> puis sélectionnez le fichier <code>.Rproj</code> approprié</li>
+<li>Cliquez sur <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Examinez ce bouton pour savoir dans quel projet vous travaillez actuellement.">le bouton <code>Project: (none)</code></span> en haut à droite de l’interface RStudio</li>
+<li>Naviguez dans l’explorateur de fichiers Windows jusqu’à votre dossier de cours et double-cliquez sur le fichier avec l’extension <code>.Rproj</code></li>
 </ul>
 </section>
-<section id="rstudio-options" class="level3">
-<h3 class="anchored" data-anchor-id="rstudio-options">RStudio Options</h3>
-<p>Before continuing, let’s update some of RStudio’s problematic default settings:</p>
+<section id="les-options-de-rstudio" class="level3">
+<h3 class="anchored" data-anchor-id="les-options-de-rstudio">Les options de RStudio</h3>
+<p>Avant de poursuivre, allons modifier certaines des options de RStudio qui peuvent causer des problèmes.</p>
 <div class="setup">
-<p>Open the global options (<code>Tools &gt; Global Options</code>) and open the tab <code>General</code> (left menu). Make sure that <em>none</em> of the boxes in the sections <code>R Sessions</code>, <code>Workspace</code>, or <code>History</code> are checked.</p>
+<p>Ouvrez les options globales (<code>Tools &gt; Global Options</code>) et ouvrez l’onglet <code>General</code> (menu de gauche). Déselectionnez toutes les cases des sections <code>R Sessions</code>, <code>Workspace</code> et <code>History</code>.</p>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../img/core/02_import/03_do_not_save.png" class="img-fluid figure-img"></p>
-<figcaption>Screenshot of the Rstudio options</figcaption>
+<figcaption>Capture d’écran des options de RStudio</figcaption>
 </figure>
 </div>
-<p>When checked, these options cause RStudio to save the objects in your environment and reload them as well as any files you previously had open when you open a new R session. While these default may seem like a good idea, it is better to always start your work from a fresh, <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="An empty session means the environment is empty, but you still have your scripts!">empty R session</span> to avoid bugs.</p>
+<p>Lorsque ces options sont activées, RStudio enregistre les objets de votre environnement et les charge à chaque fois que vous ouvrez une nouvelle session R. Ca semble être une bonne idée, mais il est en fait préférable de toujours commencer votre travail à partir d’une <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Une session vide signifie que l'environnement est vide, mais vos scripts avec toutes les instructions sont toujours là !">session R vide</span> afin d’éviter les erreurs.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -375,28 +379,28 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Remember that any commands or outputs that is needed for the cleaning and analysis should be saved explicitly in a script in the correct, functional order.</p>
+<p>N’oubliez pas que toutes les commandes nécessaires au nettoyage et à l’analyse de vos données doivent être enregistrées explicitement dans un script, dans le bon ordre. Faire retourner le script devrait arriver aux mêmes résultats que précédement.</p>
 </div>
 </div>
 </section>
-</section>
-<section id="creating-a-new-script" class="level2">
-<h2 class="anchored" data-anchor-id="creating-a-new-script">Creating a New Script</h2>
+<section id="création-dun-nouveau-script" class="level3">
+<h3 class="anchored" data-anchor-id="création-dun-nouveau-script">Création d’un nouveau script</h3>
 <div class="setup">
-<p>Open a new script and save it in the <code>R</code> folder of your project under the name <code>import_data.R</code>.</p>
-<p>Add some metadata to the top of the script as seen in the first session using <a href="../sessions_core/01_introduction.html#sec-comments">comments</a>. Be sure to include:</p>
+<p>Ouvrez un nouveau script et enregistrez-le dans le sous-dossier <code>R</code> de votre projet sous le nom <code>import_data.R</code>.</p>
+<p>Ajoutez des métadonnées au début du script, comme recommandé lors première session, en utilisant des <a href="../sessions_core/01_introduction.html#sec-comments">commentaires</a>. Veillez à inclure :</p>
 <ul>
-<li>Title</li>
-<li>Author</li>
-<li>Creation Date</li>
-<li>Description</li>
+<li>Le titre</li>
+<li>L’auteur du script</li>
+<li>La date de création</li>
+<li>Une description rapide de ce que fait le script</li>
 </ul>
 </div>
-<p>Now you’re ready to start coding!</p>
+<p>Nous sommes prêts à commencer à coder</p>
+</section>
 </section>
 <section id="sec-packages" class="level2">
-<h2 class="anchored" data-anchor-id="sec-packages">Packages</h2>
-<p>Packages are collections of functions that extend the functionality of R. You’ll use them <strong>a lot</strong>, both in this course and in your daily life. Fortunately, as an open source language, R packages can be downloaded and installed for free from the internet.</p>
+<h2 class="anchored" data-anchor-id="sec-packages">Paquets</h2>
+<p>Les paquets [<em>packages</em>] sont des collections de fonctions qui étendent les fonctionalités de R. Vous en utiliserez un grand nombre pendant ce cours et dans votre travail quotidien. R étant open-souce, les packages sont téléchargeable et utilisable gratuitement.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -407,16 +411,16 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>In R, packages are referenced using <code>{}</code>. For example <code>{ggplot2}</code> is the name of the ggplot2 package that contains new plotting functions such as <code>ggplot()</code>, <code>geom_point()</code> etc…</p>
+<p>Dans ce cours, nous utiliserons une convention commune qui est de référencer les paquets entre <code>{}</code>. Par exemple <code>{ggplot2}</code> est le nom du paquet ggplot2 qui contient des fonctions pour créer des graphes, telles que <code>ggplot()</code>, <code>geom_point()</code> etc…</p>
 </div>
 </div>
 <section id="installation" class="level3">
 <h3 class="anchored" data-anchor-id="installation">Installation</h3>
-<p>We can install a new package using the function <code>install.packages()</code>, which downloads and installs it into the package library on your computer. This is done once per computer.</p>
+<p>La fonction <code>install.packages()</code> télécharge et installe un nouveau paquet sur votre ordinateur, dans la bibliothèque de paquets associée à R. Vous n’avez à faire cette opération qu’une seule fois par paquet et ordinateur.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"here"</span>) <span class="co"># install the {here} package</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"here"</span>) <span class="co"># installe le paquet {here} </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Don’t forget to wrap the package name in quotation marks when using <code>install.packages()</code>. What happens if you don’t do this?</p>
+<p>N’oubliez pas de mettre le nom du paquet entre guillemets lorsque vous utilisez la commande <code>install.packages()</code>. Que se passe-t-il si vous ne le faites pas ?</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -427,28 +431,28 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>If you are following this session as part of a course, to avoid any potential internet connectivity issues during the training we already had you install most of the course packages.</p>
-<p>If are following this tutorial on your own or have not installed the packages yet, you will have to manually install each new package that we encounter.</p>
+<p>Si vous suivez cette session dans le cadre d’un cours, pour éviter tout problème potentiel de connectivité internet pendant la formation, nous vous avons déjà fait installer la plupart des paquets du cours.</p>
+<p>Si vous suivez ce tutoriel seul ou si vous n’avez pas encore installé les paquets, vous devrez installer manuellement chaque nouveau paquet que nous rencontrerons avec la fonction <code>install.packages()</code>.</p>
 </div>
 </div>
 </section>
-<section id="usage" class="level3">
-<h3 class="anchored" data-anchor-id="usage">Usage</h3>
-<p>Once a package is installed we can use it but we have to specify to R that we will be using it <em>every single session</em>. This process is called <em>loading the package</em> and is achieved using the function <code>library()</code>.</p>
+<section id="utilisation" class="level3">
+<h3 class="anchored" data-anchor-id="utilisation">Utilisation</h3>
+<p>Une fois qu’un paquet est installé, il faut indiquer à R que nous souhaitons l’utiliser pour une session donnée en le <em>chargeant</em> dans la session avec la fonction <code>library()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here) <span class="co"># load the "here" package</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here) <span class="co"># charge le paquet {here} dans la session</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="write">
-<p>Use the <code>library()</code> function to load the packages <code>here</code> and <code>rio</code>, which will be used in the next section.</p>
+<p>Utilisez la fonction <code>library()</code> pour charger les paquets <code>here</code> et <code>rio</code> qui seront utilisés aujourd’hui.</p>
 </div>
-<p>Based on your computer’s set up and the package you are trying to load, you may get a <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Unlike error messages, warnings will not cause R to stop an ongoing command. They are used to signal potential but not severe issues and do not always need to be fixed.">warning message</span> noting that some functions have been <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Masking occurs when R tries to load more than one function with the same name at the same time. This issue is surprisingly common, for example, there are a large number of packages that have a function called `filter()` or `select()`. When these conflicts occur, R will pick whichever version was loaded last and the other versions will be ignored (masked).">masked</span> or that the current version of the package was built for a different version of R. These messages are not usually a problem but are still important to note.</p>
+<p>Il se peut que vous obteniez parfois un <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Contrairement aux messages d'erreur, les avertissements n'interrompent pas la commande en cours. Ils signalent des problèmes potentiels non graves, et n'ont pas toujours besoin d'être corrigés.">message d’avertissement</span> signalant que certaines fonctions ont été <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Le masquage se produit lorsque R essaie de charger plusieurs fonction portant le même nom en même temps. Par exemple, plusieurs paquets contiennent une fonction filter() ou select(). Quand un conflit se produit, R choisit la version qui a été chargée en dernier et les autres versions sont ignorées (masquées).">masquées</span> ou que la version actuelle du paquet a été construite pour une version différente de R. Ces messages ne doivent pas vous inquiéter, mais il faut les lire et essayer de comprendre ce qui se passe.</p>
 <div class="write">
-<p>Try to run the following code. Can you work out what the error means?</p>
+<p>Exécutez le code suivant. Comprenez-vous le message d’erreur ?</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-<p>The above code throws an error because you have asked for a library that doesn’t exist. Remember that <strong>R is fickle and case sensitive</strong> and many of your errors will come from small typos in the names of functions or objects. Here, for example, we wanted to load the package <code>ggplot2</code> but wrote <code>ggplot</code> instead.</p>
+<p>Le code ci-dessus génère une erreur car il y a une faute de frappe dans le nom du paquet, et vous avez donc essayé de charger un paquet qui n’existe pas. Rappelez-vous que <strong>R est pénible, et en particulier est sensible à la casse</strong> : beaucoup de vos erreurs viendront de petites fautes dans les noms de fonctions ou d’objets. Ici, par exemple, nous voulions charger le paquet <code>ggplot2</code> mais nous avons écrit <code>ggplot</code> à la place.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -459,22 +463,22 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Most of the time, you’ll need to load a number of packages for your script and it is recommended to have a section at the start of your code that loads everything you’ll need in one place:</p>
+<p>Il est recommandé d’avoir une section au début de votre script qui charge tous les paquets dont vous aurez besoin dans votre script en un seul endroit :</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Packages ----------------------------</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)   <span class="co"># data manipulation</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)   <span class="co"># date manipulation</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)   <span class="co"># manipulation de données</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)   <span class="co"># manipulation des dates</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>This practice makes it easy to tell which packages need to be installed to run a script.</p>
+<p>Celà permet de savoir rapidement quels paquets doivent être installés pour exécuter un script.</p>
 </div>
 </div>
 <div class="write">
-<p>Use <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Remember that you can use the keyboard shortcuts CTRL+SHIFT+C and CTRL+SHIFT+R to insert comments and sections">comments</span> to create a “Packages” section to your script.</p>
+<p>Créez une section “Paquets” dans votre script à l’aide de <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Vous pouvez utiliser les raccourcis clavier CTRL + MAJ + C and CTRL + MAJ + R pour insérer des commentaires ou des sections">commentaires</span></p>
 </div>
 </section>
-<section id="updating-packages" class="level3">
-<h3 class="anchored" data-anchor-id="updating-packages">Updating Packages</h3>
-<p>R has a very active community of developers and it’s pretty common for packages to be updated from time to time as their owners add in new functions and fix existing bugs. In order to update the packages in your library, you can go into the <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Remember that this tab shows a list of all the packages you have installed on your computer with their version numbers."><code>Packages</code> tab</span> of the bottom right panel and click <code>Update</code>. Don’t forget that you’ll <strong>need to be connected to the internet</strong> during this process.</p>
+<section id="mettre-à-jour-les-paquets" class="level3">
+<h3 class="anchored" data-anchor-id="mettre-à-jour-les-paquets">Mettre à jour les paquets</h3>
+<p>R dispose d’une communauté de développeurs très active et il est assez courant que les paquets soient mis à jour, avec de nouvelles fonctionalités ou des corrections de bugs. Pour mettre à jour les paquets de votre bibliothèque, rendez-vous dans <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Pour rappel, cet onglet affiche la liste de tous les paquets que vous avez installés sur votre ordinateur, avec leur numéro de version.">l’onglet <code>Packages</code></span> du panneau inférieur droit et cliquez sur <code>Update</code>. N’oubliez pas que vous <strong>devez être connecté à internet</strong> pendant ce processus.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -485,31 +489,32 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Sometimes packages are updated in a way that might remove or change a function that you used in some of your scripts, causing your code to no longer work. <strong>Don’t panic</strong> if this happens. The best practice is to adapt <em>your code</em>, although in the worst case scenario you can <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="This is discouraged as it will make your code hard for others to use.">forcibly install an old version of a package</span>. This is however out of the scope of this session.</p>
+<p>La mise à jour de certains paquets peut parfois changer le comportement de certaines fonctions, ce qui peut casser votre code. <strong>Pas de panique</strong>. La meilleure pratique consiste à adapter votre code mais, dans le pire des cas, vous pouvez installer une <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Ce qui est généralement déconseillé car cela rend votre code difficile à utiliser par d'autres. Nous n'illustrerons pas la manip ici. Si vous avez à le faire, documentez bien !">ancienne version du paquet incriminé</span>.</p>
 </div>
 </div>
 </section>
 </section>
-<section id="data-importation" class="level2">
-<h2 class="anchored" data-anchor-id="data-importation">Data Importation</h2>
+<section id="importation-de-données" class="level2">
+<h2 class="anchored" data-anchor-id="importation-de-données">Importation de données</h2>
 <section id="sec-filepaths" class="level3">
-<h3 class="anchored" data-anchor-id="sec-filepaths">Understanding File Paths</h3>
-<p>To open a file in R you need to provide a <strong>file path</strong>. A file path is simply a longer name for a file, that includes not only its name but also its location on your computer. There are several ways of defining these paths, including <em>absolute</em> and <em>relative</em> paths.</p>
-<section id="absolute-paths" class="level4">
-<h4 class="anchored" data-anchor-id="absolute-paths">Absolute Paths</h4>
-<p>Absolute paths are <strong>specific to your computer</strong> and go all the way up to the level of your <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="For example, 'C:' or 'D:' on a Windows computer.">hard drive</span>. For example, an absolute path may look something like this: <code>D:/OneDrive - MSF/Documents/monitoring/cholera/fancy_project/data/raw/example_linelist.xlsx</code>. Clearly, this path will only work on one specific computer.</p>
-<p>The use of <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Hardcoded means that you wrote the full path in the script, the way it is given above, as opposed to building the paths by bits as we are going to show below.">hard coded</span> absolute paths is <strong>strongly discouraged</strong> as it makes your code inflexible and prone to break: the paths need to be updated every time your code is shared or the project folder is moved on your computer.</p>
+<h3 class="anchored" data-anchor-id="sec-filepaths">Trouver son chemin…</h3>
+<p>Pour ouvrir un fichier dans R, vous devez fournir un <strong>chemin d’accès au fichier</strong>. Un chemin d’accès est simplement un (long) nom pour un fichier qui inclut son emplacement sur votre ordinateur. Les chemins d’accès peuvent être <em>absolus</em> ou <em>relatifs</em>.</p>
+<section id="chemins-daccès-absolus" class="level4">
+<h4 class="anchored" data-anchor-id="chemins-daccès-absolus">Chemins d’accès absolus</h4>
+<p>Les chemins d’accès absolus sont <strong>spécifiques à votre ordinateur</strong> et vont jusqu’au niveau de votre <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Par exemple, 'C:' ou 'D:' sur un ordinateur Windows.">disque dur</span>. Par exemple : <code>D:/OneDrive - MSF/Documents/monitoring/cholera/fancy_project/data/raw/example_linelist.xlsx</code>. Il est clair que ce chemin ne fonctionne que sur un ordinateur particulier.</p>
+<p>L’utilisation de chemins absolus <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Le codage en dur correspond au fait l'écrire le chemin d'accès en entier, comme dans l'exemple ci-dessus, au lieu de construire le chemins par morceaux comme nous allons voir après">encodés en dur</span> est <strong>fortement déconseillé</strong> car cela rend votre code fragile et augmente la maintenance : en effet, les chemins devront tous être mis à jour chaque fois quelqu’un d’autre exécute votre code, ou que le dossier du projet est déplacé sur votre ordinateur.</p>
 </section>
-<section id="relative-paths" class="level4">
-<h4 class="anchored" data-anchor-id="relative-paths">Relative Paths</h4>
-<p>Relative paths are defined relatively to your current <a href="../sessions_core/02_import_data.html#sec-definitions">working directory</a>. For example, keeping in mind that our handy <code>.Rproj</code> file set our working directory to the root of our project folder, we could create a relative path that looked like <code>data/raw/example_linelist.xlsx</code>. This means that <strong>as long as we maintain the <em>internal</em> structure</strong> of our project folder and have an <code>.Rproj</code> file, our code would theoretically run on multiple computers.</p>
+<section id="chemins-daccès-relatifs" class="level4">
+<h4 class="anchored" data-anchor-id="chemins-daccès-relatifs">Chemins d’accès relatifs</h4>
+<p>Les chemins relatifs sont définis par rapport à votre <a href="../sessions_core/02_import_data.html#sec-definitions">répertoire de travail</a>. Comme l’emplacement du fichier <code>.Rproj</code> définit le répertoire de travail, les chemins sont relatifs à cette racine. Pour vous, un chemin relatif ressemblera à ça : <code>data/raw/example_linelist.xlsx</code>.</p>
+<p>Cela signifie que tant que la <strong>structure interne du dossier</strong> contenant votre projet est préservée, le chemin d’accès relatif sera valable quelque soit l’ordinateur.</p>
 </section>
-<section id="robust-paths-with-the-here-function" class="level4">
-<h4 class="anchored" data-anchor-id="robust-paths-with-the-here-function">Robust Paths with the <code>here()</code> function</h4>
-<p>The <code>{here}</code> package has a <code>here()</code> function that really helps defining paths. It has two advantages:</p>
+<section id="chemins-daccès-robustes-avec-la-fonction-here" class="level4">
+<h4 class="anchored" data-anchor-id="chemins-daccès-robustes-avec-la-fonction-here">Chemins d’accès robustes avec la fonction <code>here()</code></h4>
+<p>Le paquet <code>{here}</code> dispose d’une fonction <code>here()</code> qui aide à créer des chemins d’accès. Elle présente deux avantages :</p>
 <ul>
-<li>When used with RStudio projects, you can give it only the part of the path within the project, (the <em>relative path</em> in other words), and the function uses it to create the <em>absolute path</em> dynamically.</li>
-<li>It does so using the separator adapted to you <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="For example, Windows, MacOS, Debian...">operating system</span>, whether it’s <code>/</code>, <code>\</code>, or <code>//</code></li>
+<li><p>Elle détecte la présence d’un fichier <code>.Rproj</code> et est capable de construire un <em>chemin absolu</em> à partir d’un <em>chemin relatif</em> dans votre projet RStudio.</p></li>
+<li><p>Elle choisit automatiquement le séparateur adapté à votre <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Par exemple, Windows, MacOS, Debian...">système d’exploitation</span> : <code>/</code>, <code>\</code> ou <code>//</code>.</p></li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
@@ -518,13 +523,20 @@ Important
 <pre><code>[1] "D:/MATHILDE_UNPLUGGED/5_OTHER/repicentre/data/raw/example_linelist.xlsx"</code></pre>
 </div>
 </div>
-<p>See how we only defined the relative path and the function created an absolute path. This way of defining the path will work on your colleagues computer, even if they run on another operating system, as long as you both respect the internal structure of the working directory.</p>
-<p>We <strong>strongly encourage you</strong> to use <code>here()</code> whenever you need to create a file path.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"raw"</span>, <span class="st">"example_linelist.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "D:/MATHILDE_UNPLUGGED/5_OTHER/repicentre/data/raw/example_linelist.xlsx"</code></pre>
+</div>
+</div>
+<p>Voyez comme nous n’avons défini que le chemin relatif et la fonction a reconstitué le chemin absolu. Celà marchera donc sur l’ordinateur d’un collègue, y compris sur un autre système d’exploitation, du moment que la structure du répertoire de travail est intacte.</p>
+<p>Nous vous <strong>encourageons fortement</strong> à utiliser <code>here()</code> chaque fois que vous devez créer un chemin d’accès à un fichier.</p>
 <div class="write">
-<p>Run the above code in the console. What file path does <code>here("data", "raw")</code> give <em>you</em>?</p>
+<p>Exécutez le code ci-dessus dans la console. Quel chemin d’accès <code>here("data", "raw")</code> vous donne-t-il ?</p>
 </div>
 <div class="write">
-<p>Using <code>here()</code>, create a complete file path for the file <code>Moissalla-measles-linelist-EN.xlsx</code>. Keep this path around, we will use it soon.</p>
+<p>Utilisez <code>here()</code> pour créer le chemin vers le fichier <code>Moissalla-rougeole-liste-lineaire-FR.xlsx</code>.</p>
 </div>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -536,7 +548,7 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><code>here()</code> simply creates a file path, it doesn’t actually check if a file exists on your computer: if the file is absent or there is a typo in your code, the command will yield an error when the path is used. If you would like to use a function to check if a file exists, check out the <code>file.exists()</code> function.</p>
+<p><code>here()</code> crée une chaîne de caractères contenant l’adresse d’un fichier, mais ne vérifie pas si ce fichier <em>existe réellement</em> sur votre ordinateur. Si le fichier est absent ou s’il y a une faute de frappe dans votre code, vous obtiendrez une erreur lors de <em>l’utilisation</em> du chemin ainsi créé. Vous pouvez tester si un fichier existe à cette adresse avec la fonction <code>file.exists()</code>.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -549,15 +561,15 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>We will often want to source multiple data files in a single project. To make that process easier, it can be helpful to create a section at the start of the script, after loading the packages to define paths and store them in variables.</p>
+<p>On veut souvent définir plusieurs chemins dans un projet (données brutes, données propres, où sauver les graphes etc.). C’est une bonne pratique que de créer une nouvelle section au début de votre script, après le chargement des paquets, pour définir et stocker les chemins d’accès dans des objets.</p>
 </div>
 </div>
 </section>
 </section>
 <section id="sec-import" class="level3">
-<h3 class="anchored" data-anchor-id="sec-import">Import function</h3>
-<p>In R different file formats are often imported using different, often specialized functions. This can be tedious as it requires you to memorize and load a large number of functions just to get your data imported. To avoid this problem, we recommend that you use the <code>import()</code> function from the package <span data-tooltip-position="top" data-tooltip="`rio` stands for R Inputs and Outputs."><code>{rio}</code></span>. This function is able to open a large variety of files (including Excel, csv, Stata, and many others) by recognizing the file extension of your data and <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="This type of function, providing an unified interface to other specific functions is known as a wrapper.">calling a relevant specialized function from another package</span> so that you don’t have to.</p>
-<p>Because <code>import()</code> is actually just calling other functions in the background, it is possible that it will need different arguments depending on the type of file you want to load.</p>
+<h3 class="anchored" data-anchor-id="sec-import">Importer les données</h3>
+<p>Dans R, différents formats de fichiers sont importés par différentes fonctions spécialisées, ce qui est fastidieux à mémoriser et à charger. La fonction <code>import()</code> du paquet <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Pour R Input and Output, c'est à dire entrées et sorties dans R"><code>{rio}</code></span> nous fait gagner du temps en reconnaissant l’extension des fichier et en <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Ce type de fonction, qui fournit une interface unifiée à d'autres fonctions spécifiques, est connu sous le nom de 'wrapper', c'est à dire 'emballage'.">appelent automatiquement une fonction spécialisée</span> pour charger les données.</p>
+<p>Comme <code>import()</code> ne fait qu’appeler d’autres fonctions en arrière-plan, il est possible qu’elle ait besoin d’arguments optionnels spécifiques pour certains types de fichier.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -568,20 +580,23 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>To see the full list of all the file types you can load (and save!) with <code>rio</code>, check out the list of <a href="https://gesistsa.github.io/rio/index.html#supported-file-formats">supported formats</a> on their website. In the rest of the lesson we will focus on importing data from Excel <code>.xlsx</code> files.</p>
+<p>La (longue) liste des types de fichiers pris en charge par {rio} est sur le <a href="https://gesistsa.github.io/rio/index.html#supported-file-formats">site du paquet</a>. Dans la suite de la leçon, nous nous concentrerons sur l’importation de données à partir de fichiers Excel <code>.xlsx</code>.</p>
 </div>
 </div>
-<section id="importing-from-the-first-sheet" class="level4">
-<h4 class="anchored" data-anchor-id="importing-from-the-first-sheet">Importing from the First Sheet</h4>
-<p>In general, the usage of <code>import()</code> is pretty simple, at minima you need to pass the path of the file to the <code>file</code> argument</p>
+<section id="import-de-la-première-feuille" class="level4">
+<h4 class="anchored" data-anchor-id="import-de-la-première-feuille">Import de la première feuille</h4>
+<p>Au minimum la fonction <code>import()</code> a besoin qu’on lui donne le chemin du fichier avec l’argument <code>file</code> :</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">import</span>(<span class="at">file =</span> <span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"raw"</span>, <span class="st">"example_linelist.xlsx"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">import</span>(<span class="at">file =</span> <span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"raw"</span>, <span class="st">"example_linelist.xlsx"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Notice that we have nested the command <code>here()</code> <strong>inside</strong> the <code>import()</code> command. Nesting functions is absolutely allowed in R and is something you will do <em>all the time</em>. When functions are nested, R will evaluate them in the order of the innermost function (in this case <code>here()</code>) to the outermost (in this case <code>import()</code>). In this way, the <em>output</em> of <code>here()</code> is being used as the <em>input</em> of <code>import()</code>.</p>
+<p>Notez que nous avons imbriqué la commande <code>here()</code> <strong>à l’intérieur de</strong> la commande <code>import()</code>. L’imbrication de fonctions est autorisée et même courrante en R. R évalue les fonctions imbriquées de l’intérieur (<code>here()</code>) à l’extérieur (<code>import()</code>). La valeur renvoyée par <code>here()</code> est donc utilisée comme <em>valeur d’entrée</em> d’<code>import()</code>.</p>
 <div class="write">
-<p>Import the file <code>Moissalla-measles-linelist-EN.xlsx</code> that is in your raw data subfolder into R using <code>here()</code> and <code>import()</code>.</p>
+<p>Importez le fichier <code>Moissalla-rougeole-liste-lineaire-FR.xlsx</code> en utilisant <code>here()</code> et <code>import()</code>.</p>
 </div>
-<p>If your import worked correctly, R will print the data into the console but not save it into the environment because we have not <a href="../sessions_core/01_introduction.html#sec-assignement-operator">assigned them to an object</a>.</p>
+<p>Si votre importation a fonctionné correctement, R affichera les données dans la console mais ne les enregistrera pas dans l’environnement car nous ne <a href="../sessions_core/01_introduction.html#sec-assignement-operator">les avons pas assignées à un objet</a>.</p>
+<div class="write">
+<p>Réimportez vos données, mais cette fois-ci, sauvegardez-les dans un objet appelé <code>df_linelist</code>.</p>
+</div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -592,67 +607,64 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>You may not want to have R print very large datasets into the console and assign them directly to an object.</p>
+<p>Si votre jeu de données est très gros, il vaut mieux éviter de l’afficher dans la console…</p>
 </div>
+</div>
+</section>
+<section id="import-dune-autre-feuille" class="level4">
+<h4 class="anchored" data-anchor-id="import-dune-autre-feuille">Import d’une autre feuille</h4>
+<p>Comme vous venez de le voir, la fonction <code>import()</code> importe la première feuille d’un fichier Excel par défaut. Il est cependant possible de passer le numéro de la feuille ou son nom (en chaîne de caractères) à l’argument <code>which</code> :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">import</span>(<span class="at">file =</span> <span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"raw"</span>, <span class="st">"example_linelist.xlsx"</span>),  <span class="co"># chemin</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">which =</span> <span class="dv">2</span>)                                            <span class="co"># spécifie la deuxième feuille</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Notez que l’argument <code>which</code> est spécifique aux types de fichiers comportant plusieurs feuilles, tels que les fichiers Excel ou .Rdata. Si vous essayez de l’utiliser sur un fichier <code>.csv</code> l’argument sera ignoré.</p>
+</section>
+</section>
+</section>
+<section id="aperçu-des-données" class="level2">
+<h2 class="anchored" data-anchor-id="aperçu-des-données">Aperçu des données</h2>
+<p>Nous avons importé un jeu de données dans R et l’avons assigné à un objet (<code>df_linelist</code>). Nous pouvons maintenant inspecter le data frame créé pour vérifier que l’export s’est bien passé, et commencer à évaluer le nettoyage à faire.</p>
+<p>Nous pouvons commencer par jeter un coup d’œil rapide aux premières lignes du data frame à l’aide de la fonction <code>head()</code>. Son premier argument est le data frame à inspecter et le second, <code>n</code>, accepte un nombre de lignes à afficher (optionnel).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_linelist, <span class="at">n =</span> <span class="dv">10</span>) <span class="co"># Affiche les 10 premières lignes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="write">
-<p>Reimport your data but this time save it to an object called <code>df_linelist</code>.</p>
+<p>Utilisez <code>head()</code> pour examiner les 12 premières lignes de <code>df_linelist</code>.</p>
 </div>
-</section>
-<section id="importing-data-from-any-sheet" class="level4">
-<h4 class="anchored" data-anchor-id="importing-data-from-any-sheet">Importing Data from Any Sheet</h4>
-<p>As you just saw, R selects the first sheet by default. It is however possible to pass the number (or name) of a specific worksheet in your Excel data to <code>import()</code> using the argument <code>which</code>:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">import</span>(<span class="at">file =</span> <span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"raw"</span>, <span class="st">"example_linelist.xlsx"</span>),</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">which =</span> <span class="dv">2</span>)  <span class="co"># imports the second sheet</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Note that the <code>which</code> argument is specific to the file types that have multiple sheets, such as Excel or .Rdata files. If you try to use it on a <code>.csv</code> file the argument will be ignored.</p>
-</section>
-</section>
-</section>
-<section id="taking-a-first-look-at-your-data" class="level2">
-<h2 class="anchored" data-anchor-id="taking-a-first-look-at-your-data">Taking a First Look at your Data</h2>
-<p>We have now imported a dataset into R and assigned it to a dataframe (<code>df_linelist</code>). The natural next step is to inspect this dataset, to check that the import went well, get to know it a bit better, and assess if it requires any cleaning before analysis.</p>
-<p>We can start by taking a quick look at the first few lines of the dataframe using the function <code>head()</code>. This function takes a dataframe as its first argument and optionally accepts a second argument <code>n</code> indicating the number of lines we would like to see.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_linelist, <span class="at">n =</span> <span class="dv">10</span>) <span class="co"># Inspect 10 first lines</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="write">
-<p>Use <code>head()</code> to examine the 12 first lines of <code>df_linelist</code>.</p>
-</div>
-<p>We can also check out our data by looking at the <em>Environment</em> tab of the top-right panel. Here, we can see our dataframe in the environment, look at its <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="This is the same as using the command `str()`">structure</span>, or open it in the data viewer of RStudio.</p>
+<p>Nous pouvons inspecter la <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Cela revient á utiliser la commande `str()` sur le data frame">structure</span> du data frame à partir de l’onglet <em>Environnement</em> dans le panneau supérieur droit. Nous pouvons également visualiser le data frame dans le le visualiseur de données de RStudio (en haut à gauche).</p>
 <div class="look">
-<p>Click on the round blue button next to <code>df_linelist</code> in your environment to see its structure. Then click on the name of the dataset to open it in the viewer.</p>
+<p>Cliquez sur le bouton rond bleu à côté de <code>df_linelist</code> dans votre environnement pour examiner sa structure. Cliquez ensuite sur le nom du data frame pour le visualiser.</p>
 </div>
-<p>The data viewer displays dataframes as tables and is a convenient way to quickly look at your data. You can even sort and filter your data in the “View”, though be aware that these actions will not make any changes to the actual object <code>df_linelist</code>. The View can also be opened by passing the dataframe to the function <code>View()</code>.</p>
+<p>Le visualiseur permet d’afficher le data frame comme dans un tableur et est un moyen pratique d’examiner rapidement vos données. Vous pouvez trier et filtrer vos données dans cet onglet mais ces actions ne modifieront pas l’objet <code>df_linelist</code>. Le visualiseur peut également être ouvert en utilisant directement la fonction <code>View()</code> sur le data frame.</p>
 </section>
-<section id="done" class="level2">
-<h2 class="anchored" data-anchor-id="done">Done!</h2>
-<p>Well done and don’t forget to save your code.</p>
+<section id="cest-fini" class="level2">
+<h2 class="anchored" data-anchor-id="cest-fini">C’est fini !</h2>
+<p>Bravo et n’oubliez pas de sauvegarder votre code !</p>
 <div class="cell">
 <div class="cell-output-display">
-<a href="https://github.com/epicentre-msf/repicentre/blob/main/sessions_core/02_import_data_solutions.R">
-<button class="btn btn-default"><i class="fa fa-save"></i> Solution File</button>
+<a href="https://github.com/epicentre-msf/repicentre/blob/main/sessions_core/02_import_data_solutions.fr.R">
+<button class="btn btn-default"><i class="fa fa-save"></i> Solutions exercices</button>
 </a>
 </div>
 </div>
 </section>
-<section id="going-further" class="level2">
-<h2 class="anchored" data-anchor-id="going-further">Going Further</h2>
-<section id="extra-exercises" class="level3">
-<h3 class="anchored" data-anchor-id="extra-exercises">Extra Exercises</h3>
+<section id="pour-aller-plus-loin" class="level2">
+<h2 class="anchored" data-anchor-id="pour-aller-plus-loin">Pour aller plus loin</h2>
+<section id="exercices-supplémentaires" class="level3">
+<h3 class="anchored" data-anchor-id="exercices-supplémentaires">Exercices supplémentaires</h3>
 <ol type="1">
-<li>Use <code>dim()</code> to take a look at the dimensions of your dataset.</li>
-<li>Use <code>str()</code> to check the data type of each column. Does anything look odd? Remember that you can also use functions like <code>is.character()</code> and <code>is.numeric()</code> if you’d like to test the type of a particular column.</li>
-<li>Using a function learned in the first session, can you extract the names of the columns of the dataset? Do these results match what you see when you open the data in Excel?</li>
-<li>Try passing your dataframe to the function <code>summary()</code>. What does this function tell you?</li>
+<li>Utilisez <code>dim()</code> pour examiner les dimensions de votre data frame.</li>
+<li>Utilisez <code>str()</code> pour vérifier le type de données de chaque colonne. Voyez-vous quelque chose d’étrange ? N’oubliez pas que vous pouvez également utiliser des fonctions telles que <code>is.character()</code> et <code>is.numeric()</code> si vous souhaitez tester le type d’une colonne particulière.</li>
+<li>En utilisant une fonction apprise lors de la première session, pouvez-vous extraire les noms des colonnes du data frame ? Ces résultats correspondent-ils à ce que vous voyez lorsque vous ouvrez les données dans Excel ?</li>
+<li>Essayez d’exécuter la fonction <code>summary()</code> sur votre data frame. Qu’est ce que le résultat vous apprend sur les variables ?</li>
 </ol>
 </section>
-<section id="additional-resources" class="level3">
-<h3 class="anchored" data-anchor-id="additional-resources">Additional Resources</h3>
+<section id="ressources-complémentaires" class="level3">
+<h3 class="anchored" data-anchor-id="ressources-complémentaires">Ressources complémentaires</h3>
 <ul>
-<li>The <code>{rio}</code> <a href="https://gesistsa.github.io/rio/index.html#supported-file-formats">website</a></li>
-<li><a href="https://epirhandbook.com/en/new_pages/importing.html">More examples</a> on importing data of various file types</li>
+<li>Le <a href="https://gesistsa.github.io/rio/index.html#supported-file-formats">site web</a> de <code>{rio}</code></li>
+<li><a href="https://epirhandbook.com/fr/new_pages/importing.fr.html">Plus d’exemples</a> sur l’importation de données de différents types de fichiers</li>
 </ul>
 
 
