@@ -1,6 +1,6 @@
 ---
-title: Epicurves with dates in x-axis
-description: Plot weekly epicurves and improve date labels on the axis
+title: Weekly epicurves
+description: Plot weekly epicurves and improve date labels on the x-axis
 date: last-modified
 image: ../sessions_extra/img/epicurve-dates-000-logo.png
 categories:
@@ -34,7 +34,7 @@ df_linelist <- rio::import(here::here("data", "clean",
     week_outcome   = isoweek(date_outcome),   # Examples
     
     # First DATE of the week
-    week_first_day_onsetet = floor_date(date_onset,       # Their code
+    week_first_day_onset = floor_date(date_onset,       # Their code
                                     unit = "week",
                                     week_start = 1),
     
@@ -264,7 +264,7 @@ Here are the first ten lines of what it should look like:
 #| echo: false
 
 df_linelist %>% 
-  count(week_first_day_onsetet) %>% 
+  count(week_first_day_onset) %>% 
   head(10)
 ```
 :::
@@ -463,7 +463,7 @@ Congratulations! Dates are complicated, and their formatting is often scary, but
 #| eval: true
 
 downloadthis::download_link(
-  link = 'https://github.com/epicentre-msf/repicentre/blob/main/sessions_core/epicurves_dates_solutions.R',
+  link = 'https://github.com/epicentre-msf/repicentre/blob/main/sessions_extra/weekly_epicurves_solutions.R',
   button_label = 'Solution File',
   has_icon = TRUE,
   icon = "fa fa-save",
