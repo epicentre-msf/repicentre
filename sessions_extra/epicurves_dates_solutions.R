@@ -1,8 +1,8 @@
-# Solutions to the satellite about epicurves with dates
+# Solutions to the satellite about weekly epicurves
 # Author: the Fetch team
 # Creation Date: 03/02/2025
-# Last Update: 03/02/2025
-# Description: Model code associated with the epicurve with dates lesson.
+# Last Update: 14/02/2025
+# Description: Model code associated with the weekly epicurve with dates satellite
 
 
 # Setup ----------------------------------------------------
@@ -19,7 +19,7 @@ library(scales)      # prettier labels
 
 ## Import Data ----------------------------------------------------
 df_linelist <- import(here("data", "clean", 
-                           "simulated_measles_ll.rds"))
+                           "moissala_linelist_clean_EN.rds"))
 
 
 # Check import
@@ -32,51 +32,51 @@ View(df_linelist)
 
 df_linelist <- df_linelist %>%
   mutate(
-    # Week NUMBERS
-    week_consultation = isoweek(date_consultation),
-    week_outcome   = isoweek(date_outcome),    
+    # Week ISO NUMBERS
+    week_onset = isoweek(date_consultation),
     
     # First DATE of the week
-    week_first_day_cons = floor_date(date_consultation, 
+    week_first_day_onset = floor_date(date_consultation, 
                                      unit = "week",
-                                     week_start = 1),   # Start on monday
+                                     week_start = 1), # Starts on Monday
     
-    week_first_day_outcome = floor_date(date_outcome,   
-                                        unit = "week",
-                                        week_start = 1)
-  )  %>% 
-  filter(date_consultation < as.Date("2023-01-01"))  # Keep 2022 data
+    # ISO year
+    # The first of January 2023 has a 2022 iso year, because 
+    # it is still in the 52th ISO week of 2022.
+    year_onset = isoyear(date_onset),
+    )   
 
-
-# Aggregated dataset (alternatively you could just summarise 
-# data in the same pipe as your plotting command)
-
-df_week <- df_linelist %>% 
-  count(week_first_day_cons)
 
 # Plot epicurve --------------------------------------------
 
-# No tweaking axis: it's very similar to what we did in the other session!
-df_week %>% 
-  ggplot(aes(x = week_first_day_cons,
+# It's very similar to what we did in the core session
+df_linelist %>% 
+  
+  # Aggregate (we chose to do it on the fly here, but you could
+  # save the aggregated data in its own dataset of you plan to reuse it)
+  count(week_first_day_onset) %>% 
+  
+  # Do the plot
+  ggplot(aes(x = week_first_day_onset,
              y = n)) +
   geom_col(fill = "#2E4573") +
-  labs(x = "Date of consultation",
+  labs(x = "Date of onset",
        y = "Measles cases",
-       title = "Measles in Moissala - 2022",
+       title = "Measles in Mandoul region (Chad)",
        caption = "Ficticious data") +
   theme_classic(base_size = 15)
 
 
 # To focus on the new commands, we are going to save that plot 
 # in an object (of course it's possible!)
-p <- df_week %>% 
-  ggplot(aes(x = week_first_day_cons,
+p <- df_linelist %>% 
+  count(week_first_day_onset) %>% 
+  ggplot(aes(x = week_first_day_onset,
              y = n)) +
   geom_col(fill = "#2E4573") +
-  labs(x = "Date of consultation",
+  labs(x = "Date of onset",
        y = "Measles cases",
-       title = "Measles in Moissala - 2022",
+       title = "Measles in Mandoul region (Chad)",
        caption = "Ficticious data") +
   theme_classic(base_size = 15)
 
@@ -87,7 +87,7 @@ p
 
 # Tweak frequency of the breaks
 p + 
-  scale_x_date(date_breaks = '1 months') # Force date breaks to one month
+  scale_x_date(date_breaks = '4 months') # Force date breaks to 4 months
 
 
 
@@ -101,5 +101,61 @@ p +
 # Modify the labels with the strptime syntax
 p + 
   scale_x_date(
-    date_breaks = "1 months",    # Force date breaks to one month
+    date_breaks = "2 months",    # Force date breaks to two months
     date_labels = "%m/%d%n%y")   # strptime syntax
+
+
+
+
+# Extra exercices -------------------------------------
+
+
+# Using date of consultation
+df_linelist %>% 
+  mutate(week_start = floor_date(date_consultation, 
+                                 unit = "week",
+                                 week_start = 1)) %>% 
+  count(week_start) %>% 
+  ggplot(aes(x = week_start,
+             y = n)) +
+  geom_col(fill = "#2E4573") +
+  labs(x = "Date of consultation",
+       y = "Measles cases",
+       title = "Measles consultations in Mandoul region (Chad)",
+       caption = "Ficticious data") +
+  theme_classic(base_size = 15)
+
+
+
+# 2023 data with epiweeks
+df_linelist %>% 
+  filter(year_onset == 2023) %>%  # Keep 2023 data only
+  count(week_onset) %>% 
+  ggplot(aes(x = week_onset,
+             y = n)) +
+  geom_col(fill = "#2E4573") +
+  labs(x = "ISO Week",
+       y = "Measles cases",
+       title = "Measles cases in Mandoul region (Chad) - 2023",
+       caption = "Ficticious data") +
+  theme_classic(base_size = 15)
+
+
+
+# Monthly cases
+df_linelist %>% 
+  mutate(month_start = floor_date(date_consultation, 
+                                  unit = "month")) %>% 
+  count(month_start) %>% 
+  ggplot(aes(x = month_start,
+             y = n)) +
+  geom_col(fill = "#2E4573") +
+  labs(x = "Month of onset",
+       y = "Measles cases",
+       title = "Measles in Mandoul region (Chad)",
+       caption = "Ficticious data") +
+  theme_classic(base_size = 15) +
+  scale_x_date(
+    date_breaks = "2 months",
+    date_labels = "%Y\n%b") 
+
