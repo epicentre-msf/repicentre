@@ -33,10 +33,10 @@ View(df_linelist)
 df_linelist <- df_linelist %>%
   mutate(
     # Week ISO NUMBERS
-    week_onset = isoweek(date_consultation),
+    week_onset_number = isoweek(date_consultation),
     
     # First DATE of the week
-    week_first_day_onset = floor_date(date_consultation, 
+    week_onset_monday = floor_date(date_consultation, 
                                      unit = "week",
                                      week_start = 1), # Starts on Monday
     
@@ -54,10 +54,10 @@ df_linelist %>%
   
   # Aggregate (we chose to do it on the fly here, but you could
   # save the aggregated data in its own dataset of you plan to reuse it)
-  count(week_first_day_onset) %>% 
+  count(week_onset_monday) %>% 
   
   # Do the plot
-  ggplot(aes(x = week_first_day_onset,
+  ggplot(aes(x = week_onset_monday,
              y = n)) +
   geom_col(fill = "#2E4573") +
   labs(x = "Date of onset",
@@ -70,8 +70,8 @@ df_linelist %>%
 # To focus on the new commands, we are going to save that plot 
 # in an object (of course it's possible!)
 p <- df_linelist %>% 
-  count(week_first_day_onset) %>% 
-  ggplot(aes(x = week_first_day_onset,
+  count(week_onset_monday) %>% 
+  ggplot(aes(x = week_onset_monday,
              y = n)) +
   geom_col(fill = "#2E4573") +
   labs(x = "Date of onset",
@@ -130,8 +130,8 @@ df_linelist %>%
 # 2023 data with epiweeks
 df_linelist %>% 
   filter(year_onset == 2023) %>%  # Keep 2023 data only
-  count(week_onset) %>% 
-  ggplot(aes(x = week_onset,
+  count(week_onset_number) %>% 
+  ggplot(aes(x = week_onset_number,
              y = n)) +
   geom_col(fill = "#2E4573") +
   labs(x = "ISO Week",
