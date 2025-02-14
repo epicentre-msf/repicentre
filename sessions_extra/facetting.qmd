@@ -51,6 +51,7 @@ This satellite builds on the core [epicurve session](../session_core/07_epicurve
 ```{r}
 #| echo: false
 #| eval: true
+#| fig-width: 9
 
 df_linelist %>%
   tidyr::drop_na(date_onset) %>% 
@@ -118,7 +119,14 @@ head(df_pref)
 
 
 ::: {.write}
-You will draw a plot of the number of admissions by age group, so you need a new data frame summarized by week and age group. Create this data frame, and call it `df_age`
+You will draw a plot of the number of admissions by age group, so you need a new data frame summarized by week and age group. Create this data frame, and call it `df_age`. It should have this format:
+
+```{r}
+#| echo: false
+
+head(df_age)
+```
+
 :::
 
 
@@ -128,6 +136,7 @@ Now, let's plot this data. Look at the code bellow: it is exactly the same as be
 
 ```{r}
 #| eval: true
+#| fig-width: 9
 
 df_pref %>%
   ggplot(aes(x = date_onset,
@@ -159,6 +168,7 @@ For exemple, we could have all plots on two rows, for a wide figure:
 
 ```{r}
 #| eval: true
+#| fig-width: 9
 
 df_pref %>%
   ggplot(aes(x = date_onset,
@@ -178,6 +188,7 @@ Or force the number of rows to four, which forces a taller figure:
 ```{r}
 #| eval: true
 #| fig-height: 7
+#| fig-width: 9
 
 df_pref %>%
   ggplot(aes(x = date_onset,
@@ -273,6 +284,7 @@ Here is an exercise to train these skills. Checkout the examples of the [help pa
 ```{r}
 #| eval: true
 #| echo: false
+#| fig-width: 9
 
 df_cases <- df_linelist %>% 
   count(date_onset) %>% 
