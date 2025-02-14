@@ -30,7 +30,7 @@ View(df_linelist)
 
 # Prepare data ---------------------------------------------
 
-df_linelist <- df_linelist %>%
+df_linelist <- df_linelist |>
   mutate(
     # Week ISO NUMBERS
     week_onset_number = isoweek(date_consultation),
@@ -50,11 +50,11 @@ df_linelist <- df_linelist %>%
 # Plot epicurve --------------------------------------------
 
 # It's very similar to what we did in the core session
-df_linelist %>% 
+df_linelist |> 
   
   # Aggregate (we chose to do it on the fly here, but you could
   # save the aggregated data in its own dataset of you plan to reuse it)
-  count(week_onset_monday) %>% 
+  count(week_onset_monday) |> 
   
   # Do the plot
   ggplot(aes(x = week_onset_monday,
@@ -69,8 +69,8 @@ df_linelist %>%
 
 # To focus on the new commands, we are going to save that plot 
 # in an object (of course it's possible!)
-p <- df_linelist %>% 
-  count(week_onset_monday) %>% 
+p <- df_linelist |> 
+  count(week_onset_monday) |> 
   ggplot(aes(x = week_onset_monday,
              y = n)) +
   geom_col(fill = "#2E4573") +
@@ -111,11 +111,11 @@ p +
 
 
 # Using date of consultation
-df_linelist %>% 
+df_linelist |> 
   mutate(week_start = floor_date(date_consultation, 
                                  unit = "week",
-                                 week_start = 1)) %>% 
-  count(week_start) %>% 
+                                 week_start = 1)) |> 
+  count(week_start) |> 
   ggplot(aes(x = week_start,
              y = n)) +
   geom_col(fill = "#2E4573") +
@@ -128,9 +128,9 @@ df_linelist %>%
 
 
 # 2023 data with epiweeks
-df_linelist %>% 
-  filter(year_onset == 2023) %>%  # Keep 2023 data only
-  count(week_onset_number) %>% 
+df_linelist |> 
+  filter(year_onset == 2023) |>  # Keep 2023 data only
+  count(week_onset_number) |> 
   ggplot(aes(x = week_onset_number,
              y = n)) +
   geom_col(fill = "#2E4573") +
@@ -143,10 +143,10 @@ df_linelist %>%
 
 
 # Monthly cases
-df_linelist %>% 
+df_linelist |> 
   mutate(month_start = floor_date(date_consultation, 
-                                  unit = "month")) %>% 
-  count(month_start) %>% 
+                                  unit = "month")) |> 
+  count(month_start) |> 
   ggplot(aes(x = month_start,
              y = n)) +
   geom_col(fill = "#2E4573") +

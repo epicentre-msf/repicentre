@@ -26,7 +26,7 @@ library(scales)      # prettier labels
 
 # The data
 df_linelist <- rio::import(here::here("data", "clean",
-                                      "moissala_linelist_clean_EN.rds")) %>% 
+                                      "moissala_linelist_clean_EN.rds")) |> 
   mutate(
     
     # Week ISO numbers
@@ -44,8 +44,8 @@ df_linelist <- rio::import(here::here("data", "clean",
   )
 
 # Data for our examples
-# df_outcome <- df_linelist %>%
-#   count(week_outcome_number, name = 'patients') %>% 
+# df_outcome <- df_linelist |>
+#   count(week_outcome_number, name = 'patients') |> 
 #   tidyr::drop_na(week_outcome_number)
 ```
 
@@ -59,8 +59,8 @@ In the [epicurve session](../sessions_core/07_epicurves.qmd) you learned how to 
 #| eval: true
 #| fig-width: 8
 
-df_linelist %>%
-  count(date_onset) %>%
+df_linelist |>
+  count(date_onset) |>
   ggplot(aes(x = date_onset,
              y = n)) +
   geom_col(fill = '#2E4573') +
@@ -127,7 +127,7 @@ isoweek(example_date)
 We can use this function to create a `week_outcome_number` in our data frame:
 
 ```{r}
-df_linelist <- df_linelist %>% 
+df_linelist <- df_linelist |> 
   mutate(week_outcome_number = isoweek(date_outcome))
 ```
 
@@ -137,9 +137,9 @@ The head of the `date_outcome` and `week_outcome_number` columns looks like this
 #| echo: false
 #| eval: true
 
-df_linelist %>% 
-  tidyr::drop_na(date_outcome) %>% 
-  select(date_outcome, week_outcome_number) %>% 
+df_linelist |> 
+  tidyr::drop_na(date_outcome) |> 
+  select(date_outcome, week_outcome_number) |> 
   head()
 ```
 
@@ -150,8 +150,8 @@ Your turn. After importing data, use the `mutate()` and `isoweek()` functions to
 ```{r}
 #| echo: false
 #| eval: true
-df_linelist %>%
-  select(date_onset, week_onset_number) %>%
+df_linelist |>
+  select(date_onset, week_onset_number) |>
   head()
 ```
 :::
@@ -164,7 +164,7 @@ There is a problem, though. With `isoweek()` there is a first week in 2022, but 
 #| eval: true
 
 # WRONG
-df_linelist %>% count(week_onset_number) %>% 
+df_linelist |> count(week_onset_number) |> 
   head(10)
 ```
 
@@ -173,9 +173,9 @@ Instead, we could count by week stratified by [years]{.hovertip bs-toggle='toolt
 ```{r}
 #| eval: true
 
-df_linelist %>% 
-  mutate(year_onset = isoyear(date_onset)) %>% 
-  count(year_onset, week_onset_number) %>% 
+df_linelist |> 
+  mutate(year_onset = isoyear(date_onset)) |> 
+  count(year_onset, week_onset_number) |> 
   head(10)
 ```
 
@@ -184,9 +184,9 @@ These counts are perfectly correct. You *could* plot them using [facetting](../s
 ```{r}
 #| eval: true
 
-df_linelist %>% 
-  mutate(year_onset = isoyear(date_onset)) %>% 
-  count(year_onset, week_onset_number) %>% 
+df_linelist |> 
+  mutate(year_onset = isoyear(date_onset)) |> 
+  count(year_onset, week_onset_number) |> 
   ggplot(aes(x = week_onset_number,
              y = n)) +
   geom_col(fill = "#2E4573") +
@@ -205,7 +205,7 @@ An alternative way of aggregating by week is to use the function `floor_date()` 
 The function has a `unit` argument that allows you to choose the period of interest (week, month...) and a `week_start` argument where you can pass the first day of the week (Mondays are `1`).
 
 ```{r}
-df_linelist <- df_linelist %>% 
+df_linelist <- df_linelist |> 
   mutate(
     week_outcome_monday = floor_date(date_outcome,
                                      unit = "week",
@@ -218,9 +218,9 @@ Let's look at all these different time variables to figure out what's happening:
 ```{r}
 #| eval: true
 
-df_linelist %>% 
-  select(id, date_outcome, week_outcome_number, week_outcome_monday) %>%
-  arrange(date_outcome) %>%     # Sort the data by date
+df_linelist |> 
+  select(id, date_outcome, week_outcome_number, week_outcome_monday) |>
+  arrange(date_outcome) |>     # Sort the data by date
   head(n = 10)
 ```
 
@@ -228,7 +228,7 @@ It might be easier to visualize if we calculate the day of the week associated w
 
 ```{r}
 #| eval: true
-df_linelist %>% 
+df_linelist |> 
   # Get the name of the day for several date variables, to understand a bit better
   mutate(
     day_outcome = wday(date_outcome, 
@@ -236,13 +236,13 @@ df_linelist %>%
                        abbr = FALSE),
     they_are_mondays   = wday(week_outcome_monday, 
                            label = TRUE, 
-                           abbr = FALSE)) %>% 
-  arrange(date_outcome) %>%     # Sort the data by date
+                           abbr = FALSE)) |> 
+  arrange(date_outcome) |>     # Sort the data by date
   select(date_outcome,
          day_outcome,
          week_outcome_number,
          week_outcome_monday,
-         they_are_mondays) %>% 
+         they_are_mondays) |> 
   head(n = 10)
 ```
 
@@ -270,8 +270,8 @@ Here are the first ten lines of what it should look like:
 #| eval: true
 #| echo: false
 
-df_linelist %>% 
-  count(week_onset_monday) %>% 
+df_linelist |> 
+  count(week_onset_monday) |> 
   head(10)
 ```
 :::
@@ -292,8 +292,8 @@ It should look like that:
 #| eval: true
 #| echo: false
 
-df_linelist %>% 
-  count(week_onset_monday) %>% 
+df_linelist |> 
+  count(week_onset_monday) |> 
   ggplot(aes(x = week_onset_monday,
              y = n)) +
   geom_col(fill = "#2E4573") +
@@ -325,8 +325,8 @@ The `scale_x_date()` function has a `date_breaks` argument that accepts the inte
 ```{r}
 #| eval: true
 
-df_linelist %>% 
-  count(week_outcome_monday) %>% 
+df_linelist |> 
+  count(week_outcome_monday) |> 
   ggplot(aes(x = week_outcome_monday,
              y = n)) +
   geom_col(fill = "#2E4573") +
@@ -357,8 +357,8 @@ The `scale_x_date()` function has a `label` argument, that accepts several entri
 ```{r}
 #| eval: true
 
-df_linelist %>% 
-  count(week_outcome_monday) %>% 
+df_linelist |> 
+  count(week_outcome_monday) |> 
   ggplot(aes(x = week_outcome_monday,
              y = n)) +
   geom_col(fill = "#2E4573") +
@@ -422,8 +422,8 @@ Back to the graph! The `scale_x_date()` function has an argument `date_labels` t
 ```{r}
 #| eval: true
 
-df_linelist %>% 
-  count(week_outcome_monday) %>% 
+df_linelist |> 
+  count(week_outcome_monday) |> 
   ggplot(aes(x = week_outcome_monday,
              y = n)) +
   geom_col(fill = "#2E4573") +
@@ -445,8 +445,8 @@ Modify the code of your graph to have labels look like this:
 #| eval: true
 #| echo: false
 
-df_linelist %>% 
-  count(week_onset_monday) %>% 
+df_linelist |> 
+  count(week_onset_monday) |> 
   ggplot(aes(x = week_onset_monday,
              y = n)) +
   geom_col(fill = "#2E4573") +
