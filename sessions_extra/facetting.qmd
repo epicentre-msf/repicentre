@@ -255,7 +255,7 @@ Your turn! Draw you graph with age group as facets with a free y axis, and a fix
 
 Very well done team! You have learned how to facet plots! This will work not only on bar plots such as epicurves, but also on other types of plots made by `{ggplot2}`.
 
-Depending on the size of your graph, the date labels on the x-axis may be a bit messed up, the ones in my exemples definitly are. Fear not, this can be controlled and is the object of another [satellite](../session_extra/epicurves_dates.qmd)!
+Depending on the size of your graph, the date labels on the x-axis may be a bit messed up, the ones in my examples definitely are. Fear not, this can be controlled and is the object of another [satellite](../session_extra/weekly_epicurves.qmd)!
 
 ```{r}
 #| echo: false
