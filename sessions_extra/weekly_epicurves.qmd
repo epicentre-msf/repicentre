@@ -29,24 +29,24 @@ df_linelist <- rio::import(here::here("data", "clean",
                                       "moissala_linelist_clean_EN.rds")) %>% 
   mutate(
     
-    # Week number (ISO)
-    week_onset = isoweek(date_onset),         # Their code
-    week_outcome   = isoweek(date_outcome),   # Examples
+    # Week ISO numbers
+    week_onset_number   = isoweek(date_onset),     # Their code
+    week_outcome_number = isoweek(date_outcome),   # Examples
     
     # First DATE of the week
-    week_first_day_onset = floor_date(date_onset,       # Their code
-                                    unit = "week",
-                                    week_start = 1),
+    week_onset_monday = floor_date(date_onset,       # Their code
+                                   unit = "week",
+                                   week_start = 1),
     
-    week_first_day_outcome = floor_date(date_outcome,    # Examples
-                                        unit = "week",
-                                        week_start = 1)
+    week_outcome_monday = floor_date(date_outcome,    # Examples
+                                     unit = "week",
+                                     week_start = 1)
   )
 
 # Data for our examples
-df_outcome <- df_linelist %>%
-  count(week_outcome, name = 'patients') %>% 
-  tidyr::drop_na(week_outcome)
+# df_outcome <- df_linelist %>%
+#   count(week_outcome_number, name = 'patients') %>% 
+#   tidyr::drop_na(week_outcome_number)
 ```
 
 
@@ -71,11 +71,10 @@ df_linelist %>%
   theme_classic(base_size = 18) 
 ```
 
-This graph is aggregated by day, which can be a reasonable level of aggregation if the outbreak is short or if you wish to zoom on a short period. As epidemiologists we however often want to plot data **by week**.
+This graph is aggregated **by day**, which is a reasonable level of aggregation if the outbreak is short or if you wish to zoom on a short period. As epidemiologists we however often want to plot data **by week**.
 
-In this tutorial we will learn two ways of aggregating data by week, plot the data and **tweak the date labels**.
+In this tutorial we will learn two ways of aggregating data by week, plot the data and tweak the date labels.
 
-We will plot the epicurve for outcomes in the *examples* and *you* will code the classic epicurve for date of onset in the exercises.
 
 
 ## Setup
@@ -85,7 +84,7 @@ We will build on code from the [epicurve session](../sessions_core/07_epicurves.
 ::: {.setup}
 Create a new script for this tutorial or open the script from the epicurve lesson.
 
-
+<br>
 Make sure the following packages are installed and loaded:
 
 - `{here}` to write robust absolute paths,
@@ -95,9 +94,10 @@ Make sure the following packages are installed and loaded:
 - `{lubridate}` to manage dates and times
 - `{scales} ` to create prettier labels
 
-If it is not already done, import the clean data (`moissala_linelist_clean_EN.rds`) into a `df_linelist` data frame and create a new section in your script called `# PREPARE DATA`.
+If it is not already done, import the clean data (`moissala_linelist_clean_EN.rds`) into a `df_linelist` data frame and create a new section in your script called `PREPARE DATA`.
 :::
 
+As we did in the core session, the examples in this lesson will be shown for outcomes and *you* will code the classic epicurve for date of onset in the exercises.
 
 ::: {.callout-important}
 To avoid the warnings all along the session, we removed the missing values from the outcome date columns in the examples. When you analyse and plot data, always be aware of how many missing data you have and how a `tidyr::drop_na()` command affects your dataframe.
@@ -105,90 +105,97 @@ To avoid the warnings all along the session, we removed the missing values from 
 
 ## Aggregate Data by Week
 
-There we are going to discuss two ways of aggregating data by weeks. You may be more familiar with the first one (using week _numbers_ to identify weeks), but we are going to focus more on a more robust way (using the _firs day of the week_ to identify weeks).
+We will to discuss two ways of aggregating data by weeks. You may be more familiar with the first one (using week _numbers_ to identify weeks), but we will to focus more heavily on a more robust way (using the _firs day of the week_ to identify weeks).
 
 
 
 ### Using Week Numbers
 
-Probably the most intuitive way of thinking of weekly aggregated data is to think in terms of week numbers, as aggregated data from MoH are often in this format, and you probably created a lot of epicurves with week numbers.
+Probably the most intuitive way of thinking of weekly aggregated data is to think in terms of week *numbers*, as aggregated data from MoH are often in this format, and you probably created a lot of epicurves with week numbers yourselves.
 
-The`isoweek()` from the `{lubridate}` take a date (or a vector of dates) and returns the associated [ISO week]{.hovertip bs-toggle='tooltip' bs-title="ISO weeks offer an internationally standardized approach to dates that avoid differences between countries on when a week starts and how to define the first week of the year. ISO weeks begin on Monday. If you are working with the US CDC, you may use the sister function epiweek() that starts on Sunday."}
+The`isoweek()` from the `{lubridate}` packages takes a date (or a vector of dates) and returns the associated [ISO week]{.hovertip bs-toggle='tooltip' bs-title="ISO weeks offer an internationally standardized approach to dates that avoid differences between countries on when a week starts and how to define the first week of the year. ISO weeks begin on Monday. If you are working with the US CDC, you may use the sister function epiweek() that starts on Sunday."}
 
 ```{r}
 #| eval: true
-example_date <- '24-02-2025'
+example_date <- as.Date('2025-02-24')
 
 example_date
 
 isoweek(example_date)
 ```
 
-We can use this function to create a `week_outcome` in our data frame:
+We can use this function to create a `week_outcome_number` in our data frame:
 
 ```{r}
 df_linelist <- df_linelist %>% 
-  mutate(week_outcome   = isoweek(date_outcome))
+  mutate(week_outcome_number = isoweek(date_outcome))
 ```
 
-The head of the `date_outcome` and `week_outcome` columns looks like this:
+The head of the `date_outcome` and `week_outcome_number` columns looks like this:
 
 ```{r}
+#| echo: false
+#| eval: true
+
 df_linelist %>% 
   tidyr::drop_na(date_outcome) %>% 
-  select(date_outcome, week_outcome) %>% 
+  select(date_outcome, week_outcome_number) %>% 
   head()
 ```
 
 
 ::: {.write}
-Your turn. After importing data, use the `mutate()` and `isoweek()` functions to create a new column in your dataframe called `week_onset` that contains the ISO week associated with every *onset date*. The head of `date_onset` and `week_onset` columns should look like this:
+Your turn. After importing data, use the `mutate()` and `isoweek()` functions to create a new column in your dataframe called `week_onset_number` that contains the ISO week associated with every *onset date*. The head of `date_onset` and `week_onset_number` columns should look like this:
 
 ```{r}
 #| echo: false
 #| eval: true
 df_linelist %>%
-  select(date_onset, week_onset) %>%
+  select(date_onset, week_onset_number) %>%
   head()
 ```
 :::
 
 Now, you could use this column to aggregate data by week using `count()` and then plot the weekly aggregated data using `{ggplot2}` with a code very similar to what we saw in the [core epicurve session](../sessions_core/07_epicurves.qmd).
 
-There is a problem, though. With `isoweek()` there is a first week in 2022, but also in 2023, 2024 and so on. With a short outbreak that would be only in 2022, this would be fine. However, our data frame gathers data at the whole region scale, and the dates range from 2022 to 2023. So if we were to just count the number of patients by week number, the data would be wrong:
+There is a problem, though. With `isoweek()` there is a first week in 2022, but also in 2023, 2024 and so on. With a short outbreak that would be only in 2022, this would be fine. However, our data frame gathers data at the whole region scale, and the dates range from 2022 to 2023. So if we were to just count the number of patients by week number, this table would be wrong:
 
 ```{r}
+#| eval: true
+
 # WRONG
-df_linelist %>% count(week_onset)
+df_linelist %>% count(week_onset_number) %>% 
+  head(10)
 ```
 
 Instead, we could count by week stratified by [years]{.hovertip bs-toggle='tooltip' bs-title='Note the use of the isoyear() function from the {lubridate} package. It is a sister function of isoweek() and it does exactly what you expect: return the year of a date according to the ISO week convention'}:
 
 ```{r}
+#| eval: true
+
 df_linelist %>% 
   mutate(year_onset = isoyear(date_onset)) %>% 
-  count(year_onset, week_onset)
+  count(year_onset, week_onset_number) %>% 
+  head(10)
 ```
 
-These counts are perfectly correct. You could plot them using [faceting](../session_extra/faceting.qmd) by year, or just filter a given year and plot the weekly numbers with the ISO week number on the x-axis. For example:
+These counts are perfectly correct. You *could* plot them using [facetting](../session_extra/facetting.qmd) by year, or just filter a given year and plot the weekly numbers with the ISO week number on the x-axis. For example:
 
 ```{r}
 #| eval: true
 
 df_linelist %>% 
-   mutate(year_onset = isoyear(date_onset)) %>% 
-  count(year_onset, week_onset) %>% 
-  ggplot(aes(x = week_onset,
+  mutate(year_onset = isoyear(date_onset)) %>% 
+  count(year_onset, week_onset_number) %>% 
+  ggplot(aes(x = week_onset_number,
              y = n)) +
   geom_col(fill = "#2E4573") +
-  theme_classic() +
-  facet_wrap(vars(year_onset),
+  theme_classic(base_size = 16) +
+  facet_wrap(vars(year_onset),  # Magic to make subplots very easily
              ncol = 1)
 ```
 
-If you have not read about faceting yet, do no worry, think of this as a teaser of how easily you can make subplots by a variable!
-
-But this is out of the scope of this tutorial. Instead, we will show you another way of aggregating data by week which is robust to multi-year data in the next section.
+If you have not read about facetting yet, do no worry, think of this plot as a teaser of how easily you can make subplots by a variable! But this is out of the scope of this tutorial. Instead, we will show you another way of aggregating data by week which is robust to multi-year data.
 
 
 ### Using the First Day of the Week
@@ -200,9 +207,9 @@ The function has a `unit` argument that allows you to choose the period of inter
 ```{r}
 df_linelist <- df_linelist %>% 
   mutate(
-    week_first_day_outcome = floor_date(date_outcome,
-                                        unit = "week",
-                                        week_start = 1)
+    week_outcome_monday = floor_date(date_outcome,
+                                     unit = "week",
+                                     week_start = 1)
   )
 ```
 
@@ -212,12 +219,12 @@ Let's look at all these different time variables to figure out what's happening:
 #| eval: true
 
 df_linelist %>% 
-  select(id, date_outcome, week_outcome, week_first_day_outcome) %>%
+  select(id, date_outcome, week_outcome_number, week_outcome_monday) %>%
   arrange(date_outcome) %>%     # Sort the data by date
   head(n = 10)
 ```
 
-It might be easier to visualise if we calculate the day of the week associated with each date using the function `wday()` (which *also* belong to the `{lubridate}` package, are you maybe seeing a pattern here 😉):  
+It might be easier to visualize if we calculate the day of the week associated with each date using the function `wday()` (which *also* belong to the `{lubridate}` package, are you maybe seeing a pattern here 😉):  
 
 ```{r}
 #| eval: true
@@ -227,22 +234,22 @@ df_linelist %>%
     day_outcome = wday(date_outcome, 
                        label = TRUE, 
                        abbr = FALSE),
-    day_first_day   = wday(week_first_day_outcome, 
-                       label = TRUE, 
-                       abbr = FALSE)) %>% 
+    they_are_mondays   = wday(week_outcome_monday, 
+                           label = TRUE, 
+                           abbr = FALSE)) %>% 
   arrange(date_outcome) %>%     # Sort the data by date
   select(date_outcome,
          day_outcome,
-         week_outcome,
-         week_first_day_outcome,
-         day_first_day) %>% 
+         week_outcome_number,
+         week_outcome_monday,
+         they_are_mondays) %>% 
   head(n = 10)
 ```
 
-This illustrates how `week_outcome` and `week_first_day_outcome` are two ways to have only one value representing a week. While week numbers are not unique as discussed before, dates are!
+This illustrates how `week_outcome_number` and `week_outcome_monday` are two ways to have only one value representing a week. While week numbers are not unique as discussed before, dates are!
 
 ::: {.write}
-Add a new command to your `mutate()` call and create the variable `week_first_day_onsetet` that contains the first day of the week for patient date of oncet. Choose your argument as if the first day of the week is a Monday.
+Add a new command to your `mutate()` call and create the variable `week_onset_monday` that contains the first day of the week for patient date of onset. Choose your argument as if the first day of the week is a Monday.
 :::
 
 ::: {.callout-tip}
@@ -255,7 +262,7 @@ Go read the [help page](https://lubridate.tidyverse.org/reference/round_date.htm
 Now that we have variables that represent week, it's time to do the actual aggregation, ie count things!
 
 ::: {.write}
-Count the number of patients per week of of onset, using the week start (`week_first_day_onsetet`).
+Count the number of patients per week of of onset, using the week start (`week_onset_monday`).
 
 Here are the first ten lines of what it should look like:
 
@@ -264,7 +271,7 @@ Here are the first ten lines of what it should look like:
 #| echo: false
 
 df_linelist %>% 
-  count(week_first_day_onset) %>% 
+  count(week_onset_monday) %>% 
   head(10)
 ```
 :::
@@ -284,10 +291,10 @@ It should look like that:
 ```{r}
 #| eval: true
 #| echo: false
- 
+
 df_linelist %>% 
-  count(week_first_day_onset) %>% 
-  ggplot(aes(x = week_first_day_onset,
+  count(week_onset_monday) %>% 
+  ggplot(aes(x = week_onset_monday,
              y = n)) +
   geom_col(fill = "#2E4573") +
   labs(x ="Date of onset",
@@ -319,15 +326,15 @@ The `scale_x_date()` function has a `date_breaks` argument that accepts the inte
 #| eval: true
 
 df_linelist %>% 
-  count(week_first_day_outcome) %>% 
-  ggplot(aes(x = week_first_day_outcome,
+  count(week_outcome_monday) %>% 
+  ggplot(aes(x = week_outcome_monday,
              y = n)) +
   geom_col(fill = "#2E4573") +
   labs(x = "Date of outcome",
        y = "Measles cases",
        title = "Measles outcomes in Mandoul region (Chad)") +
-  scale_x_date(date_breaks = "2 months") +  # Define breaks
-  theme_classic()
+  scale_x_date(date_breaks = "4 months") +  # Define breaks
+  theme_classic(base_size = 16)
 ```
 
 
@@ -351,8 +358,8 @@ The `scale_x_date()` function has a `label` argument, that accepts several entri
 #| eval: true
 
 df_linelist %>% 
-  count(week_first_day_outcome) %>% 
-  ggplot(aes(x = week_first_day_outcome,
+  count(week_outcome_monday) %>% 
+  ggplot(aes(x = week_outcome_monday,
              y = n)) +
   geom_col(fill = "#2E4573") +
   labs(x = "Date of outcome",
@@ -416,8 +423,8 @@ Back to the graph! The `scale_x_date()` function has an argument `date_labels` t
 #| eval: true
 
 df_linelist %>% 
-  count(week_first_day_outcome) %>% 
-  ggplot(aes(x = week_first_day_outcome,
+  count(week_outcome_monday) %>% 
+  ggplot(aes(x = week_outcome_monday,
              y = n)) +
   geom_col(fill = "#2E4573") +
   labs(x = "Date of outcome",
@@ -439,8 +446,8 @@ Modify the code of your graph to have labels look like this:
 #| echo: false
 
 df_linelist %>% 
-  count(week_first_day_onset) %>% 
-  ggplot(aes(x = week_first_day_onset,
+  count(week_onset_monday) %>% 
+  ggplot(aes(x = week_onset_monday,
              y = n)) +
   geom_col(fill = "#2E4573") +
   labs(x ="Date of onset",
