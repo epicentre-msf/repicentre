@@ -27,20 +27,14 @@ head(df_linelist)
 View(df_linelist)
 
 
-## Prepare Data ---------------------------------------------
+## Prepare Data --------------------------------------------
 
-# Prepare an aggregated dataset
-
+# Prepare an aggregated dataset: count patients par date (of onset)
 df_age <- df_linelist %>% 
-
-  # Remove the NA values for admission week (avoid warning messages when ploting)
-  tidyr::drop_na(date_onset) %>% 
-  
-  # Count the nomber of patients by week and age group
   count(date_onset, age_group)
 
 
-# Plot Data -------------------------------------------
+# Plot Data ------------------------------------------------
 
 # Basic plot
 df_age %>%
@@ -71,7 +65,7 @@ df_age %>%
              scales = "free_y")  # Controle the range on y axis
 
 
-# Extra exercice
+# Challenge
 
 # Aggregate by weeks only to plot the grey bars, which are the
 # same for all subplots
@@ -80,20 +74,19 @@ df_cases <- df_linelist %>%
   tidyr::drop_na(date_onset)
 
 
-ggplot(
-  # dataframe used for the subplots  (aggregated by week and age)
-  data = df_age,     
-  aes(x = date_onset,
-      y = n)) +
+ggplot() + # Initialise graph
   
-  
-  # Plot the gray bars: do not use the df_age dataframe, force another one
+  # Plot the gray bars
   geom_col(data = df_cases,    # dataset for just this layer
-           fill = "grey80") +
+    aes(x = date_onset,
+        y = n),
+    fill = "grey80") +
   
   # Plot the blue bars over the grey ones
-  geom_col(fill = "#2E4573") +  # uses df_age, inherited by the mail ggplot command
-  
+  geom_col(data = df_age,   
+    aes(x = date_onset,
+        y = n),
+    fill = "#2E4573") +
   
   labs(x = 'Date of onset',
        y = 'Measles Cases',
