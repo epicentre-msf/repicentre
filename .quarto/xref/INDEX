@@ -68,22 +68,19 @@
   "sessions_core/05_summaries.qmd": {
     "05_summaries.html": "ae1c5d29"
   },
-  "sessions_extra/data_exploration_satellite.qmd": {
-    "data_exploration_satellite.html": "922efb79"
-  },
   "sessions_core/05_summary-table.qmd": {
-    "05_summary-table.html": "c6c57a89"
-  },
-  "sessions_core/02_import_data.fr.qmd": {
-    "02_import_data.fr.html": "a6e105c7"
-  },
-  "sessions_extra/data-exploration/data_exploration_satellite.qmd": {
-    "data_exploration_satellite.html": "bc0d6652"
+    "05_summary-table.html": "ab52ef9d"
   },
   "sessions_core/01_introduction.fr.qmd": {
-    "01_introduction.fr.html": "dbbe6c71"
+    "01_introduction.fr.html": "b5897765"
+  },
+  "sessions_core/02_import_data.fr.qmd": {
+    "02_import_data.fr.html": "d5aff4de"
+  },
+  "sessions_core/03_data-verbs.qmd": {
+    "03_data-verbs.html": "4811ee8c"
   },
   "sessions_core/03_data_verbs.qmd": {
-    "03_data_verbs.html": "593d74a0"
+    "03_data_verbs.html": "65388623"
   }
 }

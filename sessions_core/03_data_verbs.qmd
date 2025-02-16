@@ -2,7 +2,7 @@
 title: Basic Data Manipulation
 description: An introduction to data manipulation and cleaning using `{dplyr}`
 date: last-modified
-image: ../img/under_construction.svg
+image: ../img/core/03_manipulation_basic/logo.svg
 categories:
   - Core
   - Data Manipulation
