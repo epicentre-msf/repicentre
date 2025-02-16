@@ -68,7 +68,6 @@ library(here)
 library(rio)
 library(dplyr)
 
-# REMOVE when data are updated 
 df_linelist <- import(here::here("data", "raw", "moissala_linelist_EN.xlsx"))
 
 ```
