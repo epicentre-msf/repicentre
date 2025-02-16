@@ -82,5 +82,11 @@
   },
   "sessions_core/03_data_verbs.qmd": {
     "03_data_verbs.html": "65388623"
+  },
+  "sessions_extra/data-exploration/data_exploration_satellite.qmd": {
+    "data_exploration_satellite.html": "8d28c1ef"
+  },
+  "sessions_extra/data_exploration_satellite.qmd": {
+    "data_exploration_satellite.html": "02cdf728"
   }
 }

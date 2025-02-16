@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-02-12">
+<meta name="dcterms.date" content="2025-02-16">
 <meta name="description" content="Explore your data after importation">
 
-<title>Data exploration – {repicentre}</title>
+<title>Data Exploration – {repicentre}</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -104,12 +104,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script async="" src="https://hypothes.is/embed.js"></script>
-<script>
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    document.body.classList.add('hypothesis-enabled');
-  });
-</script>
 <script src="../../site_libs/font-awesome-6.5.2/js/script.js"></script>
 <script type="text/javascript" src="../script.js"></script>
 
@@ -169,16 +163,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
   <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
-  <li><a href="#data-exploration---the-concept" id="toc-data-exploration---the-concept" class="nav-link" data-scroll-target="#data-exploration---the-concept">Data exploration - the concept</a></li>
-  <li><a href="#basic-exploration" id="toc-basic-exploration" class="nav-link" data-scroll-target="#basic-exploration">Basic exploration</a></li>
-  <li><a href="#variable-names" id="toc-variable-names" class="nav-link" data-scroll-target="#variable-names">Variable names</a></li>
-  <li><a href="#visualise-the-data" id="toc-visualise-the-data" class="nav-link" data-scroll-target="#visualise-the-data">Visualise the data</a></li>
-  <li><a href="#variable-class" id="toc-variable-class" class="nav-link" data-scroll-target="#variable-class">Variable class</a></li>
-  <li><a href="#explore-continuous-variables" id="toc-explore-continuous-variables" class="nav-link" data-scroll-target="#explore-continuous-variables">Explore continuous variables</a></li>
-  <li><a href="#explore-categorical-variables" id="toc-explore-categorical-variables" class="nav-link" data-scroll-target="#explore-categorical-variables">Explore categorical variables</a>
-  <ul class="collapse">
+  <li><a href="#data-exploration" id="toc-data-exploration" class="nav-link" data-scroll-target="#data-exploration">Data Exploration</a></li>
+  <li><a href="#basic-exploration" id="toc-basic-exploration" class="nav-link" data-scroll-target="#basic-exploration">Basic Exploration</a></li>
+  <li><a href="#variable-names" id="toc-variable-names" class="nav-link" data-scroll-target="#variable-names">Variable Names</a></li>
+  <li><a href="#inspecting-your-data" id="toc-inspecting-your-data" class="nav-link" data-scroll-target="#inspecting-your-data">Inspecting Your Data</a></li>
+  <li><a href="#variable-classes" id="toc-variable-classes" class="nav-link" data-scroll-target="#variable-classes">Variable Classes</a></li>
+  <li><a href="#exploring-continuous-variables" id="toc-exploring-continuous-variables" class="nav-link" data-scroll-target="#exploring-continuous-variables">Exploring Continuous Variables</a></li>
+  <li><a href="#exploring-categorical-variables" id="toc-exploring-categorical-variables" class="nav-link" data-scroll-target="#exploring-categorical-variables">Exploring Categorical Variables</a></li>
   <li><a href="#done" id="toc-done" class="nav-link" data-scroll-target="#done">Done!</a></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
@@ -187,10 +179,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Data exploration</h1>
+<h1 class="title">Data Exploration</h1>
   <div class="quarto-categories">
     <div class="quarto-category">Satellite</div>
-    <div class="quarto-category">Data exploration</div>
+    <div class="quarto-category">Data Exploration</div>
   </div>
   </div>
 
@@ -207,7 +199,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 12, 2025</p>
+      <p class="date">February 16, 2025</p>
     </div>
   </div>
   
@@ -235,14 +227,14 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>This extra session assumes that you have been <a href="01_introduction.html">introduced to R and R studio</a>, and <a href="02_import_data.html">data importation</a>. Please go over these sessions first if that is not the case.</p>
+<p><strong>Dependencies.</strong> This extra session assumes that you have completed the sessions <a href="01_introduction.html">introduction to R and R studio</a>, and <a href="02_import_data.html">data importation</a>.</p>
 </div>
 </div>
 </section>
 <section id="setup" class="level2">
 <h2 class="anchored" data-anchor-id="setup">Setup</h2>
 <div class="setup">
-<p>For this session we will work with our raw moissala measles linelist which can be downloaded here:</p>
+<p>For this session we will work with our raw Moissala measles linelist which can be downloaded here:</p>
 <div class="cell">
 <div class="cell-output-display">
 <a href="https://github.com/epicentre-msf/repicentre/data/raw/moissala_linelist_EN.xlsx">
@@ -253,35 +245,35 @@ Important
 <p>Make sure it is appropriately stored in <code>data/raw</code> of your project. Then open a new script called <code>data-exploration.R</code>, and make sure packages <code>{here}</code>, <code>{rio}</code> and <code>{dplyr}</code> are loaded. Finally, import the data into R as an object called <code>df_linelist</code>.</p>
 </div>
 </section>
-<section id="data-exploration---the-concept" class="level2">
-<h2 class="anchored" data-anchor-id="data-exploration---the-concept">Data exploration - the concept</h2>
-<p>Right after importing some data into R, it is good practice to perform some have a look at them. When talking of <em>data exploration</em> we usually try to answer a few questions about the data:</p>
+<section id="data-exploration" class="level2">
+<h2 class="anchored" data-anchor-id="data-exploration">Data Exploration</h2>
+<p>Right after importing some data into R, we might want to take a look at it. When talking of <strong>data exploration</strong> we usually want to do a few things:</p>
 <ul>
-<li>What are the dimensions of the data (ie: how many rows and how many columns ?)</li>
-<li>What are the columns names ?</li>
+<li>Examine dimensions of the data (ie: how many rows and how many columns)</li>
+<li>Look at columns names</li>
 <li>Visualise the first or last few rows</li>
-<li>Understand the class of the variables</li>
-<li>Understand the range of values in continuous variables</li>
-<li>Understand the possible values in each categorical variables.</li>
+<li>Determine the class of the variables</li>
+<li>Determine the range of values in continuous variables</li>
+<li>Observe the possible values in each categorical variable</li>
 </ul>
-<p>This process is crucial and will allow us to familiarise with our data and identify issues that will be adressed during the data cleaning step.</p>
+<p>This process is crucial and will allow us to familiarize ourselves with our data and identify issues that will be adressed during the data cleaning step.</p>
 </section>
-<section id="basic-exploration" class="level1">
-<h1>Basic exploration</h1>
-<p>The very first thing you want to know about your data is the <em>dimensions</em>, which refers to the <strong>number of rows</strong> and <strong>number of columns</strong> that make up your data. There are several ways to get this information in R:</p>
+<section id="basic-exploration" class="level2">
+<h2 class="anchored" data-anchor-id="basic-exploration">Basic Exploration</h2>
+<p>The very first thing you want to know about your data is the <strong>dimensions</strong>, which refers to the <strong>number of rows</strong> and <strong>number of columns</strong> that make up your data. There are several ways to get this information in R:</p>
 <ol type="1">
-<li>Look at your <em>environment pane</em> in R studio and check for your data - the number next to it (<code>5230x25</code>) tells us its a dataframe with <code>5230</code> rows and <code>25</code> columns !</li>
-<li>Use <code>dim()</code> on your data to return a vector with both i) row numbers and ii) columns numbers</li>
-<li>Alternatively, use <code>ncol()</code> to get the number of columns and <code>nrow()</code> for the number of rows.</li>
+<li>Look at your <em>environment pane</em> in RStudio and check for your data - the number next to it (<code>5230x25</code>) tells us it is a dataframe with <code>5230</code> rows and <code>25</code> columns.</li>
+<li>Use <code>dim()</code> on your data to return a vector with both the number of rows and number of columns</li>
+<li>Alternatively, use <code>ncol()</code> to get the number of columns and <code>nrow()</code> for the number of rows</li>
 </ol>
-<p>It’s good practice to remember these numbers so you can quickly spot if there are unexpected changes to your data during your analysis (more/less rows or columns than expected).</p>
+<p>It’s good to remember these numbers so you can quickly spot if there are unexpected changes to your data during your analysis (ie: more/fewer rows or columns than expected).</p>
 <div class="write">
 <p>Using the method of your choice, get the dimensions of your dataframe <code>df_linelist</code>.</p>
 </div>
 </section>
-<section id="variable-names" class="level1">
-<h1>Variable names</h1>
-<p>Because we are going to use the variable names very often during our analysis, we want to get familiar with them pretty early on. Also, we need to identify the ones that will need to be renamed during our data cleaning. The function <code>names()</code> returns a vector of our all the variable names in our dataframe:</p>
+<section id="variable-names" class="level2">
+<h2 class="anchored" data-anchor-id="variable-names">Variable Names</h2>
+<p>Because we are going to use the variable names very often during our analysis, we want to get familiar with them pretty early on. Also, we need to identify the ones that will need to be renamed during our data cleaning. The function <code>names()</code> returns a vector of all the variable names in our dataframe:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(df_linelist)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -297,18 +289,18 @@ Important
 </div>
 </div>
 <div class="look">
-<p>Are these names clear for you ? Can you already spot some variables names you would like to rename ?</p>
+<p>What do you think of the names in your dataset? Can you already spot some variables names you would like to rename?</p>
 </div>
 </section>
-<section id="visualise-the-data" class="level1">
-<h1>Visualise the data</h1>
-<p>It is also good practice to directly visualise your data, it may be easier for you to spot some inconsistencies, variables with a lot of missing values, or it will allow you to see what values to expect in each of them. You can <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Print is a programming word that means displaying output in your console.">print</span> your data in the console by:</p>
+<section id="inspecting-your-data" class="level2">
+<h2 class="anchored" data-anchor-id="inspecting-your-data">Inspecting Your Data</h2>
+<p>It is also nice to inspect your data, it may be easier for you to spot some inconsistencies, variables with a lot of missing values, and it will allow you to see what values to expect in each of them. You can <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Print is a programming word that means displaying output in your console.">print</span> your data in the console by:</p>
 <ol type="1">
-<li>running the <code>df_linelist</code> object alone</li>
-<li>Use the <code>head()</code> function to see the top 6 rows (you can increase this number using the argument <code>n =</code>)</li>
-<li>Alternatively, use the <code>tail()</code> function to see the last 6 rows (you can increase this number using the argument <code>n =</code>)</li>
+<li>Running the <code>df_linelist</code> object alone (careful though, you may not want to do this if you have a large dataset)</li>
+<li>Use the <code>head()</code> function to see the top 6 rows (you can increase this number using the argument <code>n</code>)</li>
+<li>Use the <code>tail()</code> function to see the last 6 rows (again, you can increase this number using the argument <code>n</code>)</li>
 </ol>
-<p>These methods will only print the first 40 rows of your data because that’s the limit of your console. Alternatively, you can use <code>View()</code> to see your data in a tabular form. This will open a new data with your data displayed like in an excel spreadsheet - <strong>Importantly</strong>, you can only display the data here and not modify any of them.</p>
+<p>These methods will only print the first 40 rows of your data at most because that’s the limit of your console. Alternatively, you can use <code>View()</code> to see your data in a tabular form. This will open a new window with your data displayed like like an Excel spreadsheet. <strong>Note</strong>, this command only displays the data, it doesn’t allow you to modify it.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -319,23 +311,23 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Be very careful with <code>View()</code> on large dataset as this may crash your R studio session - the best practice is to print the output in the console.</p>
+<p>Be very careful with <code>View()</code> on large dataset as this may crash your RStudio session. To avoid this, you can print the output in the console.</p>
 </div>
 </div>
 <div class="write">
-<p>Can you display the first 15 rows of your data ? What happen when you change the width of your console pane and run the command again ?</p>
+<p>Can you display the first 15 rows of your data? What happen when you change the width of your console pane and run the command again?</p>
 </div>
 </section>
-<section id="variable-class" class="level1">
-<h1>Variable class</h1>
-<p>We now want to check the class of my different variables. This is important as part of the data cleaning involves making sure that numerical variables are class <code>numeric</code>, dates <code>Date</code>, and categorical variables are <code>factor</code> or <code>character</code>. You have already seen the <code>class()</code> function, to check the class of a vector. Turns out that in R, each variable of a dataframe is itself a vector ! We can extract all the values of that vector using the <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="This is called base R indexing"><code>$</code> sign</span>, and pass it to the class function:</p>
+<section id="variable-classes" class="level2">
+<h2 class="anchored" data-anchor-id="variable-classes">Variable Classes</h2>
+<p>We now want to check the class of the different variables. This is important as part of data cleaning involves making sure that numerical variables are class <code>numeric</code>, dates <code>Date</code>, and categorical variables are <code>factor</code> or <code>character</code>. You have already seen the <code>class()</code> function, to check the class of a vector. In R, each variable of a dataframe is a vector. We can extract all the values of that vector using the <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="This is called base R indexing"><code>$</code> sign</span>, and pass it to the class function:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(df_linelist<span class="sc">$</span>age)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="write">
-<p>Try extracting all the values from the <code>sex</code> variable - what is the class of that variable ?</p>
+<p>Try extracting all the values from the <code>sex</code> variable. What is the class of this variable?</p>
 </div>
-<p>Now you can also use <code>str()</code> on your dataframe to check all the variables class at once:</p>
+<p>You can also use <code>str()</code> on your dataframe to check all the variables class at once:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df_linelist)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -343,8 +335,8 @@ Tip
 <p>Use <code>str()</code> to check the data type of each column. Does anything look odd? Remember that you can also use functions like <code>is.character()</code> and <code>is.numeric()</code> if you’d like to test the type of a particular column.</p>
 </div>
 </section>
-<section id="explore-continuous-variables" class="level1">
-<h1>Explore continuous variables</h1>
+<section id="exploring-continuous-variables" class="level2">
+<h2 class="anchored" data-anchor-id="exploring-continuous-variables">Exploring Continuous Variables</h2>
 <p>Now that you know how to extract the values from a variable, you may want to explore some of these values from the <code>numeric</code> variables to check for inconsistencies. Let’s look for some summary statistics for these, and Base R provides many handy functions:</p>
 <table class="caption-top table">
 <colgroup>
@@ -444,28 +436,29 @@ Tip
 <li>The minimum value of <code>age</code></li>
 <li>The maximum of <code>muac</code></li>
 </ul>
-<p><em>Any problems ?</em></p>
+<p><em>Any problems?</em></p>
 </div>
 </section>
-<section id="explore-categorical-variables" class="level1">
-<h1>Explore categorical variables</h1>
-<p>Finally, let’s try to understand what are the possible values in our categorical variables. For this we can use frequency tables. This is handy as:</p>
+<section id="exploring-categorical-variables" class="level2">
+<h2 class="anchored" data-anchor-id="exploring-categorical-variables">Exploring Categorical Variables</h2>
+<p>Finally, let’s look at the values in our categorical variables. For this we can use frequency tables. This is handy as:</p>
 <ol type="1">
 <li>It allows us to quickly see the unique values in a categorical variable</li>
 <li>The number of observations for each of those categories</li>
 </ol>
-<p>This is done using <code>count()</code> from <code>{dplyr}</code>, which accepts the a dataframe and a name of a column as arguments and will then count the <strong>number of observations</strong> of each unique element in that column. For example, let’s see what are the possible values of the variable <code>sex</code>:</p>
+<p>This is done using the function <code>count()</code> from the <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="We will learn more about this package in the next session.">package <code>{dplyr}</code></span>, which accepts the a dataframe and the name of one (or more!) column(s) as arguments. It will then count the <strong>number of observations</strong> of each unique element in that column. For example, let’s see the possible values of the variable <code>sex</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(df_linelist, sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The output is a new, smaller dataframe containing the number of patients observed stratified by <code>sex</code>. It seems like this variable requires some recoding.</p>
+<p>The output is a new, smaller dataframe containing the number of patients observed stratified by <code>sex</code>. It seems like this variable requires some recoding… We will do that in a later session.</p>
 <div class="write">
-<p>Using your linelist data, look into the values for the <code>outcome</code> variable - what do you think of it ?</p>
+<p>Using your linelist data, look into the values for the <code>outcome</code> variable. How does it look?</p>
 <p>Now, try adding the argument <code>sort = TRUE</code> to the <code>count()</code> function. What did this argument do?</p>
 </div>
+</section>
 <section id="done" class="level2">
 <h2 class="anchored" data-anchor-id="done">Done!</h2>
-<p>Well done that’s a good start with your data !</p>
+<p>Well done taking a first look at your data!</p>
 <div class="cell">
 <div class="cell-output-display">
 <a href="https://github.com/epicentre-msf/repicentre/blob/main/sessions_extra/data_exploration_solutions.R">
@@ -475,7 +468,6 @@ Tip
 </div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
