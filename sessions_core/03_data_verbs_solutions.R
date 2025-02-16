@@ -11,7 +11,7 @@ library(tidyverse)
 
 
 # IMPORT -------------------------------------------------------------------------------------------
-df_raw <- import(file = here("data", "clean", "moissala_linelist_clean_EN.rds"))
+df_raw <- import(file = here("data", "raw", "moissala_linelist_EN.xlsx"))
 
 
 # BASIC CLEANING PIPE ------------------------------------------------------------------------------
