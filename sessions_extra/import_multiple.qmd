@@ -1,0 +1,297 @@
+---
+title: Import multiple files and sheets
+description: Learn how to import multiple sheets from an Excel file, or several Excel files.
+date: last-modified
+image: ../img/satellite/import_multiple_000_logo.png
+categories:
+  - Satellite
+  - Data Import
+---
+
+```{r setup}
+#| include: false
+#| eval: true
+
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+
+library(rio)    
+library(here)  
+
+path_data_raw <- here("data", "raw", "satellite_multiple")
+
+lab_data_list <- import_list(here(path_data_raw, "multiple_sheets",
+                                   "msf_laboratory_moissala_2023-09-24_first.xlsx")) 
+```
+
+
+## Objectives
+
+- Learn to efficiently import data from several files
+- Learn to efficiently import data from several sheets in the same file
+
+
+## Setup
+
+We expect you to be working in the course project. You can add this tutorial to the `import_data.R` script that you created in the [Import data core session](../sessions_core/02_import_data.qmd), or create a new script. 
+
+
+::: {.setup}
+If you are working in a new script, add metadata about it at the top and load the `{rio}` and `{here}` packages. Then create a `path_data_raw` object that points to the directory `data / raw` of the course folder.
+:::
+
+
+## Introduction
+
+In the [import data](../sessions_core/02_import_data.qmd) core session your learned how to use `{rio}` [package](https://gesistsa.github.io/rio/index.html#supported-file-formats) to import many file formats, and in particular `.xlsx` and `.csv` files, which will probably cover 90% of your needs. In this session we will tackle the very common problem of *scattered data*.
+
+You may have already encountered these situations:
+
+- You have an Excel file with data in several sheets (linelist data, lab data, bed occupancy) and you need to import all datasets in R
+
+- You have several Excel files (linelist data, lab data, bed occupancy) with data to import.
+
+- You have an Excel file with data in several sheets, and all the sheets are formatted the same way, and you wish to gather the data in the same dataset. A prime example of it is linelist or aggregated data where one sheet represent one week, or one district, and there are about 20 sheets...
+
+- You have multiple Excel files, all formatted the same (one linelist per site, for example)
+
+The two first cases can be solved with several calls to the different sheets or files, and storing the data in different data frames. If there are not too many files or sheets, it's fine. The two last cases should however be automatized! 
+
+The following lesson will help with all of them anyway: the `{rio}` package has a `import_list()` function that can import several *items* in one go. These items can be files or sheets depending on what you provide as arguments.
+
+
+## Import Multiple Sheets
+
+The `import_list()` function can import all the sheets from an Excel file^[Or, in fact, all items from a multi-object file such as `.Rdata` or `.zip`] and store them into a list. It avoids you having to write multiple `import()` commands for each file separately.
+
+```{r}
+# PSEUDO CODE -- DO NOT RUN
+
+# returns a list of data frames
+import_list(here(path_data_raw, "example_linelist.xlsx")) 
+```
+
+Now imagine someone gave you lab data with the positive, negative and inconclusive scattered in three different sheets.^[You wonder why they did that but you probably have seen weirder things.] Let's import this data.
+
+::: {.look}
+Go to the sub-folder `data / raw / multiple_sheets`. There are two modified version of the lab data. Open them and look at their structure. Do you see how the second file differs form the first one?
+:::
+
+We will tackle the first file, as it is less messy.
+
+::: {.write}
+Use the `import_list()` function to import all the sheets of `msf_laboratory_moissala_2023-09-24_first.xlsx`in one go, and store it in an object called `lab_data_list`.
+:::
+
+
+The object `lab_data_list` is a **list** that contains several data frames (one data frame per sheet). Maybe you are not sure what to do with it yet. For now, let's just peek at it. You can inspect its structure with well known tools:
+
+```{r}
+#| eval: true
+
+str(lab_data_list)     # Structure of the list
+length(lab_data_list)  # Nb of items in the list
+names(lab_data_list)   # Name of the items of the list
+```
+
+You can also go and click on the list [in the Environment panel](../sessions_core/01_introduction.qmd#sec-envt) to inspect its structure, and open it in the Viewer, as we did for data frames. 
+
+::: {.look}
+The View is a bit different. Click on the buttons you see and see what happens.
+
+**Hint** There are buttons that you can click on both on the left and right of the Viewer pane.
+:::
+
+You can access elements of the list with these commands^[we added the head() function to shorten the output, but you can remove it to print the whole elements.]:
+
+```{r}
+#| eval: true
+
+head(lab_data_list$positive)  # Access by name
+head(lab_data_list[1])        # Access by position the first element of the list
+head(lab_data_list[[1]])      # Access the content of the first element
+```
+
+
+### Bind Into a data frame
+
+If you know that the data in all the sheets have the same structure, you can tell R to bind all of these tables into a single data frame (rowwise) by setting the argument `rbind` to `TRUE`:
+
+```{r}
+# PSEUDO CODE -- DO NOT RUN
+
+# Returns a single data frame:
+import_list(
+  here(path_data_raw, "example_linelist.xlsx"), 
+  rbind = TRUE,                    # Tells R to bind list elements together
+  rbind_label = "Sheet_position"   # Optional: name the column of the source of data
+)
+```
+
+::: {.write}
+Use the `import_list()` function to import all the sheets of `msf_laboratory_moissala_2023-09-24_first.xlsx`in one go, and store it in an object called `lab_data`, which is a *single data frame* containing all the data.
+:::
+``
+
+You may use the `rbind_label = ` argument and provide a string for the column name, or not and see what happens.
+
+
+### Slightly More Messy Sheets
+
+Now, let's focus on the second data frame provided, `msf_laboratory_moissala_2023-09-24_second.xlsx`. By now you should have realized that this data is more messy:
+
+- the `CT value` column exists only in the third sheet
+- the `Laboratory id` is not in the same position in the three sheets
+- The date of the test does not have the same name in all sheets
+
+Let's see how the `import_list()` function behaves in these conditions:
+
+```{r}
+#| eval: true
+lab_data_messy <- import_list(
+  here(path_data_raw, "multiple_sheets",
+       "msf_laboratory_moissala_2023-09-24_second.xlsx"),
+  rbind = TRUE,
+  rbind_label = "Sheet_position")
+```
+
+::: {.look}
+Run the above code and use the tools that you know to inspect the structure and content of the `lab_data_messy` object.
+
+- What happened to the `CT value` columns? Was it imported? If yes, how was it filled?
+- What happened to the `Laboratory id` columns? Was it imported? If yes, how was it filled?
+- What happened to the dates columns? Were they ignored?
+:::
+
+As you can see the function behaves reasonably: 
+
+- columns are **matched by name**, so if a column exists in all sheets *and has the same name*, the data is gathered in the same column, independently of its position
+- the corollary is that columns with different names are treated as different columns, so check your names!
+- if a column exists in one sheet and not the others, the column will exist in the final data frame, but the values will be `NA` for the rows coming from sheets without the column ([don't remember what `NA` means?](../sessions_core/01_introduction.qmd#sec-missing-values)).
+
+You are now ready to import files with multiple sheets! Now let's tackle data scattered in several files.
+
+## Import Multiple files
+
+Fortunately, the `import_list()` function can also accept a vector of file names. In this case, it will import each of these files and store them into a list, unless you can use the `rbind = TRUE`.
+
+```{r}
+# PSEUDO CODE -- DO NOT RUN
+
+# Create a vector of (fictitious) files
+vector_paths <- c(
+  here(path_data_raw, "example_linelist_A.xlsx"),
+  here(path_data_raw, "example_linelist_B.xlsx"),
+  here(path_data_raw, "example_linelist_C.xlsx"),
+  here(path_data_raw, "example_linelist_D.xlsx"),
+  here(path_data_raw, "example_linelist_E.xlsx"),
+  here(path_data_raw, "example_linelist_F.xlsx"),
+  here(path_data_raw, "example_linelist_G.xlsx"),
+  here(path_data_raw, "example_linelist_H.xlsx"),
+  here(path_data_raw, "example_linelist_I.xlsx"),
+  here(path_data_raw, "example_linelist_J.xlsx"),
+  here(path_data_raw, "example_linelist_K.xlsx"),
+  here(path_data_raw, "example_linelist_L.xlsx"),
+  here(path_data_raw, "example_linelist_M.xlsx")
+)
+
+import_list(vector_paths) # returns a list
+```
+
+
+::: {.look}
+Go to the sub-folder `data / raw /satellite_multiple/multiple_files/EN`. Open the (English) files to check their content. Would it make sense to concatenate the data together at import in this case?
+:::
+
+::: {.write}
+Import all the (English) Excel files in one go and store them in a data frame called `linelist_data`.
+
+Inspect the data frame created: how many lines? How many columns? Was everything imported as you expected?
+:::
+
+
+### Get File Paths with `file.path()`
+
+#### List All the Files
+
+Manually listing the files that you want to import was fine for demonstrations purposes so that you understand what to pass to the `import_list()` function, but it is slow and error prone. 
+
+We will now use the function `list.files()` to automatically retrieve the file paths. Its main argument, `path` takes a file path, and the function returns a simple vector of file names.
+
+```{r}
+#| eval: true
+
+path_mult <- here::here(path_data_raw, "multiple_files", "EN") # optional, to shorten the following code
+
+list.files(path = path_mult) # returns a vector of file names
+```
+
+We can ask the function to return the full paths of the files with the argument `full.names = TRUE`:
+
+```{r}
+#| eval: true
+list.files(path = path_mult,
+           full.names = TRUE)
+```
+
+::: {.callout-note}
+Note that even if these are absolute paths, we used `{here}` and relative paths within the course directory so the absolute paths will also work on *your* computer.
+:::
+
+#### Keep Only the Excel files
+
+Now, this is nice and all but there are those pesky files that are not Excel which we would like to avoid. An easy way is to use the `pattern` argument of `list.files()`. It takes a string of text that is matched to the names of files, to keep only the ones you want.
+
+The `pattern` argument accepts [regular expressions, or regex for short](https://r4ds.hadley.nz/regexps), which are *way* out of our scope here^[Regular expressions have their own syntax that is not limited to R. They are super powerful but also hard to use so if you are new to R you should probably wait a bit before diving into them.]. Here we are only giving you pointers to create a simple pattern.
+
+The function will return file names that match the pattern: 
+
+```{r}
+#| eval: true
+
+# All file names that contain "bedaya":
+list.files(path = path_mult, pattern = "BEDAYA") 
+
+# All file names that contain "msf_linelist":
+list.files(path = path_mult, pattern = "moissala_linelist") 
+
+# All file names that contain "msf_ll":
+list.files(path = path_mult, pattern = "msf_ll") 
+
+# All the files that contain "doc"
+list.files(path = path_mult, pattern = "doc")
+```
+
+
+Did you notice at the end, two files contained "doc" in their path, one in its *name*, the other in its file *extension*? If you want to select only the Word document, you need a more precise pattern.
+
+
+```{r}
+#| eval: true
+# Get this word document for sure
+list.files(path = path_mult, pattern = "\\.doc$") 
+```
+
+Here we modified the pattern to make it more restrictive:
+
+- the `\\.` at the start is the regex way of saying that there should be a "." before "doc".^[It sound complicated because the "." alone has a special meaning in regex, so we need to add the `\\`. Go [read on regex](https://r4ds.hadley.nz/regexps), or trust us for now.]
+- the `$` at the end of the pattern indicates that this pattern should be at the end of the file name.
+
+So with this pattern we are looking for *files that contain ".doc" at the end of their names*.
+
+
+::: {.write}
+Now, write a command using `list.files()` to automatically list all files that end with ".xlsx".
+Then, update your previous code to import these files in one data frame, as we did before.
+:::
+
+::: {.callout-tip}
+The argument `recursive = TRUE` allows you to list files present in sub-directories of your path target, which can be handy if you have nested folders containing data.
+:::
+
+## Done!
+
+
+## Going Further
+
+
+## Extra Exercises
