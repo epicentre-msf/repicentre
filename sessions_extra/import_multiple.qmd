@@ -106,15 +106,15 @@ You can access elements of the list with these commands^[we added the head() fun
 ```{r}
 #| eval: true
 
-head(lab_data_list$positive)  # Access by name
-head(lab_data_list[1])        # Access by position the first element of the list
+head(lab_data_list$positive) # Access by name
+head(lab_data_list[1], 10)   # Access by position the first element of the list (show firs ten elements)
 head(lab_data_list[[1]])      # Access the content of the first element
 ```
 
 
 ### Bind Into a data frame
 
-If you know that the data in all the sheets have the same structure, you can tell R to bind all of these tables into a single data frame (rowwise) by setting the argument `rbind` to `TRUE`:
+If you know that the data in all the sheets have the same structure, you can tell R to bind all of these tables into a single data frame (row wise) by setting the argument `rbind` to `TRUE`:
 
 ```{r}
 # PSEUDO CODE -- DO NOT RUN
@@ -123,7 +123,7 @@ If you know that the data in all the sheets have the same structure, you can tel
 import_list(
   here(path_data_raw, "example_linelist.xlsx"), 
   rbind = TRUE,                    # Tells R to bind list elements together
-  rbind_label = "Sheet_position"   # Optional: name the column of the source of data
+  rbind_label = "Sheet_position"   # Optional: give the sheet name of the source of data
 )
 ```
 
@@ -172,7 +172,7 @@ You are now ready to import files with multiple sheets! Now let's tackle data sc
 
 ## Import Multiple files
 
-Fortunately, the `import_list()` function can also accept a vector of file names. In this case, it will import each of these files and store them into a list, unless you can use the `rbind = TRUE`.
+Fortunately, the `import_list()` function can also accept a vector of file names. In this case, it will import each of these files and store them into a list, unless you can use  `rbind = TRUE`.
 
 ```{r}
 # PSEUDO CODE -- DO NOT RUN
@@ -234,7 +234,7 @@ list.files(path = path_mult,
 ```
 
 ::: {.callout-note}
-Note that even if these are absolute paths, we used `{here}` and relative paths within the course directory so the absolute paths will also work on *your* computer.
+Remember that thanks to `{here}` and relative paths within the course directory, these absolute paths will adapt to the file structure and work on *your* computer.
 :::
 
 #### Keep Only the Excel files
@@ -255,7 +255,7 @@ list.files(path = path_mult, pattern = "BEDAYA")
 list.files(path = path_mult, pattern = "moissala_linelist") 
 
 # All file names that contain "msf_ll":
-list.files(path = path_mult, pattern = "msf_ll") 
+list.files(path = path_mult, pattern = "msf_ll")  # Nothing matches
 
 # All the files that contain "doc"
 list.files(path = path_mult, pattern = "doc")
@@ -289,6 +289,8 @@ The argument `recursive = TRUE` allows you to list files present in sub-director
 :::
 
 ## Done!
+
+Congratulation, you can now import several files or sheets in one go! It will be very useful to some of the aggregated data files "by week" or "by month" that you probably are familiar with. And maybe this was your first contact with regex, which is a whole subject, so don't worry if that part was complicated, this is something you can learn latern when you need it.
 
 
 ## Going Further
