@@ -171,7 +171,7 @@ head(df_cases)
 :::
 
 
-Great! Now we are ready to make our epicurve. In the following steps, *you*'ll be asked to use `df_cases` to plot a classic epicurve of the *number of daily admissions*. To demonstrate the functions you'll be using, *I* will plot the curve of the number of daily *outcomes* as an example. To do that, I've build myself another dataframe, `df_outcome`, which looks like this:
+Great! Now we are ready to make our epicurve. In the following steps, *you*'ll be asked to use `df_cases` to plot a classic epicurve of the *number of daily admissions*. To demonstrate the functions you'll be using, *I* will plot the curve of the number of daily *outcomes* as an example. To do that, I've built myself another dataframe, `df_outcome`, which looks like this:
 
 ```{r}
 #| echo: false
