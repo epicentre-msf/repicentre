@@ -99,7 +99,7 @@ Take a look at your output and then take a look at the head of `df_raw`. Why doe
 
 
 ### This Does Not Equal That
-Checking if something is the same is great, but a lot of the time we might have a more complex question in mind. For example, we might want to know how many patients **didn't recover**, whether this was because they died or because they left against medical advice. 
+Checking if something is the same is great, but a lot of the time we might have another question in mind. For example, we might want to know how many patients **didn't recover**, whether this was because they died or because they left against medical advice. 
 
 In this case, instead of writing `==` we will instead use `!=`. So, for example if we want to select all observations where patients **didn't** recover we would write:
 
@@ -195,11 +195,11 @@ df |>
          [condition 3])
 ```
 
-So for example, let's say we want to select all patients under five who were hospitalized. In this case we can write:
+So for example, let's say we want to select all patients **under five who were hospitalized**. In this case we can write:
 
 ```{r}
 df_raw |>
-  filter(age < 60,
+  filter(age < 5,
          hospitalised = "true")
 ```
 
@@ -238,7 +238,9 @@ Recoding with `{case_when}`
 ----------------------------------------------------------------------------------------------------
 As we have seen, conditional logic statements are incredibly useful when trying to filter our data, but you will find that they have many other uses as well. One of their other major use cases for us as epidemiologists is when we need to [recode our data]{.hovertip bs-toggle='tooltip' bs-title='Recoding is the process of either standardizing the values of variable (such as making sure "f" and "female" are both coded as "F") or creating standardized groups of variable values (for example age groups).'}. This is where the `{dplyr}` function `case_when()` is here to help us.
 
-The syntax of `case_when()` is a little more advanced than what we have seen so far, but we will go slowly and break it down. Once you get the hang of it, `case_when()` will become a very powerful part of your R toolbelt. We will almost always use `case_when()` inside of a `mutate()`, because we will use it either to recode an existing variable or to create a new one. The basic syntax works like this:
+The syntax of `case_when()` is a little more advanced than what we have seen so far, but we will go slowly and break it down. Once you get the hang of it, `case_when()` will become a very powerful part of your R toolbelt.
+
+We will almost always use `case_when()` inside of a `mutate()`, because we will use it either to recode an existing variable or to create a new one. The basic syntax works like this:
 
 ```{r}
 # DO NOT RUN (PSEUDO-CODE)
@@ -250,9 +252,23 @@ df |>
 
 Ok, that's a lot. Let's break it down. 
 
-So the first thing to notice is that, with the exception of the last line, each line inside of `case_when()` starts with a conditional logic statement then a `~` followed by the value we want when that statement was true. So for example, if we want our `case_when()` to say that anytime a patient had a MUAC less than 110 we want to have a value of `"SAM"`, the first part of our case when would be `muac < 110 ~ "SAM'`. Here the left side of the `~` provides the condition and the right side gives the value we want whenever that condition is true. We can add multiple possible outcomes by adding additional lines. So in this case, our next condition might check if the patient is moderately but not severly malnourished using the statement `muac < 125 ~ "MAM"`. 
+So the first thing to notice is that, with the exception of the last line, each line inside of `case_when()` has the following format:
 
-The last line, with the argument `.default` then gives the value we want `case_when()` to use when none of the above conditions have been met. In this case, we might give the value `"Normal"`. To put this together, if we wanted to use `case_when()` to create a variable that classifies the malnutrition status of patients using their MUAC, we would write:
+```{r}
+[condition] ~ [value when condition is TRUE]
+```
+
+So for example, if we want our `case_when()` to say that anytime a patient had a MUAC less than 110 we want to have a value of `"SAM"`, we would have something like this:
+
+```{r}
+muac < 110 ~ 'SAM'
+```
+
+We can add multiple possible outcomes by adding additional lines. In this case, our next condition might check if the patient is moderately but not severly malnourished using the statement `muac < 125 ~ 'MAM'`. 
+
+The last line, with the argument `.default` gives the value we want `case_when()` to use when none of the above conditions have been met. In this case, we might give the value `'Normal'`. 
+
+To put this together, if we wanted to create a variable that classifies the malnutrition status of patients using their MUAC, we would write:
 
 ```{r}
 df_raw |>
@@ -327,7 +343,7 @@ df_raw |>
 ### The %in% operator
 So now we can regroup variables into categories, great. But we can also use `case_when()` to standardize the values we see in a variable.
 
-:::{.look}
+:::{.write}
 Using `count()` inspect the categorical variables in `df_raw` to check if any have inconsistencies in their coding.
 :::
 
@@ -405,7 +421,7 @@ Using what you have learned above and what you practiced in the last session, cr
 - Add a variable `age_years` with patient age in years
 - Update `region` and `prefecture` to use title case
 - Update all date columns to use `Date` type
-- Create a new variable `age_group` age to include the groups: < 6 months, 6 - 11 months, 12 - 59 months, 5 - 15 years, and > 15 years (patients with unknown sex should have a value "Unknown")
+- Create a new variable `age_group` age to include the groups: < 6 months, 6 - 11 months, 12 - 59 months, 5 - 15 years, and > 15 years (patients with unknown age should have a value "Unknown")
 - Recode sex to have only the values: Female, Male, and Unknown
 - Remove any duplicate observations
 
@@ -442,7 +458,7 @@ df_raw |>
 ```
 :::
 
-Amazing! Wouldn't it be great to save this (more or less clean) dataset? I agree. To do that, we will go back to the packages `{rio}` and `{here}`. We can use the function `export()` from `{rio}` and use `here()` to specify where to save our output:
+Amazing! Let's look at how to save this (mostly) clean dataset. Here, we will use the function `export()` from `{rio}` and `here()` from `{here}` to specify where to save our output:
 
 ```{r}
 df |>
@@ -452,7 +468,7 @@ df |>
 Notice here that we are putting our data in the appropriate `clean` subfolder of `data`. 
 
 :::{.callout-tip}
-In the above example we save our data as an `xlsx`, which is helpful if you want to be able to open the clean data in Excel. Often, however, we might prefer to use a file with the extension `.rds` instead. This is a filetype specific to R and is more robust to issues related to encoding or date formatting than files like `xlsx` or `csv`. To save your above file as an `rds` all you need to do is change the extension:
+In the above example we save our data as an `xlsx`, which is helpful if you want to be able to open the clean data in Excel. Often, however, we might prefer to use a file with the extension `.rds` instead. This is a file type specific to R and is more robust to issues related to encoding or date formatting than files like `xlsx` or `csv`. To save your above file as an `rds` all you need to do is change the extension:
 
 ```{r}
 df |>

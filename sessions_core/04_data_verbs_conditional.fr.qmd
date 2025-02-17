@@ -1,0 +1,499 @@
+---
+title: Manipulation de données avec la logique conditionnelle
+description: Utilisation de `{dplyr}` et de la logique conditionnelle pour filtrer et recoder les données
+date: last-modified
+image: ../img/under_construction.svg
+categories:
+- Core
+- Manipulation des données
+- Nettoyage des données
+
+- Logique
+---
+
+```{r setup}
+#| include: false
+#| echo: false
+#| eval: true
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+
+library(dplyr)
+
+df_raw <- rio::import(here::here('data', 'raw', 'moissala_linelist_EN.xlsx'))
+```
+
+
+Objectifs
+----------------------------------------------------------------------------------------------------
+- Comprendre les instructions logiques conditionnelles de base
+- Apprendre à filtrer un data frame à l'aide de `filter()`
+- Apprendre à recoder des variables à l'aide de `case_when()`
+
+Configuration
+----------------------------------------------------------------------------------------------------
+**Dépendances.** Cette session suppose que vous connaissez les bases de la manipulation de données avec `{dplyr}`. Si vous avez besoin d'un rappel à ce sujet, veuillez consulter la [troisième session du parcours d'apprentissage](https://epicentre-msf.github.io/repicentre/pathway.html).
+
+
+::: {.setup}
+Cette session utilisera les données **brutes** de la liste de lignes Moissala, qui peuvent être téléchargées ici :
+
+```{r}
+#| echo : false
+#| eval : true
+
+télécharger ceci ::: télécharger le lien (
+  link = 'https://github.com/epicentre-msf/repicentre/raw/refs/heads/main/data/raw/moissala_linelist_FR.xlsx',
+  button_label = ' Download Data',
+  has_icon = TRUE,
+  icon = « fa fa-save »,
+  self_contained = FALSE
+)
+Assurez-vous que cet ensemble de données est enregistré dans le sous-répertoire approprié de votre projet R et créez un nouveau script appelé filtering_and_recoding_practice.R dans votre répertoire R. Ajoutez un en-tête approprié et chargez les packages suivants : {here}, {rio} et {tidyverse}.
+<br><br>
+Enfin, ajoutez une section d'importation où vous utilisez {here} et {rio} pour charger vos données dans un objet appelé df_raw.
+:::
+
+
+Utiliser la logique conditionnelle pour filtrer les données
+----------------------------------------------------------------------------------------------------
+Lors de la dernière session, nous avons appris un grand nombre de verbes de données de base dans {dplyr} pour les tâches de manipulation de base telles que la sélection de variables d'intérêt particulières et leur modification pour mieux répondre à nos besoins. Outre la sélection de **variables d'intérêt**, une autre tâche courante que nous avons en tant qu'épidémiologistes est la sélection d'**observations d'intérêt** ; c'est-à-dire le filtrage de nos données pour examiner des observations particulières qui répondent à un [certain critère] {.hovertip bs-toggle='tooltip' bs-title=« Par exemple, en ne considérant que les patients hospitalisés ou les cas d'une région particulière. »}. 
+
+Heureusement, `{dplyr}` est là pour nous aider avec la fonction judicieusement nommée `filter()`. Pour comprendre comment l'utiliser, nous devons toutefois apprendre un peu comment construire des **instructions logiques conditionnelles** dans R. Ce sera le sujet de notre session d'aujourd'hui.
+
+### Ceci équivaut à cela
+La syntaxe de base de `filter()` est assez simple :
+
+```{r}
+# NE PAS EXÉCUTER (PSEUDO-CODE)
+df_raw |>
+  filter([instruction logique conditionnelle]) # Conserver les lignes où l'instruction est VRAIE
+```
+
+Mais qu'est-ce qu'une instruction logique conditionnelle ? Ce sont des instructions qui demandent « Est-ce que cette chose est vraie ? ». L'instruction logique conditionnelle la plus simple demande « cette variable est-elle égale à cette valeur ? ». Par exemple, « ce patient a-t-il été hospitalisé ? ». En R, nous pouvons demander si une valeur est égale à une autre [en utilisant `==`]{.hovertip bs-toggle='tooltip' bs-title=« Notez qu'il y a **deux** signes égal, et non un. »}.
+
+Pour créer un filtre demandant, pour chaque observation, si la valeur de `hospitalisation` est égale à `oui`, nous pouvons alors utiliser la syntaxe suivante :
+
+```{r}
+df_raw |>
+  filter(hospitalisation == 'yes')
+```
+
+Ce que `filter()` fait ici, c'est parcourir chaque ligne de notre ensemble de données et demander : « pour cette ligne, la valeur de `hospitalisation` est-elle égale à `« oui »` ? ». Il ne renvoie alors que les lignes où la réponse à cette question est `TRUE`. 
+
+:::{.write}
+Créez un filtre qui sélectionne tous les patients qui avaient de la fièvre, c'est-à-dire ceux dont la valeur de `fever` était `« Yes »`. La tête de `fever` devrait ressembler à ceci :
+
+```{r}
+#| eval: true
+#| echo: false
+
+df_raw |>
+  filter(fever == 'Yes') |>
+  select(fever) |>
+  head()
+```
+
+Regardez votre sortie, puis la tête de `df_raw`. Pourquoi `df_raw` contient-il encore des patients qui n'avaient pas de fièvre ?
+:::
+
+
+### Ceci n'est pas égal à cela
+Vérifier si quelque chose est identique est une bonne chose, mais la plupart du temps, nous pouvons avoir une autre question en tête. Par exemple, nous pouvons vouloir savoir combien de patients **ne se sont pas rétablis**, que ce soit parce qu'ils sont décédés ou parce qu'ils sont partis contre l'avis médical. 
+
+Dans ce cas, au lieu d'écrire « == », nous utiliserons « != ». Ainsi, par exemple, si nous voulons sélectionner toutes les observations où les patients **ne se sont pas** rétablis, nous écrirons :
+
+```{r}
+df |>
+  filter(outcome != 'recovered')
+```
+
+:::{.write}
+Créer un filtre qui sélectionne les patients qui **n'ont pas** de carte confirmant leur statut vaccinal. La tête de `vacc_status` devrait ressembler à ceci :
+
+```{r}
+#| eval : true
+#| echo : false
+
+df_raw |>
+  filter(vacc_status != 'Yes - card') |>
+  select(vacc_status) |>
+  head()
+```
+
+**Astuce.** N'oubliez pas que vous pouvez utiliser `count()` pour vérifier quelles étaient les options pour `vacc_status`.
+:::
+
+### Supérieur à / Inférieur à
+L'autre question courante que nous avons est de savoir si une valeur était supérieure ou inférieure à un seuil particulier. Par exemple, combien de patients avaient moins de 5 ans ? Ici, nous utiliserons `<` et `>` pour évaluer si une variable est **inférieure à** ou **supérieure à** une valeur particulière, respectivement. 
+
+Par exemple, pour demander combien de patients avaient **moins de** [60 mois] {.hovertip bs-toggle='tooltip' bs-title=« Vérifier le nombre de patients de moins de cinq ans ou plus est un indicateur courant lors de l'analyse des données sur la rougeole. »}, nous pouvons écrire :
+
+```{r}
+df_raw |>
+  filter(age < 60)
+```
+
+:::{.write}
+Créez un filtre qui sélectionne tous les patients souffrant de malnutrition aiguë sévère (c'est-à-dire les patients dont le PB est inférieur à 110). La tête de `muac` devrait ressembler à ceci :
+
+```{r}
+#| eval: true
+#| echo: false
+
+df_raw |>
+  select(muac) |>
+  head()
+```
+
+Créez maintenant un autre filtre qui sélectionne les patients âgés de plus de [15 ans] {.hovertip bs-toggle='tooltip' bs-title=« 15 ans équivaut à 180 mois. »}. L'en-tête de votre colonne d'âge doit ressembler à ceci :
+
+```{r}
+#| eval: true
+#| echo: false
+
+df_raw |>
+  filter(age > 180) |>
+  select(age) |>
+  head()
+```
+:::
+
+Parfois, au lieu de demander si quelque chose est inférieur ou supérieur à une valeur particulière, nous voulons demander si elle est inférieure ou égale à cette valeur. Facile, il suffit d'ajouter un signe égal ! Nous écrivons `<=` pour « inférieur ou égal à » et `>=` pour « supérieur ou égal à ». Attention, le `=` doit venir après `<` ou `>`, pas avant.
+
+Donc, si nous voulons demander combien de patients avaient **10 ans ou moins**, nous pouvons écrire :
+
+```{r}
+df_raw |>
+  filter(age <= 120)
+```
+
+:::{.write}
+Créer un filtre qui sélectionne tous les patients ayant un état nutritionnel normal, c'est-à-dire : les patients dont le [PB est supérieur ou égal à 125]{.hovertip bs-toggle='tooltip' bs-title=« Par souci de simplicité et compte tenu des limites de nos données, nous utiliserons une définition du PB uniquement de « l'état nutritionnel normal ». »}. L'en-tête de `muac` devrait ressembler à ceci :
+
+```{r}
+#| eval: true
+#| echo: false
+
+df_raw |>
+  filter(muac >= 125) |>
+  select(muac) |>
+  head()
+```
+:::
+
+
+### Filtres avec conditions multiples
+Vous souhaitez combiner plusieurs instructions logiques dans un seul filtre ? Rien de plus simple. Nous pouvons créer un filtre avec plusieurs conditions en [séparant simplement chaque condition par une virgule] {.hovertip bs-toggle='tooltip' bs-title=« Et en le plaçant sur sa propre ligne pour une meilleure lisibilité. »} :
+
+```{r}
+# NE PAS EXÉCUTER (PSEUDO-CODE)
+df |>
+  filter([condition 1],
+         [condition 2],
+         [condition 3])
+```
+
+Par exemple, imaginons que nous voulions sélectionner tous les patients **de moins de cinq ans qui ont été hospitalisés**. Dans ce cas, nous pouvons écrire :
+
+```{r}
+df_raw |>
+  filter(age < 5,
+  hospitalised = « true »)
+```
+
+:::{.write}
+Créez un filtre qui sélectionne tous les patients souffrant de malnutrition aiguë sévère qui ont été hospitalisés dans l'établissement de santé de Koumra. L'en-tête de `id`, `sub_prefecture`, `hospitalisation` et `muac` doit ressembler à ceci :
+
+```{r}
+#| eval: true
+#| echo: false
+
+df_raw |>
+  filter(sub_prefecture == 'KOUMRA',
+         hospitalisation == 'yes',
+         muac < 110) |>
+  select(id, sub_prefecture, hospitalisation, muac)
+```
+
+**Astuce.** Ce filtre a une condition sur le statut d'hospitalisation, la sous-préfecture et le MUAC.
+:::
+
+
+### Résumé des instructions logiques de base
+Bon travail pour cette rapide présentation des instructions logiques en R ! Voici un tableau pratique pour vous aider à vous souvenir des principales instructions logiques que nous avons apprises jusqu'à présent :
+
+|Instruction|R|
+|:---|:---:|
+|A est-il identique à B ?|A == B|
+|A n'est-il **pas** identique à B ?|A != B|
+|A est-il supérieur à B ?|A > B|
+|A est-il supérieur ou égal à B ?|A >= B|
+|A est-il inférieur à B ?|A < B|
+|A est-il inférieur ou égal à B ?|A <= B|
+
+
+Recodage avec `{case_when}`
+----------------------------------------------------------------------------------------------------
+Comme nous l'avons vu, les instructions logiques conditionnelles sont incroyablement utiles pour filtrer nos données, mais vous constaterez qu'elles ont également de nombreuses autres utilisations. L'un de leurs autres cas d'utilisation majeurs pour nous, en tant qu'épidémiologistes, est lorsque nous avons besoin de [recoder nos données]{.hovertip bs-toggle='tooltip' bs-title='Le recodage est le processus qui consiste soit à normaliser les valeurs d'une variable (par exemple, s'assurer que « f » et « femme » sont tous deux codés par « F »), soit à créer des groupes normalisés de valeurs de variables (par exemple, des groupes d'âge).'}. C'est là que la fonction `{dplyr}` `case_when()` est là pour nous aider.
+
+La syntaxe de `case_when()` est un peu plus avancée que ce que nous avons vu jusqu'à présent, mais nous allons y aller lentement et la décomposer. Une fois que vous aurez compris, `case_when()` deviendra un élément très puissant de votre boîte à outils R.
+
+Nous utiliserons presque toujours `case_when()` dans un `mutate()`, car nous l'utiliserons soit pour recoder une variable existante, soit pour en créer une nouvelle. La syntaxe de base fonctionne comme ceci :
+
+```{r}
+# NE PAS EXÉCUTER (PSEUDO-CODE)
+df |>
+mutate(column_name = case_when([first condition] ~ [value si la condition est TRUE],
+                               [deuxième condition] ~ [valeur quand la deuxième condition est TRUE],
+                               .défaut = [valeur par défaut])
+```
+
+Bon, c'est beaucoup. Décomposons-le. 
+
+La première chose à noter est que, à l'exception de la dernière ligne, chaque ligne à l'intérieur de `case_when()` a le format suivant :
+
+```{r}
+[condition] ~ [valeur lorsque la condition est VRAIE]
+```
+
+Ainsi, par exemple, si nous voulons que notre `case_when()` indique que chaque fois qu'un patient a un PB inférieur à 110, nous voulons avoir une valeur de `« SAM »`, nous aurions quelque chose comme ceci :
+
+```{r}
+muac < 110 ~ 'SAM'
+```
+
+Nous pouvons ajouter plusieurs résultats possibles en ajoutant des lignes supplémentaires. Dans ce cas, notre prochaine condition pourrait vérifier si le patient est modérément mais pas gravement malnutri en utilisant l'instruction `muac < 125 ~ 'MAM'`. 
+
+La dernière ligne, avec l'argument « .default », donne la valeur que nous voulons que « case_when() » utilise lorsque aucune des conditions ci-dessus n'est remplie. Dans ce cas, nous pourrions donner la valeur « 'Normal' ». 
+
+Pour résumer, si nous voulions créer une variable qui classe le statut de malnutrition des patients en utilisant leur PB, nous écririons :
+
+```{r}
+df_raw |>
+  mutate(malnut = case_when(muac < 110 ~ 'SAM',
+                            muac < 125 ~ 'MAM',
+                            .default = 'Normal'))
+```
+
+:::{.write}
+Essayez d'exécuter le code ci-dessus pour voir s'il crée avec succès une nouvelle colonne `malnut` avec le statut de malnutrition de chaque cas. Vous devriez obtenir quelque chose comme ceci :
+
+```{r}
+#| eval: true
+#| echo: false
+
+df_raw |>
+  mutate(malnut = case_when(muac < 110 ~ 'SAM',
+                            muac < 125 ~ 'MAM',
+                            .default = 'Normal')) |>
+  select(malnut) |>
+  head()
+```
+:::
+
+**Attention.** L'ordre de vos déclarations est important ici. Ce que `case_when()` fera, c'est parcourir chaque déclaration de haut en bas et attribuer la première valeur qui est `TRUE`. Ainsi, dans notre exemple ci-dessus, `case_when()` posera les questions suivantes dans l'ordre :
+
+- Ce patient a-t-il un SAM (est-ce que `muac < 110`) ? **Si oui**, attribuer la valeur `« SAM »`
+- **Si le patient n'a pas de SAM**, a-t-il un MAM (est-ce que `muac < 125`) ? **Si oui**, attribuez la valeur `« MAM »`
+- **Si aucune des conditions ci-dessus n'est vraie**, attribuez la valeur par défaut `« Normal »`
+
+:::{.write}
+Essayez de réorganiser les première et deuxième conditions dans le `case_when()` ci-dessus afin de vérifier d'abord si `muac < 125`. L'en-tête de votre nouveau data frame devrait maintenant ressembler à ceci :
+
+```{r}
+#| eval : true
+#| echo : false
+
+df_raw |>
+  mutate(malnut = case_when(muac < 125 ~ 'MAM',
+                            muac < 110 ~ 'SAM',
+                            .default = 'Normal')) |>
+  select(malnut) |>
+  head()
+```
+
+Remarquez-vous quelque chose de différent ? Enregistrez ce nouveau data frame dans un objet `tmp` et inspectez-le pour voir si nous avons encore des patients classés comme `« SAM »`. Pouvez-vous comprendre pourquoi cela ne donne plus la bonne classification ?
+:::
+
+:::{.callout-note}
+L'argument `.default` dans `case_when()` n'est pas obligatoire. Si vous ne l'incluez pas, `case_when()` utilisera `NA` par défaut. 
+:::
+
+Comme nous l'avons vu dans notre exemple ci-dessus, `case_when()` est un moyen facile de créer de nouvelles variables basées sur les valeurs d'une colonne existante. Cela peut être utilisé pour classer un statut (comme nous l'avons vu avec la malnutrition) ou pour regrouper des variables en catégories (comme les groupes d'âge).
+
+:::{.write}
+Utilisez `case_when()` pour créer une nouvelle variable `age_group` avec trois catégories : `« < 5 Years »`, `« 5 - 15 Years »`, et `« > 15 Years »`. Les patients pour lesquels les données d'âge sont manquantes doivent se voir attribuer une valeur par défaut de `« Unknown »`. **Faites attention à votre ordre !** L'en-tête de votre nouvelle colonne doit ressembler à ceci :
+
+```{r}
+#| eval: true
+#| echo: false
+
+df_raw |>
+  mutate(age_group = case_when(age < 60 ~ '< 5 Years',
+                               age <= 180 ~ '5 - 15 Years',
+                               age > 180 ~ '> 15 Years',
+                               .default = 'Unkonwn')) |>
+  select(age_group) |>
+  head()
+```
+:::
+
+### L'opérateur %in%
+Nous pouvons maintenant regrouper les variables en catégories, c'est génial. Mais nous pouvons également utiliser case_when() pour normaliser les valeurs que nous voyons dans une variable.
+
+:::{.write}
+En utilisant count(), nous inspectons les variables catégorielles dans df_raw pour vérifier si certaines présentent des incohérences dans leur codage.
+:::
+
+Dans notre ensemble de données, nous constatons que le codage de la variable `sexe` présente quelques problèmes. Par exemple, les patientes sont codées comme `f`, `female` et `femme`. Cela ne suffit pas. Heureusement, nous pouvons utiliser `case_when()` pour recoder cette variable. Cette fois, au lieu de créer une nouvelle variable, nous mettrons directement à jour `sexe` :
+
+```{r}
+df_raw |>
+  mutate(sex = case_when(sex == « f » ~ « Female »,
+                         sex == « female » ~ « Female »,
+                         sex == « femme » ~ « Female »,
+                         sex == « m » ~ « Male »,
+                         sex == « male » ~ « Male »,
+                         sex == « homme » ~ « Male »,
+                         .default = « Unknown »))
+
+Eh bien, ça marche, mais ça semble terriblement répétitif. Ce serait plus facile si nous pouvions simplement lister toutes les options que nous voulons réaffecter respectivement à « Femme » et « Homme ». C'est là que l'opérateur `%in%` est là pour nous aider. L'opérateur `%in%` vérifiera si une valeur se trouve dans un vecteur d'options en utilisant la syntaxe de base suivante :
+
+```{r}
+# NE PAS EXÉCUTER (PSEUDO-CODE)
+[valeur] %in% [vector_des_options]
+```
+
+Ainsi, par exemple, nous pourrions vérifier si la valeur « f » est dans les options « f », « female » en utilisant ce qui suit :
+
+```{r}
+« f » %in% c(« f », « female »)
+```
+
+:::{.write}
+Essayez d'exécuter l'instruction ci-dessus. Quel est le type de données de votre résultat ?
+:::
+
+Vous voyez que le résultat de l'instruction ci-dessus est un booléen, c'est-à-dire un résultat logique ? Cela signifie que nous pouvons l'utiliser comme condition dans case_when() ! Cela signifie que notre code verbeux ci-dessus peut maintenant être écrit comme suit :
+
+```{r}
+df_raw |>
+  mutate(sex = case_when(sex %in% c(« f », « female », « femme ») ~ « Female »,
+                         sexe %in% c(« m », « male », « homme ») ~ « Male »,
+                         .default = « Unknown »))
+```
+
+Beaucoup plus agréable.
+
+:::{.write}
+Utilisez `case_when()` et l'opérateur `%in%` pour créer une nouvelle colonne `vacc_status_strict` qui a la valeur `« Yes »` pour les cas avec [**carte confirmée** statut de vaccination]{. hovertip bs-toggle='tooltip' bs-title=« Had a vacc_status of “Yes - card” »}, `« No »` for cases who said they were [unvaccinated]{.hovertip bs-toggle='tooltip' bs-title=« Had a vacc_status of “No” »}, and `« Unverified »` otherwise. The head of your new column should look like this:
+
+```{r}
+#| eval: true
+#| echo: false
+
+df_raw |>
+  mutate(vacc_status_strict = case_when(vacc_status == 'Yes - card' ~ 'Yes',
+                                        vacc_status == 'No' ~ 'No',
+                                        .default = 'Unverified')) |>
+  select(vacc_status_strict) |>
+  head()
+```
+:::
+
+
+Un dernier nettoyage
+----------------------------------------------------------------------------------------------------
+Maintenant que nous savons comment tirer parti de `case_when()` et de la logique conditionnelle (en plus de ce que nous avons appris lors de la [dernière session](03_data_verbs.qmd), nous pouvons réellement mettre en place un pipeline de nettoyage décent. J'espère que vous avez gardé votre code de la dernière fois à portée de main...
+
+:::{.write}
+En utilisant ce que vous avez appris ci-dessus et ce que vous avez pratiqué lors de la dernière session, créez un pipeline de nettoyage de données de base qui crée un nouveau cadre de données, `df`, après avoir effectué les opérations suivantes :
+
+- Supprimer les variables `full_name` et `age_unit`
+- Renommer les variables suivantes :
+- `age` devient `age_months`
+- `sub_prefecture` devient `prefecture`
+- `village_commune` devient `village`
+- `health_facility_name` devient `facility`
+- Ajouter une variable `age_years` avec l'âge du patient en années
+- Mettre à jour `region` et `prefecture` pour utiliser la casse du titre
+- Mettre à jour toutes les colonnes de date pour utiliser le type `Date`
+- Créer une nouvelle variable « age_group » pour inclure les groupes : < 6 mois, 6 - 11 mois, 12 - 59 mois, 5 - 15 ans et > 15 ans (les patients dont l'âge est inconnu doivent avoir une valeur « Inconnu »)
+- Recoder le sexe pour n'avoir que les valeurs : Femme, Homme et Inconnu
+- Supprimer toutes les observations en double
+
+La tête de vos données finales devrait ressembler à ceci :
+
+```{r}
+#| eval: true
+#| echo: false
+
+df_raw |>
+  select(-full_name, -age_unit) |>
+  rename(age_months = age,
+         prefecture = sub_prefecture,
+         village = village_commune,
+         facility = health_facility_name) |>
+  mutate(age_years = age_months / 12,
+         region = stringr::str_to_title(region),
+         prefecture = stringr::str_to_title(prefecture),
+         date_onset = lubridate::ymd(date_onset),
+         date_consultation = lubridate::ymd(date_consultation),
+         date_admission = lubridate::ymd(date_admission),
+         date_outcome = lubridate::ymd(date_outcome),
+         age_group = case_when(age_months < 6 ~ '< 6 months',
+         age_months < 12 ~ '6 - 11 months',
+         age_years < 5 ~ '12 - 59 months',
+         âge_années <= 15 ~ '5 - 15 ans',
+         âge_années > 15 ~ '> 15 ans',
+         .default = 'Inconnu'),
+         sexe = case_when(sexe %in% c(« f », « femme », « femme ») ~ « Femme »,
+         sexe %in% c(« m », « homme », « homme ») ~ « Homme »,
+         .default = « Unknown »)) |>
+  distinct() |>
+  head()
+```
+:::
+
+Incroyable ! Voyons comment enregistrer cet ensemble de données (presque) propre. Ici, nous utiliserons la fonction `export()` de `{rio}` et `here()` de `{here}` pour spécifier où enregistrer notre sortie :
+
+```{r}
+df |>
+  export(here('data', 'clean', 'measles_linelist_clean.xlsx'))
+```
+
+Notez ici que nous plaçons nos données dans le sous-dossier `clean` approprié de `data`. 
+
+:::{.callout-tip}
+Dans l'exemple ci-dessus, nous enregistrons nos données au format `xlsx`, ce qui est utile si vous souhaitez pouvoir ouvrir les données nettoyées dans Excel. Cependant, nous préférerons souvent utiliser un fichier avec l'extension « .rds ». Ce type de fichier est spécifique à R et est plus robuste aux problèmes liés à l'encodage ou au formatage des dates que les fichiers de type « .xlsx » ou « .csv ». Pour enregistrer votre fichier ci-dessus en tant que « .rds », il vous suffit de modifier l'extension :
+
+```{r}
+df |>
+  export(here('data', 'clean', 'measles_linelist_clean.rds'))
+```
+:::
+
+
+C'est fait !
+----------------------------------------------------------------------------------------------------
+Très bien. Vous avez appris à utiliser les verbes de données de base, la logique conditionnelle et à créer un pipeline de nettoyage de données de base.
+
+```{r}
+#| echo: false
+#| eval: true
+
+downloadthis::download_link(
+  link = 'https://github.com/epicentre-msf/repicentre/blob/main/sessions_core/03_data_verbs_conditional_solutions_fr.R',
+  button_label = 'Fichier de la solution',
+  has_icon = TRUE,
+  icon = « fa fa-save »,
+  self_contained = FALSE
+)
+```
+
+
+Aller plus loin
+----------------------------------------------------------------------------------------------------
+
+### Exercices supplémentaires
+
