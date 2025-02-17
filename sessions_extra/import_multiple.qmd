@@ -293,6 +293,20 @@ The argument `recursive = TRUE` allows you to list files present in sub-director
 Congratulation, you can now import several files or sheets in one go! It will be very useful to some of the aggregated data files "by week" or "by month" that you probably are familiar with. And maybe this was your first contact with regex, which is a whole subject, so don't worry if that part was complicated, this is something you can learn latern when you need it.
 
 
+
+```{r}
+#| echo: false
+#| eval: true
+
+downloadthis::download_link(
+  link = 'https://github.com/epicentre-msf/repicentre/blob/main/solutions/extra/import_multiple.R',
+  button_label = 'Solution File',
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  self_contained = FALSE
+)
+```
+
 ## Going Further
 
 
