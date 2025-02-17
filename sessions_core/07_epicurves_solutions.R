@@ -16,7 +16,7 @@ library(ggplot2)     # Todays workhorse
 
 
 ## Import Data ----------------------------------------------------
-df_linelist <- import(here("data", "clean", 
+df_linelist <- import(here("data", "clean",
                            "moissala_linelist_clean_EN.rds"))
 
 
@@ -36,25 +36,25 @@ df_cases <- df_linelist %>%
 # Plot epicurve --------------------------------------------
 
 df_cases %>%
-  
+
   # Initialise the plot
   ggplot(aes(x = date_onset,
              y = n)) +
-  
+
   # Add the columns, with the optional fill argument to add color
   geom_col(fill = "#2E4573") +
-  
+
   # Add title, axes titles and caption
   labs(x = "Date of onset",
        y = "Measles Cases",
        title = "Measles cases in Mandoul region (Chad)",
        caption = "Ficticious data") +
-  
+
   # Modify the general theme to improve appearance
   theme_bw(base_size = 16) # you may have chosen an other theme!
 
 
-# If you use the aggregated dataset only once, you could count on the fly:
+# If you use the aggregated dataset only once, you could count on the fly :
 df_linelist %>%
   count(date_onset) %>%
   ggplot(aes(x = date_onset,
