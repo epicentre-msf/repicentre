@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<link rel="alternate" hreflang="en" href="https://epicentre-msf.github.io/repicentre/sessions_core/02_import_data.html" />
+<link rel="alternate" hreflang="fr" href="https://epicentre-msf.github.io/repicentre/fr/sessions_core/02_import_data.fr.html" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.37">
-
+<meta name="generator" content="quarto-1.6.39">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-<meta name="dcterms.date" content="2025-02-14">
+<meta name="dcterms.date" content="2025-02-16">
 <meta name="description" content="Create an Rstudio project, install useful packages and start importing data to work in R">
-
 <title>Import data – {repicentre}</title>
 <style>
 code{white-space: pre-wrap;}
@@ -57,26 +57,13 @@ div.sourceCode
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
-
-
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-697306ee647f3aecb60be57249203282.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-3fe3df12cb322cd60d4f50ab5ce79ec8.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-d747503b21a9267137dc98650c9a257a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-5131c98158f83ec01234852a3be8e382.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script><script src="../site_libs/quarto-nav/headroom.min.js"></script><script src="../site_libs/clipboard/clipboard.min.js"></script><script src="../site_libs/quarto-search/autocomplete.umd.js"></script><script src="../site_libs/quarto-search/fuse.min.js"></script><script src="../site_libs/quarto-search/quarto-search.js"></script><meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script><script src="../site_libs/quarto-html/popper.min.js"></script><script src="../site_libs/quarto-html/tippy.umd.min.js"></script><script src="../site_libs/quarto-html/anchor.min.js"></script><link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-0626ff4d7a71b55c8707dcae1d04a9b6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-e25cc82807363e79c52e96bc8b7855f1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script><link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-b814d3e578892f16fb585af6f47f426f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-35dfec4a88a4a8552367c65e80eaa027.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -103,27 +90,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
-<script async="" src="https://hypothes.is/embed.js"></script>
-<script>
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    document.body.classList.add('hypothesis-enabled');
-  });
-</script>
-<script src="../site_libs/font-awesome-6.5.2/js/script.js"></script>
-
-<script type="text/javascript" src="../script.js"></script>
-
-
-<link rel="stylesheet" href="../styles.css">
+}</script><script src="../site_libs/font-awesome-6.5.2/js/script.js"></script><script type="text/javascript" src="../script.js"></script><link rel="stylesheet" href="../styles.css">
 </head>
-
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">{repicentre}</span>
@@ -135,7 +107,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
+<li class="nav-item"><div class="dropdown" id="languages-links-parent">
+<button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="languages-button"><i class="bi bi-globe2"></i> English</button><ul class="dropdown-menu" id="languages-links"><li><a class="dropdown-item" href="https://epicentre-msf.github.io/repicentre/fr/sessions_core/02_import_data.html" id="language-link-fr">Français</a></li></ul>
+</div></li>
+<li class="nav-item">
     <a class="nav-link" href="../pathway.html"> 
 <span class="menu-text">Pathway</span></a>
   </li>  
@@ -152,57 +127,57 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
-          </div> <!-- /navcollapse -->
+</div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
-    </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
-  <li><a href="#setting-up-your-project" id="toc-setting-up-your-project" class="nav-link" data-scroll-target="#setting-up-your-project">Setting up your Project</a>
+<li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
+  <li>
+<a href="#setting-up-your-project" id="toc-setting-up-your-project" class="nav-link" data-scroll-target="#setting-up-your-project">Setting up your Project</a>
   <ul class="collapse">
-  <li><a href="#folder-structure" id="toc-folder-structure" class="nav-link" data-scroll-target="#folder-structure">Folder Structure</a></li>
+<li><a href="#folder-structure" id="toc-folder-structure" class="nav-link" data-scroll-target="#folder-structure">Folder Structure</a></li>
   <li><a href="#sec-definitions" id="toc-sec-definitions" class="nav-link" data-scroll-target="#sec-definitions">Definitions</a></li>
   <li><a href="#rstudio-projects" id="toc-rstudio-projects" class="nav-link" data-scroll-target="#rstudio-projects">RStudio Projects</a></li>
   <li><a href="#rstudio-options" id="toc-rstudio-options" class="nav-link" data-scroll-target="#rstudio-options">RStudio Options</a></li>
-  </ul></li>
+  </ul>
+</li>
   <li><a href="#creating-a-new-script" id="toc-creating-a-new-script" class="nav-link" data-scroll-target="#creating-a-new-script">Creating a New Script</a></li>
-  <li><a href="#sec-packages" id="toc-sec-packages" class="nav-link" data-scroll-target="#sec-packages">Packages</a>
+  <li>
+<a href="#sec-packages" id="toc-sec-packages" class="nav-link" data-scroll-target="#sec-packages">Packages</a>
   <ul class="collapse">
-  <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation">Installation</a></li>
+<li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation">Installation</a></li>
   <li><a href="#usage" id="toc-usage" class="nav-link" data-scroll-target="#usage">Usage</a></li>
   <li><a href="#updating-packages" id="toc-updating-packages" class="nav-link" data-scroll-target="#updating-packages">Updating Packages</a></li>
-  </ul></li>
-  <li><a href="#data-importation" id="toc-data-importation" class="nav-link" data-scroll-target="#data-importation">Data Importation</a>
+  </ul>
+</li>
+  <li>
+<a href="#data-importation" id="toc-data-importation" class="nav-link" data-scroll-target="#data-importation">Data Importation</a>
   <ul class="collapse">
-  <li><a href="#sec-filepaths" id="toc-sec-filepaths" class="nav-link" data-scroll-target="#sec-filepaths">Understanding File Paths</a></li>
+<li><a href="#sec-filepaths" id="toc-sec-filepaths" class="nav-link" data-scroll-target="#sec-filepaths">Understanding File Paths</a></li>
   <li><a href="#sec-import" id="toc-sec-import" class="nav-link" data-scroll-target="#sec-import">Import function</a></li>
-  </ul></li>
+  </ul>
+</li>
   <li><a href="#taking-a-first-look-at-your-data" id="toc-taking-a-first-look-at-your-data" class="nav-link" data-scroll-target="#taking-a-first-look-at-your-data">Taking a First Look at your Data</a></li>
   <li><a href="#done" id="toc-done" class="nav-link" data-scroll-target="#done">Done!</a></li>
-  <li><a href="#going-further" id="toc-going-further" class="nav-link" data-scroll-target="#going-further">Going Further</a>
+  <li>
+<a href="#going-further" id="toc-going-further" class="nav-link" data-scroll-target="#going-further">Going Further</a>
   <ul class="collapse">
-  <li><a href="#extra-exercises" id="toc-extra-exercises" class="nav-link" data-scroll-target="#extra-exercises">Extra Exercises</a></li>
+<li><a href="#extra-exercises" id="toc-extra-exercises" class="nav-link" data-scroll-target="#extra-exercises">Extra Exercises</a></li>
   <li><a href="#additional-resources" id="toc-additional-resources" class="nav-link" data-scroll-target="#additional-resources">Additional Resources</a></li>
-  </ul></li>
   </ul>
-</nav>
-    </div>
+</li>
+  </ul></nav>
+</div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title">Import data</h1>
   <div class="quarto-categories">
     <div class="quarto-category">Core</div>
@@ -224,7 +199,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 14, 2025</p>
+      <p class="date">February 16, 2025</p>
     </div>
   </div>
   
@@ -233,11 +208,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header>
-
-
-<section id="objectives" class="level2">
-<h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
+</header><section id="objectives" class="level2"><h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
 <ul>
 <li>Create a RStudio Project</li>
 <li>Set up an organized and well documented code</li>
@@ -259,11 +230,8 @@ Important
 <p>The principles you learned in the <a href="01_introduction.html">Introduction to R</a> session will apply here as well: we should do our best to ensure that our projects won’t just work today but can also be reused and shared in the future. While doing this is not always easy, there are several best practices that can help us, and one of the most important is to start with a good, organized code base.</p>
 </div>
 </div>
-</section>
-<section id="setting-up-your-project" class="level2">
-<h2 class="anchored" data-anchor-id="setting-up-your-project">Setting up your Project</h2>
-<section id="folder-structure" class="level3">
-<h3 class="anchored" data-anchor-id="folder-structure">Folder Structure</h3>
+</section><section id="setting-up-your-project" class="level2"><h2 class="anchored" data-anchor-id="setting-up-your-project">Setting up your Project</h2>
+<section id="folder-structure" class="level3"><h3 class="anchored" data-anchor-id="folder-structure">Folder Structure</h3>
 <div class="setup">
 <p>If not done already, download and unzip the course folder. Save the uncompressed folder to a location that is <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="OneDrive doesn't play well with R as it will attempt to constantly synchronize certain project files in a way that can cause errors or memory problems"><strong>not connected to OneDrive</strong></span> and navigate into it.</p>
 <div class="cell">
@@ -280,31 +248,26 @@ Important
 <ul>
 <li>📁 clean</li>
 <li>📁 raw</li>
-</ul></li>
+</ul>
+</li>
 <li>📁 R</li>
 <li>📁 outputs</li>
 </ul>
 <p>This folder will be you working directory for <strong>all the sessions of this course</strong>. You will create an Rstudio project in it (explanations below), and save all your scripts in <code>/R</code>. The course datasets are already in <code>data/raw</code>.</p>
-</section>
-<section id="sec-definitions" class="level3">
-<h3 class="anchored" data-anchor-id="sec-definitions">Definitions</h3>
+</section><section id="sec-definitions" class="level3"><h3 class="anchored" data-anchor-id="sec-definitions">Definitions</h3>
 <p>To work through this session you need to understand the two following concepts:</p>
 <p><strong>Working directory.</strong> The working directory is the location (folder) where your R session is <em>actively working</em>. If you save a file, for example, it will be saved into this folder by default. Similarly, when you want to open a file, this folder will be shown by default. All relative paths will be relative to this working directory. By default, R usually picks the “Documents” folder as the working directory on Windows machines.</p>
 <p><strong>Root.</strong> The root refers to the top-most folder level of the working directory. If your course folder was called <code>FETCHR</code>, the root would then be directly inside it (as opposed to being inside one of its subfolders like <code>R</code> or <code>Data</code>).</p>
-</section>
-<section id="rstudio-projects" class="level3">
-<h3 class="anchored" data-anchor-id="rstudio-projects">RStudio Projects</h3>
+</section><section id="rstudio-projects" class="level3"><h3 class="anchored" data-anchor-id="rstudio-projects">RStudio Projects</h3>
 <p>An RStudio Project can be used to make your life easier and help orient <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Technically an RStudio Project is just a file containing some metadata that tells RStudio what files to open and where to set your working directory. It will spare you the headache of managing the working directory yourself.">RStudio around the various files used in your code</span></p>
 <p>As a quick reminder, your interface should look something like this:</p>
 <div id="fig-interface" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-interface-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-interface-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../img/core/01_introduction/01_rstudio_interface_en.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-interface-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Screenshot of a typical Rstudio interface
-</figcaption>
-</figure>
+Figure 1: Screenshot of a typical Rstudio interface
+</figcaption></figure>
 </div>
 <div class="setup">
 <p>Open RStudio and create a new project by clicking <code>File &gt; New Project &gt; Existing Directory &gt; Browse</code>, navigating into (opening) the course folder, and clicking <code>Create Project</code>.</p>
@@ -313,10 +276,8 @@ Figure&nbsp;1: Screenshot of a typical Rstudio interface
 <p>In the Windows Explorer, look at the course folder. You should now see a new file with the extention <code>.Rproj</code> that has a small blue icon with an R in it.</p>
 </div>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../img/core/02_import/02_rproject.png" class="img-fluid figure-img"></p>
-<figcaption>Icon associated with RStudio projects</figcaption>
-</figure>
+<figure class="figure"><p><img src="../img/core/02_import/02_rproject.png" class="img-fluid figure-img"></p>
+<figcaption>Icon associated with RStudio projects</figcaption></figure>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -350,19 +311,14 @@ Tip
 <li>Use the RStudio menu <code>File &gt; Open Project</code> and then select the relevant <code>.Rproj</code> file</li>
 <li>Click on <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="You can also refer to this button at any time to see which project you are currently working in.">the <code>Project: (none)</code> button</span> on the top right of the RStudio interface</li>
 <li>Navigate in the folder explorer to the analysis folder and double click on the file with the <code>.Rproj</code> extension</li>
-</ul>
-</section>
-<section id="rstudio-options" class="level3">
-<h3 class="anchored" data-anchor-id="rstudio-options">RStudio Options</h3>
+</ul></section><section id="rstudio-options" class="level3"><h3 class="anchored" data-anchor-id="rstudio-options">RStudio Options</h3>
 <p>Before continuing, let’s update some of RStudio’s problematic default settings:</p>
 <div class="setup">
 <p>Open the global options (<code>Tools &gt; Global Options</code>) and open the tab <code>General</code> (left menu). Make sure that <em>none</em> of the boxes in the sections <code>R Sessions</code>, <code>Workspace</code>, or <code>History</code> are checked.</p>
 </div>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../img/core/02_import/03_do_not_save.png" class="img-fluid figure-img"></p>
-<figcaption>Screenshot of the Rstudio options</figcaption>
-</figure>
+<figure class="figure"><p><img src="../img/core/02_import/03_do_not_save.png" class="img-fluid figure-img"></p>
+<figcaption>Screenshot of the Rstudio options</figcaption></figure>
 </div>
 <p>When checked, these options cause RStudio to save the objects in your environment and reload them as well as any files you previously had open when you open a new R session. While these default may seem like a good idea, it is better to always start your work from a fresh, <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="An empty session means the environment is empty, but you still have your scripts!">empty R session</span> to avoid bugs.</p>
 <div class="callout callout-style-default callout-important callout-titled">
@@ -378,10 +334,7 @@ Important
 <p>Remember that any commands or outputs that is needed for the cleaning and analysis should be saved explicitly in a script in the correct, functional order.</p>
 </div>
 </div>
-</section>
-</section>
-<section id="creating-a-new-script" class="level2">
-<h2 class="anchored" data-anchor-id="creating-a-new-script">Creating a New Script</h2>
+</section></section><section id="creating-a-new-script" class="level2"><h2 class="anchored" data-anchor-id="creating-a-new-script">Creating a New Script</h2>
 <div class="setup">
 <p>Open a new script and save it in the <code>R</code> folder of your project under the name <code>import_data.R</code>.</p>
 <p>Add some metadata to the top of the script as seen in the first session using <a href="../sessions_core/01_introduction.html#sec-comments">comments</a>. Be sure to include:</p>
@@ -393,9 +346,7 @@ Important
 </ul>
 </div>
 <p>Now you’re ready to start coding!</p>
-</section>
-<section id="sec-packages" class="level2">
-<h2 class="anchored" data-anchor-id="sec-packages">Packages</h2>
+</section><section id="sec-packages" class="level2"><h2 class="anchored" data-anchor-id="sec-packages">Packages</h2>
 <p>Packages are collections of functions that extend the functionality of R. You’ll use them <strong>a lot</strong>, both in this course and in your daily life. Fortunately, as an open source language, R packages can be downloaded and installed for free from the internet.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -410,8 +361,7 @@ Note
 <p>In R, packages are referenced using <code>{}</code>. For example <code>{ggplot2}</code> is the name of the ggplot2 package that contains new plotting functions such as <code>ggplot()</code>, <code>geom_point()</code> etc…</p>
 </div>
 </div>
-<section id="installation" class="level3">
-<h3 class="anchored" data-anchor-id="installation">Installation</h3>
+<section id="installation" class="level3"><h3 class="anchored" data-anchor-id="installation">Installation</h3>
 <p>We can install a new package using the function <code>install.packages()</code>, which downloads and installs it into the package library on your computer. This is done once per computer.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"here"</span>) <span class="co"># install the {here} package</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -431,9 +381,7 @@ Note
 <p>If are following this tutorial on your own or have not installed the packages yet, you will have to manually install each new package that we encounter.</p>
 </div>
 </div>
-</section>
-<section id="usage" class="level3">
-<h3 class="anchored" data-anchor-id="usage">Usage</h3>
+</section><section id="usage" class="level3"><h3 class="anchored" data-anchor-id="usage">Usage</h3>
 <p>Once a package is installed we can use it but we have to specify to R that we will be using it <em>every single session</em>. This process is called <em>loading the package</em> and is achieved using the function <code>library()</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here) <span class="co"># load the "here" package</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -471,9 +419,7 @@ Tip
 <div class="write">
 <p>Use <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Remember that you can use the keyboard shortcuts CTRL+SHIFT+C and CTRL+SHIFT+R to insert comments and sections">comments</span> to create a “Packages” section to your script.</p>
 </div>
-</section>
-<section id="updating-packages" class="level3">
-<h3 class="anchored" data-anchor-id="updating-packages">Updating Packages</h3>
+</section><section id="updating-packages" class="level3"><h3 class="anchored" data-anchor-id="updating-packages">Updating Packages</h3>
 <p>R has a very active community of developers and it’s pretty common for packages to be updated from time to time as their owners add in new functions and fix existing bugs. In order to update the packages in your library, you can go into the <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Remember that this tab shows a list of all the packages you have installed on your computer with their version numbers."><code>Packages</code> tab</span> of the bottom right panel and click <code>Update</code>. Don’t forget that you’ll <strong>need to be connected to the internet</strong> during this process.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -488,34 +434,26 @@ Important
 <p>Sometimes packages are updated in a way that might remove or change a function that you used in some of your scripts, causing your code to no longer work. <strong>Don’t panic</strong> if this happens. The best practice is to adapt <em>your code</em>, although in the worst case scenario you can <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="This is discouraged as it will make your code hard for others to use.">forcibly install an old version of a package</span>. This is however out of the scope of this session.</p>
 </div>
 </div>
-</section>
-</section>
-<section id="data-importation" class="level2">
-<h2 class="anchored" data-anchor-id="data-importation">Data Importation</h2>
-<section id="sec-filepaths" class="level3">
-<h3 class="anchored" data-anchor-id="sec-filepaths">Understanding File Paths</h3>
+</section></section><section id="data-importation" class="level2"><h2 class="anchored" data-anchor-id="data-importation">Data Importation</h2>
+<section id="sec-filepaths" class="level3"><h3 class="anchored" data-anchor-id="sec-filepaths">Understanding File Paths</h3>
 <p>To open a file in R you need to provide a <strong>file path</strong>. A file path is simply a longer name for a file, that includes not only its name but also its location on your computer. There are several ways of defining these paths, including <em>absolute</em> and <em>relative</em> paths.</p>
-<section id="absolute-paths" class="level4">
-<h4 class="anchored" data-anchor-id="absolute-paths">Absolute Paths</h4>
+<section id="absolute-paths" class="level4"><h4 class="anchored" data-anchor-id="absolute-paths">Absolute Paths</h4>
 <p>Absolute paths are <strong>specific to your computer</strong> and go all the way up to the level of your <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="For example, 'C:' or 'D:' on a Windows computer.">hard drive</span>. For example, an absolute path may look something like this: <code>D:/OneDrive - MSF/Documents/monitoring/cholera/fancy_project/data/raw/example_linelist.xlsx</code>. Clearly, this path will only work on one specific computer.</p>
 <p>The use of <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Hardcoded means that you wrote the full path in the script, the way it is given above, as opposed to building the paths by bits as we are going to show below.">hard coded</span> absolute paths is <strong>strongly discouraged</strong> as it makes your code inflexible and prone to break: the paths need to be updated every time your code is shared or the project folder is moved on your computer.</p>
-</section>
-<section id="relative-paths" class="level4">
-<h4 class="anchored" data-anchor-id="relative-paths">Relative Paths</h4>
+</section><section id="relative-paths" class="level4"><h4 class="anchored" data-anchor-id="relative-paths">Relative Paths</h4>
 <p>Relative paths are defined relatively to your current <a href="../sessions_core/02_import_data.html#sec-definitions">working directory</a>. For example, keeping in mind that our handy <code>.Rproj</code> file set our working directory to the root of our project folder, we could create a relative path that looked like <code>data/raw/example_linelist.xlsx</code>. This means that <strong>as long as we maintain the <em>internal</em> structure</strong> of our project folder and have an <code>.Rproj</code> file, our code would theoretically run on multiple computers.</p>
-</section>
-<section id="robust-paths-with-the-here-function" class="level4">
-<h4 class="anchored" data-anchor-id="robust-paths-with-the-here-function">Robust Paths with the <code>here()</code> function</h4>
+</section><section id="robust-paths-with-the-here-function" class="level4"><h4 class="anchored" data-anchor-id="robust-paths-with-the-here-function">Robust Paths with the <code>here()</code> function</h4>
 <p>The <code>{here}</code> package has a <code>here()</code> function that really helps defining paths. It has two advantages:</p>
 <ul>
 <li>When used with RStudio projects, you can give it only the part of the path within the project, (the <em>relative path</em> in other words), and the function uses it to create the <em>absolute path</em> dynamically.</li>
-<li>It does so using the separator adapted to you <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="For example, Windows, MacOS, Debian...">operating system</span>, whether it’s <code>/</code>, <code>\</code>, or <code>//</code></li>
+<li>It does so using the separator adapted to you <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="For example, Windows, MacOS, Debian...">operating system</span>, whether it’s <code>/</code>, <code>\</code>, or <code>//</code>
+</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"raw"</span>, <span class="st">"example_linelist.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "D:/MATHILDE_UNPLUGGED/5_OTHER/repicentre/data/raw/example_linelist.xlsx"</code></pre>
+<pre><code>[1] "/tmp/RtmphY9Ww5/file56bee1328a7b5/data/raw/example_linelist.xlsx"</code></pre>
 </div>
 </div>
 <p>See how we only defined the relative path and the function created an absolute path. This way of defining the path will work on your colleagues computer, even if they run on another operating system, as long as you both respect the internal structure of the working directory.</p>
@@ -552,10 +490,7 @@ Tip
 <p>We will often want to source multiple data files in a single project. To make that process easier, it can be helpful to create a section at the start of the script, after loading the packages to define paths and store them in variables.</p>
 </div>
 </div>
-</section>
-</section>
-<section id="sec-import" class="level3">
-<h3 class="anchored" data-anchor-id="sec-import">Import function</h3>
+</section></section><section id="sec-import" class="level3"><h3 class="anchored" data-anchor-id="sec-import">Import function</h3>
 <p>In R different file formats are often imported using different, often specialized functions. This can be tedious as it requires you to memorize and load a large number of functions just to get your data imported. To avoid this problem, we recommend that you use the <code>import()</code> function from the package <span data-tooltip-position="top" data-tooltip="`rio` stands for R Inputs and Outputs."><code>{rio}</code></span>. This function is able to open a large variety of files (including Excel, csv, Stata, and many others) by recognizing the file extension of your data and <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="This type of function, providing an unified interface to other specific functions is known as a wrapper.">calling a relevant specialized function from another package</span> so that you don’t have to.</p>
 <p>Because <code>import()</code> is actually just calling other functions in the background, it is possible that it will need different arguments depending on the type of file you want to load.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -571,8 +506,7 @@ Tip
 <p>To see the full list of all the file types you can load (and save!) with <code>rio</code>, check out the list of <a href="https://gesistsa.github.io/rio/index.html#supported-file-formats">supported formats</a> on their website. In the rest of the lesson we will focus on importing data from Excel <code>.xlsx</code> files.</p>
 </div>
 </div>
-<section id="importing-from-the-first-sheet" class="level4">
-<h4 class="anchored" data-anchor-id="importing-from-the-first-sheet">Importing from the First Sheet</h4>
+<section id="importing-from-the-first-sheet" class="level4"><h4 class="anchored" data-anchor-id="importing-from-the-first-sheet">Importing from the First Sheet</h4>
 <p>In general, the usage of <code>import()</code> is pretty simple, at minima you need to pass the path of the file to the <code>file</code> argument</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">import</span>(<span class="at">file =</span> <span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"raw"</span>, <span class="st">"example_linelist.xlsx"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -598,20 +532,14 @@ Tip
 <div class="write">
 <p>Reimport your data but this time save it to an object called <code>df_linelist</code>.</p>
 </div>
-</section>
-<section id="importing-data-from-any-sheet" class="level4">
-<h4 class="anchored" data-anchor-id="importing-data-from-any-sheet">Importing Data from Any Sheet</h4>
+</section><section id="importing-data-from-any-sheet" class="level4"><h4 class="anchored" data-anchor-id="importing-data-from-any-sheet">Importing Data from Any Sheet</h4>
 <p>As you just saw, R selects the first sheet by default. It is however possible to pass the number (or name) of a specific worksheet in your Excel data to <code>import()</code> using the argument <code>which</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">import</span>(<span class="at">file =</span> <span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"raw"</span>, <span class="st">"example_linelist.xlsx"</span>),</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">which =</span> <span class="dv">2</span>)  <span class="co"># imports the second sheet</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Note that the <code>which</code> argument is specific to the file types that have multiple sheets, such as Excel or .Rdata files. If you try to use it on a <code>.csv</code> file the argument will be ignored.</p>
-</section>
-</section>
-</section>
-<section id="taking-a-first-look-at-your-data" class="level2">
-<h2 class="anchored" data-anchor-id="taking-a-first-look-at-your-data">Taking a First Look at your Data</h2>
+</section></section></section><section id="taking-a-first-look-at-your-data" class="level2"><h2 class="anchored" data-anchor-id="taking-a-first-look-at-your-data">Taking a First Look at your Data</h2>
 <p>We have now imported a dataset into R and assigned it to a dataframe (<code>df_linelist</code>). The natural next step is to inspect this dataset, to check that the import went well, get to know it a bit better, and assess if it requires any cleaning before analysis.</p>
 <p>We can start by taking a quick look at the first few lines of the dataframe using the function <code>head()</code>. This function takes a dataframe as its first argument and optionally accepts a second argument <code>n</code> indicating the number of lines we would like to see.</p>
 <div class="cell">
@@ -625,9 +553,7 @@ Tip
 <p>Click on the round blue button next to <code>df_linelist</code> in your environment to see its structure. Then click on the name of the dataset to open it in the viewer.</p>
 </div>
 <p>The data viewer displays dataframes as tables and is a convenient way to quickly look at your data. You can even sort and filter your data in the “View”, though be aware that these actions will not make any changes to the actual object <code>df_linelist</code>. The View can also be opened by passing the dataframe to the function <code>View()</code>.</p>
-</section>
-<section id="done" class="level2">
-<h2 class="anchored" data-anchor-id="done">Done!</h2>
+</section><section id="done" class="level2"><h2 class="anchored" data-anchor-id="done">Done!</h2>
 <p>Well done and don’t forget to save your code.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -636,31 +562,20 @@ Tip
 </a>
 </div>
 </div>
-</section>
-<section id="going-further" class="level2">
-<h2 class="anchored" data-anchor-id="going-further">Going Further</h2>
-<section id="extra-exercises" class="level3">
-<h3 class="anchored" data-anchor-id="extra-exercises">Extra Exercises</h3>
+</section><section id="going-further" class="level2"><h2 class="anchored" data-anchor-id="going-further">Going Further</h2>
+<section id="extra-exercises" class="level3"><h3 class="anchored" data-anchor-id="extra-exercises">Extra Exercises</h3>
 <ol type="1">
 <li>Use <code>dim()</code> to take a look at the dimensions of your dataset.</li>
 <li>Use <code>str()</code> to check the data type of each column. Does anything look odd? Remember that you can also use functions like <code>is.character()</code> and <code>is.numeric()</code> if you’d like to test the type of a particular column.</li>
 <li>Using a function learned in the first session, can you extract the names of the columns of the dataset? Do these results match what you see when you open the data in Excel?</li>
 <li>Try passing your dataframe to the function <code>summary()</code>. What does this function tell you?</li>
-</ol>
-</section>
-<section id="additional-resources" class="level3">
-<h3 class="anchored" data-anchor-id="additional-resources">Additional Resources</h3>
+</ol></section><section id="additional-resources" class="level3"><h3 class="anchored" data-anchor-id="additional-resources">Additional Resources</h3>
 <ul>
-<li>The <code>{rio}</code> <a href="https://gesistsa.github.io/rio/index.html#supported-file-formats">website</a></li>
-<li><a href="https://epirhandbook.com/en/new_pages/importing.html">More examples</a> on importing data of various file types</li>
-</ul>
-
-
-</section>
-</section>
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+<li>The <code>{rio}</code> <a href="https://gesistsa.github.io/rio/index.html#supported-file-formats">website</a>
+</li>
+<li>
+<a href="https://epirhandbook.com/en/new_pages/importing.html">More examples</a> on importing data of various file types</li>
+</ul></section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -1226,4 +1141,5 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-</body></html>
+</body>
+</html>

@@ -1,0 +1,224 @@
+---
+title: Data Exploration
+description: Explore your data after importation
+date: last-modified
+image: ../../img/extra/data_exploration/logo.svg
+categories:
+  - Satellite
+  - Data Exploration
+---
+
+```{r setup}
+#| include: false
+#| eval: true
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+library(here) # for filepaths
+library(rio)  # import and export files
+```
+
+Objectives
+----------------------------------------------------------------------------------------------------
+
+- Perform quick exploration of an imported dataset
+- Produce frequency tables for variables 
+
+:::{.callout-important}
+
+**Dependencies.** This extra session assumes that you have completed the sessions [introduction to R and R studio](01_introduction.html), and [data importation](02_import_data.html).  
+:::
+
+Setup
+----------------------------------------------------------------------------------------------------
+
+::: {.setup}
+For this session we will work with our raw Moissala measles linelist which can be downloaded here: 
+
+```{r}
+#| echo: false
+#| eval: true
+
+downloadthis::download_link(
+  link = 'https://github.com/epicentre-msf/repicentre/data/raw/moissala_linelist_EN.xlsx',
+  button_label = ' Course Folder',
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  self_contained = FALSE
+)
+```
+
+Make sure it is appropriately stored in `data/raw` of your project. Then open a new script called `data-exploration.R`, and make sure packages `{here}`, `{rio}` and `{dplyr}` are loaded. Finally, import the data into R as an object called `df_linelist`. 
+:::
+
+Data Exploration
+----------------------------------------------------------------------------------------------------
+
+Right after importing some data into R, we might want to take a look at it. When talking of **data exploration** we usually want to do a few things:
+
+- Examine dimensions of the data (ie: how many rows and how many columns)
+- Look at columns names 
+- Visualise the first or last few rows 
+- Determine the class of the variables
+- Determine the range of values in continuous variables
+- Observe the possible values in each categorical variable 
+
+This process is crucial and will allow us to familiarize ourselves with our data and identify issues that will be adressed during the data cleaning step. 
+
+```{r, eval = TRUE, echo = FALSE, message = FALSE, warning = FALSE}
+library(here)
+library(rio)
+library(dplyr)
+
+# REMOVE when data are updated 
+df_linelist <- import(here::here("data", "raw", "moissala_linelist_EN.xlsx"))
+
+```
+
+Basic Exploration
+----------------------------------------------------------------------------------------------------
+
+The very first thing you want to know about your data is the **dimensions**, which refers to the **number of rows** and **number of columns** that make up your data. There are several ways to get this information in R: 
+
+1. Look at your *environment pane* in RStudio and check for your data - the number next to it (`5230x25`) tells us it is a dataframe with `5230` rows and `25` columns.
+2. Use `dim()` on your data to return a vector with both the number of rows and number of columns
+3. Alternatively, use `ncol()` to get the number of columns and `nrow()` for the number of rows
+
+It's good to remember these numbers so you can quickly spot if there are unexpected changes to your data during your analysis (ie: more/fewer rows or columns than expected).
+
+::: {.write}
+Using the method of your choice, get the dimensions of your dataframe `df_linelist`. 
+:::
+
+
+Variable Names
+----------------------------------------------------------------------------------------------------
+
+Because we are going to use the variable names very often during our analysis, we want to get familiar with them pretty early on. Also, we need to identify the ones that will need to be renamed during our data cleaning. The function `names()` returns a vector of all the variable names in our dataframe: 
+
+```{r, eval = TRUE}
+
+names(df_linelist)
+
+```
+
+::: {.look}
+What do you think of the names in your dataset? Can you already spot some variables names you would like to rename?
+:::
+
+Inspecting Your Data
+----------------------------------------------------------------------------------------------------
+
+It is also nice to inspect your data, it may be easier for you to spot some inconsistencies, variables with a lot of missing values, and it will allow you to see what values to expect in each of them. You can [print]{.hovertip bs-toggle='tooltip' bs-title="Print is a programming word that means displaying output in your console."} your data in the console by: 
+
+1. Running the `df_linelist` object alone (careful though, you may not want to do this if you have a large dataset)
+2. Use the `head()` function to see the top 6 rows (you can increase this number using the argument `n`)
+2. Use the `tail()` function to see the last 6 rows (again, you can increase this number using the argument `n`)
+
+These methods will only print the first 40 rows of your data at most because that's the limit of your console. Alternatively, you can use `View()` to see your data in a tabular form. This will open a new window with your data displayed like like an Excel spreadsheet. **Note**, this command only displays the data, it doesn't allow you to modify it. 
+
+:::{.callout-tip}
+Be very careful with `View()` on large dataset as this may crash your RStudio session. To avoid this, you can print the output in the console. 
+:::
+
+:::{.write}
+Can you display the first 15 rows of your data? What happen when you change the width of your console pane and run the command again? 
+:::
+
+Variable Classes
+----------------------------------------------------------------------------------------------------
+
+We now want to check the class of the different variables. This is important as part of data cleaning involves making sure that numerical variables are class `numeric`, dates `Date`, and categorical variables are `factor` or `character`. You have already seen the `class()` function, to check the class of a vector. In R, each variable of a dataframe is a vector. We can extract all the values of that vector using the [`$` sign]{.hovertip bs-toggle='tooltip' bs-title='This is called base R indexing'}, and pass it to the class function: 
+
+```{r}
+#| eval: false
+
+class(df_linelist$age)
+```
+
+:::{.write}
+Try extracting all the values from the `sex` variable. What is the class of this variable? 
+:::
+
+You can also use `str()` on your dataframe to check all the variables class at once: 
+
+```{r}
+#| eval: false
+
+str(df_linelist)
+```
+
+:::{.write}
+Use `str()` to check the data type of each column. Does anything look odd? Remember that you can also use functions like `is.character()` and `is.numeric()` if you'd like to test the type of a particular column.
+:::
+
+Exploring Continuous Variables
+----------------------------------------------------------------------------------------------------
+
+Now that you know how to extract the values from a variable, you may want to explore some of these values from the `numeric` variables to check for inconsistencies. Let's look for some summary statistics for these, and Base R provides many handy functions:
+
+| Function | Description | Example | Returns |
+|----------|-------------|---------|----------|
+| min() | Minimum value | min(x) | Single minimum value |
+| max() | Maximum value | max(x) | Single maximum value |
+| mean() | Arithmetic average | mean(x) | Average value |
+| median() | Middle value | median(x) | Middle value |
+| range() | Min and max | range(x) | Vector of (min, max) |
+| IQR() | Interquartile range | IQR(x) | Q3 - Q1 |
+| quantile() | Specified quantiles | quantile(x, probs = c(0.25, 0.75)) | Requested quantiles |
+| sd() | Standard deviation | sd(x) | Standard deviation |
+| var() | Variance | var(x) | Variance |
+| sum() | Sum of values | sum(x) | Sum |
+
+:::{.callout-tip}
+These functions require you to explicitly remove missing values (`NA`) using the argument `na.rm = TRUE`
+:::
+
+You can extract the values of a variables using `$`, and pass them to any of those functions. 
+
+:::{.write}
+Use the `$` syntax to get: 
+
+- The minimum value of `age`
+- The maximum of `muac`
+
+*Any problems?*
+:::
+
+Exploring Categorical Variables
+----------------------------------------------------------------------------------------------------
+
+Finally, let's look at the values in our categorical variables. For this we can use frequency tables. This is handy as:
+
+1. It allows us to quickly see the unique values in a categorical variable
+2. The number of observations for each of those categories
+
+This is done using the function `count()` from the [package `{dplyr}`]{.hovertip bs-toggle='tooltip' bs-title="We will learn more about this package in the next session."}, which accepts the a dataframe and the name of one (or more!) column(s) as arguments. It will then count the **number of observations** of each unique element in that column. For example, let's see the possible values of the variable `sex`: 
+
+```{r}
+count(df_linelist, sex)
+```
+
+The output is a new, smaller dataframe containing the number of patients observed stratified by `sex`. It seems like this variable requires some recoding... We will do that in a later session. 
+
+::: {.write}
+Using your linelist data, look into the values for the `outcome` variable. How does it look? 
+
+Now, try adding the argument `sort = TRUE` to the `count()` function. What did this argument do?
+:::
+
+
+Done!
+----------------------------------------------------------------------------------------------------
+Well done taking a first look at your data!
+
+```{r}
+#| echo: false
+#| eval: true
+
+downloadthis::download_link(
+  link = 'https://github.com/epicentre-msf/repicentre/blob/main/solutions/extra/data_exploration.R',
+  button_label = 'Solution File',
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  self_contained = FALSE
+)
+```
