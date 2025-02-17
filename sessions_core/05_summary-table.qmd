@@ -5,8 +5,7 @@ date: last-modified
 image: ../img/core/05_summary_tables/logo.svg
 categories:
   - Core
-  - R Basics
-  - Data Types
+  - Summary Tables
 ---
 
 ```{r setup}
@@ -50,10 +49,7 @@ downloadthis::download_link(
   self_contained = FALSE
 )
 ```
-
-:::
-
-:::{.setup}
+<br>
 Open your RStudio Project and create a new script in the R subfolder called `tables.R` with appropriate metadata and a "Packages" section that imports: `{rio}`, `{here}` and `{tidyverse}`. Add an "Import Data" section that loads the *cleaned* version of the measles linelist into R.
 :::
 
@@ -80,15 +76,8 @@ df_linelist |>
 
 :::{.write}
 Create a new summary table counting the number of patients stratified by `sub_prefecture` and `hospitalisation`. What happens if you change the order of the arguments given to `count()`?
-:::
 
-```{r, echo = FALSE}
-df_linelist |>
-  count(sub_prefecture, hospitalisation)
-```
-
-:::{.write}
-Using `count()`, answer the following questions:
+Now, using `count()`, answer the following questions:
 
 - How many patients were female? What is the proportion?
 - What are all the possible values of the `outcome` variable?
@@ -164,7 +153,7 @@ df_linelist |>
 `drop_na()` is particularly useful as you can give it multiple column names to filter by. But be careful that doing so will remove **all** rows where **one or more** of those columns have a missing value. 
 :::
 
-## Summary Table: Statistics by sub prefecture
+## Summary Table: Statistics by Sub Prefecture
 
 Ok now that we have produced some simple frequency and contingency tables we may want to increase the complexity. A common task in epidemiology is to look at summary statistics within subsets of the data. 
 
@@ -250,7 +239,7 @@ df_linelist |>
 Ok now let's build a summary table for each `sub_prefecture`. First start by replicating the above lines
 :::
 
-### Continuous Summaries
+### Summarizing Continuous Variables
 
 We can then use the `mean()`, `median()`, `min()`, `max()` functions (and other) to produce summaries for continuous variables. For example the average age:
 
@@ -299,7 +288,7 @@ Add a variable to your table that counts the number of patients that have been h
 
 ### Other Statistics
 
-Sometimes we want to produce a statistic *other than counting* given a condition, let's say the *mean age of all hospitalized patients*. Here the syntax is a bit different: 
+Sometimes we want to produce a more complicated statistic, for example the *mean age of all hospitalized patients*. Here the syntax is a bit different: 
 
 ```{r}
 # DO NOT RUN (PSEUDO-CODE)
@@ -311,10 +300,11 @@ df |>
 
 Here, we have:
 
-- Indicated which column we want to use when calculating the summary statistic (here a mean)
-- Indexed that column using a logical test
+- Stated what summary statistic we want to use (`mean()`)
+- Indicated which column we want to calculate that statistic on (`col_to_use`)
+- Created a condition of which observations in that column to use in the calculation (`[LOGIC_TEST]`)
 
-For example to compute the mean of the `age` variable but *only* for hospitalized patients (ie in rows where `hospitalisation == "yes"`) we would write:
+To give a concrete example, if we wanted to compute the mean of the `age` variable but *only* for hospitalized patients (ie: in rows where `hospitalisation == "yes"`) we would write:
 
 ```{r}
 df_linelist |>
@@ -325,8 +315,10 @@ df_linelist |>
   )
 ```    
 
+The use of a logical test in the example above is called **logical indexing**, where a condition is essentially being used to filter which observations you want to consider when performing a calculation. Logical indexing is very powerful but can also take some getting used to, so don't worry too much if it isn't perfectly clear at this stage. 
+
 ::: {.write}
-Can you use this syntax to calculate the mean age of female patients in your table ?
+Can you use this syntax to calculate the mean age of female patients in your table?
 :::
 
 That is looking great! We are starting to get a pretty exhaustive grouped summary table with a lot of useful information by `sub_prefecture`! An extra challenge for you: 
@@ -340,9 +332,9 @@ You want to count rows (so use `sum()`) that fill a specific condition for outco
 
 :::
 
-### Use the output 
+### Use the Output 
 
-Finally, a reminder that `summarize()` returns a dataframe that we can then further manipulate (eg: with `filter` and `mutate`). 
+Finally, remember that `summarize()` returns a dataframe that we can then further manipulate (eg: with `filter()` and `mutate()`). 
 
 ::: {.write}
 Add a `mutate()` after producing your summary table to calculate: 
@@ -351,9 +343,11 @@ Add a `mutate()` after producing your summary table to calculate:
 - The proportion of female patients per sub-prefecture 
 :::
 
-Here is our final table !
+The head of your final table should look like this:
 
-```{r, eval = TRUE, echo = FALSE }
+```{r}
+#| eval: true
+#| echo: false
 sub_pref_df <- df_linelist |>
   summarize(
     .by = sub_prefecture,
@@ -370,17 +364,7 @@ sub_pref_df <- df_linelist |>
   )
 
 sub_pref_df |>
-  DT::datatable(
-    options = list(
-      scrollX = TRUE,
-      pageLength = 10,
-      autoWidth = TRUE
-    ),
-    style = "bootstrap"
-  ) |>
-  DT::formatRound(columns = names(which(sapply(sub_pref_df, is.numeric))), 
-  digits = 2)
-
+  head()
 ```
 
 
@@ -406,7 +390,7 @@ downloadthis::download_link(
 
 ### Extra Exercises
 
-Make a summary table that compute the following statistics by *age groups*: 
+1. Make a summary table that compute the following statistics by *age groups*: 
 
   - The number of patients
   - The proportion of males
