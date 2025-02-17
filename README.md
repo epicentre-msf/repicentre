@@ -146,7 +146,9 @@ Here is a list of currently noticed issues regarding the translation:
 
 - Translation errors do occur, and syntax is sometimes goofy - Read through all sentences to fix this. 
 
-- Tooltips do not get translated, so please translate each one of them. You can use the following function to translate strings directly: 
+- `div` fences (`:::`) get modified to have a space in them (ie: `: ::` or `:: :`), this needs to be fixed
+
+- Tooltips  do not get translated, so please translate each one of them. You can use the following function to translate strings directly: 
 
 ```
 babeldown::deepl_translate_markdown_string(
@@ -159,7 +161,6 @@ babeldown::deepl_translate_markdown_string(
 ```
 
 - Nothing in R chunks gets translated, while this prevents translation of R functions, it is required to translate the `# Comments`. 
-=======
 
 
 General contribution guidelines.

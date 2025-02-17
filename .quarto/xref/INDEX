@@ -68,13 +68,19 @@
   "sessions_core/05_summaries.qmd": {
     "05_summaries.html": "ae1c5d29"
   },
+  "sessions_core/05_summary-table.qmd": {
+    "05_summary-table.html": "ab52ef9d"
+  },
   "sessions_core/01_introduction.fr.qmd": {
-    "01_introduction.fr.html": "d308608a"
+    "01_introduction.fr.html": "b5897765"
   },
   "sessions_core/02_import_data.fr.qmd": {
-    "02_import_data.fr.html": "be9c1a59"
+    "02_import_data.fr.html": "d5aff4de"
   },
-  "sessions_core/05_summary-table.qmd": {
-    "05_summary-table.html": "8b2057ed"
+  "sessions_core/03_data-verbs.qmd": {
+    "03_data-verbs.html": "4811ee8c"
+  },
+  "sessions_core/03_data_verbs.qmd": {
+    "03_data_verbs.html": "65388623"
   }
 }
