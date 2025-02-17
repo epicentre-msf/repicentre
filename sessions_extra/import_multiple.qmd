@@ -46,13 +46,16 @@ In the [import data](../sessions_core/02_import_data.qmd) core session your lear
 
 You may have already encountered these situations:
 
-- You have an Excel file with data in several sheets (linelist data, lab data, bed occupancy) and you need to import all datasets in R
+- You have one Excel file with data in several sheets (linelist data, lab data, bed occupancy) and you need to import all datasets in R
+
 
 - You have several Excel files (linelist data, lab data, bed occupancy) with data to import.
 
-- You have an Excel file with data in several sheets, and all the sheets are formatted the same way, and you wish to gather the data in the same dataset. A prime example of it is linelist or aggregated data where one sheet represent one week, or one district, and there are about 20 sheets...
 
-- You have multiple Excel files, all formatted the same (one linelist per site, for example)
+- You have an Excel file with data in several sheets, but this time [all the sheets are formatted the same way]{.hovertip bs-toggle='tooltip' bs-title="You probably encountered linelist or aggregated data where one sheet represents one week, or one district, and there are about 20 sheets..."}, and you wish to gather the data in the same dataset.
+
+
+- You have multiple Excel files, all formatted the same (one linelist per site, for example) and you want to import and gather in the same data frame
 
 The two first cases can be solved with several calls to the different sheets or files, and storing the data in different data frames. If there are not too many files or sheets, it's fine. The two last cases should however be automatized! 
 
@@ -73,7 +76,7 @@ import_list(here(path_data_raw, "example_linelist.xlsx"))
 Now imagine someone gave you lab data with the positive, negative and inconclusive scattered in [three different sheets]{.hovertip bs-toggle='tooltip' bs-title="You wonder why they did that but you probably have seen weirder things."}. Let's import this data.
 
 ::: {.look}
-Go to the sub-folder `data / raw / multiple_sheets`. There are two modified version of the lab data. Open them and look at their structure. Do you see how the second file differs form the first one?
+Go to the sub-folder `data/raw/satellite_multiple/multiple_sheets`. There are two modified version of the lab data. Open them and look at their structure. Do you see how the second file differs form the first one?
 :::
 
 We will tackle the first file, as it is less messy.
@@ -130,7 +133,7 @@ import_list(
 ::: {.write}
 Use the `import_list()` function to import all the sheets of `msf_laboratory_moissala_2023-09-24_first.xlsx`in one go, and store it in an object called `lab_data`, which is a *single data frame* containing all the data.
 :::
-``
+
 
 You may use the `rbind_label = ` argument and provide a string for the column name, or not and see what happens.
 
@@ -199,7 +202,7 @@ import_list(vector_paths) # returns a list
 
 
 ::: {.look}
-Go to the sub-folder `data / raw /satellite_multiple/multiple_files/EN`. Open the (English) files to check their content. Would it make sense to concatenate the data together at import in this case?
+Go to the sub-folder `data / raw /satellite_multiple/multiple_files/EN`. Open the files to check their content. Would it make sense to concatenate the data together at import in this case?
 :::
 
 ::: {.write}
@@ -241,7 +244,7 @@ Remember that thanks to `{here}` and relative paths within the course directory,
 
 Now, this is nice and all but there are those pesky files that are not Excel which we would like to avoid. An easy way is to use the `pattern` argument of `list.files()`. It takes a string of text that is matched to the names of files, to keep only the ones you want.
 
-The `pattern` argument accepts [regular expressions, or regex for short](https://r4ds.hadley.nz/regexps), which are [*way* out of our scope here]{.hovertip bs-toggle='tooltip' bs-title="Regular expressions have their own syntax that is not limited to R. They are super powerful but also hard to use so if you are new to R you should probably wait a bit before diving into them."}. Here we are only giving you pointers to create a simple pattern.
+The `pattern` argument accepts regular expressions, or regex for short, which are [*way* out of our scope here]{.hovertip bs-toggle='tooltip' bs-title="Regular expressions have their own syntax that is not limited to R. They are super powerful but also hard to use so if you are new to R you should probably wait a bit before diving into them."}. Here we are only giving you pointers to create a simple pattern.
 
 The function will return file names that match the pattern: 
 
@@ -273,7 +276,7 @@ list.files(path = path_mult, pattern = "\\.doc$")
 
 Here we modified the pattern to make it more restrictive:
 
-- the `\\.` at the start is the [regex way]{.hovertip bs-toggle='tooltip' bs-title='It sounds complicated because the "." alone has a special meaning in regex, so we need to add the \\. Go [read on regex](https://r4ds.hadley.nz/regexps), or trust us for now.'} of saying that there should be a "." before "doc".
+- the `\\.` at the start is the [regex way]{.hovertip bs-toggle='tooltip' bs-title='It sounds complicated because the "." alone has a special meaning in regex, so we need to add the \\\. Trust us for now.'} of saying that there should be a "." before "doc".
 - the `$` at the end of the pattern indicates that this pattern should be at the end of the file name.
 
 So with this pattern we are looking for *files that contain ".doc" at the end of their names*.
@@ -309,5 +312,6 @@ downloadthis::download_link(
 
 ## Going Further
 
+An introduction to [regular expressions](https://r4ds.hadley.nz/regexps)
 
 ## Extra Exercises
