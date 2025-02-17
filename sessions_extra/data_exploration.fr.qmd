@@ -24,7 +24,7 @@ Objectifs
 
 :::{.callout-important}
 
-**Cette session supplémentaire suppose que vous avez suivi les sessions [introduction à R et R studio](01_introduction.html), et [importation de données](02_import_data.html).  
+**Dependances.** Cette session supplémentaire suppose que vous avez suivi les sessions [introduction à R et R studio](01_introduction.html), et [importation de données](02_import_data.html).  
 :::
 
 Setup
