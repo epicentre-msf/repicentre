@@ -288,7 +288,7 @@ df_raw |>
   mutate(malnut = case_when(muac < 110 ~ 'SAM',
                             muac < 125 ~ 'MAM',
                             .default = 'Normal')) |>
-  select(malnut) |>
+  select(muac, malnut) |>
   head()
 ```
 :::
@@ -310,7 +310,7 @@ df_raw |>
   mutate(malnut = case_when(muac < 125 ~ 'MAM',
                             muac < 110 ~ 'SAM',
                             .default = 'Normal')) |>
-  select(malnut) |>
+  select(muac, malnut) |>
   head()
 ```
 
@@ -335,7 +335,7 @@ df_raw |>
                                age <= 180 ~ '5 - 15  Years',
                                age > 180 ~ '> 15 Years',
                                .default = 'Unkonwn')) |>
-  select(age_group) |>
+  select(age, age_group) |>
   head()
 ```
 :::
