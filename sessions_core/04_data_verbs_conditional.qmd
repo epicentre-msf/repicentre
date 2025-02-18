@@ -234,7 +234,7 @@ Good job working through a quick tour of logic statements in R! Here is a handy 
 |Is A less than or equal to B?|A <= B|
 
 
-Recoding with `{case_when}`
+Recoding with `case_when()`
 ----------------------------------------------------------------------------------------------------
 As we have seen, conditional logic statements are incredibly useful when trying to filter our data, but you will find that they have many other uses as well. One of their other major use cases for us as epidemiologists is when we need to [recode our data]{.hovertip bs-toggle='tooltip' bs-title='Recoding is the process of either standardizing the values of variable (such as making sure "f" and "female" are both coded as "F") or creating standardized groups of variable values (for example age groups).'}. This is where the `{dplyr}` function `case_when()` is here to help us.
 
