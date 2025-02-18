@@ -221,7 +221,7 @@ df_raw |>
 :::
 
 
-### Summary of Basic Logic Statements
+### Summary of Basic Logic Statements {#sec-logic-statements}
 Good job working through a quick tour of logic statements in R! Here is a handy table to help you remember the main logic statements we have learned so far:
 
 |Statement|R|
