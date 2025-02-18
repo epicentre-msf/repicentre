@@ -83,7 +83,7 @@ Inspect the RStudio interface.
 You will have either three or four panels, including:
 
 
-#### Upper Right Corner
+#### Upper Right Corner {#sec-envt}
 
 To the upper right there will be a panel with several tabs. Many of these are beyond the scope of this course, but we will use the following two tabs during the course:
 
