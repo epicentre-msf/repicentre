@@ -426,7 +426,7 @@ downloadthis::download_link(
 
 4. Calculate the mean days from first symptom onset to consultation by sub-prefecture.
 
-5. Calculate the mean days from admission to outcome by outcome.
+5. Calculate the mean time spent in hospital (i.e. days from admission to outcome) by outcome (i.e. in those who recovered and those who died).
 
 ### Additional Resources
 
