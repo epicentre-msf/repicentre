@@ -2,11 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.6.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-02-12">
+<meta name="dcterms.date" content="2025-02-18">
 <meta name="description" content="Using {dplyr} and conditional logic to filter and recode data">
 
 <title>Data Manipulation with Conditional Logic – {repicentre}</title>
@@ -71,12 +71,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-0626ff4d7a71b55c8707dcae1d04a9b6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-e25cc82807363e79c52e96bc8b7855f1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-697306ee647f3aecb60be57249203282.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-3fe3df12cb322cd60d4f50ab5ce79ec8.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-b814d3e578892f16fb585af6f47f426f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-35dfec4a88a4a8552367c65e80eaa027.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-d747503b21a9267137dc98650c9a257a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-5131c98158f83ec01234852a3be8e382.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -111,6 +111,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   });
 </script>
 <script src="../site_libs/font-awesome-6.5.2/js/script.js"></script>
+
 <script type="text/javascript" src="../script.js"></script>
 
 
@@ -175,9 +176,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#this-does-not-equal-that" id="toc-this-does-not-equal-that" class="nav-link" data-scroll-target="#this-does-not-equal-that">This Does Not Equal That</a></li>
   <li><a href="#greater-than-less-than" id="toc-greater-than-less-than" class="nav-link" data-scroll-target="#greater-than-less-than">Greater Than / Less Than</a></li>
   <li><a href="#filters-with-multiple-conditions" id="toc-filters-with-multiple-conditions" class="nav-link" data-scroll-target="#filters-with-multiple-conditions">Filters with Multiple Conditions</a></li>
-  <li><a href="#summary-of-basic-logic-statements" id="toc-summary-of-basic-logic-statements" class="nav-link" data-scroll-target="#summary-of-basic-logic-statements">Summary of Basic Logic Statements</a></li>
+  <li><a href="#sec-logic-statements" id="toc-sec-logic-statements" class="nav-link" data-scroll-target="#sec-logic-statements">Summary of Basic Logic Statements</a></li>
   </ul></li>
-  <li><a href="#recoding-with-case_when" id="toc-recoding-with-case_when" class="nav-link" data-scroll-target="#recoding-with-case_when">Recoding with <code>{case_when}</code></a>
+  <li><a href="#recoding-with-case_when" id="toc-recoding-with-case_when" class="nav-link" data-scroll-target="#recoding-with-case_when">Recoding with <code>case_when()</code></a>
   <ul class="collapse">
   <li><a href="#the-in-operator" id="toc-the-in-operator" class="nav-link" data-scroll-target="#the-in-operator">The %in% operator</a></li>
   </ul></li>
@@ -217,7 +218,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 12, 2025</p>
+      <p class="date">February 18, 2025</p>
     </div>
   </div>
   
@@ -289,7 +290,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="this-does-not-equal-that" class="level3">
 <h3 class="anchored" data-anchor-id="this-does-not-equal-that">This Does Not Equal That</h3>
-<p>Checking if something is the same is great, but a lot of the time we might have a more complex question in mind. For example, we might want to know how many patients <strong>didn’t recover</strong>, whether this was because they died or because they left against medical advice.</p>
+<p>Checking if something is the same is great, but a lot of the time we might have another question in mind. For example, we might want to know how many patients <strong>didn’t recover</strong>, whether this was because they died or because they left against medical advice.</p>
 <p>In this case, instead of writing <code>==</code> we will instead use <code>!=</code>. So, for example if we want to select all observations where patients <strong>didn’t</strong> recover we would write:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
@@ -376,10 +377,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>         [condition <span class="dv">2</span>],</span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>         [condition <span class="dv">3</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>So for example, let’s say we want to select all patients under five who were hospitalized. In this case we can write:</p>
+<p>So for example, let’s say we want to select all patients <strong>under five who were hospitalized</strong>. In this case we can write:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df_raw <span class="sc">|&gt;</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(age <span class="sc">&lt;</span> <span class="dv">60</span>,</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(age <span class="sc">&lt;</span> <span class="dv">5</span>,</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">hospitalised =</span> <span class="st">"true"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="write">
@@ -395,8 +396,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Hint.</strong> This filter has a condition on both <code>hospitalisation</code> status, <code>sub_prefecture</code>, <strong>and</strong> <code>muac</code>.</p>
 </div>
 </section>
-<section id="summary-of-basic-logic-statements" class="level3">
-<h3 class="anchored" data-anchor-id="summary-of-basic-logic-statements">Summary of Basic Logic Statements</h3>
+<section id="sec-logic-statements" class="level3">
+<h3 class="anchored" data-anchor-id="sec-logic-statements">Summary of Basic Logic Statements</h3>
 <p>Good job working through a quick tour of logic statements in R! Here is a handy table to help you remember the main logic statements we have learned so far:</p>
 <table class="caption-top table">
 <thead>
@@ -435,9 +436,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 </section>
 <section id="recoding-with-case_when" class="level2">
-<h2 class="anchored" data-anchor-id="recoding-with-case_when">Recoding with <code>{case_when}</code></h2>
+<h2 class="anchored" data-anchor-id="recoding-with-case_when">Recoding with <code>case_when()</code></h2>
 <p>As we have seen, conditional logic statements are incredibly useful when trying to filter our data, but you will find that they have many other uses as well. One of their other major use cases for us as epidemiologists is when we need to <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Recoding is the process of either standardizing the values of variable (such as making sure &quot;f&quot; and &quot;female&quot; are both coded as &quot;F&quot;) or creating standardized groups of variable values (for example age groups).">recode our data</span>. This is where the <code>{dplyr}</code> function <code>case_when()</code> is here to help us.</p>
-<p>The syntax of <code>case_when()</code> is a little more advanced than what we have seen so far, but we will go slowly and break it down. Once you get the hang of it, <code>case_when()</code> will become a very powerful part of your R toolbelt. We will almost always use <code>case_when()</code> inside of a <code>mutate()</code>, because we will use it either to recode an existing variable or to create a new one. The basic syntax works like this:</p>
+<p>The syntax of <code>case_when()</code> is a little more advanced than what we have seen so far, but we will go slowly and break it down. Once you get the hang of it, <code>case_when()</code> will become a very powerful part of your R toolbelt.</p>
+<p>We will almost always use <code>case_when()</code> inside of a <code>mutate()</code>, because we will use it either to recode an existing variable or to create a new one. The basic syntax works like this:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DO NOT RUN (PSEUDO-CODE)</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
@@ -446,25 +448,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">.default =</span> [default value])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Ok, that’s a lot. Let’s break it down.</p>
-<p>So the first thing to notice is that, with the exception of the last line, each line inside of <code>case_when()</code> starts with a conditional logic statement then a <code>~</code> followed by the value we want when that statement was true. So for example, if we want our <code>case_when()</code> to say that anytime a patient had a MUAC less than 110 we want to have a value of <code>"SAM"</code>, the first part of our case when would be <code>muac &lt; 110 ~ "SAM'</code>. Here the left side of the <code>~</code> provides the condition and the right side gives the value we want whenever that condition is true. We can add multiple possible outcomes by adding additional lines. So in this case, our next condition might check if the patient is moderately but not severly malnourished using the statement <code>muac &lt; 125 ~ "MAM"</code>.</p>
-<p>The last line, with the argument <code>.default</code> then gives the value we want <code>case_when()</code> to use when none of the above conditions have been met. In this case, we might give the value <code>"Normal"</code>. To put this together, if we wanted to use <code>case_when()</code> to create a variable that classifies the malnutrition status of patients using their MUAC, we would write:</p>
+<p>So the first thing to notice is that, with the exception of the last line, each line inside of <code>case_when()</code> has the following format:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df_raw <span class="sc">|&gt;</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">malnut =</span> <span class="fu">case_when</span>(muac <span class="sc">&lt;</span> <span class="dv">110</span> <span class="sc">~</span> <span class="st">'SAM'</span>,</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>                            muac <span class="sc">&lt;</span> <span class="dv">125</span> <span class="sc">~</span> <span class="st">'MAM'</span>,</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>                            <span class="at">.default =</span> <span class="st">'Normal'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>[condition] <span class="sc">~</span> [value when condition is <span class="cn">TRUE</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>So for example, if we want our <code>case_when()</code> to say that anytime a patient had a MUAC less than 110 we want to have a value of <code>"SAM"</code>, we would have something like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>muac <span class="sc">&lt;</span> <span class="dv">110</span> <span class="sc">~</span> <span class="st">'SAM'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can add multiple possible outcomes by adding additional lines. In this case, our next condition might check if the patient is moderately but not severly malnourished using the statement <code>muac &lt; 125 ~ 'MAM'</code>.</p>
+<p>The last line, with the argument <code>.default</code> gives the value we want <code>case_when()</code> to use when none of the above conditions have been met. In this case, we might give the value <code>'Normal'</code>.</p>
+<p>To put this together, if we wanted to create a variable that classifies the malnutrition status of patients using their MUAC, we would write:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df_raw <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">malnut =</span> <span class="fu">case_when</span>(muac <span class="sc">&lt;</span> <span class="dv">110</span> <span class="sc">~</span> <span class="st">'SAM'</span>,</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>                            muac <span class="sc">&lt;</span> <span class="dv">125</span> <span class="sc">~</span> <span class="st">'MAM'</span>,</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>                            <span class="at">.default =</span> <span class="st">'Normal'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="write">
 <p>Try running the above code to see if it successfully creates a new column <code>malnut</code> with the malnutrition status of each case. You should get something like this:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>  malnut
-1 Normal
-2 Normal
-3    MAM
-4 Normal
-5    SAM
-6 Normal</code></pre>
+<pre><code>  muac malnut
+1  244 Normal
+2  232 Normal
+3  123    MAM
+4  210 Normal
+5   80    SAM
+6  220 Normal</code></pre>
 </div>
 </div>
 </div>
@@ -478,13 +489,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Try reordering the first and second conditions in the above <code>case_when()</code> so that you first check if <code>muac &lt; 125</code>. The head of your new data frame should now look like this:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>  malnut
-1 Normal
-2 Normal
-3    MAM
-4 Normal
-5    MAM
-6 Normal</code></pre>
+<pre><code>  muac malnut
+1  244 Normal
+2  232 Normal
+3  123    MAM
+4  210 Normal
+5   80    MAM
+6  220 Normal</code></pre>
 </div>
 </div>
 <p>Notice anything different? Save this new data frame to a <code>tmp</code> object and inspect it to see if we still have any patients classified as <code>"SAM"</code>. Can you figure out why this no longer gives the correct classification?</p>
@@ -507,51 +518,51 @@ Note
 <p>Use <code>case_when()</code> to create a new variable <code>age_group</code> with three categories: <code>"&lt; 5 Years"</code>, <code>"5 - 15 Years"</code>, and <code>"&gt; 15 Years"</code>. Patients missing age data should be assigned a default value of <code>"Unknown"</code>. <strong>Be careful with your ordering!</strong> The head of your new column should look like this:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>      age_group
-1     &lt; 5 Years
-2     &lt; 5 Years
-3 5 - 15  Years
-4     &lt; 5 Years
-5     &lt; 5 Years
-6     &lt; 5 Years</code></pre>
+<pre><code>  age     age_group
+1  36     &lt; 5 Years
+2   5     &lt; 5 Years
+3 156 5 - 15  Years
+4   8     &lt; 5 Years
+5   7     &lt; 5 Years
+6   4     &lt; 5 Years</code></pre>
 </div>
 </div>
 </div>
 <section id="the-in-operator" class="level3">
 <h3 class="anchored" data-anchor-id="the-in-operator">The %in% operator</h3>
 <p>So now we can regroup variables into categories, great. But we can also use <code>case_when()</code> to standardize the values we see in a variable.</p>
-<div class="look">
+<div class="write">
 <p>Using <code>count()</code> inspect the categorical variables in <code>df_raw</code> to check if any have inconsistencies in their coding.</p>
 </div>
 <p>In our dataset, we see that there are some issues in the way <code>sex</code> was coded. For example, female patients are coded as <code>f</code>, <code>female</code> and <code>femme</code>. That simply won’t do. Thankfully, we can use <code>case_when()</code> to recode this variable. This time, instead of creating a new variable we will directly update <code>sex</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>df_raw <span class="sc">|&gt;</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sex =</span> <span class="fu">case_when</span>(sex <span class="sc">==</span> <span class="st">"f"</span> <span class="sc">~</span> <span class="st">"Female"</span>,</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>                         sex <span class="sc">==</span> <span class="st">"female"</span> <span class="sc">~</span> <span class="st">"Female"</span>,</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>                         sex <span class="sc">==</span> <span class="st">"femme"</span> <span class="sc">~</span> <span class="st">"Female"</span>,</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>                         sex <span class="sc">==</span> <span class="st">"m"</span> <span class="sc">~</span> <span class="st">"Male"</span>,</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>                         sex <span class="sc">==</span> <span class="st">"male"</span> <span class="sc">~</span> <span class="st">"Male"</span>,</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>                         sex <span class="sc">==</span> <span class="st">"homme"</span> <span class="sc">~</span> <span class="st">"Male"</span>,</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>                         <span class="at">.default =</span> <span class="st">"Unknown"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>df_raw <span class="sc">|&gt;</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sex =</span> <span class="fu">case_when</span>(sex <span class="sc">==</span> <span class="st">"f"</span> <span class="sc">~</span> <span class="st">"Female"</span>,</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>                         sex <span class="sc">==</span> <span class="st">"female"</span> <span class="sc">~</span> <span class="st">"Female"</span>,</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>                         sex <span class="sc">==</span> <span class="st">"femme"</span> <span class="sc">~</span> <span class="st">"Female"</span>,</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>                         sex <span class="sc">==</span> <span class="st">"m"</span> <span class="sc">~</span> <span class="st">"Male"</span>,</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>                         sex <span class="sc">==</span> <span class="st">"male"</span> <span class="sc">~</span> <span class="st">"Male"</span>,</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>                         sex <span class="sc">==</span> <span class="st">"homme"</span> <span class="sc">~</span> <span class="st">"Male"</span>,</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>                         <span class="at">.default =</span> <span class="st">"Unknown"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Well, that works, but it seems awfully repetitive. It would be easier if we could just list all the options that we want to reassign to “Female” and “Male” respectively. This is where the <code>%in%</code> operator is here to help. The <code>%in%</code> operator will check if a value is in a vector of options using the following basic syntax:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DO NOT RUN (PSEUDO-CODE)</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>[value] <span class="sc">%in%</span> [vector_of_options]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DO NOT RUN (PSEUDO-CODE)</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>[value] <span class="sc">%in%</span> [vector_of_options]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>So, for example, we could check if the value <code>"f"</code> is in the options <code>"f"</code>, <code>"female"</code> using the following:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="st">"f"</span> <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"f"</span>, <span class="st">"female"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="st">"f"</span> <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"f"</span>, <span class="st">"female"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="write">
 <p>Try running the above statement. What is the data type of your outcome?</p>
 </div>
 <p>See how the outcome of the above statement is a <code>boolean</code>, ie: a logic outcome? That means we can use it as a condition in <code>case_when()</code>! This means that our verbose code above can now be written as:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>df_raw <span class="sc">|&gt;</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sex =</span> <span class="fu">case_when</span>(sex <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"f"</span>, <span class="st">"female"</span>, <span class="st">"femme"</span>) <span class="sc">~</span> <span class="st">"Female"</span>,</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>                         sex <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"m"</span>, <span class="st">"male"</span>, <span class="st">"homme"</span>) <span class="sc">~</span> <span class="st">"Male"</span>,</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">.default =</span> <span class="st">"Unknown"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>df_raw <span class="sc">|&gt;</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sex =</span> <span class="fu">case_when</span>(sex <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"f"</span>, <span class="st">"female"</span>, <span class="st">"femme"</span>) <span class="sc">~</span> <span class="st">"Female"</span>,</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>                         sex <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"m"</span>, <span class="st">"male"</span>, <span class="st">"homme"</span>) <span class="sc">~</span> <span class="st">"Male"</span>,</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">.default =</span> <span class="st">"Unknown"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Much nicer.</p>
 <div class="write">
@@ -587,7 +598,7 @@ Note
 <li>Add a variable <code>age_years</code> with patient age in years</li>
 <li>Update <code>region</code> and <code>prefecture</code> to use title case</li>
 <li>Update all date columns to use <code>Date</code> type</li>
-<li>Create a new variable <code>age_group</code> age to include the groups: &lt; 6 months, 6 - 11 months, 12 - 59 months, 5 - 15 years, and &gt; 15 years (patients with unknown sex should have a value “Unknown”)</li>
+<li>Create a new variable <code>age_group</code> age to include the groups: &lt; 6 months, 6 - 11 months, 12 - 59 months, 5 - 15 years, and &gt; 15 years (patients with unknown age should have a value “Unknown”)</li>
 <li>Recode sex to have only the values: Female, Male, and Unknown</li>
 <li>Remove any duplicate observations</li>
 </ul>
@@ -632,10 +643,10 @@ Note
 </div>
 </div>
 </div>
-<p>Amazing! Wouldn’t it be great to save this (more or less clean) dataset? I agree. To do that, we will go back to the packages <code>{rio}</code> and <code>{here}</code>. We can use the function <code>export()</code> from <code>{rio}</code> and use <code>here()</code> to specify where to save our output:</p>
+<p>Amazing! Let’s look at how to save this (mostly) clean dataset. Here, we will use the function <code>export()</code> from <code>{rio}</code> and <code>here()</code> from <code>{here}</code> to specify where to save our output:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">export</span>(<span class="fu">here</span>(<span class="st">'data'</span>, <span class="st">'clean'</span>, <span class="st">'measles_linelist_clean.xlsx'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">export</span>(<span class="fu">here</span>(<span class="st">'data'</span>, <span class="st">'clean'</span>, <span class="st">'measles_linelist_clean.xlsx'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Notice here that we are putting our data in the appropriate <code>clean</code> subfolder of <code>data</code>.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -648,10 +659,10 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>In the above example we save our data as an <code>xlsx</code>, which is helpful if you want to be able to open the clean data in Excel. Often, however, we might prefer to use a file with the extension <code>.rds</code> instead. This is a filetype specific to R and is more robust to issues related to encoding or date formatting than files like <code>xlsx</code> or <code>csv</code>. To save your above file as an <code>rds</code> all you need to do is change the extension:</p>
+<p>In the above example we save our data as an <code>xlsx</code>, which is helpful if you want to be able to open the clean data in Excel. Often, however, we might prefer to use a file with the extension <code>.rds</code> instead. This is a file type specific to R and is more robust to issues related to encoding or date formatting than files like <code>xlsx</code> or <code>csv</code>. To save your above file as an <code>rds</code> all you need to do is change the extension:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">export</span>(<span class="fu">here</span>(<span class="st">'data'</span>, <span class="st">'clean'</span>, <span class="st">'measles_linelist_clean.rds'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">export</span>(<span class="fu">here</span>(<span class="st">'data'</span>, <span class="st">'clean'</span>, <span class="st">'measles_linelist_clean.rds'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
