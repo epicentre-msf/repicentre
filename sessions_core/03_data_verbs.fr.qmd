@@ -459,7 +459,7 @@ Bravo, vous avez appris les bases de la manipulation de données et comment ench
 #| eval: true
 
 downloadthis::download_link(
-  link = 'https://github.com/epicentre-msf/repicentre/blob/main/sessions_core/03_data_verbs_solutions_fr.R',
+  link = 'https://github.com/epicentre-msf/repicentre/blob/main/sessions_core/03_data_verbs_solutions.fr.R',
   button_label = 'Solutions exercices',
   has_icon = TRUE,
   icon = "fa fa-save",
