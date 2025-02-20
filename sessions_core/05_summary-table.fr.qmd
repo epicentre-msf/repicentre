@@ -17,7 +17,7 @@ library(here)
 library(tidyverse)
 
 # Import data
-df_linelist <- rio::import(here("data", "clean", "moissala_linelist_clean_EN.rds")) |> 
+df_linelist <- rio::import(here("data", "clean", "moissala_linelist_clean_FR.rds")) |> 
   as_tibble()
 ```
 
@@ -25,7 +25,7 @@ df_linelist <- rio::import(here("data", "clean", "moissala_linelist_clean_EN.rds
 
 - Créer des tableaux de contingence avec `count()`
 - Calculer des statistiques récapitulatives par groupe à l'aide de `summarize()`
-- Réviser comment sous-trier les lignes en utilisant `filter()` et créer/modifier des variables avec `mutate()`
+- Réviser comment sélectionner les lignes en utilisant `filter()` et créer/modifier des variables avec `mutate()`
 - Créer des variables catégorielles ordonnées
 
 
@@ -43,54 +43,57 @@ Cette session utilisera la version nettoyée de l'ensemble de données Moissala 
 
 downloadthis::download_link(
   link = "https://github.com/epicentre-msf/repicentre/raw/refs/heads/main/data/clean/moissala_linelist_clean_FR.rds",
-  button_label = "Clean Measles Linelist",
+  button_label = "Linelist rougeole nettoyée",
   has_icon = TRUE,
   icon = "fa fa-save",
   self_contained = FALSE
 )
 ```
+
 <br>
-Ouvrez votre projet RStudio et créez un nouveau script dans le sous-dossier R appelé `tables.R` avec les métadonnées appropriées et une section "Packages" qui importe : `{rio}`, `{here}` et `{tidyverse}`. Ajoutez une section "Import Data" qui charge la version * nettoyée * de la liste de lignes de la rougeole dans R.
+Ouvrez votre projet RStudio et créez un nouveau script dans le sous-dossier R appelé `tables.R` avec les métadonnées appropriées et une section "Packages" qui importe : `{rio}`, `{here}` et `{tidyverse}`. Ajoutez une section "Import Data" qui charge la version *nettoyée* de la linelist de la rougeole dans R.
 :::
 
 
 ## Introduction : agrégation des données
 
-OK, récapitulons, vous venez d'effectuer l'une des tâches les [plus importantes]{.hovertip bs-toggle='tooltip' bs-title='Certains considèrent que cela représente 80 % du travail !} d'un épidémiologiste : le **nettoyage des données**. Maintenant que vous disposez de données propres et normalisées, vous pouvez vous mettre au travail et commencer à les analyser. Les analyses commencent généralement par des tableaux et des résumés qui décrivent nos données :
+Récapitulons. Vous venez d'effectuer l'une des tâches les [plus importantes]{.hovertip bs-toggle='tooltip' bs-title='Certains considèrent que cela représente 80 % du travail !} d'un épidémiologiste : le **nettoyage des données**. Maintenant que vous disposez de données propres et normalisées, vous pouvez vous mettre au travail et commencer à les analyser. Les analyses commencent généralement par des tableaux et des résumés qui décrivent nos données :
 
 - Tableaux de fréquence univariés pour compter les occurrences de différentes valeurs
 - Statistiques sommaires des variables numériques (moyenne, médiane, écart-type)
 - Tableaux croisés pour examiner les relations entre les variables catégorielles
 - Résumés par groupe pour comparer les statistiques entre différents sous-ensembles de données
 
-## Comptage de plusieurs colonnes (tableaux de contingence)
+## Compter plusieurs colonnes (tableaux de contingence)
 
-Au cours de la session d'exploration des données, vous avez appris à créer un tableau de fréquence pour une variable catégorielle unique à l'aide de la fonction count(). C'est bien, mais nous voulons souvent compter le nombre d'observations en fonction de deux variables (ou plus !).
+Au cours de la session d'exploration des données, vous avez appris à créer un tableau de fréquence pour une variable catégorielle unique à l'aide de la fonction `count()`.
+C'est bien, mais nous voulons souvent compter le nombre d'observations en fonction de deux variables (ou plus !).
 
-Ces tableaux sont appelés [tableaux de contingence]{.hovertip bs-toggle='tooltip' bs-title='Ou tableaux croisés. Ils montrent comment les observations sont réparties entre différentes combinaisons de catégories.}. Par exemple, connaître le nombre de patients par sous-préfecture est très utile, mais nous pourrions vouloir stratifier à la fois par sous-préfecture et par groupe d'âge pour voir si certaines zones ont des patients anormalement âgés. Ce type de stratification est un moyen utile d'essayer de trouver des zones qui pourraient être de bons candidats pour des campagnes de rattrapage. C'est facile, il suffit de passer plusieurs noms de colonnes à `count()` :
+Ces tableaux sont appelés [tableaux de contingence]{.hovertip bs-toggle='tooltip' bs-title='Ou tableaux croisés. Ils montrent comment les observations sont réparties entre différentes combinaisons de catégories.'}. Par exemple, connaître le nombre de patients par sous-préfecture est très utile, mais nous pourrions vouloir stratifier à la fois par sous-préfecture et par groupe d'âge pour voir si certaines zones ont des patients anormalement âgés. Ce type de stratification est un moyen utile d'essayer de trouver des zones qui pourraient être de bons candidats pour des campagnes de rattrapage. C'est facile, il suffit de passer plusieurs noms de colonnes à `count()` :
 
 ```{r}
 df_linelist |>
-  count(sub_prefecture, age_group)
+  count(sous_prefecture, age_groupe)
 ```
 
 :::{.write}
-Créez un nouveau tableau récapitulatif en comptant le nombre de patients stratifiés par `sub_prefecture` et `hospitalisation`. Que se passe-t-il si vous modifiez l'ordre des arguments donnés à `count()` ?
+Créez un nouveau tableau récapitulatif en comptant le nombre de patients stratifiés par `sous_prefecture` et `hospitalisation`. Que se passe-t-il si vous modifiez l'ordre des arguments donnés à `count()` ?
 
 Maintenant, en utilisant `count()`, réponds aux questions suivantes :
 
 - Combien de patients étaient des femmes ? Quelle est la proportion ?
-- Quelles sont toutes les valeurs possibles de la variable `outcome` ?
+- Quelles sont toutes les valeurs possibles de la variable `statut_sortie` ?
 - Combien de patients âgés de 1 à 4 ans se sont rétablis ?
 :::
 
+
 ## Filtrer les valeurs `NA`
 
-En examinant les catégories de `outcome`, vous devriez avoir remarqué que certaines patientes ont des valeurs manquantes (`NA`):
+En examinant les catégories du `statut_sortie`, vous devriez avoir remarqué que certaines patientes ont des valeurs manquantes (`NA`):
 
 ```{r}
 df_linelist |>
-  count(outcome) |>
+  count(statut_sortie) |>
   mutate(prop = n / sum(n))
 ```
 
@@ -98,31 +101,33 @@ df_linelist |>
 Observez le résultat du code ci-dessus. Comment pouvez-vous également calculer la proportion de patients décédés ? Êtes-vous satisfait de ce calcul ? 
 ::: 
 
-La proportion de cas décédés est également appelée [taux de létalité]{.hovertip bs-toggle='tooltip' bs-title='Le taux de léthalité est un ratio (ou un risque) mais pas un taux !'}. Pour calculer précisément le CFR, nous devons nous assurer que le dénominateur ne comprend que les patients dont nous sommes sûrs du résultat (c'est-à-dire que nous devons supprimer tous les cas avec "NA" ou "contre avis médical"). 
+La proportion de cas décédés est également appelée [taux de létalité]{.hovertip bs-toggle='tooltip' bs-title='Le taux de létalité est un ratio (ou un risque) mais pas un taux !'}. Pour calculer précisément le CFR, nous devons nous assurer que le dénominateur ne comprend que les patients dont nous sommes sûrs du résultat (c'est-à-dire que nous devons supprimer tous les cas avec "NA" ou "contre avis médical"). 
 
-Rappelons que nous pouvons le faire en utilisant `filter()`. Pour filtrer les valeurs manquantes (`NA`) dans une variable, nous pouvons utiliser la petite fonction `is.na(outcome)`. L'ajout d'un `!` devant fera l'inverse : *supprimer les valeurs manquantes de `outcome`* :
+Rappelons que nous pouvons le faire en utilisant `filter()`. Pour garder les valeurs manquantes (`NA`) dans une variable, nous pouvons utiliser la petite fonction `is.na(statut_sortie)`. 
+L'ajout d'un `!` devant fera l'inverse : *supprimer les valeurs manquantes de `statut_sortie`* :
 
 ```{r}
 df_linelist |>
-  filter(outcome != "left against medical advice", 
-         !is.na(outcome)) |>
-  count(outcome)
+  filter(statut_sortie != "sortie contre avis medical", 
+         !is.na(statut_sortie)) |>
+  count(statut_sortie)
 ```
 
 ::: {.write}
-Quelle autre instruction conditionnelle pourriez-vous utiliser dans `filter()` pour obtenir les mêmes résultats
+Quelle autre instruction conditionnelle pourriez-vous utiliser dans `filter()` pour obtenir les mêmes résultats ?
 :::
 
 Maintenant que nous avons supprimé les patients dont l'issue est inconnue, nous pouvons ajouter ceci avant de créer notre tableau de fréquence pour obtenir le CFR correct. 
 
 :::{.write}
-À l'aide de votre filtre, mettez à jour votre code pour résumer le nombre observé de patients qui ont survécu et sont décédés ainsi que le taux de léthalité (proportion de décès). Stockez ce nouveau dataframe dans un objet, `cfr_df`. 
+À l'aide de votre filtre, mettez à jour votre code pour résumer le nombre observé
+de patients qui ont survécu et sont décédés ainsi que le taux de létalité (proportion de décès). Stockez ce nouveau dataframe dans un objet, `cfr_df`. 
 :::
 
 ```{r, echo = FALSE}
 cfr_df <- df_linelist |>
-  filter(outcome != "left against medical advice", !is.na(outcome)) |>
-  count(outcome) |>
+  filter(statut_sortie != "sortie contre avis medical", !is.na(statut_sortie)) |>
+  count(statut_sortie) |>
   mutate(prop = n / sum(n))
 ```
 
@@ -131,8 +136,8 @@ cfr_df <- df_linelist |>
 
 ```{r}
 df_linelist |>
-  drop_na(outcome) |>
-  count(outcome)
+  drop_na(statut_sortie) |>
+  count(statut_sortie)
 ```
 
 `drop_na()` est particulièrement utile car vous pouvez lui donner plusieurs noms de colonnes pour filtrer. Mais attention, cela supprimera **toutes** les lignes où **une ou plusieurs** de ces colonnes ont une valeur manquante. 
@@ -140,7 +145,7 @@ df_linelist |>
 
 ## Tableau récapitulatif : statistiques par sous-préfecture
 
-Maintenant que nous avons produit quelques tableaux de fréquence et de contingence simples, nous pouvons augmenter la complexité. Une tâche courante en épidémiologie consiste à examiner les statistiques récapitulatives dans des sous-ensembles de données. 
+Maintenant que nous avons produit quelques tableaux de fréquence et de contingence simples, nous pouvons augmenter la complexité. Une tâche courante en épidémiologie consiste à examiner les statistiques résumées dans des sous-ensembles de données. 
 
 Par exemple, on peut nous demander de produire des statistiques sur les patients au niveau des sous-préfectures, c'est-à-dire que pour chaque sous-préfecture dans les données, nous devons répondre aux questions suivantes : 
 
@@ -150,9 +155,11 @@ Par exemple, on peut nous demander de produire des statistiques sur les patients
 - Combien de patients ont été hospitalisés ? 
 - Parmi les enfants de moins de 6 mois, combien sont décédés ? 
 
-C'est exactement pour cela que la fonction `summarize()` a été créée ! Elle nous permet de calculer des statistiques récapitulatives sur un ensemble de données, et la syntaxe est similaire à celle de `mutate()` : 
+C'est exactement pour cela que la fonction `summarize()` a été créée ! Elle nous permet de calculer des statistiques résumées sur un ensemble de données, et la syntaxe est similaire à celle de `mutate()` : 
 
 ```{r}
+#| eval: false
+
 # NE PAS EXÉCUTER (PSEUDO-CODE)
 df |>
   mutate(new_col = function_to_create(existing_col))
@@ -168,7 +175,7 @@ Considérons le code suivant, où nous **résumons les données** pour calculer 
 #| eval: true
 
 df_linelist |>
-  summarize(mean_age = mean(age))
+  summarize(moy_age = mean(age))
 ```
 
 Notez que ce code donne une seule valeur pour l'âge moyen. Aucune variable de regroupement n'a été fournie, donc `summarize()` a renvoyé une statistique récapitulative pour l'ensemble du jeu de données. Pour calculer l'âge moyen par strate spécifique, nous devons spécifier une **variable de regroupement** en utilisant l'argument `.by` :
@@ -177,15 +184,15 @@ Notez que ce code donne une seule valeur pour l'âge moyen. Aucune variable de r
 #| eval: true
 
 df_linelist |>
-  summarize(.by = sex, # Faire le résumé (ici, la moyenne) par sexe
-            mean_age = mean(age))
+  summarize(.by = sexe, # Faire le résumé (ici, la moyenne) par sexe
+            moy_age = mean(age))
 ```
 
 ::: {.look}
 Jetez un œil aux résultats ci-dessus. Comment les interprétez-vous ?
 :::
 
-Maintenant que nous pouvons utiliser `summarize()`, nous pouvons l'utiliser pour calculer des statistiques récapitulatives appropriées par sous-préfecture. Commençons par appeler un `summarize()` vide et regrouper les données sur `sub_prefecture`.
+Maintenant que nous pouvons utiliser `summarize()`, nous pouvons l'utiliser pour calculer des statistiques récapitulatives appropriées par sous-préfecture. Commençons par appeler un `summarize()` vide et regrouper les données sur `sous_prefecture`.
 
 
 ::: {.write}
@@ -193,19 +200,20 @@ Exécutez le code suivant :
 
 ```{r}
 df_linelist |>
-  summarize(.by = sub_prefecture)
+  summarize(.by = sous_prefecture)
 ```
 Que se passe-t-il lorsque vous exécutez ces lignes ?
 :::
 
 ### Comptages
 
-Nous voulons d'abord examiner le nombre de cas dans chaque `sub_prefecture`. Cela peut être fait en utilisant la fonction d'aide `n()` : 
+Nous voulons d'abord examiner le nombre de cas dans chaque `sous_prefecture`. Cela peut être fait en utilisant la fonction d'aide `n()` : 
 
 ```{r}
 df_linelist |>
-  summarize(.by = sub_prefecture,
-            n_patients = n() # Comptages)
+  summarize(.by = sous_prefecture,
+            n_patients = n()  # pour compter
+)
 ```
 
 ::: {.write}
@@ -214,17 +222,19 @@ Ok, maintenant construisons un tableau récapitulatif pour chaque sous-préfectu
 
 ### Récapitulatifs des variables continus
 
-Nous pouvons ensuite utiliser les fonctions mean(), median(), min(), max() (et autres) pour produire des récapitulatifs pour les variables continues. Par exemple, l'âge moyen :
+Nous pouvons ensuite utiliser les fonctions mean(), median(), min(), max() (et autres) pour produire des récapitulatifs 
+pour les variables continues. Par exemple, l'âge moyen :
 
 ```{r}
 df_linelist |>
-  summarize(.by = sub_prefecture,
+  summarize(.by = sous_prefecture,
             n_patients = n(),
             mean_age = mean(age))
 ```
 
 ::: {.write}
-Ajoutez la date d'admission minimale à votre tableau pour chacune des `sub_prefecture` ? Êtes-vous satisfait des résultats ? 
+Ajoutez la date d'admission minimale à votre tableau pour chacune des `sous_prefecture` ? 
+Êtes-vous satisfait des résultats ? 
 :::
 
 ::: {.callout-tip}
@@ -233,32 +243,39 @@ N'oubliez pas qu'avec les fonctions arithmétiques telles que mean(), median(), 
 
 ### Comptage avec une condition
 
-Nous pouvons également être intéressés par le nombre de patients (lignes) qui répondent à une condition : le *nombre de patients de sexe féminin*. Le comptage par condition logique peut être effectué avec la syntaxe suivante :
+Nous pouvons également être intéressés par le nombre de patients (lignes) qui 
+répondent à une condition : le *nombre de patients de sexe féminin*. 
+Le comptage par condition logique peut être effectué avec la syntaxe suivante :
 
 ```{r}
+#| eval: false
 # NE PAS EXÉCUTER (PSEUDO-CODE)
 summarize(sum_category = sum(LOGIC_TEST, na.rm = TRUE))
 ```
 
-Cette somme nous permet de compter toutes les lignes où notre condition a été remplie (retourne `TRUE`). Par exemple : ```{r} df_linelist |> summarize( .by = sub_prefecture, n_female = sum
+Cette somme nous permet de compter toutes les lignes où notre condition a été 
+remplie (retourne `TRUE`). Par exemple :
 
 Cette somme nous permet de compter toutes les lignes où notre condition a été remplie (retourne `TRUE`). Par exemple :
 
 ```{r}
 df_linelist |>
-  summarize(.by = sub_prefecture,
-            n_female = sum(sex == "f", na.rm = TRUE))
+  summarize(.by = sous_prefecture,
+            n_female = sum(sexe == "f", na.rm = TRUE))
 ```
 
 ::: {.write}
-Ajoutez une variable à votre tableau qui compte le nombre de patients qui ont été hospitalisés. (c'est-à-dire : les lignes qui ont "oui" dans la variable "hospitalisation") 
+Ajoutez une variable à votre tableau qui compte le nombre de patients qui ont été hospitalisés. 
+(c'est-à-dire : les lignes qui ont "oui" dans la variable "hospitalisation") 
 :::
 
 ### Autres statistiques
 
-Parfois, nous voulons produire une statistique plus compliquée, par exemple l'âge moyen de tous les patients hospitalisés. Ici, la syntaxe est un peu différente :
+Parfois, nous voulons produire une statistique plus compliquée, par exemple 
+l'âge moyen de tous les patients hospitalisés. Ici, la syntaxe est un peu différente :
 
 ```{r}
+#| eval: false
 # NE PAS EXÉCUTER (PSEUDO-CODE)
 df |>
   summarize(mean_category = mean(col_to_use[LOGIC_TEST], na.rm = TRUE))
@@ -269,16 +286,22 @@ Ici, nous avons :
 - Indiqué sur quelle colonne nous voulons calculer cette statistique (`col_to_use`)
 - Création d'une condition indiquant les observations de cette colonne à utiliser dans le calcul (`[LOGIC_TEST]`)
 
-Pour donner un exemple concret, si nous voulions calculer la moyenne de la variable `age` mais *uniquement* pour les patients hospitalisés (c'est-à-dire dans les lignes où `hospitalisation == "yes"`) nous écririons :
+Pour donner un exemple concret, si nous voulions calculer la moyenne de la variable 
+`age` mais *uniquement* pour les patients hospitalisés 
+(c'est-à-dire dans les lignes où `hospitalisation == "oui"`) nous écririons :
 
 ```{r}
 df_linelist |>
-  summarize(.by = sub_prefecture,
+  summarize(.by = sous_prefecture,
             n_patients = n(),
-            mean_age_hosp = mean(age[hospitalisation == "yes"], na.rm = TRUE))
+            moy_age_hosp = mean(age[hospitalisation == "oui"], na.rm = TRUE))
 ``` 
 
-L'utilisation d'un test logique dans l'exemple ci-dessus est appelée **indexation logique**, où une condition est essentiellement utilisée pour filtrer les observations que vous souhaitez prendre en compte lors d'un calcul. L'indexation logique est très puissante, mais elle peut aussi demander un certain temps d'adaptation, alors ne vous inquiétez pas trop si ce n'est pas parfaitement clair à ce stade. 
+L'utilisation d'un test logique dans l'exemple ci-dessus est appelée **indexation logique**,
+où une condition est essentiellement utilisée pour filtrer les observations 
+que vous souhaitez prendre en compte lors d'un calcul. L'indexation logique 
+est très puissante, mais elle peut aussi demander un certain temps d'adaptation,
+alors ne vous inquiétez pas trop si ce n'est pas parfaitement clair à ce stade. 
 
 ::: {.write}
 Pouvez-vous utiliser cette syntaxe pour calculer l'âge moyen des patientes dans votre tableau ?
@@ -291,12 +314,15 @@ C'est très bien ! Nous commençons à obtenir un tableau récapitulatif groupé
 :::
 
 ::: {.callout-tip}
-Vous voulez compter les lignes (donc utiliser `sum()`) qui remplissent une condition spécifique pour le résultat (`outcome == "dead"`), mais *uniquement* lorsque `age_group == "< 6 months"`
+Vous voulez compter les lignes (donc utiliser `sum()`) qui remplissent une condition spécifique pour le résultat 
+(`statut_sortie == "deces"`),
+mais *uniquement* lorsque `age_group == "< 6 months"`
 :::
 
 ### Utiliser la sortie 
 
-Enfin, n'oubliez pas que `summarize()` renvoie un dataframe que nous pouvons ensuite manipuler davantage (par exemple : avec `filter()` et `mutate()`). 
+Enfin, n'oubliez pas que `summarize()` renvoie un dataframe que nous pouvons ensuite
+manipuler davantage (par exemple : avec `filter()` et `mutate()`). 
 
 ::: {.write}
 Ajoutez un `mutate()` après avoir produit votre tableau récapitulatif pour calculer : 
@@ -312,16 +338,16 @@ L'en-tête de votre tableau final devrait ressembler à ceci :
 #| echo: false
 sub_pref_df <- df_linelist |>
   summarize(
-    .by = sub_prefecture,
+    .by = sous_prefecture,
     n_patients = n(),
-    mean_age = mean(age),
+    moy_age = mean(age),
     min_admission = min(date_admission, na.rm = TRUE),
-    n_female = sum(sex == "f", na.rm = TRUE),
-    n_hosp = sum(hospitalisation == "yes", na.rm = TRUE),
-    mean_age_hosp = mean(age[hospitalisation == "yes"], na.rm = TRUE),
-    mean_age_female = mean(age[sex == "f"], na.rm = TRUE),
-    n_death_u6m = sum(outcome[age_group == "< 6 months"] == "dead", na.rm = TRUE),
-    prop_female = n_female / n_patients,
+    n_femme = sum(sexe == "f", na.rm = TRUE),
+    n_hosp = sum(hospitalisation == "oui", na.rm = TRUE),
+    moy_age_hosp = mean(age[hospitalisation == "oui"], na.rm = TRUE),
+    moy_age_femme = mean(age[sexe == "f"], na.rm = TRUE),
+    n_deces_moins_6m = sum(statut_sortie[age_groupe == "< 6 mois"] == "deces", na.rm = TRUE),
+    prop_female = n_femme / n_patients,
     prop_hosp = n_hosp / n_patients
   )
 
@@ -340,7 +366,7 @@ Vous devriez être fiers de vous, la création de tableaux récapitulatifs est u
 
 downloadthis::download_link(
   link = 'https://github.com/epicentre-msf/repicentre/blob/main/sessions_core/05_summary-table_solutions_fr.R',
-  button_label = 'Solution File',
+  button_label = 'Solutions exercices',
   has_icon = TRUE,
   icon = "fa fa-save",
   self_contained = FALSE
