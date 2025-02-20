@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
 <head>
-<link rel="alternate" hreflang="en" href="https://epicentre-msf.github.io/repicentre/explore.html" />
-<link rel="alternate" hreflang="fr" href="https://epicentre-msf.github.io/repicentre/fr/explore.fr.html" />
+<link rel="alternate" hreflang="en" href="/pathway.html" />
+<link rel="alternate" hreflang="fr" href="/fr/pathway.fr.html" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.6.39">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta name="description" content="Tout partout en même temps">
-<title>Explorer – {repicentre}</title>
+<meta name="description" content="Une introduction à R en commençant par le début">
+<title>Cours – {repicentre}</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -27,8 +27,8 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-0626ff4d7a71b55c8707dcae1d04a9b6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-e25cc82807363e79c52e96bc8b7855f1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script><link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-b814d3e578892f16fb585af6f47f426f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-35dfec4a88a4a8552367c65e80eaa027.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-f0c2f944ece2373c0a1c69156a7f68ec.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-8d4225f7dbf7257de85cf464ad30f7c1.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -58,20 +58,20 @@ ul.task-list li input[type="checkbox"] {
 }</script><script>
 
   window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    const listingTargetEl = window.document.querySelector('#listing-articles-links .list');
     if (!listingTargetEl) {
       // No listing discovered, do not attach.
       return; 
     }
 
     const options = {
-      valueNames: ['listing-title','listing-author','listing-date','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description","listing-categories"],
+      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+    window['quarto-listings']['listing-articles-links'] = new List('listing-articles-links', options);
 
     if (window['quarto-listing-loaded']) {
       window['quarto-listing-loaded']();
@@ -126,14 +126,14 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
 <li class="nav-item"><div class="dropdown" id="languages-links-parent">
-<button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="languages-button"><i class="bi bi-globe2"></i> Français</button><ul class="dropdown-menu" id="languages-links"><li><a class="dropdown-item" href="https://epicentre-msf.github.io/repicentre/explore.html" id="language-link-en">English</a></li></ul>
+<button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="languages-button"><i class="bi bi-globe2"></i> Français</button><ul class="dropdown-menu" id="languages-links"><li><a class="dropdown-item" href="/pathway.html" id="language-link-en">English</a></li></ul>
 </div></li>
 <li class="nav-item">
-    <a class="nav-link" href="./pathway.html"> 
+    <a class="nav-link active" href="./pathway.html" aria-current="page"> 
 <span class="menu-text">Cours</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./explore.html" aria-current="page"> 
+    <a class="nav-link" href="./explore.html"> 
 <span class="menu-text">Explorer</span></a>
   </li>  
   <li class="nav-item">
@@ -153,25 +153,17 @@ window.Quarto = {
     </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
         
-    <h5 class="quarto-listing-category-title">Catégories</h5>
-<div class="quarto-listing-category category-unnumbered">
-<div class="category" data-category="Q29yZQ==">Core</div>
-<div class="category" data-category="RGF0YSUyMEltcG9ydA==">Data Import</div>
-<div class="category" data-category="RGF0YSUyMFR5cGVz">Data Types</div>
-<div class="category" data-category="UiUyMEJhc2ljcw==">R Basics</div>
-<div class="category" data-category="UlN0dWRpbw==">RStudio</div>
-</div>
-</div>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title">Explorer</h1>
+<h1 class="title">Cours</h1>
 </div>
 
 <div>
   <div class="description">
-    Tout partout en même temps
+    Une introduction à R en commençant par le début
   </div>
 </div>
 
@@ -185,82 +177,65 @@ window.Quarto = {
   
 
 
-</header><p>Choisissez votre propre aventure en parcourant toutes les sessions disponibles.</p>
+</header><p>Ces sessions peuvent être suivies afin d’obtenir un niveau de base dans R. La série suppose <strong>aucune expérience préalable dans R</strong> et convient bien aux débutants.</p>
+<p>Vous en voulez plus ? Vous voulez plus de flexibilité ? Consultez le <a href="explore.fr.html">catalogue complet des sessions</a>.</p>
 
 
 
 
-<div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
-<div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="Q29yZSUyQ1JTdHVkaW8lMkNEYXRhJTIwSW1wb3J0" data-listing-date-sort="1739741655000" data-listing-file-modified-sort="1739741655739" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="16" data-listing-word-count-sort="3051">
-<a href="./sessions_core/02_import_data.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./img/core/02_import/logo.svg" class="thumbnail-image card-img" style="height: 150px;"></p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Importer des données
-</h5>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Q29yZQ=='); return false;">
-Core
+<div class="quarto-listing quarto-listing-container-default" id="listing-articles-links">
+<div class="list quarto-listing-default">
+<div class="quarto-post image-right" data-index="0" data-categories="Q29yZSUyQ1IlMjBCYXNpY3MlMkNEYXRhJTIwVHlwZXM=" data-listing-date-sort="1740067587000" data-listing-file-modified-sort="1740067587951" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="24" data-listing-word-count-sort="4790">
+<div class="thumbnail">
+<p><a href="./sessions_core/01_introduction.html" class="no-external"></a></p>
+<a href="./sessions_core/01_introduction.html" class="no-external">
+<p><img loading="lazy" src="./img/core/01_introduction/logo.svg" class="thumbnail-image"></p>
+</a><p><a href="./sessions_core/01_introduction.html" class="no-external"></a></p>
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('UlN0dWRpbw=='); return false;">
-RStudio
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./sessions_core/01_introduction.html" class="no-external">Introduction à R</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./sessions_core/01_introduction.html" class="no-external"></a>
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('RGF0YSUyMEltcG9ydA=='); return false;">
-Data Import
+<div class="listing-description">
+<a href="./sessions_core/01_introduction.html" class="no-external">Vos premiers pas dans R. Familiarisez-vous avec Rstudio et avec les objets courants de R.</a>
 </div>
 </div>
-<div class="card-text listing-description">
-Créez un projet Rstudio, installez les paquets utiles et importez des données pour travailler dans R.
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-
-</div>
+<div class="metadata">
+<a href="./sessions_core/01_introduction.html" class="no-external">
 <div class="listing-date">
-16 févr. 2025
-</div>
-</div>
-</div>
+20 févr. 2025
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="1" data-categories="Q29yZSUyQ1IlMjBCYXNpY3MlMkNEYXRhJTIwVHlwZXM=" data-listing-date-sort="1739741655000" data-listing-file-modified-sort="1739741655739" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="24" data-listing-word-count-sort="4790">
-<a href="./sessions_core/01_introduction.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./img/core/01_introduction/logo.svg" class="thumbnail-image card-img" style="height: 150px;"></p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Introduction à R
-</h5>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Q29yZQ=='); return false;">
-Core
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('UiUyMEJhc2ljcw=='); return false;">
-R Basics
+<div class="quarto-post image-right" data-index="1" data-categories="Q29yZSUyQ1JTdHVkaW8lMkNEYXRhJTIwSW1wb3J0" data-listing-date-sort="1740067587000" data-listing-file-modified-sort="1740067587952" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="16" data-listing-word-count-sort="3051">
+<div class="thumbnail">
+<p><a href="./sessions_core/02_import_data.html" class="no-external"></a></p>
+<a href="./sessions_core/02_import_data.html" class="no-external">
+<p><img loading="lazy" src="./img/core/02_import/logo.svg" class="thumbnail-image"></p>
+</a><p><a href="./sessions_core/02_import_data.html" class="no-external"></a></p>
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('RGF0YSUyMFR5cGVz'); return false;">
-Data Types
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./sessions_core/02_import_data.html" class="no-external">Importer des données</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./sessions_core/02_import_data.html" class="no-external"></a>
+</div>
+<div class="listing-description">
+<a href="./sessions_core/02_import_data.html" class="no-external">Créez un projet Rstudio, installez les paquets utiles et importez des données pour travailler dans R.</a>
 </div>
 </div>
-<div class="card-text listing-description">
-Vos premiers pas dans R. Familiarisez-vous avec Rstudio et avec les objets courants de R.
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-
-</div>
+<div class="metadata">
+<a href="./sessions_core/02_import_data.html" class="no-external">
 <div class="listing-date">
-16 févr. 2025
-</div>
-</div>
-</div>
+20 févr. 2025
 </div>
 </a>
+</div>
 </div>
 </div>
 <div class="listing-no-matching d-none">

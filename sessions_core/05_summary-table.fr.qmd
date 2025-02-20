@@ -342,12 +342,12 @@ sub_pref_df <- df_linelist |>
     n_patients = n(),
     moy_age = mean(age),
     min_admission = min(date_admission, na.rm = TRUE),
-    n_femmme = sum(sexe == "f", na.rm = TRUE),
+    n_femme = sum(sexe == "f", na.rm = TRUE),
     n_hosp = sum(hospitalisation == "oui", na.rm = TRUE),
     moy_age_hosp = mean(age[hospitalisation == "oui"], na.rm = TRUE),
     moy_age_femme = mean(age[sexe == "f"], na.rm = TRUE),
     n_deces_moins_6m = sum(statut_sortie[age_groupe == "< 6 mois"] == "deces", na.rm = TRUE),
-    prop_female = n_female / n_patients,
+    prop_female = n_femme / n_patients,
     prop_hosp = n_hosp / n_patients
   )
 
