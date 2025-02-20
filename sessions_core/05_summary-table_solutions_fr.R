@@ -23,39 +23,10 @@ df_linelist <- import(file = here("data", "clean", "moissala_linelist_clean_FR.r
 df_linelist |>
   count(sous_prefecture, age_groupe)
 
-df_linelist |>
-  count(sous_prefecture, hospitalisation)
-
-# changer l'ordre change l'ordre des variales dans le tableaux
-df_linelist |>
-  count(hospitalisation, sous_prefecture)
-
-# Questions:
-
-# 2529 femmes (49.8%)
-df_linelist |>
-  count(sexe) |>
-  mutate(prop = n / sum(n))
-
-# Valuers possible pour le statut_sortie
-df_linelist |>
-  count(statut_sortie)
-
-# 1225 patients qui ont 1 - 4 yo et gueris
-df_linelist |>
-  count(
-    age_groupe,
-    statut_sortie
-  )
-
 # Filtrer les NAs -----------------------------------------
 
 # proportions des décédés est aussi appelées Taux de fatalité
 # Mais il doit être calculé en utilisant les patients dont l'issue est connue
-df_linelist |>
-  count(statut_sortie) |>
-  mutate(prop = n / sum(n))
-
 # on peut donc filtrer avant de counter pour ne garder que les patients avec deces/gueri
 df_linelist |>
   filter(
@@ -65,18 +36,11 @@ df_linelist |>
   count(statut_sortie)
 
 # Ces deux filtres sont equivalents:
-
-cfr_df <- df_linelist |>
+df_linelist |>
   filter(
     statut_sortie %in% c("deces", "gueri")
   ) |>
   count(statut_sortie)
-
-# drop_na()  est utile pour enlever les NA d'une variable
-df_linelist |>
-  drop_na(statut_sortie) |>
-  count(statut_sortie)
-
 
 # Tableau résumé -----------------------------------------
 
@@ -97,31 +61,4 @@ df_linelist |>
   mutate(
     prop_femme = n_femme / n_patients,
     prop_hosp = n_hosp / n_patients
-  )
-
-
-
-# exercise extra ---------------------------------------------------------
-
-# un tableau de résumé par tranche d'age
-
-df_linelist |>
-  summarize(
-    .by = age_groupe,
-    n_patients = n(),
-    n_homme = sum(sexe == "h", na.rm = TRUE),
-    prop_homme = n_homme / n_patients,
-    n_deces = sum(statut_sortie == "deces", na.rm = TRUE),
-    # obtenir le nombre de patients avec une issue connue
-    n_issue_valide = sum(statut_sortie %in% c("deces", "gueri"), na.rm = TRUE),
-    TF = n_deces / n_issue_valide * 100,
-    n_deces_pneumo = sum(statut_sortie[pneumonie == 1] == "deces", na.rm = TRUE)
-  ) |>
-  # only keep variable of interest
-  select(
-    age_groupe,
-    prop_homme,
-    n_deces,
-    TF,
-    n_deces_pneumo
   )
