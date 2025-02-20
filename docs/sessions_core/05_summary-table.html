@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
+<link rel="alternate" hreflang="en" href="https://epicentre-msf.github.io/repicentre/sessions_core/05_summary-table.html" />
+<link rel="alternate" hreflang="fr" href="https://epicentre-msf.github.io/repicentre/fr/sessions_core/05_summary-table.fr.html" />
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-02-17">
+<meta name="dcterms.date" content="2025-02-20">
 <meta name="description" content="Create summary tables.">
 
 <title>Summary tables – {repicentre}</title>
@@ -105,6 +107,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 <script src="../site_libs/font-awesome-6.5.2/js/script.js"></script>
+<link href="../site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<script src="../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="../site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="../site_libs/datatables-binding-0.23/datatables.js"></script>
+<script src="../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="../site_libs/dt-core-bootstrap-1.11.3/css/dataTables.bootstrap.min.css" rel="stylesheet">
+<link href="../site_libs/dt-core-bootstrap-1.11.3/css/dataTables.bootstrap.extra.css" rel="stylesheet">
+<script src="../site_libs/dt-core-bootstrap-1.11.3/js/jquery.dataTables.min.js"></script>
+<script src="../site_libs/dt-core-bootstrap-1.11.3/js/dataTables.bootstrap.min.js"></script>
+<link href="../site_libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet">
+<script src="../site_libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
 <script type="text/javascript" src="../script.js"></script>
 
 
@@ -166,13 +179,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#introduction-data-aggregation" id="toc-introduction-data-aggregation" class="nav-link" data-scroll-target="#introduction-data-aggregation">Introduction: Data aggregation</a></li>
   <li><a href="#counting-multiple-columns-contingency-tables" id="toc-counting-multiple-columns-contingency-tables" class="nav-link" data-scroll-target="#counting-multiple-columns-contingency-tables">Counting Multiple Columns (Contingency Tables)</a></li>
   <li><a href="#filtering-out-nas" id="toc-filtering-out-nas" class="nav-link" data-scroll-target="#filtering-out-nas">Filtering out <code>NA</code>s</a></li>
-  <li><a href="#summary-table-statistics-by-sub-prefecture" id="toc-summary-table-statistics-by-sub-prefecture" class="nav-link" data-scroll-target="#summary-table-statistics-by-sub-prefecture">Summary Table: Statistics by Sub Prefecture</a>
+  <li><a href="#summary-table-statistics-by-sub-prefecture" id="toc-summary-table-statistics-by-sub-prefecture" class="nav-link" data-scroll-target="#summary-table-statistics-by-sub-prefecture">Summary Table: Statistics by sub prefecture</a>
   <ul class="collapse">
   <li><a href="#counts" id="toc-counts" class="nav-link" data-scroll-target="#counts">Counts</a></li>
-  <li><a href="#summarizing-continuous-variables" id="toc-summarizing-continuous-variables" class="nav-link" data-scroll-target="#summarizing-continuous-variables">Summarizing Continuous Variables</a></li>
+  <li><a href="#continuous-summaries" id="toc-continuous-summaries" class="nav-link" data-scroll-target="#continuous-summaries">Continuous Summaries</a></li>
   <li><a href="#counting-with-a-condition" id="toc-counting-with-a-condition" class="nav-link" data-scroll-target="#counting-with-a-condition">Counting with a Condition</a></li>
   <li><a href="#other-statistics" id="toc-other-statistics" class="nav-link" data-scroll-target="#other-statistics">Other Statistics</a></li>
-  <li><a href="#use-the-output" id="toc-use-the-output" class="nav-link" data-scroll-target="#use-the-output">Use the Output</a></li>
+  <li><a href="#use-the-output" id="toc-use-the-output" class="nav-link" data-scroll-target="#use-the-output">Use the output</a></li>
   </ul></li>
   <li><a href="#done" id="toc-done" class="nav-link" data-scroll-target="#done">Done!</a></li>
   <li><a href="#going-further" id="toc-going-further" class="nav-link" data-scroll-target="#going-further">Going Further</a>
@@ -191,7 +204,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1 class="title">Summary tables</h1>
   <div class="quarto-categories">
     <div class="quarto-category">Core</div>
-    <div class="quarto-category">Summary Tables</div>
+    <div class="quarto-category">R Basics</div>
+    <div class="quarto-category">Data Types</div>
   </div>
   </div>
 
@@ -208,7 +222,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 17, 2025</p>
+      <p class="date">February 20, 2025</p>
     </div>
   </div>
   
@@ -228,10 +242,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Review how to subset rows using <code>filter()</code> and create/modify variables with <code>mutate()</code></li>
 <li>Create ordered categorical variables</li>
 </ul>
-</section>
-<section id="setup" class="level2">
-<h2 class="anchored" data-anchor-id="setup">Setup</h2>
-<p><strong>Dependencies.</strong> This session assumes that you know how to use RStudio that you are able to import data and that you know th basic data handling verbs that we have seen in the core sessions so far. If you need a refresher on either of these topics, we encourage you to review the core sessions in the learning pathway.</p>
 <div class="setup">
 <p>This session will use the clean version of the Moissala measles dataset. Download the data and store them in <code>data/clean</code> in your practice project:</p>
 <div class="cell">
@@ -241,30 +251,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </a>
 </div>
 </div>
-<p><br> Open your RStudio Project and create a new script in the R subfolder called <code>tables.R</code> with appropriate metadata and a “Packages” section that imports: <code>{rio}</code>, <code>{here}</code> and <code>{tidyverse}</code>. Add an “Import Data” section that loads the <em>cleaned</em> version of the measles linelist into R.</p>
+</div>
+</section>
+<section id="setup" class="level2">
+<h2 class="anchored" data-anchor-id="setup">Setup</h2>
+<div class="setup">
+<p>Open your RStudio Project and create a new script in the R folder called <code>tables.R</code> with appropriate metadata and a “Packages” section that imports: <code>{rio}</code>, <code>{here}</code> and <code>{tidyverse}</code>. Add an “Import Data” section that loads the <em>cleaned</em> version of the measles linelist.</p>
 </div>
 </section>
 <section id="introduction-data-aggregation" class="level2">
 <h2 class="anchored" data-anchor-id="introduction-data-aggregation">Introduction: Data aggregation</h2>
-<p>OK so let’s recap, you have just performed one of the most <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Some consider it to be 80% of the work!">important tasks</span> of an epidemiologist: the <strong>data cleaning</strong>. Now that you have clean and standardized data, you can get into the real business and start analysing them. Analyses typically start with some tables and summaries that describe our data:</p>
+<p>OK so let’s recap, you have just performed one of the most <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Some consider it to be 80% of the work!">important tasks</span> of an epidemiologist: the <strong>data cleaning</strong>. Now that you have clean and standardise data, we can get into the real business and start analysing them. Analyses typically start with some tables and summaries to describe our data:</p>
 <ul>
 <li>Univariate frequency tables to count occurrences of different values</li>
-<li>Summary statistics of numerical variables (mean, median, standard deviation)</li>
+<li>Summary statistics (mean, median, standard deviation) of numerical variables</li>
 <li>Cross-tabulations to examine relationships between categorical variables</li>
 <li>Group-wise summaries to compare statistics across different subsets of the data</li>
 </ul>
 </section>
 <section id="counting-multiple-columns-contingency-tables" class="level2">
 <h2 class="anchored" data-anchor-id="counting-multiple-columns-contingency-tables">Counting Multiple Columns (Contingency Tables)</h2>
-<p>During the data exploration session, you have learned to create a frequency table for a single categorical variable using the <code>count()</code> function. This is nice, but we often want to count the number observations based on two (or more!) variables.</p>
-<p>These tables are called <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Or cross tabulation tables. They show how observations are distributed across different combinations of categories.">contingency tables</span>. For example, knowing the number of patients by <code>sub_prefecture</code> is great but we might want to stratify by both <code>sub_prefecture</code> <em>and</em> <code>age_group</code> to see if certain areas have <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="This type of stratification is a useful way of trying to find areas that may be good candidates for catch up campaigns.">unusually old patients</span>. Doing this is easy, you just need to pass multiple column names to <code>count()</code>:</p>
+<p>During the data exploration session, you have learned to create frequency table for a single categorical variable using the <code>count()</code> function. Counting one variable is nice, but we often want to count the number observations based on two (or more!) variables.</p>
+<p>These tables are called <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="It shows how observations are distributed across different combinations of categories.">contingency tables</span>. For example, knowing the number of patients by <code>sub_prefecture</code> is great but we might want to stratify by both <code>sub_prefecture</code> <em>and</em> <code>age_group</code> to see if certain areas have <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="This type of stratification is a useful way of trying to find areas that may be good candidates for catch up campaigns.">unusually old patients</span>. Doing this is easy, you just need to pass multiple column names to <code>count()</code>; for example:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">|&gt;</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(sub_prefecture, age_group)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="write">
 <p>Create a new summary table counting the number of patients stratified by <code>sub_prefecture</code> and <code>hospitalisation</code>. What happens if you change the order of the arguments given to <code>count()</code>?</p>
-<p>Now, using <code>count()</code>, answer the following questions:</p>
+</div>
+<div class="write">
+<p>Using <code>count()</code> answer the following questions:</p>
 <ul>
 <li>How many patients were female? What is the proportion?</li>
 <li>What are all the possible values of the <code>outcome</code> variable?</li>
@@ -281,9 +298,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="look">
-<p>Observe the output of the code above. How can you also call the proportion of patients who died? Are you happy with this calculation?</p>
+<p>Observe the output of the code above. How can you also call the proportion of patients who died ? Are you happy with this calculation ?</p>
 </div>
-<p>The proportion of cases that died is also referred to as the <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="The CFR is a ratio (or a risk) but not a rate!">Case Fatality Ratio (CFR)</span>. To precisely calculate the CFR we need to make sure that the denominator only includes patient for whom we are sure of their outcome (ie we need to remove all cases with <code>NA</code> or <code>left aginst medical advice</code>).</p>
+<p>The proportion of cases that died is also referred to as the <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="the CFR is a ratio (or a risk) but not a rate!">Case Fatality Ratio (CFR)</span>. However, to precisely calculate the CFR we need to make sure that the denominator only includes patient for whom we are sure of their outcome (ie we need to remove all cases with <code>NA</code> or <code>left aginst medical advice</code>).</p>
 <p>Remember that we can do this using <code>filter()</code>. To filter for missing values (<code>NA</code>) in a variable we can use the small function <code>is.na(outcome)</code>. Adding a <code>!</code> in front will do the opposite: <em>removing missing values from <code>outcome</code></em>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">|&gt;</span></span>
@@ -310,7 +327,7 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Bonus.</strong> A useful “shortcut” function is <code>drop_na()</code> from the package <code>{tidyr}</code> that equates to <code>filter(!is.na())</code>.</p>
+<p><strong>Bonus.</strong> Another useful “shortcut” function is <code>drop_na()</code> from the package <code>{tidyr}</code> that equates to <code>filter(!is.na())</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">|&gt;</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(outcome) <span class="sc">|&gt;</span></span>
@@ -321,14 +338,14 @@ Tip
 </div>
 </section>
 <section id="summary-table-statistics-by-sub-prefecture" class="level2">
-<h2 class="anchored" data-anchor-id="summary-table-statistics-by-sub-prefecture">Summary Table: Statistics by Sub Prefecture</h2>
+<h2 class="anchored" data-anchor-id="summary-table-statistics-by-sub-prefecture">Summary Table: Statistics by sub prefecture</h2>
 <p>Ok now that we have produced some simple frequency and contingency tables we may want to increase the complexity. A common task in epidemiology is to look at summary statistics within subsets of the data.</p>
 <p>For example, we may be asked to produce patient statistics at the sub-prefecture level, ie: <em>for each sub-prefecture in the data</em>, we need to answer the following questions:</p>
 <ul>
-<li>How many patients consulted?</li>
+<li>How many patients?</li>
 <li>What is their average age?</li>
 <li>What was the earliest date of admission?</li>
-<li>How many patients have been hospitalized?</li>
+<li>How many patients have been hospitalised?</li>
 <li>Among children under 6 months, how many have died?</li>
 </ul>
 <p>This is exactly what the function <code>summarize()</code> has been made for! It allows us to calculate summary statistics on a dataset, and the syntax is similar to that of <code>mutate()</code>:</p>
@@ -343,7 +360,7 @@ Tip
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">new_col =</span> <span class="fu">summary_function</span>(existing_col)</span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Consider the following code, here we are <strong>summarizing the data</strong> to calculate the average age across all patients.</p>
+<p>Consider the following code, here we are <strong>summarising the data</strong> to calculate the average age across all patients.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">|&gt;</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_age =</span> <span class="fu">mean</span>(age))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -354,11 +371,11 @@ Tip
 1     6.82</code></pre>
 </div>
 </div>
-<p>Notice that this code yields a single value for average age. No grouping variable was provided so <code>summarize()</code> returned one summary statistic for the whole dataset. To calculate the average age by a specific strata, we need to specify a <strong>grouping variable</strong> using the <code>.by</code> argument:</p>
+<p>You might notice that this code yields a single value for average age. When the data are not grouped, <code>summarize()</code> will consider the full dataset as a single group and return one summary statistic for the whole dataset. To calculate the average age by a specific strata, we need to specify a “grouping variable” using the <code>.by =</code> argument:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">|&gt;</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> sex,  <span class="co"># Make the summary (here, the mean) by sex</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> sex,</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_age =</span> <span class="fu">mean</span>(age)</span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -390,16 +407,16 @@ Tip
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">|&gt;</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> sub_prefecture,</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_patients =</span> <span class="fu">n</span>() <span class="co"># Count stuffs</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_patients =</span> <span class="fu">n</span>()</span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="write">
 <p>Ok now let’s build a summary table for each <code>sub_prefecture</code>. First start by replicating the above lines</p>
 </div>
 </section>
-<section id="summarizing-continuous-variables" class="level3">
-<h3 class="anchored" data-anchor-id="summarizing-continuous-variables">Summarizing Continuous Variables</h3>
-<p>We can then use the <code>mean()</code>, <code>median()</code>, <code>min()</code>, <code>max()</code> functions (and other) to produce summaries for continuous variables. For example the average age:</p>
+<section id="continuous-summaries" class="level3">
+<h3 class="anchored" data-anchor-id="continuous-summaries">Continuous Summaries</h3>
+<p>We can then use the simple <code>mean</code>, <code>median</code>, <code>min</code>, <code>max</code> functions to produce summaries for continuous variables. For example the average age:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">|&gt;</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
@@ -421,7 +438,7 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Remember that with the arithmetic functions such as <code>mean()</code>, <code>median()</code>, <code>min()</code>, <code>max()</code>, you need to <strong>explicitly tell R</strong> to remove <code>NA</code>.</p>
+<p>Remember that with the small functions (<code>mean</code>, <code>median</code>, <code>min</code>, <code>max</code>), you need to <strong>explicitly tell R</strong> to remove <code>NA</code>.</p>
 </div>
 </div>
 </section>
@@ -431,10 +448,11 @@ Tip
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DO NOT RUN (PSEUDO-CODE)</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">sum_category =</span> <span class="fu">sum</span>(LOGIC_TEST, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">sum_category =</span> <span class="fu">sum</span>(LOGIC_TEST,</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">na.rm =</span> <span class="cn">TRUE</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>This sum allows us to count all the lines where our condition was met (returns <code>TRUE</code>). For example:</p>
+<p>This sum allows us to count all the lines where our condition was met. For example:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">|&gt;</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
@@ -443,26 +461,26 @@ Tip
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="write">
-<p>Add a variable to your table that counts the number of patients that have been hospitalized. (ie: rows that have <code>yes</code> in variable <code>hospitalisation</code>)</p>
+<p>Add a variable to your table that counts the number of patients that have been hospitalised? (ie: rows that have <code>yes</code> in variable <code>hospitalisation</code>)</p>
 </div>
 </section>
 <section id="other-statistics" class="level3">
 <h3 class="anchored" data-anchor-id="other-statistics">Other Statistics</h3>
-<p>Sometimes we want to produce a more complicated statistic, for example the <em>mean age of all hospitalized patients</em>. Here the syntax is a bit different:</p>
+<p>Sometimes we want to produce a statistic <em>other than counting</em> given a condition, let’s say the <em>mean age of all hospitalised patients</em>. Here the syntax is a bit different:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DO NOT RUN (PSEUDO-CODE)</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_category =</span> <span class="fu">mean</span>(col_to_use[LOGIC_TEST], <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_category =</span> <span class="fu">mean</span>(col_to_use[LOGIC_TEST],</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">na.rm =</span> <span class="cn">TRUE</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Here, we have:</p>
 <ul>
-<li>Stated what summary statistic we want to use (<code>mean()</code>)</li>
-<li>Indicated which column we want to calculate that statistic on (<code>col_to_use</code>)</li>
-<li>Created a condition of which observations in that column to use in the calculation (<code>[LOGIC_TEST]</code>)</li>
+<li>Indicated which column we want to use when caluclating the summary statistic (here a mean)</li>
+<li>Indexed that column using a logical test</li>
 </ul>
-<p>To give a concrete example, if we wanted to compute the mean of the <code>age</code> variable but <em>only</em> for hospitalized patients (ie: in rows where <code>hospitalisation == "yes"</code>) we would write:</p>
+<p>For example to compute the <code>mean()</code> of the <code>age</code> variable but <em>only</em> in rows where <code>hospitalisation == "yes"</code> we would write it like this:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">|&gt;</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
@@ -471,9 +489,8 @@ Tip
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_age_hosp =</span> <span class="fu">mean</span>(age[hospitalisation <span class="sc">==</span> <span class="st">"yes"</span>], <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The use of a logical test in the example above is called <strong>logical indexing</strong>, where a condition is essentially being used to filter which observations you want to consider when performing a calculation. Logical indexing is very powerful but can also take some getting used to, so don’t worry too much if it isn’t perfectly clear at this stage.</p>
 <div class="write">
-<p>Can you use this syntax to calculate the mean age of female patients in your table?</p>
+<p>Can you use this syntax to calculate the mean age of female patients in your table ?</p>
 </div>
 <p>That is looking great! We are starting to get a pretty exhaustive grouped summary table with a lot of useful information by <code>sub_prefecture</code>! An extra challenge for you:</p>
 <div class="write">
@@ -494,36 +511,27 @@ Tip
 </div>
 </section>
 <section id="use-the-output" class="level3">
-<h3 class="anchored" data-anchor-id="use-the-output">Use the Output</h3>
-<p>Finally, remember that <code>summarize()</code> returns a dataframe that we can then further manipulate (eg: with <code>filter()</code> and <code>mutate()</code>).</p>
+<h3 class="anchored" data-anchor-id="use-the-output">Use the output</h3>
+<p>Finally, a reminder that <code>summarize()</code> returns a dataframe that we can then further manipulate (eg: with <code>filter</code> and <code>mutate</code>).</p>
 <div class="write">
-<p>Add a <code>mutate()</code> after producing your summary table to calculate:</p>
+<p>Can you add a <code>mutate()</code> after producing your summary table to calculate:</p>
 <ul>
-<li>The proportion of hospitalized patients per sub-prefecture</li>
+<li>The proportion of hospitalised patients per sub-prefecture</li>
 <li>The proportion of female patients per sub-prefecture</li>
 </ul>
 </div>
-<p>The head of your final table should look like this:</p>
+<p>Here is our final table !</p>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 11
-  sub_prefecture n_patients mean_age min_admission n_female n_hosp mean_age_hosp
-  &lt;chr&gt;               &lt;int&gt;    &lt;dbl&gt; &lt;date&gt;           &lt;int&gt;  &lt;int&gt;         &lt;dbl&gt;
-1 Moissala             1808     6.84 2022-08-14         923    612          5.49
-2 Bouna                1376     6.56 2023-01-11         669    412          5.67
-3 Bedjondo              534     7.07 2023-06-09         251    184          5.21
-4 Bekourou              496     6.84 2023-06-17         251    164          6.04
-5 Bedaya                435     7.10 2023-07-04         209    147          6.16
-6 Koumra                253     7.11 2023-08-14         138     84          6.26
-# ℹ 4 more variables: mean_age_female &lt;dbl&gt;, n_death_u6m &lt;int&gt;,
-#   prop_female &lt;dbl&gt;, prop_hosp &lt;dbl&gt;</code></pre>
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-2ac48897b552d7d8f460" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-2ac48897b552d7d8f460">{"x":{"style":"bootstrap","filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7"],["Moissala","Bouna","Bedjondo","Bekourou","Bedaya","Koumra","Goundi"],[1808,1376,534,496,435,253,178],[6.8429203539823,6.55595930232558,7.07303370786517,6.8366935483871,7.09885057471264,7.10671936758893,6.79213483146067],["2022-08-14","2023-01-11","2023-06-09","2023-06-17","2023-07-04","2023-08-14","2023-08-22"],[923,669,251,251,209,138,88],[612,412,184,164,147,84,66],[5.48529411764706,5.66504854368932,5.21195652173913,6.04268292682927,6.15646258503401,6.26190476190476,5.53030303030303],[6.74864572047671,6.63378176382661,6.94820717131474,6.8406374501992,7.10526315789474,6.45652173913043,7.125],[71,61,22,25,17,7,6],[0.510508849557522,0.486191860465116,0.470037453183521,0.506048387096774,0.480459770114943,0.545454545454545,0.49438202247191],[0.338495575221239,0.299418604651163,0.344569288389513,0.330645161290323,0.337931034482759,0.33201581027668,0.370786516853933]],"container":"<table class=\"table table-striped table-hover row-border order-column display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>sub_prefecture<\/th>\n      <th>n_patients<\/th>\n      <th>mean_age<\/th>\n      <th>min_admission<\/th>\n      <th>n_female<\/th>\n      <th>n_hosp<\/th>\n      <th>mean_age_hosp<\/th>\n      <th>mean_age_female<\/th>\n      <th>n_death_u6m<\/th>\n      <th>prop_female<\/th>\n      <th>prop_hosp<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"pageLength":10,"autoWidth":true,"columnDefs":[{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":7,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":8,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":9,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":10,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":11,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"className":"dt-right","targets":[2,3,5,6,7,8,9,10,11]},{"orderable":false,"targets":0}],"order":[],"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render","options.columnDefs.4.render","options.columnDefs.5.render","options.columnDefs.6.render","options.columnDefs.7.render","options.columnDefs.8.render"],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
 </section>
 <section id="done" class="level2">
 <h2 class="anchored" data-anchor-id="done">Done!</h2>
-<p>You should be proud of yourselves, making summary tables is an important skill to an epidemiologist, making it in R is very efficient! Don’t forget to save your code!</p>
+<p>You should be proud of yourselves, making summary tables is an important skill to an epidemiologist, making it in R is very efficient !! Don’t forget to save your code !</p>
 <div class="cell">
 <div class="cell-output-display">
 <a href="https://github.com/epicentre-msf/repicentre/blob/main/sessions_core/05_summary-table_solutions.R">
@@ -536,22 +544,14 @@ Tip
 <h2 class="anchored" data-anchor-id="going-further">Going Further</h2>
 <section id="extra-exercises" class="level3">
 <h3 class="anchored" data-anchor-id="extra-exercises">Extra Exercises</h3>
-<ol type="1">
-<li>Make a summary table that compute the following statistics by <em>age groups</em>:</li>
-</ol>
-<ul>
-<li>The number of patients</li>
-<li>The proportion of males</li>
-<li>The number of deaths</li>
-<li>The CFR</li>
-<li>The number of deaths among patients that had pneumonia</li>
-</ul>
+<p>Make a summary table that summarizes: - The number of patients - The proportion of male - The number of deaths - The CFR - The number of deaths among patients that had pneumonia</p>
+<p>in all the different <em>age groups</em> !</p>
 </section>
 <section id="additional-resources" class="level3">
 <h3 class="anchored" data-anchor-id="additional-resources">Additional Resources</h3>
 <ul>
 <li><p>The <a href="https://epirhandbook.com/en/new_pages/grouping.html">EpiR Handbook chapter on grouping data</a></p></li>
-<li><p>Once you have tables, you can extensively customize them for display/publication using <code>{gt}</code> package:</p>
+<li><p>Once you have tables, you can extensively customise them for display/publication using <code>{gt}</code> package:</p>
 <ul>
 <li><a href="https://gt.rstudio.com/index.html">Website of <code>gt</code></a></li>
 <li><a href="https://gt.albert-rapp.de/">Book about <code>gt</code></a></li>
