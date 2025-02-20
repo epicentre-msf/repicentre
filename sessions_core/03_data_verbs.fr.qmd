@@ -1,5 +1,5 @@
 ---
-title: Les bases du traitement de données dans R
+title: Traitement de données, les bases
 description: Une introduction à la manipulation et au nettoyage des données à l'aide du paquet `{dplyr}`.
 date: last-modified
 image: ../img/under_construction.svg

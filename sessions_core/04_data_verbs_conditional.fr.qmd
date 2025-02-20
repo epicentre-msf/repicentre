@@ -1,8 +1,8 @@
 ---
-title: Recoder les variables et filtrer les observations
+title: Traitement de données, recoder et filtrer
 description: Apprenez à recoder vos variables avec `{dplyr}` et comment sélectionner les lignes d'un data frame suivant certains critères
 date: last-modified
-image: ../img/under_construction.svg
+image: ../img/core/04_manipulation_conditionals/logo.svg
 categories:
   - Core
   - Manipulation des données
@@ -35,7 +35,7 @@ Dans la session précédente vous avez appris les bases du traitement de donnée
 
 Mise en place
 ----------------------------------------------------------------------------------
-**Prérequis** : cette leçon part du principe que vous connaissez les bases de la manipulation de données avec `{dplyr}`, et en particulier la fonction `mutate()`. Aller vous [rafraîchir si besoin](../sessions_core/03_data_verbs.qmd).
+**Prérequis** : cette leçon part du principe que vous connaissez les bases de la manipulation de données avec `{dplyr}`, et en particulier la fonction `mutate()`. Aller vous [rafraîchir si besoin](03_data_verbs.qmd).
 
 ::: {.setup}
 Nous utiliserons la liste linéaire avec les données brutes qui peut être téléchargée ici :
@@ -445,7 +445,7 @@ df_brut |>
 Pipeline de nettoyage des données
 -------------------------------------------------------------------------
 
-Maintenant que vous savez utiliser les conditions logiques pour recoder colonnes avec `case_when()`, nous pouvons reprendre le pipeline de nettoyage que nous avions commencé dans la session [précédente](../session_core/03_data_verbs.qmd).
+Maintenant que vous savez utiliser les conditions logiques pour recoder colonnes avec `case_when()`, nous pouvons reprendre le pipeline de nettoyage que nous avions commencé dans la session [précédente](03_data_verbs.qmd).
 
 :::{.write}
 Reprenez, le code de la session précédente, amendez-le et complétez le pour créer un gros pipeline de nettoyage des données, qui crée un data frame `df_linelist` en effectuant les opérations suivantes :

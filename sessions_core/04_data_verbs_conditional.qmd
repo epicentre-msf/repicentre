@@ -1,8 +1,8 @@
 ---
-title: Data Manipulation with Conditional Logic
+title: Data Manipulation, Filtering and Recoding
 description: Using `{dplyr}` and conditional logic to filter and recode data
 date: last-modified
-image: ../img/under_construction.svg
+image: ../img/core/04_manipulation_conditionals/logo.svg
 categories:
   - Core
   - Data Manipulation
@@ -30,7 +30,7 @@ Objectives
 
 Setup
 ----------------------------------------------------------------------------------------------------
-**Dependencies.** This session assumes that you know the basics of data manipulation with `{dplyr}`. If you need a refresher on this, please review the [third session in the learning pathway](https://epicentre-msf.github.io/repicentre/pathway.html).
+**Dependencies.** This session assumes that you know the basics of data manipulation with `{dplyr}`. If you need a refresher on this, please review the [third session in the learning pathway](03_data_verbs.qmd).
 
 
 ::: {.setup}
