@@ -1,5 +1,14 @@
 [
   {
+    "listing": "/pathway.html",
+    "items": [
+      "/sessions_core/01_introduction.html",
+      "/sessions_core/02_import_data.html",
+      "/sessions_core/03_data_verbs.html",
+      "/sessions_core/05_summary-table.html"
+    ]
+  },
+  {
     "listing": "/explore.html",
     "items": [
       "/sessions_core/03_data_verbs.html",
@@ -8,14 +17,6 @@
       "/sessions_core/01_introduction.html",
       "/sessions_core/template.html",
       "/sessions_core/05_summary-table.html"
-    ]
-  },
-  {
-    "listing": "/pathway.html",
-    "items": [
-      "/sessions_core/01_introduction.html",
-      "/sessions_core/02_import_data.html",
-      "/sessions_core/03_data_verbs.html"
     ]
   }
 ]
