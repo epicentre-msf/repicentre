@@ -1,6 +1,6 @@
 ---
-title: Summary tables
-description: Create summary tables.
+title: Summary Tables
+description: Create summary tables
 date: last-modified
 image: ../img/core/05_summary_tables/logo.svg
 categories:
