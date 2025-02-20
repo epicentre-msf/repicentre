@@ -356,7 +356,7 @@ Bravo et n'oubliez pas de sauvegarder votre code !
 #| eval: true
 
 downloadthis::download_link(
-  link = 'https://github.com/epicentre-msf/repicentre/blob/main/sessions_core/02_import_data_solutions.fr.R',
+  link = 'https://github.com/epicentre-msf/repicentre/blob/main/sessions_core/02_import_data_solutions_fr.R',
   button_label = 'Solutions exercices',
   has_icon = TRUE,
   icon = "fa fa-save",

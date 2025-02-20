@@ -9,7 +9,6 @@ listing:
       - '02_import_data.qmd'
       - '03_data_verbs.qmd'
       - '04_data_verbs_conditional.qmd'
-    
 ---
 
 Ces sessions peuvent être suivies afin d'obtenir un niveau de base dans R. La série suppose **aucune expérience préalable dans R** et convient bien aux débutants.
