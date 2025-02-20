@@ -168,6 +168,8 @@ For example, we may be asked to produce patient statistics at the sub-prefecture
 This is exactly what the function `summarize()` has been made for! It allows us to calculate summary statistics on a dataset, and the syntax is similar to that of `mutate()`: 
 
 ```{r}
+#| eval: false
+
 # DO NOT RUN (PSEUDO-CODE)
 df |>
   mutate(new_col = function_to_create(existing_col))
@@ -266,6 +268,7 @@ Remember that with the arithmetic functions such as `mean()`, `median()`, `min()
 We may also be interested in looking at the number of patients (rows) that fit a condition: the *number of patients that were female*. Counting by a logical condition can be done with the following syntax:
 
 ```{r}
+#| eval: false
 # DO NOT RUN (PSEUDO-CODE)
 summarize(
   sum_category = sum(LOGIC_TEST, na.rm = TRUE)
