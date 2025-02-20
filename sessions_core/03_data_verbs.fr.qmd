@@ -1,0 +1,479 @@
+---
+title: Les bases du traitement de données dans R
+description: Une introduction à la manipulation et au nettoyage des données à l'aide du paquet `{dplyr}`.
+date: last-modified
+image: ../img/under_construction.svg
+categories:
+  - Core
+  - Manipulation des données
+  - Nettoyage des données
+---
+
+```{r setup}
+#| include: false
+#| echo: false
+#| eval: true
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+
+library(tidyverse)
+
+df_brut <- rio::import(here::here('data', 'raw', 'moissala_linelist_FR.xlsx'))
+```
+
+
+Objectifs
+------------------------------------------------------------------
+1. Découvrir les fonctions de `{dplyr}` pour effectuer les actions essentielles sur les données :
+
+- Sélectionner des colonnes avec `select()`
+- Renommer des colonnes avec `rename()`
+- Créer de nouvelles colonnes ou modifier des colonnes existantes avec `mutate()`
+- Supprimer les doublons avec `distinct()`
+
+2. Enchaîner ces actions avec l'opérateur "pipe" `|>`
+
+
+Mise en place
+-------------------------------------------------------------------------
+**Prérequis** : cette leçon part du principe que vous savez comment utiliser RStudio et que vous êtes capable d'importer des données. Rafraîchissez-vous si besoin avec les [deux premières leçons](https://epicentre-msf.github.io/repicentre/pathway.html).
+
+::: {.setup}
+Nous utiliserons la linelist avec des données brutes que vous avez importée lors de la leçon précédente, et qui peut être téléchargée ici :
+
+```{r}
+#| echo: false
+#| eval: true
+
+downloadthis::download_link(
+  link = 'https://github.com/epicentre-msf/repicentre/raw/refs/heads/main/data/raw/moissala_linelist_FR.xlsx',
+  button_label = 'Télécharger les données',
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  self_contained = FALSE
+)
+```
+<br>
+Si ce n'est pas déjà fait, enregistrez le jeu de données dans le sous-dossier approprié de votre projet RStudio puis créez un nouveau script appelé `fonctions_donnees.R` dans votre sous-dossier `R`. Ajoutez un en-tête approprié et chargez les paquets suivants : `{here}`, `{rio}` et `{tidyverse}`.
+<br><br>
+Enfin, ajoutez une section dédiée à l'import des données, utilisez `{here}` et `{rio}` pour importer vos données dans R, et assignez-les à un objet que nous appellerons [`df_brut`]{.hovertip bs-toggle='tooltip' bs-title="Notez que nous ne nommons pas tout de suite l'objet df_linelist comme nous l'avions fait précédemment. La raison deviendra manifeste sous peu"}.
+:::
+
+
+Traiter ses données avec `{dplyr}`
+----------------------------------------------------------------
+
+La mise en place est terminée et nous pouvons maintenant nous focaliser sur nos données ! Cette leçon et les suivantes s'appuieront lourdement sur plusieurs paquets de la *collection de paquets* [tidyverse]{.hovertip bs-toggle='tooltip' bs-title="Le tidyverse est une collection de paquets pour R qui insistent sur la lisibilité du code et la facilité d'utilisation."} pour manipuler des data frames, résumer et visualiser les données, et en particulier paquet `{dplyr}` pour aujourd'hui.
+
+Le *traitement des données* (aussi appelé *manipulation des données*) est un ensemble d'actions essentielles pour préparer et nettoyer les données avant une analyse (que ce soit dans R ou Excel). `{dplyr}` fournit un grand nombre de fonctions qui nous aident à manipuler les data frames et à réaliser de nombreuses tâches quotidiennes telles que :
+
+- créer des sous-ensembles de nos données en ne gardant que les [variables]{.hovertip bs-toggle='tooltip' bs-title="Rappelez-vous que chaque variable correspond à une colonne dans notre data frame"} d'intérêt
+- renommer des colonnes
+- ajouter ou modifier des colonnes
+- supprimer les doublons
+
+Ces fonctions ont en général un [nom intuitif, qui correspond à un verbe]{.hovertip bs-toggle='tooltip' bs-title="Il est vrai que, comme pour les autres fonctions de R, ces noms sont en Anglais, ce qui complique la compréhension pour nous autres francophones, mais vous verrez que ces noms ne sont pas trop difficiles à traduire. Par ailleurs, comme les créateurs ont choisi d'utiliser un verbe pour nommer leurs fonctions, il n'est pas rare de parler des 'verbes de dplyr'"}. Par exemple, pour renommer des colonnes, on utilisera la fonction `rename()`.
+
+Aujourd'hui nous nous focaliserons sur les quatre verbes (fonctions !) qui permettent d'effectuer les tâches mentionnées précédemment, et que vous utiliserez en permanence. Nous vous montrerons également comment enchaîner les actions dans un *"pipeline"* pour plus de fluidité.
+
+
+:::{.callout-note}
+Peut-être avez-vous noté que nous vous parlons du paquet `{dplyr}` mais nous vous avons fait charger le paquet `{tidyverse}` lors de la mise en place. C'est que le `{tidyverse}` est un méta-paquet, et le charger charge automatiquement [plusieurs des paquets les plus utiles]{.hovertip bs-toggle='tooltip' bs-title="Le tidyverse contient de très nombreux paquets, et les charger tous d'un coup serait trop lourd et peu utile. Les paquets les plus courants  ont donc été rassemblés dans le méta paquet `{tidyverse}`, pour un chargement rapide"} de l'univers du tidyverse, dont fait partie `{dplyr}` et d'autres paquets que nous verrons dans la session.
+:::
+
+
+Actions de base sur les données
+----------------------------------------------------------------------------------------------------
+
+### Sélectionner des colonnes
+
+Il est fréquent de souhaiter écarter des variables d'un jeu de données, soit car ces colonnes contiennent des [données sensibles]{.hovertip bs-toggle='tooltip' bs-title="Les noms de patients, par exemple"}, soit parce que nous n'avons pas besoin d'elles pour une analyse donnée. Nous utiliserons pour cela la fonction `select()`, qui la [syntaxe suivante]{.hovertip bs-toggle='tooltip' bs-title="Notez qu'il s'agit de pseudo-code, c'est à dire un code non fonctionnel dédié à l'apprentissage, qui remplace des morceaux de codes par du langage pour mieux décrire la syntaxe. Le pseudo-code renverra une erreur si vous tentez de l'exécuter"} :
+
+```{r}
+# NE PAS EXÉCUTER (PSEUDO-CODE)
+select(un_dataframe, colonne_a_garder, autre_colonne_a_garder)
+```
+
+Ici, le premier argument est le data frame contenant les données. Les arguments suivants sont les noms des colonnes que nous voulons conserver. Dans le tidyverse, les noms de colonnes n'ont pas besoin d'être écrits entre guillemets. 
+
+La commande suivante nous permet de sélectionner les colonnes `id`, `sex` et `age`, par exemple :
+
+```{r}
+select(df_brut, id, sexe, age)
+```
+
+:::{.write}
+Utilisez la fonction `select()` pour sélectionner les variables suivantes de votre data frame : `id`, `sexe`, `age`, `sous_prefecture`, `date_debut` et `issue`. L'en-tête du data frame renvoyé par la fonction ressemble à ceci  :
+
+```{r}
+#| eval: true
+#| echo: false
+head(select(df_brut, id, sexe, age, date_debut , issue))
+```
+<br>
+Comparez ce résultat à `df_brut`. Ce dernier contient toujours toutes les colonnes importées (ce qui est le comportement désiré). Comprenez-vous pourquoi c'est le cas ?
+:::
+
+Il arrive que nous ne voulions supprimer que quelques colonnes d'un jeu de données et si le jeu de données est [large]{.hovertip bs-toggle='tooltip' bs-title="Vous avez sans doute déjà été confronté à des listes linéaires ou des données d'enquête longues et complexes"} ça serait fastidieux d'écrire *toutes les colonnes à garder* comme nous l'avons fait ci-dessus... Heureusement, nous pouvons préfacer un nom de colonne par l'opérateur soustraction (`-`) pour indiquer à R de la supprimer. 
+
+Par exemple, pour créer un data frame sans la colonne `village_commune` :
+
+```{r}
+select(df_brut, -village_commune)
+```
+
+:::{.write}
+Utilisez cette syntaxe pour créer un data frame qui conserve toutes les colonnes de `df_brut` **à l'exception de** [`nom_complet`]{.hovertip bs-toggle='tooltip' bs-title="En général, les noms et autres informations personnelles identifiantes doivent être immédiatement supprimés lorsque vous travaillez avec des données de type linelist"} et `unite_age`.
+:::
+
+### Renommer les colonnes
+Il arrive souvent que nous souhaitions [renommer des colonnes]{.hovertip bs-toggle='tooltip' bs-title="Noms trop longs, trop courts, peu clairs, pas standardisés, contenant des accent ou des espaces etc."} d'un jeu de données. La fonction `rename()` est alors votre meilleure amie.
+
+```{r}
+# NE PAS EXÉCUTER (PSEUDO CODE)
+rename(un_dataframe,
+       nouveau_nom_1 = nom_tout_moche,
+       nouveau_nom_2 = autre_nom_pas_fou)
+```
+
+Comme pour `select()`, le premier argument est le data frame qui contient les données (ce sera le cas pour la majorité des verbes de `{dplyr}`). Ensuite, chaque nouvel argument est une paire `nouveau_nom = ancien_nom` indiquant à R les colonnes à renommer et leurs nouveaux noms. Nous vous conseillons d'aller à la ligne pour chaque nouvelle paire pour aider à la lisibilité.
+
+Renommons la colonne `village_commune` en `village` par exemple :
+
+```{r}
+rename(df_brut,
+       village = village_commune)
+```
+
+:::{.write}
+Utilisez la fonction `rename()` sur `df_brut` pour renommer les colonnes :
+
+- `sous_prefecture` en `prefecture`
+- `village_commune` en `village` 
+- `nom_structure_sante` en `structure`
+:::
+
+Il peut être difficile de vérifier si une commande fonctionne car R affiche le data frame en entier. Dans ce cas, une [première solution]{.hovertip bs-toggle='tooltip' bs-title="Nous en verrons une autre à la fin de la leçon."} consiste à créer un objet temporaire plus facile à manipuler. Vous pouvez le nommer comme vous voulez, mais un nom commun est `temp` (ou `tmp` en anglais).
+
+:::{.write}
+Répétez le dernier exercice en assignant la sortie de la commande à un objet appelé `temp`. Vous pouvez alors utiliser la fonction `names()` pour vérifier que les noms des colonnes ont bien changé. La sortie de `names()` devrait être :
+
+```{r}
+#| eval: true
+#| echo: false
+
+df_brut |>
+  rename(prefecture = sous_prefecture,
+         village = village_commune,
+         structure = nom_structure_sante) |>
+  names()
+```
+:::
+
+:::{.callout-important}
+Les objets comme le data frame `temp` sont généralement utilisés pour tester si quelque chose a fonctionné et peuvent donc être écrasés lorsque vous testez autre chose. Ils ne doivent pas être utilisés comme entrée pour d'autres parties de votre code. Utilisez des noms clairs et appropriés pour vos data frames destinés à être réutilisés, tels que `df_linelist` ou `df_propre`.
+:::
+
+### Modifier et ajouter des colonnes
+
+Une autre tâche essentielle du traitement de données est de modifier des colonnes ou d'en créer de nouvelles. La fonction `mutate()` permet de faire les deux [*to mutate* veut dire *muter* en anglais], avec la syntaxe suivante : 
+
+```{r}
+# NE PAS EXÉCUTER (PSEUDO-CODE)
+mutate(un_dataframe,
+       nouvelle_colonne_1 = action(colonne_existante),
+       nouvelle_colonne_2 = autre_action(une_autre_colonne_existante))
+```
+
+Dans le code ci-dessus nous créons une nouvelle colonne (`nouvelle_colonne_1`) en effectuant une *action* (des calculs par exemple) sur une colonne existante (`colonne_existante`) dans le data frame `un_dataframe`. Puis nous créons une autre colonne (`nouvelle_colonne_2`) sur le même principe. L'action en question peut être variée et plus ou moins complexe : calcul arithmétique, application d'une fonction sur une colonne (ou même plusieurs !) etc.
+
+Par exemple, nous pourrions créer une nouvelle colonne exprimant le [périmètre brachial en cm]{.hovertip bs-toggle='tooltip' bs-title="Il est peu probable que vous souhaitiez le faire, mais c'est pour les besoins de la démonstration"} :
+
+```{r}
+mutate(df_brut,
+       pb_cm = pb / 100) # une opération arithmétique simple
+```
+
+:::{.write}
+Utilisez `mutate()` pour créer une nouvelle colonne `age_ans` qui exprime l'âge en années plutôt qu'en mois. L'en-tête de la colonne ressemble à ceci :
+
+```{r}
+#| eval: true
+#| echo: false
+df_brut |>
+  mutate(age_years = age / 12) |>
+  select(age_years) |>
+  head()
+```
+:::
+
+Pour **modifier une colonne existante** il suffit d'utiliser le nom de la colonne existante à gauche du `=` au lieu de fournir un nouveau nom.
+
+Par exemple, si nous voulions *remplacer* la colonne `pb` qui contenait des valeurs en mm par une colonne `pb` contenant les valeurs en cm :
+
+```{r}
+mutate(df_brut,
+       pb = pb / 100)
+```
+
+Nous voulons souvent conserver la colonne originelle, mais il existe des cas raisonnables où nous souhaitons écraser les données par une nouvelle version. Par exemple : 
+
+- modifier des chaînes de caractères (format, correction de typos etc.)
+- corriger le type de données d'une colonne
+
+Notre jeu de données présente ces deux cas. Par exemple les colonnes `region` et `sous_prefecture` sont en majuscules, ce qui n'est pas un problème en soi, mais peut être [améliorable]{.hovertip bs-toggle='tooltip' bs-title="Par ailleurs, les incohérences de casse sont un problème courant dans les jeux de données sales, et il est souvent nécessaire de standardiser la casse d'une colonne du nettoyage"}. Pour corriger cela nous pouvons utiliser la fonction `str_to_title()` du paquet `{stringr}` (qui fait également partie du `{tidyverse}`) pour passer les valeurs en [casse "titre"]{.hovertip bs-toggle='tooltip' bs-title="Appelée 'title case' en anglais, où les titres sont souvent écrits avec la première lettre de chaque mot en majuscule, à la différence du français qui ne met que la première lettre du titre en majuscule. Cette convention fonctionne néanmoins bien pour des noms de lieux, y compris en français, tel que 'Kasaï Oriental'. Si vous souhaitez ne mettre en majuscule que la première lettre de la phrase, vous pouvez utiliser la fonction str_to_sentence() à la place."}.
+
+```{r}
+mutate(df_brut,
+       region = str_to_title(region),
+       sous_prefecture = str_to_title(sous_prefecture))
+```
+
+:::{.write}
+Utilisez la fonction `mutate()` pour mettre à jour le format de `tdr_paludisme` et `issue` afin d'utiliser la casse "titres". L'en-tête de la sortie pour ces deux colonnes devrait maintenant être :
+
+```{r}
+#| eval: true
+#| echo: false
+
+df_brut |>
+  mutate(tdr_paludisme = stringr::str_to_title(tdr_paludisme),
+         issue = stringr::str_to_title(issue)) |>
+  select(tdr_paludisme, issue) |>
+  head()
+```
+:::
+
+:::{.callout-note}
+Nous n'avons pas eu besoin de charger `{stringr}` car comme `{dplyr}`, ce paquet est chargé automatiquement lorsque nous chargeons`{tidyverse}`.
+:::
+
+Passons maintenant au problème des variables avec le mauvais type.
+
+:::{.look}
+Vérifiez le type de vos colonnes. Y a-t-il des problèmes ?
+<br><br>
+**Indice :** `str()` peut être utile ici.
+:::
+
+Les classes semblent raisonnables sauf pour les dates : certaines colonnes ont la classe [*caractère*]{.hovertip bs-toggle='tooltip' bs-title="Ce qui est l'exact équivalent d'une colonne de date traitée comme du texte en Excel, avec les mêmes conséquences."} et d'autres sont [POSIXct]{.hovertip bs-toggle='tooltip' bs-title="Il s'agit d'un des types de données utilisé en R pour exprimer des dates. La raison sort du cadre de cette leçon mais ce n'est pas la manière la plus pratique de gérer les dates"}. Nous préférerions que toutes ces colonnes utilisent le type `Date`. 
+
+Nous allons utiliser la fonction `ymd()` du paquet [`{lubridate}`]{.hovertip bs-toggle='tooltip' bs-title="Un autre paquet du tydiverse. Nous vous avions prévenu que cette collection de paquets était incontournable pour le traitement des données."} pour faire la conversion en `Date`.
+"ymd" est l'abréviation de **y**ear **m**onth **d**ay, c'est à dire année-mois-jour. Cela veut dire que la fonction attend une date fournie [dans cet ordre-là]{.hovertip bs-toggle='tooltip' bs-title="Toutes les variantes de cet ordre existent pour gérer des dates dans divers formats. Par exemple, vous aurez sans doute besoin de dmy(), pour les formats jour/mois/année or mdy() pour les fichiers monstrueux qui utilisent le format mois-jour-année"} (les séparateurs peuvent varier).
+
+Pour corriger la date de décharge : 
+
+```{r}
+mutate(df_brut,
+       date_issue = ymd(date_issue))
+```
+
+:::{.write}
+Utilisez `mutate()` et `ymd()` pour modifier les colonnes `date_debut` et `date_admission` afin qu'elles soient de type `Date`. 
+
+
+**Astuce :** n'hésitez pas à stocker la sortie de la fonction dans un data frame temporaire `temp` pour vérifier le type des variables modifiées.
+:::
+
+
+### Supprimer les doublons
+
+Nous connaissons désormais les fonctions pour sélectionner, renommer et modifier nos variables. Il est temps à présent de passer à une autre tâche essentielle du nettoyage : la suppression doublons. 
+
+La fonction `distinct()` permet de rapidement enlever les lignes identiques d'un data frame avec la syntaxe suivante :
+
+```{r}
+# NE PAS EXÉCUTER (PSEUDO-CODE)
+distinct(un_dataframe)
+```
+
+Par défaut, nous n'avons besoin que d'un seul argument : le jeu de données lui-même. Cela supprime alors toutes les lignes qui sont complètement en double en ne gardant qu'une seule copie. Il existe des usages plus sophistiqués de `distinct()` pour chercher des doublons partiels, mais leur correction dépasserait du cadre de cette session...
+
+:::{.write}
+Utilisez la fonction `distinct()` et créez un data frame temporaire, `temp` qui contient toutes les observations uniques dans `df_brut`. Comparez le nombre de lignes de `temp` à celui de `df_brut`. Avions-nous des doublons ?
+:::
+
+
+
+L'opérateur "pipe"
+-------------------------------------------------------------------------------------------
+
+Nous avons profité de la présentation des fonctions essentielles de `{dplyr}` pour commencer le nettoyage du jeu de données. Il est temps de rassembler les commandes écrites dans les exercices en un ensemble cohérent pour créer un data frame contenant les données netoyées (au moins en partie) que nous appelerons `df_linelist`.
+
+:::{.callout-tip}
+En général, il est recommandé de conserver une version brute de votre ensemble de données, ici `df_brut`, qui reste inchangée dans votre code. Ainsi, vous l'avez toujours à disposition dans votre environnement comme référence et elle est toujours disponible au début de votre pipeline de nettoyage pour améliorer la reproductibilité.
+:::
+
+Il y a plusieurs manières d'enchaîner les différentes étapes que nous avons vues. Intuitivement, nous pourrions commencer comme ceci : 
+
+```{r}
+df_linelist <- rename(df_brut, 
+                      prefecture = sous_prefecture,
+                      village    = village_commune,
+                      structure  = nom_structure_sante)
+```
+
+
+Puis mettre à jour `df_linelist` :
+
+```{r}
+# Étape 1 : Renommer les variables
+df_linelist <- rename(df_brut, 
+                      prefecture = sub_prefecture,
+                      village    = village_commune,
+                      structure  = nom_structure_sante)
+
+# Étape 2 : Sélectionner les variables à conserver
+df_linelist <- select(df_linelist,
+                      -nom_complet)
+```
+
+Notez que dans cette deuxième étape, nous utilisons `df_linelist` comme *entrée* de `select()` plutôt que `df_brut` car nous voulons continuer à travailler sur la version modifiée des données. 
+
+Puis nous ajoutons l'âge en années :
+
+```{r}
+# Étape 1 : Renommer les variables
+df_linelist <- rename(df_brut, 
+                      prefecture = sub_prefecture,
+                      village    = village_commune,
+                      structure  = nom_structure_sante)
+
+# Étape 2 : Sélectionner les variables à conserver
+df_linelist <- select(df_linelist,
+                      -nom_complet)
+
+# Étape 3 : Ajouter l'âge en années
+df <- mutate(df_linelist,
+             age_ans = age / 12)
+```
+
+*Et caetera*. Ce code est tout à fait fonctionnel, mais devient lourd et répétitif si de nombreuses étapes s'enchaînent : à chaque étape nous utilisons en entrée le data frame renvoyé par l'étape précédente pour le mettre à jour...
+
+Il existe un raccourcis ! L'opérateur *pipe* (`|>`) permet d'enchainer des actions de manière plus fluide avec cette [syntaxe]{.hovertip bs-toggle='tooltip' bs-title="En Anglais, un pipe est un tube, un tuyau. La plupart des gens utilisent le mot anglais, mais certains parlent de l'opérateur tube en français. Nous utiliserons le mot pipe dans nos leçons."} :
+
+```{r}
+# NE PAS EXÉCUTER (PSEUDO-CODE)
+une_entree |> une_action
+
+# En particulier :
+un_dataframe |> une_fonction()
+```
+
+Ici, le *pipe* prend l'entrée fournie à gauche et la transmet à la fonction à droite. Ainsi, par exemple, au lieu d'écrire
+
+```{r}
+select(df_brut, id, sexe)
+```
+
+nous pouvons écrire
+
+```{r}
+df_brut |> select(id, sexe)
+```
+
+:::{.write}
+Testez le code ci-dessus de votre côté.
+:::
+
+On peut se servir de l'opérateur pipe pour enchaîner plusieurs actions. C'est le style de code dit "du tidyverse", qui ressemble à ceci :
+
+```{r}
+# NE PAS EXÉCUTER (PSEUDO-CODE)
+df_linelist <- df_brut |>
+  action_1() |>
+  action_2() |>
+  action_3() |>
+  ...
+```
+
+:::{.callout-tip}
+Aller à la ligne entre chaque action est considéré comme une bonne pratique pour rendre le code plus facile à lire et à comprendre.
+:::
+
+Nous pourrions donc remplacer le code précédent par ceci :
+
+```{r}
+df_linelist <- df_brut |>
+  rename(prefecture = sub_prefecture,
+         village    = village_commune,
+         facility   = health_facility_name) |>
+  select(-full_name) |>
+  mutate(age_years = age / 12)
+```
+
+C'est beaucoup plus fluide que de réaffecter `df_linelist` après chaque étape ! 
+
+:::{.write}
+A votre tour ! Rassemblez maintenant toutes les étapes de nettoyage de la leçon en une seule commande en un seul *pipeline*. 
+
+Utilisez l'opérateur pipe `|>`, les fonctions `select()` `rename()`, `mutate()`, `str_to_title()`, `ymd()` et `distinct()` pour créer un data frame `df_linelist` partiellement nettoyé. 
+<br>
+Rappel des étapes :
+
+- Supprimer les variables `nom_complet` et `unite_age`
+- Renommer les variables suivantes :
+  - `age` devient `age_ans`
+  - `sous_prefecture` devient `prefecture`
+  - `village_commune` devient `village`
+  - `nom_structure_sante` devient `structure`
+- Ajouter une variable `age_ans` avec l'âge du patient en années
+- Mettre à jour `region` et `prefecture` pour utiliser la casse de titre
+- Mettre à jour toutes les colonnes contenant des dates pour utiliser le type `Date`
+- Supprimer toutes les lignes en double
+
+L'en-tête de vos données finales devrait ressembler à ceci :
+
+```{r}
+#| eval: true
+#| echo: false
+
+df_brut |>
+  select(-nom_complet, -unite_age) |>
+  rename(age_mois = age,
+         prefecture = sous_prefecture,
+         village = village_commune,
+         structure = nom_structure_sante) |>
+  mutate(age_ans = age_mois / 12,
+         region = stringr::str_to_title(region),
+         prefecture = stringr::str_to_title(prefecture),
+         date_debut = lubridate::ymd(date_debut),
+         date_consultation = lubridate::ymd(date_consultation),
+         date_admission = lubridate::ymd(date_admission),
+         date_issue = lubridate::ymd(date_issue)) |>
+  distinct() |>
+  head()
+```
+
+**Astuce : ** soyez attentifs à vos noms de colonne. Si vous rennomez une colonne, il faudra utiliser le nouveau nom dans les étapes suivantes du pipeline.
+:::
+
+Fantastique ! C'est un excellent début de pipeline de nettoyage de vos données. Sauvegardez ce code, car nous le complèterons lors de la prochaine session, durant laquelle nous apprendron une autre étape essentielle du traitement de données : recoder les variables !
+
+
+C'est fini !
+------------------------------------------------------------------------------------
+Bravo, vous avez appris les bases de la manipulation de données et comment enchaîner plusieurs commandes dans un pipeline. À partir de maintenant, les fichiers contenant les solutions des exercices fourniront le code final plutôt qu'une correction par exercice, afin d'avoir un script plus réaliste. Par exemple, la solution fournira le pipe final créé à la fin de la session d'aujourd'hui.
+
+```{r}
+#| echo: false
+#| eval: true
+
+downloadthis::download_link(
+  link = 'https://github.com/epicentre-msf/repicentre/blob/main/sessions_core/03_data_verbs_solutions_fr.R',
+  button_label = 'Solutions exercices',
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  self_contained = FALSE
+)
+```
+
+Aller plus loin
+-----------------------------------------------------------------------------------------
+
+### Exercices supplémentaires
+  
+  1. Ajoutez une ligne à votre `mutate()` pour mettre à jour la variable `hospitalisation` afin que son texte soit également en casse "titre"
+
+2. Peut-être préféreriez-vous utiliser des minuscules pour la colonne `region` plutôt que la casse "titre" ? Mettez votre code à jour pour le faire. **Astuce** : vous pouvez utiliser la fonction apprises dans la première session ou tester la fonction `str_to_lower()` de `{stringr}`.
+
+3. Créez une colonne `delai_consultation`, qui contient le nombre de jours entre l'apparition des symptômes et la consultation.
