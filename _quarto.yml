@@ -28,7 +28,6 @@ format:
 comments:
   hypothesis: false
 
-
 babelquarto:
   languagecodes:
   - name: fr
