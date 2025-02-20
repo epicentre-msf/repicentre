@@ -45,7 +45,7 @@ Catalogue complet de cours d'autoformation<br>
 <img class='card-img' src='img/expand.svg' alt='expand'>
 
 ::: {.card-body}
-[Élargir]{.card-title}<br>
+[Ressources]{.card-title}<br>
 Ressources externes pour aller plus loin<br>
 <br>
 <a href='resources.html' class='btn'>Start</a>
