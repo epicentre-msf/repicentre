@@ -80,10 +80,13 @@
   "sessions_core/03_data-verbs.qmd": {
     "03_data-verbs.html": "4811ee8c"
   },
-  "sessions_core/03_data_verbs.qmd": {
-    "03_data_verbs.html": "c4dea35f"
+  "sessions_core/04_data_verbs_conditional.qmd": {
+    "04_data_verbs_conditional.html": "f2f926de"
   },
-  "sessions_core/07_epicurves.qmd": {
-    "07_epicurves.html": "cc39b6a3"
+  "sessions_core/03_data_verbs.qmd": {
+    "03_data_verbs.html": "0fe88e2e"
+  },
+  "sessions_core/04_data_verbs_conditional.fr.qmd": {
+    "04_data_verbs_conditional.fr.html": "c4b3e65a"
   }
 }

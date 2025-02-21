@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<link rel="alternate" hreflang="en" href="https://epicentre-msf.github.io/repicentre/sessions_core/03_data_verbs.html" />
+<link rel="alternate" hreflang="fr" href="https://epicentre-msf.github.io/repicentre/fr/sessions_core/03_data_verbs.fr.html" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.6.39">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-<meta name="dcterms.date" content="2025-02-14">
+<meta name="dcterms.date" content="2025-02-20">
 <meta name="description" content="An introduction to data manipulation and cleaning using {dplyr}">
-
-<title>Basic Data Manipulation – {repicentre}</title>
+<title>Data Manipulation, Basics – {repicentre}</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -57,24 +57,11 @@ div.sourceCode
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
-
-
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script><script src="../site_libs/quarto-nav/headroom.min.js"></script><script src="../site_libs/clipboard/clipboard.min.js"></script><script src="../site_libs/quarto-search/autocomplete.umd.js"></script><script src="../site_libs/quarto-search/fuse.min.js"></script><script src="../site_libs/quarto-search/quarto-search.js"></script><meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script><script src="../site_libs/quarto-html/popper.min.js"></script><script src="../site_libs/quarto-html/tippy.umd.min.js"></script><script src="../site_libs/quarto-html/anchor.min.js"></script><link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-0626ff4d7a71b55c8707dcae1d04a9b6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-e25cc82807363e79c52e96bc8b7855f1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script><link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-b814d3e578892f16fb585af6f47f426f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/bootstrap/bootstrap-dark-35dfec4a88a4a8552367c65e80eaa027.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
@@ -103,26 +90,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
-<script async="" src="https://hypothes.is/embed.js"></script>
-<script>
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    document.body.classList.add('hypothesis-enabled');
-  });
-</script>
-<script src="../site_libs/font-awesome-6.5.2/js/script.js"></script>
-<script type="text/javascript" src="../script.js"></script>
-
-
-<link rel="stylesheet" href="../styles.css">
+}</script><script src="../site_libs/font-awesome-6.5.2/js/script.js"></script><script type="text/javascript" src="../script.js"></script><link rel="stylesheet" href="../styles.css">
 </head>
-
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">{repicentre}</span>
@@ -134,7 +107,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
+<li class="nav-item"><div class="dropdown" id="languages-links-parent">
+<button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="languages-button"><i class="bi bi-globe2"></i> English</button><ul class="dropdown-menu" id="languages-links"><li><a class="dropdown-item" href="https://epicentre-msf.github.io/repicentre/fr/sessions_core/03_data_verbs.html" id="language-link-fr">Français</a></li></ul>
+</div></li>
+<li class="nav-item">
     <a class="nav-link" href="../pathway.html"> 
 <span class="menu-text">Pathway</span></a>
   </li>  
@@ -151,50 +127,48 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
-          </div> <!-- /navcollapse -->
+</div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
-    </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
+<li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
   <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
-  <li><a href="#manipulating-data-with-dplyr" id="toc-manipulating-data-with-dplyr" class="nav-link" data-scroll-target="#manipulating-data-with-dplyr">Manipulating Data with <code>{dplyr}</code></a>
+  <li>
+<a href="#manipulating-data-with-dplyr" id="toc-manipulating-data-with-dplyr" class="nav-link" data-scroll-target="#manipulating-data-with-dplyr">Manipulating Data with <code>{dplyr}</code></a>
   <ul class="collapse">
-  <li><a href="#what-is-dplyr" id="toc-what-is-dplyr" class="nav-link" data-scroll-target="#what-is-dplyr">What is <code>{dplyr}</code></a></li>
-  </ul></li>
-  <li><a href="#basic-data-verbs" id="toc-basic-data-verbs" class="nav-link" data-scroll-target="#basic-data-verbs">Basic Data Verbs</a>
+<li><a href="#what-is-dplyr" id="toc-what-is-dplyr" class="nav-link" data-scroll-target="#what-is-dplyr">What is <code>{dplyr}</code></a></li>
+  </ul>
+</li>
+  <li>
+<a href="#basic-data-verbs" id="toc-basic-data-verbs" class="nav-link" data-scroll-target="#basic-data-verbs">Basic Data Verbs</a>
   <ul class="collapse">
-  <li><a href="#selecting-specific-columns" id="toc-selecting-specific-columns" class="nav-link" data-scroll-target="#selecting-specific-columns">Selecting Specific Columns</a></li>
+<li><a href="#selecting-specific-columns" id="toc-selecting-specific-columns" class="nav-link" data-scroll-target="#selecting-specific-columns">Selecting Specific Columns</a></li>
   <li><a href="#renaming-columns" id="toc-renaming-columns" class="nav-link" data-scroll-target="#renaming-columns">Renaming Columns</a></li>
   <li><a href="#changing-and-adding-columns" id="toc-changing-and-adding-columns" class="nav-link" data-scroll-target="#changing-and-adding-columns">Changing and Adding Columns</a></li>
   <li><a href="#removing-duplicates" id="toc-removing-duplicates" class="nav-link" data-scroll-target="#removing-duplicates">Removing Duplicates</a></li>
-  </ul></li>
+  </ul>
+</li>
   <li><a href="#the-pipe-operator" id="toc-the-pipe-operator" class="nav-link" data-scroll-target="#the-pipe-operator">The Pipe Operator</a></li>
   <li><a href="#done" id="toc-done" class="nav-link" data-scroll-target="#done">Done!</a></li>
-  <li><a href="#going-further" id="toc-going-further" class="nav-link" data-scroll-target="#going-further">Going Further</a>
+  <li>
+<a href="#going-further" id="toc-going-further" class="nav-link" data-scroll-target="#going-further">Going Further</a>
   <ul class="collapse">
-  <li><a href="#extra-exercises" id="toc-extra-exercises" class="nav-link" data-scroll-target="#extra-exercises">Extra Exercises</a></li>
-  </ul></li>
+<li><a href="#extra-exercises" id="toc-extra-exercises" class="nav-link" data-scroll-target="#extra-exercises">Extra Exercises</a></li>
   </ul>
-</nav>
-    </div>
+</li>
+  </ul></nav>
+</div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Basic Data Manipulation</h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title">Data Manipulation, Basics</h1>
   <div class="quarto-categories">
     <div class="quarto-category">Core</div>
     <div class="quarto-category">Data Manipulation</div>
@@ -215,7 +189,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 14, 2025</p>
+      <p class="date">February 20, 2025</p>
     </div>
   </div>
   
@@ -224,11 +198,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header>
-
-
-<section id="objectives" class="level2">
-<h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
+</header><section id="objectives" class="level2"><h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
 <ul>
 <li>Learn basic data verbs from <code>{dplyr}</code> to:
 <ul>
@@ -236,12 +206,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Rename columns (<code>rename()</code>)</li>
 <li>Add new columns and change existing ones (<code>mutate()</code>)</li>
 <li>Remove duplicate observations</li>
-</ul></li>
-<li>Understand the pipe operator <code>|&gt;</code></li>
 </ul>
-</section>
-<section id="setup" class="level2">
-<h2 class="anchored" data-anchor-id="setup">Setup</h2>
+</li>
+<li>Understand the pipe operator <code>|&gt;</code>
+</li>
+</ul></section><section id="setup" class="level2"><h2 class="anchored" data-anchor-id="setup">Setup</h2>
 <p><strong>Dependencies.</strong> This session assumes that you know how to use RStudio and that you are able to import data. If you need a refresher on either of these topics, we encourage you to review the <a href="https://epicentre-msf.github.io/repicentre/pathway.html">first two sessions in the learning pathway</a>.</p>
 <div class="setup">
 <p>This session will work with the <strong>raw</strong> Moissala linelist data, which can be downloaded here:</p>
@@ -254,16 +223,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p><br> Make sure this dataset is saved into the appropriate subdirectory of your R project and create a new script called <code>data_verbs_practice.R</code> in your <code>R</code> directory. Add an appropriate header and load the following packages: <code>{here}</code>, <code>{rio}</code>, and <code>{tidyverse}</code>. <br><br> Finally, add an import section where you use <code>{here}</code> and <code>{rio}</code> to load your data into an object called <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Note, that we are calling this our raw data, not `df_linelist` as we did previously. You will see why later."><code>df_raw</code></span>.</p>
 </div>
-</section>
-<section id="manipulating-data-with-dplyr" class="level2">
-<h2 class="anchored" data-anchor-id="manipulating-data-with-dplyr">Manipulating Data with <code>{dplyr}</code></h2>
+</section><section id="manipulating-data-with-dplyr" class="level2"><h2 class="anchored" data-anchor-id="manipulating-data-with-dplyr">Manipulating Data with <code>{dplyr}</code>
+</h2>
 <p>Now that we know how to set up a project and import data, we can finally start to play around with it. Going forward we will be using several packages from the “<span class="hovertip" data-bs-toggle="tooltip" data-bs-title="The tidyverse is a collection of packages that are designed for maximum human readability and user friendliness. Check out their website for more information on what's available.">tidyverse</span>” to help us manipulate, summarize, and visualize our data. Today’s session will focus on data manipulation using a package called <code>{dplyr}</code>.</p>
-<section id="what-is-dplyr" class="level3">
-<h3 class="anchored" data-anchor-id="what-is-dplyr">What is <code>{dplyr}</code></h3>
-<p>Data manipulation is the foundation of <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Or really any other language, including Excel!">working with data in R</span> and as such is foundational to the work we do as epidemiologists. In particular, data manipulation skills will be critical when trying clean our data.</p>
+<section id="what-is-dplyr" class="level3"><h3 class="anchored" data-anchor-id="what-is-dplyr">What is <code>{dplyr}</code>
+</h3>
+<p>Data manipulation is the foundation of <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Or really any other language, including Excel!">working with data in R</span> and as such is foundational to the work we do as epidemiologists. In particular, data manipulation skills will be critical when trying to clean our data.</p>
 <p>In R, the package <code>{dplyr}</code> provides a large number of functions to help us manipulate data frames and perform many of the tasks that we will need to use on a daily basis, for example:</p>
 <ul>
-<li>Subsetting our data to remove certain <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Remember that each variable is a column in the context of a data frame">variables</span></li>
+<li>Subsetting our data to remove certain <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Remember that each variable is a column in the context of a data frame">variables</span>
+</li>
 <li>Renaming certain variables</li>
 <li>Adding or modifying a variable</li>
 <li>Removing duplicate entries</li>
@@ -280,15 +249,11 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>You may have noticed that we asked you to load a package called <code>{tidyverse}</code> rather than <code>{dplyr}</code> in the setup. Loading <code>{tidyverse}</code> will load <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="The tidyverse is pretty big and loading *all* of it's contents would be impractical for most projects. The package `{tidyverse}` therefore only loads the most useful 'core' packages from the full collection.">several of the most useful packages</span> from the broader tidyverse, including <code>{dplyr}</code> and a couple other packages that we will see later in the session.</p>
+<p>You may have noticed that we asked you to load a package called <code>{tidyverse}</code> rather than <code>{dplyr}</code> in the setup. Loading <code>{tidyverse}</code> will load <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="The tidyverse is pretty big and loading *all* of its contents would be impractical for most projects. The package `{tidyverse}` therefore only loads the most useful 'core' packages from the full collection.">several of the most useful packages</span> from the broader tidyverse, including <code>{dplyr}</code> and a couple other packages that we will see later in the session.</p>
 </div>
 </div>
-</section>
-</section>
-<section id="basic-data-verbs" class="level2">
-<h2 class="anchored" data-anchor-id="basic-data-verbs">Basic Data Verbs</h2>
-<section id="selecting-specific-columns" class="level3">
-<h3 class="anchored" data-anchor-id="selecting-specific-columns">Selecting Specific Columns</h3>
+</section></section><section id="basic-data-verbs" class="level2"><h2 class="anchored" data-anchor-id="basic-data-verbs">Basic Data Verbs</h2>
+<section id="selecting-specific-columns" class="level3"><h3 class="anchored" data-anchor-id="selecting-specific-columns">Selecting Specific Columns</h3>
 <p>A lot of the time when we receive a dataset it will have extra columns that we don’t need, either because those columns contain <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Like patient names, for example">sensitive data</span> or because our analysis will only focus on a subset of the data. This is where a function like <code>select()</code> comes in handy.</p>
 <p>Here is the basic syntax, note that this is <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Pseudo-code is used to show model syntax but isn't designed to actually be run. Often it will use stand in names like `column_name` to illustrate a concept. In this session and following ones we will often use pseudo-code to demonstrate the basic syntax of new functions as they are introduced.">pseudo-code</span> and isn’t something you are intended to run yourself.</p>
 <div class="cell">
@@ -322,9 +287,7 @@ Note
 <div class="write">
 <p>Use the <code>-</code> syntax in <code>select()</code> to select all of the columns in <code>df_raw</code> <strong>except</strong>: <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="In general, full names and other identifiable information should be removed immediately when working with linelist data."><code>full_name</code></span> and <code>age_unit</code> from your dataset.</p>
 </div>
-</section>
-<section id="renaming-columns" class="level3">
-<h3 class="anchored" data-anchor-id="renaming-columns">Renaming Columns</h3>
+</section><section id="renaming-columns" class="level3"><h3 class="anchored" data-anchor-id="renaming-columns">Renaming Columns</h3>
 <p>Another common issue when we get new datasets is that the variable names are <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="This could be because they are too long, or worse because they contain spaces or accents">inconvenient</span>. In those cases, <code>rename()</code> can work wonders. Here’s the basic syntax:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DO NOT RUN (PSEUDO CODE)</span></span>
@@ -370,9 +333,7 @@ Important
 <p>Temporary objects, like the <code>tmp</code> data frame you just created are just that: temporary. They are usually used to test if something has worked and designed to be overwritten each time you need to test something else. As such, you should not use these temporary objects as the input for other parts of your code. If you want to make a data frame that will be reused, such as a clean version of <code>df_raw</code>, this should be done using an object with a proper name like <code>df</code> or <code>df_clean</code>.</p>
 </div>
 </div>
-</section>
-<section id="changing-and-adding-columns" class="level3">
-<h3 class="anchored" data-anchor-id="changing-and-adding-columns">Changing and Adding Columns</h3>
+</section><section id="changing-and-adding-columns" class="level3"><h3 class="anchored" data-anchor-id="changing-and-adding-columns">Changing and Adding Columns</h3>
 <p>So now we know how to select and rename columns, but how do we modify them? This is where <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="This name is admittedly less intuitive that other `{dplyr}` verbs. It is called mutate because you are changing (or 'mutating', if you will) parts of the data."><code>mutate()</code></span> comes into play. This function can be used both to add new columns and to change existing ones.</p>
 <p>Let’s start with the basic <code>mutate()</code> syntax needed to add a new column:</p>
 <div class="cell">
@@ -445,7 +406,7 @@ Note
 </div>
 <p>That’s nicer. Now let’s consider the second issue, having variables with the wrong type.</p>
 <div class="look">
-<p>Take a look at the data type of your columns, do any of them look strange? <br><br> <strong>Hint.</strong> <code>str()</code> may be useful here.</p>
+<p>Take a look at the data type of your columns, do any of them look strange? <br><br><strong>Hint.</strong> <code>str()</code> may be useful here.</p>
 </div>
 <p>Most of the columns look ok, but it seems theres something strange with the dates. Some of them are character type and others are something called <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="This is a data type in R that is sometimes used to express dates. It isn't the most convenient way of date handling, though the reasons why are a bit outside of the scope of this course. In general we recommend converting `POSIXct` to `Date` whenever working with dates.">POSIXct</span>. We would much rather have all of these columns use the simple <code>Date</code> type.</p>
 <p>To convert to dates, we are going to call on yet <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="As you can see, the tidyverse contians a lot of convenient packages to make our lives as epidemiologists easier.">another package from the the tidyverse, <code>{lubridate}</code></span>. In particular, we are going to use the <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Here the name of the function indicates that it expects dates to be formated as year-month-day. Other functions are available in {lubridate} for dates that are constructed differently.">function <code>ymd()</code></span>. For example:</p>
@@ -456,9 +417,7 @@ Note
 <div class="write">
 <p>Use <code>mutate()</code> and <code>ymd()</code> to modify <code>date_onset</code> and <code>date_admission</code> to be <code>Date</code> type. Use a temporary data frame <code>tmp</code> to check that your code is doing what you want it to.</p>
 </div>
-</section>
-<section id="removing-duplicates" class="level3">
-<h3 class="anchored" data-anchor-id="removing-duplicates">Removing Duplicates</h3>
+</section><section id="removing-duplicates" class="level3"><h3 class="anchored" data-anchor-id="removing-duplicates">Removing Duplicates</h3>
 <p>Ok great! We know how to select, rename, and modify our data. Another task we will often need to do is removing duplicate entries. Fortunately this one is easily done using the function <code>distinct()</code>, which has the following basic syntax:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DO NOT RUN (PSEUDO-CODE)</span></span>
@@ -468,10 +427,7 @@ Note
 <div class="write">
 <p>Use <code>distinct()</code> to create a temporary data frame, <code>tmp</code>, that contains all the unique observations in <code>df_raw</code>. Compare the number of rows in <code>tmp</code> to that of <code>df_raw</code>. Did we have any duplicates?</p>
 </div>
-</section>
-</section>
-<section id="the-pipe-operator" class="level2">
-<h2 class="anchored" data-anchor-id="the-pipe-operator">The Pipe Operator</h2>
+</section></section><section id="the-pipe-operator" class="level2"><h2 class="anchored" data-anchor-id="the-pipe-operator">The Pipe Operator</h2>
 <p>So it looks like we have actually done quite a bit of cleaning while learning the core <code>{dplyr}</code> verbs. We should probably try to put some of the above steps together to start building a basic data cleaning pipeline. So far we haven’t been saving any of our changes, except perhaps to a temporary data frame. It would be nice to keep them in a new clean <code>df</code> object.</p>
 <p>For example, if we want to effect the column renaming we did above to a reusable object we might write something like this:</p>
 <div class="cell">
@@ -573,14 +529,24 @@ Tip
 <div class="write">
 <p>Let’s see if we can put together what we learned above into a single pipeline! Use the pipe operator <code>|&gt;</code>, <code>select()</code>, <code>rename()</code>, <code>mutate()</code>, <code>str_to_title()</code>, <code>ymd()</code>, and <code>distinct()</code> to perform the following actions on <code>df_raw</code> and assign the output to a new data frame called <code>df</code>:</p>
 <ul>
-<li>Remove the variables <code>full_name</code> and <code>age_unit</code></li>
+<li>Remove the variables <code>full_name</code> and <code>age_unit</code>
+</li>
 <li>Rename the following variables:
 <ul>
-<li><code>age</code> becomes <code>age_months</code></li>
-<li><code>sub_prefecture</code> becomes <code>prefecture</code></li>
-<li><code>village_commune</code> becomes <code>village</code></li>
-<li><code>health_facility_name</code> becomes <code>facility</code></li>
-</ul></li>
+<li>
+<code>age</code> becomes <code>age_months</code>
+</li>
+<li>
+<code>sub_prefecture</code> becomes <code>prefecture</code>
+</li>
+<li>
+<code>village_commune</code> becomes <code>village</code>
+</li>
+<li>
+<code>health_facility_name</code> becomes <code>facility</code>
+</li>
+</ul>
+</li>
 <li>Add a variable <code>age_years</code> with patient age in years</li>
 <li>Update <code>region</code> and <code>prefecture</code> to use title case</li>
 <li>Update all date columns to use <code>Date</code> type</li>
@@ -629,9 +595,7 @@ Tip
 <p><strong>Hint.</strong> Be careful with your column names here! If you renamed something you will need to use the new names for any subsequent parts of the pipe.</p>
 </div>
 <p>Amazing! That looks like a great start at a data cleaning pipeline. Keep this code handy, you will use it in the next session where we will look at another common part of data cleaning: <strong>recoding</strong>.</p>
-</section>
-<section id="done" class="level2">
-<h2 class="anchored" data-anchor-id="done">Done!</h2>
+</section><section id="done" class="level2"><h2 class="anchored" data-anchor-id="done">Done!</h2>
 <p>Well done, you’ve learned the fundamentals of data manipulation and how to string multiple commands together into a data manipulation pipe. Moving forward, solution files will focus less on being “exercise by exercise” and rather provide an example of what a real script might look like in a real world context. In this case, the solutions will then focus only on the final pipe that is created at the end of the session.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -640,23 +604,13 @@ Tip
 </a>
 </div>
 </div>
-</section>
-<section id="going-further" class="level2">
-<h2 class="anchored" data-anchor-id="going-further">Going Further</h2>
-<section id="extra-exercises" class="level3">
-<h3 class="anchored" data-anchor-id="extra-exercises">Extra Exercises</h3>
+</section><section id="going-further" class="level2"><h2 class="anchored" data-anchor-id="going-further">Going Further</h2>
+<section id="extra-exercises" class="level3"><h3 class="anchored" data-anchor-id="extra-exercises">Extra Exercises</h3>
 <ol type="1">
 <li><p>A a line to your <code>mutate()</code> to update the <code>hospitalisation</code> variable so that its text would be in title case as well.</p></li>
 <li><p>Perhaps you would prefer to use lower case for the <code>region</code> column rather than the title case, update your code to do this instead. <strong>Hint</strong>: you might want to check out <code>str_to_lower()</code> from <code>{stringr}</code>.</p></li>
 <li><p>Create a <code>delay_consultation</code> column, that contains the number of days between the onset of symptoms and the consultation.</p></li>
-</ol>
-
-
-</section>
-</section>
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</ol></section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -1222,4 +1176,5 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-</body></html>
+</body>
+</html>

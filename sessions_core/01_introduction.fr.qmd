@@ -3,6 +3,7 @@ title: Introduction à R
 description: Vos premiers pas dans R. Familiarisez-vous avec Rstudio et
   avec les objets courants de R.
 date: last-modified
+image: ../img/core/01_introduction/logo.svg
 categories:
 - Core
 - R Basics
@@ -678,7 +679,7 @@ C'est tout pour cette session, bravo pour vos débuts avec R et RStudio !
 #| eval: true
 
 downloadthis::download_link(
-  link = 'https://github.com/epicentre-msf/repicentre/blob/main/sessions_core/01_introduction_solutions.fr.R',
+  link = 'https://github.com/epicentre-msf/repicentre/blob/main/sessions_core/01_introduction_solutions_fr.R',
   button_label = 'Solutions exercices',
   has_icon = TRUE,
   icon = "fa fa-save",
