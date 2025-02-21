@@ -5,9 +5,7 @@ date: last-modified
 image: ../img/core/07_epicurves/ggplot_000_logo.png
 categories:
   - Core
-  - Graphs
-  - ggplot2
-  - epicurve
+  - Visualization
 ---
 
 ```{r setup}
@@ -399,7 +397,7 @@ Very well done team! You have build your first epicurve!
 #| eval: true
 
 downloadthis::download_link(
-  link = 'https://github.com/epicentre-msf/repicentre/blob/main/sessions_core/07_epicurves_solutions.R',
+  link = 'https://github.com/epicentre-msf/repicentre/blob/main/sessions_core/06_epicurves_solutions.R',
   button_label = 'Solutions file',
   has_icon = TRUE,
   icon = "fa fa-save",
