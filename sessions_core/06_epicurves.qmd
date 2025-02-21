@@ -1,8 +1,8 @@
 ---
-title: Introduction to data visualization with ggplot2
-description: Learn the basics of buidling plots with ggplot2, and create your first epicurve.
+title: Basic Data Visualization
+description: Learn the basics of buidling plots with ggplot2, and create your first epicurve
 date: last-modified
-image: ../img/core/07_epicurves/ggplot_000_logo.png
+image: ../img/core/06_epicurves/logo.svg
 categories:
   - Core
   - Visualization
@@ -29,11 +29,11 @@ df_cases <- df_linelist |>
   count(date_onset)
 
 # Data for our examples
-df_outcome <- df_linelist |>
-  mutate(date_outcome = ymd(date_outcome)) %>% 
-  count(date_outcome, 
+df_hospital <- df_linelist |>
+  mutate(date_admission = ymd(date_admission)) %>% 
+  count(date_admission, 
         name = 'patients') |>
-  tidyr::drop_na(date_outcome)
+  tidyr::drop_na(date_admission)
 ```
 
 ## Objectives
@@ -69,16 +69,9 @@ Before we get into the theory, let's get your data and script ready.
 
 ::: {.write}
 Open your RStudio project and create a new script called `epicurves.R` with appropriate metadata. Load the following packages: `{here}`, `{rio}`, `{dplyr}`, `{lubridate}`, and `{ggplot2}`.
-
-Add a section to your script called `# IMPORT DATA` where you import the *clean course dataset* (`moissala_linelist_clean_EN.rds`). Verify that the `head()` of your data looks like this:
+<br>
+Add a section to your script called `# IMPORT DATA` where you import the *clean course dataset* (`moissala_linelist_clean_EN.rds`).
 :::
-
-```{r}
-#| echo: false
-#| eval: true
-head(df_linelist)
-```
-
 
 ## Paradigms of Plotting
 
@@ -120,8 +113,8 @@ The method of building a [`ggplot`]{.hovertip bs-toggle='tooltip' bs-title='Here
 The general syntax of a `ggplot` is then:
 
 ```{r}
-# PSEUDO CODE -- DO NOT RUN
-df |>                     # pipe in your data 
+# DO NOT RUN (PSEUD-CODE)
+df |>                      # pipe in your data 
   ggplot(aes(x = ...,      # step 1: create canvas
              y = ...)) +
   layer_one(...) +         # step 2: add a first layer
@@ -133,7 +126,7 @@ df |>                     # pipe in your data
 The number of layers you add depends on how complex you want your plot to be. In our case, we will be adding three layers to our canvas with the following functions:
 
 ```{r}
-# PSEUDO CODE -- DO NOT RUN
+# DO NOT RUN (PSEUD-CODE)
 df |>                    # pipe in your data
   ggplot(aes(x = ...,     # step 1: create canvas
              y = ...)) +
@@ -142,12 +135,13 @@ df |>                    # pipe in your data
   theme_classic(...)      # step 4: add a nicer theme
 ```
 
+We can update our above schematic of an epicurve with these functions as follows:
+
+![The main components of a plot, with their associated functions](../img/core/07_epicurves/ggplot_003_functions.png){fig-align="center"}
 
 ::: {.callout-note}
 Notice that in the above example, our very first line is actually our dataset being piped into the `ggplot()` function. This makes sense since `{ggplot2}` needs to know what data you'd like to visualize. **But be careful,** make sure that **this line ends in a pipe** (`|>`) and not in a `+` sign like t |> he other ones.
 :::
-
-![The main components of a plot, with their associated functions](../img/core/07_epicurves/ggplot_003_functions.png){fig-align="center"}
 
 In the next part of the tutorial we will go through each of these steps (layers) individually using our course dataset to make your first epicurve.
 
@@ -169,12 +163,12 @@ head(df_cases)
 :::
 
 
-Great! Now we are ready to make our epicurve. In the following steps, *you*'ll be asked to use `df_cases` to plot a classic epicurve of the *number of daily admissions*. To demonstrate the functions you'll be using, *I* will plot the curve of the number of daily *outcomes* as an example. To do that, I've built myself another dataframe, `df_outcome`, which looks like this:
+Great! Now we are ready to make our epicurve. In the following steps, *you*'ll be asked to use `df_cases` to plot a classic epicurve of the *number of daily admissions*. To demonstrate the functions you'll be using, *I* will plot the curve of the number of daily **hospitalizations** as an example. To do that, I've built myself another dataframe, `df_outcome`, which looks like this:
 
 ```{r}
 #| echo: false
 #| eval: true
-head(df_outcome)
+head(df_hospital)
 ```
 
 
@@ -183,28 +177,28 @@ head(df_outcome)
 The first step is creating your canvas by specifying your dataset and the names of the columns you'd like to visualize. This is done using `ggplot(aes(...))` with the following syntax:
 
 ```{r}
-# PSEUDO CODE -- DO NOT RUN
+# DO NOT RUN (PSEUD-CODE)
 df_data |>
   ggplot(aes(x = x_axis_variable_name,
              y = y_axis_variable_name))
 ```
 
-For an epicurve of outcomes, I'd like to plot the days (`date_outcome `) on the x-axis and the number of patients hospitalized (`patients`) on the y-axis. Let's update our pseudo-code to do that:
+For an epicurve of hospitalizations, I'd like to plot the days (`date_admission`) on the x-axis and the number of patients hospitalized (`patients`) on the y-axis. Let's update our pseudo-code to do that:
 
 ```{r}
 #| eval: true
-df_outcome |>
-  ggplot(aes(x = date_outcome,
+df_hospital |>
+  ggplot(aes(x = date_admission,
              y = patients))
 ```
 
 Fabulous, take a look at that big beautiful box of potential. This is our empty canvas. In RStudio this plot should show up in the panel on the bottom right of the screen.
 
+![The plot pannel in RStudio IDE](../img/core/07_epicurves/ggplot_004_plot_panel.png){fig-align="center"}
+
 ::: {.callout-note}
 Just like with `{dplyr}`, we write our column names without quotation marks. This is unsurprising as `{ggplot2}`, like `{dplyr}`, is a member of the `{tidyverse}` and therefore uses similar syntax.
 :::
-
-![The plot pannel in RStudio IDE](../img/core/07_epicurves/ggplot_004_plot_panel.png){fig-align="center"}
 
 Now, you may be wondering what is this `aes()` function that we've nested inside of `ggplot()`? The short answer is that `aes()` creates an **AESthetic mapping** that tells `{ggplot2}` which columns of our data should be represented by which visual elements of our plot (like the axes, for example). 
 
@@ -232,7 +226,7 @@ Excellent! Now let's add some bars.
 
 ### Plot the Bars
 
-Now that we have our canvas, it's time to add some shapes. In `{ggplot2}`, the shapes plotted on a figure are called [*geometries*]{.hovertip bs-toggle='tooltip' bs-title="You'll notice in the below examples that the function for all geometries starts with "geom_". This is designed to improve human readability and indeed all geometries in {ggplot2} start this way for consistency"}. Geometries are the primary visual representation of your data and should feel pretty familiar. A few common types of geometries include:
+Now that we have our canvas, it's time to add some shapes. In `{ggplot2}`, the shapes plotted on a figure are called [geometries]{.hovertip bs-toggle='tooltip' bs-title="You'll notice in the below examples that the function for all geometries starts with 'geom_'. This is designed to improve human readability and indeed all geometries in {ggplot2} start this way for consistency"}. Geometries are the primary visual representation of your data and should feel pretty familiar. A few common types of geometries include:
 
 - [Bar Plots]{.hovertip bs-toggle='tooltip' bs-title="Including epicurves!"} (`geom_col()` or `geom_bar()`)
 - Histograms (`geom_hist()`)
@@ -240,19 +234,19 @@ Now that we have our canvas, it's time to add some shapes. In `{ggplot2}`, the s
 - Line Plots (`geom_line()`)
 - Boxplots (`geom_boxplot()`)
 
-Today, we're doing epicurves so we are most interested in learning how to make a bar plot. In our case, we will be using [`geom_col()`]{.hovertip bs-toggle='tooltip' bs-title="The exact difference between geom_bar() and geom_col() is a bit beyond our scope. But, in essence, whereas geom_col() is designed to work with pre-aggregated data, geom_bar() will do some degree of aggregation on its own."}. Remember that adding a new layer (in this case a geometry) to our `ggplot` is as simple as using a `+`, so we can add bars to the epicurve of hospitalized cases in the following way:
+Today, we're doing epicurves so we are most interested in learning how to make a bar plot. In our case, [we will be using `geom_col()`]{.hovertip bs-toggle='tooltip' bs-title="The exact difference between geom_bar() and geom_col() is a bit beyond our scope. But, in essence, whereas geom_col() is designed to work with pre-aggregated data, geom_bar() will do some degree of aggregation on its own."}. Remember that adding a new layer (in this case a geometry) to our `ggplot` is as simple as using a `+`, so we can add bars to the epicurve of hospitalized cases in the following way:
 
 ```{r}
 #| eval: true
 #| fig-width: 10
 
-df_outcome |>
-  ggplot(aes(x = date_outcome,
+df_hospital |>
+  ggplot(aes(x = date_admission,
              y = patients)) +
   geom_col()
 ```
 
-Brilliant! That sure looks like an epicurve to me. Though it does look a bit...grey. If we'd like to update the color of our bars (called the `fill`), we simply need to add the [`fill = ` argument]{.hovertip bs-toggle='tooltip' bs-title="Fills and border colors in {ggplot2} can be specified in several ways. Here we have used a [hex code](https://www.w3schools.com/colors/colors_picker.asp), which allows us to give a unique code for specific colors. In a pinch, however, you can also specify simple colors by name. For example, arguments like "blue"  or "green" would also be accepted (see [a list of R named colors](https://r-charts.com/colors/))."} to `geom_col()`. 
+Brilliant! That sure looks like an epicurve to me. Though it does look a bit...grey. If we'd like to update the color of our bars (called the `fill`), we simply need to [add the `fill` argument]{.hovertip bs-toggle='tooltip' bs-title="Fills and border colors in {ggplot2} can be specified in several ways. Here we will use a hex code (google it), which allows us to give a unique code for specific colors. In a pinch, however, you can also specify simple colors by name. For example, arguments like 'blue'  or 'green' would also be accepted."} to `geom_col()`. 
 
 Let's give it a try:
 
@@ -261,8 +255,8 @@ Let's give it a try:
 #| fig-width: 10
 
 
-df_outcome |>
-  ggplot(aes(x = date_outcome,
+df_hospital |>
+  ggplot(aes(x = date_admission,
              y = patients)) +
   geom_col(fill = "#2E4573")
 ```
@@ -306,19 +300,19 @@ As for other layers, we can include a label layer by adding `labs()` to our curr
 #| eval: true
 #| fig-width: 10
 
-df_outcome |>
-  ggplot(aes(x = date_outcome,
+df_hospital |>
+  ggplot(aes(x = date_admission,
              y = patients)) +
   geom_col(fill = "#2E4573") +
-  labs(x = "Date of outcome",
-       y = "Patients",
-       title = "Measles outcomes in Mandoul region (Chad)")
+  labs(x = "Date",
+       y = "Daily Patients",
+       title = "Measles Hospitalizations in Mandoul Region (Chad)")
 ```
 
 ::: {.write}
 Update your epicurve plot to add some reasonable axis labels and a nice title. 
-
-**Extra Credit!** Try adding a data source using `caption = `.
+<br>
+**Extra Credit!** Try adding a data source using `caption`.
 :::
 
 Your plot might now look like (for example):
@@ -335,7 +329,7 @@ df_cases |>
   labs(x = "Date of onset",
        y = "Measles Cases",
        title = "Measles cases in Mandoul region (Chad)",
-       caption = "Ficticious data")
+       caption = "Source: Simultated measles linelist data")
 ```
 
 ### Add a Theme
@@ -348,36 +342,36 @@ Today, we will use `theme_classic()`, which offers a simple but elegant output:
 #| eval: true
 #| fig-width: 10
 
-df_outcome |>
-  ggplot(aes(x = date_outcome,
+df_hospital |>
+  ggplot(aes(x = date_admission,
              y = patients)) +
   geom_col(fill = "#2E4573") +
-  labs(x = "Date of outcome",
-       y = "Patients",
-       title = "Measles outcomes in Mandoul region (Chad)") +
+  labs(x = "Date",
+       y = "Daily Patients",
+       title = "Measles Hospitalizations in Mandoul Region (Chad)") +
   theme_classic()
 ```
 
-Ok, nice. But we'd also like to increase the size of that tiny font. To do that we can adjust the [`base_size = ` argument]{.hovertip bs-toggle='tooltip' bs-title="The base size of a plot is a baseline font size that is used to calculate the size of all text elements in a plot. If it is increased, the font size of all elements will be increased proportionally."}:
+Ok, nice. But we'd also like to increase the size of that tiny font. To do that we can [adjust the `base_size` argument]{.hovertip bs-toggle='tooltip' bs-title="The base size of a plot is a baseline font size that is used to calculate the size of all text elements in a plot. If it is increased, the font size of all elements will be increased proportionally."}:
 
 ```{r}
 #| eval: true
 #| fig-width: 10
 
-df_outcome |>
-  ggplot(aes(x = date_outcome,
+df_hospital |>
+  ggplot(aes(x = date_admission,
              y = patients)) +
   geom_col(fill = "#2E4573") +
-  labs(x = "Date of outcome",
-       y = "Patients",
-       title = "Measles outcomes in Mandoul region (Chad)") +
+  labs(x = "Date",
+       y = "Daily Patients",
+       title = "Measles Hospitalizations in Mandoul Region (Chad)") +
   theme_classic(base_size = 17)
 ```
 
 That looks better! Keep in mind that the font size needed will depend on what the plot is going to be used for (i.e. a presentation, an informal review, or a final report). Similarly, the exact theme you will want to use is ultimately a subjective choice. While there are guidelines, data visualization is as much an art as a science.
 
 ::: {.write}
-Add one final layer to your plot that adds a theme of your choice with an appropriate `base_size = `.
+Add one final layer to your plot that adds a theme of your choice with an appropriate `base_size`.
 :::
 
 
@@ -408,11 +402,11 @@ downloadthis::download_link(
 
 ### Extra Exercises
 
-1. Create an epicurve of the date of admission instead. Do not forget to update the titles and captions.
+1. Create an epicurve of the date of consultation. Do not forget to update the titles and captions.
 2. Use the `theme_minimal()` on one of your graph, with a base size font of 18.
 3. Go to [this site](https://r-charts.com/colors/)), pick a color and update the color of your bars.
 
-### Challenges
+### Challenge Exercises
 
 1. Instead of aggregating by date, count the number of patients by sub-prefecture. Try to adapt your epicurve code to create a barplot of the number of patients by sub-prefecture.
 
