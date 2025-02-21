@@ -8,7 +8,9 @@ listing:
       - '01_introduction.qmd'
       - '02_import_data.qmd'
       - '03_data_verbs.qmd'
-    
+      - '04_data_verbs_conditional.qmd'
+      - '05_summary_table.qmd'
+      - '06_epicurves.qmd'
 ---
 
 These sessions can be followed in order to get a baseline level in R. The series assumes **no prior experience in R** and is suitable for beginners.

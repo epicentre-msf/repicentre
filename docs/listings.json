@@ -2,12 +2,14 @@
   {
     "listing": "/explore.html",
     "items": [
-      "/sessions_core/03_data_verbs.html",
+      "/sessions_core/06_epicurves.html",
       "/sessions_extra/data_exploration_satellite.html",
+      "/sessions_core/03_data_verbs.html",
+      "/sessions_core/04_data_verbs_conditional.html",
       "/sessions_core/02_import_data.html",
       "/sessions_core/01_introduction.html",
       "/sessions_core/template.html",
-      "/sessions_core/05_summary-table.html"
+      "/sessions_core/05_summary_table.html"
     ]
   },
   {
@@ -15,7 +17,10 @@
     "items": [
       "/sessions_core/01_introduction.html",
       "/sessions_core/02_import_data.html",
-      "/sessions_core/03_data_verbs.html"
+      "/sessions_core/03_data_verbs.html",
+      "/sessions_core/04_data_verbs_conditional.html",
+      "/sessions_core/05_summary_table.html",
+      "/sessions_core/06_epicurves.html"
     ]
   }
 ]
