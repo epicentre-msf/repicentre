@@ -1,8 +1,8 @@
 ---
-title: Basic Data Manipulation
+title: Data Manipulation, Basics
 description: An introduction to data manipulation and cleaning using `{dplyr}`
 date: last-modified
-image: ../img/under_construction.svg
+image: ../img/core/03_manipulation_basic/logo.svg
 categories:
   - Core
   - Data Manipulation
@@ -63,7 +63,7 @@ Manipulating Data with `{dplyr}`
 Now that we know how to set up a project and import data, we can finally start to play around with it. Going forward we will be using several packages from the "[tidyverse]{.hovertip bs-toggle='tooltip' bs-title="The tidyverse is a collection of packages that are designed for maximum human readability and user friendliness. Check out their website for more information on what's available."}" to help us manipulate, summarize, and visualize our data. Today's session will focus on data manipulation using a package called `{dplyr}`.
 
 ### What is `{dplyr}`
-Data manipulation is the foundation of [working with data in R]{.hovertip bs-toggle='tooltip' bs-title="Or really any other language, including Excel!"} and as such is foundational to the work we do as epidemiologists. In particular, data manipulation skills will be critical when trying clean our data. 
+Data manipulation is the foundation of [working with data in R]{.hovertip bs-toggle='tooltip' bs-title="Or really any other language, including Excel!"} and as such is foundational to the work we do as epidemiologists. In particular, data manipulation skills will be critical when trying to clean our data. 
 
 In R, the package `{dplyr}` provides a large number of functions to help us manipulate data frames and perform many of the tasks that we will need to use on a daily basis, for example:
 
@@ -78,7 +78,7 @@ In today's session we will look at the "data manipulation verb", ie the function
 
 
 :::{.callout-note}
-You may have noticed that we asked you to load a package called `{tidyverse}` rather than `{dplyr}` in the setup. Loading `{tidyverse}` will load [several of the most useful packages]{.hovertip bs-toggle='tooltip' bs-title="The tidyverse is pretty big and loading *all* of it's contents would be impractical for most projects. The package `{tidyverse}` therefore only loads the most useful 'core' packages from the full collection."} from the broader tidyverse, including `{dplyr}` and a couple other packages that we will see later in the session.
+You may have noticed that we asked you to load a package called `{tidyverse}` rather than `{dplyr}` in the setup. Loading `{tidyverse}` will load [several of the most useful packages]{.hovertip bs-toggle='tooltip' bs-title="The tidyverse is pretty big and loading *all* of its contents would be impractical for most projects. The package `{tidyverse}` therefore only loads the most useful 'core' packages from the full collection."} from the broader tidyverse, including `{dplyr}` and a couple other packages that we will see later in the session.
 :::
 
 

@@ -2,7 +2,7 @@
 title: Introduction to R
 description: Your first steps in R. Learn your way around Rstudio, and meet some common R objects.
 date: last-modified
-# image: 
+image: ../img/core/01_introduction/logo.svg
 categories:
   - Core
   - R Basics
@@ -624,8 +624,6 @@ Write some code to:
 ## Missing Values {#sec-missing-values}
 
 As epidemiologists, we work with missing data all the time. In R, missing values are coded using a special value: `NA` (meaning **N**ot **A**vailable). `NA` is somewhat unique in R as it doesn't per se have a fixed *type*, rather, it will take on the type of the values around it. For example, an `NA` in a numeric column will then take on the numeric type. We will discuss the idea of missing data in more depth in later sessions of the course.
-
-
 
 ## Functions {#sec-functions}
 
