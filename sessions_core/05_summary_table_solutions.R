@@ -60,4 +60,88 @@ df_linelist |>
   mutate(
     prop_female = n_female / n_patients,
     prop_hosp = n_hosp / n_patients
+<<<<<<< HEAD:sessions_core/05_summary-table_solutions.R
   )
+
+# Extra exercise ---------------------------------------------------------
+
+# 1) a summary table for age groups
+
+df_linelist |>
+  summarize(
+    .by = age_group,
+    n_patients = n(),
+    n_male = sum(sex == "m", na.rm = TRUE),
+    prop_male = n_male / n_patients,
+    n_deaths = sum(outcome == "dead", na.rm = TRUE),
+    # get number of patients with a valid outcome to compute CFR
+    n_outcome_valid = sum(outcome %in% c("dead", "recovered"), na.rm = TRUE),
+    CFR = n_deaths / n_outcome_valid * 100,
+    n_deaths_pneumo = sum(outcome[pneumonia == 1] == "dead", na.rm = TRUE)
+  ) |>
+  # only keep variable of interest
+  select(
+    age_group,
+    prop_male,
+    n_deaths,
+    CFR,
+    n_deaths_pneumo
+  )
+
+# 2) summarise vaccination status by age group
+df_linelist |>
+  summarize(
+    .by = age_group,
+    n_patients = n(),
+    n_vacc = sum(vacc_status %in%c("Yes - oral","Yes - card"), na.rm = TRUE),
+    n_vacc_one_dose = sum(vacc_doses %in%c("1 dose"), na.rm = TRUE),
+    n_vacc_two_doses = sum(vacc_doses %in%c("2 doses"), na.rm = TRUE),
+    prop_vacc = n_vacc / n_patients,
+    prop_vacc_one_dose = n_vacc_one_dose / n_patients,
+    prop_vacc_two_doses = n_vacc_two_doses / n_patients
+  ) 
+
+# 3) summarise malaria test results, signs, symptoms by hospitalisation
+df_linelist |>
+  drop_na(hospitalisation)|>
+  summarize(
+    .by = hospitalisation,
+    n_patients = n(),
+    n_malaria = sum(malaria_rdt=="positive",na.rm=T),
+    n_fever = sum(fever,na.rm=T),
+    n_rash = sum(rash,na.rm=T),
+    n_cough = sum(cough,na.rm=T),
+    n_red_eye = sum(red_eye,na.rm=T),
+    n_pneumonia = sum(pneumonia,na.rm=T),
+    n_encephalitis = sum(encephalitis,na.rm=T),
+    n_muac = sum(muac<125,na.rm=T),
+    prop_malaria = n_malaria/n_patients,
+    prop_fever = n_fever/n_patients,
+    prop_rash = n_rash/n_patients,
+    prop_cough = n_cough/n_patients,
+    prop_red_eye = n_red_eye/n_patients,
+    prop_pneumonia = n_pneumonia/n_patients,
+    prop_encephalitis = n_encephalitis/n_patients,
+    prop_muac = n_muac/n_patients
+  ) |>
+  select(hospitalisation,n_patients,starts_with("prop"))
+
+# 4) time from onset to consultation by location
+df_linelist|>
+     summarize(
+         .by = sub_prefecture,
+         n = sum(!is.na(date_consultation)&!is.na(date_onset)),
+         lag = mean(date_consultation-date_onset) )
+
+# 5) time from admission to outcome by outcome
+df_linelist|>
+  mutate(time_in_hosp=date_outcome-date_admission)|>
+  drop_na(time_in_hosp,outcome)|>
+  summarize(
+    .by = outcome,
+    n = n(),
+    lag = mean(time_in_hosp)
+  )
+=======
+  )
+>>>>>>> main:sessions_core/05_summary_table_solutions.R

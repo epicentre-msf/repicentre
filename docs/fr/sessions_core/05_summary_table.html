@@ -413,19 +413,7 @@ Astuce
 <p>C’est très bien ! Nous commençons à obtenir un tableau récapitulatif groupé assez exhaustif avec beaucoup d’informations utiles par “sous-préfecture” ! Un défi supplémentaire pour vous :</p>
 <div class="write">
 <p><strong>DÉFI</strong> : Pourriez-vous ajouter une variable à votre tableau qui <strong>compte</strong> le nombre de patients décédés <em>parmi</em> ceux qui ont <em>&lt; 6 mois</em>.</p>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Astuce
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Vous voulez compter les lignes (donc utiliser <code>sum()</code>) qui remplissent une condition spécifique pour le résultat (<code>statut_sortie == "deces"</code>), mais <em>uniquement</em> lorsque <code>age_group == "&lt; 6 months"</code></p>
-</div>
+<p><br><strong>Note.</strong> Vous voulez compter les lignes (donc utiliser <code>sum()</code>) qui remplissent une condition spécifique pour le résultat (<code>statut_sortie == "deces"</code>), mais <em>uniquement</em> lorsque <code>age_group == "&lt; 6 months"</code></p>
 </div>
 </section><section id="utiliser-la-sortie" class="level3"><h3 class="anchored" data-anchor-id="utiliser-la-sortie">Utiliser la sortie</h3>
 <p>Enfin, n’oubliez pas que <code>summarize()</code> renvoie un dataframe que nous pouvons ensuite manipuler davantage (par exemple : avec <code>filter()</code> et <code>mutate()</code>).</p>
@@ -472,12 +460,22 @@ Astuce
 <li>Le nombre de décès</li>
 <li>Le CFR</li>
 <li>Le nombre de décès parmi les patients atteints de pneumonie</li>
-</ul></section><section id="ressources-supplémentaires" class="level3"><h3 class="anchored" data-anchor-id="ressources-supplémentaires">Ressources supplémentaires</h3>
+</ul>
+<ol start="2" type="1">
+<li><p>Faites un tableau qui montre la proportion de patients par âge ayant reçu un vaccin contre la rougeole (par rappel oral ou par carte) et ceux qui ont reçu 1 ou 2 doses.</p></li>
+<li><p>Faites un tableau comparant la proportion de patients hospitalisés et non hospitalisés présentant un TDR positif pour le paludisme, de la fièvre, une éruption cutanée, une toux, des yeux rouges, une pneumonie, une encéphalite et un MUAC « rouge » ou « jaune » (moins de 125 mm).</p></li>
+<li><p>Calculer le nombre moyen de jours entre l’apparition des premiers symptômes et la consultation par sous-préfecture.</p></li>
+<li><p>Calculer le temps moyen passé à l’hôpital (i.e. jours entre l’admission et le résultat) par résultat (i.e. chez ceux qui ont guéri et ceux qui sont décédés).</p></li>
+</ol></section><section id="ressources-supplémentaires" class="level3"><h3 class="anchored" data-anchor-id="ressources-supplémentaires">Ressources supplémentaires</h3>
 <ul>
-<li><p>Le chapitre du <a href="https://epirhandbook.com/en/new_pages/grouping.html">manuel EpiR sur le regroupement des données</a></p></li>
-<li><p>Une fois que vous avez des tableaux, vous pouvez les personnaliser en profondeur pour l’affichage/la publication à l’aide du paquetage <code>{gt}</code> :</p></li>
-<li><p><a href="https://gt.rstudio.com/index.html">Site web de <code>gt</code></a></p></li>
-<li><p><a href="https://gt.albert-rapp.de/">Livre sur <code>gt</code></a></p></li>
+<li>Le chapitre du <a href="https://epirhandbook.com/en/new_pages/grouping.html">manuel EpiR sur le regroupement des données</a>
+</li>
+<li>Une fois que vous avez des tableaux, vous pouvez les personnaliser en profondeur pour l’affichage/la publication à l’aide du paquetage <code>{gt}</code> :
+<ul>
+<li><a href="https://gt.rstudio.com/index.html">Site web de <code>gt</code></a></li>
+<li><a href="https://gt.albert-rapp.de/">Livre sur <code>gt</code></a></li>
+</ul>
+</li>
 </ul></section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

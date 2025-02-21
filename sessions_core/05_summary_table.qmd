@@ -17,18 +17,15 @@ library(here)
 library(tidyverse)
 
 # Import data
-df_linelist <- rio::import(here("data", "clean", "moissala_linelist_clean_EN.rds")) |> 
-  as_tibble()
+df_linelist <- rio::import(here("data", "clean", "moissala_linelist_clean_EN.rds"))
 ```
 
 ## Objectives
 
-- Create contingency tables with `count()`
-- Compute summary statistics by group using `summarize()`
-- Review how to subset rows using `filter()` and create/modify variables with `mutate()`
-- Create ordered categorical variables
-
-
+-   Create contingency tables with `count()`
+-   Compute summary statistics by group using `summarize()`
+-   Review how to subset rows using `filter()` and create/modify variables with `mutate()`
+-   Create ordered categorical variables
 
 ## Setup
 
@@ -49,10 +46,10 @@ downloadthis::download_link(
   self_contained = FALSE
 )
 ```
-<br>
-Open your RStudio Project and create a new script in the R subfolder called `tables.R` with appropriate metadata and a "Packages" section that imports: `{rio}`, `{here}` and `{tidyverse}`. Add an "Import Data" section that loads the *cleaned* version of the measles linelist into R.
-:::
 
+<br>
+Open your RStudio Project and create a new script in the R folder called `tables.R` with appropriate metadata and a "Packages" section that imports: `{rio}`, `{here}` and `{tidyverse}`. Add an "Import Data" section that loads the *cleaned* version of the measles linelist.
+:::
 
 ## Introduction: Data aggregation
 
@@ -74,14 +71,14 @@ df_linelist |>
   count(sub_prefecture, age_group)
 ```
 
-:::{.write}
+::: write
 Create a new summary table counting the number of patients stratified by `sub_prefecture` and `hospitalisation`. What happens if you change the order of the arguments given to `count()`?
-
+<br>
 Now, using `count()`, answer the following questions:
 
-- How many patients were female? What is the proportion?
-- What are all the possible values of the `outcome` variable?
-- How many patients between 1 - 4 years have recovered?
+-   How many patients were female? What is the proportion?
+-   What are all the possible values of the `outcome` variable?
+-   How many patients between 1 - 4 years have recovered?
 :::
 
 ```{r, echo = FALSE}
@@ -124,14 +121,14 @@ df_linelist |>
   count(outcome)
 ```
 
-::: {.write}
+::: write
 Which other conditionnal statement could you use in `filter()` to obtain the same results
 :::
 
-Now that we have removed the patients with unknown outcomes, we can add this before creating our frequency table to get the right CFR. 
+Now that we have removed the patients with unknown outcomes, we can add this before creating our frequency table to get the right CFR.
 
-:::{.write}
-Using your filter, update your code to summarize the observed number of patients who survived and died as well as the CFR (proportion who died). Store this new dataframe into an object, `cfr_df`. 
+::: write
+Using your filter, update your code to summarize the observed number of patients who survived and died as well as the CFR (proportion who died). Store this new dataframe into an object, `cfr_df`.
 :::
 
 ```{r, echo = FALSE}
@@ -150,14 +147,14 @@ df_linelist |>
   count(outcome)
 ```
 
-`drop_na()` is particularly useful as you can give it multiple column names to filter by. But be careful that doing so will remove **all** rows where **one or more** of those columns have a missing value. 
+`drop_na()` is particularly useful as you can give it multiple column names to filter by. But be careful that doing so will remove **all** rows where **one or more** of those columns have a missing value.
 :::
 
 ## Summary Table: Statistics by Sub Prefecture
 
-Ok now that we have produced some simple frequency and contingency tables we may want to increase the complexity. A common task in epidemiology is to look at summary statistics within subsets of the data. 
+Ok now that we have produced some simple frequency and contingency tables we may want to increase the complexity. A common task in epidemiology is to look at summary statistics within subsets of the data.
 
-For example, we may be asked to produce patient statistics at the sub-prefecture level, ie: *for each sub-prefecture in the data*, we need to answer the following questions: 
+For example, we may be asked to produce patient statistics at the sub-prefecture level, ie: *for each sub-prefecture in the data*, we need to answer the following questions:
 
 - How many patients consulted?
 - What is their average age? 
@@ -165,7 +162,7 @@ For example, we may be asked to produce patient statistics at the sub-prefecture
 - How many patients have been hospitalized? 
 - Among children under 6 months, how many have died? 
 
-This is exactly what the function `summarize()` has been made for! It allows us to calculate summary statistics on a dataset, and the syntax is similar to that of `mutate()`: 
+This is exactly what the function `summarize()` has been made for! It allows us to calculate summary statistics on a dataset, and the syntax is similar to that of `mutate()`:
 
 ```{r}
 #| eval: false
@@ -204,14 +201,13 @@ df_linelist |>
 
 ```
 
-::: {.look}
+::: look
 Take a look at the above results. How would you interpret them?
 :::
 
 Now that we can use `summarize()` we can use it to calculate some proper summary statistics by sub-prefecture. Let's start by calling an empty `summarize()` and grouping the data on `sub_prefecture`.
 
-
-::: {.write}
+::: write
 Run the following code:
 
 ```{r}
@@ -221,12 +217,13 @@ df_linelist |>
   )
 
 ```
+
 What happens when you run these lines?
 :::
 
 ### Counts
 
-We first want to look at the number of cases in each `sub_prefecture`. This can be done using the helper function `n()`: 
+We first want to look at the number of cases in each `sub_prefecture`. This can be done using the helper function `n()`:
 
 ```{r}
 df_linelist |>
@@ -237,7 +234,7 @@ df_linelist |>
 
 ```
 
-::: {.write}
+::: write
 Ok now let's build a summary table for each `sub_prefecture`. First start by replicating the above lines
 :::
 
@@ -255,8 +252,8 @@ df_linelist |>
 
 ```
 
-::: {.write}
-Add the minimum date of admission to your table for each of the `sub_prefecture`? Are you happy with the results? 
+::: write
+Add the minimum date of admission to your table for each of the `sub_prefecture`? Are you happy with the results?
 :::
 
 ::: {.callout-tip}
@@ -316,7 +313,7 @@ df_linelist |>
     n_patients = n(),
     mean_age_hosp = mean(age[hospitalisation == "yes"], na.rm = TRUE)
   )
-```    
+```
 
 The use of a logical test in the example above is called **logical indexing**, where a condition is essentially being used to filter which observations you want to consider when performing a calculation. Logical indexing is very powerful but can also take some getting used to, so don't worry too much if it isn't perfectly clear at this stage. 
 
@@ -324,16 +321,14 @@ The use of a logical test in the example above is called **logical indexing**, w
 Can you use this syntax to calculate the mean age of female patients in your table?
 :::
 
-That is looking great! We are starting to get a pretty exhaustive grouped summary table with a lot of useful information by `sub_prefecture`! An extra challenge for you: 
+That is looking great! We are starting to get a pretty exhaustive grouped summary table with a lot of useful information by `sub_prefecture`! An extra challenge for you:
 
-::: {.write}
-**CHALLENGE**: Could you add a variable to your table that **counts** the number of patients that died *among* the ones that are *< 6 months old*.  
+:::: write
+**CHALLENGE**: Could you add a variable to your table that **counts** the number of patients that died *among* the ones that are *\< 6 months old*.
 
-::: {.callout-tip}
-You want to count rows (so use `sum()`) that fill a specific condition for outcome (`outcome == "dead"`), but *only* when `age_group == "< 6 months"`
-:::
-
-:::
+<br>
+**Hint.** You want to count rows (so use `sum()`) that fill a specific condition for outcome (`outcome == "dead"`), but *only* when `age_group == "< 6 months"`
+::::
 
 ### Use the Output 
 
@@ -370,7 +365,6 @@ sub_pref_df |>
   head()
 ```
 
-
 ## Done!
 
 You should be proud of yourselves, making summary tables is an important skill to an epidemiologist, making it in R is very efficient! Don't forget to save your code!
@@ -388,25 +382,35 @@ downloadthis::download_link(
 )
 ```
 
-
 ## Going Further
 
 ### Extra Exercises
 
-1. Make a summary table that compute the following statistics by *age groups*: 
+1.  Make a summary table that summarizes:
 
-  - The number of patients
-  - The proportion of males
-  - The number of deaths
-  - The CFR
-  - The number of deaths among patients that had pneumonia
+    -   The number of patients
 
+    -   The proportion of male
+
+    -   The number of deaths
+
+    -   The CFR
+
+    -   The number of deaths among patients that had pneumonia
+
+        in all the different *age groups* !
+        
+2. Make a table that shows the proportion of patients by age with any measles vaccine (by oral recall or card) and those with 1 or 2 doses.
+
+3. Make a table that compares the proportion of hospitalised and non-hospitalised patients with positive malaria RDT, fever, rash, cough, red eye, pneumonia, encephalitis, and "red" or "yellow" MUAC (less than 125 mm).
+
+4. Calculate the mean days from first symptom onset to consultation by sub-prefecture.
+
+5. Calculate the mean time spent in hospital (i.e. days from admission to outcome) by outcome (i.e. in those who recovered and those who died).
 
 ### Additional Resources
 
 - The [EpiR Handbook chapter on grouping data](https://epirhandbook.com/en/new_pages/grouping.html)
-
 - Once you have tables, you can extensively customize them for display/publication using `{gt}` package: 
   - [Website of `gt`](https://gt.rstudio.com/index.html)
   - [Book about `gt`](https://gt.albert-rapp.de/)
-

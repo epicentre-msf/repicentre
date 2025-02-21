@@ -215,7 +215,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </a>
 </div>
 </div>
-<p><br> Open your RStudio Project and create a new script in the R subfolder called <code>tables.R</code> with appropriate metadata and a “Packages” section that imports: <code>{rio}</code>, <code>{here}</code> and <code>{tidyverse}</code>. Add an “Import Data” section that loads the <em>cleaned</em> version of the measles linelist into R.</p>
+<p><br> Open your RStudio Project and create a new script in the R folder called <code>tables.R</code> with appropriate metadata and a “Packages” section that imports: <code>{rio}</code>, <code>{here}</code> and <code>{tidyverse}</code>. Add an “Import Data” section that loads the <em>cleaned</em> version of the measles linelist.</p>
 </div>
 </section><section id="introduction-data-aggregation" class="level2"><h2 class="anchored" data-anchor-id="introduction-data-aggregation">Introduction: Data aggregation</h2>
 <p>OK so let’s recap, you have just performed one of the most <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Some consider it to be 80% of the work!">important tasks</span> of an epidemiologist: the <strong>data cleaning</strong>. Now that you have clean and standardized data, you can get into the real business and start analysing them. Analyses typically start with some tables and summaries that describe our data:</p>
@@ -232,8 +232,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(sub_prefecture, age_group)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="write">
-<p>Create a new summary table counting the number of patients stratified by <code>sub_prefecture</code> and <code>hospitalisation</code>. What happens if you change the order of the arguments given to <code>count()</code>?</p>
-<p>Now, using <code>count()</code>, answer the following questions:</p>
+<p>Create a new summary table counting the number of patients stratified by <code>sub_prefecture</code> and <code>hospitalisation</code>. What happens if you change the order of the arguments given to <code>count()</code>? <br> Now, using <code>count()</code>, answer the following questions:</p>
 <ul>
 <li>How many patients were female? What is the proportion?</li>
 <li>What are all the possible values of the <code>outcome</code> variable?</li>
@@ -436,19 +435,7 @@ Tip
 <p>That is looking great! We are starting to get a pretty exhaustive grouped summary table with a lot of useful information by <code>sub_prefecture</code>! An extra challenge for you:</p>
 <div class="write">
 <p><strong>CHALLENGE</strong>: Could you add a variable to your table that <strong>counts</strong> the number of patients that died <em>among</em> the ones that are <em>&lt; 6 months old</em>.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>You want to count rows (so use <code>sum()</code>) that fill a specific condition for outcome (<code>outcome == "dead"</code>), but <em>only</em> when <code>age_group == "&lt; 6 months"</code></p>
-</div>
-</div>
+<p><br><strong>Hint.</strong> You want to count rows (so use <code>sum()</code>) that fill a specific condition for outcome (<code>outcome == "dead"</code>), but <em>only</em> when <code>age_group == "&lt; 6 months"</code></p>
 </div>
 </section><section id="use-the-output" class="level3"><h3 class="anchored" data-anchor-id="use-the-output">Use the Output</h3>
 <p>Finally, remember that <code>summarize()</code> returns a dataframe that we can then further manipulate (eg: with <code>filter()</code> and <code>mutate()</code>).</p>
@@ -487,19 +474,28 @@ Tip
 </section><section id="going-further" class="level2"><h2 class="anchored" data-anchor-id="going-further">Going Further</h2>
 <section id="extra-exercises" class="level3"><h3 class="anchored" data-anchor-id="extra-exercises">Extra Exercises</h3>
 <ol type="1">
-<li>Make a summary table that compute the following statistics by <em>age groups</em>:</li>
-</ol>
-<ul>
-<li>The number of patients</li>
-<li>The proportion of males</li>
-<li>The number of deaths</li>
-<li>The CFR</li>
-<li>The number of deaths among patients that had pneumonia</li>
-</ul></section><section id="additional-resources" class="level3"><h3 class="anchored" data-anchor-id="additional-resources">Additional Resources</h3>
-<ul>
-<li><p>The <a href="https://epirhandbook.com/en/new_pages/grouping.html">EpiR Handbook chapter on grouping data</a></p></li>
 <li>
-<p>Once you have tables, you can extensively customize them for display/publication using <code>{gt}</code> package:</p>
+<p>Make a summary table that summarizes:</p>
+<ul>
+<li><p>The number of patients</p></li>
+<li><p>The proportion of male</p></li>
+<li><p>The number of deaths</p></li>
+<li><p>The CFR</p></li>
+<li>
+<p>The number of deaths among patients that had pneumonia</p>
+<p>in all the different <em>age groups</em> !</p>
+</li>
+</ul>
+</li>
+<li><p>Make a table that shows the proportion of patients by age with any measles vaccine (by oral recall or card) and those with 1 or 2 doses.</p></li>
+<li><p>Make a table that compares the proportion of hospitalised and non-hospitalised patients with positive malaria RDT, fever, rash, cough, red eye, pneumonia, encephalitis, and “red” or “yellow” MUAC (less than 125 mm).</p></li>
+<li><p>Calculate the mean days from first symptom onset to consultation by sub-prefecture.</p></li>
+<li><p>Calculate the mean time spent in hospital (i.e. days from admission to outcome) by outcome (i.e. in those who recovered and those who died).</p></li>
+</ol></section><section id="additional-resources" class="level3"><h3 class="anchored" data-anchor-id="additional-resources">Additional Resources</h3>
+<ul>
+<li>The <a href="https://epirhandbook.com/en/new_pages/grouping.html">EpiR Handbook chapter on grouping data</a>
+</li>
+<li>Once you have tables, you can extensively customize them for display/publication using <code>{gt}</code> package:
 <ul>
 <li><a href="https://gt.rstudio.com/index.html">Website of <code>gt</code></a></li>
 <li><a href="https://gt.albert-rapp.de/">Book about <code>gt</code></a></li>
