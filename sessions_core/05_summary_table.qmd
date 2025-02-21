@@ -380,7 +380,7 @@ You should be proud of yourselves, making summary tables is an important skill t
 #| eval: true
 
 downloadthis::download_link(
-  link = 'https://github.com/epicentre-msf/repicentre/blob/main/sessions_core/05_summary-table_solutions.R',
+  link = 'https://github.com/epicentre-msf/repicentre/blob/main/sessions_core/05_summary_table_solutions.R',
   button_label = 'Solution File',
   has_icon = TRUE,
   icon = "fa fa-save",

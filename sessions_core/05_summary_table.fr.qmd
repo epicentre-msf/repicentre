@@ -365,7 +365,7 @@ Vous devriez être fiers de vous, la création de tableaux récapitulatifs est u
 #| eval: true
 
 downloadthis::download_link(
-  link = 'https://github.com/epicentre-msf/repicentre/blob/main/sessions_core/05_summary-table_solutions_fr.R',
+  link = 'https://github.com/epicentre-msf/repicentre/blob/main/sessions_core/05_summary_table_solutions_fr.R',
   button_label = 'Solutions exercices',
   has_icon = TRUE,
   icon = "fa fa-save",
