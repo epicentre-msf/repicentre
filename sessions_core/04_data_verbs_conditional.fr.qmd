@@ -27,9 +27,9 @@ Objectifs
   
 Dans la session précédente vous avez appris les bases du traitement de données en R avec les fonctions du `{tidyverse}`, en particulier comment sélectionner et modifier les colonnes d'un data frame. Dans cette session nous allons allez plus loin sur la modification des data frame et apprendre à :
 
-- écrire des conditions logiques basiques, ce qui va nous permettre de :
-- sélectionner des lignes d'un data frame avec `filter()`
-- recoder des variables avec `case_when()`
+- Écrire des conditions logiques basiques, ce qui va nous permettre de :
+- Sélectionner des lignes d'un data frame avec `filter()`
+- Recoder des variables avec `case_when()`
 
 
 

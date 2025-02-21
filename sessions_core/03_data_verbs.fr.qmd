@@ -23,14 +23,12 @@ df_brut <- rio::import(here::here('data', 'raw', 'moissala_linelist_FR.xlsx'))
 
 Objectifs
 ------------------------------------------------------------------
-1. Découvrir les fonctions de `{dplyr}` pour effectuer les actions essentielles sur les données :
-
-- Sélectionner des colonnes avec `select()`
-- Renommer des colonnes avec `rename()`
-- Créer de nouvelles colonnes ou modifier des colonnes existantes avec `mutate()`
-- Supprimer les doublons avec `distinct()`
-
-2. Enchaîner ces actions avec l'opérateur "pipe" `|>`
+- Découvrir les fonctions de `{dplyr}` pour effectuer les actions essentielles sur les données :
+  - Sélectionner des colonnes avec `select()`
+  - Renommer des colonnes avec `rename()`
+  - Créer de nouvelles colonnes ou modifier des colonnes existantes avec `mutate()`
+  - Supprimer les doublons avec `distinct()`
+- Enchaîner ces actions avec l'opérateur "pipe" `|>`
 
 
 Mise en place
