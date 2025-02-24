@@ -48,7 +48,7 @@ df_cases <- df_linelist %>%
 
 ## Introduction
 
-This satellite builds on the core [epicurve session](../session_core/07_epicurves.qmd), which is a prerequisite. In that session, we learned how to create an epicurve of measles cases across time: 
+This satellite builds on the core [epicurve session](../session_core/06_epicurves.qmd), which is a prerequisite. In that session, we learned how to create an epicurve of measles cases across time: 
 
 ```{r}
 #| echo: false
@@ -346,6 +346,6 @@ Can you modify your code do do something similar?
 
 
 ::: {.callout-tip collapse="true"}
-You will need two aggregated data frames, one created today and one created in the [epicurve session](../session_core/07_epicurves.qmd).
+You will need two aggregated data frames, one created today and one created in the [epicurve session](../session_core/06_epicurves.qmd).
 :::
 

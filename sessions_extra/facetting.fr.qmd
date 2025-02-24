@@ -50,7 +50,7 @@ Dans cette session, le but est d'apprendre à :
 
 ## Introduction
 
-**Prérequis** : ce satellite s'appuie sur la session sur les [courbes épidémiques](../session_core/07_epicurves.qmd), durant laquelle nous avons appris à visualiser la distribution quotidienne des cas de rougeoles au cours du temps à l'aide de `{ggplot2}` :
+**Prérequis** : ce satellite s'appuie sur la session sur les [courbes épidémiques](../session_core/06_epicurves.qmd), durant laquelle nous avons appris à visualiser la distribution quotidienne des cas de rougeoles au cours du temps à l'aide de `{ggplot2}` :
 
 ```{r}
 #| echo: false
@@ -347,6 +347,6 @@ Arrivez-vous à modifier votre code pour faire la même chose ?
 
 
 ::: {.callout-tip collapse="true"}
-Il vous faudra deux data frame agrégés, l'un deux crée aujourd'hui et l'autre lors de la session sur les [courbes épis](../session_core/07_epicurves.qmd).
+Il vous faudra deux data frame agrégés, l'un deux crée aujourd'hui et l'autre lors de la session sur les [courbes épis](../session_core/06_epicurves.qmd).
 :::
 
