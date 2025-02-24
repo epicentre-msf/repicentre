@@ -1,10 +1,10 @@
 ---
-title: Introduction to facetting
+title: Introduction to faceting
 description: Create a plot with multiple subplots (facets)
 date: last-modified
-image: ../img/satellite/facetting/facetting_000_logo.png
+image: ../img/satellite/faceting/faceting_000_logo.png
 categories:
-  - Core
+  - Satellite
   - Graphs
   - ggplot2
   - epicurve
@@ -13,6 +13,8 @@ categories:
 ```{r setup}
 #| include: false
 #| eval: true
+
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 
 library(dplyr)       # Data manipulation
 library(lubridate)   # Deal with dates
@@ -58,11 +60,11 @@ df_linelist %>%
   count(date_onset) %>%
   ggplot(aes(x = date_onset,
              y = n)) +
-  geom_col(fill = '#2E4573') +
-  labs(x = 'Date of onset',
-       y = 'Measles Cases',
-       title = 'Measles in Mandoul region (Chad)',
-       caption = 'Ficticious data') +
+  geom_col(fill = "#2E4573") +
+  labs(x = "Date of onset",
+       y = "Measles Cases",
+       title = "Measles in Mandoul region (Chad)",
+       caption = "Ficticious data") +
   theme_classic(base_size = 18) 
 ```
 
@@ -78,16 +80,29 @@ The first option is tedious and it is error prone, and we advise against it; lea
 
 ## Setup
 
-Let's get your data and script ready.
+::: {.setup}
+We will use the same clean linelist that we used in the past sessions, which you can download here: 
 
-::: {.write}
-Open your RStudio project and create a new script called `facetting.R` with appropriate metadata. Alternatively, work in your `epicurves.R` script, in a new section.
+```{r}
+#| echo: false
+#| eval: true
 
-In any case, make sure you load the following packages: `{here}`, `{rio}`, `{dplyr}`, `{lubridate}`, `{ggplot2}` and that you imported the clean dataset `moissala_linelist_clean_EN.rds`.
+downloadthis::download_link(
+  link = 'https://github.com/epicentre-msf/repicentre/raw/refs/heads/main/data/data/clean/moissala_linelist_clean_EN.rds',
+  button_label = "Download clean data",
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  self_contained = FALSE
+)
+```
+<br>
+Make sure this dataset is saved into the appropriate subdirectory of your R project and create a new script called `faceting.R` in your `R` directory. Add an appropriate header and load the following packages: `{here}`, `{rio}`, and `{tidyverse}`.
+<br><br>
+Finally, add an import section where you use `{here}` and `{rio}` to load your data into an object called `df_linelist`.
 :::
 
 
-## Facetting
+## faceting
 
 The function `facet_wrap()` allows you to replicate a graph based on the categories of a variable. For example, you could make the epicurve graph *by sex*, or *by site*. As other layers of a ggplot graph, you add it to your existing graph with a `+`. It creates a a figure with multiple small graphs, that `{ggplot2}` calls *facets* or *small multiples*.
 
@@ -105,7 +120,7 @@ Let's create a new summarized dataset that has the number of patients by day *an
 ```{r}
 df_pref <- df_linelist %>%
   count(date_onset, sub_prefecture,
-        name = 'patients')
+        name = "patients")
 ```
 
 
@@ -119,10 +134,11 @@ head(df_pref)
 
 
 ::: {.write}
-You will draw a plot of the number of admissions by age group, so you need a new data frame summarized by week and age group. Create this data frame, and call it `df_age`. It should have this format:
+You will draw a plot of the number of admissions by age group, so you need a new data frame summarized by day and age group. Create this data frame, and call it `df_age`. It should have this format:
 
 ```{r}
 #| echo: false
+#| eval: true
 
 head(df_age)
 ```
@@ -144,9 +160,8 @@ df_pref %>%
   geom_col(fill = "#2E4573") +
   labs(x = "Date of onset",
        y = "Measles cases",
-       title = 'Measles cases in Mandoul (Chad)') +
+       title = "Measles cases in Mandoul (Chad)") +
   theme_classic(base_size = 15) +
-  
   facet_wrap(vars(sub_prefecture))   # Make the plot by sub-prefecture!
 ```
 
@@ -154,6 +169,24 @@ Isn't that incredible? As you can see, the function `facer_wrap()` takes as argu
 
 ::: {.write}
 Now is your turn, draw the epicurve by age group (still keeping all the plots improvement: labels, themes etc.)
+
+It should look like this:
+
+```{r}
+#| echo: false
+#| eval: true
+#| fig-width: 9
+
+df_age %>%
+  ggplot(aes(x = date_onset,
+             y = n)) +
+  geom_col(fill = "#2E4573") +
+  labs(x = "Date of onset",
+       y = "Measles cases",
+       title = "Measles cases in Mandoul (Chad)") +
+  
+  facet_wrap(vars(age_group)) 
+```
 :::
 
 ## Customize Facets
@@ -176,7 +209,7 @@ df_pref %>%
   geom_col(fill = "#2E4573") +
   labs(x = "Date of onset",
        y = "Measles cases",
-       title = 'Measles cases in Mandoul (Chad)') +
+        title = "Measles cases in Mandoul (Chad)") +
   theme_classic(base_size = 15) +
   
   facet_wrap(vars(sub_prefecture),
@@ -196,7 +229,7 @@ df_pref %>%
   geom_col(fill = "#2E4573") +
   labs(x = "Date of onset",
        y = "Measles cases",
-       title = 'Measles cases in Mandoul (Chad)') +
+       title = "Measles cases in Mandoul (Chad)") +
   theme_classic(base_size = 15) +
   
   facet_wrap(vars(sub_prefecture),
@@ -234,7 +267,7 @@ df_pref %>%
   geom_col(fill = "#2E4573") +
   labs(x = "Date of onset",
        y = "Measles cases",
-        title = 'Measles cases in Mandoul (Chad)',
+       title = "Measles cases in Mandoul (Chad)",
        subtitle = "Note the y axis") +
   theme_classic(base_size = 15) +
   
@@ -262,7 +295,7 @@ Depending on the size of your graph, the date labels on the x-axis may be a bit 
 #| eval: true
 
 downloadthis::download_link(
-  link = 'https://github.com/epicentre-msf/repicentre/blob/main/sessions_extra/facetting_solutions.R',
+  link = 'https://github.com/epicentre-msf/repicentre/blob/main/sessions_extra/faceting_solutions.R',
   button_label = 'Solutions file',
   has_icon = TRUE,
   icon = "fa fa-save",
