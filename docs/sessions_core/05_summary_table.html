@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
-<head>
-<link rel="alternate" hreflang="en" href="https://epicentre-msf.github.io/repicentre/sessions_core/05_summary_table.html" />
-<link rel="alternate" hreflang="fr" href="https://epicentre-msf.github.io/repicentre/fr/sessions_core/05_summary_table.fr.html" />
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.6.37">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta name="dcterms.date" content="2025-02-21">
+
+<meta name="dcterms.date" content="2025-02-24">
 <meta name="description" content="Create summary tables">
+
 <title>Summary Tables – {repicentre}</title>
 <style>
 code{white-space: pre-wrap;}
@@ -57,13 +57,26 @@ div.sourceCode
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script><script src="../site_libs/quarto-nav/headroom.min.js"></script><script src="../site_libs/clipboard/clipboard.min.js"></script><script src="../site_libs/quarto-search/autocomplete.umd.js"></script><script src="../site_libs/quarto-search/fuse.min.js"></script><script src="../site_libs/quarto-search/quarto-search.js"></script><meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js"></script><script src="../site_libs/quarto-html/popper.min.js"></script><script src="../site_libs/quarto-html/tippy.umd.min.js"></script><script src="../site_libs/quarto-html/anchor.min.js"></script><link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-0626ff4d7a71b55c8707dcae1d04a9b6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-e25cc82807363e79c52e96bc8b7855f1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script><link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-b814d3e578892f16fb585af6f47f426f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-35dfec4a88a4a8552367c65e80eaa027.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-697306ee647f3aecb60be57249203282.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-3fe3df12cb322cd60d4f50ab5ce79ec8.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-d747503b21a9267137dc98650c9a257a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-5131c98158f83ec01234852a3be8e382.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -90,12 +103,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script src="../site_libs/font-awesome-6.5.2/js/script.js"></script><script type="text/javascript" src="../script.js"></script><link rel="stylesheet" href="../styles.css">
+}</script>
+<script src="../site_libs/font-awesome-6.5.2/js/script.js"></script>
+
+<script type="text/javascript" src="../script.js"></script>
+
+
+<link rel="stylesheet" href="../styles.css">
 </head>
+
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">{repicentre}</span>
@@ -107,10 +129,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-<li class="nav-item"><div class="dropdown" id="languages-links-parent">
-<button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="languages-button"><i class="bi bi-globe2"></i> English</button><ul class="dropdown-menu" id="languages-links"><li><a class="dropdown-item" href="https://epicentre-msf.github.io/repicentre/fr/sessions_core/05_summary_table.html" id="language-link-fr">Français</a></li></ul>
-</div></li>
-<li class="nav-item">
+  <li class="nav-item">
     <a class="nav-link" href="../pathway.html"> 
 <span class="menu-text">Pathway</span></a>
   </li>  
@@ -127,45 +146,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
-</div> <!-- /navcollapse -->
+          </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
-    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
    
   <ul>
-<li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
   <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
   <li><a href="#introduction-data-aggregation" id="toc-introduction-data-aggregation" class="nav-link" data-scroll-target="#introduction-data-aggregation">Introduction: Data aggregation</a></li>
   <li><a href="#counting-multiple-columns-contingency-tables" id="toc-counting-multiple-columns-contingency-tables" class="nav-link" data-scroll-target="#counting-multiple-columns-contingency-tables">Counting Multiple Columns (Contingency Tables)</a></li>
   <li><a href="#filtering-out-nas" id="toc-filtering-out-nas" class="nav-link" data-scroll-target="#filtering-out-nas">Filtering out <code>NA</code>s</a></li>
-  <li>
-<a href="#summary-table-statistics-by-sub-prefecture" id="toc-summary-table-statistics-by-sub-prefecture" class="nav-link" data-scroll-target="#summary-table-statistics-by-sub-prefecture">Summary Table: Statistics by Sub Prefecture</a>
+  <li><a href="#summary-table-statistics-by-sub-prefecture" id="toc-summary-table-statistics-by-sub-prefecture" class="nav-link" data-scroll-target="#summary-table-statistics-by-sub-prefecture">Summary Table: Statistics by Sub Prefecture</a>
   <ul class="collapse">
-<li><a href="#counts" id="toc-counts" class="nav-link" data-scroll-target="#counts">Counts</a></li>
+  <li><a href="#counts" id="toc-counts" class="nav-link" data-scroll-target="#counts">Counts</a></li>
   <li><a href="#summarizing-continuous-variables" id="toc-summarizing-continuous-variables" class="nav-link" data-scroll-target="#summarizing-continuous-variables">Summarizing Continuous Variables</a></li>
   <li><a href="#counting-with-a-condition" id="toc-counting-with-a-condition" class="nav-link" data-scroll-target="#counting-with-a-condition">Counting with a Condition</a></li>
   <li><a href="#other-statistics" id="toc-other-statistics" class="nav-link" data-scroll-target="#other-statistics">Other Statistics</a></li>
   <li><a href="#use-the-output" id="toc-use-the-output" class="nav-link" data-scroll-target="#use-the-output">Use the Output</a></li>
-  </ul>
-</li>
+  </ul></li>
   <li><a href="#done" id="toc-done" class="nav-link" data-scroll-target="#done">Done!</a></li>
-  <li>
-<a href="#going-further" id="toc-going-further" class="nav-link" data-scroll-target="#going-further">Going Further</a>
+  <li><a href="#going-further" id="toc-going-further" class="nav-link" data-scroll-target="#going-further">Going Further</a>
   <ul class="collapse">
-<li><a href="#extra-exercises" id="toc-extra-exercises" class="nav-link" data-scroll-target="#extra-exercises">Extra Exercises</a></li>
+  <li><a href="#extra-exercises" id="toc-extra-exercises" class="nav-link" data-scroll-target="#extra-exercises">Extra Exercises</a></li>
   <li><a href="#additional-resources" id="toc-additional-resources" class="nav-link" data-scroll-target="#additional-resources">Additional Resources</a></li>
+  </ul></li>
   </ul>
-</li>
-  </ul></nav>
-</div>
+</nav>
+    </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
 <h1 class="title">Summary Tables</h1>
   <div class="quarto-categories">
     <div class="quarto-category">Core</div>
@@ -186,7 +209,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 21, 2025</p>
+      <p class="date">February 24, 2025</p>
     </div>
   </div>
   
@@ -195,16 +218,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header><section id="objectives" class="level2"><h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
+</header>
+
+
+<section id="objectives" class="level2">
+<h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
 <ul>
-<li>Create contingency tables with <code>count()</code>
-</li>
-<li>Compute summary statistics by group using <code>summarize()</code>
-</li>
-<li>Review how to subset rows using <code>filter()</code> and create/modify variables with <code>mutate()</code>
-</li>
+<li>Create contingency tables with <code>count()</code></li>
+<li>Compute summary statistics by group using <code>summarize()</code></li>
+<li>Review how to subset rows using <code>filter()</code> and create/modify variables with <code>mutate()</code></li>
 <li>Create ordered categorical variables</li>
-</ul></section><section id="setup" class="level2"><h2 class="anchored" data-anchor-id="setup">Setup</h2>
+</ul>
+</section>
+<section id="setup" class="level2">
+<h2 class="anchored" data-anchor-id="setup">Setup</h2>
 <p><strong>Dependencies.</strong> This session assumes that you know how to use RStudio that you are able to import data and that you know th basic data handling verbs that we have seen in the core sessions so far. If you need a refresher on either of these topics, we encourage you to review the core sessions in the learning pathway.</p>
 <div class="setup">
 <p>This session will use the clean version of the Moissala measles dataset. Download the data and store them in <code>data/clean</code> in your practice project:</p>
@@ -217,14 +244,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p><br> Open your RStudio Project and create a new script in the R folder called <code>tables.R</code> with appropriate metadata and a “Packages” section that imports: <code>{rio}</code>, <code>{here}</code> and <code>{tidyverse}</code>. Add an “Import Data” section that loads the <em>cleaned</em> version of the measles linelist.</p>
 </div>
-</section><section id="introduction-data-aggregation" class="level2"><h2 class="anchored" data-anchor-id="introduction-data-aggregation">Introduction: Data aggregation</h2>
+</section>
+<section id="introduction-data-aggregation" class="level2">
+<h2 class="anchored" data-anchor-id="introduction-data-aggregation">Introduction: Data aggregation</h2>
 <p>OK so let’s recap, you have just performed one of the most <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Some consider it to be 80% of the work!">important tasks</span> of an epidemiologist: the <strong>data cleaning</strong>. Now that you have clean and standardized data, you can get into the real business and start analysing them. Analyses typically start with some tables and summaries that describe our data:</p>
 <ul>
 <li>Univariate frequency tables to count occurrences of different values</li>
 <li>Summary statistics of numerical variables (mean, median, standard deviation)</li>
 <li>Cross-tabulations to examine relationships between categorical variables</li>
 <li>Group-wise summaries to compare statistics across different subsets of the data</li>
-</ul></section><section id="counting-multiple-columns-contingency-tables" class="level2"><h2 class="anchored" data-anchor-id="counting-multiple-columns-contingency-tables">Counting Multiple Columns (Contingency Tables)</h2>
+</ul>
+</section>
+<section id="counting-multiple-columns-contingency-tables" class="level2">
+<h2 class="anchored" data-anchor-id="counting-multiple-columns-contingency-tables">Counting Multiple Columns (Contingency Tables)</h2>
 <p>During the data exploration session, you have learned to create a frequency table for a single categorical variable using the <code>count()</code> function. This is nice, but we often want to count the number observations based on two (or more!) variables.</p>
 <p>These tables are called <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Or cross tabulation tables. They show how observations are distributed across different combinations of categories.">contingency tables</span>. For example, knowing the number of patients by <code>sub_prefecture</code> is great but we might want to stratify by both <code>sub_prefecture</code> <em>and</em> <code>age_group</code> to see if certain areas have <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="This type of stratification is a useful way of trying to find areas that may be good candidates for catch up campaigns.">unusually old patients</span>. Doing this is easy, you just need to pass multiple column names to <code>count()</code>:</p>
 <div class="cell">
@@ -239,7 +271,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>How many patients between 1 - 4 years have recovered?</li>
 </ul>
 </div>
-</section><section id="filtering-out-nas" class="level2"><h2 class="anchored" data-anchor-id="filtering-out-nas">Filtering out <code>NA</code>s</h2>
+</section>
+<section id="filtering-out-nas" class="level2">
+<h2 class="anchored" data-anchor-id="filtering-out-nas">Filtering out <code>NA</code>s</h2>
 <p>When looking at the categories of <code>outcome</code>, you should have spotted that some patients have missing values (<code>NA</code>):</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">|&gt;</span></span>
@@ -285,7 +319,9 @@ Tip
 <p><code>drop_na()</code> is particularly useful as you can give it multiple column names to filter by. But be careful that doing so will remove <strong>all</strong> rows where <strong>one or more</strong> of those columns have a missing value.</p>
 </div>
 </div>
-</section><section id="summary-table-statistics-by-sub-prefecture" class="level2"><h2 class="anchored" data-anchor-id="summary-table-statistics-by-sub-prefecture">Summary Table: Statistics by Sub Prefecture</h2>
+</section>
+<section id="summary-table-statistics-by-sub-prefecture" class="level2">
+<h2 class="anchored" data-anchor-id="summary-table-statistics-by-sub-prefecture">Summary Table: Statistics by Sub Prefecture</h2>
 <p>Ok now that we have produced some simple frequency and contingency tables we may want to increase the complexity. A common task in epidemiology is to look at summary statistics within subsets of the data.</p>
 <p>For example, we may be asked to produce patient statistics at the sub-prefecture level, ie: <em>for each sub-prefecture in the data</em>, we need to answer the following questions:</p>
 <ul>
@@ -312,10 +348,8 @@ Tip
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">|&gt;</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_age =</span> <span class="fu">mean</span>(age))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 1
-  mean_age
-     &lt;dbl&gt;
-1     6.82</code></pre>
+<pre><code>  mean_age
+1 6.822047</code></pre>
 </div>
 </div>
 <p>Notice that this code yields a single value for average age. No grouping variable was provided so <code>summarize()</code> returned one summary statistic for the whole dataset. To calculate the average age by a specific strata, we need to specify a <strong>grouping variable</strong> using the <code>.by</code> argument:</p>
@@ -326,11 +360,9 @@ Tip
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_age =</span> <span class="fu">mean</span>(age)</span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 2
-  sex   mean_age
-  &lt;chr&gt;    &lt;dbl&gt;
-1 f         6.77
-2 m         6.87</code></pre>
+<pre><code>  sex mean_age
+1   f 6.773824
+2   m 6.869855</code></pre>
 </div>
 </div>
 <div class="look">
@@ -347,7 +379,8 @@ Tip
 </div>
 <p>What happens when you run these lines?</p>
 </div>
-<section id="counts" class="level3"><h3 class="anchored" data-anchor-id="counts">Counts</h3>
+<section id="counts" class="level3">
+<h3 class="anchored" data-anchor-id="counts">Counts</h3>
 <p>We first want to look at the number of cases in each <code>sub_prefecture</code>. This can be done using the helper function <code>n()</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">|&gt;</span></span>
@@ -359,7 +392,9 @@ Tip
 <div class="write">
 <p>Ok now let’s build a summary table for each <code>sub_prefecture</code>. First start by replicating the above lines</p>
 </div>
-</section><section id="summarizing-continuous-variables" class="level3"><h3 class="anchored" data-anchor-id="summarizing-continuous-variables">Summarizing Continuous Variables</h3>
+</section>
+<section id="summarizing-continuous-variables" class="level3">
+<h3 class="anchored" data-anchor-id="summarizing-continuous-variables">Summarizing Continuous Variables</h3>
 <p>We can then use the <code>mean()</code>, <code>median()</code>, <code>min()</code>, <code>max()</code> functions (and other) to produce summaries for continuous variables. For example the average age:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">|&gt;</span></span>
@@ -385,7 +420,9 @@ Tip
 <p>Remember that with the arithmetic functions such as <code>mean()</code>, <code>median()</code>, <code>min()</code>, <code>max()</code>, you need to <strong>explicitly tell R</strong> to remove <code>NA</code>.</p>
 </div>
 </div>
-</section><section id="counting-with-a-condition" class="level3"><h3 class="anchored" data-anchor-id="counting-with-a-condition">Counting with a Condition</h3>
+</section>
+<section id="counting-with-a-condition" class="level3">
+<h3 class="anchored" data-anchor-id="counting-with-a-condition">Counting with a Condition</h3>
 <p>We may also be interested in looking at the number of patients (rows) that fit a condition: the <em>number of patients that were female</em>. Counting by a logical condition can be done with the following syntax:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DO NOT RUN (PSEUDO-CODE)</span></span>
@@ -404,7 +441,9 @@ Tip
 <div class="write">
 <p>Add a variable to your table that counts the number of patients that have been hospitalized. (ie: rows that have <code>yes</code> in variable <code>hospitalisation</code>)</p>
 </div>
-</section><section id="other-statistics" class="level3"><h3 class="anchored" data-anchor-id="other-statistics">Other Statistics</h3>
+</section>
+<section id="other-statistics" class="level3">
+<h3 class="anchored" data-anchor-id="other-statistics">Other Statistics</h3>
 <p>Sometimes we want to produce a more complicated statistic, for example the <em>mean age of all hospitalized patients</em>. Here the syntax is a bit different:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DO NOT RUN (PSEUDO-CODE)</span></span>
@@ -435,9 +474,11 @@ Tip
 <p>That is looking great! We are starting to get a pretty exhaustive grouped summary table with a lot of useful information by <code>sub_prefecture</code>! An extra challenge for you:</p>
 <div class="write">
 <p><strong>CHALLENGE</strong>: Could you add a variable to your table that <strong>counts</strong> the number of patients that died <em>among</em> the ones that are <em>&lt; 6 months old</em>.</p>
-<p><br><strong>Hint.</strong> You want to count rows (so use <code>sum()</code>) that fill a specific condition for outcome (<code>outcome == "dead"</code>), but <em>only</em> when <code>age_group == "&lt; 6 months"</code></p>
+<p><br> <strong>Hint.</strong> You want to count rows (so use <code>sum()</code>) that fill a specific condition for outcome (<code>outcome == "dead"</code>), but <em>only</em> when <code>age_group == "&lt; 6 months"</code></p>
 </div>
-</section><section id="use-the-output" class="level3"><h3 class="anchored" data-anchor-id="use-the-output">Use the Output</h3>
+</section>
+<section id="use-the-output" class="level3">
+<h3 class="anchored" data-anchor-id="use-the-output">Use the Output</h3>
 <p>Finally, remember that <code>summarize()</code> returns a dataframe that we can then further manipulate (eg: with <code>filter()</code> and <code>mutate()</code>).</p>
 <div class="write">
 <p>Add a <code>mutate()</code> after producing your summary table to calculate:</p>
@@ -449,20 +490,26 @@ Tip
 <p>The head of your final table should look like this:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 11
-  sub_prefecture n_patients mean_age min_admission n_female n_hosp mean_age_hosp
-  &lt;chr&gt;               &lt;int&gt;    &lt;dbl&gt; &lt;date&gt;           &lt;int&gt;  &lt;int&gt;         &lt;dbl&gt;
-1 Moissala             1808     6.84 2022-08-14         923    612          5.49
-2 Bouna                1376     6.56 2023-01-11         669    412          5.67
-3 Bedjondo              534     7.07 2023-06-09         251    184          5.21
-4 Bekourou              496     6.84 2023-06-17         251    164          6.04
-5 Bedaya                435     7.10 2023-07-04         209    147          6.16
-6 Koumra                253     7.11 2023-08-14         138     84          6.26
-# ℹ 4 more variables: mean_age_female &lt;dbl&gt;, n_death_u6m &lt;int&gt;,
-#   prop_female &lt;dbl&gt;, prop_hosp &lt;dbl&gt;</code></pre>
+<pre><code>  sub_prefecture n_patients mean_age min_admission n_female n_hosp
+1       Moissala       1808 6.842920    2022-08-14      923    612
+2          Bouna       1376 6.555959    2023-01-11      669    412
+3       Bedjondo        534 7.073034    2023-06-09      251    184
+4       Bekourou        496 6.836694    2023-06-17      251    164
+5         Bedaya        435 7.098851    2023-07-04      209    147
+6         Koumra        253 7.106719    2023-08-14      138     84
+  mean_age_hosp mean_age_female n_death_u6m prop_female prop_hosp
+1      5.485294        6.748646          71   0.5105088 0.3384956
+2      5.665049        6.633782          61   0.4861919 0.2994186
+3      5.211957        6.948207          22   0.4700375 0.3445693
+4      6.042683        6.840637          25   0.5060484 0.3306452
+5      6.156463        7.105263          17   0.4804598 0.3379310
+6      6.261905        6.456522           7   0.5454545 0.3320158</code></pre>
 </div>
 </div>
-</section></section><section id="done" class="level2"><h2 class="anchored" data-anchor-id="done">Done!</h2>
+</section>
+</section>
+<section id="done" class="level2">
+<h2 class="anchored" data-anchor-id="done">Done!</h2>
 <p>You should be proud of yourselves, making summary tables is an important skill to an epidemiologist, making it in R is very efficient! Don’t forget to save your code!</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -471,37 +518,44 @@ Tip
 </a>
 </div>
 </div>
-</section><section id="going-further" class="level2"><h2 class="anchored" data-anchor-id="going-further">Going Further</h2>
-<section id="extra-exercises" class="level3"><h3 class="anchored" data-anchor-id="extra-exercises">Extra Exercises</h3>
+</section>
+<section id="going-further" class="level2">
+<h2 class="anchored" data-anchor-id="going-further">Going Further</h2>
+<section id="extra-exercises" class="level3">
+<h3 class="anchored" data-anchor-id="extra-exercises">Extra Exercises</h3>
 <ol type="1">
-<li>
-<p>Make a summary table that summarizes:</p>
+<li><p>Make a summary table that summarizes:</p>
 <ul>
 <li><p>The number of patients</p></li>
 <li><p>The proportion of male</p></li>
 <li><p>The number of deaths</p></li>
 <li><p>The CFR</p></li>
-<li>
-<p>The number of deaths among patients that had pneumonia</p>
-<p>in all the different <em>age groups</em> !</p>
-</li>
-</ul>
-</li>
+<li><p>The number of deaths among patients that had pneumonia</p>
+<p>in all the different <em>age groups</em> !</p></li>
+</ul></li>
 <li><p>Make a table that shows the proportion of patients by age with any measles vaccine (by oral recall or card) and those with 1 or 2 doses.</p></li>
 <li><p>Make a table that compares the proportion of hospitalised and non-hospitalised patients with positive malaria RDT, fever, rash, cough, red eye, pneumonia, encephalitis, and “red” or “yellow” MUAC (less than 125 mm).</p></li>
 <li><p>Calculate the mean days from first symptom onset to consultation by sub-prefecture.</p></li>
-<li><p>Calculate the mean time spent in hospital (i.e. days from admission to outcome) by outcome (i.e. in those who recovered and those who died).</p></li>
-</ol></section><section id="additional-resources" class="level3"><h3 class="anchored" data-anchor-id="additional-resources">Additional Resources</h3>
+<li><p>Calculate the mean time spent in hospital (i.e.&nbsp;days from admission to outcome) by outcome (i.e.&nbsp;in those who recovered and those who died).</p></li>
+</ol>
+</section>
+<section id="additional-resources" class="level3">
+<h3 class="anchored" data-anchor-id="additional-resources">Additional Resources</h3>
 <ul>
-<li>The <a href="https://epirhandbook.com/en/new_pages/grouping.html">EpiR Handbook chapter on grouping data</a>
-</li>
+<li>The <a href="https://epirhandbook.com/en/new_pages/grouping.html">EpiR Handbook chapter on grouping data</a></li>
 <li>Once you have tables, you can extensively customize them for display/publication using <code>{gt}</code> package:
 <ul>
 <li><a href="https://gt.rstudio.com/index.html">Website of <code>gt</code></a></li>
 <li><a href="https://gt.albert-rapp.de/">Book about <code>gt</code></a></li>
+</ul></li>
 </ul>
-</li>
-</ul></section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -1067,5 +1121,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-</body>
-</html>
+</body></html>

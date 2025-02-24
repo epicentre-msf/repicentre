@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-02-14">
+<meta name="dcterms.date" content="2025-02-24">
 <meta name="description" content="Plot weekly epicurves and improve date labels on the x-axis">
 
 <title>Weekly epicurves – {repicentre}</title>
@@ -104,12 +104,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script async="" src="https://hypothes.is/embed.js"></script>
-<script>
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    document.body.classList.add('hypothesis-enabled');
-  });
-</script>
 <script src="../site_libs/font-awesome-6.5.2/js/script.js"></script>
 
 <script type="text/javascript" src="../script.js"></script>
@@ -200,10 +194,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1 class="title">Weekly epicurves</h1>
   <div class="quarto-categories">
     <div class="quarto-category">Satellite</div>
-    <div class="quarto-category">Graphs</div>
-    <div class="quarto-category">ggplot2</div>
-    <div class="quarto-category">epicurve</div>
-    <div class="quarto-category">dates</div>
+    <div class="quarto-category">Visualization</div>
+    <div class="quarto-category">Dates</div>
   </div>
   </div>
 
@@ -220,7 +212,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 14, 2025</p>
+      <p class="date">February 24, 2025</p>
     </div>
   </div>
   
@@ -264,19 +256,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>If it is not already done, import the clean data (<code>moissala_linelist_clean_EN.rds</code>) into a <code>df_linelist</code> data frame and create a new section in your script called <code>PREPARE DATA</code>.</p>
 </div>
 <p>As we did in the core session, the examples in this lesson will be shown for outcomes and <em>you</em> will code the classic epicurve for date of onset in the exercises.</p>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Important
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>To avoid the warnings all along the session, we removed the missing values from the outcome date columns in the examples. When you analyse and plot data, always be aware of how many missing data you have and how a <code>tidyr::drop_na()</code> command affects your dataframe.</p>
-</div>
-</div>
 </section>
 <section id="aggregate-data-by-week" class="level2">
 <h2 class="anchored" data-anchor-id="aggregate-data-by-week">Aggregate Data by Week</h2>
@@ -284,7 +263,7 @@ Important
 <section id="using-week-numbers" class="level3">
 <h3 class="anchored" data-anchor-id="using-week-numbers">Using Week Numbers</h3>
 <p>Probably the most intuitive way of thinking of weekly aggregated data is to think in terms of week <em>numbers</em>, as aggregated data from MoH are often in this format, and you probably created a lot of epicurves with week numbers yourselves.</p>
-<p>The<code>isoweek()</code> from the <code>{lubridate}</code> packages takes a date (or a vector of dates) and returns the associated <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="ISO weeks offer an internationally standardized approach to dates that avoid differences between countries on when a week starts and how to define the first week of the year. ISO weeks begin on Monday. If you are working with the US CDC, you may use the sister function epiweek() that starts on Sunday.">ISO week</span></p>
+<p>The<code>isoweek()</code> from the <code>{lubridate}</code> packages takes a date (or a vector of dates) and returns the associated <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="ISO weeks offer an internationally standardized approach to dates that avoid differences between countries on when a week starts and how to define the first week of the year. ISO weeks begin on Monday. If you are working with the US CDC, you may use the sister function epiweek() that starts on Sunday.">ISO week</span>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>example_date <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">'2025-02-24'</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -315,7 +294,7 @@ Important
 </div>
 </div>
 <div class="write">
-<p>Your turn. After importing data, use the <code>mutate()</code> and <code>isoweek()</code> functions to create a new column in your dataframe called <code>week_onset_number</code> that contains the ISO week associated with every <em>onset date</em>. The head of <code>date_onset</code> and <code>week_onset_number</code> columns should look like this:</p>
+<p>Your turn. Use the <code>mutate()</code> and <code>isoweek()</code> functions to create a new column in your data frame called <code>week_onset_number</code> that contains the ISO week associated with every <em>onset date</em>. The head of <code>date_onset</code> and <code>week_onset_number</code> columns should look like this:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>  date_onset week_onset_number
@@ -332,8 +311,9 @@ Important
 <p>There is a problem, though. With <code>isoweek()</code> there is a first week in 2022, but also in 2023, 2024 and so on. With a short outbreak that would be only in 2022, this would be fine. However, our data frame gathers data at the whole region scale, and the dates range from 2022 to 2023. So if we were to just count the number of patients by week number, this table would be wrong:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># WRONG</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">|&gt;</span> <span class="fu">count</span>(week_onset_number) <span class="sc">|&gt;</span> </span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">|&gt;</span> </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(week_onset_number) <span class="sc">|&gt;</span> </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   week_onset_number  n
 1                  1 36
@@ -687,6 +667,7 @@ Tip
 </div>
 </div>
 </div>
+<p>:::</p>
 </section>
 </section>
 <section id="done" class="level2">
