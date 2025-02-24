@@ -1,0 +1,36 @@
+---
+title: Session Title
+description: Short description (appears on cards in pathway / explore pages)
+date: last-modified
+image: ../img/under_construction.svg
+categories:
+  - Core
+---
+
+```{r setup}
+#| include: false
+#| eval: true
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+library(tidyverse)
+```
+
+```{r}
+#| echo: false
+#| eval: true
+ggplot(iris,
+       aes(x = Sepal.Length,
+           y = Sepal.Width)) +
+  geom_point()
+```
+
+
+```{r}
+#| echo: false
+#| eval: true
+#| fig-width: 9
+ggplot(iris,
+       aes(x = Sepal.Length,
+           y = Sepal.Width)) +
+  geom_point()
+```
+
