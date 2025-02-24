@@ -1,5 +1,5 @@
 ---
-title: Test satellite
+title: Test core
 description: Short description (appears on cards in pathway / explore pages)
 date: last-modified
 image: ../img/under_construction.svg
