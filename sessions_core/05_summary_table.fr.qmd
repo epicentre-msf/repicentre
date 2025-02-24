@@ -311,12 +311,9 @@ C'est très bien ! Nous commençons à obtenir un tableau récapitulatif groupé
 
 ::: {.write}
 **DÉFI** : Pourriez-vous ajouter une variable à votre tableau qui **compte** le nombre de patients décédés *parmi* ceux qui ont *< 6 mois*. 
-:::
 
-::: {.callout-tip}
-Vous voulez compter les lignes (donc utiliser `sum()`) qui remplissent une condition spécifique pour le résultat 
-(`statut_sortie == "deces"`),
-mais *uniquement* lorsque `age_group == "< 6 months"`
+<br>
+**Note.** Vous voulez compter les lignes (donc utiliser `sum()`) qui remplissent une condition spécifique pour le résultat (`statut_sortie == "deces"`), mais *uniquement* lorsque `age_group == "< 6 months"`
 :::
 
 ### Utiliser la sortie 
@@ -365,7 +362,7 @@ Vous devriez être fiers de vous, la création de tableaux récapitulatifs est u
 #| eval: true
 
 downloadthis::download_link(
-  link = 'https://github.com/epicentre-msf/repicentre/blob/main/sessions_core/05_summary-table_solutions_fr.R',
+  link = 'https://github.com/epicentre-msf/repicentre/blob/main/sessions_core/05_summary_table_solutions_fr.R',
   button_label = 'Solutions exercices',
   has_icon = TRUE,
   icon = "fa fa-save",
@@ -386,11 +383,17 @@ downloadthis::download_link(
 - Le CFR
 - Le nombre de décès parmi les patients atteints de pneumonie
 
+2. Faites un tableau qui montre la proportion de patients par âge ayant reçu un vaccin contre la rougeole (par rappel oral ou par carte) et ceux qui ont reçu 1 ou 2 doses.
+
+3. Faites un tableau comparant la proportion de patients hospitalisés et non hospitalisés présentant un TDR positif pour le paludisme, de la fièvre, une éruption cutanée, une toux, des yeux rouges, une pneumonie, une encéphalite et un MUAC « rouge » ou « jaune » (moins de 125 mm).
+
+4. Calculer le nombre moyen de jours entre l'apparition des premiers symptômes et la consultation par sous-préfecture.
+
+5. Calculer le temps moyen passé à l'hôpital (i.e. jours entre l'admission et le résultat) par résultat (i.e. chez ceux qui ont guéri et ceux qui sont décédés).
 
 ### Ressources supplémentaires
 
 - Le chapitre du [manuel EpiR sur le regroupement des données](https://epirhandbook.com/en/new_pages/grouping.html)
-
 - Une fois que vous avez des tableaux, vous pouvez les personnaliser en profondeur pour l'affichage/la publication à l'aide du paquetage `{gt}` : 
-- [Site web de `gt`](https://gt.rstudio.com/index.html)
-- [Livre sur `gt`](https://gt.albert-rapp.de/)
+  - [Site web de `gt`](https://gt.rstudio.com/index.html)
+  - [Livre sur `gt`](https://gt.albert-rapp.de/)
