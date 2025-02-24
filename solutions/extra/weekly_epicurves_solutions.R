@@ -144,7 +144,7 @@ df_linelist |>
 
 # Monthly cases
 df_linelist |> 
-  mutate(month_start = floor_date(date_consultation, 
+  mutate(month_start = floor_date(date_onset, 
                                   unit = "month")) |> 
   count(month_start) |> 
   ggplot(aes(x = month_start,

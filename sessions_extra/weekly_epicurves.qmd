@@ -5,10 +5,8 @@ date: last-modified
 image: ../sessions_extra/img/epicurve-dates-000-logo.png
 categories:
   - Satellite
-  - Graphs
-  - ggplot2
-  - epicurve
-  - dates
+  - Visualization
+  - Dates
 ---
 
 ```{r setup}
@@ -99,10 +97,6 @@ If it is not already done, import the clean data (`moissala_linelist_clean_EN.rd
 
 As we did in the core session, the examples in this lesson will be shown for outcomes and *you* will code the classic epicurve for date of onset in the exercises.
 
-::: {.callout-important}
-To avoid the warnings all along the session, we removed the missing values from the outcome date columns in the examples. When you analyse and plot data, always be aware of how many missing data you have and how a `tidyr::drop_na()` command affects your dataframe.
-:::
-
 ## Aggregate Data by Week
 
 We will to discuss two ways of aggregating data by weeks. You may be more familiar with the first one (using week _numbers_ to identify weeks), but we will to focus more heavily on a more robust way (using the _firs day of the week_ to identify weeks).
@@ -113,7 +107,7 @@ We will to discuss two ways of aggregating data by weeks. You may be more famili
 
 Probably the most intuitive way of thinking of weekly aggregated data is to think in terms of week *numbers*, as aggregated data from MoH are often in this format, and you probably created a lot of epicurves with week numbers yourselves.
 
-The`isoweek()` from the `{lubridate}` packages takes a date (or a vector of dates) and returns the associated [ISO week]{.hovertip bs-toggle='tooltip' bs-title="ISO weeks offer an internationally standardized approach to dates that avoid differences between countries on when a week starts and how to define the first week of the year. ISO weeks begin on Monday. If you are working with the US CDC, you may use the sister function epiweek() that starts on Sunday."}
+The`isoweek()` from the `{lubridate}` packages takes a date (or a vector of dates) and returns the associated [ISO week]{.hovertip bs-toggle='tooltip' bs-title="ISO weeks offer an internationally standardized approach to dates that avoid differences between countries on when a week starts and how to define the first week of the year. ISO weeks begin on Monday. If you are working with the US CDC, you may use the sister function epiweek() that starts on Sunday."}.
 
 ```{r}
 #| eval: true
@@ -145,7 +139,7 @@ df_linelist |>
 
 
 ::: {.write}
-Your turn. After importing data, use the `mutate()` and `isoweek()` functions to create a new column in your dataframe called `week_onset_number` that contains the ISO week associated with every *onset date*. The head of `date_onset` and `week_onset_number` columns should look like this:
+Your turn. Use the `mutate()` and `isoweek()` functions to create a new column in your data frame called `week_onset_number` that contains the ISO week associated with every *onset date*. The head of `date_onset` and `week_onset_number` columns should look like this:
 
 ```{r}
 #| echo: false
@@ -164,7 +158,8 @@ There is a problem, though. With `isoweek()` there is a first week in 2022, but 
 #| eval: true
 
 # WRONG
-df_linelist |> count(week_onset_number) |> 
+df_linelist |> 
+  count(week_onset_number) |> 
   head(10)
 ```
 
@@ -460,6 +455,7 @@ df_linelist |>
 ```
 :::
 
+:::
 
 ## Done!
 
