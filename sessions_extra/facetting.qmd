@@ -2,7 +2,7 @@
 title: Introduction to faceting
 description: Create a plot with multiple subplots (facets)
 date: last-modified
-image: ../img/satellite/faceting/faceting_000_logo.png
+# image: ../img/satellite/faceting/faceting_000_logo.png
 categories:
   - Satellite
   - Graphs
@@ -13,7 +13,6 @@ categories:
 ```{r setup}
 #| include: false
 #| eval: true
-
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 
 library(dplyr)       # Data manipulation
@@ -48,7 +47,7 @@ df_cases <- df_linelist %>%
 
 ## Introduction
 
-This satellite builds on the core [epicurve session](../session_core/06_epicurves.qmd), which is a prerequisite. In that session, we learned how to create an epicurve of measles cases across time: 
+This satellite builds on the core [epicurve session](../sessions_core/06_epicurves.qmd), which is a prerequisite. In that session, we learned how to create an epicurve of measles cases across time: 
 
 ```{r}
 #| echo: false
@@ -288,7 +287,7 @@ Your turn! Draw you graph with age group as facets with a free y axis, and a fix
 
 Very well done team! You have learned how to facet plots! This will work not only on bar plots such as epicurves, but also on other types of plots made by `{ggplot2}`.
 
-Depending on the size of your graph, the date labels on the x-axis may be a bit messed up, the ones in my examples definitely are. Fear not, this can be controlled and is the object of another [satellite](../session_extra/weekly_epicurves.qmd)!
+Depending on the size of your graph, the date labels on the x-axis may be a bit messed up, the ones in my examples definitely are. Fear not, this can be controlled and is the object of another [satellite](../sessions_extra/weekly_epicurves.qmd)!
 
 ```{r}
 #| echo: false
@@ -346,6 +345,6 @@ Can you modify your code do do something similar?
 
 
 ::: {.callout-tip collapse="true"}
-You will need two aggregated data frames, one created today and one created in the [epicurve session](../session_core/06_epicurves.qmd).
+You will need two aggregated data frames, one created today and one created in the [epicurve session](../sessions_core/06_epicurves.qmd).
 :::
 

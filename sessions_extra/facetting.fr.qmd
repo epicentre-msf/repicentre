@@ -13,7 +13,6 @@ categories:
 ```{r setup}
 #| include: false
 #| eval: true
-
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 
 library(dplyr)       # Data manipulation
@@ -50,7 +49,7 @@ Dans cette session, le but est d'apprendre à :
 
 ## Introduction
 
-**Prérequis** : ce satellite s'appuie sur la session sur les [courbes épidémiques](../session_core/06_epicurves.qmd), durant laquelle nous avons appris à visualiser la distribution quotidienne des cas de rougeoles au cours du temps à l'aide de `{ggplot2}` :
+**Prérequis** : ce satellite s'appuie sur la session sur les [courbes épidémiques](../sessions_core/06_epicurves.qmd), durant laquelle nous avons appris à visualiser la distribution quotidienne des cas de rougeoles au cours du temps à l'aide de `{ggplot2}` :
 
 ```{r}
 #| echo: false
@@ -287,7 +286,7 @@ Tracez la courbe par groupe d'âge, avec l'axe des abscisses fixe et l'axe des o
 
 Bravo, vous avez créé vos premiers graphiques en fonctions d'une variable catégorique. Cela devrait vous être très utile. Sachez que la fonction fonctionne aussi avec d'autres types de graphes créés par `{ggplot2}`.
 
-Si le graphique est très large, il est possible que les étiquettes des dates ne soient pas très lisibles en x, et c'est le cas pour certains des exemples. Cela peut être contrôlé, et le sujet est abordé dans un [autre satellite](../session_extra/weekly_epicurves.qmd) !
+Si le graphique est très large, il est possible que les étiquettes des dates ne soient pas très lisibles en x, et c'est le cas pour certains des exemples. Cela peut être contrôlé, et le sujet est abordé dans un [autre satellite](../sessions_extra/weekly_epicurves.qmd) !
 
 ```{r}
 #| echo: false
@@ -347,6 +346,6 @@ Arrivez-vous à modifier votre code pour faire la même chose ?
 
 
 ::: {.callout-tip collapse="true"}
-Il vous faudra deux data frame agrégés, l'un deux crée aujourd'hui et l'autre lors de la session sur les [courbes épis](../session_core/06_epicurves.qmd).
+Il vous faudra deux data frame agrégés, l'un deux crée aujourd'hui et l'autre lors de la session sur les [courbes épis](../sessions_core/06_epicurves.qmd).
 :::
 
