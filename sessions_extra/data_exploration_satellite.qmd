@@ -24,7 +24,7 @@ Objectives
 
 :::{.callout-important}
 
-**Dependencies.** This extra session assumes that you have completed the sessions [introduction to R and R studio](01_introduction.html), and [data importation](02_import_data.html).  
+**Dependencies.** This extra session assumes that you have completed the sessions [introduction to R and R studio](../sessions_core/01_introduction.qmd), and [data importation](../sessions_core/02_import_data.qmd).  
 :::
 
 Setup
