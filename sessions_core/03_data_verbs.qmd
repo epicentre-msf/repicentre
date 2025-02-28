@@ -446,9 +446,140 @@ Going Further
 
 ### Extra Exercises
 
-1. A a line to your `mutate()` to update the `hospitalisation` variable so that its text would be in title case as well.
 
-2. Perhaps you would prefer to use lower case for the  `region` column rather than the title case, update your code to do this instead. **Hint**: you might want to check out `str_to_lower()` from `{stringr}`.
+1. Print a data frame of the clean(insh) data with the columns `id`, `sex` and `age`.
 
-3. Create a `delay_consultation` column, that contains the number of days between the onset of symptoms and the consultation.
+2. Print a data frame of the raw data with the columns `vacc_status` and `vacc_doses`.
 
+3. Then pass the data frame of the above question to the `distinct()` function using a *pipe.* Do you understand what the deduplication does here?
+
+4. Print a data frame of the clean(ish) data with the columns `sex` alone. Then, pipe it into the `distinct()` function.
+
+::: {.callout-tip collapse="true"}
+The code you just wrote could be simplified into `distinct(df_raw, sex)` or `df_raw |> distinct(sex)`.
+:::
+
+5. Write a command that would create this output (only the head is shown):
+
+```{r}
+#| echo: false
+
+df <- df_raw |>
+  select(-full_name, -age_unit) |>
+  rename(age_months = age,
+         prefecture = sub_prefecture,
+         village = village_commune,
+         facility = health_facility_name) |>
+  mutate(age_years = age_months / 12,
+         region = stringr::str_to_title(region),
+         prefecture = stringr::str_to_title(prefecture),
+         date_onset = lubridate::ymd(date_onset),
+         date_consultation = lubridate::ymd(date_consultation),
+         date_admission = lubridate::ymd(date_admission),
+         date_outcome = lubridate::ymd(date_outcome)) |>
+  distinct() |>
+  head()
+
+
+df %>% select(fever, rash, cough, red_eye, pneumonia, encephalitis)
+```
+
+6. Write a command that would create this output (whole output is shown!): 
+
+```{r}
+#| echo: false
+
+df %>% select(prefecture, facility) %>% distinct()
+```
+
+
+7. A a line to the `mutate()` of your big pipe to update the `hospitalisation` variable so that its text would be in title case as well.
+
+8. Perhaps you would prefer to use lower case for the  `region` column rather than the title case, update your code to do this instead. **Hint**: you might want to check out `str_to_lower()` from `{stringr}`.
+
+9. Create a `delay_consultation` column, that contains the number of days between the onset of symptoms and the consultation.
+
+10. Train to use the pipe: rewrite the following commands, which we have sees today or in past sessions using `{dplyr}` verbs and the *pipe*
+
+```{r}
+class(df_raw$age)
+count(df, sex, fever)
+count(df, outcome, sort = TRUE)
+mean(df$muac)
+min(df$age_months)
+```
+
+**Note**: you will often use the pipe to create cleaning pipeline, but it is not *mandatory.*
+
+
+### Challenge
+
+**Create another clean(ish) data frame**
+
+Create a clean data frame that contains the columns `id`, `hospitalisation`, `hospitalisation_date`, `outcome` and `outcome_date`. The date columns are formatted as Dates, and the two text columns are in *title case* (the outcome columns is not standardized, don't worry, we will learn how to do that in the next session). There are no duplicates. The head of the data frame looks like this: 
+
+```{r}
+#| echo: false
+
+df_raw %>% 
+    rename(
+      hospitalisation_date = date_admission,
+      outcome_date = date_outcome) |>
+  select(id, hospitalisation, hospitalisation_date, 
+         outcome, outcome_date) |>
+  mutate(hospitalisation_date = lubridate::ymd(hospitalisation_date),
+         outcome_date = lubridate::ymd(outcome_date),
+         hospitalisation = stringr::str_to_title(hospitalisation),
+         outcome = stringr::str_to_title(outcome)) |>
+  distinct() |>
+  head()
+```
+
+
+**From base R to `{tidyverse}` syntax**
+The code below contains steps to create a `df1` data frame written in base R syntax. It uses function and syntax that we have seen in all the previous sessions. Can you rewrite this code with `{dplyr}` verbs and the *pipe* to obtain an identical `df1` data frame?
+
+```{r}
+df1 <- df_raw
+df1$age_months <- df1$age
+df1$age_years  <- df1$age_months / 12
+df1["country"] <- "Chad"
+df1 <- df1[, c("id", "age_months", "age_years", "country", "sub_prefecture")]
+names(df1)[5] <- "pref"
+df1 <- distinct(df1)
+```
+
+::: {.callout-tip }
+Do not hesitate to run the steps on your computer to remind yourself of what sort of actions they do. Make a list of all the steps that this command does, so that you might "translate" these steps in a pipeline. The order in the pipeline does not have to be exactly the same.
+:::
+
+**Fix the code!**
+When we type code, it is very easy to introduce little typos that prevent the code to run. Finding them is part of the debugging step. The code below has *several* problems that prevent it from running (typos, order problems). Can you fix this pipe? Once it runs without errors, can you reorganize it to make it more condensed and logical?
+
+```{r}
+df_raw |>
+  select(-age_unit) |>
+  rename(
+    patient_name = full_name,
+    age_month = age,
+    prefecture = sub_prefecture,
+    village = village_commune,
+    facility = health_facility_name) |>
+  mutate(age_years = age_months / 12,
+         region = str_to_title(region)) |>
+  mutate(prefecture = str_to_title(prefecture),
+         date_onset = ymd(date_onset),
+         date_consultation = ymd(date_consultation)) |>
+  select(-full_name) |>
+  mutat(date_admission = ymd(date_admission),
+         date_outcome = ymd(date_outcome)) |>
+  distinct()
+```
+
+::: {.callout-tip}
+To debug a pipeline, run it step by step (by pairs of statement `input |> function()`) to see the problems that may arise at each step (inspect the error if error there is, and the intermediate data frame created). Make your way down the pipe to fix each step that needs to be fixed.
+:::
+
+::: {.callout-tip}
+When you write a pipeline, test each step before adding a new one to avoid the situation above!
+:::
