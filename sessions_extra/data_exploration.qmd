@@ -57,7 +57,7 @@ Right after importing some data into R, we might want to take a look at it. When
 - Examine dimensions of the data (ie: how many rows and how many columns)
 - Look at columns names 
 - Visualise the first or last few rows 
-- Determine the class of the variables
+- Determine the type of the variables
 - Determine the range of values in continuous variables
 - Observe the possible values in each categorical variable 
 
@@ -122,10 +122,10 @@ Be very careful with `View()` on large dataset as this may crash your RStudio se
 Can you display the first 15 rows of your data? What happen when you change the width of your console pane and run the command again? 
 :::
 
-Variable Classes
+Variable Type
 ----------------------------------------------------------------------------------------------------
 
-We now want to check the class of the different variables. This is important as part of data cleaning involves making sure that numerical variables are class `numeric`, dates `Date`, and categorical variables are `factor` or `character`. You have already seen the `class()` function, to check the class of a vector. In R, each variable of a dataframe is a vector. We can extract all the values of that vector using the [`$` sign]{.hovertip bs-toggle='tooltip' bs-title='This is called base R indexing'}, and pass it to the class function: 
+We now want to check the type of the different variables. This is important as part of data cleaning involves making sure that numerical variables are type `numeric`, dates `Date`, and categorical variables are `factor` or `character`. You have already seen the `class()` function, to check the type of a vector. In R, each variable of a dataframe is a vector. We can extract all the values of that vector using the [`$` sign]{.hovertip bs-toggle='tooltip' bs-title='This is called base R indexing'}, and pass it to the `class()` function: 
 
 ```{r}
 #| eval: false
@@ -134,10 +134,10 @@ class(df_linelist$age)
 ```
 
 :::{.write}
-Try extracting all the values from the `sex` variable. What is the class of this variable? 
+Try extracting all the values from the `sex` variable. What is the type of this variable? 
 :::
 
-You can also use `str()` on your dataframe to check all the variables class at once: 
+You can also use `str()` on your dataframe to check the class of all the variables at once: 
 
 ```{r}
 #| eval: false
@@ -156,16 +156,16 @@ Now that you know how to extract the values from a variable, you may want to exp
 
 | Function | Description | Example | Returns |
 |----------|-------------|---------|----------|
-| min() | Minimum value | min(x) | Single minimum value |
-| max() | Maximum value | max(x) | Single maximum value |
-| mean() | Arithmetic average | mean(x) | Average value |
-| median() | Middle value | median(x) | Middle value |
-| range() | Min and max | range(x) | Vector of (min, max) |
-| IQR() | Interquartile range | IQR(x) | Q3 - Q1 |
-| quantile() | Specified quantiles | quantile(x, probs = c(0.25, 0.75)) | Requested quantiles |
-| sd() | Standard deviation | sd(x) | Standard deviation |
-| var() | Variance | var(x) | Variance |
-| sum() | Sum of values | sum(x) | Sum |
+| `min()` | Minimum value | `min(x)` | Single minimum value |
+| `max()` | Maximum value | `max(x)` | Single maximum value |
+| `mean()` | Arithmetic average | `mean(x)` | Average value |
+| `median(`) | Middle value | `median(x)` | Middle value |
+| `range()` | Min and max | `range(x)` | Vector of (min, max) |
+| `IQR()` | Interquartile range | `IQR(x)` | Q3 - Q1 |
+| `quantile()` | Specified quantiles | `quantile(x, probs = c(0.25, 0.75))` | Requested quantiles |
+| `sd()` | Standard deviation | `sd(x)` | Standard deviation |
+| `var()` | Variance | `var(x)` | Variance |
+| `sum()` | Sum of values | `sum(x)` | Sum |
 
 :::{.callout-tip}
 These functions require you to explicitly remove missing values (`NA`) using the argument `na.rm = TRUE`

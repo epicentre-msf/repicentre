@@ -57,7 +57,7 @@ Juste après avoir importé des données dans R, nous pouvons avoir envie d'y je
 - Examiner les dimensions des données (c'est-à-dire le nombre de lignes et de colonnes).
 - Examiner les noms des colonnes 
 - Visualiser les premières ou les dernières lignes 
-- Déterminer la classe des variables
+- Déterminer le type des variables
 - Déterminer la plage de valeurs des variables continues
 - Observer les valeurs possibles de chaque variable catégorielle 
 
@@ -77,14 +77,14 @@ Exploration de base
 
 La toute première chose que vous voulez savoir sur vos données, ce sont les **dimensions**, c'est-à-dire le **nombre de lignes** et le **nombre de colonnes** qui composent vos données. Il existe plusieurs façons d'obtenir ces informations dans R : 
 
-1. Regardez votre *volet environnement* dans RStudio et vérifiez vos données - le nombre à côté (`5230x25`) nous indique qu'il s'agit d'un dataframe avec `5230` lignes et `25` colonnes.
-2. Utilisez `dim()` sur vos données pour retourner un vecteur avec le nombre de lignes et le nombre de colonnes.
+1. Regardez votre *volet environnement* dans RStudio et vérifiez vos données - le nombre à côté (`5230x25`) nous indique qu'il s'agit d'un data frame avec `5230` lignes et `25` colonnes.
+2. Utilisez `dim()` sur vos données pour renvoyer un vecteur avec le nombre de lignes et le nombre de colonnes.
 3. Vous pouvez aussi utiliser `ncol()` pour obtenir le nombre de colonnes et `nrow()` pour le nombre de lignes.
 
 Il est bon de se souvenir de ces nombres afin de pouvoir repérer rapidement tout changement inattendu dans vos données au cours de votre analyse (c'est-à-dire plus ou moins de lignes ou de colonnes que prévu).
 
 ::: {.write}
-En utilisant la méthode de votre choix, obtenez les dimensions de votre dataframe `df_linelist`.
+En utilisant la méthode de votre choix, obtenez les dimensions de votre data frame `df_linelist`.
 :::
 
 
@@ -107,13 +107,13 @@ Que pensez-vous des noms de votre ensemble de données ? Pouvez-vous déjà rep�
 Inspecter vos données
 ----------------------------------------------------------------------------------------------------
 
-Il est également intéressant d'inspecter vos données, cela peut vous permettre de repérer plus facilement certaines incohérences, des variables avec beaucoup de valeurs manquantes, et cela vous permettra de voir à quelles valeurs s'attendre pour chacune d'entre elles. Vous pouvez ["print"]{.hovertip bs-toggle='tooltip' bs-title="Print est un mot de programmation qui signifie afficher une sortie dans votre console."} vos données dans la console par : 
+Il est également intéressant d'inspecter vos données, cela peut vous permettre de repérer plus facilement certaines incohérences, des variables avec beaucoup de valeurs manquantes, et cela vous permettra de voir à quelles valeurs s'attendre pour chacune d'entre elles. Vous pouvez ["print"]{.hovertip bs-toggle='tooltip' bs-title="Print est un mot de programmation qui signifie afficher une sortie dans votre console."} vos données dans la console en : 
 
-1. En exécutant l'objet `df_linelist` seul (attention, vous ne voudrez peut-être pas faire cela si vous avez un grand ensemble de données).
-2. Utilisez la fonction `head()` pour voir les 6 premières lignes (vous pouvez augmenter ce nombre en utilisant l'argument `n`)
-2. Utilisez la fonction `tail()` pour voir les 6 dernières lignes (encore une fois, vous pouvez augmenter ce nombre en utilisant l'argument `n`)
+1. Exécutant l'objet `df_linelist` seul (attention, vous ne voudrez peut-être pas faire cela si vous avez un grand ensemble de données).
+2. Utilisant la fonction `head()` pour voir les 6 premières lignes (vous pouvez augmenter ce nombre en utilisant l'argument `n`)
+2. Utilisant la fonction `tail()` pour voir les 6 dernières lignes (encore une fois, vous pouvez augmenter ce nombre en utilisant l'argument `n`)
 
-Ces méthodes n'afficheront que les 40 premières lignes de vos données au maximum, car c'est la limite de votre console. Alternativement, vous pouvez utiliser `View()` pour voir vos données sous forme de tableau. Cela ouvrira une nouvelle fenêtre avec vos données affichées comme dans une feuille de calcul Excel. **Note**, cette commande ne fait qu'afficher les données, elle ne vous permet pas de les modifier. 
+Ces méthodes n'afficheront que les 40 premières lignes de vos données au maximum, car c'est la limite de votre console. Alternativement, vous pouvez utiliser `View()` pour voir vos données sous forme de tableau. Cela ouvrira une nouvelle fenêtre avec vos données affichées comme dans une feuille de calcul Excel. **Note** : cette commande ne fait qu'afficher les données, elle ne vous permet pas de les modifier. 
 
 :::{.callout-tip}
 Soyez très prudent avec `View()` sur un grand jeu de données car cela peut faire planter votre session RStudio. Pour éviter cela, vous pouvez imprimer la sortie dans la console. 
@@ -124,10 +124,10 @@ Pouvez-vous afficher les 15 premières lignes de vos données ? Que se passe-t-i
 :::
 
 
-Classes des variables
+Types des variables
 ----------------------------------------------------------------------------------------------------
 
-Nous voulons maintenant vérifier la classe des différentes variables. C'est important car une partie du nettoyage des données consiste à s'assurer que les variables numériques sont de classe `numeric`, dates `Date`, et que les variables catégorielles sont de classe `factor` ou `character`. Vous avez déjà vu la fonction `class()`, qui permet de vérifier la classe d'un vecteur. Dans R, chaque variable d'un dataframe est un vecteur. Nous pouvons extraire toutes les valeurs de ce vecteur en utilisant le [`$` sign]{.hovertip bs-toggle='tooltip' bs-title="C'est ce qu'on appelle 'base indexing' dans R"}, et les passer à la fonction class : 
+Nous voulons maintenant vérifier le type des différentes variables. C'est important car une partie du nettoyage des données consiste à s'assurer que les variables numériques sont de type `numeric`, dates `Date`, et que les variables catégorielles sont de type `factor` ou `character`. Vous avez déjà vu la fonction `class()`, qui permet de vérifier le type d'un vecteur. Dans R, chaque variable d'un dataframe est un vecteur. Nous pouvons extraire toutes les valeurs de ce vecteur en utilisant le [sign `$`]{.hovertip bs-toggle='tooltip' bs-title="C'est ce qu'on appelle 'base indexing' dans R"}, et les passer à la fonction `class()` : 
 
 ```{r}
 #| eval: false
@@ -136,10 +136,10 @@ class(df_linelist$age)
 ```
 
 :::{.write}
-Essayez d'extraire toutes les valeurs de la variable `sex`. Quelle est la classe de cette variable ? 
+Essayez d'extraire toutes les valeurs de la variable `sex`. Quelle est le type de cette variable ? 
 :::
 
-Vous pouvez également utiliser `str()` sur votre dataframe pour vérifier la classe de toutes les variables à la fois : 
+Vous pouvez également utiliser `str()` sur votre dataframe pour vérifier le type de toutes les variables à la fois : 
 
 ```{r}
 #| eval: false
@@ -148,26 +148,26 @@ str(df_linelist)
 ```
 
 :::{.write}
-Utilisez `str()` pour vérifier le type de données de chaque colonne. Y a-t-il quelque chose d'étrange ? Rappelez-vous que vous pouvez aussi utiliser des fonctions comme `is.character()` et `is.numeric()` si vous voulez tester le type d'une colonne particulière.
+Utilisez `str()` pour vérifier le type de données de chaque colonne. Y a-t-il quelque chose d'étrange ? Rappelez-vous que vous pouvez aussi utiliser des fonctions comme `is.character()` et `is.numeric()` si vous voulez tester le type d'une colonne en particulier.
 :::
 
 Exploration des variables continues
 ----------------------------------------------------------------------------------------------------
 
-Maintenant que vous savez comment extraire les valeurs d'une variable, vous pouvez vouloir explorer certaines de ces valeurs des variables numériques pour vérifier les incohérences. Cherchons des statistiques sommaires pour ces variables, et Base R fournit de nombreuses fonctions pratiques :
+Maintenant que vous savez comment extraire les valeurs d'une variable, vous pouvez vouloir explorer certaines des valeurs des variables numériques pour vérifier les incohérences. Calculer des statistiques récapitulatives pour ces variables, et Base R fournit de nombreuses fonctions pratiques :
 
 | Fonction | Description | Exemple | Retours |
 |----------|-------------|---------|----------|
-| min() | Valeur minimale | min(x) | Valeur minimale unique |
-| max() | Valeur maximale | max(x) | Valeur maximale unique |
-| moyenne() | Moyenne arithmétique | moyenne(x) | Valeur moyenne |
-| médiane() | Valeur moyenne | médiane(x) | Valeur moyenne | médiane(x) |
-| range() | Min et max | range(x) | Vecteur de (min, max) |
-| IQR(x) | Q3 - Q1 | IQR(x) | Q3 - Q1 | IQR(x) | Q3 - Q1 | IQR(x) | IQR(x) | Q3 - Q1 |
-| quantile() | Quantiles spécifiés | quantile(x, probs = c(0.25, 0.75)) | Quantiles demandés |
-| sd() | Ecart-type | sd(x) | Ecart-type | var() | Variance |
-| var() | Variance | var(x) | Variance | var(x) | Variance |
-| var() | Variance | var(x) | Variance | sum() | Somme des valeurs | sum(x) | Somme |
+| `min()` | Valeur minimale | `min(x)` | Valeur minimale unique |
+| `max()` | Valeur maximale | `max(x)` | Valeur maximale unique |
+| `mean()` | Moyenne arithmétique | `mean(x)` | Valeur moyenne |
+| `median()` | Valeur moyenne | `median(x)` | Valeur moyenne | médiane(x) |
+| `range()` | Min et max | `range(x)` | Vecteur de (min, max) |
+| `IQR(x)` | Q3 - Q1 | `IQR(x)` | Q3 - Q1 | IQR(x) | Q3 - Q1 | IQR(x) | IQR(x) | Q3 - Q1 |
+| `quantile()` | Quantiles spécifiés | `quantile(x, probs = c(0.25, 0.75))` | Quantiles demandés |
+| `sd()` | Ecart-type | sd(x) | Ecart-type | `sd()` | Ecart-type |
+| `var()` | Variance | var(x) | Variance | `var(x)` | Variance |
+| `sum()` | Somme des valeurs | `sum(x)` | Somme |
 
 :::{.callout-tip}
 Ces fonctions exigent que vous supprimiez explicitement les valeurs manquantes (`NA`) en utilisant l'argument `na.rm = TRUE`
@@ -192,7 +192,7 @@ Enfin, examinons les valeurs de nos variables catégorielles. Pour ce faire, nou
 1. Ils nous permettent de voir rapidement les valeurs uniques d'une variable catégorielle
 2. Le nombre d'observations pour chacune de ces catégories
 
-Pour ce faire, on utilise la fonction `count()` du [package `{dplyr}`]{.hovertip bs-toggle='tooltip' bs-title=« Nous en apprendrons plus sur ce package lors de la prochaine session. »}, qui accepte un dataframe et le nom d'une (ou plusieurs !) colonne(s) en tant qu'arguments. Il compte alors le **nombre d'observations** de chaque élément unique dans cette colonne. Par exemple, voyons les valeurs possibles de la variable `sex` : 
+Pour ce faire, on utilise la fonction `count()` du [package `{dplyr}`]{.hovertip bs-toggle='tooltip' bs-title="Nous en apprendrons plus sur ce package lors de la prochaine session."}, qui accepte un dataframe et le nom d'une (ou plusieurs !) colonne(s) en tant qu'arguments. Il compte alors le **nombre d'observations** de chaque élément unique dans cette colonne. Par exemple, voyons les valeurs possibles de la variable `sex` : 
 
 ```{r}
 count(df_linelist, sex)
