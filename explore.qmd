@@ -7,7 +7,7 @@ listing:
   image-placeholder: img/under-construction.svg
   contents:
     - 'sessions_core/*.qmd'
-    - 'sessions_extra/**/*.qmd'
+    - 'sessions_extra/*.qmd'
 ---
 
 Choose your own adventure by browsing all available sessions.
