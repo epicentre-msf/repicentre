@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
+<head>
+<link rel="alternate" hreflang="en" href="/sessions_extra/data_exploration.html" />
+<link rel="alternate" hreflang="fr" href="/fr/sessions_extra/data_exploration.fr.html" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.6.39">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-<meta name="dcterms.date" content="2025-02-17">
 <meta name="description" content="Explorez vos données après l’importation">
-
 <title>Exploration des données – {repicentre}</title>
 <style>
 code{white-space: pre-wrap;}
@@ -57,24 +56,11 @@ div.sourceCode
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
-
-
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script><script src="../site_libs/quarto-nav/headroom.min.js"></script><script src="../site_libs/clipboard/clipboard.min.js"></script><script src="../site_libs/quarto-search/autocomplete.umd.js"></script><script src="../site_libs/quarto-search/fuse.min.js"></script><script src="../site_libs/quarto-search/quarto-search.js"></script><meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script><script src="../site_libs/quarto-html/popper.min.js"></script><script src="../site_libs/quarto-html/tippy.umd.min.js"></script><script src="../site_libs/quarto-html/anchor.min.js"></script><link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-0626ff4d7a71b55c8707dcae1d04a9b6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-e25cc82807363e79c52e96bc8b7855f1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script><link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-b814d3e578892f16fb585af6f47f426f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/bootstrap/bootstrap-dark-35dfec4a88a4a8552367c65e80eaa027.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
@@ -91,100 +77,85 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   ],
   "show-item-context": false,
   "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
+    "search-no-results-text": "Pas de résultats",
+    "search-matching-documents-text": "documents trouvés",
+    "search-copy-link-title": "Copier le lien vers la recherche",
+    "search-hide-matches-text": "Cacher les correspondances additionnelles",
+    "search-more-match-text": "correspondance de plus dans ce document",
+    "search-more-matches-text": "correspondances de plus dans ce document",
+    "search-clear-button-title": "Effacer",
     "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-detached-cancel-button-title": "Annuler",
+    "search-submit-button-title": "Envoyer",
+    "search-label": "Recherche"
   }
-}</script>
-<script async="" src="https://hypothes.is/embed.js"></script>
-<script>
+}</script><script async="" src="https://hypothes.is/embed.js"></script><script>
   window.document.addEventListener("DOMContentLoaded", function (_event) {
     document.body.classList.add('hypothesis-enabled');
   });
-</script>
-<script src="../site_libs/font-awesome-6.5.2/js/script.js"></script>
-<script type="text/javascript" src="../script.js"></script>
-
-
-<link rel="stylesheet" href="../styles.css">
+</script><script src="../site_libs/font-awesome-6.5.2/js/script.js"></script><script type="text/javascript" src="../script.js"></script><link rel="stylesheet" href="../styles.css">
 </head>
-
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">{repicentre}</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+            <div id="quarto-search" class="" title="Recherche"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Basculer la navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
+<li class="nav-item"><div class="dropdown" id="languages-links-parent">
+<button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="languages-button"><i class="bi bi-globe2"></i> Français</button><ul class="dropdown-menu" id="languages-links"><li><a class="dropdown-item" href="/sessions_extra/data_exploration.html" id="language-link-en">English</a></li></ul>
+</div></li>
+<li class="nav-item">
     <a class="nav-link" href="../pathway.html"> 
-<span class="menu-text">Pathway</span></a>
+<span class="menu-text">Cours</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../explore.html"> 
-<span class="menu-text">Explore</span></a>
+<span class="menu-text">Explorer</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../resources.html"> 
-<span class="menu-text">Resources</span></a>
+<span class="menu-text">Ressources</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../about.html"> 
-<span class="menu-text">About</span></a>
+<span class="menu-text">À Propos</span></a>
   </li>  
 </ul>
-          </div> <!-- /navcollapse -->
+</div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Basculer le mode sombre"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
-    </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Sur cette page</h2>
    
   <ul>
-  <li><a href="#objectifs" id="toc-objectifs" class="nav-link active" data-scroll-target="#objectifs">Objectifs</a></li>
+<li><a href="#objectifs" id="toc-objectifs" class="nav-link active" data-scroll-target="#objectifs">Objectifs</a></li>
   <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
-  <li><a href="#exploration-des-données" id="toc-exploration-des-données" class="nav-link" data-scroll-target="#exploration-des-données">Exploration des données</a></li>
+  <li><a href="#exploration-des-donn%C3%A9es" id="toc-exploration-des-données" class="nav-link" data-scroll-target="#exploration-des-données">Exploration des données</a></li>
   <li><a href="#exploration-de-base" id="toc-exploration-de-base" class="nav-link" data-scroll-target="#exploration-de-base">Exploration de base</a></li>
   <li><a href="#noms-de-variables" id="toc-noms-de-variables" class="nav-link" data-scroll-target="#noms-de-variables">Noms de variables</a></li>
-  <li><a href="#inspecter-vos-données" id="toc-inspecter-vos-données" class="nav-link" data-scroll-target="#inspecter-vos-données">Inspecter vos données</a></li>
-  <li><a href="#classes-des-variables" id="toc-classes-des-variables" class="nav-link" data-scroll-target="#classes-des-variables">Classes des variables</a></li>
+  <li><a href="#inspecter-vos-donn%C3%A9es" id="toc-inspecter-vos-données" class="nav-link" data-scroll-target="#inspecter-vos-données">Inspecter vos données</a></li>
+  <li><a href="#types-des-variables" id="toc-types-des-variables" class="nav-link" data-scroll-target="#types-des-variables">Types des variables</a></li>
   <li><a href="#exploration-des-variables-continues" id="toc-exploration-des-variables-continues" class="nav-link" data-scroll-target="#exploration-des-variables-continues">Exploration des variables continues</a></li>
-  <li><a href="#exploration-des-variables-catégorielles" id="toc-exploration-des-variables-catégorielles" class="nav-link" data-scroll-target="#exploration-des-variables-catégorielles">Exploration des variables catégorielles</a></li>
+  <li><a href="#exploration-des-variables-cat%C3%A9gorielles" id="toc-exploration-des-variables-catégorielles" class="nav-link" data-scroll-target="#exploration-des-variables-catégorielles">Exploration des variables catégorielles</a></li>
   <li><a href="#cest-fait" id="toc-cest-fait" class="nav-link" data-scroll-target="#cest-fait">C’est fait !</a></li>
-  </ul>
-</nav>
-    </div>
+  </ul></nav>
+</div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title">Exploration des données</h1>
   <div class="quarto-categories">
     <div class="quarto-category">Satellite</div>
@@ -203,9 +174,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
     
     <div>
-    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-heading">Date de publication</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 17, 2025</p>
+      <p class="date">2 mars 2025</p>
     </div>
   </div>
   
@@ -214,11 +185,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header>
-
-
-<section id="objectifs" class="level2">
-<h2 class="anchored" data-anchor-id="objectifs">Objectifs</h2>
+</header><section id="objectifs" class="level2"><h2 class="anchored" data-anchor-id="objectifs">Objectifs</h2>
 <ul>
 <li>Effectuer une exploration rapide d’un ensemble de données importé</li>
 <li>Produire des tableaux de fréquence pour les variables</li>
@@ -236,9 +203,7 @@ Important
 <p><strong>Dependances.</strong> Cette session supplémentaire suppose que vous avez suivi les sessions <a href="01_introduction.html">introduction à R et R studio</a>, et <a href="02_import_data.html">importation de données</a>.</p>
 </div>
 </div>
-</section>
-<section id="setup" class="level2">
-<h2 class="anchored" data-anchor-id="setup">Setup</h2>
+</section><section id="setup" class="level2"><h2 class="anchored" data-anchor-id="setup">Setup</h2>
 <div class="setup">
 <p>Pour cette session, nous travaillerons avec notre liste brute de rougeole de Moissala qui peut être téléchargée ici :</p>
 <div class="cell">
@@ -250,38 +215,32 @@ Important
 </div>
 <p>Assurez-vous qu’il est correctement stocké dans <code>data/raw</code> de votre projet. Ensuite, ouvrez un nouveau script appelé <code>data-exploration.R</code>, et assurez-vous que les paquets <code>{here}</code>, <code>{rio}</code> et <code>{dplyr}</code> sont chargés. Enfin, importez les données dans R sous la forme d’un objet appelé <code>df_linelist</code>.</p>
 </div>
-</section>
-<section id="exploration-des-données" class="level2">
-<h2 class="anchored" data-anchor-id="exploration-des-données">Exploration des données</h2>
+</section><section id="exploration-des-données" class="level2"><h2 class="anchored" data-anchor-id="exploration-des-données">Exploration des données</h2>
 <p>Juste après avoir importé des données dans R, nous pouvons avoir envie d’y jeter un coup d’œil. Lorsque l’on parle d’exploration de données, on veut généralement faire plusieurs choses :</p>
 <ul>
 <li>Examiner les dimensions des données (c’est-à-dire le nombre de lignes et de colonnes).</li>
 <li>Examiner les noms des colonnes</li>
 <li>Visualiser les premières ou les dernières lignes</li>
-<li>Déterminer la classe des variables</li>
+<li>Déterminer le type des variables</li>
 <li>Déterminer la plage de valeurs des variables continues</li>
 <li>Observer les valeurs possibles de chaque variable catégorielle</li>
 </ul>
 <p>Ce processus est crucial et nous permettra de nous familiariser avec nos données et d’identifier les problèmes qui seront traités lors de l’étape de nettoyage des données.</p>
-</section>
-<section id="exploration-de-base" class="level2">
-<h2 class="anchored" data-anchor-id="exploration-de-base">Exploration de base</h2>
+</section><section id="exploration-de-base" class="level2"><h2 class="anchored" data-anchor-id="exploration-de-base">Exploration de base</h2>
 <p>La toute première chose que vous voulez savoir sur vos données, ce sont les <strong>dimensions</strong>, c’est-à-dire le <strong>nombre de lignes</strong> et le <strong>nombre de colonnes</strong> qui composent vos données. Il existe plusieurs façons d’obtenir ces informations dans R :</p>
 <ol type="1">
-<li>Regardez votre <em>volet environnement</em> dans RStudio et vérifiez vos données - le nombre à côté (<code>5230x25</code>) nous indique qu’il s’agit d’un dataframe avec <code>5230</code> lignes et <code>25</code> colonnes.</li>
-<li>Utilisez <code>dim()</code> sur vos données pour retourner un vecteur avec le nombre de lignes et le nombre de colonnes.</li>
+<li>Regardez votre <em>volet environnement</em> dans RStudio et vérifiez vos données - le nombre à côté (<code>5230x25</code>) nous indique qu’il s’agit d’un data frame avec <code>5230</code> lignes et <code>25</code> colonnes.</li>
+<li>Utilisez <code>dim()</code> sur vos données pour renvoyer un vecteur avec le nombre de lignes et le nombre de colonnes.</li>
 <li>Vous pouvez aussi utiliser <code>ncol()</code> pour obtenir le nombre de colonnes et <code>nrow()</code> pour le nombre de lignes.</li>
 </ol>
 <p>Il est bon de se souvenir de ces nombres afin de pouvoir repérer rapidement tout changement inattendu dans vos données au cours de votre analyse (c’est-à-dire plus ou moins de lignes ou de colonnes que prévu).</p>
 <div class="write">
-<p>En utilisant la méthode de votre choix, obtenez les dimensions de votre dataframe <code>df_linelist</code>.</p>
+<p>En utilisant la méthode de votre choix, obtenez les dimensions de votre data frame <code>df_linelist</code>.</p>
 </div>
-</section>
-<section id="noms-de-variables" class="level2">
-<h2 class="anchored" data-anchor-id="noms-de-variables">Noms de variables</h2>
+</section><section id="noms-de-variables" class="level2"><h2 class="anchored" data-anchor-id="noms-de-variables">Noms de variables</h2>
 <p>Comme nous allons utiliser les noms des variables très souvent au cours de notre analyse, nous voulons nous familiariser avec eux dès le début. De plus, nous devons identifier celles qui devront être renommées lors du nettoyage des données. La fonction <code>names()</code> renvoie un vecteur de tous les noms de variables dans notre cadre de données :</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(df_linelist)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(df_linelist)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "id"                   "full_name"            "sex"                 
  [4] "age"                  "age_unit"             "region"              
@@ -297,23 +256,21 @@ Important
 <div class="look">
 <p>Que pensez-vous des noms de votre ensemble de données ? Pouvez-vous déjà repérer des noms de variables que vous aimeriez renommer ?</p>
 </div>
-</section>
-<section id="inspecter-vos-données" class="level2">
-<h2 class="anchored" data-anchor-id="inspecter-vos-données">Inspecter vos données</h2>
-<p>Il est également intéressant d’inspecter vos données, cela peut vous permettre de repérer plus facilement certaines incohérences, des variables avec beaucoup de valeurs manquantes, et cela vous permettra de voir à quelles valeurs s’attendre pour chacune d’entre elles. Vous pouvez <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Print est un mot de programmation qui signifie afficher une sortie dans votre console.">“print”</span> vos données dans la console par :</p>
+</section><section id="inspecter-vos-données" class="level2"><h2 class="anchored" data-anchor-id="inspecter-vos-données">Inspecter vos données</h2>
+<p>Il est également intéressant d’inspecter vos données, cela peut vous permettre de repérer plus facilement certaines incohérences, des variables avec beaucoup de valeurs manquantes, et cela vous permettra de voir à quelles valeurs s’attendre pour chacune d’entre elles. Vous pouvez <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Print est un mot de programmation qui signifie afficher une sortie dans votre console.">“print”</span> vos données dans la console en :</p>
 <ol type="1">
-<li>En exécutant l’objet <code>df_linelist</code> seul (attention, vous ne voudrez peut-être pas faire cela si vous avez un grand ensemble de données).</li>
-<li>Utilisez la fonction <code>head()</code> pour voir les 6 premières lignes (vous pouvez augmenter ce nombre en utilisant l’argument <code>n</code>)</li>
-<li>Utilisez la fonction <code>tail()</code> pour voir les 6 dernières lignes (encore une fois, vous pouvez augmenter ce nombre en utilisant l’argument <code>n</code>)</li>
+<li>Exécutant l’objet <code>df_linelist</code> seul (attention, vous ne voudrez peut-être pas faire cela si vous avez un grand ensemble de données).</li>
+<li>Utilisant la fonction <code>head()</code> pour voir les 6 premières lignes (vous pouvez augmenter ce nombre en utilisant l’argument <code>n</code>)</li>
+<li>Utilisant la fonction <code>tail()</code> pour voir les 6 dernières lignes (encore une fois, vous pouvez augmenter ce nombre en utilisant l’argument <code>n</code>)</li>
 </ol>
-<p>Ces méthodes n’afficheront que les 40 premières lignes de vos données au maximum, car c’est la limite de votre console. Alternativement, vous pouvez utiliser <code>View()</code> pour voir vos données sous forme de tableau. Cela ouvrira une nouvelle fenêtre avec vos données affichées comme dans une feuille de calcul Excel. <strong>Note</strong>, cette commande ne fait qu’afficher les données, elle ne vous permet pas de les modifier.</p>
+<p>Ces méthodes n’afficheront que les 40 premières lignes de vos données au maximum, car c’est la limite de votre console. Alternativement, vous pouvez utiliser <code>View()</code> pour voir vos données sous forme de tableau. Cela ouvrira une nouvelle fenêtre avec vos données affichées comme dans une feuille de calcul Excel. <strong>Note</strong> : cette commande ne fait qu’afficher les données, elle ne vous permet pas de les modifier.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Tip
+Astuce
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -323,27 +280,23 @@ Tip
 <div class="write">
 <p>Pouvez-vous afficher les 15 premières lignes de vos données ? Que se passe-t-il lorsque vous modifiez la largeur de votre fenêtre de console et que vous exécutez à nouveau la commande ?</p>
 </div>
-</section>
-<section id="classes-des-variables" class="level2">
-<h2 class="anchored" data-anchor-id="classes-des-variables">Classes des variables</h2>
-<p>Nous voulons maintenant vérifier la classe des différentes variables. C’est important car une partie du nettoyage des données consiste à s’assurer que les variables numériques sont de classe <code>numeric</code>, dates <code>Date</code>, et que les variables catégorielles sont de classe <code>factor</code> ou <code>character</code>. Vous avez déjà vu la fonction <code>class()</code>, qui permet de vérifier la classe d’un vecteur. Dans R, chaque variable d’un dataframe est un vecteur. Nous pouvons extraire toutes les valeurs de ce vecteur en utilisant le <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="C'est ce qu'on appelle 'base indexing' dans R"><code>$</code> sign</span>, et les passer à la fonction class :</p>
+</section><section id="types-des-variables" class="level2"><h2 class="anchored" data-anchor-id="types-des-variables">Types des variables</h2>
+<p>Nous voulons maintenant vérifier le type des différentes variables. C’est important car une partie du nettoyage des données consiste à s’assurer que les variables numériques sont de type <code>numeric</code>, dates <code>Date</code>, et que les variables catégorielles sont de type <code>factor</code> ou <code>character</code>. Vous avez déjà vu la fonction <code>class()</code>, qui permet de vérifier le type d’un vecteur. Dans R, chaque variable d’un dataframe est un vecteur. Nous pouvons extraire toutes les valeurs de ce vecteur en utilisant le <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="C'est ce qu'on appelle 'base indexing' dans R">sign <code>$</code></span>, et les passer à la fonction <code>class()</code> :</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(df_linelist<span class="sc">$</span>age)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(df_linelist<span class="sc">$</span>age)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="write">
-<p>Essayez d’extraire toutes les valeurs de la variable <code>sex</code>. Quelle est la classe de cette variable ?</p>
+<p>Essayez d’extraire toutes les valeurs de la variable <code>sex</code>. Quelle est le type de cette variable ?</p>
 </div>
-<p>Vous pouvez également utiliser <code>str()</code> sur votre dataframe pour vérifier la classe de toutes les variables à la fois :</p>
+<p>Vous pouvez également utiliser <code>str()</code> sur votre dataframe pour vérifier le type de toutes les variables à la fois :</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df_linelist)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df_linelist)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="write">
-<p>Utilisez <code>str()</code> pour vérifier le type de données de chaque colonne. Y a-t-il quelque chose d’étrange ? Rappelez-vous que vous pouvez aussi utiliser des fonctions comme <code>is.character()</code> et <code>is.numeric()</code> si vous voulez tester le type d’une colonne particulière.</p>
+<p>Utilisez <code>str()</code> pour vérifier le type de données de chaque colonne. Y a-t-il quelque chose d’étrange ? Rappelez-vous que vous pouvez aussi utiliser des fonctions comme <code>is.character()</code> et <code>is.numeric()</code> si vous voulez tester le type d’une colonne en particulier.</p>
 </div>
-</section>
-<section id="exploration-des-variables-continues" class="level2">
-<h2 class="anchored" data-anchor-id="exploration-des-variables-continues">Exploration des variables continues</h2>
-<p>Maintenant que vous savez comment extraire les valeurs d’une variable, vous pouvez vouloir explorer certaines de ces valeurs des variables numériques pour vérifier les incohérences. Cherchons des statistiques sommaires pour ces variables, et Base R fournit de nombreuses fonctions pratiques :</p>
+</section><section id="exploration-des-variables-continues" class="level2"><h2 class="anchored" data-anchor-id="exploration-des-variables-continues">Exploration des variables continues</h2>
+<p>Maintenant que vous savez comment extraire les valeurs d’une variable, vous pouvez vouloir explorer certaines des valeurs des variables numériques pour vérifier les incohérences. Calculer des statistiques récapitulatives pour ces variables, et Base R fournit de nombreuses fonctions pratiques :</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 23%">
@@ -351,74 +304,72 @@ Tip
 <col style="width: 21%">
 <col style="width: 23%">
 </colgroup>
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th>Fonction</th>
 <th>Description</th>
 <th>Exemple</th>
 <th>Retours</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
-<td>min()</td>
+<td><code>min()</code></td>
 <td>Valeur minimale</td>
-<td>min(x)</td>
+<td><code>min(x)</code></td>
 <td>Valeur minimale unique</td>
 </tr>
 <tr class="even">
-<td>max()</td>
+<td><code>max()</code></td>
 <td>Valeur maximale</td>
-<td>max(x)</td>
+<td><code>max(x)</code></td>
 <td>Valeur maximale unique</td>
 </tr>
 <tr class="odd">
-<td>moyenne()</td>
+<td><code>mean()</code></td>
 <td>Moyenne arithmétique</td>
-<td>moyenne(x)</td>
+<td><code>mean(x)</code></td>
 <td>Valeur moyenne</td>
 </tr>
 <tr class="even">
-<td>médiane()</td>
+<td><code>median()</code></td>
 <td>Valeur moyenne</td>
-<td>médiane(x)</td>
+<td><code>median(x)</code></td>
 <td>Valeur moyenne</td>
 </tr>
 <tr class="odd">
-<td>range()</td>
+<td><code>range()</code></td>
 <td>Min et max</td>
-<td>range(x)</td>
+<td><code>range(x)</code></td>
 <td>Vecteur de (min, max)</td>
 </tr>
 <tr class="even">
-<td>IQR(x)</td>
+<td><code>IQR(x)</code></td>
 <td>Q3 - Q1</td>
-<td>IQR(x)</td>
+<td><code>IQR(x)</code></td>
 <td>Q3 - Q1</td>
 </tr>
 <tr class="odd">
-<td>quantile()</td>
+<td><code>quantile()</code></td>
 <td>Quantiles spécifiés</td>
-<td>quantile(x, probs = c(0.25, 0.75))</td>
+<td><code>quantile(x, probs = c(0.25, 0.75))</code></td>
 <td>Quantiles demandés</td>
 </tr>
 <tr class="even">
-<td>sd()</td>
+<td><code>sd()</code></td>
 <td>Ecart-type</td>
 <td>sd(x)</td>
 <td>Ecart-type</td>
 </tr>
 <tr class="odd">
-<td>var()</td>
+<td><code>var()</code></td>
 <td>Variance</td>
 <td>var(x)</td>
 <td>Variance</td>
 </tr>
 <tr class="even">
-<td>var()</td>
-<td>Variance</td>
-<td>var(x)</td>
-<td>Variance</td>
+<td><code>sum()</code></td>
+<td>Somme des valeurs</td>
+<td><code>sum(x)</code></td>
+<td>Somme</td>
 </tr>
 </tbody>
 </table>
@@ -428,7 +379,7 @@ Tip
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Tip
+Astuce
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -439,31 +390,29 @@ Tip
 <div class="write">
 <p>Utilisez la syntaxe <code>$</code> pour obtenir :</p>
 <ul>
-<li>La valeur minimale de <code>age</code></li>
-<li>Le maximum de <code>muac</code></li>
+<li>La valeur minimale de <code>age</code>
+</li>
+<li>Le maximum de <code>muac</code>
+</li>
 </ul>
 <p><strong>Des problèmes ?</strong></p>
 </div>
-</section>
-<section id="exploration-des-variables-catégorielles" class="level2">
-<h2 class="anchored" data-anchor-id="exploration-des-variables-catégorielles">Exploration des variables catégorielles</h2>
+</section><section id="exploration-des-variables-catégorielles" class="level2"><h2 class="anchored" data-anchor-id="exploration-des-variables-catégorielles">Exploration des variables catégorielles</h2>
 <p>Enfin, examinons les valeurs de nos variables catégorielles. Pour ce faire, nous pouvons utiliser des tableaux de fréquence. C’est pratique car :</p>
 <ol type="1">
 <li>Ils nous permettent de voir rapidement les valeurs uniques d’une variable catégorielle</li>
 <li>Le nombre d’observations pour chacune de ces catégories</li>
 </ol>
-<p>Pour ce faire, on utilise la fonction <code>count()</code> du [package <code>{dplyr}</code>]{.hovertip bs-toggle=‘tooltip’ bs-title=« Nous en apprendrons plus sur ce package lors de la prochaine session. »}, qui accepte un dataframe et le nom d’une (ou plusieurs !) colonne(s) en tant qu’arguments. Il compte alors le <strong>nombre d’observations</strong> de chaque élément unique dans cette colonne. Par exemple, voyons les valeurs possibles de la variable <code>sex</code> :</p>
+<p>Pour ce faire, on utilise la fonction <code>count()</code> du <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Nous en apprendrons plus sur ce package lors de la prochaine session.">package <code>{dplyr}</code></span>, qui accepte un dataframe et le nom d’une (ou plusieurs !) colonne(s) en tant qu’arguments. Il compte alors le <strong>nombre d’observations</strong> de chaque élément unique dans cette colonne. Par exemple, voyons les valeurs possibles de la variable <code>sex</code> :</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(df_linelist, sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(df_linelist, sex)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Le résultat est un nouveau dataframe, plus petit, contenant le nombre de patients observés, stratifié par <code>sex</code>. Il semble que cette variable nécessite un recodage… Nous le ferons dans une prochaine session.</p>
 <div class="write">
 <p>En utilisant les données de votre liste, examinez les valeurs de la variable <code>outcome</code>. A quoi cela ressemble-t-il ?</p>
 <p>Maintenant, essayez d’ajouter l’argument <code>sort = TRUE</code> à la fonction <code>count()</code>. Que fait cet argument ?</p>
 </div>
-</section>
-<section id="cest-fait" class="level2">
-<h2 class="anchored" data-anchor-id="cest-fait">C’est fait !</h2>
+</section><section id="cest-fait" class="level2"><h2 class="anchored" data-anchor-id="cest-fait">C’est fait !</h2>
 <p>Bravo pour ce premier coup d’œil sur vos données !</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -474,10 +423,7 @@ Tip
 </div>
 
 
-</section>
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -664,12 +610,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // flash "checked"
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
+    button.setAttribute("title", "Copié");
     let tooltip;
     if (window.bootstrap) {
       button.setAttribute("data-bs-toggle", "tooltip");
       button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
+      button.setAttribute("data-bs-title", "Copié");
       tooltip = new bootstrap.Tooltip(button, 
         { trigger: "manual", 
           customClass: "code-copy-button-tooltip",
@@ -1043,4 +989,5 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-</body></html>
+</body>
+</html>
