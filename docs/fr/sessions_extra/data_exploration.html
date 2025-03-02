@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
 <head>
-<link rel="alternate" hreflang="en" href="/sessions_extra/data_exploration.html" />
-<link rel="alternate" hreflang="fr" href="/fr/sessions_extra/data_exploration.fr.html" />
+<link rel="alternate" hreflang="en" href="https://epicentre-msf.github.io/repicentre/sessions_extra/data_exploration.html" />
+<link rel="alternate" hreflang="fr" href="https://epicentre-msf.github.io/repicentre/fr/sessions_extra/data_exploration.fr.html" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.6.39">
@@ -89,11 +89,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Envoyer",
     "search-label": "Recherche"
   }
-}</script><script async="" src="https://hypothes.is/embed.js"></script><script>
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    document.body.classList.add('hypothesis-enabled');
-  });
-</script><script src="../site_libs/font-awesome-6.5.2/js/script.js"></script><script type="text/javascript" src="../script.js"></script><link rel="stylesheet" href="../styles.css">
+}</script><script src="../site_libs/font-awesome-6.5.2/js/script.js"></script><script type="text/javascript" src="../script.js"></script><link rel="stylesheet" href="../styles.css">
 </head>
 <body class="nav-fixed">
 
@@ -111,7 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
 <li class="nav-item"><div class="dropdown" id="languages-links-parent">
-<button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="languages-button"><i class="bi bi-globe2"></i> Français</button><ul class="dropdown-menu" id="languages-links"><li><a class="dropdown-item" href="/sessions_extra/data_exploration.html" id="language-link-en">English</a></li></ul>
+<button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="languages-button"><i class="bi bi-globe2"></i> Français</button><ul class="dropdown-menu" id="languages-links"><li><a class="dropdown-item" href="https://epicentre-msf.github.io/repicentre/sessions_extra/data_exploration.html" id="language-link-en">English</a></li></ul>
 </div></li>
 <li class="nav-item">
     <a class="nav-link" href="../pathway.html"> 
@@ -173,12 +169,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-title-meta">
 
     
-    <div>
-    <div class="quarto-title-meta-heading">Date de publication</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">2 mars 2025</p>
-    </div>
-  </div>
   
     
   </div>
@@ -189,31 +179,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Effectuer une exploration rapide d’un ensemble de données importé</li>
 <li>Produire des tableaux de fréquence pour les variables</li>
-</ul>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Important
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Dependances.</strong> Cette session supplémentaire suppose que vous avez suivi les sessions <a href="01_introduction.html">introduction à R et R studio</a>, et <a href="02_import_data.html">importation de données</a>.</p>
-</div>
-</div>
-</section><section id="setup" class="level2"><h2 class="anchored" data-anchor-id="setup">Setup</h2>
+</ul></section><section id="setup" class="level2"><h2 class="anchored" data-anchor-id="setup">Setup</h2>
+<p><strong>Dependances.</strong> Cette session supplémentaire suppose que vous avez suivi les sessions <a href="../sessions_core/01_introduction.html">introduction à R et R studio</a>, et <a href="../sessions_core/02_import_data.html">importation de données</a>.</p>
 <div class="setup">
 <p>Pour cette session, nous travaillerons avec notre liste brute de rougeole de Moissala qui peut être téléchargée ici :</p>
 <div class="cell">
 <div class="cell-output-display">
-<a href="https://github.com/epicentre-msf/repicentre/data/raw/moissala_linelist_FR.xlsx">
+<a href="https://github.com/epicentre-msf/repicentre/raw/main/data/FETCHR.zip">
 <button class="btn btn-default"><i class="fa fa-save"></i>  Course Folder</button>
 </a>
 </div>
 </div>
-<p>Assurez-vous qu’il est correctement stocké dans <code>data/raw</code> de votre projet. Ensuite, ouvrez un nouveau script appelé <code>data-exploration.R</code>, et assurez-vous que les paquets <code>{here}</code>, <code>{rio}</code> et <code>{dplyr}</code> sont chargés. Enfin, importez les données dans R sous la forme d’un objet appelé <code>df_linelist</code>.</p>
+<p><br> Assurez-vous qu’il est correctement stocké dans <code>data/raw</code> de votre projet. Ensuite, ouvrez un nouveau script appelé <code>data-exploration.R</code>, et assurez-vous que les paquets <code>{here}</code>, <code>{rio}</code> et <code>{dplyr}</code> sont chargés. Enfin, importez les données dans R sous la forme d’un objet appelé <code>df_linelist</code>.</p>
 </div>
 </section><section id="exploration-des-données" class="level2"><h2 class="anchored" data-anchor-id="exploration-des-données">Exploration des données</h2>
 <p>Juste après avoir importé des données dans R, nous pouvons avoir envie d’y jeter un coup d’œil. Lorsque l’on parle d’exploration de données, on veut généralement faire plusieurs choses :</p>
@@ -356,13 +333,13 @@ Astuce
 <tr class="even">
 <td><code>sd()</code></td>
 <td>Ecart-type</td>
-<td>sd(x)</td>
+<td><code>sd()</code></td>
 <td>Ecart-type</td>
 </tr>
 <tr class="odd">
 <td><code>var()</code></td>
 <td>Variance</td>
-<td>var(x)</td>
+<td><code>var(x)</code></td>
 <td>Variance</td>
 </tr>
 <tr class="even">
@@ -416,7 +393,7 @@ Astuce
 <p>Bravo pour ce premier coup d’œil sur vos données !</p>
 <div class="cell">
 <div class="cell-output-display">
-<a href="https://github.com/epicentre-msf/repicentre/blob/main/solutions/extra/data_exploration.R">
+<a href="https://github.com/epicentre-msf/repicentre/blob/main/solutions/extra/data_exploration_fr.R">
 <button class="btn btn-default"><i class="fa fa-save"></i> Solution File</button>
 </a>
 </div>

@@ -7,7 +7,6 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.6.39">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta name="dcterms.date" content="2025-02-21">
 <meta name="description" content="Learn the basics of buidling plots with ggplot2, and create your first epicurve">
 <title>Basic Data Visualization – {repicentre}</title>
 <style>
@@ -189,12 +188,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-title-meta">
 
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">February 21, 2025</p>
-    </div>
-  </div>
   
     
   </div>
@@ -218,9 +211,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section><section id="setup" class="level2"><h2 class="anchored" data-anchor-id="setup">Setup</h2>
-<p>Before we get into the theory, let’s get your data and script ready.</p>
-<div class="write">
-<p>Open your RStudio project and create a new script called <code>epicurves.R</code> with appropriate metadata. Load the following packages: <code>{here}</code>, <code>{rio}</code>, <code>{dplyr}</code>, <code>{lubridate}</code>, and <code>{ggplot2}</code>. <br> Add a section to your script called <code># IMPORT DATA</code> where you import the <em>clean course dataset</em> (<code>moissala_linelist_clean_EN.rds</code>).</p>
+<p><strong>Dependencies.</strong> This session assumes that you know how to use RStudio that you are able to import data and that you know th basic data handling verbs that we have seen in the core sessions so far. If you need a refresher on either of these topics, we encourage you to review the core sessions in the learning pathway.</p>
+<div class="setup">
+<p>This session will use the clean version of the Moissala measles linelist data.</p>
+<div class="cell">
+<div class="cell-output-display">
+<a href="https://github.com/epicentre-msf/repicentre/raw/main/data/FETCHR.zip">
+<button class="btn btn-default"><i class="fa fa-save"></i>  Course Folder</button>
+</a>
+</div>
+</div>
+<p><br> Open your RStudio project and create a new script called <code>epicurves.R</code> with appropriate metadata. Load the following packages: <code>{here}</code>, <code>{rio}</code>, <code>{dplyr}</code>, <code>{lubridate}</code>, and <code>{ggplot2}</code>. Add a section to your script called <code># IMPORT DATA</code> where you import the <em>clean course dataset</em> (<code>moissala_linelist_clean_EN.rds</code>).</p>
 </div>
 </section><section id="paradigms-of-plotting" class="level2"><h2 class="anchored" data-anchor-id="paradigms-of-plotting">Paradigms of Plotting</h2>
 <p>In R, and indeed in everything, there are a lot of ways to approach data visualization. Two of the biggest paradigms are :</p>
@@ -241,8 +242,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>To illustrate these components, let’s look at a basic schematic of an epicurve:</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="../img/core/07_epicurves/ggplot_002_theory.png" class="img-fluid figure-img"></p>
-<figcaption>The main components of a plot</figcaption></figure>
+<figure class="figure"><p><img src="../img/core/06_epicurves/01_theory.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
 </div>
 <p>The most conceptually complex of the above layers is probably <strong>the canvas itself</strong>. Much as an artist needs to buy a canvas and conceptualize what they want to paint before they start painting, so too does a user of <code>{ggplot2}</code>. Creating the canvas is where we tell R that we want to start making a plot and what parts of the data that plot will use. Here, for example, we will tell R <em>“I want to make a plot where the x axis represents dates (or weeks sometimes) and the y axis represents cases”</em>. Once that canvas is set up we can start adding other layers in the same way that an artist would begin adding paint, their signature, or a frame.</p>
 <p>Now, let’s look at the syntax for these layers in <code>{ggplot2}</code> and how to put them together.</p>
@@ -277,8 +278,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>We can update our above schematic of an epicurve with these functions as follows:</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="../img/core/07_epicurves/ggplot_003_functions.png" class="img-fluid figure-img"></p>
-<figcaption>The main components of a plot, with their associated functions</figcaption></figure>
+<figure class="figure"><p><img src="../img/core/06_epicurves/02_functions.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -343,15 +344,15 @@ Note
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> patients))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Fabulous, take a look at that big beautiful box of potential. This is our empty canvas. In RStudio this plot should show up in the panel on the bottom right of the screen.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="../img/core/07_epicurves/ggplot_004_plot_panel.png" class="img-fluid figure-img"></p>
-<figcaption>The plot pannel in RStudio IDE</figcaption></figure>
+<figure class="figure"><p><img src="../img/core/06_epicurves/03_plot_panel.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -376,7 +377,7 @@ Note
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -400,7 +401,7 @@ Note
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -414,7 +415,7 @@ Note
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#2E4573"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -426,7 +427,7 @@ Note
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -463,7 +464,7 @@ Note
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Measles Hospitalizations in Mandoul Region (Chad)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -475,7 +476,7 @@ Note
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -494,7 +495,7 @@ Note
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -511,7 +512,7 @@ Note
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">17</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -523,8 +524,8 @@ Note
 </section><section id="save-your-plot" class="level3"><h3 class="anchored" data-anchor-id="save-your-plot">Save your plot</h3>
 <p>If you would like to save your epicurve, you can click on the “Export” button in the plot panel of RStudio:</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="../img/core/07_epicurves/ggplot_005_plot_export.png" class="img-fluid figure-img"></p>
-<figcaption>Save plot button in the RStudio plot pannel</figcaption></figure>
+<figure class="figure"><p><img src="../img/core/06_epicurves/04_plot_export.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
 </div>
 </section></section><section id="done" class="level2"><h2 class="anchored" data-anchor-id="done">Done!</h2>
 <p>Very well done team! You have build your first epicurve!</p>
