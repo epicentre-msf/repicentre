@@ -1,7 +1,6 @@
 ---
 title: Basic Data Visualization
 description: Learn the basics of buidling plots with ggplot2, and create your first epicurve
-date: last-modified
 image: ../img/core/06_epicurves/logo.svg
 categories:
   - Core
@@ -65,12 +64,25 @@ df_linelist |>
 
 ## Setup
 
-Before we get into the theory, let's get your data and script ready.
+**Dependencies.** This session assumes that you know how to use RStudio that you are able to import data and that you know th basic data handling verbs that we have seen in the core sessions so far. If you need a refresher on either of these topics, we encourage you to review the core sessions in the learning pathway.
 
-::: {.write}
-Open your RStudio project and create a new script called `epicurves.R` with appropriate metadata. Load the following packages: `{here}`, `{rio}`, `{dplyr}`, `{lubridate}`, and `{ggplot2}`.
+::: {.setup}
+This session will use the clean version of the Moissala measles linelist data.
+
+```{r}
+#| echo: false
+#| eval: true
+
+downloadthis::download_link(
+  link = 'https://github.com/epicentre-msf/repicentre/raw/main/data/FETCHR.zip',
+  button_label = ' Course Folder',
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  self_contained = FALSE
+)
+```
 <br>
-Add a section to your script called `# IMPORT DATA` where you import the *clean course dataset* (`moissala_linelist_clean_EN.rds`).
+Open your RStudio project and create a new script called `epicurves.R` with appropriate metadata. Load the following packages: `{here}`, `{rio}`, `{dplyr}`, `{lubridate}`, and `{ggplot2}`. Add a section to your script called `# IMPORT DATA` where you import the *clean course dataset* (`moissala_linelist_clean_EN.rds`).
 :::
 
 ## Paradigms of Plotting
@@ -95,7 +107,7 @@ For the purpose of this tutorial we will talk about only four visualization comp
 
 To illustrate these components, let's look at a basic schematic of an epicurve:
 
-![The main components of a plot](../img/core/07_epicurves/ggplot_002_theory.png){fig-align="center"}
+![](../img/core/06_epicurves/01_theory.png){fig-align="center"}
 
 The most conceptually complex of the above layers is probably **the canvas itself**. Much as an artist needs to buy a canvas and conceptualize what they want to paint before they start painting, so too does a user of `{ggplot2}`. Creating the canvas is where we tell R that we want to start making a plot and what parts of the data that plot will use. Here, for example, we will tell R *"I want to make a plot where the x axis represents dates (or weeks sometimes) and the y axis represents cases"*. Once that canvas is set up we can start adding other layers in the same way that an artist would begin adding paint, their signature, or a frame.
 
@@ -137,7 +149,7 @@ df |>                    # pipe in your data
 
 We can update our above schematic of an epicurve with these functions as follows:
 
-![The main components of a plot, with their associated functions](../img/core/07_epicurves/ggplot_003_functions.png){fig-align="center"}
+![](../img/core/06_epicurves/02_functions.png){fig-align="center"}
 
 ::: {.callout-note}
 Notice that in the above example, our very first line is actually our dataset being piped into the `ggplot()` function. This makes sense since `{ggplot2}` needs to know what data you'd like to visualize. **But be careful,** make sure that **this line ends in a pipe** (`|>`) and not in a `+` sign like t |> he other ones.
@@ -194,7 +206,7 @@ df_hospital |>
 
 Fabulous, take a look at that big beautiful box of potential. This is our empty canvas. In RStudio this plot should show up in the panel on the bottom right of the screen.
 
-![The plot pannel in RStudio IDE](../img/core/07_epicurves/ggplot_004_plot_panel.png){fig-align="center"}
+![](../img/core/06_epicurves/03_plot_panel.png){fig-align="center"}
 
 ::: {.callout-note}
 Just like with `{dplyr}`, we write our column names without quotation marks. This is unsurprising as `{ggplot2}`, like `{dplyr}`, is a member of the `{tidyverse}` and therefore uses similar syntax.
@@ -379,7 +391,7 @@ Add one final layer to your plot that adds a theme of your choice with an approp
 
 If you would like to save your epicurve, you can click on the "Export" button in the plot panel of RStudio:
 
-![Save plot button in the RStudio plot pannel](../img/core/07_epicurves/ggplot_005_plot_export.png){fig-align="center"}
+![](../img/core/06_epicurves/04_plot_export.png){fig-align="center"}
 
 
 ## Done!

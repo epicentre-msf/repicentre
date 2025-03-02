@@ -1,7 +1,6 @@
 ---
 title: Data Manipulation, Filtering and Recoding
 description: Using `{dplyr}` and conditional logic to filter and recode data
-date: last-modified
 image: ../img/core/04_manipulation_conditionals/logo.svg
 categories:
   - Core

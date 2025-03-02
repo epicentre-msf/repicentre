@@ -188,12 +188,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-title-meta">
 
     
-    <div>
-    <div class="quarto-title-meta-heading">Date de publication</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">21 février 2025</p>
-    </div>
-  </div>
   
     
   </div>
@@ -207,7 +201,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Construire une courbe épidémique simple</li>
 </ul></section><section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <p>Pour cette dernière session, nous allons vous donner une courte introduction à la visualisation de données à l’aide du package <code>{ggplot2}</code>, un outil populaire. Gardez en tête que la visualisation de données est un énorme sujet, et <code>{ggplot2}</code> un vaste package et il n’est pas réaliste de tout traiter en trois heures. La session d’aujourd’hui est une introduction que nous espérons douce aux concepts de base de la visualisation, en prenant pour objet un graphe fameux en épidémiologie, <strong>la <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Les courbes épidémiques sont un type particulier de représentation qui montre le nombre journalier ou hebdomadaire de cas observés pendant une épidémie. Ces courbes sont très utilisées en épidémiologie, et peuvent être complexifiées en ajoutant le statut du cas, son type de décharge, etc.">courbe épidémique</span></strong>.</p>
-<p>Our final plot will look like this:</p>
+<p>Notre visualisation finale ressemblera à ceci :</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -217,9 +211,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section><section id="setup" class="level2"><h2 class="anchored" data-anchor-id="setup">Setup</h2>
-<p>Before we get into the theory, let’s get your data and script ready.</p>
-<div class="write">
-<p>Ouvrez votre projet Rstudio du cours et créez un nouveau script appelé “courbe_epi.R” avec les métadonnées appropriées. Enregistrez le dans <code>R/</code>. Pour cette session, nous aurons besoin de charger les packages <code>{here}</code>, <code>{rio}</code>, <code>{dplyr}</code>, <code>{lubridate}</code>, et<code>{ggplot2}</code>. <br> Ajoutez une section <code># IMPORTATION DONNÉES</code> où vous importez les données nettoyées du cours (<code>linelist_moissala_clean_FR.RDS</code>).</p>
+<p><strong>Dépendances.</strong> Cette session suppose que vous savez utiliser RStudio, que vous êtes capable d’importer des données et que vous connaissez les verbes de base de manipulation des données que nous avons vus dans les sessions de base jusqu’à présent. Si vous avez besoin d’un rappel sur l’un de ces sujets, nous vous encourageons à revoir les sessions de base du parcours d’apprentissage.</p>
+<div class="setup">
+<p>Cette session utilisera la version nettoyée de l’ensemble de données Moissala sur la rougeole.</p>
+<div class="cell">
+<div class="cell-output-display">
+<a href="https://github.com/epicentre-msf/repicentre/raw/main/data/FETCHR.zip">
+<button class="btn btn-default"><i class="fa fa-save"></i>  Course Folder</button>
+</a>
+</div>
+</div>
+<p><br> Ouvrez votre projet Rstudio du cours et créez un nouveau script appelé “courbe_epi.R” avec les métadonnées appropriées. Enregistrez le dans <code>R/</code>. Pour cette session, nous aurons besoin de charger les packages <code>{here}</code>, <code>{rio}</code>, <code>{dplyr}</code>, <code>{lubridate}</code>, et<code>{ggplot2}</code>. Ajoutez une section <code># IMPORTATION DONNÉES</code> où vous importez les données nettoyées du cours (<code>linelist_moissala_clean_FR.RDS</code>).</p>
 </div>
 </section><section id="les-paradigmes-de-la-création-de-graphiques" class="level2"><h2 class="anchored" data-anchor-id="les-paradigmes-de-la-création-de-graphiques">Les paradigmes de la création de graphiques</h2>
 <p>In R, and indeed in everything, there are a loIl y a de nombreuses approches à la visualisation de données, en général et en R en particulier. Les deux plus grands paradigmes sont :</p>
@@ -241,8 +243,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>On peut illustrer ces composants avec la courbé épidémique schématique suivante :</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="../img/core/06_epicurves/01_theory.png" class="img-fluid figure-img"></p>
-<figcaption>The main components of a plot</figcaption></figure>
+<figure class="figure"><p><img src="../img/core/06_epicurves/01_theory.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
 </div>
 <p>La première couche, le caneva (ou la toile) est fondamentale. Comme un artiste prépare sa toile vierge et ses outils avant de se lancer dans une peinture, R doit en premier lieu créer un canevas prêt à accueillir les éléments de représentation graphique. C’est lors de la création du canevas que nous indiquons à R que nous voulons créer un graphique, et avec quelles variables.</p>
 <p>Ici, nous allons spécifier à R que nous voulons un graphique où l’axe horizontal représente la date, et l’axe vertical représente le nombre de cas. Une fois le canevas mise en place, nous ajouterons d’autres couches, comme un artiste ajouterait de la peinture, leur signature ou un cadre.</p>
@@ -279,8 +281,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Nous pouvons mettre à jour notre précédent schéma avec ces fonctions :</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="../img/core/06_epicurves/02_functions.png" class="img-fluid figure-img"></p>
-<figcaption>The main components of a plot, with their associated functions</figcaption></figure>
+<figure class="figure"><p><img src="../img/core/06_epicurves/02_functions.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -346,15 +348,15 @@ Note
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> patients))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Dans Rstudio, ce graphique devrait apparaître dans l’onglet “Plots” dans le panneau en bas à droite (par défaut) :</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="../img/core/06_epicurves/03_plot_panel.png" class="img-fluid figure-img"></p>
-<figcaption>The plot pannel in RStudio IDE</figcaption></figure>
+<figure class="figure"><p><img src="../img/core/06_epicurves/03_plot_panel.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -378,7 +380,7 @@ Note
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -403,7 +405,7 @@ Note
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -417,7 +419,7 @@ Note
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#2E4573"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -429,7 +431,7 @@ Note
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -467,7 +469,7 @@ Note
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Hospitalisations pour rougeole dans la région de Madoul (Tchad)"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -479,7 +481,7 @@ Note
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -499,7 +501,7 @@ Note
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -516,7 +518,7 @@ Note
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">17</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -529,8 +531,8 @@ Note
 </section><section id="sauvegarder-votre-graphique" class="level3"><h3 class="anchored" data-anchor-id="sauvegarder-votre-graphique">Sauvegarder votre graphique</h3>
 <p>Si vous souhaitez enregistrer votre graphe, vous pouvez cliquer sur le bouton « Exporter » dans le panneau de tracé de RStudio :</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="../img/core/06_epicurves/04_plot_export.png" class="img-fluid figure-img"></p>
-<figcaption>Bouton d’enregistrement du tracé dans le panneau de tracé de RStudio</figcaption></figure>
+<figure class="figure"><p><img src="../img/core/06_epicurves/04_plot_export.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
 </div>
 </section></section><section id="la-fin" class="level2"><h2 class="anchored" data-anchor-id="la-fin">La Fin !</h2>
 <p>Bravo! Vous avez créé votre première courbe épidémique en R !</p>

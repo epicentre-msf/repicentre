@@ -2,7 +2,6 @@
 title: Introduction à R
 description: Vos premiers pas dans R. Familiarisez-vous avec Rstudio et
   avec les objets courants de R.
-date: last-modified
 image: ../img/core/01_introduction/logo.svg
 categories:
 - Core

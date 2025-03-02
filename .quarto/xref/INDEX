@@ -88,5 +88,11 @@
   },
   "sessions_extra/data_exploration_satellite.qmd": {
     "data_exploration_satellite.html": "02cdf728"
+  },
+  "sessions_extra/data_exploration.fr.qmd": {
+    "data_exploration.fr.html": "a4b8294d"
+  },
+  "sessions_extra/data_exploration.qmd": {
+    "data_exploration.html": "b7e41942"
   }
 }
