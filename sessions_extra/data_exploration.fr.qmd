@@ -1,7 +1,6 @@
 ---
 title: Exploration des données
 description: Explorez vos données après l'importation
-date: last-modified
 image: ../../img/extra/data_exploration/logo.svg
 categories:
   - Satellite
@@ -22,13 +21,11 @@ Objectifs
 - Effectuer une exploration rapide d'un ensemble de données importé
 - Produire des tableaux de fréquence pour les variables 
 
-:::{.callout-important}
-
-**Dependances.** Cette session supplémentaire suppose que vous avez suivi les sessions [introduction à R et R studio](01_introduction.html), et [importation de données](02_import_data.html).  
-:::
 
 Setup
 ----------------------------------------------------------------------------------------------------
+
+**Dependances.** Cette session supplémentaire suppose que vous avez suivi les sessions [introduction à R et R studio](../sessions_core/01_introduction.html), et [importation de données](../sessions_core/02_import_data.html).  
 
 ::: {.setup}
 Pour cette session, nous travaillerons avec notre liste brute de rougeole de Moissala qui peut être téléchargée ici : 
@@ -38,14 +35,14 @@ Pour cette session, nous travaillerons avec notre liste brute de rougeole de Moi
 #| eval: true
 
 downloadthis::download_link(
-  link = 'https://github.com/epicentre-msf/repicentre/data/raw/moissala_linelist_FR.xlsx',
+  link = 'https://github.com/epicentre-msf/repicentre/raw/main/data/FETCHR.zip',
   button_label = ' Course Folder',
   has_icon = TRUE,
   icon = "fa fa-save",
   self_contained = FALSE
 )
 ```
-
+<br>
 Assurez-vous qu'il est correctement stocké dans `data/raw` de votre projet. Ensuite, ouvrez un nouveau script appelé `data-exploration.R`, et assurez-vous que les paquets `{here}`, `{rio}` et `{dplyr}` sont chargés. Enfin, importez les données dans R sous la forme d'un objet appelé `df_linelist`. 
 :::
 
@@ -163,10 +160,10 @@ Maintenant que vous savez comment extraire les valeurs d'une variable, vous pouv
 | `mean()` | Moyenne arithmétique | `mean(x)` | Valeur moyenne |
 | `median()` | Valeur moyenne | `median(x)` | Valeur moyenne | médiane(x) |
 | `range()` | Min et max | `range(x)` | Vecteur de (min, max) |
-| `IQR(x)` | Q3 - Q1 | `IQR(x)` | Q3 - Q1 | IQR(x) | Q3 - Q1 | IQR(x) | IQR(x) | Q3 - Q1 |
+| `IQR(x)` | Q3 - Q1 | `IQR(x)` | Q3 - Q1 |
 | `quantile()` | Quantiles spécifiés | `quantile(x, probs = c(0.25, 0.75))` | Quantiles demandés |
-| `sd()` | Ecart-type | sd(x) | Ecart-type | `sd()` | Ecart-type |
-| `var()` | Variance | var(x) | Variance | `var(x)` | Variance |
+| `sd()` | Ecart-type | `sd()` | Ecart-type |
+| `var()` | Variance | `var(x)` | Variance |
 | `sum()` | Somme des valeurs | `sum(x)` | Somme |
 
 :::{.callout-tip}
@@ -216,7 +213,7 @@ Bravo pour ce premier coup d'œil sur vos données !
 #| eval: true
 
 downloadthis::download_link(
-  link = 'https://github.com/epicentre-msf/repicentre/blob/main/solutions/extra/data_exploration.R',
+  link = 'https://github.com/epicentre-msf/repicentre/blob/main/solutions/extra/data_exploration_fr.R',
   button_label = 'Solution File',
   has_icon = TRUE,
   icon = "fa fa-save",

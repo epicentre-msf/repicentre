@@ -1,7 +1,6 @@
 ---
 title: Data Exploration
 description: Explore your data after importation
-date: last-modified
 image: ../../img/extra/data_exploration/logo.svg
 categories:
   - Satellite
@@ -22,13 +21,11 @@ Objectives
 - Perform quick exploration of an imported dataset
 - Produce frequency tables for variables 
 
-:::{.callout-important}
-
-**Dependencies.** This extra session assumes that you have completed the sessions [introduction to R and R studio](01_introduction.html), and [data importation](02_import_data.html).  
-:::
 
 Setup
 ----------------------------------------------------------------------------------------------------
+
+**Dependencies.** This extra session assumes that you have completed the sessions [introduction to R and R studio](../sessions_core/01_introduction.html), and [data importation](../sessions_core/02_import_data.html).  
 
 ::: {.setup}
 For this session we will work with our raw Moissala measles linelist which can be downloaded here: 
@@ -38,14 +35,14 @@ For this session we will work with our raw Moissala measles linelist which can b
 #| eval: true
 
 downloadthis::download_link(
-  link = 'https://github.com/epicentre-msf/repicentre/data/raw/moissala_linelist_EN.xlsx',
+  link = 'https://github.com/epicentre-msf/repicentre/raw/main/data/FETCHR.zip',
   button_label = ' Course Folder',
   has_icon = TRUE,
   icon = "fa fa-save",
   self_contained = FALSE
 )
 ```
-
+<br>
 Make sure it is appropriately stored in `data/raw` of your project. Then open a new script called `data-exploration.R`, and make sure packages `{here}`, `{rio}` and `{dplyr}` are loaded. Finally, import the data into R as an object called `df_linelist`. 
 :::
 
