@@ -18,7 +18,7 @@ library(rio)  # import and export files
 Objectifs
 ----------------------------------------------------------------------------------------------------
 
-- Effectuer une exploration rapide d'un ensemble de données importé
+- Effectuer une exploration rapide d'un jeu de données importé
 - Produire des tableaux de fréquence pour les variables 
 
 
@@ -28,7 +28,7 @@ Setup
 **Dependances.** Cette session supplémentaire suppose que vous avez suivi les sessions [introduction à R et R studio](../sessions_core/01_introduction.html), et [importation de données](../sessions_core/02_import_data.html).  
 
 ::: {.setup}
-Pour cette session, nous travaillerons avec notre liste brute de rougeole de Moissala qui peut être téléchargée ici : 
+Pour cette session, nous travaillerons avec les données sales de la liste linéaire sur la rougeole dans la région de Mandoul (Tchad), qui peut être téléchargée ici : 
 
 ```{r}
 #| echo: false
@@ -36,14 +36,14 @@ Pour cette session, nous travaillerons avec notre liste brute de rougeole de Moi
 
 downloadthis::download_link(
   link = 'https://github.com/epicentre-msf/repicentre/raw/main/data/FETCHR.zip',
-  button_label = ' Course Folder',
+  button_label = 'Télécharger les données',
   has_icon = TRUE,
   icon = "fa fa-save",
   self_contained = FALSE
 )
 ```
 <br>
-Assurez-vous qu'il est correctement stocké dans `data/raw` de votre projet. Ensuite, ouvrez un nouveau script appelé `data-exploration.R`, et assurez-vous que les paquets `{here}`, `{rio}` et `{dplyr}` sont chargés. Enfin, importez les données dans R sous la forme d'un objet appelé `df_linelist`. 
+Assurez-vous qu'elle est correctement enregistrée dans `data/raw` de votre projet. Ensuite, ouvrez un nouveau script appelé `data-exploration.R`, et assurez-vous que les paquets `{here}`, `{rio}` et `{dplyr}` sont chargés. Enfin, importez les données dans R sous la forme d'un objet appelé `df_linelist`. 
 :::
 
 Exploration des données
@@ -51,7 +51,7 @@ Exploration des données
 
 Juste après avoir importé des données dans R, nous pouvons avoir envie d'y jeter un coup d'œil. Lorsque l'on parle d'exploration de données, on veut généralement faire plusieurs choses :
 
-- Examiner les dimensions des données (c'est-à-dire le nombre de lignes et de colonnes).
+- Examiner les dimensions des données (c'est-à-dire le nombre de lignes et de colonnes)
 - Examiner les noms des colonnes 
 - Visualiser les premières ou les dernières lignes 
 - Déterminer le type des variables
@@ -65,8 +65,7 @@ library(here)
 library(rio)
 library(dplyr)
 
-df_linelist <- import(here::here("data", "raw", "moissala_linelist_EN.xlsx"))
-
+df_linelist <- import(here::here("data", "raw", "moissala_linelist_FR.xlsx"))
 ```
 
 Exploration de base
@@ -89,7 +88,7 @@ En utilisant la méthode de votre choix, obtenez les dimensions de votre data fr
 Noms de variables
 ----------------------------------------------------------------------------------------------------
 
-Comme nous allons utiliser les noms des variables très souvent au cours de notre analyse, nous voulons nous familiariser avec eux dès le début. De plus, nous devons identifier celles qui devront être renommées lors du nettoyage des données. La fonction `names()` renvoie un vecteur de tous les noms de variables dans notre cadre de données : 
+Comme nous allons utiliser les noms des variables très souvent au cours de notre analyse, nous voulons nous familiariser avec eux dès le début. De plus, nous devons identifier celles qui devront être renommées lors du nettoyage des données. La fonction `names()` renvoie un vecteur de tous les noms de variables dans notre data frame : 
 
 ```{r, eval = TRUE}
 
@@ -98,7 +97,7 @@ names(df_linelist)
 ```
 
 ::: {.look}
-Que pensez-vous des noms de votre ensemble de données ? Pouvez-vous déjà repérer des noms de variables que vous aimeriez renommer ?
+Que pensez-vous des noms de votre jeu de données ? Pouvez-vous déjà repérer des noms de variables que vous aimeriez renommer ?
 :::
 
 Inspecter vos données
@@ -106,14 +105,14 @@ Inspecter vos données
 
 Il est également intéressant d'inspecter vos données, cela peut vous permettre de repérer plus facilement certaines incohérences, des variables avec beaucoup de valeurs manquantes, et cela vous permettra de voir à quelles valeurs s'attendre pour chacune d'entre elles. Vous pouvez ["print"]{.hovertip bs-toggle='tooltip' bs-title="Print est un mot de programmation qui signifie afficher une sortie dans votre console."} vos données dans la console en : 
 
-1. Exécutant l'objet `df_linelist` seul (attention, vous ne voudrez peut-être pas faire cela si vous avez un grand ensemble de données).
+1. Exécutant l'objet `df_linelist` seul (attention, vous ne voudrez peut-être pas faire cela si vous avez un grand jeu de données).
 2. Utilisant la fonction `head()` pour voir les 6 premières lignes (vous pouvez augmenter ce nombre en utilisant l'argument `n`)
 2. Utilisant la fonction `tail()` pour voir les 6 dernières lignes (encore une fois, vous pouvez augmenter ce nombre en utilisant l'argument `n`)
 
 Ces méthodes n'afficheront que les 40 premières lignes de vos données au maximum, car c'est la limite de votre console. Alternativement, vous pouvez utiliser `View()` pour voir vos données sous forme de tableau. Cela ouvrira une nouvelle fenêtre avec vos données affichées comme dans une feuille de calcul Excel. **Note** : cette commande ne fait qu'afficher les données, elle ne vous permet pas de les modifier. 
 
 :::{.callout-tip}
-Soyez très prudent avec `View()` sur un grand jeu de données car cela peut faire planter votre session RStudio. Pour éviter cela, vous pouvez imprimer la sortie dans la console. 
+Soyez très prudent avec `View()` sur un grand jeu de données car cela peut faire planter votre session RStudio. Pour éviter cela, vous pouvez afficher la sortie dans la console. 
 :::
 
 :::{.write}
@@ -124,7 +123,7 @@ Pouvez-vous afficher les 15 premières lignes de vos données ? Que se passe-t-i
 Types des variables
 ----------------------------------------------------------------------------------------------------
 
-Nous voulons maintenant vérifier le type des différentes variables. C'est important car une partie du nettoyage des données consiste à s'assurer que les variables numériques sont de type `numeric`, dates `Date`, et que les variables catégorielles sont de type `factor` ou `character`. Vous avez déjà vu la fonction `class()`, qui permet de vérifier le type d'un vecteur. Dans R, chaque variable d'un dataframe est un vecteur. Nous pouvons extraire toutes les valeurs de ce vecteur en utilisant le [sign `$`]{.hovertip bs-toggle='tooltip' bs-title="C'est ce qu'on appelle 'base indexing' dans R"}, et les passer à la fonction `class()` : 
+Nous voulons maintenant vérifier le type des différentes variables. C'est important car une partie du nettoyage des données consiste à s'assurer que les variables numériques sont de type `numeric`, dates `Date`, et que les variables catégorielles sont de type `factor` ou `character`. Vous avez déjà vu la fonction `class()`, qui permet de vérifier le type d'un vecteur. Dans R, chaque variable d'un data frame est un vecteur. Nous pouvons extraire toutes les valeurs de ce vecteur en utilisant [l'opérateur  `$`]{.hovertip bs-toggle='tooltip' bs-title="C'est ce qu'on appelle 'base indexing' dans R"}, et les passer à la fonction `class()` : 
 
 ```{r}
 #| eval: false
@@ -133,10 +132,10 @@ class(df_linelist$age)
 ```
 
 :::{.write}
-Essayez d'extraire toutes les valeurs de la variable `sex`. Quelle est le type de cette variable ? 
+Essayez d'extraire toutes les valeurs de la variable `sexe`. Quel est le type de cette variable ? 
 :::
 
-Vous pouvez également utiliser `str()` sur votre dataframe pour vérifier le type de toutes les variables à la fois : 
+Vous pouvez également utiliser `str()` sur votre data frame pour vérifier le type de toutes les variables à la fois : 
 
 ```{r}
 #| eval: false
@@ -151,14 +150,14 @@ Utilisez `str()` pour vérifier le type de données de chaque colonne. Y a-t-il 
 Exploration des variables continues
 ----------------------------------------------------------------------------------------------------
 
-Maintenant que vous savez comment extraire les valeurs d'une variable, vous pouvez vouloir explorer certaines des valeurs des variables numériques pour vérifier les incohérences. Calculer des statistiques récapitulatives pour ces variables, et Base R fournit de nombreuses fonctions pratiques :
+Maintenant que vous savez comment extraire les valeurs d'une variable, vous pouvez vouloir explorer certaines des valeurs des variables numériques pour vérifier les incohérences ou calculer des statistiques récapitulatives pour ces variables. Base R fournit de nombreuses fonctions pratiques :
 
 | Fonction | Description | Exemple | Retours |
 |----------|-------------|---------|----------|
 | `min()` | Valeur minimale | `min(x)` | Valeur minimale unique |
 | `max()` | Valeur maximale | `max(x)` | Valeur maximale unique |
 | `mean()` | Moyenne arithmétique | `mean(x)` | Valeur moyenne |
-| `median()` | Valeur moyenne | `median(x)` | Valeur moyenne | médiane(x) |
+| `median()` | Valeur médiane | `median(x)` | Valeur médiane | médiane(x) |
 | `range()` | Min et max | `range(x)` | Vecteur de (min, max) |
 | `IQR(x)` | Q3 - Q1 | `IQR(x)` | Q3 - Q1 |
 | `quantile()` | Quantiles spécifiés | `quantile(x, probs = c(0.25, 0.75))` | Quantiles demandés |
@@ -176,7 +175,7 @@ Vous pouvez extraire les valeurs d'une variable en utilisant `$`, et les passer 
 Utilisez la syntaxe `$` pour obtenir : 
 
 - La valeur minimale de `age`
-- Le maximum de `muac`
+- Le maximum de `pb`
 
 **Des problèmes ?**
 :::
@@ -184,27 +183,27 @@ Utilisez la syntaxe `$` pour obtenir :
 Exploration des variables catégorielles
 ----------------------------------------------------------------------------------------------------
 
-Enfin, examinons les valeurs de nos variables catégorielles. Pour ce faire, nous pouvons utiliser des tableaux de fréquence. C'est pratique car :
+Enfin, examinons les valeurs de nos variables catégorielles. Pour ce faire, nous pouvons utiliser des tableaux de fréquence. C'est pratique car ils nous permettent de voir rapidement  :
 
-1. Ils nous permettent de voir rapidement les valeurs uniques d'une variable catégorielle
-2. Le nombre d'observations pour chacune de ces catégories
+1. les valeurs uniques d'une variable catégorielle
+2. le nombre d'observations pour chacune de ces catégories
 
-Pour ce faire, on utilise la fonction `count()` du [package `{dplyr}`]{.hovertip bs-toggle='tooltip' bs-title="Nous en apprendrons plus sur ce package lors de la prochaine session."}, qui accepte un dataframe et le nom d'une (ou plusieurs !) colonne(s) en tant qu'arguments. Il compte alors le **nombre d'observations** de chaque élément unique dans cette colonne. Par exemple, voyons les valeurs possibles de la variable `sex` : 
+Pour ce faire, on utilise la fonction `count()` du [paquet `{dplyr}`]{.hovertip bs-toggle='tooltip' bs-title="Nous en apprendrons plus sur ce paquet lors de la prochaine session."}, qui accepte un data frame et le nom d'une (ou plusieurs !) colonne(s) en tant qu'arguments. Il compte alors le **nombre d'observations** de chaque élément unique dans cette colonne. Par exemple, voyons les valeurs possibles de la variable `sexe` : 
 
 ```{r}
-count(df_linelist, sex)
+count(df_linelist, sexe)
 ```
 
-Le résultat est un nouveau dataframe, plus petit, contenant le nombre de patients observés, stratifié par `sex`. Il semble que cette variable nécessite un recodage... Nous le ferons dans une prochaine session. 
+Le résultat est un nouveau data frame, plus petit, contenant le nombre de patients observés, stratifié par `sexe`. Il semble que cette variable nécessite un recodage... Nous le ferons dans une prochaine session. 
 
 ::: {.write}
-En utilisant les données de votre liste, examinez les valeurs de la variable `outcome`. A quoi cela ressemble-t-il ? 
+En utilisant les données de votre liste linéaire, examinez les valeurs de la variable `issue`. Qu'est ce que ça donne ? 
 
 Maintenant, essayez d'ajouter l'argument `sort = TRUE` à la fonction `count()`. Que fait cet argument ?
 :::
 
 
-C'est fait !
+C'est fini !
 ----------------------------------------------------------------------------------------------------
 Bravo pour ce premier coup d'œil sur vos données !
 
@@ -214,7 +213,7 @@ Bravo pour ce premier coup d'œil sur vos données !
 
 downloadthis::download_link(
   link = 'https://github.com/epicentre-msf/repicentre/blob/main/solutions/extra/data_exploration_fr.R',
-  button_label = 'Solution File',
+  button_label = 'Solutions exercices',
   has_icon = TRUE,
   icon = "fa fa-save",
   self_contained = FALSE
