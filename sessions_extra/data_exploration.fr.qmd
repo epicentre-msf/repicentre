@@ -65,7 +65,7 @@ library(here)
 library(rio)
 library(dplyr)
 
-df_linelist <- import(here::here("data", "raw", "moissala_linelist_EN.xlsx"))
+df_linelist <- import(here::here("data", "raw", "moissala_linelist_FR.xlsx"))
 
 ```
 
@@ -184,7 +184,7 @@ Utilisez la syntaxe `$` pour obtenir :
 Exploration des variables catégorielles
 ----------------------------------------------------------------------------------------------------
 
-Enfin, examinons les valeurs de nos variables catégorielles. Pour ce faire, nous pouvons utiliser des tableaux de fréquence. C'est pratique car :
+Enfin, examinons les valeurs de nos variables catégorielles. Pour ce faire, nous pouvons utiliser des tableaux des effectifs. C'est pratique car :
 
 1. Ils nous permettent de voir rapidement les valeurs uniques d'une variable catégorielle
 2. Le nombre d'observations pour chacune de ces catégories
