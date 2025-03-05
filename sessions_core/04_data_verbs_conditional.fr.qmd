@@ -151,6 +151,7 @@ Affichez un data frame ne contenant que les patients souffrant de [malnutrition 
 #| echo: false
 
 df_brut |>
+  filter(pb < 110) |>
   select(pb) |>
   head(10)
 ```
