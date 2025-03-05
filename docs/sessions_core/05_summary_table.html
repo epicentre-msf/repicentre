@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<link rel="alternate" hreflang="en" href="https://epicentre-msf.github.io/repicentre/sessions_core/05_summary_table.html" />
-<link rel="alternate" hreflang="fr" href="https://epicentre-msf.github.io/repicentre/fr/sessions_core/05_summary_table.fr.html" />
+<link rel="alternate" hreflang="en" href="/sessions_core/05_summary_table.html" />
+<link rel="alternate" hreflang="fr" href="/fr/sessions_core/05_summary_table.fr.html" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.6.37">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="description" content="Create summary tables">
 <title>Summary Tables – {repicentre}</title>
@@ -58,11 +58,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script><script src="../site_libs/quarto-nav/headroom.min.js"></script><script src="../site_libs/clipboard/clipboard.min.js"></script><script src="../site_libs/quarto-search/autocomplete.umd.js"></script><script src="../site_libs/quarto-search/fuse.min.js"></script><script src="../site_libs/quarto-search/quarto-search.js"></script><meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js"></script><script src="../site_libs/quarto-html/popper.min.js"></script><script src="../site_libs/quarto-html/tippy.umd.min.js"></script><script src="../site_libs/quarto-html/anchor.min.js"></script><link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-0626ff4d7a71b55c8707dcae1d04a9b6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-e25cc82807363e79c52e96bc8b7855f1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-697306ee647f3aecb60be57249203282.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-3fe3df12cb322cd60d4f50ab5ce79ec8.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script><link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-b814d3e578892f16fb585af6f47f426f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-35dfec4a88a4a8552367c65e80eaa027.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-d747503b21a9267137dc98650c9a257a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-5131c98158f83ec01234852a3be8e382.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -107,7 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
 <li class="nav-item"><div class="dropdown" id="languages-links-parent">
-<button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="languages-button"><i class="bi bi-globe2"></i> English</button><ul class="dropdown-menu" id="languages-links"><li><a class="dropdown-item" href="https://epicentre-msf.github.io/repicentre/fr/sessions_core/05_summary_table.html" id="language-link-fr">Français</a></li></ul>
+<button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="languages-button"><i class="bi bi-globe2"></i> English</button><ul class="dropdown-menu" id="languages-links"><li><a class="dropdown-item" href="/fr/sessions_core/05_summary_table.html" id="language-link-fr">Français</a></li></ul>
 </div></li>
 <li class="nav-item">
     <a class="nav-link" href="../pathway.html"> 
@@ -305,10 +305,8 @@ Tip
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">|&gt;</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_age =</span> <span class="fu">mean</span>(age))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 1
-  mean_age
-     &lt;dbl&gt;
-1     6.82</code></pre>
+<pre><code>  mean_age
+1 6.822047</code></pre>
 </div>
 </div>
 <p>Notice that this code yields a single value for average age. No grouping variable was provided so <code>summarize()</code> returned one summary statistic for the whole dataset. To calculate the average age by a specific strata, we need to specify a <strong>grouping variable</strong> using the <code>.by</code> argument:</p>
@@ -319,11 +317,9 @@ Tip
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_age =</span> <span class="fu">mean</span>(age)</span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 2
-  sex   mean_age
-  &lt;chr&gt;    &lt;dbl&gt;
-1 f         6.77
-2 m         6.87</code></pre>
+<pre><code>  sex mean_age
+1   f 6.773824
+2   m 6.869855</code></pre>
 </div>
 </div>
 <div class="look">
@@ -442,17 +438,20 @@ Tip
 <p>The head of your final table should look like this:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 11
-  sub_prefecture n_patients mean_age min_admission n_female n_hosp mean_age_hosp
-  &lt;chr&gt;               &lt;int&gt;    &lt;dbl&gt; &lt;date&gt;           &lt;int&gt;  &lt;int&gt;         &lt;dbl&gt;
-1 Moissala             1808     6.84 2022-08-14         923    612          5.49
-2 Bouna                1376     6.56 2023-01-11         669    412          5.67
-3 Bedjondo              534     7.07 2023-06-09         251    184          5.21
-4 Bekourou              496     6.84 2023-06-17         251    164          6.04
-5 Bedaya                435     7.10 2023-07-04         209    147          6.16
-6 Koumra                253     7.11 2023-08-14         138     84          6.26
-# ℹ 4 more variables: mean_age_female &lt;dbl&gt;, n_death_u6m &lt;int&gt;,
-#   prop_female &lt;dbl&gt;, prop_hosp &lt;dbl&gt;</code></pre>
+<pre><code>  sub_prefecture n_patients mean_age min_admission n_female n_hosp
+1       Moissala       1808 6.842920    2022-08-14      923    612
+2          Bouna       1376 6.555959    2023-01-11      669    412
+3       Bedjondo        534 7.073034    2023-06-09      251    184
+4       Bekourou        496 6.836694    2023-06-17      251    164
+5         Bedaya        435 7.098851    2023-07-04      209    147
+6         Koumra        253 7.106719    2023-08-14      138     84
+  mean_age_hosp mean_age_female n_death_u6m prop_female prop_hosp
+1      5.485294        6.748646          71   0.5105088 0.3384956
+2      5.665049        6.633782          61   0.4861919 0.2994186
+3      5.211957        6.948207          22   0.4700375 0.3445693
+4      6.042683        6.840637          25   0.5060484 0.3306452
+5      6.156463        7.105263          17   0.4804598 0.3379310
+6      6.261905        6.456522           7   0.5454545 0.3320158</code></pre>
 </div>
 </div>
 </section></section><section id="done" class="level2"><h2 class="anchored" data-anchor-id="done">Done!</h2>
