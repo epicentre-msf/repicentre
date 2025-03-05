@@ -213,7 +213,7 @@ df_brut |>
 ```
 
 :::{.write}
-Créez un filtre qui sélectionne tous les patients de la sous-préfecture de Koumra hospitalisés et sévèrement malnutris Cela donne  :
+Créez un filtre qui sélectionne tous les patients de la sous-préfecture de Koumra hospitalisés et sévèrement malnutris. Cela donne  :
 
 ```{r}
 #| eval: true
@@ -359,11 +359,11 @@ Utilisez `case_when()` pour créer une variable `groupe_age` avec les catégorie
 #| echo: false
 
 df_brut |>
-  mutate(age_group = case_when(age < 60 ~ "< 5 Ans",
+  mutate(groupe_age = case_when(age < 60 ~ "< 5 Ans",
                                age <= 180 ~ "5 - 15 Ans",
                                age > 180 ~ "> 15 Ans",
                                .default = "Inconnu")) |>
-  select(age, age_group) |>
+  select(age, groupe_age) |>
   head(10)
 ```
 :::
@@ -453,7 +453,7 @@ Reprenez, le code de la session précédente, amendez-le et complétez le pour c
 
 - Supprimer les variables `nom_complet` et `unite_age`
 - Renommer les variables suivantes :
-  - `age` devient `age_ans`
+  - `age` devient `age_mois`
   - `sous_prefecture` devient `prefecture`
   - `village_commune` devient `village`
   - `nom_structure_sante` devient `structure`
@@ -506,7 +506,7 @@ Top ! Nous pouvons maintenant exporter ce data frame (presque) propre hors de R.
 
 ```{r}
 df |>
-  export(here('data', 'clean', 'measles_linelist_clean.xlsx'))
+  export(here("data", "clean", "measles_linelist_clean.xlsx"))
 ```
 
 Notez ici que nous plaçons nos données dans le sous-dossier `clean` dans `data`. 
@@ -518,7 +518,7 @@ Pour exporter votre data frame vers un fichier `.rds`, il suffit de modifier l'e
 
 ```{r}
 df |>
-  export(here('data', 'clean', 'measles_linelist_clean.rds')) # TADAM !
+  export(here("data", "clean", "measles_linelist_clean.rds")) # TADAM !
 ```
 :::
 
