@@ -52,7 +52,7 @@ downloadthis::download_link(
 <br>
 Si ce n'est pas déjà fait, enregistrez le jeu de données dans le sous-dossier approprié de votre projet RStudio puis créez un nouveau script appelé `fonctions_donnees.R` dans votre sous-dossier `R`. Ajoutez un en-tête approprié et chargez les paquets suivants : `{here}`, `{rio}` et `{tidyverse}`.
 <br><br>
-Enfin, ajoutez une section dédiée à l'import des données, utilisez `{here}` et `{rio}` pour importer vos données dans R, et assignez-les à un objet que nous appellerons [`df_brut`]{.hovertip bs-toggle='tooltip' bs-title="Notez que nous ne nommons pas tout de suite l'objet df_linelist comme nous l'avions fait précédemment. La raison deviendra manifeste sous peu"}.
+Enfin, ajoutez une section dédiée à l'import des données, utilisez `{here}` et `{rio}` pour importer vos données dans R, et assignez-les à un objet que nous appellerons [`df_brut`]{.hovertip bs-toggle='tooltip' bs-title="Notez que nous ne nommons pas tout de suite l'objet df_linelist comme nous l'avions fait précédemment. La raison deviendra manifeste sous peu."}.
 :::
 
 
@@ -198,8 +198,8 @@ Utilisez `mutate()` pour créer une nouvelle colonne `age_ans` qui exprime l'âg
 #| eval: true
 #| echo: false
 df_brut |>
-  mutate(age_years = age / 12) |>
-  select(age_years) |>
+  mutate(age_ans = age / 12) |>
+  select(age_ans) |>
   head()
 ```
 :::
@@ -392,11 +392,11 @@ Nous pourrions donc remplacer le code précédent par ceci :
 
 ```{r}
 df_linelist <- df_brut |>
-  rename(prefecture = sub_prefecture,
+  rename(prefecture = sous_prefecture,
          village    = village_commune,
-         facility   = health_facility_name) |>
-  select(-full_name) |>
-  mutate(age_years = age / 12)
+         facility   = nom_structure_sante) |>
+  select(-nom_complet) |>
+  mutate(age_ans = age / 12)
 ```
 
 C'est beaucoup plus fluide que de réaffecter `df_linelist` après chaque étape ! 
@@ -410,7 +410,7 @@ Rappel des étapes :
 
 - Supprimer les variables `nom_complet` et `unite_age`
 - Renommer les variables suivantes :
-  - `age` devient `age_ans`
+  - `age` devient `age_mois`
   - `sous_prefecture` devient `prefecture`
   - `village_commune` devient `village`
   - `nom_structure_sante` devient `structure`
