@@ -144,7 +144,7 @@ df_brut |>
 ```
 
 :::{.write}
-Affichez un data frame ne contenant que les patients souffrant de [malnutrition aiguë sévère]{.hovertip bs-toggle='tooltip' bs-title="C'est-à-dire les patients dont le PB est inférieur à 110"}. Le début de la colonne concernée est :
+Affichez un data frame ne contenant que les patients souffrant de [malnutrition aiguë sévère]{.hovertip bs-toggle='tooltip' bs-title="C'est-à-dire les patients dont le PB est inférieur à 115"}. Le début de la colonne concernée est :
 
 ```{r}
 #| eval: true
@@ -222,7 +222,7 @@ Créez un filtre qui sélectionne tous les patients de la sous-préfecture de Ko
 df_brut |>
   filter(sous_prefecture == "KOUMRA",
          hospitalisation == "oui",
-         pb < 110) |>
+         pb < 115) |>
   select(id, sous_prefecture, hospitalisation, pb)
 ```
 
@@ -271,12 +271,12 @@ A l'exception de la dernière ligne, chaque ligne à l'intérieur de la fonction
 [condition] ~ [valeur si condition est VRAIE]  # Les crochets sont là pour la lisibilité
 ```
 
-Ainsi, pour recoder les patients avec un PB inférieur à 110mm comme `"MAS"`, nous écrivons la commande suivante dans notre `case_when()` :
+Ainsi, pour recoder les patients avec un PB inférieur à 115mm comme `"MAS"`, nous écrivons la commande suivante dans notre `case_when()` :
 
 ```{r}
 # NE PAS EXÉCUTER (PSEUDO-CODE)
 # [condition] ~ [valeur si VRAIE]
-   pb < 110   ~ "MAS"
+   pb < 115   ~ "MAS"
 ```
 
 Il y a en général plus d'une condition ! Dans notre exemple, une autre condition logique testerait si le patient est modérément malnutri avec l'instruction `pb < 125 ~ "MAM"`. 
@@ -288,7 +288,7 @@ Pour résumer, pour résumer, pour créer une variable contenant le statut nutri
 ```{r}
 df_brut |>
   mutate(malnut = case_when(
-    pb < 110 ~ "MAS",
+    pb < 115 ~ "MAS",
     pb < 125 ~ "MAM",
     .default = "Normal"))
 ```
@@ -302,7 +302,7 @@ Exécutez le code ci-dessus pour créer une variable `malnut` contenant le statu
 
 df_brut |>
   mutate(malnut = case_when(
-    pb < 110 ~ "MAS",
+    pb < 115 ~ "MAS",
     pb < 125 ~ "MAM",
     .default = "Normal")) |>
   select(pb, malnut) |>
@@ -315,7 +315,7 @@ L'ordre des conditions logiques est important ! `case_when()` teste les conditio
 
 Ainsi, dans l'exemple ci-dessus, `case_when()` pose ces questions suivantes dans l'ordre :
 
-- Est-ce que `pb < 110` pour ce patient ? **Si oui**, attribuer la valeur `"MAS"`
+- Est-ce que `pb < 115` pour ce patient ? **Si oui**, attribuer la valeur `"MAS"`
 - *Si le patient n'est pas MAS*, est-ce que `pb < 125` ? **Si oui**, attribuer la valeur `"MAM"`
 - *Si aucune des conditions précédentes n'est vraie*, attribuer la valeur `"Normal"`
 :::
@@ -329,7 +329,7 @@ Intervertissez l'ordre des deux premières conditions dans le `case_when()`préc
 
 df_brut |>
   mutate(malnut = case_when(pb < 125 ~ "MAM",
-                            pb < 110 ~ "MAS",
+                            pb < 115 ~ "MAS",
                             .default = 'Normal')) |>
   select(pb, malnut) |>
   head()
