@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<link rel="alternate" hreflang="en" href="https://epicentre-msf.github.io/repicentre/sessions_core/04_data_verbs_conditional.html" />
-<link rel="alternate" hreflang="fr" href="https://epicentre-msf.github.io/repicentre/fr/sessions_core/04_data_verbs_conditional.fr.html" />
+<link rel="alternate" hreflang="en" href="/sessions_core/04_data_verbs_conditional.html" />
+<link rel="alternate" hreflang="fr" href="/fr/sessions_core/04_data_verbs_conditional.fr.html" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.6.37">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="description" content="Using {dplyr} and conditional logic to filter and recode data">
 <title>Data Manipulation, Filtering and Recoding – {repicentre}</title>
@@ -58,11 +58,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script><script src="../site_libs/quarto-nav/headroom.min.js"></script><script src="../site_libs/clipboard/clipboard.min.js"></script><script src="../site_libs/quarto-search/autocomplete.umd.js"></script><script src="../site_libs/quarto-search/fuse.min.js"></script><script src="../site_libs/quarto-search/quarto-search.js"></script><meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js"></script><script src="../site_libs/quarto-html/popper.min.js"></script><script src="../site_libs/quarto-html/tippy.umd.min.js"></script><script src="../site_libs/quarto-html/anchor.min.js"></script><link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-0626ff4d7a71b55c8707dcae1d04a9b6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-e25cc82807363e79c52e96bc8b7855f1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-697306ee647f3aecb60be57249203282.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-3fe3df12cb322cd60d4f50ab5ce79ec8.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script><link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-b814d3e578892f16fb585af6f47f426f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-35dfec4a88a4a8552367c65e80eaa027.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-d747503b21a9267137dc98650c9a257a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-5131c98158f83ec01234852a3be8e382.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -107,7 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
 <li class="nav-item"><div class="dropdown" id="languages-links-parent">
-<button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="languages-button"><i class="bi bi-globe2"></i> English</button><ul class="dropdown-menu" id="languages-links"><li><a class="dropdown-item" href="https://epicentre-msf.github.io/repicentre/fr/sessions_core/04_data_verbs_conditional.html" id="language-link-fr">Français</a></li></ul>
+<button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="languages-button"><i class="bi bi-globe2"></i> English</button><ul class="dropdown-menu" id="languages-links"><li><a class="dropdown-item" href="/fr/sessions_core/04_data_verbs_conditional.html" id="language-link-fr">Français</a></li></ul>
 </div></li>
 <li class="nav-item">
     <a class="nav-link" href="../pathway.html"> 
@@ -162,6 +162,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <a href="#going-further" id="toc-going-further" class="nav-link" data-scroll-target="#going-further">Going Further</a>
   <ul class="collapse">
 <li><a href="#extra-exercises" id="toc-extra-exercises" class="nav-link" data-scroll-target="#extra-exercises">Extra Exercises</a></li>
+  <li><a href="#challenge" id="toc-challenge" class="nav-link" data-scroll-target="#challenge">Challenge</a></li>
   </ul>
 </li>
   </ul></nav>
@@ -632,6 +633,122 @@ Tip
 </div>
 </section><section id="going-further" class="level2"><h2 class="anchored" data-anchor-id="going-further">Going Further</h2>
 <section id="extra-exercises" class="level3"><h3 class="anchored" data-anchor-id="extra-exercises">Extra Exercises</h3>
+<ol type="1">
+<li>
+<strong>Conditions</strong>: let us consider the two following vectors:</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>vec1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>vec2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Write the following tests:</p>
+<ul>
+<li>Is <code>vec1</code> equal to <code>vec2</code>? The output should be TRUE, FALSE, FALSE, FALSE, TRUE.</li>
+<li>Are the values of <code>vec1</code> superior or equal to <code>vec2</code>? The output should be TRUE, FALSE, FALSE, TRUE, TRUE.</li>
+<li>Are the values of <code>vec1</code> present anywhere in <code>vec2</code>? The output should be TRUE, TRUE, TRUE, TRUE, TRUE.</li>
+<li>Test is the values of <code>vec2</code> are <code>NA</code>. <strong>Hint</strong>: you should use the <code>is.na()</code> function.</li>
+</ul>
+<ol start="2" type="1">
+<li><p>Write a command to check if the facility “Moissala Ouest” exists in our linelist.</p></li>
+<li>
+<p><strong>Filter</strong>: create data frames that returns only:</p>
+<ul>
+<li>Patients from the Bedaya sub-prefecture</li>
+<li>Patients with no fever</li>
+<li>Patients who tested negative for malaria</li>
+<li>Patients with no missing information in the fever column</li>
+<li>Patients who were hospitalized in 2023</li>
+<li>Patients of 15 years or more who were hospitalized at any time</li>
+<li>Patients from Moissala who where hospitalized in Moissala Est hospital before the first of February 2023</li>
+<li>Severe acute malnourished children under the age of five</li>
+</ul>
+</li>
+<li>
+<p><strong>Cleaning</strong>: add steps to the cleaning pipeline:</p>
+<ul>
+<li>Use title case for the <code>hospitalisation</code> and <code>malaria_rdt</code> columns</li>
+<li>Recode the <code>outcome</code> column to standardize the values to “Dead”, “Recovered” and “Lost to follow-up”</li>
+<li>Create a <code>is_dead</code> column that is <code>TRUE</code> if the patient died, and <code>FALSE</code> if not</li>
+<li>Create a simplified <code>vacc_status_simple</code> column with modalities “Yes”, “No”, “Unknown”</li>
+</ul>
+</li>
+<li><p><strong>Refactor</strong>: the following code runs without errors but is too long because the writer ignored one of the rule of <code>case_when()</code>. Simplify the command. Do not forget to check that you obtain the same result at the end!</p></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">age_group2 =</span> <span class="fu">case_when</span>(</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    age_months <span class="sc">&lt;</span> <span class="dv">6</span> <span class="sc">~</span> <span class="st">"&lt; 6 months"</span>,</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    age_months <span class="sc">&gt;=</span> <span class="dv">6</span> <span class="sc">&amp;</span> age_months <span class="sc">&lt;</span> <span class="dv">12</span>  <span class="sc">~</span> <span class="st">"6 - 11 months"</span>,</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    age_months <span class="sc">&gt;=</span> <span class="dv">12</span> <span class="sc">&amp;</span>  age_months <span class="sc">&lt;</span> <span class="dv">59</span> <span class="sc">~</span> <span class="st">"12 - 59 months"</span>,</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>    age_years <span class="sc">&gt;=</span> <span class="dv">5</span> <span class="sc">&amp;</span> age_years <span class="sc">&lt;=</span> <span class="dv">15</span> <span class="sc">~</span> <span class="st">"5 - 15 years"</span>,</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>    age_years <span class="sc">&gt;</span> <span class="dv">15</span> <span class="sc">~</span> <span class="st">"&gt; 15 years"</span>,</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">is.na</span>(age_years) <span class="sc">~</span> <span class="st">"Unknown"</span>,</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">is.na</span>(age_months)  <span class="sc">~</span> <span class="st">"Unknown"</span>,</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">.default =</span> <span class="st">"Unknown"</span>)</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="6" type="1">
+<li>
+<strong>Fix</strong>: someone tried to fix the above code but made mistakes (the error does not cause the code to fail to run, but the output is wrong). Can you fix them? You know you are done when you have the same counts as before.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">age_group2 =</span> <span class="fu">case_when</span>(</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    age_months <span class="sc">&lt;=</span> <span class="dv">6</span> <span class="sc">~</span> <span class="st">'&lt; 6 months'</span>,</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    age_months <span class="sc">&lt;</span> <span class="dv">11</span> <span class="sc">~</span> <span class="st">'6 - 11 months'</span>,</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>    age_years <span class="sc">&lt;</span> <span class="dv">5</span> <span class="sc">~</span> <span class="st">'12 - 59 months'</span>,</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>    age_years <span class="sc">&lt;=</span> <span class="dv">15</span> <span class="sc">~</span> <span class="st">'5 - 15 years'</span>,</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>    age_years <span class="sc">&gt;=</span> <span class="dv">15</span> <span class="sc">~</span> <span class="st">'&gt; 15 years'</span>,</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">.default =</span> <span class="st">'Unknown'</span>)</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="challenge" class="level3"><h3 class="anchored" data-anchor-id="challenge">Challenge</h3>
+<ol type="1">
+<li><p>Save a <code>.csv</code> file on your computer that contains the clean data for patients from Bouna hospitalized in 2022.</p></li>
+<li><p>Print a data frame containing the <em>number of patients</em> coming from the Moissala sub-prefecture that attended one of the Moissala facilities (here, we consider the facilities with “Moissala” in their name).</p></li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For the last step you can use the <code>%in%</code> operator that we saw today, or go read the help page of the <a href="https://stringr.tidyverse.org/reference/str_detect.html"><code>str_detect()</code> function</a> and adapt the code to use in a <code>filter()</code>.</p>
+</div>
+</div>
+<p>The output should look like this:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>                         facility   n
+1 Hôpital du District de Moissala 304
+2                    Moissala Est 296
+3                   Moissala Nord 323
+4                    Moissala Sud 281</code></pre>
+</div>
+</div>
+<ol start="3" type="1">
+<li>Create an Excel file that contains a list of IDs that are present more than once in the <em>clean data</em>. Do you understand why these IDs may need to be examined?</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>You need the functions <code>count()</code>, <code>filter()</code> and <code>export()</code> + <code>here()</code> friend to do all that.</p>
+</div>
+</div>
+</div>
 
 
 </section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">

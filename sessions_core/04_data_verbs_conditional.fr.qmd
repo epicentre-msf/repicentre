@@ -538,7 +538,135 @@ downloadthis::download_link(
   self_contained = FALSE
   )
 ```
-                                                                                              Aller plus loin
+                                                                                  
+                                                                                  Aller plus loin
 -------------------------------------------------------------------
 
 ### Exercices supplémentaires
+
+
+1. **Conditions** : Si nous créons les deux vecteurs suivants : 
+
+```{r}
+#| eval: true
+vec1 <- c(1, 2, 3, 4, 5)
+vec2 <- c(1, 3, 4, 2, 5)
+```
+
+Effectuez les tests suivants :
+
+
+  - Est-ce que `vec1` est égal à `vec2` ? La sortie devrait être `r vec1 == vec2`.
+  - Est-ce que les valeurs de `vec1` sont supérieures ou égales à `vec2` ? La sortie devrait être `r vec1 >= vec2`.
+  - Est-ce que les valeurs de `vec1` existent à n'importe quel endroit de `vec2` ? La sortie devrait être `r vec1 %in% vec2`.
+  - Est-ce que les valeurs de `vec2` sont `NA` ? **Indice** : vous devez utiliser la fonction `is.na()`.
+
+2. Ecrivez une commande pour tester si la structure de santé "Moissala Ouest" est présente dans la liste linéaire.
+
+3. **Filtrer** : créez des data frames qui ne contiennent que les lignes suivantes :
+
+    -  Patients de la sous-préfecture de Bedaya
+    -  Patients sans fièvre
+    -  Patients qui ont testé négatif au test palu
+    -  Patients sans information manquante dans la colonne fièvre
+    -  Patients hospitalisés en 2023
+    -  Patients de 15 ans ou plus hospitalisés
+    -  Patients habitant à Moissala, hospitalisés dans l'hôpital Moissala Est avant le 1er février 2023
+    - Enfants de moins de cinq ans souffrant de malnutrition aigüe sévère
+
+4. **Nettoyage** : ajoutez des étapes à votre chaîne / pipeline de nettoyage
+
+    - Passez les colonnes `hospitalisation` et `tdr_paludisme` en casse titre
+    - Recodez la colonne `issue` pour homogénéiser les catégories et ne garder que "Décédé", "Guéri" et "Perdu de vue"
+    - Créez une colonne `est_mort` qui contient `TRUE` si le patient est décédé et `FALSE` sinon
+    - Créez une colonne `statut_vaccinal_simple` qui simplifie la colonne `statu_vaccinal` et ne contient que les modalités "Oui", "Non", "Inconnu"
+
+
+5. **Simplification du code** : le code suivant s'exécute sans erreurs, mais pourrait être raccourci car l'auteur n'a pas pris en compte certaines des propriétés de `case_when()`. Simplifiez la commande. N'oubliez pas de vérifier à la fin que vous obtenez le même résultat !
+
+
+```{r}
+df %>% 
+  mutate(groupe_age2 = case_when(
+    age_mois < 6 ~ "< 6 mois",
+    age_mois >= 6 & age_mois < 12  ~ "6 - 11 mois",
+    age_mois >= 12 &  age_mois < 59 ~ "12 - 59 mois",
+    age_ans >= 5 & age_ans <= 15 ~ "5 - 15 ans",
+    age_ans > 15 ~ "> 15 ans",
+    is.na(age_ans) ~ "Inconnu",
+    is.na(age_mois)  ~ "Inconnu",
+    .default = "Inconnu")
+  )
+```
+
+6. **Corriger** : quelqu'un a tenté de corriger le code ci-dessus, mais a commis quelques erreurs (vicieuses, elles n'empêchent pas la commande de s'exécuter, mais le résultat est faux !). Essayez de les corriger. Vous savez que vous avez tout corrigé quand vous obtenez le même résultat qu'auparavant.
+
+```{r}
+df %>% 
+  mutate(groupe_age2 = case_when(
+    age_mois <= 6 ~ "< 6 mois",
+    age_mois < 11 ~ "6 - 11 mois",
+    age_ans < 5 ~ "12 - 59 mois",
+    age_ans <= 15 ~ "5 - 15 ans",
+    age_ans >= 15 ~ "> 15 ans",
+    .default = "Inconnu")
+  )
+```
+
+
+### Défis
+
+1. Enregistrez un fichier `.csv` sur votre ordinateur qui contient les données nettoyées pour les patients habitant Bouna et hospitalisés en 2022.
+
+2. Affichez un data frame contenant le *nombre de participants* venant de la sous-préfecture de Moissala et qui ont été hospitalisés dans une des structures de Moissala (pour faire simple, les structures avec "Moissala" dans leur nom).
+
+:::{.callout-tip}
+Pour la dernière étape, vous pouvez utiliser l'opérateur `%in%` que l'on a vu dans cette session ou aller lire la page d'aide de la [fonction `str_detect()`](https://stringr.tidyverse.org/reference/str_detect.html) et tenter de l'utiliser à l'intérieur de la fonction `filter()`.
+:::
+
+La sortie ressemble à ceci :
+
+```{r}
+#| echo: false
+#| eval: true
+
+df <- df_brut |>
+  select(-nom_complet, -unite_age) |>
+  rename(
+    age_mois = age,
+    prefecture = sous_prefecture,
+    village = village_commune,
+    structure = nom_structure_sante) |>
+  mutate(
+    age_ans = age_mois / 12,
+    region = stringr::str_to_title(region),
+    prefecture = stringr::str_to_title(prefecture),
+    date_debut = lubridate::ymd(date_debut),
+    date_consultation = lubridate::ymd(date_consultation),
+    date_admission = lubridate::ymd(date_admission),
+    date_issue = lubridate::ymd(date_issue),
+    groupe_age = case_when(
+      age_mois < 6 ~ '< 6 mois',
+      age_mois < 12 ~ '6 - 11 mois',
+      age_ans < 5 ~ '12 - 59 mois',
+      age_ans <= 15 ~ '5 - 15 ans',
+      age_ans > 15 ~ '> 15 ans',
+      .default = 'Inconnu'),
+    sexe = case_when(
+      sexe %in% c("f", "femme", "femme") ~ "Femme",
+      sexe %in% c("h", "homme", "homme") ~ "Homme",
+      .default = "Inconnu")) |>
+  distinct() 
+
+df %>%
+  filter(prefecture == "Moissala",
+         structure %in% c("Moissala Est", "Moissala Nord", "Moissala Sud", 
+                         "Hôpital du District de Moissala")) %>% 
+  count(structure)
+```
+
+3. Créez un fichier Excel qui contient la liste de tous les patients qui sont présents plus d'une fois dans vos données *nettoyées*. Pourquoi ces patients doivent-ils probablement être examinés de plus près ?
+
+:::{.callout-tip collapse=true}
+Pour faire ça vous avez besoin des fonctions `count()`, `filter()` et `export()` + `here()`.
+:::
