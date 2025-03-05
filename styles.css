@@ -185,6 +185,27 @@ img#about {
   
 
 /* cards -----------------------------------------------------------------------------------------*/
+
+/* push metadata block off pathway card */
+div.quarto-post .metadata {
+  margin-left: -18em;
+}
+
+.card {
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px;
+  transition: 0.5s;
+}
+
+.card:hover {
+  box-shadow: 5px 5px 15px;
+}
+
+.card .card-img {
+  padding-top: 15px;
+}
+
+
 .homepage-card-grid {
   display: flex;
   /*flex-direction: column;*/

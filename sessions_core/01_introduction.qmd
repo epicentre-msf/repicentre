@@ -1,7 +1,6 @@
 ---
 title: Introduction to R
 description: Your first steps in R. Learn your way around Rstudio, and meet some common R objects.
-date: last-modified
 image: ../img/core/01_introduction/logo.svg
 categories:
   - Core

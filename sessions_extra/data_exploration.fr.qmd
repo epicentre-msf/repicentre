@@ -1,0 +1,222 @@
+---
+title: Exploration des données
+description: Explorez vos données après l'importation
+image: ../../img/extra/data_exploration/logo.svg
+categories:
+  - Satellite
+  - Data Exploration
+---
+
+```{r setup}
+#| include: false
+#| eval: true
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+library(here) # for filepaths
+library(rio)  # import and export files
+```
+
+Objectifs
+----------------------------------------------------------------------------------------------------
+
+- Effectuer une exploration rapide d'un ensemble de données importé
+- Produire des tableaux de fréquence pour les variables 
+
+
+Setup
+----------------------------------------------------------------------------------------------------
+
+**Dependances.** Cette session supplémentaire suppose que vous avez suivi les sessions [introduction à R et R studio](../sessions_core/01_introduction.html), et [importation de données](../sessions_core/02_import_data.html).  
+
+::: {.setup}
+Pour cette session, nous travaillerons avec notre liste brute de rougeole de Moissala qui peut être téléchargée ici : 
+
+```{r}
+#| echo: false
+#| eval: true
+
+downloadthis::download_link(
+  link = 'https://github.com/epicentre-msf/repicentre/raw/main/data/FETCHR.zip',
+  button_label = ' Course Folder',
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  self_contained = FALSE
+)
+```
+<br>
+Assurez-vous qu'il est correctement stocké dans `data/raw` de votre projet. Ensuite, ouvrez un nouveau script appelé `data-exploration.R`, et assurez-vous que les paquets `{here}`, `{rio}` et `{dplyr}` sont chargés. Enfin, importez les données dans R sous la forme d'un objet appelé `df_linelist`. 
+:::
+
+Exploration des données
+----------------------------------------------------------------------------------------------------
+
+Juste après avoir importé des données dans R, nous pouvons avoir envie d'y jeter un coup d'œil. Lorsque l'on parle d'exploration de données, on veut généralement faire plusieurs choses :
+
+- Examiner les dimensions des données (c'est-à-dire le nombre de lignes et de colonnes).
+- Examiner les noms des colonnes 
+- Visualiser les premières ou les dernières lignes 
+- Déterminer le type des variables
+- Déterminer la plage de valeurs des variables continues
+- Observer les valeurs possibles de chaque variable catégorielle 
+
+Ce processus est crucial et nous permettra de nous familiariser avec nos données et d'identifier les problèmes qui seront traités lors de l'étape de nettoyage des données. 
+
+```{r, eval = TRUE, echo = FALSE, message = FALSE, warning = FALSE}
+library(here)
+library(rio)
+library(dplyr)
+
+df_linelist <- import(here::here("data", "raw", "moissala_linelist_EN.xlsx"))
+
+```
+
+Exploration de base
+----------------------------------------------------------------------------------------------------
+
+La toute première chose que vous voulez savoir sur vos données, ce sont les **dimensions**, c'est-à-dire le **nombre de lignes** et le **nombre de colonnes** qui composent vos données. Il existe plusieurs façons d'obtenir ces informations dans R : 
+
+1. Regardez votre *volet environnement* dans RStudio et vérifiez vos données - le nombre à côté (`5230x25`) nous indique qu'il s'agit d'un data frame avec `5230` lignes et `25` colonnes.
+2. Utilisez `dim()` sur vos données pour renvoyer un vecteur avec le nombre de lignes et le nombre de colonnes.
+3. Vous pouvez aussi utiliser `ncol()` pour obtenir le nombre de colonnes et `nrow()` pour le nombre de lignes.
+
+Il est bon de se souvenir de ces nombres afin de pouvoir repérer rapidement tout changement inattendu dans vos données au cours de votre analyse (c'est-à-dire plus ou moins de lignes ou de colonnes que prévu).
+
+::: {.write}
+En utilisant la méthode de votre choix, obtenez les dimensions de votre data frame `df_linelist`.
+:::
+
+
+
+Noms de variables
+----------------------------------------------------------------------------------------------------
+
+Comme nous allons utiliser les noms des variables très souvent au cours de notre analyse, nous voulons nous familiariser avec eux dès le début. De plus, nous devons identifier celles qui devront être renommées lors du nettoyage des données. La fonction `names()` renvoie un vecteur de tous les noms de variables dans notre cadre de données : 
+
+```{r, eval = TRUE}
+
+names(df_linelist)
+
+```
+
+::: {.look}
+Que pensez-vous des noms de votre ensemble de données ? Pouvez-vous déjà repérer des noms de variables que vous aimeriez renommer ?
+:::
+
+Inspecter vos données
+----------------------------------------------------------------------------------------------------
+
+Il est également intéressant d'inspecter vos données, cela peut vous permettre de repérer plus facilement certaines incohérences, des variables avec beaucoup de valeurs manquantes, et cela vous permettra de voir à quelles valeurs s'attendre pour chacune d'entre elles. Vous pouvez ["print"]{.hovertip bs-toggle='tooltip' bs-title="Print est un mot de programmation qui signifie afficher une sortie dans votre console."} vos données dans la console en : 
+
+1. Exécutant l'objet `df_linelist` seul (attention, vous ne voudrez peut-être pas faire cela si vous avez un grand ensemble de données).
+2. Utilisant la fonction `head()` pour voir les 6 premières lignes (vous pouvez augmenter ce nombre en utilisant l'argument `n`)
+2. Utilisant la fonction `tail()` pour voir les 6 dernières lignes (encore une fois, vous pouvez augmenter ce nombre en utilisant l'argument `n`)
+
+Ces méthodes n'afficheront que les 40 premières lignes de vos données au maximum, car c'est la limite de votre console. Alternativement, vous pouvez utiliser `View()` pour voir vos données sous forme de tableau. Cela ouvrira une nouvelle fenêtre avec vos données affichées comme dans une feuille de calcul Excel. **Note** : cette commande ne fait qu'afficher les données, elle ne vous permet pas de les modifier. 
+
+:::{.callout-tip}
+Soyez très prudent avec `View()` sur un grand jeu de données car cela peut faire planter votre session RStudio. Pour éviter cela, vous pouvez imprimer la sortie dans la console. 
+:::
+
+:::{.write}
+Pouvez-vous afficher les 15 premières lignes de vos données ? Que se passe-t-il lorsque vous modifiez la largeur de votre fenêtre de console et que vous exécutez à nouveau la commande ? 
+:::
+
+
+Types des variables
+----------------------------------------------------------------------------------------------------
+
+Nous voulons maintenant vérifier le type des différentes variables. C'est important car une partie du nettoyage des données consiste à s'assurer que les variables numériques sont de type `numeric`, dates `Date`, et que les variables catégorielles sont de type `factor` ou `character`. Vous avez déjà vu la fonction `class()`, qui permet de vérifier le type d'un vecteur. Dans R, chaque variable d'un dataframe est un vecteur. Nous pouvons extraire toutes les valeurs de ce vecteur en utilisant le [sign `$`]{.hovertip bs-toggle='tooltip' bs-title="C'est ce qu'on appelle 'base indexing' dans R"}, et les passer à la fonction `class()` : 
+
+```{r}
+#| eval: false
+
+class(df_linelist$age)
+```
+
+:::{.write}
+Essayez d'extraire toutes les valeurs de la variable `sex`. Quelle est le type de cette variable ? 
+:::
+
+Vous pouvez également utiliser `str()` sur votre dataframe pour vérifier le type de toutes les variables à la fois : 
+
+```{r}
+#| eval: false
+
+str(df_linelist)
+```
+
+:::{.write}
+Utilisez `str()` pour vérifier le type de données de chaque colonne. Y a-t-il quelque chose d'étrange ? Rappelez-vous que vous pouvez aussi utiliser des fonctions comme `is.character()` et `is.numeric()` si vous voulez tester le type d'une colonne en particulier.
+:::
+
+Exploration des variables continues
+----------------------------------------------------------------------------------------------------
+
+Maintenant que vous savez comment extraire les valeurs d'une variable, vous pouvez vouloir explorer certaines des valeurs des variables numériques pour vérifier les incohérences. Calculer des statistiques récapitulatives pour ces variables, et Base R fournit de nombreuses fonctions pratiques :
+
+| Fonction | Description | Exemple | Retours |
+|----------|-------------|---------|----------|
+| `min()` | Valeur minimale | `min(x)` | Valeur minimale unique |
+| `max()` | Valeur maximale | `max(x)` | Valeur maximale unique |
+| `mean()` | Moyenne arithmétique | `mean(x)` | Valeur moyenne |
+| `median()` | Valeur moyenne | `median(x)` | Valeur moyenne | médiane(x) |
+| `range()` | Min et max | `range(x)` | Vecteur de (min, max) |
+| `IQR(x)` | Q3 - Q1 | `IQR(x)` | Q3 - Q1 |
+| `quantile()` | Quantiles spécifiés | `quantile(x, probs = c(0.25, 0.75))` | Quantiles demandés |
+| `sd()` | Ecart-type | `sd()` | Ecart-type |
+| `var()` | Variance | `var(x)` | Variance |
+| `sum()` | Somme des valeurs | `sum(x)` | Somme |
+
+:::{.callout-tip}
+Ces fonctions exigent que vous supprimiez explicitement les valeurs manquantes (`NA`) en utilisant l'argument `na.rm = TRUE`
+:::
+
+Vous pouvez extraire les valeurs d'une variable en utilisant `$`, et les passer à n'importe laquelle de ces fonctions. 
+
+:::{.write}
+Utilisez la syntaxe `$` pour obtenir : 
+
+- La valeur minimale de `age`
+- Le maximum de `muac`
+
+**Des problèmes ?**
+:::
+
+Exploration des variables catégorielles
+----------------------------------------------------------------------------------------------------
+
+Enfin, examinons les valeurs de nos variables catégorielles. Pour ce faire, nous pouvons utiliser des tableaux de fréquence. C'est pratique car :
+
+1. Ils nous permettent de voir rapidement les valeurs uniques d'une variable catégorielle
+2. Le nombre d'observations pour chacune de ces catégories
+
+Pour ce faire, on utilise la fonction `count()` du [package `{dplyr}`]{.hovertip bs-toggle='tooltip' bs-title="Nous en apprendrons plus sur ce package lors de la prochaine session."}, qui accepte un dataframe et le nom d'une (ou plusieurs !) colonne(s) en tant qu'arguments. Il compte alors le **nombre d'observations** de chaque élément unique dans cette colonne. Par exemple, voyons les valeurs possibles de la variable `sex` : 
+
+```{r}
+count(df_linelist, sex)
+```
+
+Le résultat est un nouveau dataframe, plus petit, contenant le nombre de patients observés, stratifié par `sex`. Il semble que cette variable nécessite un recodage... Nous le ferons dans une prochaine session. 
+
+::: {.write}
+En utilisant les données de votre liste, examinez les valeurs de la variable `outcome`. A quoi cela ressemble-t-il ? 
+
+Maintenant, essayez d'ajouter l'argument `sort = TRUE` à la fonction `count()`. Que fait cet argument ?
+:::
+
+
+C'est fait !
+----------------------------------------------------------------------------------------------------
+Bravo pour ce premier coup d'œil sur vos données !
+
+```{r}
+#| echo: false
+#| eval: true
+
+downloadthis::download_link(
+  link = 'https://github.com/epicentre-msf/repicentre/blob/main/solutions/extra/data_exploration_fr.R',
+  button_label = 'Solution File',
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  self_contained = FALSE
+)
+```

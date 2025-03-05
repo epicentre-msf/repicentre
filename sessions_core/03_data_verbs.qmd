@@ -1,7 +1,6 @@
 ---
 title: Data Manipulation, Basics
 description: An introduction to data manipulation and cleaning using `{dplyr}`
-date: last-modified
 image: ../img/core/03_manipulation_basic/logo.svg
 categories:
   - Core

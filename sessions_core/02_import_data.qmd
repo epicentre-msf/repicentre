@@ -1,7 +1,6 @@
 ---
-title: Import data
+title: Data Importation
 description: Create an Rstudio project, install useful packages and start importing data to work in R
-date: last-modified
 image: ../img/core/02_import/logo.svg
 categories:
   - Core
