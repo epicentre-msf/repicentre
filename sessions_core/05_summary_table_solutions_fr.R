@@ -28,25 +28,27 @@ df_linelist |>
 
 
 
-## Létalité --------------------------------------------
+## Létalité et taux de guérison ----------------------------
 
-# Proportions des décédés (aussi appelé létalité ou mortalité)
-# Doit être calculé sur les patients dont le statut à la sortie est connu
+# Proportions
+# la létalité doit être calculée sur les patients dont le statut à la sortie est connu
 # Il faut donc filtrer avant de compter pour ne garder que les patients avec déces/gueri
-df_linelist |>
+df_sortie <- df_linelist |>
   filter(
     statut_sortie != "sortie contre avis medical",
     !is.na(statut_sortie)  # N'est pas NA
   ) |>
-  count(statut_sortie)
+  count(statut_sortie) |> 
+  mutate(prop = n / sum(n))
 
 
 # Solution alternative :
-df_linelist |>
+df_sortie <- df_linelist |>
   filter(
     statut_sortie %in% c("deces", "gueri")
   ) |>
-  count(statut_sortie)
+  count(statut_sortie) |> 
+  mutate(prop = n / sum(n))
 
 
 ## Tableau final -----------------------------------------
@@ -58,16 +60,16 @@ df_linelist |>
     n_patients       = n(),
     moy_age          = mean(age),
     min_admission    = min(date_admission, na.rm = TRUE),
-    n_femme          = sum(sexe == "f", na.rm = TRUE),
+    n_femmes          = sum(sexe == "f", na.rm = TRUE),
     n_hosp           = sum(hospitalisation == "oui", na.rm = TRUE),
     moy_age_hosp     = mean(age[hospitalisation == "oui"], na.rm = TRUE),
-    moy_age_female   = mean(age[sexe == "f"], na.rm = TRUE),
+    moy_age_femmes   = mean(age[sexe == "f"], na.rm = TRUE),
     n_deces_moins_6m = sum(statut_sortie[age_groupe == "< 6 mois"] == "deces", na.rm = TRUE)
   ) |>
   
   # Ajoute des proportions :
   mutate(
-    prop_femme = n_femme / n_patients,
+    prop_femme = n_femmes / n_patients,
     prop_hosp  = n_hosp / n_patients
   )
 
@@ -108,15 +110,17 @@ df_linelist |>
     .by = age_groupe,
     
     n_patients = n(),
-    n_vacc = sum(vacc_status %in%c("Oui - oral","Oui - carte"), na.rm = TRUE),
-    n_vacc_une_dose = sum(vacc_doses %in% c("1 dose"), na.rm = TRUE),
-    n_vacc_deux_doses = sum(vacc_doses %in% c("2 doses"), na.rm = TRUE),
     
-    # Ajoute les proportions : on peut le faire à l'intérieur du summarise aussi
-    prop_vacc            = n_vacc / n_patients,
-    prop_vacc_une_dose   = n_vacc_une_dose / n_patients,
+    n_vacc    = sum(vacc_status %in%c("Oui - oral", "Oui - carte"), na.rm = TRUE),
+    prop_vacc = n_vacc / n_patients,
+    
+    n_vacc_une_dose    = sum(vacc_doses %in% c("1 dose"), na.rm = TRUE),
+    prop_vacc_une_dose = n_vacc_une_dose / n_patients,
+    
+    n_vacc_deux_doses    = sum(vacc_doses %in% c("2 doses"), na.rm = TRUE),
     prop_vacc_deux_doses = n_vacc_deux_doses / n_patients
-  ) 
+  )
+
 
 # 3) Tableau des signes, symptomes et statut palu en fonction du statut d'hospitalisation
 
