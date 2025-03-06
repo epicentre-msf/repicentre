@@ -29,7 +29,7 @@ df_linelist <- rio::import(here("data", "clean", "moissala_linelist_clean_FR.rds
 
 ## Setup
 
-**Prérequis** : cette session part du principe que vous avez effectué les sessions obligatoires précédents, en particulier que vous savez importer vos données et utiliser les verbes principaux de `{dplyr}`. Aller vous [rafraîchir si besoin](03_data_verbs.qmd).
+**Prérequis** : cette session part du principe que vous avez effectué les sessions obligatoires précédentes, en particulier que vous savez importer vos données et utiliser les verbes principaux de `{dplyr}`. Aller vous [rafraîchir si besoin](03_data_verbs.qmd).
 
 :::{.setup}
 Cette session utilise une version nettoyée de la liste linéaire rougeole à Mandoul (Tchad).
@@ -54,7 +54,7 @@ Ouvrez votre projet RStudio et créez un nouveau script dans le sous-dossier R a
 
 ## Introduction : agrégation des données
 
-Récapitulons. Dans les sessions précédentes vous avez effectué l'une des tâches les [plus importantes]{.hovertip bs-toggle='tooltip' bs-title='Certains considèrent que cela représente 80 % du travail !} d'un épidémiologiste : le **nettoyage des données**. Maintenant que vous disposez de données propres et standardisées, vous pouvez commencer à les analyser. On commence généralement par une analyse descriptive à base de tableaux décrivant nos données :
+Récapitulons. Dans les sessions précédentes vous avez effectué l'une des tâches les [plus importantes]{.hovertip bs-toggle='tooltip' bs-title='Certains considèrent que cela représente 80 % du travail !'} d'un épidémiologiste : le **nettoyage des données**. Maintenant que vous disposez de données propres et standardisées, vous pouvez commencer à les analyser. On commence généralement par une analyse descriptive à base de tableaux décrivant nos données :
 
 - tableaux d'effectifs et fréquences univariés pour compter les occurrences de différentes valeurs
 - statistiques descriptives des variables numériques (moyenne, médiane, écart-type)
@@ -77,6 +77,7 @@ df_linelist |>
 :::{.write}
 Créez un tableau récapitulatif contenant le nombre de patients stratifiés par `sous_prefecture` et si le patient a été hospitalisé ou pas (`hospitalisation`). Que se passe-t-il si vous modifiez l'ordre des arguments donnés à `count()` ?
 
+<br>
 En utilisant `count()`, répondez aux questions suivantes :
 
 - Combien de patients étaient des femmes ? Quelle est la proportion ?
@@ -99,9 +100,9 @@ df_linelist |>
 Observez le résultat du code ci-dessus. Quel est le terme technique pour la proportion de patients décédés ? Êtes-vous satisfait la manière dont le calcul ci-dessus est effectué ? 
 ::: 
 
-La proportion de cas décédés est également appelée [létalité]{.hovertip bs-toggle='tooltip' bs-title='La létalité est un ratio (ou un risque) mais pas un taux ! On l'appelle CFR en anglais, pour Case Fatality Ratio'}. Pour calculer précisément la mortalité, nous devons nous assurer que le dénominateur ne comprend que les patients dont nous sommes sûrs du statut. Nous devons donc  supprimer tous les cas avec "NA" ou "sortis contre avis médical". 
+La proportion de cas décédés est également appelée [létalité]{.hovertip bs-toggle='tooltip' bs-title="La létalité est un ratio (ou un risque) mais pas un taux ! On l'appelle CFR en anglais, pour Case Fatality Ratio"}. Pour calculer précisément la mortalité, nous devons nous assurer que le dénominateur ne comprend que les patients dont nous sommes sûrs du statut. Nous devons donc  supprimer tous les cas avec `NA` ou "sortis contre avis médical". 
 
-Nous pouvons faire ceci avec la fonction `filter()`. Nous avons vu dans la [session précédente](../sessions_core_04data_verbs_conditional.qmd) que l'on peut tester l'inégaliter avec l'opérateur `!=`. par contre, comme souvent avec R, le travail avec les valeurs `NA` est un peu particulier. Pour tester si une valeur est `NA` on utilise la fonction `is.na()`. Pour tester si une valeur n'est *pas* `NA`, on préface la fonction d'un signe `!`, qui est indique à R de "faire le contraire": `!is.na()` teste si une valeur n'est *pas* `NA` !
+Nous pouvons faire ceci avec la fonction `filter()`. Nous avons vu dans la [session précédente](../sessions_core/04data_verbs_conditional.qmd) que l'on peut tester l'inégaliter avec l'opérateur `!=`. Par contre, comme souvent avec R, le travail avec les valeurs `NA` est un peu particulier. Pour tester si une valeur est `NA` on utilise la fonction `is.na()`. Pour tester si une valeur n'est *pas* `NA`, on préface la fonction d'un signe `!`, qui indique à R de "faire le contraire": `!is.na()` teste si une valeur n'est *pas* `NA` !
 
 Donc pour supprimer les patients sans status ou étant sorti contre avis médical, on pourrait écrire : 
 
@@ -119,7 +120,7 @@ Quelle autre condition pourriez-vous utiliser dans `filter()` pour obtenir le m�
 
 
 :::{.write}
-Reprenez votre code précédent et ajouter un filtre pour calculer les proportions seulement sur les patients guéris et décédés. Calculez les effectifs comme précédement et les proportions. La proportion des décès est la létalité. Stockez ce nouveau data frame dans un objet `df_sortie` qui resemble à ceci : 
+Reprenez votre code précédent et ajoutez un filtre pour calculer les proportions seulement sur les patients guéris et décédés. Calculez les effectifs comme précédement et les proportions. La proportion des décès est la létalité. Stockez ce nouveau data frame dans un objet `df_sortie` qui resemble à ceci : 
 ```{r}
 #| eval: true
 #| echo: false
@@ -148,9 +149,9 @@ df_linelist |>
 
 ## Tableau récapitulatif : statistiques par sous-préfecture
 
-Maintenant que nous avons produit quelques tableaux de fréquence simples, nous pouvons augmenter la complexité. Une tâche courante en épidémiologie consiste à examiner les statistiques résumées *par groupe* d'une variable (ie stratifiés par une variable catégorique). 
+Maintenant que nous avons produit quelques tableaux de fréquences simples, nous pouvons augmenter la complexité. Une tâche courante en épidémiologie consiste à examiner les statistiques résumées *par groupe* d'une variable (i.e. stratifiés par une variable catégorique). 
 
-Dans ce tutoriel, nous allons ensemble construire une grosse table rassemblant de nombreuses statistiques sur les patients stratifiées par sous-préfecture. Nous vous montrerons comment créer les statistiques descriptives suivantes :
+Dans ce tutoriel, nous allons ensemble construire une grosse table rassemblant de nombreuses statistiques descriptives sur les patients stratifiées par sous-préfecture. Nous vous montrerons comment créer les statistiques descriptives suivantes :
 
 - Combien de patients ont été consultés ?
 - Quel est leur âge moyen ? 
@@ -209,7 +210,7 @@ df_linelist |>
   summarize(moy_age = mean(age))
 ```
 
-Notez que ce code renvoit *une seule valeur* pour l'âge moyen. Aucune variable n'a été fournie par laquelle stratifier, donc `summarize()` a renvoyé une statistique récapitulative pour l'ensemble du data frame. Pour calculer l'âge moyen *par groupe* (ie, stratifié par une variable), nous devons fournir une variable (ou plusieurs dans un vecteur) à l'argument `.by` :
+Notez que ce code renvoit *une seule valeur* pour l'âge moyen. Aucune variable n'a été fournie par laquelle stratifier, donc `summarize()` a renvoyé une statistique récapitulative pour l'ensemble du data frame. Pour calculer l'âge moyen *par groupe* (i.e., stratifié par une variable), nous devons fournir une variable (ou plusieurs dans un vecteur) à l'argument `.by` :
 
 ```{r}
 #| eval: true
@@ -256,6 +257,7 @@ Reproduire les lignes ci-dessus, ce sera la base de votre table. Notez que pour 
 Nous pouvons utiliser les fonctions `mean()`, `median()`, `min()`, `max()` (et autres) pour résummer les variables continues. Par exemple, nous pouvons calculer l'âge moyen :
 
 ```{r}
+#| eval: true
 df_linelist |>
   summarize(
     .by = sous_prefecture, # calcule tout le reste par sous-préfecture
@@ -265,7 +267,7 @@ df_linelist |>
 ```
 
 ::: {.write}
-Ajouter la ligne pour calculer l'âge moyen par sous préfecture dans votre table. Puis ajoutez une colonne `min_admission` qui contient la date d'admission minimale par sous-préfecture à votre tableau. Êtes-vous satisfait des résultats ? 
+Ajoutez la ligne pour calculer l'âge moyen par sous préfecture dans votre table. Puis ajoutez une colonne `min_admission` qui contient la date d'admission minimale par sous-préfecture à votre tableau. Êtes-vous satisfait des résultats ? 
 :::
 
 ::: {.callout-tip}
@@ -295,7 +297,7 @@ df_linelist |>
 ```
 
 ::: {.write}
-Ajoutez la ligne pour compter le nombre de femmes, puis ajoutez une variable `n_hosp` à votre tableau qui compte le nombre de patients hospitalisés (c'est-à-dire les lignes qui ont "oui" dans la variable `hospitalisation`).
+Ajoutez la ligne pour compter le nombre de femmes à votre code, puis ajoutez une variable `n_hosp` à votre tableau qui compte le nombre de patients hospitalisés (c'est-à-dire les lignes qui ont "oui" dans la variable `hospitalisation`).
 
 Pour le moment votre table ressemble à ceci :
 
@@ -308,7 +310,7 @@ df_linelist |>
     n_patients     = n(),
     moy_age        = mean(age),
     min_admission  = min(date_admission, na.rm = TRUE),
-    n_femme        = sum(sexe == "f", na.rm = TRUE),
+    n_femmes       = sum(sexe == "f", na.rm = TRUE),
     n_hosp         = sum(hospitalisation == "oui", na.rm = TRUE))
 ```
 :::
@@ -345,7 +347,7 @@ L'utilisation d'un test logique dans l'exemple ci-dessus est appelée **indexati
 où une condition est utilisée pour filtrer les observations que vous souhaitez prendre en compte lors d'un calcul. L'indexation logique est très puissante, mais plus complexe à écrire; ne vous inquiétez pas si ça vous prend quelques essais pour comprendre, c'est normal. 
 
 ::: {.write}
-Ajoutez le calcul de l'age moyen des patients hopsitalisés à votre table, puis ajoutez une colonne `moy_age_femmes` pour calculer l'âge moyen des patientES (des femmes).
+Ajoutez le calcul de l'age moyen des patients hopsitalisés à votre table, puis ajoutez une colonne `moy_age_femmes` pour calculer l'âge moyen des patient**ES**.
 
 Votre table ressemble maintenant à ceci :
 
@@ -375,7 +377,7 @@ Bravo ! Nous avons un super tableau stratifié par sous-préfecture avec de nomb
 **Note.** Vous voulez compter les lignes (donc utiliser `sum()`) qui remplissent une condition spécifique pour le résultat (`statut_sortie == "deces"`), mais *uniquement* lorsque `age_group == "< 6 months"`
 :::
 
-### Utiliser la sortie 
+### Utiliser le data frame créé 
 
 Enfin, n'oubliez pas que `summarize()` renvoie un data frame que nous pouvons ensuite
 manipuler davantage (par exemple : avec `filter()` et `mutate()`). 
