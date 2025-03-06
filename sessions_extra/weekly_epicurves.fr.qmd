@@ -1,8 +1,7 @@
 ---
 title: Courbes épidémiques hebdomadaires
 description: Apprenez à tracer des courbes épidémiques hebdomadaires et à améliorer les étiquettes des axes
-date: last-modified
-image: ../sessions_extra/img/epicurve-dates-000-logo.png
+image: ../img/core/06_epicurves/logo.svg
 categories:
   - Satellite
   - Visualization
@@ -459,7 +458,6 @@ df_linelist |>
 ```
 :::
 
-:::
 
 
 ## C'est fini !
@@ -471,15 +469,16 @@ Bravo ! Les dates dans R sont un sujet compliqué, et leur format est souvent un
 #| eval: true
 
 downloadthis::download_link(
-  link = 'https://github.com/epicentre-msf/repicentre/blob/main/solutions/extra/weekly_epicurves_solutions.fr.R',
-  button_label = 'Solutions exercices',
+  link = 'https://github.com/epicentre-msf/repicentre/blob/main/solutions/extra/weekly_epicurves_solutions_fr.R',
+  button_label = 'Solutions',
   has_icon = TRUE,
   icon = "fa fa-save",
   self_contained = FALSE
 )
 ```
 
-### Aller plus loin
+Aller plus loin
+----------------------------------------------------------------------------------------------------
 
 ### Exercices supplémentaires
 
@@ -494,4 +493,5 @@ downloadthis::download_link(
 
 ## Ressources
 
-- [La page d'aide de lubridate](https://lubridate.tidyverse.org/articles/lubridate.html)/
+  - Le chapitre (en anglais) ["Elegant graphics for data analyses'](https://ggplot2-book.org/scales-position#sec-date-scales) book on date scales
+- [La page d'aide de lubridate](https://lubridate.tidyverse.org/articles/lubridate.html)

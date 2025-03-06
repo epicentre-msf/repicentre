@@ -1,8 +1,7 @@
 ---
-title: Weekly epicurves
+title: Weekly Epicurves
 description: Plot weekly epicurves and improve date labels on the x-axis
-date: last-modified
-image: ../sessions_extra/img/epicurve-dates-000-logo.png
+image: ../img/core/06_epicurves/logo.svg
 categories:
   - Satellite
   - Visualization
@@ -50,7 +49,7 @@ df_linelist <- rio::import(here::here("data", "clean",
 
 ## Objectives
 
-In the [epicurve session](../sessions_core/07_epicurves.qmd) you learned how to plot an epicurve of the number of cases per day:
+In the [epicurve session](../sessions_core/06_epicurves.qmd) you learned how to plot an epicurve of the number of cases per day:
 
 ```{r}
 #| echo: false
@@ -77,7 +76,7 @@ In this tutorial we will learn two ways of aggregating data by week, plot the da
 
 ## Setup
 
-We will build on code from the [epicurve session](../sessions_core/07_epicurves.qmd) so you may either write your code in the script associated with that session or create a new script.
+We will build on code from the [epicurve session](../sessions_core/06_epicurves.qmd) so you may either write your code in the script associated with that session or create a new script.
 
 ::: {.setup}
 Create a new script for this tutorial or open the script from the epicurve lesson.
@@ -150,7 +149,7 @@ df_linelist |>
 ```
 :::
 
-Now, you could use this column to aggregate data by week using `count()` and then plot the weekly aggregated data using `{ggplot2}` with a code very similar to what we saw in the [core epicurve session](../sessions_core/07_epicurves.qmd).
+Now, you could use this column to aggregate data by week using `count()` and then plot the weekly aggregated data using `{ggplot2}` with a code very similar to what we saw in the [core epicurve session](../sessions_core/06_epicurves.qmd).
 
 There is a problem, though. With `isoweek()` there is a first week in 2022, but also in 2023, 2024 and so on. With a short outbreak that would be only in 2022, this would be fine. However, our data frame gathers data at the whole region scale, and the dates range from 2022 to 2023. So if we were to just count the number of patients by week number, this table would be wrong:
 
@@ -278,7 +277,7 @@ df_linelist |>
 So far so good, now we can pipe that aggregated data frame into our plot commands, making a couple adjustments to make it work.
 
 ::: {.write}
-Create a `ggplot` with the same look at the epicurve from the [epicurve core session](../sessions_core/07_epicurves.qmd#sec-epicurve-steps), but with the first day of the week on the x-axis. Don't forget to update axes names.
+Create a `ggplot` with the same look at the epicurve from the [epicurve core session](../sessions_core/06_epicurves.qmd#sec-epicurve-steps), but with the first day of the week on the x-axis. Don't forget to update axes names.
 :::
 
 It should look like that: 
@@ -455,7 +454,6 @@ df_linelist |>
 ```
 :::
 
-:::
 
 ## Done!
 
@@ -466,7 +464,7 @@ Congratulations! Dates are complicated, and their formatting is often scary, but
 #| eval: true
 
 downloadthis::download_link(
-  link = 'https://github.com/epicentre-msf/repicentre/blob/main/sessions_extra/weekly_epicurves_solutions.R',
+  link = 'https://github.com/epicentre-msf/repicentre/blob/main/solutions/extra/weekly_epicurves_solutions.R',
   button_label = 'Solution File',
   has_icon = TRUE,
   icon = "fa fa-save",
@@ -474,7 +472,8 @@ downloadthis::download_link(
 )
 ```
 
-### Going Further
+Going Further
+----------------------------------------------------------------------------------------------------
 
 ### Extra execices
 
