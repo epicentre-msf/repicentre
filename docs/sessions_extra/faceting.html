@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<link rel="alternate" hreflang="en" href="/sessions_extra/faceting.html" />
-<link rel="alternate" hreflang="fr" href="/fr/sessions_extra/faceting.fr.html" />
+<link rel="alternate" hreflang="en" href="https://epicentre-msf.github.io/repicentre/sessions_extra/faceting.html" />
+<link rel="alternate" hreflang="fr" href="https://epicentre-msf.github.io/repicentre/fr/sessions_extra/faceting.fr.html" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.6.39">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta name="dcterms.date" content="2025-03-06">
 <meta name="description" content="Create a plot with multiple subplots (facets)">
-<title>Introduction to faceting – {repicentre}</title>
+<title>Faceting – {repicentre}</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -108,7 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
 <li class="nav-item"><div class="dropdown" id="languages-links-parent">
-<button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="languages-button"><i class="bi bi-globe2"></i> English</button><ul class="dropdown-menu" id="languages-links"><li><a class="dropdown-item" href="/fr/sessions_extra/faceting.html" id="language-link-fr">Français</a></li></ul>
+<button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="languages-button"><i class="bi bi-globe2"></i> English</button><ul class="dropdown-menu" id="languages-links"><li><a class="dropdown-item" href="https://epicentre-msf.github.io/repicentre/fr/sessions_extra/faceting.html" id="language-link-fr">Français</a></li></ul>
 </div></li>
 <li class="nav-item">
     <a class="nav-link" href="../pathway.html"> 
@@ -143,7 +142,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
   <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
   <li>
-<a href="#faceting" id="toc-faceting" class="nav-link" data-scroll-target="#faceting">faceting</a>
+<a href="#faceting" id="toc-faceting" class="nav-link" data-scroll-target="#faceting">Faceting</a>
   <ul class="collapse">
 <li><a href="#get-the-data-ready" id="toc-get-the-data-ready" class="nav-link" data-scroll-target="#get-the-data-ready">Get the Data Ready</a></li>
   <li><a href="#add-the-facet-layer-to-the-plot" id="toc-add-the-facet-layer-to-the-plot" class="nav-link" data-scroll-target="#add-the-facet-layer-to-the-plot">Add the Facet Layer to the Plot</a></li>
@@ -157,17 +156,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul>
 </li>
   <li><a href="#done" id="toc-done" class="nav-link" data-scroll-target="#done">Done!</a></li>
-  <li><a href="#challenge" id="toc-challenge" class="nav-link" data-scroll-target="#challenge">Challenge</a></li>
   </ul></nav>
 </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title">Introduction to faceting</h1>
+<h1 class="title">Faceting</h1>
   <div class="quarto-categories">
     <div class="quarto-category">Satellite</div>
-    <div class="quarto-category">Graphs</div>
-    <div class="quarto-category">ggplot2</div>
-    <div class="quarto-category">epicurve</div>
+    <div class="quarto-category">Visualization</div>
   </div>
   </div>
 
@@ -181,12 +177,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-title-meta">
 
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">March 6, 2025</p>
-    </div>
-  </div>
   
     
   </div>
@@ -220,14 +210,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>We will use the same clean linelist that we used in the past sessions, which you can download here:</p>
 <div class="cell">
 <div class="cell-output-display">
-<a href="https://github.com/epicentre-msf/repicentre/raw/refs/heads/main/data/data/clean/moissala_linelist_clean_EN.rds">
+<a href="https://github.com/epicentre-msf/repicentre/raw/main/data/clean/moissala_linelist_clean_EN.rds">
 <button class="btn btn-default"><i class="fa fa-save"></i> Download clean data</button>
 </a>
 </div>
 </div>
 <p><br> Make sure this dataset is saved into the appropriate subdirectory of your R project and create a new script called <code>faceting.R</code> in your <code>R</code> directory. Add an appropriate header and load the following packages: <code>{here}</code>, <code>{rio}</code>, and <code>{tidyverse}</code>. <br><br> Finally, add an import section where you use <code>{here}</code> and <code>{rio}</code> to load your data into an object called <code>df_linelist</code>.</p>
 </div>
-</section><section id="faceting" class="level2"><h2 class="anchored" data-anchor-id="faceting">faceting</h2>
+</section><section id="faceting" class="level2"><h2 class="anchored" data-anchor-id="faceting">Faceting</h2>
 <p>The function <code>facet_wrap()</code> allows you to replicate a graph based on the categories of a variable. For example, you could make the epicurve graph <em>by sex</em>, or <em>by site</em>. As other layers of a ggplot graph, you add it to your existing graph with a <code>+</code>. It creates a a figure with multiple small graphs, that <code>{ggplot2}</code> calls <em>facets</em> or <em>small multiples</em>.</p>
 <section id="get-the-data-ready" class="level3"><h3 class="anchored" data-anchor-id="get-the-data-ready">Get the Data Ready</h3>
 <p>In the following session, <em>we</em> will explain the code by creating subplots by sub-prefecture, and <em>you</em> will be plotting the epicurve by age group.</p>
@@ -375,53 +365,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section></section><section id="done" class="level2"><h2 class="anchored" data-anchor-id="done">Done!</h2>
 <p>Very well done team! You have learned how to facet plots! This will work not only on bar plots such as epicurves, but also on other types of plots made by <code>{ggplot2}</code>.</p>
-<p>Depending on the size of your graph, the date labels on the x-axis may be a bit messed up, the ones in my examples definitely are. Fear not, this can be controlled and is the object of another <a href="../sessions_extra/weekly_epicurves.qmd">satellite</a>!</p>
+<p>Depending on the size of your graph, the date labels on the x-axis may be a bit messed up, the ones in my examples definitely are. Fear not, this can be controlled and is the object of another <a href="../sessions_extra/weekly_epicurves.html">satellite</a>!</p>
 <div class="cell">
 <div class="cell-output-display">
-<a href="https://github.com/epicentre-msf/repicentre/blob/main/sessions_extra/faceting_solutions.R">
+<a href="https://github.com/epicentre-msf/repicentre/blob/main/solutions/extra/faceting_solutions.R">
 <button class="btn btn-default"><i class="fa fa-save"></i> Solutions file</button>
 </a>
-</div>
-</div>
-</section><section id="challenge" class="level2"><h2 class="anchored" data-anchor-id="challenge">Challenge</h2>
-<p>The help pages from <code>{tidyverse}</code> packages tend to be well written. We advise you to go and read them when you learn a new function, you are bound to learn a couple of tricks each time.</p>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Important
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Reading code written by others, figuring out what it does and then adapting it to your own code are <strong>very important skills</strong> to develop, whether the code comes from the official documentation, StakOverflow, tutorials from random people on the web or Large Language Models outputs (such as Github Copilot, or ChatGPT).</p>
-</div>
-</div>
-<p>Here is an exercise to train these skills. Checkout the examples of the <a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">help page</a> for the <code>facet_wrap()</code> function: one of them show how to adapt your code to do this:</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="faceting_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="864"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Can you modify your code do do something similar?</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>You will need two aggregated data frames, one created today and one created in the <a href="../sessions_core/06_epicurves.html">epicurve session</a>.</p>
-</div>
 </div>
 </div>
 

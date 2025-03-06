@@ -164,7 +164,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="quarto-categories">
     <div class="quarto-category">Satellite</div>
     <div class="quarto-category">Visualization</div>
-    <div class="quarto-category">Dates</div>
   </div>
   </div>
 
@@ -312,7 +311,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 10            2022                41    16</code></pre>
 </div>
 </div>
-<p>Ces chiffres sont désormais corrects. Vous pourriez les représenter avec <a href="../sessions_extra/faceting.qmd">plusieurs mini graphes par année sur une même figure</a>, ou simplement filtrer une année donnée et tracer la courbe avec les numéros de semaines sur l’axe des x. Dans le premier cas, cela donnerait ceci :</p>
+<p>Ces chiffres sont désormais corrects. Vous pourriez les représenter avec <a href="../sessions_extra/faceting.html">plusieurs mini graphes par année sur une même figure</a>, ou simplement filtrer une année donnée et tracer la courbe avec les numéros de semaines sur l’axe des x. Dans le premier cas, cela donnerait ceci :</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">|&gt;</span> </span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">annee_symptomes =</span> <span class="fu">isoyear</span>(date_debut)) <span class="sc">|&gt;</span> </span>

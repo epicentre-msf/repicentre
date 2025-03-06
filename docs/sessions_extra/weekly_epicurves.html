@@ -173,7 +173,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="quarto-categories">
     <div class="quarto-category">Satellite</div>
     <div class="quarto-category">Visualization</div>
-    <div class="quarto-category">Dates</div>
   </div>
   </div>
 
@@ -324,7 +323,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 10       2022                41    16</code></pre>
 </div>
 </div>
-<p>These counts are perfectly correct. You <em>could</em> plot them using <a href="../session_extra/facetting.qmd">facetting</a> by year, or just filter a given year and plot the weekly numbers with the ISO week number on the x-axis. For example:</p>
+<p>These counts are perfectly correct. You <em>could</em> plot them using <a href="../sessions_extra/faceting.html">faceting</a> by year, or just filter a given year and plot the weekly numbers with the ISO week number on the x-axis. For example:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">|&gt;</span> </span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year_onset =</span> <span class="fu">isoyear</span>(date_onset)) <span class="sc">|&gt;</span> </span>
