@@ -92,9 +92,9 @@ df_linelist |>
   summarize(
     .by = age_group,
     n_patients = n(),
-    n_vacc = sum(vacc_status %in%c("Yes - oral","Yes - card"), na.rm = TRUE),
-    n_vacc_one_dose = sum(vacc_doses %in%c("1 dose"), na.rm = TRUE),
-    n_vacc_two_doses = sum(vacc_doses %in%c("2 doses"), na.rm = TRUE),
+    n_vacc = sum(vacc_status %in% c("Yes - oral","Yes - card"), na.rm = TRUE),
+    n_vacc_one_dose = sum(vacc_doses %in% c("1 dose"), na.rm = TRUE),
+    n_vacc_two_doses = sum(vacc_doses %in% c("2 doses"), na.rm = TRUE),
     prop_vacc = n_vacc / n_patients,
     prop_vacc_one_dose = n_vacc_one_dose / n_patients,
     prop_vacc_two_doses = n_vacc_two_doses / n_patients
@@ -102,40 +102,44 @@ df_linelist |>
 
 # 3) summarise malaria test results, signs, symptoms by hospitalisation
 df_linelist |>
-  drop_na(hospitalisation)|>
+  drop_na(hospitalisation) |>
   summarize(
     .by = hospitalisation,
+    
     n_patients = n(),
-    n_malaria = sum(malaria_rdt=="positive",na.rm=T),
-    n_fever = sum(fever,na.rm=T),
-    n_rash = sum(rash,na.rm=T),
-    n_cough = sum(cough,na.rm=T),
-    n_red_eye = sum(red_eye,na.rm=T),
-    n_pneumonia = sum(pneumonia,na.rm=T),
-    n_encephalitis = sum(encephalitis,na.rm=T),
-    n_muac = sum(muac<125,na.rm=T),
+    n_malaria = sum(malaria_rdt == "positive", na.rm = TRUE),
+    n_fever   = sum(fever, na.rm = TRUE),
+    n_rash    = sum(rash, na.rm = TRUE),
+    n_cough   = sum(cough, na.rm = TRUE),
+    n_red_eye = sum(red_eye, na.rm = TRUE),
+    n_pneumonia    = sum(pneumonia, na.rm = TRUE),
+    n_encephalitis = sum(encephalitis, na.rm = TRUE),
+    n_muac         = sum(muac < 125, na.rm = TRUE),
+    
     prop_malaria = n_malaria/n_patients,
-    prop_fever = n_fever/n_patients,
-    prop_rash = n_rash/n_patients,
-    prop_cough = n_cough/n_patients,
+    prop_fever   = n_fever/n_patients,
+    prop_rash    = n_rash/n_patients,
+    prop_cough   = n_cough/n_patients,
     prop_red_eye = n_red_eye/n_patients,
-    prop_pneumonia = n_pneumonia/n_patients,
+    prop_pneumonia    = n_pneumonia/n_patients,
     prop_encephalitis = n_encephalitis/n_patients,
-    prop_muac = n_muac/n_patients
+    prop_muac         = n_muac/n_patients
   ) |>
-  select(hospitalisation,n_patients,starts_with("prop"))
+  select(hospitalisation, n_patients,
+         prop_malaria, prop_fever, prop_rash, prop_cough,
+         prop_red_eye, prop_pneumonia, prop_encephalitis, prop_muac)
 
 # 4) time from onset to consultation by location
-df_linelist|>
+df_linelist |>
      summarize(
          .by = sub_prefecture,
-         n = sum(!is.na(date_consultation)&!is.na(date_onset)),
-         lag = mean(date_consultation-date_onset) )
+         n   = sum(!is.na(date_consultation) & !is.na(date_onset)),
+         lag = mean(date_consultation - date_onset) )
 
 # 5) time from admission to outcome by outcome
-df_linelist|>
-  mutate(time_in_hosp=date_outcome-date_admission)|>
-  drop_na(time_in_hosp,outcome)|>
+df_linelist |>
+  mutate(time_in_hosp = date_outcome-date_admission) |>
+  drop_na(time_in_hosp,outcome) |>
   summarize(
     .by = outcome,
     n = n(),
