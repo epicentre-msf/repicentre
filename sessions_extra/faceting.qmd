@@ -1,13 +1,10 @@
 ---
-title: Introduction to faceting
+title: Faceting
 description: Create a plot with multiple subplots (facets)
-date: last-modified
-# image: ../img/satellite/faceting/faceting_000_logo.png
+image: ../img/core/06_epicurves/logo.svg
 categories:
   - Satellite
-  - Graphs
-  - ggplot2
-  - epicurve
+  - Visualization
 ---
 
 ```{r setup}
@@ -87,7 +84,7 @@ We will use the same clean linelist that we used in the past sessions, which you
 #| eval: true
 
 downloadthis::download_link(
-  link = 'https://github.com/epicentre-msf/repicentre/raw/refs/heads/main/data/data/clean/moissala_linelist_clean_EN.rds',
+  link = 'https://github.com/epicentre-msf/repicentre/raw/main/data/clean/moissala_linelist_clean_EN.rds',
   button_label = "Download clean data",
   has_icon = TRUE,
   icon = "fa fa-save",
@@ -101,7 +98,7 @@ Finally, add an import section where you use `{here}` and `{rio}` to load your d
 :::
 
 
-## faceting
+## Faceting
 
 The function `facet_wrap()` allows you to replicate a graph based on the categories of a variable. For example, you could make the epicurve graph *by sex*, or *by site*. As other layers of a ggplot graph, you add it to your existing graph with a `+`. It creates a a figure with multiple small graphs, that `{ggplot2}` calls *facets* or *small multiples*.
 
@@ -294,57 +291,11 @@ Depending on the size of your graph, the date labels on the x-axis may be a bit 
 #| eval: true
 
 downloadthis::download_link(
-  link = 'https://github.com/epicentre-msf/repicentre/blob/main/sessions_extra/faceting_solutions.R',
+  link = 'https://github.com/epicentre-msf/repicentre/blob/main/solutions/extra/faceting_solutions.R',
   button_label = 'Solutions file',
   has_icon = TRUE,
   icon = "fa fa-save",
   self_contained = FALSE
 )
 ```
-
-
-## Challenge
-
-The help pages from `{tidyverse}` packages tend to be well written. We advise you to go and read them when you learn a new function, you are bound to learn a couple of tricks each time.
-
-::: {.callout-important}
-Reading code written by others, figuring out what it does and then adapting it to your own code are **very important skills** to develop, whether the code comes from the official documentation, StakOverflow, tutorials from random people on the web or Large Language Models outputs (such as Github Copilot, or ChatGPT).
-:::
-
-Here is an exercise to train these skills. Checkout the examples of the [help page](https://ggplot2.tidyverse.org/reference/facet_wrap.html) for the `facet_wrap()` function: one of them show how to adapt your code to do this:
-
-```{r}
-#| eval: true
-#| echo: false
-#| fig-width: 9
-
-df_cases <- df_linelist %>% 
-  count(date_onset) %>% 
-   tidyr::drop_na(date_onset)
-
-ggplot(data = df_age,     # general dataset
-       aes(x = date_onset,
-           y = n)) +
-
-  # Plot the gray bars:
-  geom_col(data = df_cases,     # dataset for just this layer
-           fill = "grey80") +
-
-  # Plot the blue bars
-  geom_col(fill = "#2E4573") +  # uses the general dataset
-
-  labs(x = "Date of onset",
-       y = "Measles Cases",
-       title = "Measles in Moissala",
-       caption = "Ficticious data") +
-  theme_classic(base_size = 15) +
-  facet_wrap(vars(age_group))
-```
-
-Can you modify your code do do something similar?
-
-
-::: {.callout-tip collapse="true"}
-You will need two aggregated data frames, one created today and one created in the [epicurve session](../sessions_core/06_epicurves.qmd).
-:::
 

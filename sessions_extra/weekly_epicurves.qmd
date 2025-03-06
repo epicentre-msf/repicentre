@@ -5,7 +5,6 @@ image: ../img/core/06_epicurves/logo.svg
 categories:
   - Satellite
   - Visualization
-  - Dates
 ---
 
 ```{r setup}
@@ -173,7 +172,7 @@ df_linelist |>
   head(10)
 ```
 
-These counts are perfectly correct. You *could* plot them using [facetting](../session_extra/facetting.qmd) by year, or just filter a given year and plot the weekly numbers with the ISO week number on the x-axis. For example:
+These counts are perfectly correct. You *could* plot them using [faceting](../sessions_extra/faceting.qmd) by year, or just filter a given year and plot the weekly numbers with the ISO week number on the x-axis. For example:
 
 ```{r}
 #| eval: true

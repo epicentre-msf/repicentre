@@ -5,7 +5,6 @@ image: ../img/core/06_epicurves/logo.svg
 categories:
   - Satellite
   - Visualization
-  - Dates
 ---
 
 ```{r setup}

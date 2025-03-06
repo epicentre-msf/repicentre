@@ -1,13 +1,10 @@
 ---
-title: Introduction aux graphiques multiples (facetting)
+title: Graphiques multiples (facetting)
 description: Apprenez à créer plusieurs mini graphiques "par catégorie" en une seule commande
-date: last-modified
-# image: ../img/satellite/facetting/facetting_000_logo.png
+image: ../img/core/06_epicurves/logo.svg
 categories:
   - Satellite
-  - Graphs
-  - ggplot2
-  - epicurve
+  - Visualization
 ---
 
 ```{r setup}
@@ -89,7 +86,7 @@ Nous utiliserons la même liste linéaire nettoyée que précédemment et qui pe
 #| eval: true
 
 downloadthis::download_link(
-  link = 'https://github.com/epicentre-msf/repicentre/raw/refs/heads/main/data/data/clean/moissala_linelist_clean_FR.rds',
+  link = 'https://github.com/epicentre-msf/repicentre/raw/main/data/clean/moissala_linelist_clean_FR.rds',
   button_label = 'Télécharger les données',
   has_icon = TRUE,
   icon = "fa fa-save",
@@ -293,59 +290,11 @@ Si le graphique est très large, il est possible que les étiquettes des dates n
 #| eval: true
 
 downloadthis::download_link(
-  link = 'https://github.com/epicentre-msf/repicentre/blob/main/solutions/extras/facetting_solutions.fr.R',
+  link = 'https://github.com/epicentre-msf/repicentre/blob/main/solutions/extras/facetting_solutions_fr.R',
   button_label = 'Solutions des exercices',
   has_icon = TRUE,
   icon = "fa fa-save",
   self_contained = FALSE
 )
 ```
-
-
-## Pour aller plus loin
-
-::: {.callout-important}
-Être capable de lire du code écrit par d'autres, de comprendre ce qu'il fait et de l'adapter à vos besoins  sont des compétences **très importantes** à cultiver. Cela reste vrai que le code provienne des pages d'aide officielles, de StakOverflow, de tutoriels ou de sorties de Large Language Models (comme Github Copilot, ou ChatGPT).
-:::
- 
-Alors, un petit défi ?!
-
-Les pages d'aide des paquets `{tidyverse}` sont généralement bien écrites. Nous vous conseillons de les lire lorsque vous apprenez une nouvelle fonction, vous y découvrirez plein d'astuces !
-
-Pour vous faire travailler tout cela... Consultez les exemples de la [page d'aide](https://ggplot2.tidyverse.org/reference/facet_wrap.html) de `facet_wrap()` : l'un d'entre eux montre comment créer ce type de figure :
-
-```{r}
-#| eval: true
-#| echo: false
-#| fig-width: 9
-
-df_cas <- df_linelist %>% 
-  count(date_debut) %>% 
-   tidyr::drop_na(date_debut)
-
-ggplot(data = df_age,     # general dataset
-       aes(x = date_debut,
-           y = n)) +
-
-  # Plot the gray bars:
-  geom_col(data = df_cas,     # dataset for just this layer
-           fill = "grey80") +
-
-  # Plot the blue bars
-  geom_col(fill = "#2E4573") +  # uses the general dataset
-
-  labs(x = "Date d'apparition des symptomes",
-       y = "Cas de rougeole",
-       title =  "Cas de rougeole dans la région de Mandoul (Tchad)",
-       caption = "Données fictives") +
-  theme_classic(base_size = 15) +
-  facet_wrap(vars(age_groupe))
-```
-
-Arrivez-vous à modifier votre code pour faire la même chose ?
-
-
-::: {.callout-tip collapse="true"}
-Il vous faudra deux data frame agrégés, l'un deux crée aujourd'hui et l'autre lors de la session sur les [courbes épis](../sessions_core/06_epicurves.qmd).
-:::
 
