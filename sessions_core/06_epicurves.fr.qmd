@@ -1,7 +1,6 @@
 ---
 title: Introduction to data visualization with ggplot2
 description: Apprenez les bases de la visualisation avec ggplot2, et créez votre première épicurve
-date: last-modified
 image: ../img/core/06_epicurves/logo.svg
 categories:
   - Core
@@ -45,7 +44,7 @@ df_hopital <- df_linelist |>
 
 Pour cette dernière session, nous allons vous donner une courte introduction à la visualisation de données à l'aide du package `{ggplot2}`, un outil populaire. Gardez en tête que la visualisation de données est un énorme sujet, et `{ggplot2}` un vaste package et il n'est pas réaliste de tout traiter en trois heures. La session d'aujourd'hui est une introduction que nous espérons douce aux concepts de base de la visualisation, en prenant pour objet un graphe fameux en épidémiologie, **la [courbe épidémique]{.hovertip bs-toggle='tooltip' bs-title="Les courbes épidémiques sont un type particulier de représentation qui montre le nombre journalier ou hebdomadaire de cas observés pendant une épidémie. Ces courbes sont très utilisées en épidémiologie, et peuvent être complexifiées en ajoutant le statut du cas, son type de décharge, etc."}**.
 
-Our final plot will look like this:
+Notre visualisation finale ressemblera à ceci :
 
 ```{r}
 #| eval: true
@@ -63,14 +62,28 @@ df_linelist |>
 ```
 
 
-## Setup
+Setup
+----------------------------------------------------------------------------------------------------
 
-Before we get into the theory, let's get your data and script ready.
+**Dépendances.** Cette session suppose que vous savez utiliser RStudio, que vous êtes capable d'importer des données et que vous connaissez les verbes de base de manipulation des données que nous avons vus dans les sessions de base jusqu'à présent. Si vous avez besoin d'un rappel sur l'un de ces sujets, nous vous encourageons à revoir les sessions de base du parcours d'apprentissage.
 
-::: {.write}
-Ouvrez votre projet Rstudio du cours et créez un nouveau script appelé "courbe_epi.R" avec les métadonnées appropriées. Enregistrez le dans `R/`. Pour cette session, nous aurons besoin de charger les packages `{here}`, `{rio}`, `{dplyr}`, `{lubridate}`, et`{ggplot2}`.
+::: {.setup}
+Cette session utilisera la version nettoyée de l'ensemble de données Moissala sur la rougeole.
+
+```{r}
+#| echo: false
+#| eval: true
+
+downloadthis::download_link(
+  link = 'https://github.com/epicentre-msf/repicentre/raw/main/data/FETCHR.zip',
+  button_label = ' Course Folder',
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  self_contained = FALSE
+)
+```
 <br>
-Ajoutez une section `# IMPORTATION DONNÉES` où vous importez les données nettoyées du cours (`linelist_moissala_clean_FR.RDS`). 
+Ouvrez votre projet Rstudio du cours et créez un nouveau script appelé "courbe_epi.R" avec les métadonnées appropriées. Enregistrez le dans `R/`. Pour cette session, nous aurons besoin de charger les packages `{here}`, `{rio}`, `{dplyr}`, `{lubridate}`, et`{ggplot2}`. Ajoutez une section `# IMPORTATION DONNÉES` où vous importez les données nettoyées du cours (`linelist_moissala_clean_FR.RDS`). 
 :::
 
 
@@ -96,7 +109,7 @@ Dans ce tutoriel, nous décomposons les graphiques en quatre composantes (couche
 
 On peut illustrer ces composants avec la courbé épidémique schématique suivante :
 
-![The main components of a plot](../img/core/06_epicurves/01_theory.png){fig-align="center"}
+![](../img/core/06_epicurves/01_theory.png){fig-align="center"}
 
 La première couche, le caneva (ou la toile) est fondamentale. Comme un artiste prépare sa toile vierge et ses outils avant de se lancer dans une peinture, R doit en premier lieu créer un canevas prêt à accueillir les éléments de représentation graphique. C'est lors de la création du canevas que nous indiquons à R que nous voulons créer un graphique, et avec quelles variables.
 
@@ -139,7 +152,7 @@ df |>                    # passer les données
 
 Nous pouvons mettre à jour notre précédent schéma avec ces fonctions : 
 
-![The main components of a plot, with their associated functions](../img/core/06_epicurves/02_functions.png){fig-align="center"}
+![](../img/core/06_epicurves/02_functions.png){fig-align="center"}
 
 ::: {.callout-note}
 Dans l'exemple précédent, nous passons le jeu de données à la fonction `ggplot()` à l'aide de l'opérateur **pipe** (comme nous l'avons souvent fait avec d'autres fonctions). C'est possible car le premier argument nécessaire de la fonction est le dataframe contenant les variables à représenter. **Soyez attentifs**, il est facile de se tromper et de chercher à utiliser un `+` à la place du `|>`
@@ -198,7 +211,7 @@ df_hopital |>
 
 Dans Rstudio, ce graphique devrait apparaître dans l'onglet "Plots" dans le panneau en bas à droite (par défaut) : 
 
-![The plot pannel in RStudio IDE](../img/core/06_epicurves/03_plot_panel.png){fig-align="center"}
+![](../img/core/06_epicurves/03_plot_panel.png){fig-align="center"}
 
 ::: {.callout-note}
 Just like with `{dplyr}`, we write our column names without quotation marks. This is unsurprising as `{ggplot2}`, like `{dplyr}`, is a member of the `{tidyverse}` and therefore uses similar syntax.
@@ -391,7 +404,7 @@ Ajoutez une dernière couche à votre graphe pour ajouter un thème de votre cho
 
 Si vous souhaitez enregistrer votre graphe, vous pouvez cliquer sur le bouton « Exporter » dans le panneau de tracé de RStudio :
 
-![Bouton d'enregistrement du tracé dans le panneau de tracé de RStudio](../img/core/06_epicurves/04_plot_export.png){fig-align="center"}
+![](../img/core/06_epicurves/04_plot_export.png){fig-align="center"}
 
 
 ## La Fin !
