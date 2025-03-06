@@ -22,19 +22,18 @@ df_linelist <- rio::import(here("data", "clean", "moissala_linelist_clean_FR.rds
 
 ## Objectifs
 
-- Créer des tableaux de contingence avec `count()`
-- Calculer des statistiques récapitulatives par groupe à l'aide de `summarize()`
+- Créer des tableaux d'effectifs avec `count()`
+- Calculer des résumés statistiques stratifiés par groupe à l'aide de `summarize()`
 - Réviser comment sélectionner les lignes en utilisant `filter()` et créer/modifier des variables avec `mutate()`
 - Créer des variables catégorielles ordonnées
 
 
-
 ## Setup
 
-**Dépendances.** Cette session suppose que vous savez utiliser RStudio, que vous êtes capable d'importer des données et que vous connaissez les verbes de base de manipulation des données que nous avons vus dans les sessions de base jusqu'à présent. Si vous avez besoin d'un rappel sur l'un de ces sujets, nous vous encourageons à revoir les sessions de base du parcours d'apprentissage.
+**Prérequis** : cette session suppose que vous savez utiliser RStudio, que vous êtes capable d'importer des données et que vous connaissez les verbes de base de manipulation des données que nous avons vus dans les sessions de base jusqu'à présent. Si vous avez besoin d'un rappel sur l'un de ces sujets, nous vous encourageons à revoir les sessions précédentes du module.
 
 :::{.setup}
-Cette session utilisera la version nettoyée de l'ensemble de données Moissala sur la rougeole.
+Cette session utilisera une version nettoyée de la liste linéaire rougeole à Mandoul (Tchad).
 
 ```{r}
 #| echo: false
@@ -50,25 +49,27 @@ downloadthis::download_link(
 ```
 
 <br>
-Ouvrez votre projet RStudio et créez un nouveau script dans le sous-dossier R appelé `tables.R` avec les métadonnées appropriées et une section "Packages" qui importe : `{rio}`, `{here}` et `{tidyverse}`. Ajoutez une section "Import Data" qui charge la version *nettoyée* de la linelist de la rougeole dans R.
+Ouvrez votre projet RStudio et créez un nouveau script dans le sous-dossier R appelé `tables.R` avec les métadonnées appropriées et une section "Paquets" qui importe : `{rio}`, `{here}` et `{tidyverse}`. Ajoutez une section "Import données" qui charge la version *nettoyée* de la linelist de la rougeole dans R.
 :::
 
 
 ## Introduction : agrégation des données
 
-Récapitulons. Vous venez d'effectuer l'une des tâches les [plus importantes]{.hovertip bs-toggle='tooltip' bs-title='Certains considèrent que cela représente 80 % du travail !} d'un épidémiologiste : le **nettoyage des données**. Maintenant que vous disposez de données propres et normalisées, vous pouvez vous mettre au travail et commencer à les analyser. Les analyses commencent généralement par des tableaux et des résumés qui décrivent nos données :
+Récapitulons. Vous venez d'effectuer l'une des tâches les [plus importantes]{.hovertip bs-toggle='tooltip' bs-title='Certains considèrent que cela représente 80 % du travail !} d'un épidémiologiste : le **nettoyage des données**. Maintenant que vous disposez de données propres et standardisées, vous pouvez commencer à les analyser. Les analyses commencent généralement par des tableaux et des résumés qui décrivent nos données :
 
-- Tableaux de fréquence univariés pour compter les occurrences de différentes valeurs
-- Statistiques sommaires des variables numériques (moyenne, médiane, écart-type)
+- Tableaux d'effectifs et fréquence univariés pour compter les occurrences de différentes valeurs
+- Statistiques descriptives des variables numériques (moyenne, médiane, écart-type)
 - Tableaux croisés pour examiner les relations entre les variables catégorielles
 - Résumés par groupe pour comparer les statistiques entre différents sous-ensembles de données
 
 ## Compter plusieurs colonnes (tableaux de contingence)
 
-Au cours de la session d'exploration des données, vous avez appris à créer un tableau de fréquence pour une variable catégorielle unique à l'aide de la fonction `count()`.
+Au cours de la session d'exploration des données, vous avez appris à créer un tableau d'effectifs pour une variable catégorielle à l'aide de la fonction `count()`.
 C'est bien, mais nous voulons souvent compter le nombre d'observations en fonction de deux variables (ou plus !).
 
-Ces tableaux sont appelés [tableaux de contingence]{.hovertip bs-toggle='tooltip' bs-title='Ou tableaux croisés. Ils montrent comment les observations sont réparties entre différentes combinaisons de catégories.'}. Par exemple, connaître le nombre de patients par sous-préfecture est très utile, mais nous pourrions vouloir stratifier à la fois par sous-préfecture et par groupe d'âge pour voir si certaines zones ont des patients anormalement âgés. Ce type de stratification est un moyen utile d'essayer de trouver des zones qui pourraient être de bons candidats pour des campagnes de rattrapage. C'est facile, il suffit de passer plusieurs noms de colonnes à `count()` :
+Ces tableaux sont appelés [tableaux de contingence]{.hovertip bs-toggle='tooltip' bs-title='Ou tableaux croisés. Ou tableaux à double entrée. Ils montrent comment les observations sont réparties entre différentes combinaisons de catégories.'}. Par exemple, connaître le nombre de patients par sous-préfecture est très utile, mais nous pourrions vouloir stratifier à la fois par sous-préfecture et par groupe d'âge pour voir si certaines zones ont des patients anormalement âgés. Ce type de stratification est un moyen utile d'essayer de trouver des zones qui pourraient être de bons candidats pour des campagnes de rattrapage. 
+
+C'est facile, il suffit de passer plusieurs noms de colonnes à `count()` :
 
 ```{r}
 df_linelist |>
@@ -76,9 +77,9 @@ df_linelist |>
 ```
 
 :::{.write}
-Créez un nouveau tableau récapitulatif en comptant le nombre de patients stratifiés par `sous_prefecture` et `hospitalisation`. Que se passe-t-il si vous modifiez l'ordre des arguments donnés à `count()` ?
+Créez un tableau récapitulatif comptant le nombre de patients stratifiés par `sous_prefecture` et `hospitalisation`. Que se passe-t-il si vous modifiez l'ordre des arguments donnés à `count()` ?
 
-Maintenant, en utilisant `count()`, réponds aux questions suivantes :
+En utilisant `count()`, répondez aux questions suivantes :
 
 - Combien de patients étaient des femmes ? Quelle est la proportion ?
 - Quelles sont toutes les valeurs possibles de la variable `statut_sortie` ?
@@ -88,7 +89,7 @@ Maintenant, en utilisant `count()`, réponds aux questions suivantes :
 
 ## Filtrer les valeurs `NA`
 
-En examinant les catégories du `statut_sortie`, vous devriez avoir remarqué que certaines patientes ont des valeurs manquantes (`NA`):
+En examinant les catégories du `statut_sortie`, vous devriez avoir remarqué que certains patients n'ont pas de statut (la valeur est `NA`) :
 
 ```{r}
 df_linelist |>
@@ -97,13 +98,13 @@ df_linelist |>
 ```
 
 ::: {.look}
-Observez le résultat du code ci-dessus. Comment pouvez-vous également calculer la proportion de patients décédés ? Êtes-vous satisfait de ce calcul ? 
+Observez le résultat du code ci-dessus. Quel est le terme technique pour la proportion de patients décédés ? Êtes-vous satisfait la manière dont le calcul ci-dessus est effectué ? 
 ::: 
 
-La proportion de cas décédés est également appelée [taux de létalité]{.hovertip bs-toggle='tooltip' bs-title='Le taux de létalité est un ratio (ou un risque) mais pas un taux !'}. Pour calculer précisément le CFR, nous devons nous assurer que le dénominateur ne comprend que les patients dont nous sommes sûrs du résultat (c'est-à-dire que nous devons supprimer tous les cas avec "NA" ou "contre avis médical"). 
+La proportion de cas décédés est également appelée [taux de létalité]{.hovertip bs-toggle='tooltip' bs-title='Le taux de létalité est un ratio (ou un risque) mais pas un taux !'}. Pour calculer précisément le CFR, nous devons nous assurer que le dénominateur ne comprend que les patients dont nous sommes sûrs du statut, c'est-à-dire que nous devons supprimer tous les cas avec "NA" ou "contre avis médical". 
 
-Rappelons que nous pouvons le faire en utilisant `filter()`. Pour garder les valeurs manquantes (`NA`) dans une variable, nous pouvons utiliser la petite fonction `is.na(statut_sortie)`. 
-L'ajout d'un `!` devant fera l'inverse : *supprimer les valeurs manquantes de `statut_sortie`* :
+Rappelons que nous pouvons le faire en utilisant `filter()`. Pour garder les valeurs manquantes (`NA`) dans une variable, nous pouvons utiliser la fonction `is.na()`. 
+L'ajout d'un `!` devant fera l'inverse : *supprimer les valeurs manquantes* :
 
 ```{r}
 df_linelist |>
@@ -113,14 +114,13 @@ df_linelist |>
 ```
 
 ::: {.write}
-Quelle autre instruction conditionnelle pourriez-vous utiliser dans `filter()` pour obtenir les mêmes résultats ?
+Quelle autre condition pourriez-vous utiliser dans `filter()` pour obtenir le même résultat ?
 :::
 
-Maintenant que nous avons supprimé les patients dont l'issue est inconnue, nous pouvons ajouter ceci avant de créer notre tableau de fréquence pour obtenir le CFR correct. 
+Maintenant que nous savons comment ne garder que les patients dont le statut est connu, nous pouvons reprendre notre code précédent et le modifier pour calculer un CFR correct. 
 
 :::{.write}
-À l'aide de votre filtre, mettez à jour votre code pour résumer le nombre observé
-de patients qui ont survécu et sont décédés ainsi que le taux de létalité (proportion de décès). Stockez ce nouveau dataframe dans un objet, `cfr_df`. 
+Mettez à jour votre code pour ne conserver que les patients avec un statut de sortie connu, comptez le nombre de patients guéris et décédés, et calculez le taux de létalité (proportion de décès). Stockez ce nouveau dataframe dans un objet `cfr_df`. 
 :::
 
 ```{r, echo = FALSE}
@@ -131,7 +131,7 @@ cfr_df <- df_linelist |>
 ```
 
 ::: {.callout-tip}
-**Bonus.** Une fonction de "raccourci" utile est `drop_na()` du package `{tidyr}` qui équivaut à `filter(!is.na())`.
+**Bonus.** La fonction `drop_na(...)` du paquet `{tidyr}` est un "raccourci" pour la commande `filter(!is.na(...))` :
 
 ```{r}
 df_linelist |>
@@ -139,12 +139,12 @@ df_linelist |>
   count(statut_sortie)
 ```
 
-`drop_na()` est particulièrement utile car vous pouvez lui donner plusieurs noms de colonnes pour filtrer. Mais attention, cela supprimera **toutes** les lignes où **une ou plusieurs** de ces colonnes ont une valeur manquante. 
+`drop_na()` est particulièrement utile car vous pouvez lui donner plusieurs noms de colonnes pour filtrer. Mais attention, cela supprimera **toutes** les lignes où **une ou plusieurs** de ces colonnes ont une valeur manquante. Faites très attention à votre nombre d'observations !
 :::
 
 ## Tableau récapitulatif : statistiques par sous-préfecture
 
-Maintenant que nous avons produit quelques tableaux de fréquence et de contingence simples, nous pouvons augmenter la complexité. Une tâche courante en épidémiologie consiste à examiner les statistiques résumées dans des sous-ensembles de données. 
+Maintenant que nous avons produit quelques tableaux de fréquence simples, nous pouvons augmenter la complexité. Une tâche courante en épidémiologie consiste à examiner les statistiques résumées dans des sous-ensembles de données. 
 
 Par exemple, on peut nous demander de produire des statistiques sur les patients au niveau des sous-préfectures, c'est-à-dire que pour chaque sous-préfecture dans les données, nous devons répondre aux questions suivantes : 
 
@@ -154,18 +154,18 @@ Par exemple, on peut nous demander de produire des statistiques sur les patients
 - Combien de patients ont été hospitalisés ? 
 - Parmi les enfants de moins de 6 mois, combien sont décédés ? 
 
-C'est exactement pour cela que la fonction `summarize()` a été créée ! Elle nous permet de calculer des statistiques résumées sur un ensemble de données, et la syntaxe est similaire à celle de `mutate()` : 
+C'est exactement pour cela que la fonction `summarize()` a été créée ! Elle nous permet de calculer des statistiques résumées sur un jeu de données, et la syntaxe est similaire à celle de `mutate()` : 
 
 ```{r}
 #| eval: false
 
 # NE PAS EXÉCUTER (PSEUDO-CODE)
 df |>
-  mutate(new_col = function_to_create(existing_col))
+  mutate(nouvelle_colonne = fonction(une_colonne))
 
 df |>
-  summarize(.by = grouping_variable,
-            new_col = summary_function(existing_col))
+  summarize(.by = variable_stratifiante,
+            nouvelle_colonne = fonction_qui_résumme(une_colonne))
 ```
 
 Considérons le code suivant, où nous **résumons les données** pour calculer l'âge moyen de tous les patients.
@@ -177,7 +177,7 @@ df_linelist |>
   summarize(moy_age = mean(age))
 ```
 
-Notez que ce code donne une seule valeur pour l'âge moyen. Aucune variable de regroupement n'a été fournie, donc `summarize()` a renvoyé une statistique récapitulative pour l'ensemble du jeu de données. Pour calculer l'âge moyen par strate spécifique, nous devons spécifier une **variable de regroupement** en utilisant l'argument `.by` :
+Notez que ce code renvoit *une seule valeur* pour l'âge moyen. Aucune variable de regroupement n'a été fournie, donc `summarize()` a renvoyé une statistique récapitulative pour l'ensemble du jeu de données. Pour calculer l'âge moyen par strate spécifique, nous devons spécifier une **variable de regroupement** en utilisant l'argument `.by` :
 
 ```{r}
 #| eval: true
@@ -204,9 +204,9 @@ df_linelist |>
 Que se passe-t-il lorsque vous exécutez ces lignes ?
 :::
 
-### Comptages
+### Effectifs
 
-Nous voulons d'abord examiner le nombre de cas dans chaque `sous_prefecture`. Cela peut être fait en utilisant la fonction d'aide `n()` : 
+Nous voulons d'abord examiner le nombre de cas dans chaque `sous_prefecture`. Cela peut être fait en utilisant la fonction `n()` qui compte les lignes : 
 
 ```{r}
 df_linelist |>
@@ -221,8 +221,7 @@ Ok, maintenant construisons un tableau récapitulatif pour chaque sous-préfectu
 
 ### Récapitulatifs des variables continus
 
-Nous pouvons ensuite utiliser les fonctions mean(), median(), min(), max() (et autres) pour produire des récapitulatifs 
-pour les variables continues. Par exemple, l'âge moyen :
+Nous pouvons ensuite utiliser les fonctions `mean()`, `median()`, `min()`, `max()` (et autres) pour résummer les variables variables continues. Par exemple, l'âge moyen :
 
 ```{r}
 df_linelist |>
