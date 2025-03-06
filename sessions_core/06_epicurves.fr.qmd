@@ -440,6 +440,7 @@ Aller plus loin
 ### Satellites
 
 - [Courbes épidémiques hebdomadaires](../sessions_extra/weekly_epicurves.qmd)
+- [Graphiques multiples (facetting)](../sessions_extra/faceting.qmd)
  
 
 ## Ressources

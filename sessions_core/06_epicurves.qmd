@@ -426,6 +426,7 @@ Go Further
 ### Satellites
 
 - [Weekly Epicurves](../sessions_extra/weekly_epicurves.qmd)
+- [Faceting](../sessions_extra/faceting.qmd)
 
 ## Resources
 
