@@ -60,7 +60,6 @@ df_linelist |>
   mutate(
     prop_female = n_female / n_patients,
     prop_hosp = n_hosp / n_patients
-<<<<<<< HEAD:sessions_core/05_summary-table_solutions.R
   )
 
 # Extra exercise ---------------------------------------------------------
@@ -142,6 +141,5 @@ df_linelist|>
     n = n(),
     lag = mean(time_in_hosp)
   )
-=======
-  )
->>>>>>> main:sessions_core/05_summary_table_solutions.R
+
+
