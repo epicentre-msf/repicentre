@@ -1,7 +1,6 @@
 ---
 title: Tableaux récapitulatifs
 description: Créer des tableaux récapitulatifs
-date: last-modified
 image: ../img/core/05_summary_tables/logo.svg
 categories:
 - Core
@@ -30,19 +29,19 @@ df_linelist <- rio::import(here("data", "clean", "moissala_linelist_clean_FR.rds
 
 
 
-## Configuration
+## Setup
 
 **Dépendances.** Cette session suppose que vous savez utiliser RStudio, que vous êtes capable d'importer des données et que vous connaissez les verbes de base de manipulation des données que nous avons vus dans les sessions de base jusqu'à présent. Si vous avez besoin d'un rappel sur l'un de ces sujets, nous vous encourageons à revoir les sessions de base du parcours d'apprentissage.
 
 :::{.setup}
-Cette session utilisera la version nettoyée de l'ensemble de données Moissala sur la rougeole. Téléchargez les données et stockez-les dans `data/clean` dans votre projet d'entraînement :
+Cette session utilisera la version nettoyée de l'ensemble de données Moissala sur la rougeole.
 
 ```{r}
 #| echo: false
 #| eval: true
 
 downloadthis::download_link(
-  link = "https://github.com/epicentre-msf/repicentre/raw/refs/heads/main/data/clean/moissala_linelist_clean_FR.rds",
+  link = 'https://github.com/epicentre-msf/repicentre/raw/main/data/FETCHR.zip',
   button_label = "Linelist rougeole nettoyée",
   has_icon = TRUE,
   icon = "fa fa-save",

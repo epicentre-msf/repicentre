@@ -1,7 +1,6 @@
 ---
-title: Importer des données
+title: Importation des données
 description: Créez un projet Rstudio, installez les paquets utiles et importez des données pour travailler dans R.
-date: last-modified
 image: ../img/core/02_import/logo.svg
 categories:
 - Core

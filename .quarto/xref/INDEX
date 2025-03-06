@@ -89,31 +89,10 @@
   "sessions_extra/data_exploration_satellite.qmd": {
     "data_exploration_satellite.html": "02cdf728"
   },
-  "sessions_core/03_data_verbs.fr.qmd": {
-    "03_data_verbs.fr.html": "15262cc3"
+  "sessions_extra/data_exploration.fr.qmd": {
+    "data_exploration.fr.html": "a4b8294d"
   },
-  "sessions_core/04_data_verbs_conditional.fr.qmd": {
-    "04_data_verbs_conditional.fr.html": "b3874b46"
-  },
-  "sessions_core/04_data_verbs_conditional.qmd": {
-    "04_data_verbs_conditional.html": "e5550264"
-  },
-  "sessions_core/05_summary_table.fr.qmd": {
-    "05_summary_table.fr.html": "673506e8"
-  },
-  "sessions_core/05_summary_table.qmd": {
-    "05_summary_table.html": "98e76760"
-  },
-  "sessions_core/06_epicurves.fr.qmd": {
-    "06_epicurves.fr.html": "5ac33908"
-  },
-  "sessions_core/06_epicurves.qmd": {
-    "06_epicurves.html": "e819ebc7"
-  },
-  "sessions_extra/weekly_epicurves.fr.qmd": {
-    "weekly_epicurves.fr.html": "e31a292c"
-  },
-  "sessions_extra/weekly_epicurves.qmd": {
-    "weekly_epicurves.html": "7035e447"
+  "sessions_extra/data_exploration.qmd": {
+    "data_exploration.html": "b7e41942"
   }
 }
