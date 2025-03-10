@@ -94,13 +94,13 @@ Que pensez-vous des noms de votre jeu de données ? Pouvez-vous déjà repérer 
 
 ### Inspecter vos données
 
-Il est également important d'inspecter vos données, cela peut vous permettre de repérer certaines incohérences, des variables avec beaucoup de valeurs manquantes, et cela vous permettra de voir à quelles valeurs s'attendre pour chacune d'entre elles. Vous pouvez [afficher]{.hovertip bs-toggle='tooltip' bs-title="Le mot anglais que vous rencontrerez est "print", qui signifie imprimer, et est utilisé en programmation pour afficher une sortie dans votre console."} vos données dans la console en : 
+Il est également important d'inspecter vos données, cela peut vous permettre de repérer certaines incohérences, des variables avec beaucoup de valeurs manquantes, et cela vous permettra de voir à quelles valeurs s'attendre pour chacune d'entre elles. Vous pouvez [afficher]{.hovertip bs-toggle='tooltip' bs-title="Le mot anglais que vous rencontrerez est 'print', qui signifie imprimer, et est utilisé en programmation pour afficher une sortie dans votre console."} vos données dans la console en : 
 
 1. exécutant l'objet `df_linelist` seul (à éviter si le jeu de données est grand).
 2. utilisant la fonction `head()` pour voir les 6 premières lignes (vous pouvez augmenter ce nombre en utilisant l'argument `n`)
 2. utilisant la fonction `tail()` pour voir les 6 dernières lignes (vous pouvez aussi augmenter ce nombre en utilisant l'argument `n`)
 
-Ces méthodes n'afficheront que les 40 premières lignes de vos données au maximum, car c'est la limite de votre console. Une alternative est d'utiliser la fonction `View()` (avec un V majuscule !) pour voir vos données sous forme de tableur. Cela ouvrira une nouvelle fenêtre avec vos données affichées comme dans une feuille de calcul Excel. **Note** : cette commande ne fait qu'afficher les données, elle ne vous permet pas de les modifier !
+Ces méthodes n'afficheront que les 40 premières lignes de vos données au maximum, car c'est la limite de votre console. Une alternative est d'utiliser la fonction `View()` (avec un V majuscule !) pour voir vos données sous forme de tableur. Cela ouvrira une nouvelle fenêtre avec vos données affichées comme dans une feuille de calcul Excel. Notez que cette commande ne fait qu'afficher les données, elle ne vous permet pas de les modifier !
 
 :::{.callout-tip}
 Soyez très prudent avec `View()` sur un grand jeu de données car cela peut faire planter votre session RStudio. Pour éviter cela, vous pouvez afficher la sortie dans la console. 
@@ -115,6 +115,7 @@ Affichez les 15 premières lignes de vos données. Que se passe-t-il lorsque vou
 Nous voulons maintenant vérifier le type des différentes variables. C'est important car une partie du nettoyage des données consiste à s'assurer que les variables numériques sont de type `numeric`, les dates de type `Date`, et les variables catégoriques de type `factor` ou `character`. Vous avez déjà vu la fonction `class()`, qui permet de vérifier le type d'un vecteur. Dans R, **chaque variable d'un data frame est un vecteur**. Nous pouvons extraire toutes les valeurs de ce vecteur en utilisant [l'opérateur  `$`]{.hovertip bs-toggle='tooltip' bs-title="Qui fait partie du 'base indexing' dans R"}, et les passer à la fonction `class()` : 
 
 ```{r}
+#| eval: true
 class(df_linelist$age)
 ```
 
@@ -153,7 +154,7 @@ Lors de l'exploration des variables continues, nous pouvons vouloir vérifier le
 | `var()` | Variance | `var(x)` | Variance |
 | `sum()` | Somme des valeurs | `sum(x)` | Somme |
 
-:::{.callout-tip}
+:::{.callout-important}
 Ces fonctions exigent que vous supprimiez explicitement les valeurs manquantes (`NA`) en utilisant l'argument `na.rm = TRUE`
 :::
 
@@ -165,7 +166,7 @@ Utilisez la syntaxe `$` pour obtenir :
 - La valeur minimale de `age`
 - Le `pb` maximum
 
-**Des problèmes ?**
+Est-ce que tout semble normal ?
 :::
 
 
@@ -179,13 +180,14 @@ Enfin, examinons les valeurs de nos variables catégoriques à l'aide de tables 
 Pour ce faire, on utilise la fonction `count()` du [paquet `{dplyr}`]{.hovertip bs-toggle='tooltip' bs-title="Nous en apprendrons plus sur ce paquet lors de la prochaine session."}, qui accepte un data frame et le nom d'une (ou plusieurs) colonne(s) en tant qu'arguments, et renvoit le **nombre d'observations** de chaque élément unique dans cette colonne. Par exemple, affichons les valeurs possibles de la variable `sexe` et leurs effectifs : 
 
 ```{r}
+#| eval: true
 count(df_linelist, sexe)
 ```
 
 Le résultat est un nouveau data frame, plus petit, contenant le nombre de patients observés, stratifié par `sexe`. Il semble que cette variable nécessite un recodage... Nous le ferons dans une prochaine session. 
 
 ::: {.write}
-En utilisant les données de votre liste linéaire, examinez les valeurs de la variable `issue`. Qu'est ce que ça donne ? 
+Examinez les valeurs de la variable `issue` de la liste linéaire. Que pensez-vous des catégories ? 
 
 Maintenant, essayez d'ajouter l'argument `sort = TRUE` à la fonction `count()`. Que fait cet argument ?
 :::
