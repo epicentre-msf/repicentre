@@ -189,7 +189,7 @@ head(df_hopital)
 ```
 
 
-### Etape 1 : Créer le canevas
+### Créer le canevas
 
 La première étape est de créer votre "canevas" en spécifiant votre jeu de données et le nom des colonnes que vous voulez représenter sur le graphique. Cela est fait à l'aide de la fonction `ggplot(aes())` selon la syntaxe suivante :
 
@@ -239,7 +239,7 @@ df_cases |>
 Très bien. Maintenant, ajoutons les barres
 
 
-### Etape 2 : Ajouter les formes
+### Ajouter les formes
 
 Maintenant que la toile est prête, commençons à dessiner dessus, et ajoutons des formes. Dans `{ggplot2}`, les formes géométriques sont surnommées des ["géométries"]{.hovertip bs-toggle='tooltip' bs-title="Vous remarquerez dans les exemples ci-dessous que la fonction de toutes les géométries commence par 'geom_'. Ceci a pour but d'améliorer la lisibilité et en effet toutes les géométries dans {ggplot2} commencent de cette manière."} ou "geom" en raccourci, et représentent les données. Les geoms les plus courants sont : 
 
@@ -424,17 +424,24 @@ downloadthis::download_link(
 )
 ```
 
+Aller plus loin
+----------------------------------------------------------------------------------------------------
 
 ### Exercices supplémentaires
 
-1. Créez plutôt une courbe de la date de consultation. N'oubliez pas de mettre à jour les titres et les légendes.
-2. Utilisez le `theme_minimal()` sur un de vos graphiques, avec une police de taille de base de 18.
-3. Allez sur [ce site](https://r-charts.com/colors/)), choisissez une couleur et mettez à jour la couleur de vos barres.
+1. Utilisez le `theme_minimal()` sur un de vos graphiques, avec une police de taille de base de 18.
+2. Allez sur [ce site](https://r-charts.com/colors/), choisissez une couleur et mettez à jour la couleur de vos barres.
 
 ### Exercices de défi
 
 1. Au lieu d'agréger par date, comptez le nombre de patients par sous-préfecture. Essayez d'adapter votre code pour créer un diagramme à barres du nombre de patients par sous-préfecture.
 
+
+### Satellites
+
+- [Courbes épidémiques hebdomadaires](../sessions_extra/weekly_epicurves.qmd)
+- [Graphiques multiples (facetting)](../sessions_extra/faceting.qmd)
+ 
 
 ## Ressources
 

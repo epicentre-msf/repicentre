@@ -411,17 +411,22 @@ downloadthis::download_link(
 )
 ```
 
+Go Further
+----------------------------------------------------------------------------------------------------
 
 ### Extra Exercises
 
-1. Create an epicurve of the date of consultation. Do not forget to update the titles and captions.
-2. Use the `theme_minimal()` on one of your graph, with a base size font of 18.
-3. Go to [this site](https://r-charts.com/colors/)), pick a color and update the color of your bars.
+1. Use the `theme_minimal()` on one of your graph, with a base size font of 18.
+2. Go to [this site](https://r-charts.com/colors/), pick a color and update the color of your bars.
 
 ### Challenge Exercises
 
 1. Instead of aggregating by date, count the number of patients by sub-prefecture. Try to adapt your epicurve code to create a barplot of the number of patients by sub-prefecture.
 
+### Satellites
+
+- [Weekly Epicurves](../sessions_extra/weekly_epicurves.qmd)
+- [Faceting](../sessions_extra/faceting.qmd)
 
 ## Resources
 

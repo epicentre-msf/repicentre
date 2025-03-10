@@ -152,18 +152,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <a href="#sec-epicurve-steps" id="toc-sec-epicurve-steps" class="nav-link" data-scroll-target="#sec-epicurve-steps">Votre premier <code>ggplot</code></a>
   <ul class="collapse">
 <li><a href="#pr%C3%A9parer-vos-donn%C3%A9es-agr%C3%A9gation-par-jour" id="toc-préparer-vos-données-agrégation-par-jour" class="nav-link" data-scroll-target="#préparer-vos-données-agrégation-par-jour">Préparer vos données : Agrégation par jour</a></li>
-  <li><a href="#etape-1-cr%C3%A9er-le-canevas" id="toc-etape-1-créer-le-canevas" class="nav-link" data-scroll-target="#etape-1-créer-le-canevas">Etape 1 : Créer le canevas</a></li>
-  <li><a href="#etape-2-ajouter-les-formes" id="toc-etape-2-ajouter-les-formes" class="nav-link" data-scroll-target="#etape-2-ajouter-les-formes">Etape 2 : Ajouter les formes</a></li>
+  <li><a href="#cr%C3%A9er-le-canevas" id="toc-créer-le-canevas" class="nav-link" data-scroll-target="#créer-le-canevas">Créer le canevas</a></li>
+  <li><a href="#ajouter-les-formes" id="toc-ajouter-les-formes" class="nav-link" data-scroll-target="#ajouter-les-formes">Ajouter les formes</a></li>
   <li><a href="#ajouter-les-titres" id="toc-ajouter-les-titres" class="nav-link" data-scroll-target="#ajouter-les-titres">Ajouter les titres</a></li>
   <li><a href="#changer-le-th%C3%A8me" id="toc-changer-le-thème" class="nav-link" data-scroll-target="#changer-le-thème">Changer le thème</a></li>
   <li><a href="#sauvegarder-votre-graphique" id="toc-sauvegarder-votre-graphique" class="nav-link" data-scroll-target="#sauvegarder-votre-graphique">Sauvegarder votre graphique</a></li>
   </ul>
 </li>
+  <li><a href="#la-fin" id="toc-la-fin" class="nav-link" data-scroll-target="#la-fin">La Fin !</a></li>
   <li>
-<a href="#la-fin" id="toc-la-fin" class="nav-link" data-scroll-target="#la-fin">La Fin !</a>
+<a href="#aller-plus-loin" id="toc-aller-plus-loin" class="nav-link" data-scroll-target="#aller-plus-loin">Aller plus loin</a>
   <ul class="collapse">
 <li><a href="#exercices-suppl%C3%A9mentaires" id="toc-exercices-supplémentaires" class="nav-link" data-scroll-target="#exercices-supplémentaires">Exercices supplémentaires</a></li>
   <li><a href="#exercices-de-d%C3%A9fi" id="toc-exercices-de-défi" class="nav-link" data-scroll-target="#exercices-de-défi">Exercices de défi</a></li>
+  <li><a href="#satellites" id="toc-satellites" class="nav-link" data-scroll-target="#satellites">Satellites</a></li>
   </ul>
 </li>
   <li><a href="#ressources" id="toc-ressources" class="nav-link" data-scroll-target="#ressources">Ressources</a></li>
@@ -333,7 +335,7 @@ Note
 6 2022-09-10            1</code></pre>
 </div>
 </div>
-</section><section id="etape-1-créer-le-canevas" class="level3"><h3 class="anchored" data-anchor-id="etape-1-créer-le-canevas">Etape 1 : Créer le canevas</h3>
+</section><section id="créer-le-canevas" class="level3"><h3 class="anchored" data-anchor-id="créer-le-canevas">Créer le canevas</h3>
 <p>La première étape est de créer votre “canevas” en spécifiant votre jeu de données et le nom des colonnes que vous voulez représenter sur le graphique. Cela est fait à l’aide de la fonction <code>ggplot(aes())</code> selon la syntaxe suivante :</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># NE PAS EXÉCUTER (PSEUDO-CODE)</span></span>
@@ -386,7 +388,7 @@ Note
 </div>
 </div>
 <p>Très bien. Maintenant, ajoutons les barres</p>
-</section><section id="etape-2-ajouter-les-formes" class="level3"><h3 class="anchored" data-anchor-id="etape-2-ajouter-les-formes">Etape 2 : Ajouter les formes</h3>
+</section><section id="ajouter-les-formes" class="level3"><h3 class="anchored" data-anchor-id="ajouter-les-formes">Ajouter les formes</h3>
 <p>Maintenant que la toile est prête, commençons à dessiner dessus, et ajoutons des formes. Dans <code>{ggplot2}</code>, les formes géométriques sont surnommées des <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Vous remarquerez dans les exemples ci-dessous que la fonction de toutes les géométries commence par 'geom_'. Ceci a pour but d'améliorer la lisibilité et en effet toutes les géométries dans {ggplot2} commencent de cette manière.">“géométries”</span> ou “geom” en raccourci, et représentent les données. Les geoms les plus courants sont :</p>
 <ul>
 <li>
@@ -543,15 +545,19 @@ Note
 </a>
 </div>
 </div>
+</section><section id="aller-plus-loin" class="level2"><h2 class="anchored" data-anchor-id="aller-plus-loin">Aller plus loin</h2>
 <section id="exercices-supplémentaires" class="level3"><h3 class="anchored" data-anchor-id="exercices-supplémentaires">Exercices supplémentaires</h3>
 <ol type="1">
-<li>Créez plutôt une courbe de la date de consultation. N’oubliez pas de mettre à jour les titres et les légendes.</li>
 <li>Utilisez le <code>theme_minimal()</code> sur un de vos graphiques, avec une police de taille de base de 18.</li>
-<li>Allez sur <a href="https://r-charts.com/colors/">ce site</a>), choisissez une couleur et mettez à jour la couleur de vos barres.</li>
+<li>Allez sur <a href="https://r-charts.com/colors/">ce site</a>, choisissez une couleur et mettez à jour la couleur de vos barres.</li>
 </ol></section><section id="exercices-de-défi" class="level3"><h3 class="anchored" data-anchor-id="exercices-de-défi">Exercices de défi</h3>
 <ol type="1">
 <li>Au lieu d’agréger par date, comptez le nombre de patients par sous-préfecture. Essayez d’adapter votre code pour créer un diagramme à barres du nombre de patients par sous-préfecture.</li>
-</ol></section></section><section id="ressources" class="level2"><h2 class="anchored" data-anchor-id="ressources">Ressources</h2>
+</ol></section><section id="satellites" class="level3"><h3 class="anchored" data-anchor-id="satellites">Satellites</h3>
+<ul>
+<li><a href="../sessions_extra/weekly_epicurves.html">Courbes épidémiques hebdomadaires</a></li>
+<li><a href="../sessions_extra/faceting.html">Graphiques multiples (facetting)</a></li>
+</ul></section></section><section id="ressources" class="level2"><h2 class="anchored" data-anchor-id="ressources">Ressources</h2>
 <ul>
 <li>Un <a href="https://ggplot2-book.org/">livre complet</a> sur l’utilisation de <code>{ggplot2}</code>.<br>
 </li>
