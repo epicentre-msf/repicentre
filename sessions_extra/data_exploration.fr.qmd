@@ -38,7 +38,7 @@ Pour cette session, nous travaillerons avec les données non nettoyées de la li
 #| eval: true
 
 downloadthis::download_link(
-  link = 'https://github.com/epicentre-msf/repicentre/raw/main/data/clean/moissala_linelist_clean_FR.rds',
+  link = 'https://github.com/epicentre-msf/repicentre/raw/main/data/FETCHR.zip',
   button_label = 'Télécharger les données',
   has_icon = TRUE,
   icon = "fa fa-save",
