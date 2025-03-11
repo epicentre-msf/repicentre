@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
 <head>
-<link rel="alternate" hreflang="en" href="https://epicentre-msf.github.io/repicentre/sessions_extra/weekly_epicurves.html" />
-<link rel="alternate" hreflang="fr" href="https://epicentre-msf.github.io/repicentre/fr/sessions_extra/weekly_epicurves.fr.html" />
+<link rel="alternate" hreflang="en" href="/sessions_extra/weekly_epicurves.html" />
+<link rel="alternate" hreflang="fr" href="/fr/sessions_extra/weekly_epicurves.fr.html" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.6.37">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="description" content="Apprenez à tracer des courbes épidémiques hebdomadaires et à améliorer les étiquettes des axes">
 <title>Courbes épidémiques hebdomadaires – {repicentre}</title>
@@ -58,11 +58,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script><script src="../site_libs/quarto-nav/headroom.min.js"></script><script src="../site_libs/clipboard/clipboard.min.js"></script><script src="../site_libs/quarto-search/autocomplete.umd.js"></script><script src="../site_libs/quarto-search/fuse.min.js"></script><script src="../site_libs/quarto-search/quarto-search.js"></script><meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js"></script><script src="../site_libs/quarto-html/popper.min.js"></script><script src="../site_libs/quarto-html/tippy.umd.min.js"></script><script src="../site_libs/quarto-html/anchor.min.js"></script><link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-0626ff4d7a71b55c8707dcae1d04a9b6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-e25cc82807363e79c52e96bc8b7855f1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-697306ee647f3aecb60be57249203282.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-3fe3df12cb322cd60d4f50ab5ce79ec8.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script><link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-b814d3e578892f16fb585af6f47f426f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-35dfec4a88a4a8552367c65e80eaa027.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-d747503b21a9267137dc98650c9a257a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-5131c98158f83ec01234852a3be8e382.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -107,7 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
 <li class="nav-item"><div class="dropdown" id="languages-links-parent">
-<button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="languages-button"><i class="bi bi-globe2"></i> Français</button><ul class="dropdown-menu" id="languages-links"><li><a class="dropdown-item" href="https://epicentre-msf.github.io/repicentre/sessions_extra/weekly_epicurves.html" id="language-link-en">English</a></li></ul>
+<button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="languages-button"><i class="bi bi-globe2"></i> Français</button><ul class="dropdown-menu" id="languages-links"><li><a class="dropdown-item" href="/sessions_extra/weekly_epicurves.html" id="language-link-en">English</a></li></ul>
 </div></li>
 <li class="nav-item">
     <a class="nav-link" href="../pathway.html"> 
@@ -239,24 +239,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(date_sortie, sem_sortie_num) <span class="sc">|&gt;</span> </span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 2
-  date_sortie sem_sortie_num
-  &lt;date&gt;               &lt;dbl&gt;
-1 2022-08-18              33
-2 2022-08-28              34
-3 2022-09-03              35
-4 2022-09-12              37
-5 2022-09-10              36
-6 2022-09-18              37</code></pre>
+<pre><code>  date_sortie sem_sortie_num
+1  2022-08-18             33
+2  2022-08-28             34
+3  2022-09-03             35
+4  2022-09-12             37
+5  2022-09-10             36
+6  2022-09-18             37</code></pre>
 </div>
 </div>
 <div class="write">
 <p>A vous de jouer. Utilisez les fonctions <code>mutate()</code> et <code>isoweek()</code> pour créer une nouvelle colonne dans votre data frame appelée <code>sem_symptomes_num</code> qui contient la semaine ISO associée à chaque <em>date de début des symptômes</em>. L’en-tête des colonnes <code>date_debut</code> et <code>sem_symptomes_num</code> devrait ressembler à ceci :</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 2
-  date_debut sem_symptomes_num
-  &lt;date&gt;                 &lt;dbl&gt;
+<pre><code>  date_debut sem_symptomes_num
 1 2022-08-13                32
 2 2022-08-18                33
 3 2022-08-17                33
@@ -274,19 +270,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(sem_symptomes_num) <span class="sc">|&gt;</span> </span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 10 × 2
-   sem_symptomes_num     n
-               &lt;dbl&gt; &lt;int&gt;
- 1                 1    36
- 2                 2    35
- 3                 3    42
- 4                 4    56
- 5                 5    70
- 6                 6    78
- 7                 7    85
- 8                 8    49
- 9                 9    62
-10                10    81</code></pre>
+<pre><code>   sem_symptomes_num  n
+1                  1 36
+2                  2 35
+3                  3 42
+4                  4 56
+5                  5 70
+6                  6 78
+7                  7 85
+8                  8 49
+9                  9 62
+10                10 81</code></pre>
 </div>
 </div>
 <p>Pour résoudre le problème nous pouvons stratifier par <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Notez l'utilisation de la fonction isoyear() du paquet {lubridate}. C'est la fonction sœur de isoweek() et elle fait exactement ce que vous attendez : retourner l'année d'une date selon la norme ISO">année</span> :</p>
@@ -296,19 +290,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(annee_symptomes, sem_symptomes_num) <span class="sc">|&gt;</span> </span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 10 × 3
-   annee_symptomes sem_symptomes_num     n
-             &lt;dbl&gt;             &lt;dbl&gt; &lt;int&gt;
- 1            2022                32     1
- 2            2022                33     2
- 3            2022                34     1
- 4            2022                35     8
- 5            2022                36     8
- 6            2022                37    10
- 7            2022                38    17
- 8            2022                39    17
- 9            2022                40    19
-10            2022                41    16</code></pre>
+<pre><code>   annee_symptomes sem_symptomes_num  n
+1             2022                32  1
+2             2022                33  2
+3             2022                34  1
+4             2022                35  8
+5             2022                36  8
+6             2022                37 10
+7             2022                38 17
+8             2022                39 17
+9             2022                40 19
+10            2022                41 16</code></pre>
 </div>
 </div>
 <p>Ces chiffres sont désormais corrects. Vous pourriez les représenter avec <a href="../sessions_extra/faceting.html">plusieurs mini graphes par année sur une même figure</a>, ou simplement filtrer une année donnée et tracer la courbe avec les numéros de semaines sur l’axe des x. Dans le premier cas, cela donnerait ceci :</p>
@@ -348,19 +340,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(date_sortie) <span class="sc">|&gt;</span>     <span class="co"># Trie par date</span></span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 10 × 3
-   date_sortie sem_sortie_num sem_sortie_lundi
-   &lt;date&gt;               &lt;dbl&gt; &lt;date&gt;          
- 1 2022-08-18              33 2022-08-15      
- 2 2022-08-28              34 2022-08-22      
- 3 2022-09-03              35 2022-08-29      
- 4 2022-09-10              36 2022-09-05      
- 5 2022-09-12              37 2022-09-12      
- 6 2022-09-12              37 2022-09-12      
- 7 2022-09-16              37 2022-09-12      
- 8 2022-09-17              37 2022-09-12      
- 9 2022-09-18              37 2022-09-12      
-10 2022-09-19              38 2022-09-19      </code></pre>
+<pre><code>   date_sortie sem_sortie_num sem_sortie_lundi
+1   2022-08-18             33       2022-08-15
+2   2022-08-28             34       2022-08-22
+3   2022-09-03             35       2022-08-29
+4   2022-09-10             36       2022-09-05
+5   2022-09-12             37       2022-09-12
+6   2022-09-12             37       2022-09-12
+7   2022-09-16             37       2022-09-12
+8   2022-09-17             37       2022-09-12
+9   2022-09-18             37       2022-09-12
+10  2022-09-19             38       2022-09-19</code></pre>
 </div>
 </div>
 <p>Pour aider à comprendre on peut calculer le <em>jour</em> de la semaine associé à chaque date en utilisant la fonction <code>wday()</code> (qui appartient <em>aussi</em> à <code>{lubridate}</code>, y a comme un thème 😉) [wday est une abréviation pour week day] :</p>
@@ -382,19 +372,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>         cest_bien_un_lundi) <span class="sc">|&gt;</span> </span>
 <span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 10 × 5
-   date_sortie jour_sortie sem_sortie_num sem_sortie_lundi cest_bien_un_lundi
-   &lt;date&gt;      &lt;ord&gt;                &lt;dbl&gt; &lt;date&gt;           &lt;ord&gt;             
- 1 2022-08-18  Thursday                33 2022-08-15       Monday            
- 2 2022-08-28  Sunday                  34 2022-08-22       Monday            
- 3 2022-09-03  Saturday                35 2022-08-29       Monday            
- 4 2022-09-10  Saturday                36 2022-09-05       Monday            
- 5 2022-09-12  Monday                  37 2022-09-12       Monday            
- 6 2022-09-12  Monday                  37 2022-09-12       Monday            
- 7 2022-09-16  Friday                  37 2022-09-12       Monday            
- 8 2022-09-17  Saturday                37 2022-09-12       Monday            
- 9 2022-09-18  Sunday                  37 2022-09-12       Monday            
-10 2022-09-19  Monday                  38 2022-09-19       Monday            </code></pre>
+<pre><code>   date_sortie jour_sortie sem_sortie_num sem_sortie_lundi cest_bien_un_lundi
+1   2022-08-18       jeudi             33       2022-08-15              lundi
+2   2022-08-28    dimanche             34       2022-08-22              lundi
+3   2022-09-03      samedi             35       2022-08-29              lundi
+4   2022-09-10      samedi             36       2022-09-05              lundi
+5   2022-09-12       lundi             37       2022-09-12              lundi
+6   2022-09-12       lundi             37       2022-09-12              lundi
+7   2022-09-16    vendredi             37       2022-09-12              lundi
+8   2022-09-17      samedi             37       2022-09-12              lundi
+9   2022-09-18    dimanche             37       2022-09-12              lundi
+10  2022-09-19       lundi             38       2022-09-19              lundi</code></pre>
 </div>
 </div>
 <p>Ceci illustre comment <code>sem_sortie_num</code> et <code>sem_sortie_lundi</code> sont deux façons de représenter une semaine donnée. Mais si les numéros de semaine ne sont pas uniques, les dates, elles, le sont !</p>
@@ -421,19 +409,17 @@ Astuce
 <p>Voici les dix premières lignes de ce à quoi il devrait ressembler :</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 10 × 2
-   sem_symptomes_lundi     n
-   &lt;date&gt;              &lt;int&gt;
- 1 2022-08-08              1
- 2 2022-08-15              2
- 3 2022-08-22              1
- 4 2022-08-29              8
- 5 2022-09-05              8
- 6 2022-09-12             10
- 7 2022-09-19             17
- 8 2022-09-26             17
- 9 2022-10-03             19
-10 2022-10-10             16</code></pre>
+<pre><code>   sem_symptomes_lundi  n
+1           2022-08-08  1
+2           2022-08-15  2
+3           2022-08-22  1
+4           2022-08-29  8
+5           2022-09-05  8
+6           2022-09-12 10
+7           2022-09-19 17
+8           2022-09-26 17
+9           2022-10-03 19
+10          2022-10-10 16</code></pre>
 </div>
 </div>
 </div>
@@ -471,7 +457,8 @@ Astuce
 <span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"4 months"</span>) <span class="sc">+</span>  <span class="co"># Définit l'intervalle entre étiquettes</span></span>
 <span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">16</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 1 rows containing missing values (`position_stack()`).</code></pre>
+<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
+(`geom_col()`).</code></pre>
 </div>
 <div class="cell-output-display">
 <div>
@@ -507,7 +494,8 @@ Astuce
 <span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>               <span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_date_short</span>()) <span class="sc">+</span> <span class="co"># Etiquettes courtes</span></span>
 <span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">15</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 1 rows containing missing values (`position_stack()`).</code></pre>
+<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
+(`geom_col()`).</code></pre>
 </div>
 <div class="cell-output-display">
 <div>
@@ -561,15 +549,15 @@ Astuce
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Exemples de syntaxes possibles</span></span>
 <span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span>(quelques_dates, <span class="st">"%Y-%b-%d"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2024-Oct-06" "2024-Dec-15" "2025-Jan-20"</code></pre>
+<pre><code>[1] "2024-oct.-06"  "2024-déc.-15"  "2025-janv.-20"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span>(quelques_dates, <span class="st">"%Y-%b"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2024-Oct" "2024-Dec" "2025-Jan"</code></pre>
+<pre><code>[1] "2024-oct."  "2024-déc."  "2025-janv."</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span>(quelques_dates, <span class="st">"%Y %B %d"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2024 October 06"  "2024 December 15" "2025 January 20" </code></pre>
+<pre><code>[1] "2024 octobre 06"  "2024 décembre 15" "2025 janvier 20" </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span>(quelques_dates, <span class="st">"%y/%m/%d"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -595,7 +583,8 @@ Astuce
 <span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">date_labels =</span> <span class="st">"%Y%n%b%n%d"</span>) <span class="sc">+</span>  <span class="co"># Definit le format des étiquettes</span></span>
 <span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">16</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 1 rows containing missing values (`position_stack()`).</code></pre>
+<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
+(`geom_col()`).</code></pre>
 </div>
 <div class="cell-output-display">
 <div>
