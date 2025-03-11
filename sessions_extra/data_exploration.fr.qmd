@@ -38,7 +38,7 @@ Pour cette session, nous travaillerons avec les données non nettoyées de la li
 #| eval: true
 
 downloadthis::download_link(
-  link = 'https://github.com/epicentre-msf/repicentre/raw/main/data/FETCHR.zip',
+  link = 'https://github.com/epicentre-msf/repicentre/raw/main/data/clean/moissala_linelist_clean_FR.rds',
   button_label = 'Télécharger les données',
   has_icon = TRUE,
   icon = "fa fa-save",
@@ -46,7 +46,7 @@ downloadthis::download_link(
 )
 ```
 <br>
-Assurez-vous qu'elle est correctement enregistrée dans `data/raw` de votre projet. Ensuite, créez un nouveau script appelé `data-exploration.R`, et chargez les paquets `{here}`, `{rio}` et `{dplyr}`. Enfin, importez les données dans R sous la forme d'un objet appelé `df_linelist`. 
+Assurez-vous qu'elle est correctement enregistrée dans le dossier `data/raw` de votre projet. Ensuite, créez un nouveau script appelé `data-exploration.R`, et chargez les paquets `{here}`, `{rio}` et `{dplyr}`. Enfin, importez les données dans R sous la forme d'un objet appelé `df_linelist`. 
 :::
 
 Introduction
@@ -61,7 +61,7 @@ Juste après avoir importé des données dans R, il est très important de les i
 - Déterminer la plage de valeurs des variables continues (min et max)
 - Observer les valeurs possibles de chaque variable catégorielle 
 
-Ce processus est crucial et nous permet de nous familiariser avec nos données et d'identifier les problèmes qui seront traités lors de l'étape de nettoyage. 
+Ce processus est crucial et nous permet de nous familiariser avec nos données et d'identifier les problèmes qui seront traités lors de l'étape de nettoyage.
 
 
 Exploration basique
@@ -103,7 +103,7 @@ Il est également important d'inspecter vos données, cela peut vous permettre d
 Ces méthodes n'afficheront que les 40 premières lignes de vos données au maximum, car c'est la limite de votre console. Une alternative est d'utiliser la fonction `View()` (avec un V majuscule !) pour voir vos données sous forme de tableur. Cela ouvrira une nouvelle fenêtre avec vos données affichées comme dans une feuille de calcul Excel. Notez que cette commande ne fait qu'afficher les données, elle ne vous permet pas de les modifier !
 
 :::{.callout-tip}
-Soyez très prudent avec `View()` sur un grand jeu de données car cela peut faire planter votre session RStudio. Pour éviter cela, vous pouvez afficher la sortie dans la console. 
+Soyez très prudent avec `View()` sur un grand jeu de données car cela peut faire planter votre session RStudio. Pour éviter cela, vous pouvez afficher la sortie dans la console.
 :::
 
 :::{.write}
@@ -177,7 +177,7 @@ Enfin, examinons les valeurs de nos variables catégoriques à l'aide de tables 
 1. les valeurs uniques d'une variable catégorique (i.e. les catégories/modalités/niveaux/classes/groupes... les noms sont nombreux)
 2. le nombre d'observations pour chacune de ces catégories
 
-Pour ce faire, on utilise la fonction `count()` du [paquet `{dplyr}`]{.hovertip bs-toggle='tooltip' bs-title="Nous en apprendrons plus sur ce paquet lors de la prochaine session."}, qui accepte un data frame et le nom d'une (ou plusieurs) colonne(s) en tant qu'arguments, et renvoit le **nombre d'observations** de chaque élément unique dans cette colonne. Par exemple, affichons les valeurs possibles de la variable `sexe` et leurs effectifs : 
+Pour ce faire, on utilise la fonction `count()` du [paquet `{dplyr}`]{.hovertip bs-toggle='tooltip' bs-title="Nous en apprendrons plus sur ce paquet lors de la prochaine session."}, qui accepte un dataframe et le nom d'une (ou plusieurs) colonne(s) en tant qu'arguments, et renvoit le **nombre d'observations** de chaque élément unique dans cette colonne. Par exemple, affichons les valeurs possibles de la variable `sexe` et leurs effectifs : 
 
 ```{r}
 #| eval: true
@@ -203,7 +203,7 @@ Bravo pour ce premier contact avec vos données !
 
 downloadthis::download_link(
   link = 'https://github.com/epicentre-msf/repicentre/blob/main/solutions/extra/data_exploration_fr.R',
-  button_label = 'Solutions exercices',
+  button_label = 'Solutions des exercices',
   has_icon = TRUE,
   icon = "fa fa-save",
   self_contained = FALSE
