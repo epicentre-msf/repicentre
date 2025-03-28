@@ -1,0 +1,373 @@
+---
+title: Surveillance
+description: Companion satellite to the surveillance Fetch-R module
+# image: ../img/core/06_epicurves/logo.svg
+categories:
+  - Satellite
+  - Surveillance
+---
+
+```{r setup}
+#| include: false
+#| eval: true
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+
+library(here)        # For paths
+library(rio)         # Import and export data
+library(tidyverse)   # Data manipulation
+
+# Surveillance data
+data_surv_raw <- import(here("data", "surveillance_module", "raw", 
+                    "data_ids_sem20_2022.xlsx"))
+
+# Laboratory data
+data_lab_raw <- import(
+  here("data", "surveillance_module", "raw", "data_labo_sem20_2022.xlsx"), 
+  skip = 7  # Skip the first seven lines
+) 
+
+
+data_surv <- data_surv_raw |> 
+  mutate(
+    
+    # Format strings to lower case
+    pays    = tolower(pays),
+    prov    = tolower(prov),
+    zs      = tolower(zs),
+    maladie = tolower(maladie),
+
+    
+    # Remove excess spaces with the str_squish() function from 
+    # the stringr package, very usefull!
+    prov = str_squish(prov),
+    zs   = str_squish(zs),
+    
+    
+    # Remove spaces or "-" with the str_replace() function from 
+    # the stringr package
+    prov = str_replace(prov, pattern = "-", replacement = "_"), 
+    prov = str_replace(prov, pattern = " ", replacement = "_"),
+    zs   = str_replace(zs,   pattern = "-", replacement = "_"), 
+    zs   = str_replace(zs,   pattern = " ", replacement = "_")
+    )
+
+data_lab <- data_lab_raw |> 
+  mutate(
+    
+    # Clean strings
+    zs = tolower(zs),    # Format strings to lower case
+    zs = str_squish(zs), # Remove excess spaces
+    zs = str_replace(zs, "-", "_"),  # Replace - by _
+    zs = str_replace(zs, " ", "_"),  # Replace space by _
+  
+    # Recode igm modalities
+    igm_rougeole = case_when(
+      igm_rougeole == 'pos' ~ 'positif', 
+      igm_rougeole == 'neg' ~ 'negatif', 
+      .default = igm_rougeole),
+    
+    igm_rubeole = case_when(
+      igm_rubeole == 'pos' ~ 'positif', 
+      igm_rubeole == 'neg' ~ 'negatif', 
+      .default = igm_rubeole)
+    )
+
+data_ts <- data_surv |> 
+  select(prov, zs, numsem, totalcas, totaldeces) |>
+  complete(
+    nesting(prov, zs),
+    numsem = seq(min(data_surv$numsem, na.rm = TRUE), 
+                 max(data_surv$numsem, na.rm = TRUE)),
+    fill = list(totalcas = 0, 
+                totaldeces = 0)
+  ) 
+
+ data_surv |> 
+  select(prov, zs, numsem, totalcas, totaldeces) |>
+  complete(
+    nesting(prov, zs),
+    numsem = seq(min(numsem, na.rm = TRUE), 
+                 max(numsem, na.rm = TRUE)),
+    fill = list(totalcas = 0, 
+                totaldeces = 0)
+  ) 
+
+```
+
+## Objectives
+
+- Reuse skills aquired in the FETCH-R modules (import, clean and visualise data)
+- More specifically, analyze **alert data** to help decide which alerts to prioritize for further field investigation.
+
+## Introduction
+
+This satellite is a companion to the case study _Measles emergency response in the Katanga region (DRC)_ from the FETCH Surveillance module and may thus not make sense as a standalone document.
+
+From an R point of view, this tutorial builds on skills acquired throughout the FETCH-R modules, introduces a couple of useful generalist functions, and some more specialized ones. 
+
+::: {.callout-tip}
+Do not hesitate to refer to past sessions and your own scripts to remind yourself of some functions!
+:::
+
+## Setup
+
+Since this is part of a specific module, you will create a new RStudio project. We refer you [this main session](../sessions_core/02_import_data.qmd) for help creating a project and importing your data
+
+:::  {.setup}
+1.  Create a folder `surveillance_case_study` associated with the FETCH Surveillance module. Add the following subfolders in it:
+
+- 📁 data
+  - 📁 clean
+  - 📁 raw
+-   📁 R
+-   📁 outputs
+
+2.  Create an [RStudio project](../sessions_core/02_import_data.qmd#rstudio-projects) at the root of the `surveillance_case_study` folder.
+
+3.  Download the raw data.
+
+```{r}
+#| echo: false
+#| eval: true
+
+downloadthis::download_link(
+  link = 'https://github.com/epicentre-msf/repicentre/raw/main/data/clean/moissala_linelist_clean_EN.rds',
+  button_label = "Download raw data",
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  self_contained = FALSE
+)
+```
+
+<br>
+4. Unzip the archive and save the two Excel files it contains in the subfolder `data/raw`.  
+
+
+5. Create a new script called `import_clean.R` and save it in the `R` subdirectory. Add a section to load the following packages: `{here}`, `{rio}`, and `{tidyverse}`.
+:::
+
+## Import data
+
+**Reminder from the case study**: you requested access to the routine surveillance data and the laboratory data to the DRC MoH. The MoH agreed to share it with you on a weekly basis. The first dataset you received is of week 20 in 2022.
+
+:::  {.look}
+If you have not done it already, open the raw data files in Excel (or another equivalent application) to inspect them.
+:::
+
+The surveillance dataset is pretty straightforward to import. The lab dataset is slightly trickier: the data headers do not start at line one like the surveillance dataset. Fear not, the `skip` argument from the `import()` function is made for that sort of case:
+
+```{r}
+# DO NOT RUN (PSEUDO-CODE)
+import(
+  here("data", "raw", "exemple_file.xlsx"), 
+  skip = 3  # Skip the first three lines and start importing from line four.
+) 
+```
+
+:::  {.write}
+1. Add a section to your script dedicated to data importation. 
+
+2. Import the surveillance data and store it into a `data_surv_raw` data frame. Then, import the lab data and save it in a `data_lab_raw` data frame.
+
+3. Verify that the import went well for both data frames (Viewer, check the dimensions or start and tail of data frames).
+:::
+
+## Cleaning
+
+### Surveillance data
+
+Now that the data is correctly imported, we are going to perform some more checks, as usual, before a bit of cleaning.
+
+During the case study you won't have time to **inspect** and **clean** *all* columns in the imparted time, so for now we will focus on key columns: `zs`, `numsem`, `totalcas` and `totaldeces`.
+
+::: {.callout-note}
+If you work on this tutorial in your own time, inspect the quality of the other columns and  cross-check information of several columns. We refer you to the discussion of the case study for more checks to perform.
+:::
+
+::: {.write}
+Add a section for the exploration and cleaning of the surveillance data into your script. 
+<br>
+Now, explore the surveillance data frame and answer the following questions:
+
+-   What are the column names?
+-   How many provinces are in the dataset? Is this coherent with what you expect?
+-   How many health zones are in the dataset?
+-   What is the range of weeks?
+-   Make a summary of the `totalcases`.
+-   What is the max of the `totaldeces`?
+-   Do you notice missing data for these columns? Are the strings of text clean?
+:::
+
+Ok, now that we have a better idea of what is the state of the data, let's do some cleaning. We are going to write a cleaning pipeline like we did in the main modules (check out your code for the end of the [cleaning modules](../sessions_core/04_data_verbs_conditional.qmd) to see an example final pipeline).
+
+:::  {.callout-tip}
+To facilitate debugging your pipeline, add actions one by one and check that each action does what you want before adding another one.
+:::
+
+#### Clean strings
+
+We are going to perform a couple of actions on the columns containing text to remove potential problems:
+
+-   transform them to lower casse
+-   remove potential extra spaces
+-   replace `-` and spaces by `_`.
+
+:::  {.write}
+Start a cleaning pipeline with a `mutate()` that turns both the province, health zones, disease and country columns into lower casse.
+:::
+
+Now, we are going to introduce two handy functions for more text cleaning. The first one is the `str_squish()` function from the `{stringr}` package ([help page here](https://stringr.tidyverse.org/reference/str_trim.html)), that removes spaces at the start or end of the strings, and replace multiple spaces in the middle of a string by a single space.
+
+```{r}
+#| eval: true
+
+exemples <- c(" Trailing spaces     ",
+              "Multiple     spaces",
+              " Everything     here ")
+
+str_squish(exemples)
+```
+
+The other function, `str_replace` (also from the [`{stringr}` package](https://stringr.tidyverse.org/reference/str_replace.html?q=str_replace#null)) does what you expect from its name: replace something in a string by something else. It has a `pattern` argument that take the bit of text to be replaced, and a `replacement` arguments that takes the bit of text to use as replacement:
+
+```{r}
+#| eval: true
+
+str_replace(
+  "HAUT-KATANGA",    # A string of text (or a column, if used in a mutate)
+  pattern = "-",     # The bit to replace
+  replacement = "_"  # The replacement
+)
+```
+
+:::  {.write}
+Add steps to your mutate to:
+
+-   Remove all unwanted spaces from `zs` and `province`
+-   Change the `-` and to `_` in these columns (you will need two steps for each column)
+
+The head of these columns should now be:
+
+```{r}
+#| eval: true
+#| echo: false
+
+data_surv %>% select(pays, prov, zs, maladie) %>% head()
+```
+
+Store the clean(ish) data frame in a `data_surv` data frame.
+:::
+
+#### Save the clean data
+
+:::  {.write}
+Use the `{rio}` package to export `data_surv` to a `.rds` file called `IDS_clean` in the `data/clean` subfolder of your project.
+:::
+
+### Laboratory data
+
+We are going to follow the same steps as before for the lab data, and focus for now on the columns `zs`, `igm_rougeole` and `igm_rubeole`.
+
+:::  {.write}
+Perform data checks on the colums names and dimensions. What are the categories for `igm_rougeole` and `igm_rubeole`? What do you need to do to clean these columns?
+:::
+
+#### Clean and recode strings
+
+:::  {.write}
+1. Start a new cleaning pipeline to clean the lab data. As before, change all text columns to lower casse, remove the extra spaces and replace the or `-` by `_`. If you do not have time, focus on the columns mentionned previously.
+
+2. Recode the `igm_rougeole` and `igm_rubeole` columns so that the categories are `negatif`, `positif` and `indetermine`.
+
+3. Store the cleaner version in a `data_lab` data frame
+
+The head of the cleaned columns should now be:
+
+```{r}
+#| eval: true
+#| echo: false
+data_lab %>% select(zs, igm_rougeole, igm_rubeole) %>% head(10)
+```
+:::
+
+
+
+::: {.callout-tip collapse=true}
+You can use the `case_when()` function to recode the IGM columns.
+:::
+
+
+#### Save the clean data
+
+:::  {.write}
+Export the `data_lab` data frame to a `.rds` file called `lab_clean` in the `data/clean` subfolder of your project.
+:::
+
+
+## Complete surveillance dataset
+
+During the case study and the data checks, you realized that some weeks are missing from the surveillance dataset. You discussed the possible reasons for it, and the associated problems. Here we are going provide code to create a dataset that contains all weeks (assuming that missing weeks had zero cases and deaths).
+
+To do that, we will use the function [`complete()` from the `{tidyr}` package](https://tidyr.tidyverse.org/reference/complete.html), to add the missing lines and fill the columns containing numbers (`totalcas` and `totaldeces`) with zeros.
+
+Look at the simplified exemple below: the Kikula health zone has no row for week 2:
+
+```{r}
+#| eval: true
+
+# Create simplified data frame for the exemple
+exemple_df = data.frame(
+  prov = rep("haut_katanga", 5),
+  zs = c("likasi", "likasi", "likasi", "kikula", "kikula"),
+  numsem = c(1, 2, 3, 1, 3),
+  totalcas = c(2, 1, 3, 1, 2))
+
+exemple_df
+```
+
+We use the following code to cross province and health zone and make sure that all their combinations have all the possible week values (the code looks at the smallest and largest week number in the `numsem` column to get the range of weeks):
+
+```{r}
+#| eval: true
+
+# Complete the missing week in kikula
+exemple_df %>% 
+  complete(
+    nesting(prov, zs),
+    numsem = seq(min(numsem, na.rm = TRUE), 
+                 max(numsem, na.rm = TRUE)),
+    fill = list(totalcas = 0)
+  ) 
+```
+
+Now both health zones within provinces have values for all three weeks.
+
+
+Since the code is a bit complex and the case study is time constrained, we provide you the exact code to add to create the dataset. 
+
+::: {.write}
+1. Start a new pipeline that takes the `data_surv` data frame and keeps only the columns `prov`, `zs`, `numsem` and `total cas`. 
+
+2. Add a new step to your pipeline and paste the following code to complete the data frame:
+
+```{r}
+complete(
+    nesting(prov, zs),
+    numsem = seq(min(numsem, na.rm = TRUE), 
+                 max(numsem, na.rm = TRUE)),
+    fill = list(totalcas   = 0, 
+                totaldeces = 0 # also add zero to the totaldece column
+                )
+  ) 
+```
+
+3. Store the result of the pipeline in a data frame called `data_ts`. The head of that data frame looks like:
+
+```{r}
+#| eval: true
+#| echo: false
+data_ts %>% head(10)
+```
+
+4. When you are done, export that data frame to a `.rds` file called `IDS_data_ts_clean` in the `data/clean` subfolder of your project.
+:::
