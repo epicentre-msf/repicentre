@@ -265,7 +265,7 @@ Tip
 </section>
 <section id="import-data" class="level2">
 <h2 class="anchored" data-anchor-id="import-data">Import data</h2>
-<p><strong>Reminder from the case study</strong>: you requested access to the routine surveillance data and the laboratory data to the DRC MoH. The MoH agreed to share it with you on a weekly basis. The first dataset you received is of week 20 in 2022.</p>
+<p><strong>Reminder from the case study</strong>: you requested access to the routine surveillance data and the laboratory data to the DRC MoH. The MoH agreed to share it with you on a weekly basis. The first dataset you received is of week 20 in 2022 (the data we are working on is simulated).</p>
 <div class="look">
 <p>If you have not done it already, open the raw data files in Excel (or another equivalent application) to inspect them.</p>
 </div>
@@ -273,7 +273,7 @@ Tip
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DO NOT RUN (PSEUDO-CODE)</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">import</span>(</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"raw"</span>, <span class="st">"exemple_file.xlsx"</span>), </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"raw"</span>, <span class="st">"example_file.xlsx"</span>), </span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip =</span> <span class="dv">3</span>  <span class="co"># Skip the first three lines and start importing from line four.</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -290,6 +290,8 @@ Tip
 <section id="surveillance-data" class="level3">
 <h3 class="anchored" data-anchor-id="surveillance-data">Surveillance data</h3>
 <p>Now that the data is correctly imported, we are going to perform some more checks, as usual, before a bit of cleaning.</p>
+<section id="quick-checks" class="level4">
+<h4 class="anchored" data-anchor-id="quick-checks">Quick checks</h4>
 <p>During the case study you won’t have time to <strong>inspect</strong> and <strong>clean</strong> <em>all</em> columns in the imparted time, so for now we will focus on key columns: <code>zs</code>, <code>numsem</code>, <code>totalcas</code> and <code>totaldeces</code>.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -311,11 +313,14 @@ Note
 <li>How many provinces are in the dataset? Is this coherent with what you expect?</li>
 <li>How many health zones are in the dataset?</li>
 <li>What is the range of weeks?</li>
-<li>Make a summary of the <code>totalcases</code>.</li>
+<li>What is the min of <code>totalcases</code>?</li>
 <li>What is the max of the <code>totaldeces</code>?</li>
 <li>Do you notice missing data for these columns? Are the strings of text clean?</li>
 </ul>
 </div>
+</section>
+<section id="clean-strings" class="level4">
+<h4 class="anchored" data-anchor-id="clean-strings">Clean strings</h4>
 <p>Ok, now that we have a better idea of what is the state of the data, let’s do some cleaning. We are going to write a cleaning pipeline like we did in the main modules (check out your code for the end of the <a href="../sessions_core/04_data_verbs_conditional.html">cleaning modules</a> to see an example final pipeline).</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -330,24 +335,23 @@ Tip
 <p>To facilitate debugging your pipeline, add actions one by one and check that each action does what you want before adding another one.</p>
 </div>
 </div>
-<section id="clean-strings" class="level4">
-<h4 class="anchored" data-anchor-id="clean-strings">Clean strings</h4>
 <p>We are going to perform a couple of actions on the columns containing text to remove potential problems:</p>
 <ul>
 <li>transform them to lower casse</li>
 <li>remove potential extra spaces</li>
 <li>replace <code>-</code> and spaces by <code>_</code>.</li>
 </ul>
+<p>Because you may not have the time to do all of text colums, pick the <code>zs</code> or the <code>prov</code> column for the following action.</p>
 <div class="write">
-<p>Start a cleaning pipeline with a <code>mutate()</code> that turns both the province, health zones, disease and country columns into lower casse.</p>
+<p>Start a cleaning pipeline with a <code>mutate()</code> that turns the chosen column to lower casse.</p>
 </div>
 <p>Now, we are going to introduce two handy functions for more text cleaning. The first one is the <code>str_squish()</code> function from the <code>{stringr}</code> package (<a href="https://stringr.tidyverse.org/reference/str_trim.html">help page here</a>), that removes spaces at the start or end of the strings, and replace multiple spaces in the middle of a string by a single space.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>exemples <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">" Trailing spaces     "</span>,</span>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>examples <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">" Trailing spaces     "</span>,</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>              <span class="st">"Multiple     spaces"</span>,</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>              <span class="st">" Everything     here "</span>)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">str_squish</span>(exemples)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">str_squish</span>(examples)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Trailing spaces" "Multiple spaces" "Everything here"</code></pre>
 </div>
@@ -366,8 +370,8 @@ Tip
 <div class="write">
 <p>Add steps to your mutate to:</p>
 <ul>
-<li>Remove all unwanted spaces from <code>zs</code> and <code>province</code></li>
-<li>Change the <code>-</code> and to <code>_</code> in these columns (you will need two steps for each column)</li>
+<li>Remove all unwanted spaces from your chosen column</li>
+<li>Change the <code>-</code> and to <code>_</code> in the column (in two steps)</li>
 </ul>
 <p>The head of these columns should now be:</p>
 <div class="cell">
@@ -394,15 +398,18 @@ Tip
 <section id="laboratory-data" class="level3">
 <h3 class="anchored" data-anchor-id="laboratory-data">Laboratory data</h3>
 <p>We are going to follow the same steps as before for the lab data, and focus for now on the columns <code>zs</code>, <code>igm_rougeole</code> and <code>igm_rubeole</code>.</p>
+<section id="quick-checks-1" class="level4">
+<h4 class="anchored" data-anchor-id="quick-checks-1">Quick checks</h4>
 <div class="write">
 <p>Perform data checks on the colums names and dimensions. What are the categories for <code>igm_rougeole</code> and <code>igm_rubeole</code>? What do you need to do to clean these columns?</p>
 </div>
+</section>
 <section id="clean-and-recode-strings" class="level4">
 <h4 class="anchored" data-anchor-id="clean-and-recode-strings">Clean and recode strings</h4>
 <div class="write">
 <ol type="1">
-<li><p>Start a new cleaning pipeline to clean the lab data. As before, change all text columns to lower casse, remove the extra spaces and replace the or <code>-</code> by <code>_</code>. If you do not have time, focus on the columns mentionned previously.</p></li>
-<li><p>Recode the <code>igm_rougeole</code> and <code>igm_rubeole</code> columns so that the categories are <code>negatif</code>, <code>positif</code> and <code>indetermine</code>.</p></li>
+<li><p>Start a new cleaning pipeline to clean the lab data. As before, for one of the text column, change it to lower casse, remove the extra spaces and replace the or <code>-</code> by <code>_</code>.</p></li>
+<li><p>Recode at least one of <code>igm_rougeole</code> or <code>igm_rubeole</code> columns so that the categories are <code>negatif</code>, <code>positif</code> and <code>indetermine</code>.</p></li>
 <li><p>Store the cleaner version in a <code>data_lab</code> data frame</p></li>
 </ol>
 <p>The head of the cleaned columns should now be:</p>
@@ -444,6 +451,7 @@ Tip
 <div class="write">
 <p>Export the <code>data_lab</code> data frame to a <code>.rds</code> file called <code>lab_clean</code> in the <code>data/clean</code> subfolder of your project.</p>
 </div>
+<p>This is the end of the steps for this question! If you finished in advance and there is still time, reuse the functions we just saw to clean the other text columns in both datasets and recode both IGM column in the lab dataset.</p>
 </section>
 </section>
 </section>
@@ -451,16 +459,16 @@ Tip
 <h2 class="anchored" data-anchor-id="complete-surveillance-dataset">Complete surveillance dataset</h2>
 <p>During the case study and the data checks, you realized that some weeks are missing from the surveillance dataset. You discussed the possible reasons for it, and the associated problems. Here we are going provide code to create a dataset that contains all weeks (assuming that missing weeks had zero cases and deaths).</p>
 <p>To do that, we will use the function <a href="https://tidyr.tidyverse.org/reference/complete.html"><code>complete()</code> from the <code>{tidyr}</code> package</a>, to add the missing lines and fill the columns containing numbers (<code>totalcas</code> and <code>totaldeces</code>) with zeros.</p>
-<p>Look at the simplified exemple below: the Kikula health zone has no row for week 2:</p>
+<p>Look at the simplified example below: the Kikula health zone has no row for week 2:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create simplified data frame for the exemple</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>exemple_df <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create simplified data frame for the example</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>example_df <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">prov =</span> <span class="fu">rep</span>(<span class="st">"haut_katanga"</span>, <span class="dv">5</span>),</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">zs =</span> <span class="fu">c</span>(<span class="st">"likasi"</span>, <span class="st">"likasi"</span>, <span class="st">"likasi"</span>, <span class="st">"kikula"</span>, <span class="st">"kikula"</span>),</span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">numsem =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">3</span>),</span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">totalcas =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">2</span>))</span>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>exemple_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>example_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          prov     zs numsem totalcas
 1 haut_katanga likasi      1        2
@@ -473,7 +481,7 @@ Tip
 <p>We use the following code to cross province and health zone and make sure that all their combinations have all the possible week values (the code looks at the smallest and largest week number in the <code>numsem</code> column to get the range of weeks):</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Complete the missing week in kikula</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>exemple_df <span class="sc">%&gt;%</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>example_df <span class="sc">%&gt;%</span> </span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">complete</span>(</span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">nesting</span>(prov, zs),</span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">numsem =</span> <span class="fu">seq</span>(<span class="fu">min</span>(numsem, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
@@ -532,6 +540,14 @@ Tip
 <ol start="4" type="1">
 <li>When you are done, export that data frame to a <code>.rds</code> file called <code>IDS_data_ts_clean</code> in the <code>data/clean</code> subfolder of your project.</li>
 </ol>
+</div>
+<p>Congratulation, you are done with the cleaning ! You can download the solutions for this part of the tutoriel.</p>
+<div class="cell">
+<div class="cell-output-display">
+<a href="https://github.com/epicentre-msf/repicentre/blob/main/solutions/extra/surveillance_module_solutions.R">
+<button class="btn btn-default"><i class="fa fa-save"></i> Solution File</button>
+</a>
+</div>
 </div>
 
 
