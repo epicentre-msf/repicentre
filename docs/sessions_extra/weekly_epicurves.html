@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
-<head>
-<link rel="alternate" hreflang="en" href="https://epicentre-msf.github.io/repicentre/sessions_extra/weekly_epicurves.html" />
-<link rel="alternate" hreflang="fr" href="https://epicentre-msf.github.io/repicentre/fr/sessions_extra/weekly_epicurves.fr.html" />
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.6.42">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
 <meta name="description" content="Plot weekly epicurves and improve date labels on the x-axis">
+
 <title>Weekly Epicurves – {repicentre}</title>
 <style>
 code{white-space: pre-wrap;}
@@ -56,13 +56,26 @@ div.sourceCode
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script><script src="../site_libs/quarto-nav/headroom.min.js"></script><script src="../site_libs/clipboard/clipboard.min.js"></script><script src="../site_libs/quarto-search/autocomplete.umd.js"></script><script src="../site_libs/quarto-search/fuse.min.js"></script><script src="../site_libs/quarto-search/quarto-search.js"></script><meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js"></script><script src="../site_libs/quarto-html/popper.min.js"></script><script src="../site_libs/quarto-html/tippy.umd.min.js"></script><script src="../site_libs/quarto-html/anchor.min.js"></script><link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-0626ff4d7a71b55c8707dcae1d04a9b6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-e25cc82807363e79c52e96bc8b7855f1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script><link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-b814d3e578892f16fb585af6f47f426f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-35dfec4a88a4a8552367c65e80eaa027.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-de84f8d6bb715db06a919283c2d1e787.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-9a023c9ade86a60361e96e3e3f11bc54.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-6ab5e0891aed6e954066009cd4eecacc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-b92d258d3900ea06ce3f9b55f30b4460.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -89,12 +102,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script src="../site_libs/font-awesome-6.5.2/js/script.js"></script><script type="text/javascript" src="../script.js"></script><link rel="stylesheet" href="../styles.css">
+}</script>
+<script src="../site_libs/font-awesome-6.5.2/js/script.js"></script>
+
+<script type="text/javascript" src="../script.js"></script>
+
+
+<link rel="stylesheet" href="../styles.css">
 </head>
+
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">{repicentre}</span>
@@ -106,10 +128,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-<li class="nav-item"><div class="dropdown" id="languages-links-parent">
-<button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="languages-button"><i class="bi bi-globe2"></i> English</button><ul class="dropdown-menu" id="languages-links"><li><a class="dropdown-item" href="https://epicentre-msf.github.io/repicentre/fr/sessions_extra/weekly_epicurves.html" id="language-link-fr">Français</a></li></ul>
-</div></li>
-<li class="nav-item">
+  <li class="nav-item">
     <a class="nav-link" href="../pathway.html"> 
 <span class="menu-text">Pathway</span></a>
   </li>  
@@ -126,49 +145,51 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
-</div> <!-- /navcollapse -->
+          </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
-    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
    
   <ul>
-<li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
   <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
-  <li>
-<a href="#aggregate-data-by-week" id="toc-aggregate-data-by-week" class="nav-link" data-scroll-target="#aggregate-data-by-week">Aggregate Data by Week</a>
+  <li><a href="#aggregate-data-by-week" id="toc-aggregate-data-by-week" class="nav-link" data-scroll-target="#aggregate-data-by-week">Aggregate Data by Week</a>
   <ul class="collapse">
-<li><a href="#using-week-numbers" id="toc-using-week-numbers" class="nav-link" data-scroll-target="#using-week-numbers">Using Week Numbers</a></li>
+  <li><a href="#using-week-numbers" id="toc-using-week-numbers" class="nav-link" data-scroll-target="#using-week-numbers">Using Week Numbers</a></li>
   <li><a href="#using-the-first-day-of-the-week" id="toc-using-the-first-day-of-the-week" class="nav-link" data-scroll-target="#using-the-first-day-of-the-week">Using the First Day of the Week</a></li>
   <li><a href="#actually-count-things" id="toc-actually-count-things" class="nav-link" data-scroll-target="#actually-count-things">Actually Count Things</a></li>
-  </ul>
-</li>
+  </ul></li>
   <li><a href="#draw-the-epicurve" id="toc-draw-the-epicurve" class="nav-link" data-scroll-target="#draw-the-epicurve">Draw the Epicurve</a></li>
-  <li>
-<a href="#improve-the-axis" id="toc-improve-the-axis" class="nav-link" data-scroll-target="#improve-the-axis">Improve the Axis</a>
+  <li><a href="#improve-the-axis" id="toc-improve-the-axis" class="nav-link" data-scroll-target="#improve-the-axis">Improve the Axis</a>
   <ul class="collapse">
-<li><a href="#modify-breaks" id="toc-modify-breaks" class="nav-link" data-scroll-target="#modify-breaks">Modify Breaks</a></li>
+  <li><a href="#modify-breaks" id="toc-modify-breaks" class="nav-link" data-scroll-target="#modify-breaks">Modify Breaks</a></li>
   <li><a href="#improve-labels" id="toc-improve-labels" class="nav-link" data-scroll-target="#improve-labels">Improve Labels</a></li>
-  </ul>
-</li>
+  </ul></li>
   <li><a href="#done" id="toc-done" class="nav-link" data-scroll-target="#done">Done!</a></li>
-  <li>
-<a href="#going-further" id="toc-going-further" class="nav-link" data-scroll-target="#going-further">Going Further</a>
+  <li><a href="#going-further" id="toc-going-further" class="nav-link" data-scroll-target="#going-further">Going Further</a>
   <ul class="collapse">
-<li><a href="#extra-execices" id="toc-extra-execices" class="nav-link" data-scroll-target="#extra-execices">Extra execices</a></li>
+  <li><a href="#extra-execices" id="toc-extra-execices" class="nav-link" data-scroll-target="#extra-execices">Extra execices</a></li>
   <li><a href="#challenge" id="toc-challenge" class="nav-link" data-scroll-target="#challenge">Challenge</a></li>
-  </ul>
-</li>
+  </ul></li>
   <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">Resources</a></li>
-  </ul></nav>
-</div>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
 <h1 class="title">Weekly Epicurves</h1>
   <div class="quarto-categories">
     <div class="quarto-category">Satellite</div>
@@ -192,43 +213,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header><section id="objectives" class="level2"><h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
+</header>
+
+
+<section id="objectives" class="level2">
+<h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
 <p>In the <a href="../sessions_core/06_epicurves.html">epicurve session</a> you learned how to plot an epicurve of the number of cases per day:</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="weekly_epicurves_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="768"></p>
+<figure class="figure">
+<p><img src="weekly_epicurves_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="768"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>This graph is aggregated <strong>by day</strong>, which is a reasonable level of aggregation if the outbreak is short or if you wish to zoom on a short period. As epidemiologists we however often want to plot data <strong>by week</strong>.</p>
 <p>In this tutorial we will learn two ways of aggregating data by week, plot the data and tweak the date labels.</p>
-</section><section id="setup" class="level2"><h2 class="anchored" data-anchor-id="setup">Setup</h2>
+</section>
+<section id="setup" class="level2">
+<h2 class="anchored" data-anchor-id="setup">Setup</h2>
 <p>We will build on code from the <a href="../sessions_core/06_epicurves.html">epicurve session</a> so you may either write your code in the script associated with that session or create a new script.</p>
 <div class="setup">
 <p>Create a new script for this tutorial or open the script from the epicurve lesson.</p>
 <p><br> Make sure the following packages are installed and loaded:</p>
 <ul>
-<li>
-<code>{here}</code> to write robust absolute paths,</li>
-<li>
-<code>{rio}</code> to import the data,</li>
-<li>
-<code>{dplyr}</code> to manipulate data,</li>
-<li>
-<code>{ggplot2}</code> to create the graphs,</li>
-<li>
-<code>{lubridate}</code> to manage dates and times</li>
-<li>
-<code>{scales}</code> to create prettier labels</li>
+<li><code>{here}</code> to write robust absolute paths,</li>
+<li><code>{rio}</code> to import the data,</li>
+<li><code>{dplyr}</code> to manipulate data,</li>
+<li><code>{ggplot2}</code> to create the graphs,</li>
+<li><code>{lubridate}</code> to manage dates and times</li>
+<li><code>{scales}</code> to create prettier labels</li>
 </ul>
 <p>If it is not already done, import the clean data (<code>moissala_linelist_clean_EN.rds</code>) into a <code>df_linelist</code> data frame and create a new section in your script called <code>PREPARE DATA</code>.</p>
 </div>
 <p>As we did in the core session, the examples in this lesson will be shown for outcomes and <em>you</em> will code the classic epicurve for date of onset in the exercises.</p>
-</section><section id="aggregate-data-by-week" class="level2"><h2 class="anchored" data-anchor-id="aggregate-data-by-week">Aggregate Data by Week</h2>
+</section>
+<section id="aggregate-data-by-week" class="level2">
+<h2 class="anchored" data-anchor-id="aggregate-data-by-week">Aggregate Data by Week</h2>
 <p>We will to discuss two ways of aggregating data by weeks. You may be more familiar with the first one (using week <em>numbers</em> to identify weeks), but we will to focus more heavily on a more robust way (using the <em>firs day of the week</em> to identify weeks).</p>
-<section id="using-week-numbers" class="level3"><h3 class="anchored" data-anchor-id="using-week-numbers">Using Week Numbers</h3>
+<section id="using-week-numbers" class="level3">
+<h3 class="anchored" data-anchor-id="using-week-numbers">Using Week Numbers</h3>
 <p>Probably the most intuitive way of thinking of weekly aggregated data is to think in terms of week <em>numbers</em>, as aggregated data from MoH are often in this format, and you probably created a lot of epicurves with week numbers yourselves.</p>
 <p>The<code>isoweek()</code> from the <code>{lubridate}</code> packages takes a date (or a vector of dates) and returns the associated <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="ISO weeks offer an internationally standardized approach to dates that avoid differences between countries on when a week starts and how to define the first week of the year. ISO weeks begin on Monday. If you are working with the US CDC, you may use the sister function epiweek() that starts on Sunday.">ISO week</span>.</p>
 <div class="cell">
@@ -251,24 +276,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The head of the <code>date_outcome</code> and <code>week_outcome_number</code> columns looks like this:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 2
-  date_outcome week_outcome_number
-  &lt;date&gt;                     &lt;dbl&gt;
-1 2022-08-18                    33
-2 2022-08-28                    34
-3 2022-09-03                    35
-4 2022-09-12                    37
-5 2022-09-10                    36
-6 2022-09-18                    37</code></pre>
+<pre><code>  date_outcome week_outcome_number
+1   2022-08-18                  33
+2   2022-08-28                  34
+3   2022-09-03                  35
+4   2022-09-12                  37
+5   2022-09-10                  36
+6   2022-09-18                  37</code></pre>
 </div>
 </div>
 <div class="write">
 <p>Your turn. Use the <code>mutate()</code> and <code>isoweek()</code> functions to create a new column in your data frame called <code>week_onset_number</code> that contains the ISO week associated with every <em>onset date</em>. The head of <code>date_onset</code> and <code>week_onset_number</code> columns should look like this:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 2
-  date_onset week_onset_number
-  &lt;date&gt;                 &lt;dbl&gt;
+<pre><code>  date_onset week_onset_number
 1 2022-08-13                32
 2 2022-08-18                33
 3 2022-08-17                33
@@ -286,19 +307,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(week_onset_number) <span class="sc">|&gt;</span> </span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 10 × 2
-   week_onset_number     n
-               &lt;dbl&gt; &lt;int&gt;
- 1                 1    36
- 2                 2    35
- 3                 3    42
- 4                 4    56
- 5                 5    70
- 6                 6    78
- 7                 7    85
- 8                 8    49
- 9                 9    62
-10                10    81</code></pre>
+<pre><code>   week_onset_number  n
+1                  1 36
+2                  2 35
+3                  3 42
+4                  4 56
+5                  5 70
+6                  6 78
+7                  7 85
+8                  8 49
+9                  9 62
+10                10 81</code></pre>
 </div>
 </div>
 <p>Instead, we could count by week stratified by <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Note the use of the isoyear() function from the {lubridate} package. It is a sister function of isoweek() and it does exactly what you expect: return the year of a date according to the ISO week convention">years</span>:</p>
@@ -308,19 +327,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year_onset, week_onset_number) <span class="sc">|&gt;</span> </span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 10 × 3
-   year_onset week_onset_number     n
-        &lt;dbl&gt;             &lt;dbl&gt; &lt;int&gt;
- 1       2022                32     1
- 2       2022                33     2
- 3       2022                34     1
- 4       2022                35     8
- 5       2022                36     8
- 6       2022                37    10
- 7       2022                38    17
- 8       2022                39    17
- 9       2022                40    19
-10       2022                41    16</code></pre>
+<pre><code>   year_onset week_onset_number  n
+1        2022                32  1
+2        2022                33  2
+3        2022                34  1
+4        2022                35  8
+5        2022                36  8
+6        2022                37 10
+7        2022                38 17
+8        2022                39 17
+9        2022                40 19
+10       2022                41 16</code></pre>
 </div>
 </div>
 <p>These counts are perfectly correct. You <em>could</em> plot them using <a href="../sessions_extra/faceting.html">faceting</a> by year, or just filter a given year and plot the weekly numbers with the ISO week number on the x-axis. For example:</p>
@@ -336,13 +353,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>             <span class="at">ncol =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="weekly_epicurves_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure">
+<p><img src="weekly_epicurves_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>If you have not read about facetting yet, do no worry, think of this plot as a teaser of how easily you can make subplots by a variable! But this is out of the scope of this tutorial. Instead, we will show you another way of aggregating data by week which is robust to multi-year data.</p>
-</section><section id="using-the-first-day-of-the-week" class="level3"><h3 class="anchored" data-anchor-id="using-the-first-day-of-the-week">Using the First Day of the Week</h3>
+</section>
+<section id="using-the-first-day-of-the-week" class="level3">
+<h3 class="anchored" data-anchor-id="using-the-first-day-of-the-week">Using the First Day of the Week</h3>
 <p>An alternative way of aggregating by week is to use the function <code>floor_date()</code> (also from the <code>{lubridate}</code> package), which returns the <em>first date</em> of a given period. You can think of it as a sort of <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Predictably, there also is a ceiling_date() function that rounds dates to the highest value of a period">rounding to the smallest value</span>, but for dates.</p>
 <p>The function has a <code>unit</code> argument that allows you to choose the period of interest (week, month…) and a <code>week_start</code> argument where you can pass the first day of the week (Mondays are <code>1</code>).</p>
 <div class="cell">
@@ -360,19 +380,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(date_outcome) <span class="sc">|&gt;</span>     <span class="co"># Sort the data by date</span></span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 10 × 4
-      id date_outcome week_outcome_number week_outcome_monday
-   &lt;int&gt; &lt;date&gt;                     &lt;dbl&gt; &lt;date&gt;             
- 1     1 2022-08-18                    33 2022-08-15         
- 2     2 2022-08-28                    34 2022-08-22         
- 3    10 2022-09-03                    35 2022-08-29         
- 4    16 2022-09-10                    36 2022-09-05         
- 5    22 2022-09-12                    37 2022-09-12         
- 6    14 2022-09-12                    37 2022-09-12         
- 7    41 2022-09-16                    37 2022-09-12         
- 8    20 2022-09-17                    37 2022-09-12         
- 9    17 2022-09-18                    37 2022-09-12         
-10    23 2022-09-19                    38 2022-09-19         </code></pre>
+<pre><code>   id date_outcome week_outcome_number week_outcome_monday
+1   1   2022-08-18                  33          2022-08-15
+2   2   2022-08-28                  34          2022-08-22
+3  10   2022-09-03                  35          2022-08-29
+4  16   2022-09-10                  36          2022-09-05
+5  22   2022-09-12                  37          2022-09-12
+6  14   2022-09-12                  37          2022-09-12
+7  41   2022-09-16                  37          2022-09-12
+8  20   2022-09-17                  37          2022-09-12
+9  17   2022-09-18                  37          2022-09-12
+10 23   2022-09-19                  38          2022-09-19</code></pre>
 </div>
 </div>
 <p>It might be easier to visualize if we calculate the day of the week associated with each date using the function <code>wday()</code> (which <em>also</em> belong to the <code>{lubridate}</code> package, are you maybe seeing a pattern here 😉):</p>
@@ -394,20 +412,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>         they_are_mondays) <span class="sc">|&gt;</span> </span>
 <span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 10 × 5
-   date_outcome day_outcome week_outcome_number week_outcome_monday
-   &lt;date&gt;       &lt;ord&gt;                     &lt;dbl&gt; &lt;date&gt;             
- 1 2022-08-18   Thursday                     33 2022-08-15         
- 2 2022-08-28   Sunday                       34 2022-08-22         
- 3 2022-09-03   Saturday                     35 2022-08-29         
- 4 2022-09-10   Saturday                     36 2022-09-05         
- 5 2022-09-12   Monday                       37 2022-09-12         
- 6 2022-09-12   Monday                       37 2022-09-12         
- 7 2022-09-16   Friday                       37 2022-09-12         
- 8 2022-09-17   Saturday                     37 2022-09-12         
- 9 2022-09-18   Sunday                       37 2022-09-12         
-10 2022-09-19   Monday                       38 2022-09-19         
-# ℹ 1 more variable: they_are_mondays &lt;ord&gt;</code></pre>
+<pre><code>   date_outcome day_outcome week_outcome_number week_outcome_monday
+1    2022-08-18       jeudi                  33          2022-08-15
+2    2022-08-28    dimanche                  34          2022-08-22
+3    2022-09-03      samedi                  35          2022-08-29
+4    2022-09-10      samedi                  36          2022-09-05
+5    2022-09-12       lundi                  37          2022-09-12
+6    2022-09-12       lundi                  37          2022-09-12
+7    2022-09-16    vendredi                  37          2022-09-12
+8    2022-09-17      samedi                  37          2022-09-12
+9    2022-09-18    dimanche                  37          2022-09-12
+10   2022-09-19       lundi                  38          2022-09-19
+   they_are_mondays
+1             lundi
+2             lundi
+3             lundi
+4             lundi
+5             lundi
+6             lundi
+7             lundi
+8             lundi
+9             lundi
+10            lundi</code></pre>
 </div>
 </div>
 <p>This illustrates how <code>week_outcome_number</code> and <code>week_outcome_monday</code> are two ways to have only one value representing a week. While week numbers are not unique as discussed before, dates are!</p>
@@ -427,30 +453,33 @@ Tip
 <p>Go read the <a href="https://lubridate.tidyverse.org/reference/round_date.html">help page</a> for <code>floor_date()</code> to check out the list of possible units.</p>
 </div>
 </div>
-</section><section id="actually-count-things" class="level3"><h3 class="anchored" data-anchor-id="actually-count-things">Actually Count Things</h3>
+</section>
+<section id="actually-count-things" class="level3">
+<h3 class="anchored" data-anchor-id="actually-count-things">Actually Count Things</h3>
 <p>Now that we have variables that represent week, it’s time to do the actual aggregation, ie count things!</p>
 <div class="write">
 <p>Count the number of patients per week of of onset, using the week start (<code>week_onset_monday</code>).</p>
 <p>Here are the first ten lines of what it should look like:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 10 × 2
-   week_onset_monday     n
-   &lt;date&gt;            &lt;int&gt;
- 1 2022-08-08            1
- 2 2022-08-15            2
- 3 2022-08-22            1
- 4 2022-08-29            8
- 5 2022-09-05            8
- 6 2022-09-12           10
- 7 2022-09-19           17
- 8 2022-09-26           17
- 9 2022-10-03           19
-10 2022-10-10           16</code></pre>
+<pre><code>   week_onset_monday  n
+1         2022-08-08  1
+2         2022-08-15  2
+3         2022-08-22  1
+4         2022-08-29  8
+5         2022-09-05  8
+6         2022-09-12 10
+7         2022-09-19 17
+8         2022-09-26 17
+9         2022-10-03 19
+10        2022-10-10 16</code></pre>
 </div>
 </div>
 </div>
-</section></section><section id="draw-the-epicurve" class="level2"><h2 class="anchored" data-anchor-id="draw-the-epicurve">Draw the Epicurve</h2>
+</section>
+</section>
+<section id="draw-the-epicurve" class="level2">
+<h2 class="anchored" data-anchor-id="draw-the-epicurve">Draw the Epicurve</h2>
 <p>So far so good, now we can pipe that aggregated data frame into our plot commands, making a couple adjustments to make it work.</p>
 <div class="write">
 <p>Create a <code>ggplot</code> with the same look at the epicurve from the <a href="../sessions_core/06_epicurves.html#sec-epicurve-steps">epicurve core session</a>, but with the first day of the week on the x-axis. Don’t forget to update axes names.</p>
@@ -459,17 +488,21 @@ Tip
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="weekly_epicurves_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure">
+<p><img src="weekly_epicurves_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>We see dates on the x-axis, but a bar represent data for a week starting on Monday.</p>
-</section><section id="improve-the-axis" class="level2"><h2 class="anchored" data-anchor-id="improve-the-axis">Improve the Axis</h2>
+</section>
+<section id="improve-the-axis" class="level2">
+<h2 class="anchored" data-anchor-id="improve-the-axis">Improve the Axis</h2>
 <p>Now, let’s learn how to tweak the appearance of that date axis!</p>
 <p><code>{ggplot2}</code> automatically provided labels for the x-axis, trying to adjust for the range of data. That default may not always please us so we may want to manually force the labels to be more or less frequent, or change their <em>format</em>.</p>
 <p>To modify the appearance of the axis, we will use another <code>{ggplot2}</code> function, from the scale family: <code>scale_x_date()</code>.</p>
-<section id="modify-breaks" class="level3"><h3 class="anchored" data-anchor-id="modify-breaks">Modify Breaks</h3>
+<section id="modify-breaks" class="level3">
+<h3 class="anchored" data-anchor-id="modify-breaks">Modify Breaks</h3>
 <p>The <strong>breaks</strong> controls the <em>frequency</em> of ticks on the axis.</p>
 <p>The <code>scale_x_date()</code> function has a <code>date_breaks</code> argument that accepts the interval between two labels in a string. The string can have the following format: <code>"1 week"</code>, <code>"2 weeks"</code>, <code>"4 months"</code>, <code>"2 years"</code> etc.</p>
 <div class="cell">
@@ -484,11 +517,13 @@ Tip
 <span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"4 months"</span>) <span class="sc">+</span>  <span class="co"># Define breaks</span></span>
 <span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">16</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 1 rows containing missing values (`position_stack()`).</code></pre>
+<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
+(`geom_col()`).</code></pre>
 </div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="weekly_epicurves_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure">
+<p><img src="weekly_epicurves_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -496,14 +531,12 @@ Tip
 <div class="write">
 <p>Your turn! Modify your code so that the x-axis displays labels at reasonable intervals on <em>your</em> screen.</p>
 </div>
-</section><section id="improve-labels" class="level3"><h3 class="anchored" data-anchor-id="improve-labels">Improve Labels</h3>
+</section>
+<section id="improve-labels" class="level3">
+<h3 class="anchored" data-anchor-id="improve-labels">Improve Labels</h3>
 <p>Now that we changed the interval between ticks, let’s improve the <em>labels</em> themselves (the way dates are displayed on the axis). By default the labels are in the form <em>year-month-day</em>. We are going to show you two ways to change that.</p>
-<div class="tabset-margin-container"></div>
-<div class="panel-tabset nav-pills">
-<ul class="nav nav-tabs" role="tablist">
-<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">With the {scales} Package.</a></li>
-<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">With the strptime Syntax</a></li>
-</ul>
+<div class="tabset-margin-container"></div><div class="panel-tabset nav-pills">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">With the {scales} Package.</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">With the strptime Syntax</a></li></ul>
 <div class="tab-content nav-pills">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <p>The <code>scale_x_date()</code> function has a <code>label</code> argument, that accepts several entries, among which a vector containing the dates, but also a function that generates labels from the breaks. The <code>{scales}</code> package provides such a function, <code>label_date_short()</code>, that attempts to create efficient and short labels for dates.</p>
@@ -520,11 +553,13 @@ Tip
 <span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>               <span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_date_short</span>()) <span class="sc">+</span> <span class="co"># Short labels</span></span>
 <span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">16</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 1 rows containing missing values (`position_stack()`).</code></pre>
+<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
+(`geom_col()`).</code></pre>
 </div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="weekly_epicurves_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure">
+<p><img src="weekly_epicurves_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -537,33 +572,24 @@ Tip
 <p>If you prefer to have full control on how to format dates, R has a <em>syntax</em> to describe date and time formats. There is a long help page with all the syntax items accessible with the <code>help(strptime)</code> command, but here are a few of the most useful elements to format a date label:</p>
 <p><strong>Day</strong>:</p>
 <ul>
-<li>
-<code>%d</code>: from 01 to 31</li>
-<li>
-<code>%e</code>: from 1 to 31</li>
+<li><code>%d</code>: from 01 to 31</li>
+<li><code>%e</code>: from 1 to 31</li>
 </ul>
 <p><strong>Month</strong>:</p>
 <ul>
-<li>
-<code>%b</code>: abbreviated month name (current locale on your computer)</li>
-<li>
-<code>%B</code>: full month name (current locale on your computer)</li>
-<li>
-<code>%m</code>: month as a decimal number</li>
+<li><code>%b</code>: abbreviated month name (current locale on your computer)</li>
+<li><code>%B</code>: full month name (current locale on your computer)</li>
+<li><code>%m</code>: month as a decimal number</li>
 </ul>
 <p><strong>Year</strong>:</p>
 <ul>
-<li>
-<code>%y</code>: Year without the century (two digits)</li>
-<li>
-<code>%Y</code>: year in four digits</li>
+<li><code>%y</code>: Year without the century (two digits)</li>
+<li><code>%Y</code>: year in four digits</li>
 </ul>
 <p><strong>Special separators</strong>:</p>
 <ul>
-<li>
-<code>%n</code>: newline</li>
-<li>
-<code>%t</code>: tab</li>
+<li><code>%n</code>: newline</li>
+<li><code>%t</code>: tab</li>
 </ul>
 <p>You can assemble these items in a string, that you pass to different functions that accept a format as argument. Here we will pass it to the <code>format()</code> function to quickly see what display it creates, but after that we will use them in our graph command.</p>
 <div class="cell">
@@ -573,15 +599,15 @@ Tip
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's try out different syntax</span></span>
 <span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span>(some_dates, <span class="st">"%Y-%b-%d"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2024-Oct-06" "2024-Dec-15" "2025-Jan-20"</code></pre>
+<pre><code>[1] "2024-oct.-06"  "2024-déc.-15"  "2025-janv.-20"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span>(some_dates, <span class="st">"%Y-%b"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2024-Oct" "2024-Dec" "2025-Jan"</code></pre>
+<pre><code>[1] "2024-oct."  "2024-déc."  "2025-janv."</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span>(some_dates, <span class="st">"%Y %B %d"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2024 October 06"  "2024 December 15" "2025 January 20" </code></pre>
+<pre><code>[1] "2024 octobre 06"  "2024 décembre 15" "2025 janvier 20" </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span>(some_dates, <span class="st">"%y/%m/%d"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -607,11 +633,13 @@ Tip
 <span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">date_labels =</span> <span class="st">"%Y%n%b%n%d"</span>) <span class="sc">+</span>  <span class="co"># Define format of labels</span></span>
 <span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">16</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 1 rows containing missing values (`position_stack()`).</code></pre>
+<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
+(`geom_col()`).</code></pre>
 </div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="weekly_epicurves_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure">
+<p><img src="weekly_epicurves_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -622,7 +650,8 @@ Tip
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="weekly_epicurves_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure">
+<p><img src="weekly_epicurves_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -630,7 +659,10 @@ Tip
 </div>
 </div>
 </div>
-</section></section><section id="done" class="level2"><h2 class="anchored" data-anchor-id="done">Done!</h2>
+</section>
+</section>
+<section id="done" class="level2">
+<h2 class="anchored" data-anchor-id="done">Done!</h2>
 <p>Congratulations! Dates are complicated, and their formatting is often scary, but we hope this little introduction showed you some nice tricks for your epicurves!</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -639,21 +671,36 @@ Tip
 </a>
 </div>
 </div>
-</section><section id="going-further" class="level2"><h2 class="anchored" data-anchor-id="going-further">Going Further</h2>
-<section id="extra-execices" class="level3"><h3 class="anchored" data-anchor-id="extra-execices">Extra execices</h3>
+</section>
+<section id="going-further" class="level2">
+<h2 class="anchored" data-anchor-id="going-further">Going Further</h2>
+<section id="extra-execices" class="level3">
+<h3 class="anchored" data-anchor-id="extra-execices">Extra execices</h3>
 <ul>
 <li>Use date format like this: “2024-oct.”, “2024-dec.”</li>
 <li>Create an epicurve with the date of consultation, using the first day of the week on the x-axis (format dates the way you prefer)</li>
 <li>Create an epicurve for 2023 data using the date of hospital admission and the ISO week number on the x-axis.</li>
-</ul></section><section id="challenge" class="level3"><h3 class="anchored" data-anchor-id="challenge">Challenge</h3>
+</ul>
+</section>
+<section id="challenge" class="level3">
+<h3 class="anchored" data-anchor-id="challenge">Challenge</h3>
 <ul>
 <li>Do the epicurve for the date of onset, but instead of aggregating by week, aggregate it by month. Find an appropriate format for the labels.</li>
-</ul></section></section><section id="resources" class="level2"><h2 class="anchored" data-anchor-id="resources">Resources</h2>
+</ul>
+</section>
+</section>
+<section id="resources" class="level2">
+<h2 class="anchored" data-anchor-id="resources">Resources</h2>
 <ul>
 <li>Chapter of the <a href="https://ggplot2-book.org/scales-position#sec-date-scales">Elegant graphics for data analyses</a> book on date scales</li>
-<li>
-<a href="https://lubridate.tidyverse.org/articles/lubridate.html">Get started with lubridate</a> from the package homepage.</li>
-</ul></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+<li><a href="https://lubridate.tidyverse.org/articles/lubridate.html">Get started with lubridate</a> from the package homepage.</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -1219,5 +1266,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-</body>
-</html>
+</body></html>
