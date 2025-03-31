@@ -3,6 +3,15 @@
 # Last Update: 28/03/2025
 # Description: Model code associated with Surveillance module case study
 
+# Note: here we gathered the data cleaning and preparation and the analyses
+# in only one script. This is fine for a very short project (little
+# cleaning, very short analysis...). But it would have been possible
+# to separate the following code into several scripts, one dedicated to
+# cleaning the data, and one dedicated to exploring and analysing the data.
+# We could even have Rmarkdown or Quarto documents in the project to
+# run automatic reports based on the results.
+
+
 
 # Setup ----------------------------------------------------
 
@@ -14,6 +23,8 @@ library(dplyr)     # Data manipulation
 library(tidyr)     # Data manipulation
 library(stringr)   # Text cleaning
 library(lubridate) # Dates
+library(zoo)       # Rolling sum
+
 
 ## Import data ---------------------------------------------
 
@@ -39,9 +50,14 @@ head(data_lab_raw)
 View(data_lab_raw)
 
 
-# Surveillance data ------------------------------------------------------
 
-## Quick exploration --------------------------------------
+# Clean data -----------------------------------------------
+
+
+## Surveillance data ---------------------------------------
+
+
+### Quick exploration --------------------------------------
 names(data_surv_raw)
 head(data_surv_raw)
 
@@ -65,10 +81,11 @@ summary(data_surv_raw$totalcas)
 summary(data_surv_raw$totaldeces)
 
 
-
-## Clean data ------------------------------------------------
+### Clean data -----------------------------------------
 
 data_surv <- data_surv_raw |> 
+  
+  ## Straighten strings
   mutate(
     
     # Format strings to lower case
@@ -76,11 +93,6 @@ data_surv <- data_surv_raw |>
     prov    = tolower(prov),
     zs      = tolower(zs),
     maladie = tolower(maladie),
-    
-    # To go further (semi-advanced R): checkout the use of
-    # across function in mutate, to replace the four lines
-    # above with  across(c(pays, prov, zs, maladie), tolower)!
-    
     
     # Remove excess spaces with the str_squish() function from 
     # the stringr package, very usefull!
@@ -93,19 +105,74 @@ data_surv <- data_surv_raw |>
     prov = str_replace(prov, pattern = "-", replacement = "_"), 
     prov = str_replace(prov, pattern = " ", replacement = "_"),
     zs   = str_replace(zs,   pattern = "-", replacement = "_"), 
-    zs   = str_replace(zs,   pattern = " ", replacement = "_")
+    zs   = str_replace(zs,   pattern = " ", replacement = "_"),
+    
+    # Number of cases less than 5 months
+    cunder_5 = c011mois + c1259mois
+  ) %>% 
+  
+  # Sort data
+  arrange(prov, zs, numsem)
+
+
+# Reformat surveillance data to have 1 line for each week
+# filled in with 0 cases 
+
+# Use of tidyr::complete to add new records of weeks 1 to 20 
+# for each combined province and zs with 0 value in the 
+# totalcas and totaldeces variables
+
+data_surv_weeks <- data_surv |> 
+  select(prov, zs, numsem, totalcas, totaldeces) |>
+  
+  complete(
+    nesting(prov, zs),
+    numsem = seq(min(numsem, na.rm = TRUE), 
+                 max(numsem, na.rm = TRUE)),
+    fill = list(totalcas = 0, 
+                totaldeces = 0)
+  ) %>% 
+  
+  ## Prepare alert columns
+  mutate(
+    # 20 cases or more
+    cases20 = case_when(
+      totalcas >= 20 ~ 1, 
+      .default = 0)) |>
+  
+  # Cumulative indicators, need to be calculated by ZS
+  mutate(
+    
+    # Group by Province and ZS
+    .by = c(prov, zs),
+    
+    # Cumulative cases over 3 week window (zoo::rollapply)
+    cumcas = rollapply(totalcas, 
+                       width = 3,        # Window width
+                       sum,              # function to apply
+                       na.rm = TRUE,     # Arguments to pass to the function (here, sum)
+                       align = "right",  
+                       partial = TRUE)
+  ) %>% 
+  
+  mutate(    
+    # Binary indicator for 35 cumulative cases
+    cumcases35 = case_when(
+      cumcas >= 35 ~ 1, 
+      .default = 0),
+    
+    # Combined alert indicator
+    # The operator | is a logical OR.
+    alert = case_when(
+      (cases20 == 1 | cumcases35 == 1) ~ 1, 
+      .default = 0)
   )
 
 
-## Save cleaned data ---------------------------------------
-export(data_surv, 
-       file = here("data", "clean", "IDS_clean.rds"))
 
+## Laboratory data ------------------------------------------
 
-
-# Laboratory data ------------------------------------------
-
-## Check lab data ------------------------------------------
+### Quick exploration ------------------------------------------
 
 names(data_lab_raw)
 head(data_lab_raw)
@@ -115,14 +182,14 @@ data_lab_raw |> distinct(igm_rougeole)
 data_lab_raw |> distinct(igm_rubeole)
 
 
-## Clean data ----------------------------------------------
+### Clean data ----------------------------------------------
 
 data_lab <- data_lab_raw |> 
   mutate(
     
     # Clean strings
-    zs = tolower(zs),    # Format strings to lower case
-    zs = str_squish(zs), # Remove excess spaces
+    zs = tolower(zs),                # Format strings to lower case
+    zs = str_squish(zs),             # Remove excess spaces
     zs = str_replace(zs, "-", "_"),  # Replace - by _
     zs = str_replace(zs, " ", "_"),  # Replace space by _
     
@@ -146,33 +213,138 @@ data_lab |> distinct(igm_rougeole)
 data_lab |> distinct(igm_rubeole)
 
 
-## Save cleaned data ---------------
+
+
+
+
+# Analyses --------------------------------------------------
+
+## Subset data ----------------------------------------------
+# For the case study we ran the analyses on only a subset of the dataset
+data_alert <- data_surv_weeks %>% 
+  filter(zs %in% c("dilolo", "kowe" ,"kampemba", "lwamba"))
+
+
+# Which health zones are in alert at week 20?
+data_alert |>
+  filter(numsem == 20) %>%
+  arrange(desc(alert))
+
+# It's 63 if we were looking at the full dataset:
+# data_surv_weeks |>
+#   filter(numsem == 20) %>%
+#   arrange(desc(alert))
+
+
+# Vector of the ZS that are in alert in week 20 to make a graph
+# of these ZS
+zs_alert <- data_alert |>
+  filter(numsem == 20,
+         alert == 1) %>%
+  pull(zs) # turn a single column data frame into a vector
+
+# Or type it by hand if there are few alerts: 
+# zs_alert <- c("kampemba", "lwamba")
+
+
+
+## Epicurve ------------------------------------------------
+
+p_epi <- data_alert |>
+  filter(zs %in% zs_alert) |>
+  ggplot(aes(x = numsem, 
+             y = totalcas)) + 
+  geom_col(fill = "#2E4573") + 
+  labs(x = "Week",
+       y = "N cases",
+       title = "Health zones in alert") +
+  theme_bw(base_size = 15) +
+  facet_wrap(vars(zs))   # One graph by ZS
+
+p_epi
+
+
+## Key indicators ------------------------------------------
+
+### Week of the first alert -----------------------------
+first_alert <- data_alert |>
+  filter(alert == 1) |>
+  summarise(
+    .by = zs,
+    min_alert = min(numsem))
+
+first_alert
+
+
+### Surveillance data ------------------
+table_surv <- data_surv |>
+  filter(zs %in% zs_alert) |>
+  mutate(cunder_5 = c011mois + c1259mois) %>%
+  summarise(
+    .by = zs,
+    
+    nb_cas       = sum(totalcas, na.rm = TRUE),
+    nb_deces     = sum(totaldeces, na.rm = TRUE),
+    nb_under_5   = sum(cunder_5, na.rm = TRUE),
+    cfr          = nb_deces / nb_cas * 100,
+    prop_under_5 = nb_under_5 / nb_cas * 100
+  )
+
+table_surv
+
+
+### Lab data --------------------------------
+table_lab <- data_lab |>
+  filter(zs %in% zs_alert) |>
+  
+  summarise(
+    .by = zs,
+    
+    nb_roug_test  = sum(!is.na(igm_rougeole)),
+    nb_roug_pos   = sum(igm_rougeole == "positif", na.rm = TRUE),
+    prop_roug_pos = nb_roug_pos / nb_roug_test * 100,
+    nb_rub_test   = sum(!is.na(igm_rubeole)),
+    nb_rub_pos    = sum(igm_rubeole == "positif", na.rm = TRUE),
+    prop_rub_pos  = nb_rub_pos / nb_rub_test * 100
+  )
+
+table_lab
+
+
+
+
+# Save data / Export results -------------------------------
+
+## Save clean data -----------------------------------
+
+# Surveillance data
+export(data_surv, 
+       file = here("data", "clean", "IDS_clean.rds"))
+
+# Completed weeks
+export(data_surv_weeks, 
+       file = here("data", "clean", "IDS_data_ts_clean.rds"))
+
+# Lab data
 export(data_lab,
        file = here("data", "clean", "lab_clean.rds"))
 
+## Export results ------------------------------------------
+
+# You could export results to reuse them in another document (an
+# Rmakdown script for exemple). It is possible to store these 
+# different elements (various data frames, ggplot objects...) into
+# a list and then to save the list.
+
+# Create list of results
+list_results <- list(
+  alert_20    = alert_20, 
+  first_alert = first_alert, 
+  p_epi       = p_epi, 
+  table_surv  = table_surv, 
+  table_lab   = table_lab)
 
 
-# Complete Surveillance ----------------------------------------
-
-## Clean data ----------------------------------------------
-
-# Reformat surveillance data to have 1 line for each week
-# filled in with 0 cases 
-
-# Use of tidyr::complete to add new records of weeks 1 to 20 
-# for each combined province and zs with 0 value in the 
-# totalcas and totaldeces variables
-
-data_ts <- data_surv |> 
-  select(prov, zs, numsem, totalcas, totaldeces) |>
-  complete(
-    nesting(prov, zs),
-    numsem = seq(min(numsem, na.rm = TRUE), 
-                 max(numsem, na.rm = TRUE)),
-    fill = list(totalcas = 0, 
-                totaldeces = 0)
-  ) 
-
-## Save completed IDS data -----------------------------------
-export(data_ts, 
-       file = here("data", "clean", "IDS_data_ts_clean.rds"))
+# Save as RDS file
+list_results |>
+  export(file = here("output", "list_results.rds"))
