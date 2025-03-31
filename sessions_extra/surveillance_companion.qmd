@@ -116,7 +116,7 @@ data_alert <- data_surv_weeks |>
     
     # Binary indicator for 35 cumulative cases
     cumcases35 = case_when(cumcas >= 35 ~ 1, 
-                      .default = 0),
+                           .default = 0),
     
     
     # Combined alert indicator
@@ -151,22 +151,22 @@ Do not hesitate to refer to past sessions and your own scripts to remind yoursel
 
 ## Setup (Question 2)
 
-Since this is part of a specific module, you will create a new RStudio project. We refer you [this main session](../sessions_core/02_import_data.qmd) for help creating a project and importing your data.
+Since this is part of a specific module, you will create a new RStudio project. We refer you [to the main session](../sessions_core/02_import_data.qmd) for help creating a project and importing your data.
 
 ### Setup a new project
 
 :::  {.setup}
-1.  Create a folder `surveillance_case_study` associated with the FETCH Surveillance module. Add the following subfolders in it:
+1. Create a folder `surveillance_case_study` associated with the FETCH Surveillance module. Add the following subfolders in it:
 
 - 📁 data
 - 📁 clean
 - 📁 raw
--   📁 R
--   📁 outputs
+- 📁 R
+- 📁 outputs
 
-2.  Create an [RStudio project](../sessions_core/02_import_data.qmd#rstudio-projects) at the root of the `surveillance_case_study` folder.
+2. Create an [RStudio project](../sessions_core/02_import_data.qmd#rstudio-projects) at the root of the `surveillance_case_study` folder.
 
-3.  Download the raw data.
+3. Download the raw data.
 
 ```{r}
 #| echo: false
@@ -182,8 +182,7 @@ downloadthis::download_link(
 ```
 
 <br>
-4. Unzip the archive and save the two Excel files it contains in the subfolder `data/raw`.  
-
+4. Unzip the archive and save the two Excel files it contains in the subfolder `data/raw`. 
 
 5. Create a new script called `import_clean.R` and save it in the `R` subdirectory. Add a section to load the following packages: `{here}`, `{rio}`, and `{tidyverse}`.
 :::
@@ -191,13 +190,13 @@ downloadthis::download_link(
 
 ### Import data in R
 
-**Reminder from the case study**: you requested access to the routine surveillance data and the laboratory data to the DRC MoH. The MoH agreed to share it with you on a weekly basis. The first dataset you received is of week 20 in 2022 (the data we are working on is simulated).
+**Reminder from the case study**: you requested access to the routine surveillance data and the laboratory data to the DRC MoH. The MoH agreed to share it with you on a weekly basis. The first dataset you received is of week 20 in 2022 (the data we are working on are simulated).
 
 :::  {.look}
 If you have not done it already, open the raw data files in Excel (or another equivalent application) to inspect them.
 :::
 
-The surveillance dataset is pretty straightforward to import. The lab dataset is slightly trickier: the data headers do not start at line one like the surveillance dataset. Fear not, the `skip` argument from the `import()` function is made for that sort of case:
+The surveillance dataset is pretty straightforward to import. The lab dataset is slightly trickier: the data headers do not start at line one. Fear not, the `skip` argument from the `import()` function is made for this situation:
 
 ```{r}
 # DO NOT RUN (PSEUDO-CODE)
@@ -248,11 +247,11 @@ Now, explore the surveillance data frame and answer the following questions:
 
 #### Clean strings
 
-Ok, now that we have a better idea of what is the state of the data, let's do some cleaning. We are going to write a cleaning pipeline like we did in the main modules (check out your code for the end of the [cleaning modules](../sessions_core/04_data_verbs_conditional.qmd) to see an example final pipeline).
+Now that we have a better idea of what is the state of the data, let's start cleaning. We are going to write a *cleaning pipeline* like we did in the main modules (check out your code for the end of the [cleaning modules](../sessions_core/04_data_verbs_conditional.qmd) to see an example final pipeline).
 
 
 :::  {.callout-tip}
-To facilitate debugging your pipeline, add actions one by one and check that each action does what you want before adding another one.
+To facilitate debugging your pipeline, add commands one by one, checking each new command before adding a new one.
 :::
 
 We are going to perform a couple of actions on the columns containing text to remove potential problems:
@@ -261,7 +260,7 @@ We are going to perform a couple of actions on the columns containing text to re
 -   remove potential extra spaces
 -   replace `-` and spaces by `_`.
 
-Because you may not have the time to do all of text colums, pick the `zs` or the `prov` column for the following action.
+Because you may not have the time to do all of text colums, work on the `zs` or the `prov` column for the following instructions.
 
 :::  {.write}
 Start a cleaning pipeline with a `mutate()` that turns the chosen column to lower casse.
@@ -306,7 +305,7 @@ The head of these columns should now be:
 data_surv |> select(pays, prov, zs, maladie) |> head()
 ```
 
-Store the clean(ish) data frame in a `data_surv` data frame.
+Store the result data frame in a `data_surv` object.
 :::
 
 #### Save the clean data
@@ -373,7 +372,7 @@ If you still have time, perform more checks on the data:
 
 During the case study and the data checks, you realized that some weeks are missing from the surveillance dataset. You discussed the possible reasons for it, and the associated problems. Here we are going provide code to create a dataset that contains all weeks (assuming that missing weeks had zero cases and deaths).
 
-To do that, we will use the function [`complete()` from the `{tidyr}` package](https://tidyr.tidyverse.org/reference/complete.html), to add the missing lines and fill the columns containing numbers (`totalcas` and `totaldeces`) with zeros.
+We will use the function [`complete()` from the `{tidyr}` package](https://tidyr.tidyverse.org/reference/complete.html) to add the missing lines and fill the columns containing numbers (`totalcas` and `totaldeces`) with zeros.
 
 Look at the simplified example below: the Kikula health zone has no row for week 2:
 
@@ -382,9 +381,9 @@ Look at the simplified example below: the Kikula health zone has no row for week
 
 # Create simplified data frame for the example, with three weeks
 example_df = data.frame(
-  prov = rep("haut_katanga", 5),
-  zs = c("likasi", "likasi", "likasi", "kikula", "kikula"),
-  numsem = c(1, 2, 3, 1, 3),
+  prov     = rep("haut_katanga", 5),
+  zs       = c("likasi", "likasi", "likasi", "kikula", "kikula"),
+  numsem   = c(1, 2, 3, 1, 3),
   totalcas = c(2, 1, 3, 1, 2))
 
 example_df
@@ -406,7 +405,7 @@ example_df |>
 
 Now both health zones within provinces have values for all three weeks.
 
-It would be good to not have to check the minimum and maximum week ourselves when the data is changing from week to week. To automatize, we can remplace hardcoded values by the smallest and largest week number in the `numsem` column to get the range of weeks in the dataset:
+It would be good to automatically pick the week series, since the data frame is going to change every week. To do that, we can remplace hardcoded values by the smallest and largest week number in the `numsem` column to get the range of weeks in the dataset:
 
 
 ```{r}
@@ -451,26 +450,6 @@ data_surv_weeks |> head(10)
 :::
 
 
-## Done!
-
-Congratulation, you are done with the cleaning of the surveillance datasets! You can download the solutions for this part of the tutoriel.
-
-```{r}
-#| echo: false
-#| eval: true
-
-downloadthis::download_link(
-  link = 'https://github.com/epicentre-msf/repicentre/blob/main/solutions/extra/surveillance_module_solutions.R',
-  button_label = 'Solution File',
-  has_icon = TRUE,
-  icon = "fa fa-save",
-  self_contained = FALSE
-)
-```
-
-In the rest of the case study you will analyse the data.
-
-
 
 ## Defining alerts (Question 4)
 
@@ -484,16 +463,17 @@ We are going to carry on preparing the datasets for the analyses.
 To simplify the work, we are going to focus on four health zones: Dilolo, Kampemba, Kowe, and Lwamba.
 
 ::: {.write}
-Start a new pipeline, which first step is to select only lines of the `data_surv_weeks` with data for the the Dilolo, Kampemba, Kowe, and Lwamba health zones. 
+Start a new pipeline from `data_surv_weeks`. Its first step it to only retain data for the the Dilolo, Kampemba, Kowe, and Lwamba health zones. 
 :::
 
 
-#### Simple weekly indicator
+#### Weekly indicator
 
-We are first going to calculate the first simple indicator: "does a health zone has 20 or more suspected cases in one week?". This indicator is binary and only considers data in a given health zone and week, which corresponds to individual rows of our data frame.
+The first indicator we want to caclulate is whether *a health zone has 20 or more suspected cases in one week?*. This indicator is binary and only considers data in a given health zone and week, which corresponds to individual rows of our data frame.
 
 ::: {.write}
-Add a `mutate()` to your pipeline, to create a `cases20` column that contains `1` if a given health zone has 20 cases or more in that week, and zero otherwise.
+Add a `mutate()` to your pipeline, to create a `cases20` column that contains `1` if a given health zone has 20 cases or more in that week, and `0` otherwise.
+
 
 The top of the data frame created by the pipe thus far looks like this:
 
@@ -501,110 +481,39 @@ The top of the data frame created by the pipe thus far looks like this:
 #| echo: false
 #| eval: true
 
-data_analyses %>% head(10)
+data_surv_weeks |>
+  
+  # Select the 4 health zones
+  filter(zs %in% c("dilolo", "kowe" ,"kampemba", "lwamba")) |>
+  
+  # Order by province, zs and week
+  arrange(prov, zs, numsem) %>%
+  
+  # Binary indicator for 20 cases (weekly indicator by ZS)
+  mutate(
+    cases20 = case_when(
+      totalcas >= 20 ~ 1, 
+      .default = 0))  %>% head(10)
 ```
 :::
 
 #### Cumulative indicator
 
-The second indicator you want to calculate is whether a health zone has more than 35 cumulated suspected cases within three weeks. This is a bit more complicated than the previous case: within heath zone you need to calculate the sum of cases by groups of three weeks, but the groups are not fixed, they are *rolling* across time. We are getting in the teritory of *moving* averages/sums/etc.
+The second indicator you want to calculate is whether a health zone has more than 35 *cumulated suspected cases within three weeks*. This is a bit more complicated than the previous case: within heath zone you need to calculate the sum of cases by groups of three weeks, but the groups are not fixed: they are *rolling* across time. We are getting in the teritory of *moving* averages/sums/etc.
 
 ##### Cumulative sum
 
-There are many functions that allow us to apply functions in a [cumulative way]{.hovertip bs-toggle='tooltip' bs-title='Checkout the cumsum() and cumprod() functions!'}. Today we are going to show you the `rollapply()` function from the `{zoo}` package, as it is versatile and powerfull. As its name suggests, the `rollapply()` function applies a function in a rolling way to a vector or a column of a dataframe.
+We are going to use the `rollapply()` function from the `{zoo}` package, as it is versatile and powerful. As its name suggests, the `rollapply()` function applies a function in a rolling way to a vector or a column of a data frame.
 
+Since we are constrained in time, we are going to provide the code of the `rollapply()` function to calculate the cumulative sum over three weeks, but check out the details in the Going further section at the end when you have time. 
 
-If we want to do a cumulative sum of cases over three weeks, we want to apply the `sum()` function over windows of three weeks.
-
-```{r}
-#| eval: true
-example_vect <- rep(1, time = 10)
-example_vect
-
-rollapply(
-  data  = example_vect,
-  width = 3,       # Width of the window  
-  FUN   = sum,     # Function to apply, here the sum   
-  align = "right"  # The final windows is aligned to the right
-)
-```
-
-In the example above we inputed a vector of ten values (only ones) and obtained a vector of lenght height, containing the sums. Obviously the function has a way of dealing with the extremities, and the size of the output is smaller than the size of the input, which would be a problem in a mutate, where we want to create a new columns in a data frame, with thus the same length as the other columns.
-
-Fortunately there are ways to control the behavior of the first extremity (since we have aligned the windows to the right, the last extremity is already dealt with) You have two solutions:
-
-- Fill with NA when there is not enough values to calculate a window of three
-- Allow partial sums (some values represent less than three weeks)
-
-The argument `fill = NA` allow the first solution: it pads the extremities with NA (in our case, since we aligned right)
-
-```{r}
-#| eval: true
-rollapply(
-  data  = example_vect,
-  width = 3,       # Width of the window  
-  FUN   = sum,     # Function to apply, here the sum   
-  align = "right", # Windows are aligned to the right
-  fill = NA
-)
-```
-
-Here, the first and second NA correspond to the first two weeks: the function cannot apply the `sum()` yet as the window is not complete yet. In some cases, it is a reasonnable way of dealing with incomplete windows. In our case, we can do better: if there are 40 cases in week 1, we would consider it a cause for alert, because whatever happens in the next two weeks, the indicator is already above 35 in week one. We thus want the cumulative sum to be calculated, from week one. The `partial = TRUE` argument allows this:
-
-```{r}
-#| eval: true
-rollapply(
-  data  = example_vect,
-  width = 3,       # Width of the window  
-  FUN   = sum,     # Function to apply, here the sum   
-  align = "right", # Windows are aligned to the right
-  partial = TRUE)
-```
-
-
-This is close to what you need. A last point: you surely remembers that arithmetic operations in R return `NA` if some of the values are `NA` and we usually need to pass the argumpent `na.rm = TRUE` to the functions for them to ignore missing values.
-
-So if we changed our input vector we would obtain this:
-
-```{r}
-#| eval: true
-
-example_vect_missing <- c(1, 1, 1, NA, 1, 1)
-
-rollapply(
-  data  = example_vect_missing,
-  width = 3,       # Width of the window  
-  FUN   = sum,     # Function to apply, here the sum   
-  align = "right", # Windows are aligned to the right
-  partial = TRUE   # Allows calcul to be made even if window is less than three
-)
-```
-
-This is not what we want. But we can pass the `na.rm = TRUE` argument to `rollapply()` so that it passes it to `sum()`
-
-```{r}
-#| eval: true
-
-rollapply(
-  data  = example_vect_missing,
-  width = 3,       # Width of the window  
-  FUN   = sum,     # Function to apply, here the sum   
-  align = "right", # Windows are aligned to the right
-  partial = TRUE,  # Allows calcul to be made even if window is less than three
-  na.rm = TRUE     # Extra unamed argument to be passed to the sum function
-)
-```
-
-
-Now that we understand how to use the `rollapply()` function we can use it to calculate the cumulative sum over three weeks.
-
-This is how to do it for one health zone:
+This is how to do it for *one health zone*:
 
 ```{r}
 #| eval: true
 example_df = data.frame(
-  prov = "Haut Katanga",
-  zs   = "Dilolo",
+  prov     = "Haut Katanga",
+  zs       = "Dilolo",
   numsem   = 1:10,
   totalcas = rep(1, times = 10))
 
@@ -615,6 +524,7 @@ example_df %>%
     FUN   = sum,        # Function to apply, here the sum   
     align = "right",    # Windows are aligned to the right
     partial = TRUE,     # Allows calcul to be made even if window is less than three
+    
     na.rm = TRUE        # Extra unamed argument to be passed to the sum function
   )
   )
@@ -625,9 +535,9 @@ example_df %>%
 Now, we want to do this cumulative sum *by health zone*. This is not that complicated: we are going to sort our dataframe properly by health zone and week, and use the `.by` argument to tell the `mutate()` function to perform the action *by health zone*.
 
 ::: {.callout-note}
-You may remember from the [aggregation session](../sessions_core/05_summary_table.qmd#sec-stratify) how se *summarised* by groups using the `.by` argument in the `summarize()` function. This exactly the same idea, except that instead of returning one value by group (as `summarize()` does), we want to return one value per row (as `mutate()` does).
+You may remember from the [aggregation session](../sessions_core/05_summary_table.qmd#sec-stratify) how se *summarised* by groups using the `.by` argument in the `summarize()` function. This is exactly the same idea, except that instead of returning *one value by group* (as `summarize()` does), we want to return one value per row (as `mutate()` does).
 
-As a little reminder of how `summarize()` + `by()` works, here is how we would calculate the total number of patients and deceased by province over the whole dataset:
+As a little reminder of how `summarize()` + `.by` work, here is how we would calculate the total number of patients and deceased by province over the whole dataset:
 
 ```{r}
 #| eval: true
@@ -647,28 +557,30 @@ data_surv_weeks %>%
 2. Then add the following code to calculate the cumulative sum:
 
 ```{r}
-  mutate(
-    .by = c(prov, zs)
-    cumcas = rollapply(
-      data  = totalcas,
-      width = 3,          # Width of the window  
-      FUN   = sum,        # Function to apply, here the sum   
-      align = "right",    # Windows are aligned to the right
-      partial = TRUE,     # Allows calcul to be made even if window is less than three
-      na.rm = TRUE        # Extra unamed argument to be passed to the sum function
-    )
+mutate(
+  .by = c(prov, zs),
+  cumcas = rollapply(
+    data  = totalcas,
+    width = 3,          # Width of the window  
+    FUN   = sum,        # Function to apply, here the sum   
+    align = "right",    # Windows are aligned to the right
+    partial = TRUE,     # Allows calcul to be made even if window is less than three
+    na.rm = TRUE        # Extra unamed argument to be passed to the sum function
   )
+)
 ```
 
-3. Add a new step to calculate a binary indicator, `cumcases35` that is `1` if the cumulative sum of cases for that week is equal or above 35 and `0` if not. This can be in the same mutate as above: the grouping will not affect this calculation, that only looks at a single value in each row.
+3. Add a new step to calculate a binary indicator, `cumcases35` that is `1` if the cumulative sum of cases for that week is equal or above 35 and `0` if not.
 
-4. Add a new column `alert`, that is `1` if either the `cases20` indicator or the `cumcases35` indicator is `1` and zero otherwise. You can use the `|` operator, that is a logical OR.
+4. Add a new column `alert`, that is `1` if either the `cases20` indicator or the `cumcases35` indicator is `1` and `0` otherwise. You can use the `|` operator, which is R logical OR.
 
 5. When the pipe is working, assign the result to a `data_alert` data frame.
 
 `data_alert` should look like this:
 
 ```{r}
+#| echo: false
+#| eval: true
 data_alert %>% head(10)
 ```
 
@@ -676,20 +588,21 @@ data_alert %>% head(10)
 
 ### Health zones in alert (Q4)
 
-After all this work we can *finally* investigate which health zones are in alert in the last week of our dataset (the *now* of the case study, and our latest data, week 20)!
+After all this work we can *finally* investigate which health zones are in alert in the last week of our dataset (the *now* of the case study, week 20)!
 
 ::: {.write}
 Filter your data frame to only keep the 20th week. Which health zones are in alert?
+
 
 Create a vector `zs_alert` that contains the name of the health zones in alert, so that we can use it to filter data from these health zones later.
 :::
 
 
-## Draw the epicurve (Question 4)
+## Draw the epicurve (Question 5)
 
 Let us draw the epicurves of health zones currently in alert (in alert during week 20).
 
-We have drawn very similar curves in the [epicurve session](../sessions_core/06_epicurves.qmd). Here again we will use the `ggplot()` function with the `geom_col()` geom to create a barplot showing the distribution of cases. Since we already have the number if cases per week we will not have to add a step to *count* it ourselved like we did in previous sessions.
+We have drawn very similar curves in the [epicurve session](../sessions_core/06_epicurves.qmd). Here again we will use the `ggplot()` function with the `geom_col()` geom to create a barplot showing the distribution of cases. Since we already have the number of cases per week we do not need to *count* it ourselved like we did in the past.
 
 
 ::: {.write}
@@ -698,13 +611,14 @@ Draw an epicurve for one of the health zone in alert.
 The graph should look like this (but maybe for another health zone):
 
 ```{r}
+#| echo: false
+#| eval: true
 data_alert |>
-  filter(zs %in% c("kampemba")) |>
+  filter(zs == "kampemba") |>
   ggplot(aes(x = numsem, 
              y = totalcas)) + 
   geom_col(fill = "#2E4573") + 
   theme_bw(base_size = 15) + 
-  # facet_wrap(vars(zs)) +   # One graph by ZS
   labs(x = "Week",
        y = "N cases",
        title = "Kampemba ZS (in alert)")
@@ -723,45 +637,44 @@ data_alert |>
              y = totalcas)) + 
   geom_col(fill = "#2E4573") + 
   theme_bw(base_size = 15) + 
-  facet_wrap(vars(zs)) +   # One graph by ZS
   labs(x = "Week",
        y = "N cases",
-       title = "Health zones in alert")
+       title = "Health zones in alert") +
+  facet_wrap(vars(zs))   # One graph by ZS
 
 ```
 
 
-## Key indicators for health zones (Question 6)
-
-From the case study:
-> You are the only epidemiologist in the team, and you cannot investigate both alerts. You therefore perform an additional detailed data analysis to decide which of the two health zones you are going to investigate.
+## Key indicators (Question 6)
 
 Let's gather more data on both alerts to help you decide which one to investigate.
+
+::: {.callout-tip}
+This session builds on summarizing skills seen in [the summary session](../sessions_core/05_summary_table.qmd). Do not hesitate to check it or your code if you forgot something.
+:::
 
 
 ### Week of the first alert
 
 ::: {.write}
 Use the `summarize()` function to display the first week the alert was raised for each health zone in alert. Which health zone started first?
-
-You can store this data frame in `first_alert`.
 :::
 
 
 ### Surveillance data indicators
 
-We are going to go back to the full surveillance dataset that contains more columns of interest (it also has missing weeks, but these weeks have no influence on the following indicators).
+Let us go back to the full surveillance dataset that contains more columns of interest.
 
 ::: {.write}
-1. Add a column `cunder_5` to data_surv` that contains the the number of cases less than five months.
+1. Add a column `cunder_5` to `data_surv` that contains the the number of cases less than five months.
 
-2. Derive, for each health zone in alert, the following indicators:
+2. Derive, for each health zone in alert, the following indicators (organised in a single table):
 
-- The total number of cases
-- The total number of deaths
-- The total number of less than five year olds
+- The number of cases
+- The number of deaths
+- The number of less than five year olds
 - The CFR in percentage
-- The proportion of reported cases under five, also in percentage
+- The percentage of reported cases under five
 
 The result should loopk like this: 
 
@@ -769,22 +682,19 @@ The result should loopk like this:
 #| echo: false
 #| eval: true
 
-
 data_surv |>
-  filter(zs %in% zs_alert) |>
-  mutate(
-  cunder_5 = c011mois + c1259mois) %>%
-  summarise(
-    .by = zs,
-    nb_cas       = sum(totalcas, na.rm = TRUE),
-    nb_deces     = sum(totaldeces, na.rm = TRUE),
-    nb_under_5   = sum(cunder_5, na.rm = TRUE),
-    cfr          = (nb_deces / nb_cas) * 100,
-    prop_under_5 = (nb_under_5 / nb_cas) * 100
-  )
+filter(zs %in% zs_alert) |>
+mutate(
+cunder_5 = c011mois + c1259mois) %>%
+summarise(
+.by = zs,
+nb_cas       = sum(totalcas, na.rm = TRUE),
+nb_deces     = sum(totaldeces, na.rm = TRUE),
+nb_under_5   = sum(cunder_5, na.rm = TRUE),
+cfr          = (nb_deces / nb_cas) * 100,
+prop_under_5 = (nb_under_5 / nb_cas) * 100
+)
 ```
-
-3. Once you are happy save this data frame in an object called `table_surv` 
 :::
 
 
@@ -793,15 +703,124 @@ data_surv |>
 Now we are going to use the laboratory data to derive a couple more indicators.
 
 ::: {.write}
-For each health zone in alert, derive the following indicators:
+For each health zone in alert, derive the following indicators within one table:
 
-- Number of patients tested for measles
-- Number of positives for measles
-- Proportion of positives for measles
-- Number of patient tested for rubeole
-- Number of positive for rubeole
-- Proportion of positive for rubeole
-
-Save the result in an object called `table_lab` 
+- The number of patients tested for measles
+- The number of positives for measles
+- The percentage of positives for measles
+- The number of patient tested for rubeole
+- The number of positive for rubeole
+- The percentage of positive for rubeole
 :::
 
+::: {.callout-tip}
+Check out the section on [summaries with conditions](../sessions_core/05_summary_table.qmd#sec-summary-cond) to remind you of the more advanced summaries.
+:::
+
+
+## Done!
+
+Congratulation, you are done!
+
+```{r}
+#| echo: false
+#| eval: true
+
+downloadthis::download_link(
+  link = 'https://github.com/epicentre-msf/repicentre/blob/main/solutions/extra/surveillance_module_solutions.R',
+  button_label = 'Solution File',
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  self_contained = FALSE
+)
+```
+
+## Going Further
+
+### Exploring the `rollaply()` function 
+
+If we want to do a cumulative sum of cases over three weeks, we want to apply the `sum()` function over windows of three weeks.
+
+```{r}
+#| eval: true
+example_vect <- rep(1, time = 10)
+example_vect
+
+rollapply(
+  data  = example_vect,
+  width = 3,       # Width of the window  
+  FUN   = sum,     # Function to apply, here the sum   
+  align = "right"  # The final windows is aligned to the right
+)
+```
+
+We inputed a vector of ten values and obtained a vector of lenght height, containing the sums. Obviously the function has a way of dealing with the extremities, and the size of the output is smaller than the size of the input. This would be a problem in a `mutate()` that creates new columns in a data frame, that need to be the same length as the existing columns.
+
+You can control the behavior at the extremities:
+
+- Fill with `NA` when there is not enough values to calculate a window of three
+- Allow partial sums (some values represent less than three weeks)
+
+The argument `fill = NA` pads the extremities with `NA` (on the left in our case, since we aligned right):
+
+```{r}
+#| eval: true
+rollapply(
+  data  = example_vect,
+  width = 3,       # Width of the window  
+  FUN   = sum,     # Function to apply, here the sum   
+  align = "right", # Windows are aligned to the right
+  fill = NA
+)
+```
+
+It is a reasonnable way of dealing with incomplete windows. In our case however, we can do better: if there were 40 cases in week 1 it would be a cause for alert! We thus want the cumulative sum to be calculated from week one to be able to detect early alerts (keeping in mind that a *lack of alert* in the first two weeks may be a result of incomplete data). The `partial = TRUE` argument allows this:
+
+```{r}
+#| eval: true
+rollapply(
+  data  = example_vect,
+  width = 3,       # Width of the window  
+  FUN   = sum,     # Function to apply, here the sum   
+  align = "right", # Windows are aligned to the right
+  partial = TRUE)
+```
+
+This is close to what we need. 
+
+A last point: you may remember that arithmetic operations in R return `NA` if some of the values are `NA` and we usually need to pass the argument `na.rm = TRUE` to the functions for them to ignore missing values.
+
+If we had a slightly less complete vector we would have a problem:
+
+```{r}
+#| eval: true
+
+example_vect_missing <- c(1, 1, 1, NA, 1, 1)
+
+rollapply(
+  data  = example_vect_missing,
+  width = 3,       # Width of the window  
+  FUN   = sum,     # Function to apply, here the sum   
+  align = "right", # Windows are aligned to the right
+  partial = TRUE   # Allows calcul to be made even if window is less than three
+)
+```
+
+Fortunately we can pass the `na.rm = TRUE` argument to `rollapply()` so that it passes it to `sum()`.
+
+```{r}
+#| eval: true
+
+rollapply(
+  data  = example_vect_missing,
+  width = 3,       # Width of the window  
+  FUN   = sum,     # Function to apply, here the sum   
+  align = "right", # Windows are aligned to the right
+  partial = TRUE,  # Allows calcul to be made even if window is less than three
+  na.rm = TRUE     # Extra unamed argument to be passed to the sum function
+)
+```
+
+::: {.callout-tip}
+Here we applied the `sum()` function to create a cumulative sum over 3 weeks. But you could, with minimal modifications, apply the `mean()` function to caclulate a moving average!
+:::

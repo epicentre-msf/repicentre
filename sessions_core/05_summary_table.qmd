@@ -259,7 +259,7 @@ Add the minimum date of admission to your table for each of the `sub_prefecture`
 Remember that with the arithmetic functions such as `mean()`, `median()`, `min()`, `max()`, you need to **explicitly tell R** to remove `NA`. 
 :::
 
-### Counting with a Condition
+### Counting with a Condition {#sec-summary-cond}
 
 We may also be interested in looking at the number of patients (rows) that fit a condition: the *number of patients that were female*. Counting by a logical condition can be done with the following syntax:
 
