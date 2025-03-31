@@ -613,6 +613,7 @@ The graph should look like this (but maybe for another health zone):
 ```{r}
 #| echo: false
 #| eval: true
+#| fig-width: 9
 data_alert |>
   filter(zs == "kampemba") |>
   ggplot(aes(x = numsem, 
@@ -676,24 +677,24 @@ Let us go back to the full surveillance dataset that contains more columns of in
 - The CFR in percentage
 - The percentage of reported cases under five
 
-The result should loopk like this: 
+The result should look like this: 
 
 ```{r}
 #| echo: false
 #| eval: true
 
 data_surv |>
-filter(zs %in% zs_alert) |>
-mutate(
-cunder_5 = c011mois + c1259mois) %>%
-summarise(
-.by = zs,
-nb_cas       = sum(totalcas, na.rm = TRUE),
-nb_deces     = sum(totaldeces, na.rm = TRUE),
-nb_under_5   = sum(cunder_5, na.rm = TRUE),
-cfr          = (nb_deces / nb_cas) * 100,
-prop_under_5 = (nb_under_5 / nb_cas) * 100
-)
+  filter(zs %in% zs_alert) |>
+  mutate(
+    cunder_5 = c011mois + c1259mois) %>%
+  summarise(
+    .by = zs,
+    nb_cas       = sum(totalcas, na.rm = TRUE),
+    nb_deces     = sum(totaldeces, na.rm = TRUE),
+    nb_under_5   = sum(cunder_5, na.rm = TRUE),
+    cfr          = (nb_deces / nb_cas) * 100,
+    prop_under_5 = (nb_under_5 / nb_cas) * 100
+  )
 ```
 :::
 
@@ -711,6 +712,25 @@ For each health zone in alert, derive the following indicators within one table:
 - The number of patient tested for rubeole
 - The number of positive for rubeole
 - The percentage of positive for rubeole
+
+```{r}
+#| echo: false
+#| eval: true
+
+data_lab |>
+  filter(zs %in% zs_alert) |>
+  
+  summarise(
+    .by = zs,
+    
+    nb_roug_test  = sum(!is.na(igm_rougeole)),
+    nb_roug_pos   = sum(igm_rougeole == "positif", na.rm = TRUE),
+    prop_roug_pos = (nb_roug_pos / nb_roug_test) * 100,
+    nb_rub_test   = sum(!is.na(igm_rubeole)),
+    nb_rub_pos    = sum(igm_rubeole == "positif", na.rm = TRUE),
+    prop_rub_pos  = (nb_rub_pos / nb_rub_test) * 100
+  )
+```
 :::
 
 ::: {.callout-tip}
@@ -824,3 +844,20 @@ rollapply(
 ::: {.callout-tip}
 Here we applied the `sum()` function to create a cumulative sum over 3 weeks. But you could, with minimal modifications, apply the `mean()` function to caclulate a moving average!
 :::
+
+### Pretifying percentages
+
+The `percent` function from the `{scales}` packages can add percentage formatting to a value.
+
+```{r}
+scales::percent(0.8556)
+```
+
+It takes an `accuracy` arguments that controls the number of decimals:
+
+```{r}
+scales::percent(0.8556,
+                accuracy = 0.1)
+```
+
+You can wrap it around the values that you calulate in the summary tables to change the proportions into nicely formatted percentages.
