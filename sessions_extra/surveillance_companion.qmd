@@ -258,7 +258,7 @@ The head of these columns should now be:
 #| eval: true
 #| echo: false
 
-data_surv %>% select(pays, prov, zs, maladie) %>% head()
+data_surv |> select(pays, prov, zs, maladie) |> head()
 ```
 
 Store the clean(ish) data frame in a `data_surv` data frame.
@@ -294,7 +294,7 @@ The head of the cleaned columns should now be:
 ```{r}
 #| eval: true
 #| echo: false
-data_lab %>% select(zs, igm_rougeole, igm_rubeole) %>% head(10)
+data_lab |> select(zs, igm_rougeole, igm_rubeole) |> head(10)
 ```
 :::
 
@@ -342,7 +342,7 @@ We use the following code to cross province and health zone and make sure that a
 #| eval: true
 
 # Complete the missing week in kikula
-example_df %>% 
+example_df |> 
   complete(
     nesting(prov, zs),
     numsem = seq(min(numsem, na.rm = TRUE), 
@@ -377,7 +377,7 @@ complete(
 ```{r}
 #| eval: true
 #| echo: false
-data_ts %>% head(10)
+data_ts |> head(10)
 ```
 
 4. When you are done, export that data frame to a `.rds` file called `IDS_data_ts_clean` in the `data/clean` subfolder of your project.
