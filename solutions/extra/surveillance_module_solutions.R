@@ -7,6 +7,7 @@
 # Setup ----------------------------------------------------
 
 ## Import packages -----------------------------------------
+
 library(here)      # For paths
 library(rio)       # Import and export data
 library(dplyr)     # Data manipulation
@@ -83,8 +84,8 @@ data_surv <- data_surv_raw |>
     
     # Remove excess spaces with the str_squish() function from 
     # the stringr package, very usefull!
-    prov    = str_squish(prov),
-    zs      = str_squish(zs),
+    prov = str_squish(prov),
+    zs   = str_squish(zs),
     
     
     # Remove spaces or "-" with the str_replace() function from 
