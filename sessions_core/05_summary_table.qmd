@@ -149,7 +149,7 @@ df_linelist |>
 `drop_na()` is particularly useful as you can give it multiple column names to filter by. But be careful that doing so will remove **all** rows where **one or more** of those columns have a missing value.
 :::
 
-## Summary Table: Statistics by Sub Prefecture
+## Summary Table: Statistics by Sub Prefecture {#sec-stratify}
 
 Ok now that we have produced some simple frequency and contingency tables we may want to increase the complexity. A common task in epidemiology is to look at summary statistics within subsets of the data.
 
