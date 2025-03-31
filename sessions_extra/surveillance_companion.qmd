@@ -109,9 +109,12 @@ From an R point of view, this tutorial builds on skills acquired throughout the 
 Do not hesitate to refer to past sessions and your own scripts to remind yourself of some functions!
 :::
 
-## Setup
 
-Since this is part of a specific module, you will create a new RStudio project. We refer you [this main session](../sessions_core/02_import_data.qmd) for help creating a project and importing your data
+## Setup (Question 2)
+
+Since this is part of a specific module, you will create a new RStudio project. We refer you [this main session](../sessions_core/02_import_data.qmd) for help creating a project and importing your data.
+
+### Setup a new project
 
 :::  {.setup}
 1.  Create a folder `surveillance_case_study` associated with the FETCH Surveillance module. Add the following subfolders in it:
@@ -146,7 +149,8 @@ downloadthis::download_link(
 5. Create a new script called `import_clean.R` and save it in the `R` subdirectory. Add a section to load the following packages: `{here}`, `{rio}`, and `{tidyverse}`.
 :::
 
-## Import data
+
+### Import data in R
 
 **Reminder from the case study**: you requested access to the routine surveillance data and the laboratory data to the DRC MoH. The MoH agreed to share it with you on a weekly basis. The first dataset you received is of week 20 in 2022 (the data we are working on is simulated).
 
@@ -172,7 +176,9 @@ import(
 3. Verify that the import went well for both data frames (Viewer, check the dimensions or start and tail of data frames).
 :::
 
-## Cleaning
+
+
+## Cleaning (Question 2)
 
 ### Surveillance data
 
@@ -312,10 +318,13 @@ Export the `data_lab` data frame to a `.rds` file called `lab_clean` in the `dat
 :::
 
 
-This is the end of the steps for this question! If you finished in advance and there is still time, reuse the functions we just saw to clean the other text columns in both datasets and recode both IGM column in the lab dataset.
+### Going further
+
+This is the end of the steps for question 2! If you finished in advance and there is still time, reuse the functions we just saw to clean the other text columns in both datasets and recode both IGM column in the lab dataset.
 
 
-## Complete surveillance dataset
+
+## Complete surveillance dataset (Question 3)
 
 During the case study and the data checks, you realized that some weeks are missing from the surveillance dataset. You discussed the possible reasons for it, and the associated problems. Here we are going provide code to create a dataset that contains all weeks (assuming that missing weeks had zero cases and deaths).
 
@@ -380,7 +389,7 @@ complete(
     numsem = seq(min(numsem, na.rm = TRUE), 
                  max(numsem, na.rm = TRUE)),
     fill = list(totalcas   = 0, 
-                totaldeces = 0 # also add zero to the totaldece column
+                totaldeces = 0 # also add zero to the totaldeces column
                 )
   ) 
 ```
