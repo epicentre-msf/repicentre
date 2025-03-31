@@ -1,7 +1,8 @@
 # Solutions to the Surveillance Module Satellite
 # Author: the Fetch team
-# Last Update: 28/03/2025
+# Last Update: 31/03/2025
 # Description: Model code associated with Surveillance module case study
+
 
 # Note: here we gathered the data cleaning and preparation and the analyses
 # in only one script. This is fine for a very short project (little
@@ -286,8 +287,8 @@ table_surv <- data_surv |>
     nb_cas       = sum(totalcas, na.rm = TRUE),
     nb_deces     = sum(totaldeces, na.rm = TRUE),
     nb_under_5   = sum(cunder_5, na.rm = TRUE),
-    cfr          = nb_deces / nb_cas * 100,
-    prop_under_5 = nb_under_5 / nb_cas * 100
+    cfr          = scales::percent(nb_deces / nb_cas, accuracy = 0.1),
+    prop_under_5 = scales::percent(nb_under_5 / nb_cas, accuracy = 0.1)
   )
 
 table_surv
@@ -302,10 +303,12 @@ table_lab <- data_lab |>
     
     nb_roug_test  = sum(!is.na(igm_rougeole)),
     nb_roug_pos   = sum(igm_rougeole == "positif", na.rm = TRUE),
-    prop_roug_pos = nb_roug_pos / nb_roug_test * 100,
+    prop_roug_pos = scales::percent(nb_roug_pos / nb_roug_test, 
+                                    accuracy = 0.1),
     nb_rub_test   = sum(!is.na(igm_rubeole)),
     nb_rub_pos    = sum(igm_rubeole == "positif", na.rm = TRUE),
-    prop_rub_pos  = nb_rub_pos / nb_rub_test * 100
+    prop_rub_pos  = scales::percent(nb_rub_pos / nb_rub_test, 
+                                    accuracy = 0.1)
   )
 
 table_lab
