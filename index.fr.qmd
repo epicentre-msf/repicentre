@@ -1,0 +1,56 @@
+---
+home:
+  id: home
+  toc: false
+format: 
+  html:
+    page-layout: full
+---
+
+::: {.div #homepage-text}
+[Bienvenue à `{repicentre}`]{.h1}
+
+Une plateforme open source pour apprendre R dans les contextes humanitaires. Qu'aimeriez-vous faire ?
+:::
+
+::: {.homepage-card-grid}
+
+::: {.card .homepage-card}
+<img class='card-img' src='img/learn.svg' alt='learn'>
+
+::: {.card-body}
+[Apprendre]{.card-title}<br>
+Parcours linéaire en commençant par les bases<br>
+<br>
+<a href='pathway.html' class='btn'>Start</a>
+:::
+
+:::
+
+
+::: {.card .homepage-card}
+<img class='card-img' src='img/explore.svg' alt='explore'>
+
+::: {.card-body}
+[Explorer]{.card-title}<br>
+Catalogue complet de cours d'autoformation<br>
+<br>
+<a href='explore.html' class='btn'>Start</a>
+:::
+
+:::
+
+
+::: {.card .homepage-card}
+<img class='card-img' src='img/expand.svg' alt='expand'>
+
+::: {.card-body}
+[Ressources]{.card-title}<br>
+Ressources externes pour aller plus loin<br>
+<br>
+<a href='resources.html' class='btn'>Start</a>
+:::
+
+:::
+
+:::

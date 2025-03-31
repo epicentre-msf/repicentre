@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
+<head>
+<link rel="alternate" hreflang="en" href="https://epicentre-msf.github.io/repicentre/sessions_core/03_data_verbs.html" />
+<link rel="alternate" hreflang="fr" href="https://epicentre-msf.github.io/repicentre/fr/sessions_core/03_data_verbs.fr.html" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.39">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="description" content="Une introduction à la manipulation et au nettoyage des données à l’aide du paquet {dplyr}.">
+<title>Traitement de données, les bases – {repicentre}</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script><script src="../site_libs/quarto-nav/headroom.min.js"></script><script src="../site_libs/clipboard/clipboard.min.js"></script><script src="../site_libs/quarto-search/autocomplete.umd.js"></script><script src="../site_libs/quarto-search/fuse.min.js"></script><script src="../site_libs/quarto-search/quarto-search.js"></script><meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script><script src="../site_libs/quarto-html/popper.min.js"></script><script src="../site_libs/quarto-html/tippy.umd.min.js"></script><script src="../site_libs/quarto-html/anchor.min.js"></script><link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-0626ff4d7a71b55c8707dcae1d04a9b6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-e25cc82807363e79c52e96bc8b7855f1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script><link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-b814d3e578892f16fb585af6f47f426f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-35dfec4a88a4a8552367c65e80eaa027.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Pas de résultats",
+    "search-matching-documents-text": "documents trouvés",
+    "search-copy-link-title": "Copier le lien vers la recherche",
+    "search-hide-matches-text": "Cacher les correspondances additionnelles",
+    "search-more-match-text": "correspondance de plus dans ce document",
+    "search-more-matches-text": "correspondances de plus dans ce document",
+    "search-clear-button-title": "Effacer",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Annuler",
+    "search-submit-button-title": "Envoyer",
+    "search-label": "Recherche"
+  }
+}</script><script src="../site_libs/font-awesome-6.5.2/js/script.js"></script><script type="text/javascript" src="../script.js"></script><link rel="stylesheet" href="../styles.css">
+</head>
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">{repicentre}</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Recherche"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Basculer la navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+<li class="nav-item"><div class="dropdown" id="languages-links-parent">
+<button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="languages-button"><i class="bi bi-globe2"></i> Français</button><ul class="dropdown-menu" id="languages-links"><li><a class="dropdown-item" href="https://epicentre-msf.github.io/repicentre/sessions_core/03_data_verbs.html" id="language-link-en">English</a></li></ul>
+</div></li>
+<li class="nav-item">
+    <a class="nav-link" href="../pathway.html"> 
+<span class="menu-text">Cours</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../explore.html"> 
+<span class="menu-text">Explorer</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../resources.html"> 
+<span class="menu-text">Ressources</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">À Propos</span></a>
+  </li>  
+</ul>
+</div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Basculer le mode sombre"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Sur cette page</h2>
+   
+  <ul>
+<li><a href="#objectifs" id="toc-objectifs" class="nav-link active" data-scroll-target="#objectifs">Objectifs</a></li>
+  <li><a href="#mise-en-place" id="toc-mise-en-place" class="nav-link" data-scroll-target="#mise-en-place">Mise en place</a></li>
+  <li><a href="#traiter-ses-donn%C3%A9es-avec-dplyr" id="toc-traiter-ses-données-avec-dplyr" class="nav-link" data-scroll-target="#traiter-ses-données-avec-dplyr">Traiter ses données avec <code>{dplyr}</code></a></li>
+  <li>
+<a href="#actions-de-base-sur-les-donn%C3%A9es" id="toc-actions-de-base-sur-les-données" class="nav-link" data-scroll-target="#actions-de-base-sur-les-données">Actions de base sur les données</a>
+  <ul class="collapse">
+<li><a href="#s%C3%A9lectionner-des-colonnes" id="toc-sélectionner-des-colonnes" class="nav-link" data-scroll-target="#sélectionner-des-colonnes">Sélectionner des colonnes</a></li>
+  <li><a href="#renommer-les-colonnes" id="toc-renommer-les-colonnes" class="nav-link" data-scroll-target="#renommer-les-colonnes">Renommer les colonnes</a></li>
+  <li><a href="#modifier-et-ajouter-des-colonnes" id="toc-modifier-et-ajouter-des-colonnes" class="nav-link" data-scroll-target="#modifier-et-ajouter-des-colonnes">Modifier et ajouter des colonnes</a></li>
+  <li><a href="#supprimer-les-doublons" id="toc-supprimer-les-doublons" class="nav-link" data-scroll-target="#supprimer-les-doublons">Supprimer les doublons</a></li>
+  </ul>
+</li>
+  <li><a href="#lop%C3%A9rateur-pipe" id="toc-lopérateur-pipe" class="nav-link" data-scroll-target="#lopérateur-pipe">L’opérateur “pipe”</a></li>
+  <li><a href="#cest-fini" id="toc-cest-fini" class="nav-link" data-scroll-target="#cest-fini">C’est fini !</a></li>
+  <li>
+<a href="#aller-plus-loin" id="toc-aller-plus-loin" class="nav-link" data-scroll-target="#aller-plus-loin">Aller plus loin</a>
+  <ul class="collapse">
+<li><a href="#exercices-suppl%C3%A9mentaires" id="toc-exercices-supplémentaires" class="nav-link" data-scroll-target="#exercices-supplémentaires">Exercices supplémentaires</a></li>
+  </ul>
+</li>
+  </ul></nav>
+</div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title">Traitement de données, les bases</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Core</div>
+    <div class="quarto-category">Manipulation des données</div>
+    <div class="quarto-category">Nettoyage des données</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Une introduction à la manipulation et au nettoyage des données à l’aide du paquet <code>{dplyr}</code>.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header><section id="objectifs" class="level2"><h2 class="anchored" data-anchor-id="objectifs">Objectifs</h2>
+<ul>
+<li>Découvrir les fonctions de <code>{dplyr}</code> pour effectuer les actions essentielles sur les données :
+<ul>
+<li>Sélectionner des colonnes avec <code>select()</code>
+</li>
+<li>Renommer des colonnes avec <code>rename()</code>
+</li>
+<li>Créer de nouvelles colonnes ou modifier des colonnes existantes avec <code>mutate()</code>
+</li>
+<li>Supprimer les doublons avec <code>distinct()</code>
+</li>
+</ul>
+</li>
+<li>Enchaîner ces actions avec l’opérateur “pipe” <code>|&gt;</code>
+</li>
+</ul></section><section id="mise-en-place" class="level2"><h2 class="anchored" data-anchor-id="mise-en-place">Mise en place</h2>
+<p><strong>Prérequis</strong> : cette leçon part du principe que vous savez comment utiliser RStudio et que vous êtes capable d’importer des données. Rafraîchissez-vous si besoin avec les <a href="https://epicentre-msf.github.io/repicentre/pathway.html">deux premières leçons</a>.</p>
+<div class="setup">
+<p>Nous utiliserons la linelist avec des données brutes que vous avez importée lors de la leçon précédente, et qui peut être téléchargée ici :</p>
+<div class="cell">
+<div class="cell-output-display">
+<a href="https://github.com/epicentre-msf/repicentre/raw/refs/heads/main/data/raw/moissala_linelist_FR.xlsx">
+<button class="btn btn-default"><i class="fa fa-save"></i> Télécharger les données</button>
+</a>
+</div>
+</div>
+<p><br> Si ce n’est pas déjà fait, enregistrez le jeu de données dans le sous-dossier approprié de votre projet RStudio puis créez un nouveau script appelé <code>fonctions_donnees.R</code> dans votre sous-dossier <code>R</code>. Ajoutez un en-tête approprié et chargez les paquets suivants : <code>{here}</code>, <code>{rio}</code> et <code>{tidyverse}</code>. <br><br> Enfin, ajoutez une section dédiée à l’import des données, utilisez <code>{here}</code> et <code>{rio}</code> pour importer vos données dans R, et assignez-les à un objet que nous appellerons <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Notez que nous ne nommons pas tout de suite l'objet df_linelist comme nous l'avions fait précédemment. La raison deviendra manifeste sous peu"><code>df_brut</code></span>.</p>
+</div>
+</section><section id="traiter-ses-données-avec-dplyr" class="level2"><h2 class="anchored" data-anchor-id="traiter-ses-données-avec-dplyr">Traiter ses données avec <code>{dplyr}</code>
+</h2>
+<p>La mise en place est terminée et nous pouvons maintenant nous focaliser sur nos données ! Cette leçon et les suivantes s’appuieront lourdement sur plusieurs paquets de la <em>collection de paquets</em> <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Le tidyverse est une collection de paquets pour R qui insistent sur la lisibilité du code et la facilité d'utilisation.">tidyverse</span> pour manipuler des data frames, résumer et visualiser les données, et en particulier paquet <code>{dplyr}</code> pour aujourd’hui.</p>
+<p>Le <em>traitement des données</em> (aussi appelé <em>manipulation des données</em>) est un ensemble d’actions essentielles pour préparer et nettoyer les données avant une analyse (que ce soit dans R ou Excel). <code>{dplyr}</code> fournit un grand nombre de fonctions qui nous aident à manipuler les data frames et à réaliser de nombreuses tâches quotidiennes telles que :</p>
+<ul>
+<li>créer des sous-ensembles de nos données en ne gardant que les <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Rappelez-vous que chaque variable correspond à une colonne dans notre data frame">variables</span> d’intérêt</li>
+<li>renommer des colonnes</li>
+<li>ajouter ou modifier des colonnes</li>
+<li>supprimer les doublons</li>
+</ul>
+<p>Ces fonctions ont en général un <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Il est vrai que, comme pour les autres fonctions de R, ces noms sont en Anglais, ce qui complique la compréhension pour nous autres francophones, mais vous verrez que ces noms ne sont pas trop difficiles à traduire. Par ailleurs, comme les créateurs ont choisi d'utiliser un verbe pour nommer leurs fonctions, il n'est pas rare de parler des 'verbes de dplyr'">nom intuitif, qui correspond à un verbe</span>. Par exemple, pour renommer des colonnes, on utilisera la fonction <code>rename()</code>.</p>
+<p>Aujourd’hui nous nous focaliserons sur les quatre verbes (fonctions !) qui permettent d’effectuer les tâches mentionnées précédemment, et que vous utiliserez en permanence. Nous vous montrerons également comment enchaîner les actions dans un <em>“pipeline”</em> pour plus de fluidité.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Peut-être avez-vous noté que nous vous parlons du paquet <code>{dplyr}</code> mais nous vous avons fait charger le paquet <code>{tidyverse}</code> lors de la mise en place. C’est que le <code>{tidyverse}</code> est un méta-paquet, et le charger charge automatiquement <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Le tidyverse contient de très nombreux paquets, et les charger tous d'un coup serait trop lourd et peu utile. Les paquets les plus courants  ont donc été rassemblés dans le méta paquet `{tidyverse}`, pour un chargement rapide">plusieurs des paquets les plus utiles</span> de l’univers du tidyverse, dont fait partie <code>{dplyr}</code> et d’autres paquets que nous verrons dans la session.</p>
+</div>
+</div>
+</section><section id="actions-de-base-sur-les-données" class="level2"><h2 class="anchored" data-anchor-id="actions-de-base-sur-les-données">Actions de base sur les données</h2>
+<section id="sélectionner-des-colonnes" class="level3"><h3 class="anchored" data-anchor-id="sélectionner-des-colonnes">Sélectionner des colonnes</h3>
+<p>Il est fréquent de souhaiter écarter des variables d’un jeu de données, soit car ces colonnes contiennent des <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Les noms de patients, par exemple">données sensibles</span>, soit parce que nous n’avons pas besoin d’elles pour une analyse donnée. Nous utiliserons pour cela la fonction <code>select()</code>, qui la <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Notez qu'il s'agit de pseudo-code, c'est à dire un code non fonctionnel dédié à l'apprentissage, qui remplace des morceaux de codes par du langage pour mieux décrire la syntaxe. Le pseudo-code renverra une erreur si vous tentez de l'exécuter">syntaxe suivante</span> :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># NE PAS EXÉCUTER (PSEUDO-CODE)</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(un_dataframe, colonne_a_garder, autre_colonne_a_garder)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Ici, le premier argument est le data frame contenant les données. Les arguments suivants sont les noms des colonnes que nous voulons conserver. Dans le tidyverse, les noms de colonnes n’ont pas besoin d’être écrits entre guillemets.</p>
+<p>La commande suivante nous permet de sélectionner les colonnes <code>id</code>, <code>sex</code> et <code>age</code>, par exemple :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(df_brut, id, sexe, age)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="write">
+<p>Utilisez la fonction <code>select()</code> pour sélectionner les variables suivantes de votre data frame : <code>id</code>, <code>sexe</code>, <code>age</code>, <code>sous_prefecture</code>, <code>date_debut</code> et <code>issue</code>. L’en-tête du data frame renvoyé par la fonction ressemble à ceci :</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>  id  sexe age date_debut issue
+1  1 femme  36 2022-08-13 gueri
+2  2     f   5 2022-08-18  &lt;NA&gt;
+3  3     f 156 2022-08-17 gueri
+4  6 homme   8 2022-08-22 gueri
+5  7     h   7 2022-08-30 gueri
+6 10     h   4 2022-08-30 gueri</code></pre>
+</div>
+</div>
+<p><br> Comparez ce résultat à <code>df_brut</code>. Ce dernier contient toujours toutes les colonnes importées (ce qui est le comportement désiré). Comprenez-vous pourquoi c’est le cas ?</p>
+</div>
+<p>Il arrive que nous ne voulions supprimer que quelques colonnes d’un jeu de données et si le jeu de données est <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Vous avez sans doute déjà été confronté à des listes linéaires ou des données d'enquête longues et complexes">large</span> ça serait fastidieux d’écrire <em>toutes les colonnes à garder</em> comme nous l’avons fait ci-dessus… Heureusement, nous pouvons préfacer un nom de colonne par l’opérateur soustraction (<code>-</code>) pour indiquer à R de la supprimer.</p>
+<p>Par exemple, pour créer un data frame sans la colonne <code>village_commune</code> :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(df_brut, <span class="sc">-</span>village_commune)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="write">
+<p>Utilisez cette syntaxe pour créer un data frame qui conserve toutes les colonnes de <code>df_brut</code> <strong>à l’exception de</strong> <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="En général, les noms et autres informations personnelles identifiantes doivent être immédiatement supprimés lorsque vous travaillez avec des données de type linelist"><code>nom_complet</code></span> et <code>unite_age</code>.</p>
+</div>
+</section><section id="renommer-les-colonnes" class="level3"><h3 class="anchored" data-anchor-id="renommer-les-colonnes">Renommer les colonnes</h3>
+<p>Il arrive souvent que nous souhaitions <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Noms trop longs, trop courts, peu clairs, pas standardisés, contenant des accent ou des espaces etc.">renommer des colonnes</span> d’un jeu de données. La fonction <code>rename()</code> est alors votre meilleure amie.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># NE PAS EXÉCUTER (PSEUDO CODE)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rename</span>(un_dataframe,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">nouveau_nom_1 =</span> nom_tout_moche,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">nouveau_nom_2 =</span> autre_nom_pas_fou)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Comme pour <code>select()</code>, le premier argument est le data frame qui contient les données (ce sera le cas pour la majorité des verbes de <code>{dplyr}</code>). Ensuite, chaque nouvel argument est une paire <code>nouveau_nom = ancien_nom</code> indiquant à R les colonnes à renommer et leurs nouveaux noms. Nous vous conseillons d’aller à la ligne pour chaque nouvelle paire pour aider à la lisibilité.</p>
+<p>Renommons la colonne <code>village_commune</code> en <code>village</code> par exemple :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rename</span>(df_brut,</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">village =</span> village_commune)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="write">
+<p>Utilisez la fonction <code>rename()</code> sur <code>df_brut</code> pour renommer les colonnes :</p>
+<ul>
+<li>
+<code>sous_prefecture</code> en <code>prefecture</code>
+</li>
+<li>
+<code>village_commune</code> en <code>village</code>
+</li>
+<li>
+<code>nom_structure_sante</code> en <code>structure</code>
+</li>
+</ul>
+</div>
+<p>Il peut être difficile de vérifier si une commande fonctionne car R affiche le data frame en entier. Dans ce cas, une <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Nous en verrons une autre à la fin de la leçon.">première solution</span> consiste à créer un objet temporaire plus facile à manipuler. Vous pouvez le nommer comme vous voulez, mais un nom commun est <code>temp</code> (ou <code>tmp</code> en anglais).</p>
+<div class="write">
+<p>Répétez le dernier exercice en assignant la sortie de la commande à un objet appelé <code>temp</code>. Vous pouvez alors utiliser la fonction <code>names()</code> pour vérifier que les noms des colonnes ont bien changé. La sortie de <code>names()</code> devrait être :</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "id"                "nom_complet"       "sexe"             
+ [4] "age"               "unite_age"         "region"           
+ [7] "prefecture"        "village"           "date_debut"       
+[10] "date_consultation" "hospitalisation"   "date_admission"   
+[13] "structure"         "tdr_paludisme"     "fievre"           
+[16] "eruption"          "toux"              "yeux_rouges"      
+[19] "pneumonie"         "encephalite"       "pb"               
+[22] "statut_vaccinal"   "doses_vaccin"      "issue"            
+[25] "date_issue"       </code></pre>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Les objets comme le data frame <code>temp</code> sont généralement utilisés pour tester si quelque chose a fonctionné et peuvent donc être écrasés lorsque vous testez autre chose. Ils ne doivent pas être utilisés comme entrée pour d’autres parties de votre code. Utilisez des noms clairs et appropriés pour vos data frames destinés à être réutilisés, tels que <code>df_linelist</code> ou <code>df_propre</code>.</p>
+</div>
+</div>
+</section><section id="modifier-et-ajouter-des-colonnes" class="level3"><h3 class="anchored" data-anchor-id="modifier-et-ajouter-des-colonnes">Modifier et ajouter des colonnes</h3>
+<p>Une autre tâche essentielle du traitement de données est de modifier des colonnes ou d’en créer de nouvelles. La fonction <code>mutate()</code> permet de faire les deux [<em>to mutate</em> veut dire <em>muter</em> en anglais], avec la syntaxe suivante :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># NE PAS EXÉCUTER (PSEUDO-CODE)</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(un_dataframe,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">nouvelle_colonne_1 =</span> <span class="fu">action</span>(colonne_existante),</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">nouvelle_colonne_2 =</span> <span class="fu">autre_action</span>(une_autre_colonne_existante))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Dans le code ci-dessus nous créons une nouvelle colonne (<code>nouvelle_colonne_1</code>) en effectuant une <em>action</em> (des calculs par exemple) sur une colonne existante (<code>colonne_existante</code>) dans le data frame <code>un_dataframe</code>. Puis nous créons une autre colonne (<code>nouvelle_colonne_2</code>) sur le même principe. L’action en question peut être variée et plus ou moins complexe : calcul arithmétique, application d’une fonction sur une colonne (ou même plusieurs !) etc.</p>
+<p>Par exemple, nous pourrions créer une nouvelle colonne exprimant le <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Il est peu probable que vous souhaitiez le faire, mais c'est pour les besoins de la démonstration">périmètre brachial en cm</span> :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(df_brut,</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">pb_cm =</span> pb <span class="sc">/</span> <span class="dv">100</span>) <span class="co"># une opération arithmétique simple</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="write">
+<p>Utilisez <code>mutate()</code> pour créer une nouvelle colonne <code>age_ans</code> qui exprime l’âge en années plutôt qu’en mois. L’en-tête de la colonne ressemble à ceci :</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>   age_years
+1  3.0000000
+2  0.4166667
+3 13.0000000
+4  0.6666667
+5  0.5833333
+6  0.3333333</code></pre>
+</div>
+</div>
+</div>
+<p>Pour <strong>modifier une colonne existante</strong> il suffit d’utiliser le nom de la colonne existante à gauche du <code>=</code> au lieu de fournir un nouveau nom.</p>
+<p>Par exemple, si nous voulions <em>remplacer</em> la colonne <code>pb</code> qui contenait des valeurs en mm par une colonne <code>pb</code> contenant les valeurs en cm :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(df_brut,</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">pb =</span> pb <span class="sc">/</span> <span class="dv">100</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Nous voulons souvent conserver la colonne originelle, mais il existe des cas raisonnables où nous souhaitons écraser les données par une nouvelle version. Par exemple :</p>
+<ul>
+<li>modifier des chaînes de caractères (format, correction de typos etc.)</li>
+<li>corriger le type de données d’une colonne</li>
+</ul>
+<p>Notre jeu de données présente ces deux cas. Par exemple les colonnes <code>region</code> et <code>sous_prefecture</code> sont en majuscules, ce qui n’est pas un problème en soi, mais peut être <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Par ailleurs, les incohérences de casse sont un problème courant dans les jeux de données sales, et il est souvent nécessaire de standardiser la casse d'une colonne du nettoyage">améliorable</span>. Pour corriger cela nous pouvons utiliser la fonction <code>str_to_title()</code> du paquet <code>{stringr}</code> (qui fait également partie du <code>{tidyverse}</code>) pour passer les valeurs en <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Appelée 'title case' en anglais, où les titres sont souvent écrits avec la première lettre de chaque mot en majuscule, à la différence du français qui ne met que la première lettre du titre en majuscule. Cette convention fonctionne néanmoins bien pour des noms de lieux, y compris en français, tel que 'Kasaï Oriental'. Si vous souhaitez ne mettre en majuscule que la première lettre de la phrase, vous pouvez utiliser la fonction str_to_sentence() à la place.">casse “titre”</span>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(df_brut,</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">region =</span> <span class="fu">str_to_title</span>(region),</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">sous_prefecture =</span> <span class="fu">str_to_title</span>(sous_prefecture))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="write">
+<p>Utilisez la fonction <code>mutate()</code> pour mettre à jour le format de <code>tdr_paludisme</code> et <code>issue</code> afin d’utiliser la casse “titres”. L’en-tête de la sortie pour ces deux colonnes devrait maintenant être :</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>  tdr_paludisme issue
+1       Negatif Gueri
+2       Negatif  &lt;NA&gt;
+3       Negatif Gueri
+4       Negatif Gueri
+5       Negatif Gueri
+6       Negatif Gueri</code></pre>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Nous n’avons pas eu besoin de charger <code>{stringr}</code> car comme <code>{dplyr}</code>, ce paquet est chargé automatiquement lorsque nous chargeons<code>{tidyverse}</code>.</p>
+</div>
+</div>
+<p>Passons maintenant au problème des variables avec le mauvais type.</p>
+<div class="look">
+<p>Vérifiez le type de vos colonnes. Y a-t-il des problèmes ? <br><br><strong>Indice :</strong> <code>str()</code> peut être utile ici.</p>
+</div>
+<p>Les classes semblent raisonnables sauf pour les dates : certaines colonnes ont la classe <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Ce qui est l'exact équivalent d'une colonne de date traitée comme du texte en Excel, avec les mêmes conséquences."><em>caractère</em></span> et d’autres sont <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Il s'agit d'un des types de données utilisé en R pour exprimer des dates. La raison sort du cadre de cette leçon mais ce n'est pas la manière la plus pratique de gérer les dates">POSIXct</span>. Nous préférerions que toutes ces colonnes utilisent le type <code>Date</code>.</p>
+<p>Nous allons utiliser la fonction <code>ymd()</code> du paquet <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Un autre paquet du tydiverse. Nous vous avions prévenu que cette collection de paquets était incontournable pour le traitement des données."><code>{lubridate}</code></span> pour faire la conversion en <code>Date</code>. “ymd” est l’abréviation de <strong>y</strong>ear <strong>m</strong>onth <strong>d</strong>ay, c’est à dire année-mois-jour. Cela veut dire que la fonction attend une date fournie <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Toutes les variantes de cet ordre existent pour gérer des dates dans divers formats. Par exemple, vous aurez sans doute besoin de dmy(), pour les formats jour/mois/année or mdy() pour les fichiers monstrueux qui utilisent le format mois-jour-année">dans cet ordre-là</span> (les séparateurs peuvent varier).</p>
+<p>Pour corriger la date de décharge :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(df_brut,</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">date_issue =</span> <span class="fu">ymd</span>(date_issue))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="write">
+<p>Utilisez <code>mutate()</code> et <code>ymd()</code> pour modifier les colonnes <code>date_debut</code> et <code>date_admission</code> afin qu’elles soient de type <code>Date</code>.</p>
+<p><strong>Astuce :</strong> n’hésitez pas à stocker la sortie de la fonction dans un data frame temporaire <code>temp</code> pour vérifier le type des variables modifiées.</p>
+</div>
+</section><section id="supprimer-les-doublons" class="level3"><h3 class="anchored" data-anchor-id="supprimer-les-doublons">Supprimer les doublons</h3>
+<p>Nous connaissons désormais les fonctions pour sélectionner, renommer et modifier nos variables. Il est temps à présent de passer à une autre tâche essentielle du nettoyage : la suppression doublons.</p>
+<p>La fonction <code>distinct()</code> permet de rapidement enlever les lignes identiques d’un data frame avec la syntaxe suivante :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># NE PAS EXÉCUTER (PSEUDO-CODE)</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">distinct</span>(un_dataframe)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Par défaut, nous n’avons besoin que d’un seul argument : le jeu de données lui-même. Cela supprime alors toutes les lignes qui sont complètement en double en ne gardant qu’une seule copie. Il existe des usages plus sophistiqués de <code>distinct()</code> pour chercher des doublons partiels, mais leur correction dépasserait du cadre de cette session…</p>
+<div class="write">
+<p>Utilisez la fonction <code>distinct()</code> et créez un data frame temporaire, <code>temp</code> qui contient toutes les observations uniques dans <code>df_brut</code>. Comparez le nombre de lignes de <code>temp</code> à celui de <code>df_brut</code>. Avions-nous des doublons ?</p>
+</div>
+</section></section><section id="lopérateur-pipe" class="level2"><h2 class="anchored" data-anchor-id="lopérateur-pipe">L’opérateur “pipe”</h2>
+<p>Nous avons profité de la présentation des fonctions essentielles de <code>{dplyr}</code> pour commencer le nettoyage du jeu de données. Il est temps de rassembler les commandes écrites dans les exercices en un ensemble cohérent pour créer un data frame contenant les données netoyées (au moins en partie) que nous appelerons <code>df_linelist</code>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Astuce
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En général, il est recommandé de conserver une version brute de votre ensemble de données, ici <code>df_brut</code>, qui reste inchangée dans votre code. Ainsi, vous l’avez toujours à disposition dans votre environnement comme référence et elle est toujours disponible au début de votre pipeline de nettoyage pour améliorer la reproductibilité.</p>
+</div>
+</div>
+<p>Il y a plusieurs manières d’enchaîner les différentes étapes que nous avons vues. Intuitivement, nous pourrions commencer comme ceci :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="ot">&lt;-</span> <span class="fu">rename</span>(df_brut, </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">prefecture =</span> sous_prefecture,</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">village    =</span> village_commune,</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">structure  =</span> nom_structure_sante)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Puis mettre à jour <code>df_linelist</code> :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Étape 1 : Renommer les variables</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="ot">&lt;-</span> <span class="fu">rename</span>(df_brut, </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">prefecture =</span> sub_prefecture,</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">village    =</span> village_commune,</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">structure  =</span> nom_structure_sante)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Étape 2 : Sélectionner les variables à conserver</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="ot">&lt;-</span> <span class="fu">select</span>(df_linelist,</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>                      <span class="sc">-</span>nom_complet)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Notez que dans cette deuxième étape, nous utilisons <code>df_linelist</code> comme <em>entrée</em> de <code>select()</code> plutôt que <code>df_brut</code> car nous voulons continuer à travailler sur la version modifiée des données.</p>
+<p>Puis nous ajoutons l’âge en années :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Étape 1 : Renommer les variables</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="ot">&lt;-</span> <span class="fu">rename</span>(df_brut, </span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">prefecture =</span> sub_prefecture,</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">village    =</span> village_commune,</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">structure  =</span> nom_structure_sante)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Étape 2 : Sélectionner les variables à conserver</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="ot">&lt;-</span> <span class="fu">select</span>(df_linelist,</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>                      <span class="sc">-</span>nom_complet)</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Étape 3 : Ajouter l'âge en années</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">mutate</span>(df_linelist,</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>             <span class="at">age_ans =</span> age <span class="sc">/</span> <span class="dv">12</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><em>Et caetera</em>. Ce code est tout à fait fonctionnel, mais devient lourd et répétitif si de nombreuses étapes s’enchaînent : à chaque étape nous utilisons en entrée le data frame renvoyé par l’étape précédente pour le mettre à jour…</p>
+<p>Il existe un raccourcis ! L’opérateur <em>pipe</em> (<code>|&gt;</code>) permet d’enchainer des actions de manière plus fluide avec cette <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="En Anglais, un pipe est un tube, un tuyau. La plupart des gens utilisent le mot anglais, mais certains parlent de l'opérateur tube en français. Nous utiliserons le mot pipe dans nos leçons.">syntaxe</span> :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># NE PAS EXÉCUTER (PSEUDO-CODE)</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>une_entree <span class="sc">|&gt;</span> une_action</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># En particulier :</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>un_dataframe <span class="sc">|&gt;</span> <span class="fu">une_fonction</span>()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Ici, le <em>pipe</em> prend l’entrée fournie à gauche et la transmet à la fonction à droite. Ainsi, par exemple, au lieu d’écrire</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(df_brut, id, sexe)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>nous pouvons écrire</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>df_brut <span class="sc">|&gt;</span> <span class="fu">select</span>(id, sexe)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="write">
+<p>Testez le code ci-dessus de votre côté.</p>
+</div>
+<p>On peut se servir de l’opérateur pipe pour enchaîner plusieurs actions. C’est le style de code dit “du tidyverse”, qui ressemble à ceci :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># NE PAS EXÉCUTER (PSEUDO-CODE)</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="ot">&lt;-</span> df_brut <span class="sc">|&gt;</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">action_1</span>() <span class="sc">|&gt;</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">action_2</span>() <span class="sc">|&gt;</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">action_3</span>() <span class="sc">|&gt;</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  ...</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Astuce
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Aller à la ligne entre chaque action est considéré comme une bonne pratique pour rendre le code plus facile à lire et à comprendre.</p>
+</div>
+</div>
+<p>Nous pourrions donc remplacer le code précédent par ceci :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="ot">&lt;-</span> df_brut <span class="sc">|&gt;</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">prefecture =</span> sub_prefecture,</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">village    =</span> village_commune,</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">facility   =</span> health_facility_name) <span class="sc">|&gt;</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>full_name) <span class="sc">|&gt;</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">age_years =</span> age <span class="sc">/</span> <span class="dv">12</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>C’est beaucoup plus fluide que de réaffecter <code>df_linelist</code> après chaque étape !</p>
+<div class="write">
+<p>A votre tour ! Rassemblez maintenant toutes les étapes de nettoyage de la leçon en une seule commande en un seul <em>pipeline</em>.</p>
+<p>Utilisez l’opérateur pipe <code>|&gt;</code>, les fonctions <code>select()</code> <code>rename()</code>, <code>mutate()</code>, <code>str_to_title()</code>, <code>ymd()</code> et <code>distinct()</code> pour créer un data frame <code>df_linelist</code> partiellement nettoyé. <br> Rappel des étapes :</p>
+<ul>
+<li>Supprimer les variables <code>nom_complet</code> et <code>unite_age</code>
+</li>
+<li>Renommer les variables suivantes :
+<ul>
+<li>
+<code>age</code> devient <code>age_ans</code>
+</li>
+<li>
+<code>sous_prefecture</code> devient <code>prefecture</code>
+</li>
+<li>
+<code>village_commune</code> devient <code>village</code>
+</li>
+<li>
+<code>nom_structure_sante</code> devient <code>structure</code>
+</li>
+</ul>
+</li>
+<li>Ajouter une variable <code>age_ans</code> avec l’âge du patient en années</li>
+<li>Mettre à jour <code>region</code> et <code>prefecture</code> pour utiliser la casse de titre</li>
+<li>Mettre à jour toutes les colonnes contenant des dates pour utiliser le type <code>Date</code>
+</li>
+<li>Supprimer toutes les lignes en double</li>
+</ul>
+<p>L’en-tête de vos données finales devrait ressembler à ceci :</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>  id  sexe age_mois  region prefecture        village date_debut
+1  1 femme       36 Mandoul   Moissala Sangana Koïtan 2022-08-13
+2  2     f        5 Mandoul   Moissala      Mousdan 1 2022-08-18
+3  3     f      156 Mandoul   Moissala     Djaroua Ii 2022-08-17
+4  6 homme        8 Mandoul   Moissala     Monakoumba 2022-08-22
+5  7     h        7 Mandoul   Moissala      Tétindaya 2022-08-30
+6 10     h        4 Mandoul   Moissala      Danamadja 2022-08-30
+  date_consultation hospitalisation date_admission
+1        2022-08-14             oui     2022-08-14
+2        2022-08-25             oui     2022-08-25
+3        2022-08-20            &lt;NA&gt;           &lt;NA&gt;
+4        2022-08-25             non           &lt;NA&gt;
+5        2022-09-02             non           &lt;NA&gt;
+6        2022-09-02             oui     2022-09-02
+                        structure tdr_paludisme fievre eruption toux
+1 Hôpital du District de Moissala       negatif     No     &lt;NA&gt;  Yes
+2 Hôpital du District de Moissala       negatif     No       No  Yes
+3                      CS Silambi       negatif    Yes     &lt;NA&gt;   No
+4 Hôpital du District de Moissala       negatif     No       No   No
+5                      CS Silambi       negatif   &lt;NA&gt;       No  Yes
+6                    Moissala Est       negatif    Yes       No   No
+  yeux_rouges pneumonie encephalite  pb statut_vaccinal doses_vaccin issue
+1          No        No          No 244            &lt;NA&gt;         &lt;NA&gt; gueri
+2          No      &lt;NA&gt;          No 232             Non         &lt;NA&gt;  &lt;NA&gt;
+3          No        No        &lt;NA&gt; 123      Oui - oral         &lt;NA&gt; gueri
+4        &lt;NA&gt;        No          No 210             Non         &lt;NA&gt; gueri
+5         Yes        No          No  80             Non         &lt;NA&gt; gueri
+6        &lt;NA&gt;        No          No 220             Non         &lt;NA&gt; gueri
+  date_issue    age_ans
+1 2022-08-18  3.0000000
+2 2022-08-28  0.4166667
+3       &lt;NA&gt; 13.0000000
+4       &lt;NA&gt;  0.6666667
+5       &lt;NA&gt;  0.5833333
+6 2022-09-03  0.3333333</code></pre>
+</div>
+</div>
+<p><strong>Astuce : </strong> soyez attentifs à vos noms de colonne. Si vous rennomez une colonne, il faudra utiliser le nouveau nom dans les étapes suivantes du pipeline.</p>
+</div>
+<p>Fantastique ! C’est un excellent début de pipeline de nettoyage de vos données. Sauvegardez ce code, car nous le complèterons lors de la prochaine session, durant laquelle nous apprendron une autre étape essentielle du traitement de données : recoder les variables !</p>
+</section><section id="cest-fini" class="level2"><h2 class="anchored" data-anchor-id="cest-fini">C’est fini !</h2>
+<p>Bravo, vous avez appris les bases de la manipulation de données et comment enchaîner plusieurs commandes dans un pipeline. À partir de maintenant, les fichiers contenant les solutions des exercices fourniront le code final plutôt qu’une correction par exercice, afin d’avoir un script plus réaliste. Par exemple, la solution fournira le pipe final créé à la fin de la session d’aujourd’hui.</p>
+<div class="cell">
+<div class="cell-output-display">
+<a href="https://github.com/epicentre-msf/repicentre/blob/main/sessions_core/03_data_verbs_solutions_fr.R">
+<button class="btn btn-default"><i class="fa fa-save"></i> Solutions exercices</button>
+</a>
+</div>
+</div>
+</section><section id="aller-plus-loin" class="level2"><h2 class="anchored" data-anchor-id="aller-plus-loin">Aller plus loin</h2>
+<section id="exercices-supplémentaires" class="level3"><h3 class="anchored" data-anchor-id="exercices-supplémentaires">Exercices supplémentaires</h3>
+<ol type="1">
+<li><p>Ajoutez une ligne à votre <code>mutate()</code> pour mettre à jour la variable <code>hospitalisation</code> afin que son texte soit également en casse “titre”</p></li>
+<li><p>Peut-être préféreriez-vous utiliser des minuscules pour la colonne <code>region</code> plutôt que la casse “titre” ? Mettez votre code à jour pour le faire. <strong>Astuce</strong> : vous pouvez utiliser la fonction apprises dans la première session ou tester la fonction <code>str_to_lower()</code> de <code>{stringr}</code>.</p></li>
+<li><p>Créez une colonne <code>delai_consultation</code>, qui contient le nombre de jours entre l’apparition des symptômes et la consultation.</p></li>
+</ol></section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copié");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copié");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body>
+</html>
