@@ -316,12 +316,12 @@ Use the `{rio}` package to export `data_surv` to a `.rds` file called `data_ids_
 
 ### Laboratory data (Q2)
 
-We are going to follow the same steps as before for the lab data, and focus for now on the columns `health_zone`, `igm_rougeole` and `igm_rubeole`.
+We are going to follow the same steps as before for the lab data, and focus for now on the columns `health_zone`, `igm_measles` and `igm_rubella`.
 
 #### Quick checks
 
 :::  {.write}
-Perform data checks on the colums names and dimensions. What are the categories for `igm_rougeole` and `igm_rubeole`? What do you need to do to clean these columns?
+Perform data checks on the colums names and dimensions. What are the categories for `igm_measles` and `igm_rubella`? What do you need to do to clean these columns?
 :::
 
 #### Clean and recode strings
@@ -329,7 +329,7 @@ Perform data checks on the colums names and dimensions. What are the categories 
 :::  {.write}
 1. Start a new cleaning pipeline to clean the lab data. As before, for one of the text column, change it to lower casse, remove the extra spaces and replace the or `-` by `_`.
 
-2. Recode at least one of  `igm_rougeole` or `igm_rubeole` columns so that the categories are `negatif`, `positif` and `indetermine`.
+2. Recode at least one of  `igm_measles` or `igm_rubella` columns so that the categories are `negatif`, `positif` and `indetermine`.
 
 3. Store the cleaner version in a `data_lab` data frame
 
@@ -338,7 +338,7 @@ The head of the cleaned columns should now be:
 ```{r}
 #| eval: true
 #| echo: false
-data_lab |> select(health_zone, igm_rougeole, igm_rubeole) |> head(10)
+data_lab |> select(health_zone, igm_measles, igm_rubella) |> head(10)
 ```
 :::
 
@@ -729,7 +729,7 @@ data_surv |>
     n_deaths  = sum(totaldeaths, na.rm = TRUE),
     n_under_5 = sum(cases_under_5, na.rm = TRUE),
     p_under_5 = n_under_5 / n_cases,
-    cfr       = n_deaths / n_cases)
+    cfr       = n_deaths / n_cases
   )
 ```
 :::
@@ -769,7 +769,6 @@ data_lab |>
     n_test_rub_pos     = sum(igm_rubella == "positive", na.rm = TRUE),
     positivity_rubella = n_test_rub_pos / n_test_rub
   )
-
 ```
 :::
 
