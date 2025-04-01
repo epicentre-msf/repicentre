@@ -22,6 +22,7 @@ library(here)      # For paths
 library(rio)       # Import and export data
 library(dplyr)     # Data manipulation
 library(tidyr)     # Data manipulation
+library(ggplot2)   # Graph 
 library(stringr)   # Text cleaning
 library(lubridate) # Dates
 library(zoo)       # Rolling sum
@@ -32,11 +33,11 @@ library(zoo)       # Rolling sum
 ## !!! Open the dataset in Excel before opening !!!
 
 # Surveillance data
-data_surv_raw <- import(here("data", "raw", "data_ids_sem20_2022.xlsx"))
+data_surv_raw <- import(here("data", "raw", "data_ids_week20_2022_en.xlsx"))
 
 # Laboratory data
 data_lab_raw <- import(
-  here("data", "raw", "data_labo_sem20_2022.xlsx"), 
+  here("data", "raw", "data_labo_week20_2022_en.xlsx"), 
   skip = 7  # Skip the first seven lines
 )  
 
@@ -62,24 +63,24 @@ View(data_lab_raw)
 names(data_surv_raw)
 head(data_surv_raw)
 
-# Count number of lines per ZS
-zs_check <- data_surv_raw |> count(zs)
+# Count number of lines per health_zone
+hz_check <- data_surv_raw |> count(health_zone)
 
 # Check that there are 68 health zones
-nrow(zs_check)
+nrow(hz_check)
 
-## There are 63 ZS! We are expecting 68. 
-# 5 ZS did not report any data
+## There are 63 health_zone! We are expecting 68. 
+# 5 health_zone did not report any data
 
-# Check that the number of weeks goes from 1-20
-min(data_surv_raw$numsem)
-max(data_surv_raw$numsem)
+# Check that the number of week goes from 1-20
+min(data_surv_raw$week)
+max(data_surv_raw$week)
 
 # Check the number of cases per week
-summary(data_surv_raw$totalcas)
+summary(data_surv_raw$totalcases)
 
 # Check the number of deaths per week
-summary(data_surv_raw$totaldeces)
+summary(data_surv_raw$totaldeaths)
 
 
 ### Clean data -----------------------------------------
@@ -90,71 +91,71 @@ data_surv <- data_surv_raw |>
   mutate(
     
     # Format strings to lower case
-    pays    = tolower(pays),
-    prov    = tolower(prov),
-    zs      = tolower(zs),
-    maladie = tolower(maladie),
+    country     = tolower(country),
+    province    = tolower(province),
+    health_zone = tolower(health_zone),
+    disease     = tolower(disease),
     
     # Remove excess spaces with the str_squish() function from 
     # the stringr package, very usefull!
-    prov = str_squish(prov),
-    zs   = str_squish(zs),
+    province    = str_squish(province),
+    health_zone = str_squish(health_zone),
     
     
     # Remove spaces or "-" with the str_replace() function from 
     # the stringr package
-    prov = str_replace(prov, pattern = "-", replacement = "_"), 
-    prov = str_replace(prov, pattern = " ", replacement = "_"),
-    zs   = str_replace(zs,   pattern = "-", replacement = "_"), 
-    zs   = str_replace(zs,   pattern = " ", replacement = "_"),
+    province = str_replace(province, pattern = "-", replacement = "_"), 
+    province = str_replace(province, pattern = " ", replacement = "_"),
+    health_zone = str_replace(health_zone, pattern = "-", replacement = "_"), 
+    health_zone = str_replace(health_zone, pattern = " ", replacement = "_"),
     
     # Number of cases less than 5 months
-    cunder_5 = c011mois + c1259mois
-  ) %>% 
+    cases_under_5 = cases_0_11_months + cases_12_59_months
+  ) |> 
   
   # Sort data
-  arrange(prov, zs, numsem)
+  arrange(province, health_zone, week)
 
 
 # Reformat surveillance data to have 1 line for each week
 # filled in with 0 cases 
 
-# Use of tidyr::complete to add new records of weeks 1 to 20 
-# for each combined province and zs with 0 value in the 
-# totalcas and totaldeces variables
+# Use of tidyr::complete to add new records of week 1 to 20 
+# for each combined provinceince and health_zone with 0 value in the 
+# totalcases and totaldeaths variables
 
 data_surv_weeks <- data_surv |> 
-  select(prov, zs, numsem, totalcas, totaldeces) |>
+  select(province, health_zone, week, totalcases, totaldeaths) |>
   
   complete(
-    nesting(prov, zs),
-    numsem = seq(min(numsem, na.rm = TRUE), 
-                 max(numsem, na.rm = TRUE)),
-    fill = list(totalcas = 0, 
-                totaldeces = 0)
-  ) %>% 
+    nesting(province, health_zone),
+    week = seq(min(week, na.rm = TRUE), 
+                 max(week, na.rm = TRUE)),
+    fill = list(totalcases = 0, 
+                totaldeaths = 0)
+  ) |> 
   
   ## Prepare alert columns
   mutate(
     # 20 cases or more
     cases20 = case_when(
-      totalcas >= 20 ~ 1, 
+      totalcases >= 20 ~ 1, 
       .default = 0)) |>
   
-  # Cumulative indicators, need to be calculated by ZS
+  # Cumulative indicators, need to be calculated by health_zone
   mutate(
     
-    # Group by Province and ZS
-    .by = c(prov, zs),
+    # Group by provinceince and health_zone
+    .by = c(province, health_zone),
     
     # Cumulative cases over 3 week window (zoo::rollapply)
-    cumcas = rollapply(totalcas, 
+    cumcas = rollapply(totalcases, 
                        width = 3,        # Window width
                        sum,              # function to apply
                        na.rm = TRUE,     # Arguments to pass to the function (here, sum)
                        align = "right",  
                        partial = TRUE)
-  ) %>% 
+  ) |> 
   
   mutate(    
     # Binary indicator for 35 cumulative cases
@@ -179,8 +180,8 @@ names(data_lab_raw)
 head(data_lab_raw)
 
 # Check lab results categories
-data_lab_raw |> distinct(igm_rougeole)
-data_lab_raw |> distinct(igm_rubeole)
+data_lab_raw |> distinct(igm_measles)
+data_lab_raw |> distinct(igm_rubella)
 
 
 ### Clean data ----------------------------------------------
@@ -189,31 +190,29 @@ data_lab <- data_lab_raw |>
   mutate(
     
     # Clean strings
-    zs = tolower(zs),                # Format strings to lower case
-    zs = str_squish(zs),             # Remove excess spaces
-    zs = str_replace(zs, "-", "_"),  # Replace - by _
-    zs = str_replace(zs, " ", "_"),  # Replace space by _
+    health_zone = tolower(health_zone),                # Format strings to lower case
+    health_zone = str_squish(health_zone),             # Remove excess spaces
+    health_zone = str_replace(health_zone, "-", "_"),  # Replace - by _
+    health_zone = str_replace(health_zone, " ", "_"),  # Replace space by _
     
     # Recode igm modalities
-    igm_rougeole = case_when(
-      igm_rougeole == 'pos' ~ 'positif', 
-      igm_rougeole == 'neg' ~ 'negatif', 
-      .default = igm_rougeole),
+    igm_measles = case_when(
+      igm_measles == 'pos' ~ 'positive', 
+      igm_measles == 'neg' ~ 'negative', 
+      .default = igm_measles),
     
-    igm_rubeole = case_when(
-      igm_rubeole == 'pos' ~ 'positif', 
-      igm_rubeole == 'neg' ~ 'negatif', 
-      .default = igm_rubeole),
+    igm_rubella = case_when(
+      igm_rubella == 'pos' ~ 'positive', 
+      igm_rubella == 'neg' ~ 'negative', 
+      .default = igm_rubella),
     
-    collecte_echantillon = ymd(collecte_echantillon)
+    sample_collection = ymd(sample_collection)
   )
 
 
 # Did we recoded correctly?
-data_lab |> distinct(igm_rougeole)
-data_lab |> distinct(igm_rubeole)
-
-
+data_lab |> distinct(igm_measles)
+data_lab |> distinct(igm_rubella)
 
 
 
@@ -222,45 +221,45 @@ data_lab |> distinct(igm_rubeole)
 
 ## Subset data ----------------------------------------------
 # For the case study we ran the analyses on only a subset of the dataset
-data_alert <- data_surv_weeks %>% 
-  filter(zs %in% c("dilolo", "kowe" ,"kampemba", "lwamba"))
+data_alert <- data_surv_weeks |> 
+  filter(health_zone %in% c("dilolo", "kowe" ,"kampemba", "lwamba"))
 
 
 # Which health zones are in alert at week 20?
 data_alert |>
-  filter(numsem == 20) %>%
+  filter(week == 20) |>
   arrange(desc(alert))
 
 # It's 63 if we were looking at the full dataset:
 # data_surv_weeks |>
-#   filter(numsem == 20) %>%
+#   filter(week == 20) |>
 #   arrange(desc(alert))
 
 
-# Vector of the ZS that are in alert in week 20 to make a graph
-# of these ZS
-zs_alert <- data_alert |>
-  filter(numsem == 20,
-         alert == 1) %>%
-  pull(zs) # turn a single column data frame into a vector
+# Vector of the health_zone that are in alert in week 20 to make a graph
+# of these health_zone
+hz_alert <- data_alert |>
+  filter(week == 20,
+         alert == 1) |>
+  pull(health_zone) # turn a single column data frame into a vector
 
 # Or type it by hand if there are few alerts: 
-# zs_alert <- c("kampemba", "lwamba")
+# hz_alert <- c("kampemba", "lwamba")
 
 
 
 ## Epicurve ------------------------------------------------
 
 p_epi <- data_alert |>
-  filter(zs %in% zs_alert) |>
-  ggplot(aes(x = numsem, 
-             y = totalcas)) + 
+  filter(health_zone %in% hz_alert) |>
+  ggplot(aes(x = week, 
+             y = totalcases)) + 
   geom_col(fill = "#2E4573") + 
   labs(x = "Week",
        y = "N cases",
        title = "Health zones in alert") +
   theme_bw(base_size = 15) +
-  facet_wrap(vars(zs))   # One graph by ZS
+  facet_wrap(vars(health_zone))   # One graph by health_zone
 
 p_epi
 
@@ -271,24 +270,24 @@ p_epi
 first_alert <- data_alert |>
   filter(alert == 1) |>
   summarise(
-    .by = zs,
-    min_alert = min(numsem))
+    .by = health_zone,
+    min_alert = min(week))
 
 first_alert
 
 
 ### Surveillance data ------------------
 table_surv <- data_surv |>
-  filter(zs %in% zs_alert) |>
-  mutate(cunder_5 = c011mois + c1259mois) %>%
+  filter(health_zone %in% hz_alert) |>
+  mutate(cases_under_5 = cases_0_11_months + cases_12_59_months) |>
   summarise(
-    .by = zs,
+    .by = health_zone,
     
-    nb_cas       = sum(totalcas, na.rm = TRUE),
-    nb_deces     = sum(totaldeces, na.rm = TRUE),
-    nb_under_5   = sum(cunder_5, na.rm = TRUE),
-    cfr          = scales::percent(nb_deces / nb_cas, accuracy = 0.1),
-    prop_under_5 = scales::percent(nb_under_5 / nb_cas, accuracy = 0.1)
+    n_cases       = sum(totalcases, na.rm = TRUE),
+    n_deaths   = sum(totaldeaths, na.rm = TRUE),
+    n_under_5   = sum(cases_under_5, na.rm = TRUE),
+    perc_under_5 = scales::percent(n_under_5 / n_cases, accuracy = 0.1),
+    cfr          = scales::percent(n_deaths / n_cases, accuracy = 0.1)
   )
 
 table_surv
@@ -296,18 +295,19 @@ table_surv
 
 ### Lab data --------------------------------
 table_lab <- data_lab |>
-  filter(zs %in% zs_alert) |>
+  filter(health_zone %in% hz_alert) |>
   
   summarise(
-    .by = zs,
+    .by = health_zone,
     
-    nb_roug_test  = sum(!is.na(igm_rougeole)),
-    nb_roug_pos   = sum(igm_rougeole == "positif", na.rm = TRUE),
-    prop_roug_pos = scales::percent(nb_roug_pos / nb_roug_test, 
+    n_test_meas        = sum(!is.na(igm_measles)),
+    n_test_meas_pos    = sum(igm_measles == "positive", na.rm = TRUE),
+    positivity_measles = scales::percent(n_test_meas_pos / n_test_meas, 
                                     accuracy = 0.1),
-    nb_rub_test   = sum(!is.na(igm_rubeole)),
-    nb_rub_pos    = sum(igm_rubeole == "positif", na.rm = TRUE),
-    prop_rub_pos  = scales::percent(nb_rub_pos / nb_rub_test, 
+    
+    n_test_rub         = sum(!is.na(igm_rubella)),
+    n_test_rub_pos     = sum(igm_rubella == "positive", na.rm = TRUE),
+    positivity_rubella = scales::percent(n_test_rub_pos / n_test_rub, 
                                     accuracy = 0.1)
   )
 
@@ -324,9 +324,9 @@ table_lab
 export(data_surv, 
        file = here("data", "clean", "IDS_clean.rds"))
 
-# Completed weeks
+# Completed week
 export(data_surv_weeks, 
-       file = here("data", "clean", "IDS_data_ts_clean.rds"))
+       file = here("data", "clean", "IDS_clean_complete_weeks.rds"))
 
 # Lab data
 export(data_lab,
