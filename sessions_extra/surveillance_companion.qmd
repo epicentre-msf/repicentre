@@ -374,22 +374,22 @@ During the case study and the data checks, you realized that some weeks are miss
 
 We will use the function [`complete()` from the `{tidyr}` package](https://tidyr.tidyverse.org/reference/complete.html) to add the missing lines and fill the columns containing numbers (`totalcases` and `totaldeaths`) with zeros.
 
-Look at the simplified example below: the Kikula health zone has no row for week 2:
+Look at the simplified example below: the Kitenge health zone has no row for week 2:
 
 ```{r}
 #| eval: true
 
 # Create simplified data frame for the example, with three weeks
 example_df = data.frame(
-  province    = rep("haut_katanga", 5),
-  health_zone = c("likasi", "likasi", "likasi", "kikula", "kikula"),
+  province    = c("haut_katanga", "haut_katanga", "haut_katanga", "haut_lomami", "haut_lomami"),
+  health_zone = c("likasi", "likasi", "likasi", "kitenge", "kitenge"),
   week        = c(1, 2, 3, 1, 3),
   totalcases  = c(2, 1, 3, 1, 2))
 
 example_df
 ```
 
-We use the following code to cross province and health zone and make sure that all their combinations have all the possible week values. Since the weeks range from one to three in that toy example, we pass a vector with weeks ranging from one to three
+We use the following code to make sure that all the health zones have all the possible week values. Since the weeks range from one to three in that toy example, we pass a vector with weeks ranging from one to three:
 
 ```{r}
 #| eval: true
@@ -397,13 +397,33 @@ We use the following code to cross province and health zone and make sure that a
 # Complete the missing week in kikula
 example_df |> 
   complete(
-    nesting(province, health_zone),
-    week = seq(1, 3),  # vector from 1 to 3
-    fill = list(totalcases = 0)
+    nesting(province, health_zone), 
+    week = seq(1, 3),             # vector from 1 to 3
+    fill = list(totalcases = 0)   # fill new lines with zero (default is NA)
   ) 
 ```
 
 Now both health zones within provinces have values for all three weeks.
+
+You may be wondering why we used `nesting(province, health_zone)` and not just `health_zone`. The reason is that there could be two health zones in different provinces with the same name. So we need to keep the `province` column into account. The `nesting()` argument tells the function to only use the *existing* combinations of the two columns in the data frame.
+
+::: {.callout-note}
+
+If we were passing both column names to the `complete()` function, it would try to cross *all levels of `province` to all levels of `health_zone`*, which does not make sense in this case:
+
+```{r}
+#| eval: true
+
+# Complete the missing week in kikula
+example_df |> 
+  complete(
+    province, health_zone, 
+    week = seq(1, 3),  # vector from 1 to 3
+    fill = list(totalcases = 0)
+  ) 
+```
+:::
+
 
 It would be good to automatically pick the week series, since the data frame is going to change every week. To do that, we can remplace hardcoded values by the smallest and largest week number in the `week` column to get the range of weeks in the dataset:
 
@@ -416,7 +436,7 @@ example_df |>
   complete(
     nesting(province, health_zone),
     week = seq(min(week, na.rm = TRUE),   # vector ranging from smallest to largest week numbers in dataset
-                 max(week, na.rm = TRUE)),
+               max(week, na.rm = TRUE)),
     fill = list(totalcases = 0)
   ) 
 ```
@@ -431,7 +451,7 @@ example_df |>
 complete(
   nesting(province, health_zone),
   week = seq(min(week, na.rm = TRUE), 
-               max(week, na.rm = TRUE)),
+             max(week, na.rm = TRUE)),
   fill = list(totalcases   = 0, 
               totaldeaths = 0 # also add zero to the totaldeaths column
   )
@@ -451,9 +471,8 @@ data_surv_weeks |> head(10)
 
 
 ### Going further
-This is the end of question 3; if you are finished in advance, do not hesitate to carry on checking the data and listing potential problems and cleaning the columns.
 
-
+This is the end of question 3; if you are finished in advance, do not hesitate to carry on checking the data and listing potential problems and cleaning the columns. Or go explore the [`complete()` help page`](https://tidyr.tidyverse.org/reference/complete.html) to better understand how the function works.
 
 
 ## Defining alerts (Question 4)
@@ -555,6 +574,7 @@ example_df |>
   )
   )
 ```
+
 
 ##### By health zone
 
@@ -810,7 +830,7 @@ rollapply(
   data  = example_vect,
   width = 3,       # Width of the window  
   FUN   = sum,     # Function to apply, here the sum   
-  align = "right"  # The final windows is aligned to the right
+  align = "right"  # Value at row i is the sum of i, i-1 and i-2.
 )
 ```
 
@@ -884,6 +904,35 @@ rollapply(
 ::: {.callout-tip}
 Here we applied the `sum()` function to create a cumulative sum over 3 weeks. But you could, with minimal modifications, apply the `mean()` function to caclulate a moving average!
 :::
+
+::: {.callout-note}
+What about the `align` argument? It defines the position of the rolling windows compared to the value being calculated. The default is that the window is centered: the value *i* is the sum of values *i*, *i-1* and *i+1*.
+
+Example of the three alignements (pading with `NA` to better see what's happening):
+
+```{r}
+rollapply(data  = c(5, 10, 1, 2, 5, 10),
+          width = 3, 
+          FUN   = sum,
+          align = "left",
+          fill = NA)
+
+rollapply(data  = c(5, 10, 1, 2, 5, 10),
+          width = 3, 
+          FUN   = sum,
+          align = "center",
+          fill = NA)  # The default
+
+rollapply(data  = c(5, 10, 1, 2, 5, 10),
+          width = 3, 
+          FUN   = sum,
+          align = "right",
+          fill = NA)
+```
+
+In our case we want the value for a given week to reflect this week and the week past, so we align the window right.
+:::
+
 
 ### Pretifying percentages
 
