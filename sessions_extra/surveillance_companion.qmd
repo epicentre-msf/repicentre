@@ -19,11 +19,11 @@ library(zoo)
 
 # Surveillance data
 data_surv_raw <- import(here("data", "surveillance_module", "raw", 
-                             "data_ids_sem20_2022.xlsx"))
+                             "data_ids_week20_2022_en.xlsx"))
 
 # Laboratory data
 data_lab_raw <- import(
-  here("data", "surveillance_module", "raw", "data_labo_sem20_2022.xlsx"), 
+  here("data", "surveillance_module", "raw", "data_labo_week20_2022_en.xlsx"), 
   skip = 7  # Skip the first seven lines
 ) 
 
@@ -32,55 +32,55 @@ data_surv <- data_surv_raw |>
   mutate(
     
     # Format strings to lower case
-    pays    = tolower(pays),
-    prov    = tolower(prov),
-    zs      = tolower(zs),
-    maladie = tolower(maladie),
+    country     = tolower(country),
+    province    = tolower(province),
+    health_zone = tolower(health_zone),
+    disease     = tolower(disease),
     
     
     # Remove excess spaces with the str_squish() function from 
     # the stringr package, very usefull!
-    prov = str_squish(prov),
-    zs   = str_squish(zs),
+    province    = str_squish(province),
+    health_zone = str_squish(health_zone),
     
     
     # Remove spaces or "-" with the str_replace() function from 
     # the stringr package
-    prov = str_replace(prov, pattern = "-", replacement = "_"), 
-    prov = str_replace(prov, pattern = " ", replacement = "_"),
-    zs   = str_replace(zs,   pattern = "-", replacement = "_"), 
-    zs   = str_replace(zs,   pattern = " ", replacement = "_")
+    province = str_replace(province, pattern = "-", replacement = "_"), 
+    province = str_replace(province, pattern = " ", replacement = "_"),
+    health_zone = str_replace(health_zone,   pattern = "-", replacement = "_"), 
+    health_zone = str_replace(health_zone,   pattern = " ", replacement = "_")
   )
 
 data_lab <- data_lab_raw |> 
   mutate(
     
     # Clean strings
-    zs = tolower(zs),    # Format strings to lower case
-    zs = str_squish(zs), # Remove excess spaces
-    zs = str_replace(zs, "-", "_"),  # Replace - by _
-    zs = str_replace(zs, " ", "_"),  # Replace space by _
+    health_zone = tolower(health_zone),    # Format strings to lower case
+    health_zone = str_squish(health_zone), # Remove excess spaces
+    health_zone = str_replace(health_zone, "-", "_"),  # Replace - by _
+    health_zone = str_replace(health_zone, " ", "_"),  # Replace space by _
     
     # Recode igm modalities
-    igm_rougeole = case_when(
-      igm_rougeole == 'pos' ~ 'positif', 
-      igm_rougeole == 'neg' ~ 'negatif', 
-      .default = igm_rougeole),
+    igm_measles = case_when(
+      igm_measles == 'pos' ~ 'positive', 
+      igm_measles == 'neg' ~ 'negative', 
+      .default = igm_measles),
     
-    igm_rubeole = case_when(
-      igm_rubeole == 'pos' ~ 'positif', 
-      igm_rubeole == 'neg' ~ 'negatif', 
-      .default = igm_rubeole)
+    igm_rubella = case_when(
+      igm_rubella == 'pos' ~ 'positive', 
+      igm_rubella == 'neg' ~ 'negative', 
+      .default = igm_rubella)
   )
 
 data_surv_weeks <- data_surv |> 
-  select(prov, zs, numsem, totalcas, totaldeces) |>
+  select(province, health_zone, week, totalcases, totaldeaths) |>
   complete(
-    nesting(prov, zs),
-    numsem = seq(min(data_surv$numsem, na.rm = TRUE), 
-                 max(data_surv$numsem, na.rm = TRUE)),
-    fill = list(totalcas = 0, 
-                totaldeces = 0)
+    nesting(province, health_zone),
+    week = seq(min(data_surv$week, na.rm = TRUE), 
+                 max(data_surv$week, na.rm = TRUE)),
+    fill = list(totalcases = 0, 
+                totaldeaths = 0)
   ) 
 
 
@@ -88,26 +88,26 @@ data_surv_weeks <- data_surv |>
 data_alert <- data_surv_weeks |>
   
   # Select the 4 health zones
-  filter(zs %in% c("dilolo", "kowe" ,"kampemba", "lwamba")) |>
+  filter(health_zone %in% c("dilolo", "kowe" ,"kampemba", "lwamba")) |>
   
-  # Order by province, zs and week
-  arrange(prov, zs, numsem) %>%
+  # Order by provinceince, health_zone and week
+  arrange(province, health_zone, week) %>%
   
-  # Binary indicator for 20 cases (weekly indicator by ZS)
+  # Binary indicator for 20 cases (weekly indicator by health zone)
   mutate(
     cases20 = case_when(
-      totalcas >= 20 ~ 1, 
+      totalcases >= 20 ~ 1, 
       .default = 0)) |>
   
   
-  # Cumulative indictors, need to be calculated by ZS
+  # Cumulative indictors, need to be calculated by health zone
   mutate(
     
-    # Group by Province and ZS
-    .by = c(prov, zs),
+    # Group by provinceince and health zone
+    .by = c(province, health_zone),
     
     # Cumulative cases over 3 week window (zoo::rollapply)
-    cumcas = rollapply(totalcas, 
+    cumcas = rollapply(totalcases, 
                        width = 3,        # Window width
                        sum,              # function to apply
                        na.rm = TRUE,     # Arguments to pass to the function (here, sum)
@@ -121,21 +121,21 @@ data_alert <- data_surv_weeks |>
     
     # Combined alert indicator
     # The operator | is a logical OR. Here we test:
-    # is c20 equal to 1 OR is cum35 equal to 1
+    # is cases20 equal to 1 OR is cumcases35 equal to 1
     alert = case_when(
       (cases20 == 1 | cumcases35 == 1) ~ 1, 
       .default = 0)
   )
 
-zs_alert <- data_alert |>
-  filter(numsem == 20)  |>
+hz_alert <- data_alert |>
+  filter(week == 20)  |>
   filter(alert == 1) |>
-  pull(zs)
+  pull(health_zone)
 ```
 
 ## Objectives
 
-- Reuse skills aquired in the FETCH-R modules (import, clean and visualise data)
+- Reuse skills aquired in the FETCH-R modules (import, clean and visualize data)
 - More specifically, analyze **alert data** to help decide which alerts to prioritize for further field investigation.
 
 ## Introduction
@@ -159,8 +159,8 @@ Since this is part of a specific module, you will create a new RStudio project. 
 1. Create a folder `surveillance_case_study` associated with the FETCH Surveillance module. Add the following subfolders in it:
 
 - 📁 data
-- 📁 clean
-- 📁 raw
+  - 📁 clean
+  - 📁 raw
 - 📁 R
 - 📁 outputs
 
@@ -183,7 +183,7 @@ downloadthis::download_link(
 
 <br>
 4. Unzip the archive and save the two Excel files it contains in the subfolder `data/raw`. 
-
+<br>
 5. Create a new script called `import_clean.R` and save it in the `R` subdirectory. Add a section to load the following packages: `{here}`, `{rio}`, and `{tidyverse}`.
 :::
 
@@ -224,7 +224,7 @@ Now that the data is correctly imported, we are going to perform some more check
 
 #### Quick checks
 
-During the case study you won't have time to **inspect** and **clean** *all* columns in the imparted time, so for now we will focus on key columns: `zs`, `numsem`, `totalcas` and `totaldeces`.
+During the case study you won't have time to **inspect** and **clean** *all* columns in the imparted time, so for now we will focus on key columns: `health_zone`, `week`, `totalcases` and `totaldeaths`.
 
 ::: {.callout-note}
 If you work on this tutorial in your own time, inspect the quality of the other columns and  cross-check information of several columns. We refer you to the discussion of the case study for more checks to perform.
@@ -236,11 +236,11 @@ Add a section for the exploration and cleaning of the surveillance data into you
 Now, explore the surveillance data frame and answer the following questions:
 
 -   What are the column names?
--   How many provinces are in the dataset? Is this coherent with what you expect?
+-   How many provinceinces are in the dataset? Is this coherent with what you expect?
 -   How many health zones are in the dataset?
 -   What is the range of weeks?
--   What is the min of `totalcases`?
--   What is the max of the `totaldeces`?
+-   What is the min of `totalcaseses`?
+-   What is the max of the `totaldeaths`?
 -   Do you notice missing data for these columns? Are the strings of text clean?
 :::
 
@@ -260,7 +260,7 @@ We are going to perform a couple of actions on the columns containing text to re
 -   remove potential extra spaces
 -   replace `-` and spaces by `_`.
 
-Because you may not have the time to do all of text colums, work on the `zs` or the `prov` column for the following instructions.
+Because you may not have the time to do all of text colums, work on the `health_zone` or the `province` column for the following instructions.
 
 :::  {.write}
 Start a cleaning pipeline with a `mutate()` that turns the chosen column to lower casse.
@@ -302,7 +302,7 @@ The head of these columns should now be:
 #| eval: true
 #| echo: false
 
-data_surv |> select(pays, prov, zs, maladie) |> head()
+data_surv |> select(country, province, health_zone, maladie) |> head()
 ```
 
 Store the result data frame in a `data_surv` object.
@@ -316,7 +316,7 @@ Use the `{rio}` package to export `data_surv` to a `.rds` file called `IDS_clean
 
 ### Laboratory data (Q2)
 
-We are going to follow the same steps as before for the lab data, and focus for now on the columns `zs`, `igm_rougeole` and `igm_rubeole`.
+We are going to follow the same steps as before for the lab data, and focus for now on the columns `health_zone`, `igm_rougeole` and `igm_rubeole`.
 
 #### Quick checks
 
@@ -338,7 +338,7 @@ The head of the cleaned columns should now be:
 ```{r}
 #| eval: true
 #| echo: false
-data_lab |> select(zs, igm_rougeole, igm_rubeole) |> head(10)
+data_lab |> select(health_zone, igm_rougeole, igm_rubeole) |> head(10)
 ```
 :::
 
@@ -362,17 +362,17 @@ This is the end of the steps for question 2! If you finished in advance and ther
 
 If you still have time, perform more checks on the data:
 
-- Display the ZS for which the numbers by age group add up to a different number than the total (if any)
-- Are there any ZS for which the number of deaths is higher than the total number of cases?
-- Are there duplicated lines (fully duplicated, or several values for ZS and week)?
+- Display the health zone for which the numbers by age group add up to a different number than the total (if any)
+- Are there any health zone for which the number of deaths is higher than the total number of cases?
+- Are there duplicated lines (fully duplicated, or several values for health zone and week)?
 - Are there unrealistic case numbers?
 
 
 ### Complete surveillance dataset (Q3)
 
-During the case study and the data checks, you realized that some weeks are missing from the surveillance dataset. You discussed the possible reasons for it, and the associated problems. Here we are going provide code to create a dataset that contains all weeks (assuming that missing weeks had zero cases and deaths).
+During the case study and the data checks, you realized that some weeks are missing from the surveillance dataset. You discussed the possible reasons for it, and the associated problems. Here we are going provinceide code to create a dataset that contains all weeks (assuming that missing weeks had zero cases and deaths).
 
-We will use the function [`complete()` from the `{tidyr}` package](https://tidyr.tidyverse.org/reference/complete.html) to add the missing lines and fill the columns containing numbers (`totalcas` and `totaldeces`) with zeros.
+We will use the function [`complete()` from the `{tidyr}` package](https://tidyr.tidyverse.org/reference/complete.html) to add the missing lines and fill the columns containing numbers (`totalcases` and `totaldeaths`) with zeros.
 
 Look at the simplified example below: the Kikula health zone has no row for week 2:
 
@@ -381,15 +381,15 @@ Look at the simplified example below: the Kikula health zone has no row for week
 
 # Create simplified data frame for the example, with three weeks
 example_df = data.frame(
-  prov     = rep("haut_katanga", 5),
-  zs       = c("likasi", "likasi", "likasi", "kikula", "kikula"),
-  numsem   = c(1, 2, 3, 1, 3),
-  totalcas = c(2, 1, 3, 1, 2))
+  province    = rep("haut_katanga", 5),
+  health_zone = c("likasi", "likasi", "likasi", "kikula", "kikula"),
+  week        = c(1, 2, 3, 1, 3),
+  totalcases  = c(2, 1, 3, 1, 2))
 
 example_df
 ```
 
-We use the following code to cross province and health zone and make sure that all their combinations have all the possible week values. Since the weeks range from one to three in that toy example, we pass a vector with weeks ranging from one to three
+We use the following code to cross provinceince and health zone and make sure that all their combinations have all the possible week values. Since the weeks range from one to three in that toy example, we pass a vector with weeks ranging from one to three
 
 ```{r}
 #| eval: true
@@ -397,15 +397,15 @@ We use the following code to cross province and health zone and make sure that a
 # Complete the missing week in kikula
 example_df |> 
   complete(
-    nesting(prov, zs),
-    numsem = seq(1, 3),  # vector from 1 to 3
-    fill = list(totalcas = 0)
+    nesting(province, health_zone),
+    week = seq(1, 3),  # vector from 1 to 3
+    fill = list(totalcases = 0)
   ) 
 ```
 
-Now both health zones within provinces have values for all three weeks.
+Now both health zones within provinceinces have values for all three weeks.
 
-It would be good to automatically pick the week series, since the data frame is going to change every week. To do that, we can remplace hardcoded values by the smallest and largest week number in the `numsem` column to get the range of weeks in the dataset:
+It would be good to automatically pick the week series, since the data frame is going to change every week. To do that, we can remplace hardcoded values by the smallest and largest week number in the `week` column to get the range of weeks in the dataset:
 
 
 ```{r}
@@ -414,26 +414,26 @@ It would be good to automatically pick the week series, since the data frame is 
 # Complete the missing week in kikula
 example_df |> 
   complete(
-    nesting(prov, zs),
-    numsem = seq(min(numsem, na.rm = TRUE),   # vector ranging from smallest to largest week numbers in dataset
-                 max(numsem, na.rm = TRUE)),
-    fill = list(totalcas = 0)
+    nesting(province, health_zone),
+    week = seq(min(week, na.rm = TRUE),   # vector ranging from smallest to largest week numbers in dataset
+                 max(week, na.rm = TRUE)),
+    fill = list(totalcases = 0)
   ) 
 ```
 
 
 ::: {.write}
-1. Start a new pipeline that takes the `data_surv` data frame and keeps only the columns `prov`, `zs`, `numsem` and `total cas`. 
+1. Start a new pipeline that takes the `data_surv` data frame and keeps only the columns `province`, `health_zone`, `week` and `total cas`. 
 
 2. Add a new step to your pipeline and paste the following code to complete the data frame:
 
 ```{r}
 complete(
-  nesting(prov, zs),
-  numsem = seq(min(numsem, na.rm = TRUE), 
-               max(numsem, na.rm = TRUE)),
-  fill = list(totalcas   = 0, 
-              totaldeces = 0 # also add zero to the totaldeces column
+  nesting(province, health_zone),
+  week = seq(min(week, na.rm = TRUE), 
+               max(week, na.rm = TRUE)),
+  fill = list(totalcases   = 0, 
+              totaldeaths = 0 # also add zero to the totaldeaths column
   )
 ) 
 ```
@@ -458,7 +458,7 @@ data_surv_weeks |> head(10)
 We are going to carry on preparing the datasets for the analyses.
 
 
-#### Subset ZS
+#### Subset health zone
 
 To simplify the work, we are going to focus on four health zones: Dilolo, Kampemba, Kowe, and Lwamba.
 
@@ -484,15 +484,15 @@ The top of the data frame created by the pipe thus far looks like this:
 data_surv_weeks |>
   
   # Select the 4 health zones
-  filter(zs %in% c("dilolo", "kowe" ,"kampemba", "lwamba")) |>
+  filter(health_zone %in% c("dilolo", "kowe" ,"kampemba", "lwamba")) |>
   
-  # Order by province, zs and week
-  arrange(prov, zs, numsem) %>%
+  # Order by provinceince, health zone and week
+  arrange(province, health_zone, week) %>%
   
-  # Binary indicator for 20 cases (weekly indicator by ZS)
+  # Binary indicator for 20 cases (weekly indicator by health zone)
   mutate(
     cases20 = case_when(
-      totalcas >= 20 ~ 1, 
+      totalcases >= 20 ~ 1, 
       .default = 0))  %>% head(10)
 ```
 :::
@@ -505,21 +505,21 @@ The second indicator you want to calculate is whether a health zone has more tha
 
 We are going to use the `rollapply()` function from the `{zoo}` package, as it is versatile and powerful. As its name suggests, the `rollapply()` function applies a function in a rolling way to a vector or a column of a data frame.
 
-Since we are constrained in time, we are going to provide the code of the `rollapply()` function to calculate the cumulative sum over three weeks, but check out the details in the Going further section at the end when you have time. 
+Since we are constrained in time, we are going to provinceide the code of the `rollapply()` function to calculate the cumulative sum over three weeks, but check out the details in the Going further section at the end when you have time. 
 
 This is how to do it for *one health zone*:
 
 ```{r}
 #| eval: true
 example_df = data.frame(
-  prov     = "Haut Katanga",
-  zs       = "Dilolo",
-  numsem   = 1:10,
-  totalcas = rep(1, times = 10))
+  province    = "Haut Katanga",
+  health_zone = "Dilolo",
+  week        = 1:10,
+  totalcases  = rep(1, times = 10))
 
 example_df %>% 
   mutate(cumcas = rollapply(
-    data  = totalcas,
+    data  = totalcases,
     width = 3,          # Width of the window  
     FUN   = sum,        # Function to apply, here the sum   
     align = "right",    # Windows are aligned to the right
@@ -532,35 +532,35 @@ example_df %>%
 
 ##### By health zone
 
-Now, we want to do this cumulative sum *by health zone*. This is not that complicated: we are going to sort our dataframe properly by health zone and week, and use the `.by` argument to tell the `mutate()` function to perform the action *by health zone*.
+Now, we want to do this cumulative sum *by health zone*. This is not that complicated: we are going to sort our data frame properly by health zone and week, and use the `.by` argument to tell the `mutate()` function to perform the action *by health zone*.
 
 ::: {.callout-note}
-You may remember from the [aggregation session](../sessions_core/05_summary_table.qmd#sec-stratify) how se *summarised* by groups using the `.by` argument in the `summarize()` function. This is exactly the same idea, except that instead of returning *one value by group* (as `summarize()` does), we want to return one value per row (as `mutate()` does).
+You may remember from the [aggregation session](../sessions_core/05_summary_table.qmd#sec-stratify) how se *summarized* by groups using the `.by` argument in the `summarize()` function. This is exactly the same idea, except that instead of returning *one value by group* (as `summarize()` does), we want to return one value per row (as `mutate()` does).
 
-As a little reminder of how `summarize()` + `.by` work, here is how we would calculate the total number of patients and deceased by province over the whole dataset:
+As a little reminder of how `summarize()` + `.by` work, here is how we would calculate the total number of patients and deceased by provinceince over the whole dataset:
 
 ```{r}
 #| eval: true
 data_surv_weeks %>% 
   summarize(
-    .by = prov,  # Do things by province
-    cases_tot = sum(totalcas, na.rm = TRUE),
-    dead_tot = sum(totaldeces, na.rm = TRUE)
+    .by = province,  # Do things by provinceince
+    cases_tot = sum(totalcases, na.rm = TRUE),
+    dead_tot = sum(totaldeaths, na.rm = TRUE)
   )
 ```
 
 :::
 
 ::: {.write}
-1. Add a step to your previous pipeline to sort the data frame by province, health zone and week with the `arrange()` function.
+1. Add a step to your previous pipeline to sort the data frame by provinceince, health zone and week with the `arrange()` function.
 
 2. Then add the following code to calculate the cumulative sum:
 
 ```{r}
 mutate(
-  .by = c(prov, zs),
+  .by = c(province, health_zone),
   cumcas = rollapply(
-    data  = totalcas,
+    data  = totalcases,
     width = 3,          # Width of the window  
     FUN   = sum,        # Function to apply, here the sum   
     align = "right",    # Windows are aligned to the right
@@ -594,7 +594,7 @@ After all this work we can *finally* investigate which health zones are in alert
 Filter your data frame to only keep the 20th week. Which health zones are in alert?
 
 
-Create a vector `zs_alert` that contains the name of the health zones in alert, so that we can use it to filter data from these health zones later.
+Create a vector `hz_alert` that contains the name of the health zones in alert, so that we can use it to filter data from these health zones later.
 :::
 
 
@@ -615,14 +615,14 @@ The graph should look like this (but maybe for another health zone):
 #| eval: true
 #| fig-width: 9
 data_alert |>
-  filter(zs == "kampemba") |>
-  ggplot(aes(x = numsem, 
-             y = totalcas)) + 
+  filter(health_zone == "kampemba") |>
+  ggplot(aes(x = week, 
+             y = totalcases)) + 
   geom_col(fill = "#2E4573") + 
   theme_bw(base_size = 15) + 
   labs(x = "Week",
        y = "N cases",
-       title = "Kampemba ZS (in alert)")
+       title = "Kampemba health zone (in alert)")
 ```
 
 :::
@@ -633,15 +633,15 @@ The `facet_wrap()` function allows us to plot several subplots in the same graph
 #| eval: true
 
 data_alert |>
-  filter(zs %in% zs_alert) |>
-  ggplot(aes(x = numsem, 
-             y = totalcas)) + 
+  filter(health_zone %in% hz_alert) |>
+  ggplot(aes(x = week, 
+             y = totalcases)) + 
   geom_col(fill = "#2E4573") + 
   theme_bw(base_size = 15) + 
   labs(x = "Week",
        y = "N cases",
        title = "Health zones in alert") +
-  facet_wrap(vars(zs))   # One graph by ZS
+  facet_wrap(vars(health_zone))   # One graph by health_zone
 
 ```
 
@@ -669,7 +669,7 @@ Let us go back to the full surveillance dataset that contains more columns of in
 ::: {.write}
 1. Add a column `cunder_5` to `data_surv` that contains the the number of cases less than five months.
 
-2. Derive, for each health zone in alert, the following indicators (organised in a single table):
+2. Derive, for each health zone in alert, the following indicators (organized in a single table):
 
 - The number of cases
 - The number of deaths
@@ -684,13 +684,13 @@ The result should look like this:
 #| eval: true
 
 data_surv |>
-  filter(zs %in% zs_alert) |>
+  filter(health_zone %in% hz_alert) |>
   mutate(
     cunder_5 = c011mois + c1259mois) %>%
-  summarise(
-    .by = zs,
-    nb_cas       = sum(totalcas, na.rm = TRUE),
-    nb_deces     = sum(totaldeces, na.rm = TRUE),
+  summarize(
+    .by = health_zone,
+    nb_cas       = sum(totalcases, na.rm = TRUE),
+    nb_deces     = sum(totaldeaths, na.rm = TRUE),
     nb_under_5   = sum(cunder_5, na.rm = TRUE),
     cfr          = (nb_deces / nb_cas) * 100,
     prop_under_5 = (nb_under_5 / nb_cas) * 100
@@ -718,10 +718,10 @@ For each health zone in alert, derive the following indicators within one table:
 #| eval: true
 
 data_lab |>
-  filter(zs %in% zs_alert) |>
+  filter(health_zone %in% hz_alert) |>
   
-  summarise(
-    .by = zs,
+  summarize(
+    .by = health_zone,
     
     nb_roug_test  = sum(!is.na(igm_rougeole)),
     nb_roug_pos   = sum(igm_rougeole == "positif", na.rm = TRUE),
