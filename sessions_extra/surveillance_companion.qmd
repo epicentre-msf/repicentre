@@ -90,8 +90,8 @@ data_alert <- data_surv_weeks |>
   # Select the 4 health zones
   filter(health_zone %in% c("dilolo", "kowe" ,"kampemba", "lwamba")) |>
   
-  # Order by provinceince, health_zone and week
-  arrange(province, health_zone, week) %>%
+  # Order by province, health_zone and week
+  arrange(province, health_zone, week) |>
   
   # Binary indicator for 20 cases (weekly indicator by health zone)
   mutate(
@@ -103,7 +103,7 @@ data_alert <- data_surv_weeks |>
   # Cumulative indictors, need to be calculated by health zone
   mutate(
     
-    # Group by provinceince and health zone
+    # Group by province and health zone
     .by = c(province, health_zone),
     
     # Cumulative cases over 3 week window (zoo::rollapply)
@@ -173,7 +173,7 @@ Since this is part of a specific module, you will create a new RStudio project. 
 #| eval: true
 
 downloadthis::download_link(
-  link = 'https://github.com/epicentre-msf/repicentre/raw/main/data/clean/moissala_linelist_clean_EN.rds',
+  link = 'https://github.com/epicentre-msf/repicentre/raw/main/data/surveillance_module/raw/raw_data_en.zip',
   button_label = "Download raw data",
   has_icon = TRUE,
   icon = "fa fa-save",
@@ -236,7 +236,7 @@ Add a section for the exploration and cleaning of the surveillance data into you
 Now, explore the surveillance data frame and answer the following questions:
 
 -   What are the column names?
--   How many provinceinces are in the dataset? Is this coherent with what you expect?
+-   How many provinces are in the dataset? Is this coherent with what you expect?
 -   How many health zones are in the dataset?
 -   What is the range of weeks?
 -   What is the min of `totalcaseses`?
@@ -302,7 +302,7 @@ The head of these columns should now be:
 #| eval: true
 #| echo: false
 
-data_surv |> select(country, province, health_zone, maladie) |> head()
+data_surv |> select(country, province, health_zone, disease) |> head()
 ```
 
 Store the result data frame in a `data_surv` object.
@@ -311,7 +311,7 @@ Store the result data frame in a `data_surv` object.
 #### Save the clean data
 
 :::  {.write}
-Use the `{rio}` package to export `data_surv` to a `.rds` file called `IDS_clean` in the `data/clean` subfolder of your project.
+Use the `{rio}` package to export `data_surv` to a `.rds` file called `data_ids_2022-w20_clean` in the `data/clean` subfolder of your project.
 :::
 
 ### Laboratory data (Q2)
@@ -352,7 +352,7 @@ You can use the `case_when()` function to recode the IGM columns.
 #### Save the clean data
 
 :::  {.write}
-Export the `data_lab` data frame to a `.rds` file called `lab_clean` in the `data/clean` subfolder of your project.
+Export the `data_lab` data frame to a `.rds` file called `data_lab_2022-w20_clean` in the `data/clean` subfolder of your project.
 :::
 
 
@@ -389,7 +389,7 @@ example_df = data.frame(
 example_df
 ```
 
-We use the following code to cross provinceince and health zone and make sure that all their combinations have all the possible week values. Since the weeks range from one to three in that toy example, we pass a vector with weeks ranging from one to three
+We use the following code to cross province and health zone and make sure that all their combinations have all the possible week values. Since the weeks range from one to three in that toy example, we pass a vector with weeks ranging from one to three
 
 ```{r}
 #| eval: true
@@ -403,7 +403,7 @@ example_df |>
   ) 
 ```
 
-Now both health zones within provinceinces have values for all three weeks.
+Now both health zones within provinces have values for all three weeks.
 
 It would be good to automatically pick the week series, since the data frame is going to change every week. To do that, we can remplace hardcoded values by the smallest and largest week number in the `week` column to get the range of weeks in the dataset:
 
@@ -446,16 +446,40 @@ complete(
 data_surv_weeks |> head(10)
 ```
 
-4. When you are done, export that data frame to a `.rds` file called `IDS_data_weeks_clean` in the `data/clean` subfolder of your project.
+4. When you are done, export that data frame to a `.rds` file called `data_ids_2022-w20__weeks_clean` in the `data/clean` subfolder of your project.
 :::
+
+
+### Going further
+This is the end of question 3; if you are finished in advance, do not hesitate to carry on checking the data and listing potential problems and cleaning the columns.
+
 
 
 
 ## Defining alerts (Question 4)
 
-### Preparing the dataset (Q4)
+### Preparing the dataset
 
 We are going to carry on preparing the datasets for the analyses.
+
+::: {.setup}
+If you have not had the time to clean both health zone and province in both datasets, as well as both igm columns in the lab dataset you can import cleaner versions of the data:
+
+```{r}
+#| echo: false
+#| eval: true
+
+downloadthis::download_link(
+  link = 'https://github.com/epicentre-msf/repicentre/raw/main/data/surveillance_module/clean/clean_data_en.zip',
+  button_label = "Download clean data",
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  self_contained = FALSE
+)
+```
+<br>
+Unzip the archive in your `data/clean` subfolder and import the `.rds` files in your RStudio project using `rio::import()` as usual. Assign the cleaned data frames to `data_surv`, `data_lab` and `data_surv_weeks` and carry on.
+:::
 
 
 #### Subset health zone
@@ -469,12 +493,12 @@ Start a new pipeline from `data_surv_weeks`. Its first step it to only retain da
 
 #### Weekly indicator
 
-The first indicator we want to caclulate is whether *a health zone has 20 or more suspected cases in one week?*. This indicator is binary and only considers data in a given health zone and week, which corresponds to individual rows of our data frame.
+The first indicator we want to caclulate is whether *a health zone has 20 or more suspected cases in one week*. This indicator is binary and only considers data in a given health zone and week, which corresponds to individual rows of our data frame.
 
 ::: {.write}
 Add a `mutate()` to your pipeline, to create a `cases20` column that contains `1` if a given health zone has 20 cases or more in that week, and `0` otherwise.
 
-
+<br>
 The top of the data frame created by the pipe thus far looks like this:
 
 ```{r}
@@ -486,45 +510,47 @@ data_surv_weeks |>
   # Select the 4 health zones
   filter(health_zone %in% c("dilolo", "kowe" ,"kampemba", "lwamba")) |>
   
-  # Order by provinceince, health zone and week
-  arrange(province, health_zone, week) %>%
+  # Order by province, health zone and week
+  arrange(province, health_zone, week) |>
   
   # Binary indicator for 20 cases (weekly indicator by health zone)
   mutate(
     cases20 = case_when(
       totalcases >= 20 ~ 1, 
-      .default = 0))  %>% head(10)
+      .default = 0))  |> head(10)
 ```
 :::
 
 #### Cumulative indicator
 
-The second indicator you want to calculate is whether a health zone has more than 35 *cumulated suspected cases within three weeks*. This is a bit more complicated than the previous case: within heath zone you need to calculate the sum of cases by groups of three weeks, but the groups are not fixed: they are *rolling* across time. We are getting in the teritory of *moving* averages/sums/etc.
+The second indicator you want to calculate is whether a health zone has more than 35 *cumulated suspected cases within three weeks*. This is a bit more complicated than the previous case: within heath zone you need to calculate the sum of cases by groups of three weeks, but the groups are not fixed, they are *rolling* across time. We are getting in the teritory of *moving* averages/sums/etc.
 
 ##### Cumulative sum
 
 We are going to use the `rollapply()` function from the `{zoo}` package, as it is versatile and powerful. As its name suggests, the `rollapply()` function applies a function in a rolling way to a vector or a column of a data frame.
 
-Since we are constrained in time, we are going to provinceide the code of the `rollapply()` function to calculate the cumulative sum over three weeks, but check out the details in the Going further section at the end when you have time. 
+Since we are constrained in time, we are going to provinceide the code of the `rollapply()` function to calculate the cumulative sum over three weeks, but check out the details in the [Going further section](#sec-going-further) when you have time. 
 
 This is how to do it for *one health zone*:
 
 ```{r}
 #| eval: true
+# Create mini example data frame
 example_df = data.frame(
   province    = "Haut Katanga",
   health_zone = "Dilolo",
   week        = 1:10,
   totalcases  = rep(1, times = 10))
 
-example_df %>% 
+example_df 
+
+example_df |> 
   mutate(cumcas = rollapply(
-    data  = totalcases,
+    data  = totalcases, # The column to work on
     width = 3,          # Width of the window  
     FUN   = sum,        # Function to apply, here the sum   
     align = "right",    # Windows are aligned to the right
     partial = TRUE,     # Allows calcul to be made even if window is less than three
-    
     na.rm = TRUE        # Extra unamed argument to be passed to the sum function
   )
   )
@@ -535,24 +561,24 @@ example_df %>%
 Now, we want to do this cumulative sum *by health zone*. This is not that complicated: we are going to sort our data frame properly by health zone and week, and use the `.by` argument to tell the `mutate()` function to perform the action *by health zone*.
 
 ::: {.callout-note}
-You may remember from the [aggregation session](../sessions_core/05_summary_table.qmd#sec-stratify) how se *summarized* by groups using the `.by` argument in the `summarize()` function. This is exactly the same idea, except that instead of returning *one value by group* (as `summarize()` does), we want to return one value per row (as `mutate()` does).
+You may remember from the [aggregation session](../sessions_core/05_summary_table.qmd#sec-stratify) how we *summarized* by groups using the `.by` argument in the `summarize()` function. This is exactly the same idea, except that instead of returning *one value by group* (as `summarize()` does), we want to return one value per row (as `mutate()` does).
 
-As a little reminder of how `summarize()` + `.by` work, here is how we would calculate the total number of patients and deceased by provinceince over the whole dataset:
+As a little reminder of how `summarize()` + `.by` work, here is how we would calculate the total number of patients and deceased by province over the whole dataset:
 
 ```{r}
 #| eval: true
-data_surv_weeks %>% 
+data_surv_weeks |> 
   summarize(
-    .by = province,  # Do things by provinceince
+    .by = province,  # Do things by province
     cases_tot = sum(totalcases, na.rm = TRUE),
-    dead_tot = sum(totaldeaths, na.rm = TRUE)
+    dead_tot  = sum(totaldeaths, na.rm = TRUE)
   )
 ```
 
 :::
 
 ::: {.write}
-1. Add a step to your previous pipeline to sort the data frame by provinceince, health zone and week with the `arrange()` function.
+1. Add a step to your previous pipeline to sort the data frame by province, health zone and week with the `arrange()` function.
 
 2. Then add the following code to calculate the cumulative sum:
 
@@ -570,23 +596,30 @@ mutate(
 )
 ```
 
-3. Add a new step to calculate a binary indicator, `cumcases35` that is `1` if the cumulative sum of cases for that week is equal or above 35 and `0` if not.
+:::
 
-4. Add a new column `alert`, that is `1` if either the `cases20` indicator or the `cumcases35` indicator is `1` and `0` otherwise. You can use the `|` operator, which is R logical OR.
+Now that the complicated part is over (the calcul of the cumulative sum) we are left to summarize the information with a binary indicator, for heach week and health zone. Then we can create a second indicator, that aggregates the result of both the weekly and cumulative indicators, to say if an alert is to be raised.
 
-5. When the pipe is working, assign the result to a `data_alert` data frame.
+
+::: {.write}
+1. Add a new step to your pipeline to calculate a binary indicator, `cumcases35` that is `1` if the cumulative sum of cases for that week is equal or above 35 and `0` if not.
+
+2. Add a new column `alert`, that is `1` if either the `cases20` indicator or the `cumcases35` indicator is `1` and `0` otherwise. You can use the `|` operator, which is R logical OR.
+
+3. When the pipe is working, assign the result to a `data_alert` data frame.
 
 `data_alert` should look like this:
 
 ```{r}
 #| echo: false
 #| eval: true
-data_alert %>% head(10)
+data_alert |> head(10)
 ```
 
 :::
 
-### Health zones in alert (Q4)
+
+### Health zones in alert
 
 After all this work we can *finally* investigate which health zones are in alert in the last week of our dataset (the *now* of the case study, week 20)!
 
@@ -608,12 +641,14 @@ We have drawn very similar curves in the [epicurve session](../sessions_core/06_
 ::: {.write}
 Draw an epicurve for one of the health zone in alert. 
 
+<br>
 The graph should look like this (but maybe for another health zone):
 
 ```{r}
 #| echo: false
 #| eval: true
-#| fig-width: 9
+#| fig-width: 8
+
 data_alert |>
   filter(health_zone == "kampemba") |>
   ggplot(aes(x = week, 
@@ -631,6 +666,7 @@ The `facet_wrap()` function allows us to plot several subplots in the same graph
 
 ```{r}
 #| eval: true
+#| fig-width: 8
 
 data_alert |>
   filter(health_zone %in% hz_alert) |>
@@ -685,15 +721,15 @@ The result should look like this:
 
 data_surv |>
   filter(health_zone %in% hz_alert) |>
-  mutate(
-    cunder_5 = c011mois + c1259mois) %>%
-  summarize(
+  mutate(cases_under_5 = cases_0_11_months + cases_12_59_months) |>
+  summarise(
     .by = health_zone,
-    nb_cas       = sum(totalcases, na.rm = TRUE),
-    nb_deces     = sum(totaldeaths, na.rm = TRUE),
-    nb_under_5   = sum(cunder_5, na.rm = TRUE),
-    cfr          = (nb_deces / nb_cas) * 100,
-    prop_under_5 = (nb_under_5 / nb_cas) * 100
+    
+    n_cases   = sum(totalcases, na.rm = TRUE),
+    n_deaths  = sum(totaldeaths, na.rm = TRUE),
+    n_under_5 = sum(cases_under_5, na.rm = TRUE),
+    p_under_5 = n_under_5 / n_cases,
+    cfr       = n_deaths / n_cases)
   )
 ```
 :::
@@ -713,6 +749,8 @@ For each health zone in alert, derive the following indicators within one table:
 - The number of positive for rubeole
 - The percentage of positive for rubeole
 
+The result should look like this: 
+
 ```{r}
 #| echo: false
 #| eval: true
@@ -720,16 +758,18 @@ For each health zone in alert, derive the following indicators within one table:
 data_lab |>
   filter(health_zone %in% hz_alert) |>
   
-  summarize(
+  summarise(
     .by = health_zone,
     
-    nb_roug_test  = sum(!is.na(igm_rougeole)),
-    nb_roug_pos   = sum(igm_rougeole == "positif", na.rm = TRUE),
-    prop_roug_pos = (nb_roug_pos / nb_roug_test) * 100,
-    nb_rub_test   = sum(!is.na(igm_rubeole)),
-    nb_rub_pos    = sum(igm_rubeole == "positif", na.rm = TRUE),
-    prop_rub_pos  = (nb_rub_pos / nb_rub_test) * 100
+    n_test_meas        = sum(!is.na(igm_measles)),
+    n_test_meas_pos    = sum(igm_measles == "positive", na.rm = TRUE),
+    positivity_measles = n_test_meas_pos / n_test_meas,
+    
+    n_test_rub         = sum(!is.na(igm_rubella)),
+    n_test_rub_pos     = sum(igm_rubella == "positive", na.rm = TRUE),
+    positivity_rubella = n_test_rub_pos / n_test_rub
   )
+
 ```
 :::
 
@@ -755,7 +795,8 @@ downloadthis::download_link(
 )
 ```
 
-## Going Further
+
+## Going Further {#sec-going-further}
 
 ### Exploring the `rollaply()` function 
 
@@ -790,7 +831,7 @@ rollapply(
   width = 3,       # Width of the window  
   FUN   = sum,     # Function to apply, here the sum   
   align = "right", # Windows are aligned to the right
-  fill = NA
+  fill  = NA
 )
 ```
 
@@ -799,10 +840,10 @@ It is a reasonnable way of dealing with incomplete windows. In our case however,
 ```{r}
 #| eval: true
 rollapply(
-  data  = example_vect,
-  width = 3,       # Width of the window  
-  FUN   = sum,     # Function to apply, here the sum   
-  align = "right", # Windows are aligned to the right
+  data    = example_vect,
+  width   = 3,       # Width of the window  
+  FUN     = sum,     # Function to apply, here the sum   
+  align   = "right", # Windows are aligned to the right
   partial = TRUE)
 ```
 
@@ -860,4 +901,4 @@ scales::percent(0.8556,
                 accuracy = 0.1)
 ```
 
-You can wrap it around the values that you calulate in the summary tables to change the proportions into nicely formatted percentages.
+You can wrap it around the values that you calulate in the summary tables to change the proportions into nicely formatted percentages. Note that once you are done the column is treated as text (since we added a `%` sign) and you will not be able to do further arithmetical operations on it.
