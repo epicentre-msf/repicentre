@@ -631,7 +631,7 @@ Create a vector `hz_alert` that contains the name of the health zones in alert, 
 :::
 
 
-## Draw the epicurve (Question 5)
+## Draw the epicurve (Question 4)
 
 Let us draw the epicurves of health zones currently in alert (in alert during week 20).
 
