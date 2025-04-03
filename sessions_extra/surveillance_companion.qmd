@@ -136,7 +136,7 @@ hz_alert <- data_alert |>
 ## Objectives
 
 - Reuse skills aquired in the FETCH-R modules (import, clean and visualize data)
-- More specifically, analyze **alert data** to help decide which alerts to prioritize for further field investigation.
+- More specifically, analyze surveillance data to detect alerts and to help decide which alerts to prioritize for further field investigation.
 
 ## Introduction
 
@@ -224,7 +224,7 @@ Now that the data is correctly imported, we are going to perform some more check
 
 #### Quick checks
 
-During the case study you won't have time to **inspect** and **clean** *all* columns in the imparted time, so for now we will focus on key columns: `health_zone`, `week`, `totalcases` and `totaldeaths`.
+During the case study you won't have time to **inspect** and **clean** *all* columns within the available time, so for now we will focus on key columns: `health_zone`, `week`, `totalcases` and `totaldeaths`.
 
 ::: {.callout-note}
 If you work on this tutorial in your own time, inspect the quality of the other columns and  cross-check information of several columns. We refer you to the discussion of the case study for more checks to perform.
@@ -239,7 +239,7 @@ Now, explore the surveillance data frame and answer the following questions:
 -   How many provinces are in the dataset? Is this coherent with what you expect?
 -   How many health zones are in the dataset?
 -   What is the range of weeks?
--   What is the min of `totalcaseses`?
+-   What is the min of `totalcases`?
 -   What is the max of the `totaldeaths`?
 -   Do you notice missing data for these columns? Are the strings of text clean?
 :::
@@ -256,14 +256,14 @@ To facilitate debugging your pipeline, add commands one by one, checking each ne
 
 We are going to perform a couple of actions on the columns containing text to remove potential problems:
 
--   transform them to lower casse
+-   transform them to lower case
 -   remove potential extra spaces
 -   replace `-` and spaces by `_`.
 
 Because you may not have the time to do all of text colums, work on the `health_zone` or the `province` column for the following instructions.
 
 :::  {.write}
-Start a cleaning pipeline with a `mutate()` that turns the chosen column to lower casse.
+Start a cleaning pipeline with a `mutate()` that turns the chosen column to lower case.
 :::
 
 Now, we are going to introduce two handy functions for more text cleaning. The first one is the `str_squish()` function from the `{stringr}` package ([help page here](https://stringr.tidyverse.org/reference/str_trim.html)), that removes spaces at the start or end of the strings, and replace multiple spaces in the middle of a string by a single space.
@@ -327,7 +327,7 @@ Perform data checks on the colums names and dimensions. What are the categories 
 #### Clean and recode strings
 
 :::  {.write}
-1. Start a new cleaning pipeline to clean the lab data. As before, for one of the text column, change it to lower casse, remove the extra spaces and replace the or `-` by `_`.
+1. Start a new cleaning pipeline to clean the lab data. As before, for one of the text column, change it to lower case, remove the extra spaces and replace the or `-` by `_`.
 
 2. Recode at least one of  `igm_measles` or `igm_rubella` columns so that the categories are `negatif`, `positif` and `indetermine`.
 
@@ -370,7 +370,7 @@ If you still have time, perform more checks on the data:
 
 ### Complete surveillance dataset (Q3)
 
-During the case study and the data checks, you realized that some weeks are missing from the surveillance dataset. You discussed the possible reasons for it, and the associated problems. Here we are going provinceide code to create a dataset that contains all weeks (assuming that missing weeks had zero cases and deaths).
+During the case study and the data checks, you realized that some weeks are missing from the surveillance dataset. You discussed the possible reasons for it, and the associated problems. Here we are going providing code to create a dataset that contains all weeks (assuming that missing weeks had zero cases and deaths).
 
 We will use the function [`complete()` from the `{tidyr}` package](https://tidyr.tidyverse.org/reference/complete.html) to add the missing lines and fill the columns containing numbers (`totalcases` and `totaldeaths`) with zeros.
 
@@ -506,7 +506,7 @@ Unzip the archive in your `data/clean` subfolder and import the `.rds` files in 
 To simplify the work, we are going to focus on four health zones: Dilolo, Kampemba, Kowe, and Lwamba.
 
 ::: {.write}
-Start a new pipeline from `data_surv_weeks`. Its first step it to only retain data for the the Dilolo, Kampemba, Kowe, and Lwamba health zones. 
+Start a new pipeline from `data_surv_weeks`. Its first step is to only retain data for the the Dilolo, Kampemba, Kowe, and Lwamba health zones. 
 :::
 
 
@@ -542,13 +542,13 @@ data_surv_weeks |>
 
 #### Cumulative indicator
 
-The second indicator you want to calculate is whether a health zone has more than 35 *cumulated suspected cases within three weeks*. This is a bit more complicated than the previous case: within heath zone you need to calculate the sum of cases by groups of three weeks, but the groups are not fixed, they are *rolling* across time. We are getting in the teritory of *moving* averages/sums/etc.
+The second indicator you want to calculate is whether a health zone has more than 35 *cumulated suspected cases within three weeks*. This is a bit more complicated than the previous case: within health zone you need to calculate the sum of cases by groups of three weeks, but the groups are not fixed, they are *rolling* across time. We are getting in the territory of *moving* averages/sums/etc.
 
 ##### Cumulative sum
 
 We are going to use the `rollapply()` function from the `{zoo}` package, as it is versatile and powerful. As its name suggests, the `rollapply()` function applies a function in a rolling way to a vector or a column of a data frame.
 
-Since we are constrained in time, we are going to provinceide the code of the `rollapply()` function to calculate the cumulative sum over three weeks, but check out the details in the [Going further section](#sec-going-further) when you have time. 
+Since we are constrained in time, we are going to provide the code of the `rollapply()` function to calculate the cumulative sum over three weeks, but check out the details in the [Going further section](#sec-going-further) when you have time. 
 
 This is how to do it for *one health zone*:
 
@@ -568,8 +568,8 @@ example_df |>
     data  = totalcases, # The column to work on
     width = 3,          # Width of the window  
     FUN   = sum,        # Function to apply, here the sum   
-    align = "right",    # Windows are aligned to the right
-    partial = TRUE,     # Allows calcul to be made even if window is less than three
+    align = "right",    # We are counting backward in time
+    partial = TRUE,     # Allows sum to be made even if window is less than three
     na.rm = TRUE        # Extra unamed argument to be passed to the sum function
   )
   )
@@ -610,7 +610,7 @@ mutate(
     width = 3,          # Width of the window  
     FUN   = sum,        # Function to apply, here the sum   
     align = "right",    # Windows are aligned to the right
-    partial = TRUE,     # Allows calcul to be made even if window is less than three
+    partial = TRUE,     # Allows sum to be made even if window is less than three
     na.rm = TRUE        # Extra unamed argument to be passed to the sum function
   )
 )
@@ -618,7 +618,7 @@ mutate(
 
 :::
 
-Now that the complicated part is over (the calcul of the cumulative sum) we are left to summarize the information with a binary indicator, for heach week and health zone. Then we can create a second indicator, that aggregates the result of both the weekly and cumulative indicators, to say if an alert is to be raised.
+Now that the complicated part is over (the computing of the cumulative sum) we are left to summarize the information with a binary indicator, for heach week and health zone. Then we can create a second indicator, that aggregates the result of both the weekly and cumulative indicators, to say if an alert is to be raised.
 
 
 ::: {.write}
@@ -628,13 +628,15 @@ Now that the complicated part is over (the calcul of the cumulative sum) we are 
 
 3. When the pipe is working, assign the result to a `data_alert` data frame.
 
-`data_alert` should look like this:
+The main columns of `data_alert` should look like this (other hidden for display):
 
 ```{r}
 #| echo: false
 #| eval: true
-data_alert |> head(10)
+data_alert |>select(-province, -totaldeaths) |>
+  head(10)
 ```
+
 
 :::
 
@@ -659,7 +661,7 @@ We have drawn very similar curves in the [epicurve session](../sessions_core/06_
 
 
 ::: {.write}
-Draw an epicurve for one of the health zone in alert. 
+Draw an epicurve for one of the health zones in alert. 
 
 <br>
 The graph should look like this (but maybe for another health zone):
@@ -765,9 +767,9 @@ For each health zone in alert, derive the following indicators within one table:
 - The number of patients tested for measles
 - The number of positives for measles
 - The percentage of positives for measles
-- The number of patient tested for rubeole
-- The number of positive for rubeole
-- The percentage of positive for rubeole
+- The number of patients tested for rubella
+- The number of positive for rubella
+- The percentage of positive for rubella
 
 The result should look like this: 
 
@@ -882,7 +884,7 @@ rollapply(
   width = 3,       # Width of the window  
   FUN   = sum,     # Function to apply, here the sum   
   align = "right", # Windows are aligned to the right
-  partial = TRUE   # Allows calcul to be made even if window is less than three
+  partial = TRUE   # Allows sum to be made even if window is less than three
 )
 ```
 
@@ -896,7 +898,7 @@ rollapply(
   width = 3,       # Width of the window  
   FUN   = sum,     # Function to apply, here the sum   
   align = "right", # Windows are aligned to the right
-  partial = TRUE,  # Allows calcul to be made even if window is less than three
+  partial = TRUE,  # Allows sum to be made even if window is less than three
   na.rm = TRUE     # Extra unamed argument to be passed to the sum function
 )
 ```
@@ -911,6 +913,7 @@ What about the `align` argument? It defines the position of the rolling windows 
 Example of the three alignements (pading with `NA` to better see what's happening):
 
 ```{r}
+#| eval: true
 rollapply(data  = c(5, 10, 1, 2, 5, 10),
           width = 3, 
           FUN   = sum,
@@ -930,11 +933,11 @@ rollapply(data  = c(5, 10, 1, 2, 5, 10),
           fill = NA)
 ```
 
-In our case we want the value for a given week to reflect this week and the week past, so we align the window right.
+In our case we want the value for a given week to reflect this week and the week past, so we align the window right, to calculate backward in time (by opposition, if we aligned left we would calculate forwards in time).
 :::
 
 
-### Pretifying percentages
+### Nicely formatted percentages
 
 The `percent` function from the `{scales}` packages can add percentage formatting to a value.
 

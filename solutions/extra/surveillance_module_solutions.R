@@ -30,7 +30,7 @@ library(zoo)       # Rolling sum
 
 ## Import data ---------------------------------------------
 
-## !!! Open the dataset in Excel before opening !!!
+## !!! Open the dataset in Excel before importing !!!
 
 # Surveillance data
 data_surv_raw <- import(here("data", "raw", "data_ids_week20_2022_en.xlsx"))
@@ -210,7 +210,7 @@ data_lab <- data_lab_raw |>
   )
 
 
-# Did we recoded correctly?
+# Did we recode correctly?
 data_lab |> distinct(igm_measles)
 data_lab |> distinct(igm_rubella)
 
@@ -335,7 +335,7 @@ export(data_lab,
 ## Export results ------------------------------------------
 
 # You could export results to reuse them in another document (an
-# Rmakdown script for exemple). It is possible to store these 
+# Rmarkdown script for example). It is possible to store these 
 # different elements (various data frames, ggplot objects...) into
 # a list and then to save the list.
 
