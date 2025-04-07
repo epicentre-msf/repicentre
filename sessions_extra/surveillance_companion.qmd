@@ -166,7 +166,7 @@ Since this is part of a specific module, you will create a new RStudio project. 
 
 2. Create an [RStudio project](../sessions_core/02_import_data.qmd#rstudio-projects) at the root of the `surveillance_case_study` folder.
 
-3. Download the raw data.
+3. If you do not already have the data from the case study download them.
 
 ```{r}
 #| echo: false
@@ -182,7 +182,7 @@ downloadthis::download_link(
 ```
 
 <br>
-4. Unzip the archive and save the two Excel files it contains in the subfolder `data/raw`. 
+4. Unzip the archive if you just downloaded. Save the two Excel files in the subfolder `data/raw`. 
 <br>
 5. Create a new script called `import_clean.R` and save it in the `R` subdirectory. Add metadata and a section to load the following packages: `{here}`, `{rio}`, and `{tidyverse}`.
 :::

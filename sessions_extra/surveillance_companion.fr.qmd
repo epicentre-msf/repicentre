@@ -168,7 +168,7 @@ Comme cette session fait partie d'un module spécifique, vous allez créer un no
 
 2. Créez un [projet RStudio](../sessions_core/02_import_data.qmd#rstudio-projects) à la racine du dossier `surveillance_case_study`.
 
-3. Téléchargez les données brutes.
+3. Si vous n'avez pas encore les données, téléchargez-les.
 
 ```{r}
 #| echo: false
@@ -184,7 +184,7 @@ downloadthis::download_link(
 ```
 
 <br>
-4. Dézippez l'archive et enregistrez les deux fichiers Excel dans le sous dossier `data/raw`. 
+4. Dézippez l'archive si vous venez de télécharger les données. Quelle que soit la source, enregistrez les deux fichiers Excel dans le sous dossier `data/raw`. 
 <br>
 5. Créez un nouveau script `import_nettoyage.R` et enregistrez-le dans le sous dossier `R`. Ajoutez les métadonnées et une section pour charger les paquets `{here}`, `{rio}`, et `{tidyverse}`.
 :::
