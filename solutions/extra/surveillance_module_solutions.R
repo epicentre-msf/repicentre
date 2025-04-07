@@ -5,10 +5,10 @@
 
 
 # Note: here we gathered the data cleaning and preparation and the analyses
-# in only one script. This is fine for a very short project (little
-# cleaning, very short analysis...). But it would have been possible
-# to separate the following code into several scripts, one dedicated to
-# cleaning the data, and one dedicated to exploring and analysing the data.
+# in only one script to have only one file to download. This is fine for 
+# because the project is small (short cleaning and anslyses.
+# Separating cleaning and data preparation from analyses as we had you do 
+# in the tutorial is often a good habit for larger projects though.
 # We could even have Rmarkdown or Quarto documents in the project to
 # run automatic reports based on the results.
 
@@ -16,7 +16,7 @@
 
 # Setup ----------------------------------------------------
 
-## Import packages -----------------------------------------
+## Load packages -------------------------------------------
 
 library(here)      # For paths
 library(rio)       # Import and export data
