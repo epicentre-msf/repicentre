@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<link rel="alternate" hreflang="en" href="/sessions_extra/faceting.html" />
+<link rel="alternate" hreflang="fr" href="/fr/sessions_extra/faceting.fr.html" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.6.42">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
 <meta name="description" content="Create a plot with multiple subplots (facets)">
-
 <title>Faceting – {repicentre}</title>
 <style>
 code{white-space: pre-wrap;}
@@ -56,24 +56,11 @@ div.sourceCode
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
-
-
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script><script src="../site_libs/quarto-nav/headroom.min.js"></script><script src="../site_libs/clipboard/clipboard.min.js"></script><script src="../site_libs/quarto-search/autocomplete.umd.js"></script><script src="../site_libs/quarto-search/fuse.min.js"></script><script src="../site_libs/quarto-search/quarto-search.js"></script><meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script><script src="../site_libs/quarto-html/popper.min.js"></script><script src="../site_libs/quarto-html/tippy.umd.min.js"></script><script src="../site_libs/quarto-html/anchor.min.js"></script><link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-de84f8d6bb715db06a919283c2d1e787.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-9a023c9ade86a60361e96e3e3f11bc54.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script><link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-6ab5e0891aed6e954066009cd4eecacc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/bootstrap/bootstrap-dark-b92d258d3900ea06ce3f9b55f30b4460.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
@@ -102,21 +89,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
-<script src="../site_libs/font-awesome-6.5.2/js/script.js"></script>
-
-<script type="text/javascript" src="../script.js"></script>
-
-
-<link rel="stylesheet" href="../styles.css">
+}</script><script src="../site_libs/font-awesome-6.5.2/js/script.js"></script><script type="text/javascript" src="../script.js"></script><link rel="stylesheet" href="../styles.css">
 </head>
-
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">{repicentre}</span>
@@ -128,7 +106,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
+<li class="nav-item"><div class="dropdown" id="languages-links-parent">
+<button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="languages-button"><i class="bi bi-globe2"></i> English</button><ul class="dropdown-menu" id="languages-links"><li><a class="dropdown-item" href="/fr/sessions_extra/faceting.html" id="language-link-fr">Français</a></li></ul>
+</div></li>
+<li class="nav-item">
     <a class="nav-link" href="../pathway.html"> 
 <span class="menu-text">Pathway</span></a>
   </li>  
@@ -145,44 +126,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
-          </div> <!-- /navcollapse -->
+</div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
-    </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
+<li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
   <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
   <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
-  <li><a href="#faceting" id="toc-faceting" class="nav-link" data-scroll-target="#faceting">Faceting</a>
+  <li>
+<a href="#faceting" id="toc-faceting" class="nav-link" data-scroll-target="#faceting">Faceting</a>
   <ul class="collapse">
-  <li><a href="#get-the-data-ready" id="toc-get-the-data-ready" class="nav-link" data-scroll-target="#get-the-data-ready">Get the Data Ready</a></li>
+<li><a href="#get-the-data-ready" id="toc-get-the-data-ready" class="nav-link" data-scroll-target="#get-the-data-ready">Get the Data Ready</a></li>
   <li><a href="#add-the-facet-layer-to-the-plot" id="toc-add-the-facet-layer-to-the-plot" class="nav-link" data-scroll-target="#add-the-facet-layer-to-the-plot">Add the Facet Layer to the Plot</a></li>
-  </ul></li>
-  <li><a href="#customize-facets" id="toc-customize-facets" class="nav-link" data-scroll-target="#customize-facets">Customize Facets</a>
-  <ul class="collapse">
-  <li><a href="#number-of-rows-or-columns" id="toc-number-of-rows-or-columns" class="nav-link" data-scroll-target="#number-of-rows-or-columns">Number of Rows or Columns</a></li>
-  <li><a href="#axis-ranges" id="toc-axis-ranges" class="nav-link" data-scroll-target="#axis-ranges">Axis Ranges</a></li>
-  </ul></li>
-  <li><a href="#done" id="toc-done" class="nav-link" data-scroll-target="#done">Done!</a></li>
   </ul>
-</nav>
-    </div>
+</li>
+  <li>
+<a href="#customize-facets" id="toc-customize-facets" class="nav-link" data-scroll-target="#customize-facets">Customize Facets</a>
+  <ul class="collapse">
+<li><a href="#number-of-rows-or-columns" id="toc-number-of-rows-or-columns" class="nav-link" data-scroll-target="#number-of-rows-or-columns">Number of Rows or Columns</a></li>
+  <li><a href="#axis-ranges" id="toc-axis-ranges" class="nav-link" data-scroll-target="#axis-ranges">Axis Ranges</a></li>
+  </ul>
+</li>
+  <li><a href="#done" id="toc-done" class="nav-link" data-scroll-target="#done">Done!</a></li>
+  </ul></nav>
+</div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title">Faceting</h1>
   <div class="quarto-categories">
     <div class="quarto-category">Satellite</div>
@@ -206,24 +183,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header>
-
-
-<section id="objectives" class="level2">
-<h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
+</header><section id="objectives" class="level2"><h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
 <ul>
-<li>Learn the syntax to make subplots real quick in <code>{ggplot2}</code></li>
+<li>Learn the syntax to make subplots real quick in <code>{ggplot2}</code>
+</li>
 <li>Learn arguments to modify the appearance of the subplots</li>
-</ul>
-</section>
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+</ul></section><section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <p>This satellite builds on the core <a href="../sessions_core/06_epicurves.html">epicurve session</a>, which is a prerequisite. In that session, we learned how to create an epicurve of measles cases across time:</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure">
-<p><img src="faceting_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="864"></p>
+<figure class="figure"><p><img src="faceting_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="864"></p>
 </figure>
 </div>
 </div>
@@ -235,9 +205,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Or you could trust <code>{ggplot2}</code> to have a solution…</li>
 </ul>
 <p>The first option is tedious and it is error prone, and we advise against it; learning the tools of the second option will be a good investment of you time at some point as they are really powerful, but they are <em>way</em> out of the scope of this tutorial because a much simpler option already exist in <code>{ggplot2}</code>.</p>
-</section>
-<section id="setup" class="level2">
-<h2 class="anchored" data-anchor-id="setup">Setup</h2>
+</section><section id="setup" class="level2"><h2 class="anchored" data-anchor-id="setup">Setup</h2>
 <div class="setup">
 <p>We will use the same clean linelist that we used in the past sessions, which you can download here:</p>
 <div class="cell">
@@ -249,12 +217,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p><br> Make sure this dataset is saved into the appropriate subdirectory of your R project and create a new script called <code>faceting.R</code> in your <code>R</code> directory. Add an appropriate header and load the following packages: <code>{here}</code>, <code>{rio}</code>, and <code>{tidyverse}</code>. <br><br> Finally, add an import section where you use <code>{here}</code> and <code>{rio}</code> to load your data into an object called <code>df_linelist</code>.</p>
 </div>
-</section>
-<section id="faceting" class="level2">
-<h2 class="anchored" data-anchor-id="faceting">Faceting</h2>
+</section><section id="faceting" class="level2"><h2 class="anchored" data-anchor-id="faceting">Faceting</h2>
 <p>The function <code>facet_wrap()</code> allows you to replicate a graph based on the categories of a variable. For example, you could make the epicurve graph <em>by sex</em>, or <em>by site</em>. As other layers of a ggplot graph, you add it to your existing graph with a <code>+</code>. It creates a a figure with multiple small graphs, that <code>{ggplot2}</code> calls <em>facets</em> or <em>small multiples</em>.</p>
-<section id="get-the-data-ready" class="level3">
-<h3 class="anchored" data-anchor-id="get-the-data-ready">Get the Data Ready</h3>
+<section id="get-the-data-ready" class="level3"><h3 class="anchored" data-anchor-id="get-the-data-ready">Get the Data Ready</h3>
 <p>In the following session, <em>we</em> will explain the code by creating subplots by sub-prefecture, and <em>you</em> will be plotting the epicurve by age group.</p>
 <p>If we want to to plot anything <em>by sub-prefecture</em>, the <code>sub_prefecture</code> variable must be present in the aggregated data frame that we use to plot.</p>
 <p>Let’s create a new summarized dataset that has the number of patients by day <em>and by sub-prefecture</em>!</p>
@@ -288,9 +253,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</section>
-<section id="add-the-facet-layer-to-the-plot" class="level3">
-<h3 class="anchored" data-anchor-id="add-the-facet-layer-to-the-plot">Add the Facet Layer to the Plot</h3>
+</section><section id="add-the-facet-layer-to-the-plot" class="level3"><h3 class="anchored" data-anchor-id="add-the-facet-layer-to-the-plot">Add the Facet Layer to the Plot</h3>
 <p>Now, let’s plot this data. Look at the code bellow: it is exactly the same as before but for the last line, which creates the facets:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df_pref <span class="sc">%&gt;%</span></span>
@@ -304,8 +267,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(sub_prefecture))   <span class="co"># Make the plot by sub-prefecture!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure">
-<p><img src="faceting_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="864"></p>
+<figure class="figure"><p><img src="faceting_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="864"></p>
 </figure>
 </div>
 </div>
@@ -317,20 +279,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure">
-<p><img src="faceting_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="864"></p>
+<figure class="figure"><p><img src="faceting_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="864"></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
-</section>
-</section>
-<section id="customize-facets" class="level2">
-<h2 class="anchored" data-anchor-id="customize-facets">Customize Facets</h2>
+</section></section><section id="customize-facets" class="level2"><h2 class="anchored" data-anchor-id="customize-facets">Customize Facets</h2>
 <p>Check out the function <a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">help page</a> to learn about the arguments that <code>facet_wrap()</code> accepts. We will cover a couple here.</p>
-<section id="number-of-rows-or-columns" class="level3">
-<h3 class="anchored" data-anchor-id="number-of-rows-or-columns">Number of Rows or Columns</h3>
+<section id="number-of-rows-or-columns" class="level3"><h3 class="anchored" data-anchor-id="number-of-rows-or-columns">Number of Rows or Columns</h3>
 <p>The arguments <code>nrow</code> and <code>ncol</code> allow you to decide how many facets there should be on one row, respectively one column.</p>
 <p>For exemple, we could have all plots on two rows, for a wide figure:</p>
 <div class="cell">
@@ -347,8 +304,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">nrow =</span> <span class="dv">2</span>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure">
-<p><img src="faceting_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="864"></p>
+<figure class="figure"><p><img src="faceting_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="864"></p>
 </figure>
 </div>
 </div>
@@ -368,8 +324,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">nrow =</span> <span class="dv">4</span>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure">
-<p><img src="faceting_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="864"></p>
+<figure class="figure"><p><img src="faceting_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="864"></p>
 </figure>
 </div>
 </div>
@@ -377,24 +332,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="write">
 <p>Using one of the mentioned argument, create a graph with three columns.</p>
 </div>
-</section>
-<section id="axis-ranges" class="level3">
-<h3 class="anchored" data-anchor-id="axis-ranges">Axis Ranges</h3>
+</section><section id="axis-ranges" class="level3"><h3 class="anchored" data-anchor-id="axis-ranges">Axis Ranges</h3>
 <p>Did you notice that in the graph we produced, all facets share the same axis in x and y? This is often a desired feature, as playing with axes is one of the best ways to mislead readers.</p>
 <p>That being said, if you are more interesting in seeing the shape of the epicurve by category and less by comparing categories to each other, zooming on the available data can be appropriate (alert your reader to the scale variation though!)</p>
 <p>The <code>scales</code> argument accepts the following strings:</p>
 <ul>
-<li><code>"fixed"</code>: the default, same limits on x and y for all facets</li>
-<li><code>"free_x"</code>: the x axis may have different limits in different facets</li>
-<li><code>"free_y"</code>: the y axis may have different limits in different facets</li>
-<li><code>"free"</code>: both axis may vary in different facets</li>
+<li>
+<code>"fixed"</code>: the default, same limits on x and y for all facets</li>
+<li>
+<code>"free_x"</code>: the x axis may have different limits in different facets</li>
+<li>
+<code>"free_y"</code>: the y axis may have different limits in different facets</li>
+<li>
+<code>"free"</code>: both axis may vary in different facets</li>
 </ul>
 <p>Look at this graph:</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure">
-<p><img src="faceting_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="faceting_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -403,10 +359,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="write">
 <p>Your turn! Draw you graph with age group as facets with a free y axis, and a fixed x axis.</p>
 </div>
-</section>
-</section>
-<section id="done" class="level2">
-<h2 class="anchored" data-anchor-id="done">Done!</h2>
+</section></section><section id="done" class="level2"><h2 class="anchored" data-anchor-id="done">Done!</h2>
 <p>Very well done team! You have learned how to facet plots! This will work not only on bar plots such as epicurves, but also on other types of plots made by <code>{ggplot2}</code>.</p>
 <p>Depending on the size of your graph, the date labels on the x-axis may be a bit messed up, the ones in my examples definitely are. Fear not, this can be controlled and is the object of another <a href="../sessions_extra/weekly_epicurves.html">satellite</a>!</p>
 <div class="cell">
@@ -418,10 +371,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 
 
-</section>
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -987,4 +937,5 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-</body></html>
+</body>
+</html>

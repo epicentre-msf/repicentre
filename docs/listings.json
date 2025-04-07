@@ -14,59 +14,15 @@
     "listing": "/explore.html",
     "items": [
       "/sessions_core/06_epicurves.html",
-      "/sessions_extra/weekly_epicurves.fr.html",
       "/sessions_extra/data_exploration.html",
       "/sessions_core/02_import_data.html",
       "/sessions_core/03_data_verbs.html",
       "/sessions_core/04_data_verbs_conditional.html",
-      "/sessions_extra/data_exploration.fr.html",
       "/sessions_extra/faceting.html",
-      "/sessions_extra/faceting.fr.html",
-      "/sessions_core/02_import_data.fr.html",
       "/sessions_core/01_introduction.html",
-      "/sessions_core/06_epicurves.fr.html",
-      "/sessions_core/01_introduction.fr.html",
       "/sessions_core/05_summary_table.html",
       "/sessions_extra/surveillance_companion.html",
-      "/sessions_core/05_summary_table.fr.html",
-      "/sessions_core/03_data_verbs.fr.html",
-      "/sessions_core/04_data_verbs_conditional.fr.html",
       "/sessions_extra/weekly_epicurves.html"
-    ]
-  },
-  {
-    "listing": "/explore.fr.html",
-    "items": [
-      "/sessions_core/06_epicurves.html",
-      "/sessions_extra/weekly_epicurves.fr.html",
-      "/sessions_extra/data_exploration.html",
-      "/sessions_core/02_import_data.html",
-      "/sessions_core/03_data_verbs.html",
-      "/sessions_core/04_data_verbs_conditional.html",
-      "/sessions_extra/data_exploration.fr.html",
-      "/sessions_extra/faceting.html",
-      "/sessions_extra/faceting.fr.html",
-      "/sessions_core/02_import_data.fr.html",
-      "/sessions_core/01_introduction.html",
-      "/sessions_core/06_epicurves.fr.html",
-      "/sessions_core/01_introduction.fr.html",
-      "/sessions_core/05_summary_table.html",
-      "/sessions_extra/surveillance_companion.html",
-      "/sessions_core/05_summary_table.fr.html",
-      "/sessions_core/03_data_verbs.fr.html",
-      "/sessions_core/04_data_verbs_conditional.fr.html",
-      "/sessions_extra/weekly_epicurves.html"
-    ]
-  },
-  {
-    "listing": "/pathway.fr.html",
-    "items": [
-      "/sessions_core/01_introduction.html",
-      "/sessions_core/02_import_data.html",
-      "/sessions_core/03_data_verbs.html",
-      "/sessions_core/04_data_verbs_conditional.html",
-      "/sessions_core/05_summary_table.html",
-      "/sessions_core/06_epicurves.html"
     ]
   }
 ]

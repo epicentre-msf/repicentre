@@ -133,5 +133,8 @@
   },
   "template.qmd": {
     "template.html": "bf917210"
+  },
+  "sessions_extra/surveillance_companion.fr.qmd": {
+    "surveillance_companion.fr.html": "b89bc49a"
   }
 }

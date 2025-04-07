@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
+<head>
+<link rel="alternate" hreflang="en" href="/sessions_core/05_summary_table.html" />
+<link rel="alternate" hreflang="fr" href="/fr/sessions_core/05_summary_table.fr.html" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="description" content="Créer des tableaux récapitulatifs">
+<title>Tableaux récapitulatifs – {repicentre}</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script><script src="../site_libs/quarto-nav/headroom.min.js"></script><script src="../site_libs/clipboard/clipboard.min.js"></script><script src="../site_libs/quarto-search/autocomplete.umd.js"></script><script src="../site_libs/quarto-search/fuse.min.js"></script><script src="../site_libs/quarto-search/quarto-search.js"></script><meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script><script src="../site_libs/quarto-html/popper.min.js"></script><script src="../site_libs/quarto-html/tippy.umd.min.js"></script><script src="../site_libs/quarto-html/anchor.min.js"></script><link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-de84f8d6bb715db06a919283c2d1e787.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-9a023c9ade86a60361e96e3e3f11bc54.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script><link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-6ab5e0891aed6e954066009cd4eecacc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-b92d258d3900ea06ce3f9b55f30b4460.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Pas de résultats",
+    "search-matching-documents-text": "documents trouvés",
+    "search-copy-link-title": "Copier le lien vers la recherche",
+    "search-hide-matches-text": "Cacher les correspondances additionnelles",
+    "search-more-match-text": "correspondance de plus dans ce document",
+    "search-more-matches-text": "correspondances de plus dans ce document",
+    "search-clear-button-title": "Effacer",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Annuler",
+    "search-submit-button-title": "Envoyer",
+    "search-label": "Recherche"
+  }
+}</script><script src="../site_libs/font-awesome-6.5.2/js/script.js"></script><script type="text/javascript" src="../script.js"></script><link rel="stylesheet" href="../styles.css">
+</head>
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">{repicentre}</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Recherche"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Basculer la navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+<li class="nav-item"><div class="dropdown" id="languages-links-parent">
+<button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="languages-button"><i class="bi bi-globe2"></i> Français</button><ul class="dropdown-menu" id="languages-links"><li><a class="dropdown-item" href="/sessions_core/05_summary_table.html" id="language-link-en">English</a></li></ul>
+</div></li>
+<li class="nav-item">
+    <a class="nav-link" href="../pathway.html"> 
+<span class="menu-text">Cours</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../explore.html"> 
+<span class="menu-text">Explorer</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../resources.html"> 
+<span class="menu-text">Ressources</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">À Propos</span></a>
+  </li>  
+</ul>
+</div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Basculer le mode sombre"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Sur cette page</h2>
+   
+  <ul>
+<li><a href="#objectifs" id="toc-objectifs" class="nav-link active" data-scroll-target="#objectifs">Objectifs</a></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
+  <li><a href="#introduction-agr%C3%A9gation-des-donn%C3%A9es" id="toc-introduction-agrégation-des-données" class="nav-link" data-scroll-target="#introduction-agrégation-des-données">Introduction : agrégation des données</a></li>
+  <li><a href="#compter-plusieurs-colonnes-tableaux-de-contingence" id="toc-compter-plusieurs-colonnes-tableaux-de-contingence" class="nav-link" data-scroll-target="#compter-plusieurs-colonnes-tableaux-de-contingence">Compter plusieurs colonnes (tableaux de contingence)</a></li>
+  <li><a href="#filtrer-les-valeurs-na" id="toc-filtrer-les-valeurs-na" class="nav-link" data-scroll-target="#filtrer-les-valeurs-na">Filtrer les valeurs <code>NA</code></a></li>
+  <li>
+<a href="#tableau-r%C3%A9capitulatif-statistiques-par-sous-pr%C3%A9fecture" id="toc-tableau-récapitulatif-statistiques-par-sous-préfecture" class="nav-link" data-scroll-target="#tableau-récapitulatif-statistiques-par-sous-préfecture">Tableau récapitulatif : statistiques par sous-préfecture</a>
+  <ul class="collapse">
+<li><a href="#comptages" id="toc-comptages" class="nav-link" data-scroll-target="#comptages">Comptages</a></li>
+  <li><a href="#r%C3%A9capitulatifs-des-variables-continus" id="toc-récapitulatifs-des-variables-continus" class="nav-link" data-scroll-target="#récapitulatifs-des-variables-continus">Récapitulatifs des variables continus</a></li>
+  <li><a href="#comptage-avec-une-condition" id="toc-comptage-avec-une-condition" class="nav-link" data-scroll-target="#comptage-avec-une-condition">Comptage avec une condition</a></li>
+  <li><a href="#autres-statistiques" id="toc-autres-statistiques" class="nav-link" data-scroll-target="#autres-statistiques">Autres statistiques</a></li>
+  <li><a href="#utiliser-la-sortie" id="toc-utiliser-la-sortie" class="nav-link" data-scroll-target="#utiliser-la-sortie">Utiliser la sortie</a></li>
+  </ul>
+</li>
+  <li><a href="#cest-fait" id="toc-cest-fait" class="nav-link" data-scroll-target="#cest-fait">C’est fait !</a></li>
+  <li>
+<a href="#pour-aller-plus-loin" id="toc-pour-aller-plus-loin" class="nav-link" data-scroll-target="#pour-aller-plus-loin">Pour aller plus loin</a>
+  <ul class="collapse">
+<li><a href="#exercices-suppl%C3%A9mentaires" id="toc-exercices-supplémentaires" class="nav-link" data-scroll-target="#exercices-supplémentaires">Exercices supplémentaires</a></li>
+  <li><a href="#ressources-suppl%C3%A9mentaires" id="toc-ressources-supplémentaires" class="nav-link" data-scroll-target="#ressources-supplémentaires">Ressources supplémentaires</a></li>
+  </ul>
+</li>
+  </ul></nav>
+</div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title">Tableaux récapitulatifs</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Core</div>
+    <div class="quarto-category">Tableaux de resumé</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Créer des tableaux récapitulatifs
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header><section id="objectifs" class="level2"><h2 class="anchored" data-anchor-id="objectifs">Objectifs</h2>
+<ul>
+<li>Créer des tableaux de contingence avec <code>count()</code>
+</li>
+<li>Calculer des statistiques récapitulatives par groupe à l’aide de <code>summarize()</code>
+</li>
+<li>Réviser comment sélectionner les lignes en utilisant <code>filter()</code> et créer/modifier des variables avec <code>mutate()</code>
+</li>
+<li>Créer des variables catégorielles ordonnées</li>
+</ul></section><section id="setup" class="level2"><h2 class="anchored" data-anchor-id="setup">Setup</h2>
+<p><strong>Dépendances.</strong> Cette session suppose que vous savez utiliser RStudio, que vous êtes capable d’importer des données et que vous connaissez les verbes de base de manipulation des données que nous avons vus dans les sessions de base jusqu’à présent. Si vous avez besoin d’un rappel sur l’un de ces sujets, nous vous encourageons à revoir les sessions de base du parcours d’apprentissage.</p>
+<div class="setup">
+<p>Cette session utilisera la version nettoyée de l’ensemble de données Moissala sur la rougeole.</p>
+<div class="cell">
+<div class="cell-output-display">
+<a href="https://github.com/epicentre-msf/repicentre/raw/main/data/FETCHR.zip">
+<button class="btn btn-default"><i class="fa fa-save"></i> Linelist rougeole nettoyée</button>
+</a>
+</div>
+</div>
+<p><br> Ouvrez votre projet RStudio et créez un nouveau script dans le sous-dossier R appelé <code>tables.R</code> avec les métadonnées appropriées et une section “Packages” qui importe : <code>{rio}</code>, <code>{here}</code> et <code>{tidyverse}</code>. Ajoutez une section “Import Data” qui charge la version <em>nettoyée</em> de la linelist de la rougeole dans R.</p>
+</div>
+</section><section id="introduction-agrégation-des-données" class="level2"><h2 class="anchored" data-anchor-id="introduction-agrégation-des-données">Introduction : agrégation des données</h2>
+<p>Récapitulons. Vous venez d’effectuer l’une des tâches les [plus importantes]{.hovertip bs-toggle=‘tooltip’ bs-title=’Certains considèrent que cela représente 80 % du travail !} d’un épidémiologiste : le <strong>nettoyage des données</strong>. Maintenant que vous disposez de données propres et normalisées, vous pouvez vous mettre au travail et commencer à les analyser. Les analyses commencent généralement par des tableaux et des résumés qui décrivent nos données :</p>
+<ul>
+<li>Tableaux de fréquence univariés pour compter les occurrences de différentes valeurs</li>
+<li>Statistiques sommaires des variables numériques (moyenne, médiane, écart-type)</li>
+<li>Tableaux croisés pour examiner les relations entre les variables catégorielles</li>
+<li>Résumés par groupe pour comparer les statistiques entre différents sous-ensembles de données</li>
+</ul></section><section id="compter-plusieurs-colonnes-tableaux-de-contingence" class="level2"><h2 class="anchored" data-anchor-id="compter-plusieurs-colonnes-tableaux-de-contingence">Compter plusieurs colonnes (tableaux de contingence)</h2>
+<p>Au cours de la session d’exploration des données, vous avez appris à créer un tableau de fréquence pour une variable catégorielle unique à l’aide de la fonction <code>count()</code>. C’est bien, mais nous voulons souvent compter le nombre d’observations en fonction de deux variables (ou plus !).</p>
+<p>Ces tableaux sont appelés <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Ou tableaux croisés. Ils montrent comment les observations sont réparties entre différentes combinaisons de catégories.">tableaux de contingence</span>. Par exemple, connaître le nombre de patients par sous-préfecture est très utile, mais nous pourrions vouloir stratifier à la fois par sous-préfecture et par groupe d’âge pour voir si certaines zones ont des patients anormalement âgés. Ce type de stratification est un moyen utile d’essayer de trouver des zones qui pourraient être de bons candidats pour des campagnes de rattrapage. C’est facile, il suffit de passer plusieurs noms de colonnes à <code>count()</code> :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">|&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(sous_prefecture, age_groupe)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="write">
+<p>Créez un nouveau tableau récapitulatif en comptant le nombre de patients stratifiés par <code>sous_prefecture</code> et <code>hospitalisation</code>. Que se passe-t-il si vous modifiez l’ordre des arguments donnés à <code>count()</code> ?</p>
+<p>Maintenant, en utilisant <code>count()</code>, réponds aux questions suivantes :</p>
+<ul>
+<li>Combien de patients étaient des femmes ? Quelle est la proportion ?</li>
+<li>Quelles sont toutes les valeurs possibles de la variable <code>statut_sortie</code> ?</li>
+<li>Combien de patients âgés de 1 à 4 ans se sont rétablis ?</li>
+</ul>
+</div>
+</section><section id="filtrer-les-valeurs-na" class="level2"><h2 class="anchored" data-anchor-id="filtrer-les-valeurs-na">Filtrer les valeurs <code>NA</code>
+</h2>
+<p>En examinant les catégories du <code>statut_sortie</code>, vous devriez avoir remarqué que certaines patientes ont des valeurs manquantes (<code>NA</code>):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(statut_sortie) <span class="sc">|&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="look">
+<p>Observez le résultat du code ci-dessus. Comment pouvez-vous également calculer la proportion de patients décédés ? Êtes-vous satisfait de ce calcul ?</p>
+</div>
+<p>La proportion de cas décédés est également appelée <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Le taux de létalité est un ratio (ou un risque) mais pas un taux !">taux de létalité</span>. Pour calculer précisément le CFR, nous devons nous assurer que le dénominateur ne comprend que les patients dont nous sommes sûrs du résultat (c’est-à-dire que nous devons supprimer tous les cas avec “NA” ou “contre avis médical”).</p>
+<p>Rappelons que nous pouvons le faire en utilisant <code>filter()</code>. Pour garder les valeurs manquantes (<code>NA</code>) dans une variable, nous pouvons utiliser la petite fonction <code>is.na(statut_sortie)</code>. L’ajout d’un <code>!</code> devant fera l’inverse : <em>supprimer les valeurs manquantes de <code>statut_sortie</code></em> :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(statut_sortie <span class="sc">!=</span> <span class="st">"sortie contre avis medical"</span>, </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>         <span class="sc">!</span><span class="fu">is.na</span>(statut_sortie)) <span class="sc">|&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(statut_sortie)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="write">
+<p>Quelle autre instruction conditionnelle pourriez-vous utiliser dans <code>filter()</code> pour obtenir les mêmes résultats ?</p>
+</div>
+<p>Maintenant que nous avons supprimé les patients dont l’issue est inconnue, nous pouvons ajouter ceci avant de créer notre tableau de fréquence pour obtenir le CFR correct.</p>
+<div class="write">
+<p>À l’aide de votre filtre, mettez à jour votre code pour résumer le nombre observé de patients qui ont survécu et sont décédés ainsi que le taux de létalité (proportion de décès). Stockez ce nouveau dataframe dans un objet, <code>cfr_df</code>.</p>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Astuce
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Bonus.</strong> Une fonction de “raccourci” utile est <code>drop_na()</code> du package <code>{tidyr}</code> qui équivaut à <code>filter(!is.na())</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(statut_sortie) <span class="sc">|&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(statut_sortie)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>drop_na()</code> est particulièrement utile car vous pouvez lui donner plusieurs noms de colonnes pour filtrer. Mais attention, cela supprimera <strong>toutes</strong> les lignes où <strong>une ou plusieurs</strong> de ces colonnes ont une valeur manquante.</p>
+</div>
+</div>
+</section><section id="tableau-récapitulatif-statistiques-par-sous-préfecture" class="level2"><h2 class="anchored" data-anchor-id="tableau-récapitulatif-statistiques-par-sous-préfecture">Tableau récapitulatif : statistiques par sous-préfecture</h2>
+<p>Maintenant que nous avons produit quelques tableaux de fréquence et de contingence simples, nous pouvons augmenter la complexité. Une tâche courante en épidémiologie consiste à examiner les statistiques résumées dans des sous-ensembles de données.</p>
+<p>Par exemple, on peut nous demander de produire des statistiques sur les patients au niveau des sous-préfectures, c’est-à-dire que pour chaque sous-préfecture dans les données, nous devons répondre aux questions suivantes :</p>
+<ul>
+<li>Combien de patients ont été consultés ?</li>
+<li>Quel est leur âge moyen ?</li>
+<li>Quelle a été la date d’admission la plus ancienne ?</li>
+<li>Combien de patients ont été hospitalisés ?</li>
+<li>Parmi les enfants de moins de 6 mois, combien sont décédés ?</li>
+</ul>
+<p>C’est exactement pour cela que la fonction <code>summarize()</code> a été créée ! Elle nous permet de calculer des statistiques résumées sur un ensemble de données, et la syntaxe est similaire à celle de <code>mutate()</code> :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># NE PAS EXÉCUTER (PSEUDO-CODE)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">new_col =</span> <span class="fu">function_to_create</span>(existing_col))</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">.by =</span> grouping_variable,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">new_col =</span> <span class="fu">summary_function</span>(existing_col))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Considérons le code suivant, où nous <strong>résumons les données</strong> pour calculer l’âge moyen de tous les patients.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">moy_age =</span> <span class="fu">mean</span>(age))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  moy_age
+    &lt;dbl&gt;
+1    6.82</code></pre>
+</div>
+</div>
+<p>Notez que ce code donne une seule valeur pour l’âge moyen. Aucune variable de regroupement n’a été fournie, donc <code>summarize()</code> a renvoyé une statistique récapitulative pour l’ensemble du jeu de données. Pour calculer l’âge moyen par strate spécifique, nous devons spécifier une <strong>variable de regroupement</strong> en utilisant l’argument <code>.by</code> :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">.by =</span> sexe, <span class="co"># Faire le résumé (ici, la moyenne) par sexe</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">moy_age =</span> <span class="fu">mean</span>(age))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  sexe  moy_age
+  &lt;chr&gt;   &lt;dbl&gt;
+1 f        6.77
+2 m        6.87</code></pre>
+</div>
+</div>
+<div class="look">
+<p>Jetez un œil aux résultats ci-dessus. Comment les interprétez-vous ?</p>
+</div>
+<p>Maintenant que nous pouvons utiliser <code>summarize()</code>, nous pouvons l’utiliser pour calculer des statistiques récapitulatives appropriées par sous-préfecture. Commençons par appeler un <code>summarize()</code> vide et regrouper les données sur <code>sous_prefecture</code>.</p>
+<div class="write">
+<p>Exécutez le code suivant :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">.by =</span> sous_prefecture)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Que se passe-t-il lorsque vous exécutez ces lignes ?</p>
+</div>
+<section id="comptages" class="level3"><h3 class="anchored" data-anchor-id="comptages">Comptages</h3>
+<p>Nous voulons d’abord examiner le nombre de cas dans chaque <code>sous_prefecture</code>. Cela peut être fait en utilisant la fonction d’aide <code>n()</code> :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">.by =</span> sous_prefecture,</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">n_patients =</span> <span class="fu">n</span>()  <span class="co"># pour compter</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="write">
+<p>Ok, maintenant construisons un tableau récapitulatif pour chaque sous-préfecture. Commençons par reproduire les lignes ci-dessus.</p>
+</div>
+</section><section id="récapitulatifs-des-variables-continus" class="level3"><h3 class="anchored" data-anchor-id="récapitulatifs-des-variables-continus">Récapitulatifs des variables continus</h3>
+<p>Nous pouvons ensuite utiliser les fonctions mean(), median(), min(), max() (et autres) pour produire des récapitulatifs pour les variables continues. Par exemple, l’âge moyen :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">.by =</span> sous_prefecture,</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">n_patients =</span> <span class="fu">n</span>(),</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">mean_age =</span> <span class="fu">mean</span>(age))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="write">
+<p>Ajoutez la date d’admission minimale à votre tableau pour chacune des <code>sous_prefecture</code> ? Êtes-vous satisfait des résultats ?</p>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Astuce
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>N’oubliez pas qu’avec les fonctions arithmétiques telles que mean(), median(), min(), max(), vous devez <strong>indiquer explicitement à R</strong> de supprimer NA.</p>
+</div>
+</div>
+</section><section id="comptage-avec-une-condition" class="level3"><h3 class="anchored" data-anchor-id="comptage-avec-une-condition">Comptage avec une condition</h3>
+<p>Nous pouvons également être intéressés par le nombre de patients (lignes) qui répondent à une condition : le <em>nombre de patients de sexe féminin</em>. Le comptage par condition logique peut être effectué avec la syntaxe suivante :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># NE PAS EXÉCUTER (PSEUDO-CODE)</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(<span class="at">sum_category =</span> <span class="fu">sum</span>(LOGIC_TEST, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Cette somme nous permet de compter toutes les lignes où notre condition a été remplie (retourne <code>TRUE</code>). Par exemple :</p>
+<p>Cette somme nous permet de compter toutes les lignes où notre condition a été remplie (retourne <code>TRUE</code>). Par exemple :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">.by =</span> sous_prefecture,</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">n_female =</span> <span class="fu">sum</span>(sexe <span class="sc">==</span> <span class="st">"f"</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="write">
+<p>Ajoutez une variable à votre tableau qui compte le nombre de patients qui ont été hospitalisés. (c’est-à-dire : les lignes qui ont “oui” dans la variable “hospitalisation”)</p>
+</div>
+</section><section id="autres-statistiques" class="level3"><h3 class="anchored" data-anchor-id="autres-statistiques">Autres statistiques</h3>
+<p>Parfois, nous voulons produire une statistique plus compliquée, par exemple l’âge moyen de tous les patients hospitalisés. Ici, la syntaxe est un peu différente :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># NE PAS EXÉCUTER (PSEUDO-CODE)</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_category =</span> <span class="fu">mean</span>(col_to_use[LOGIC_TEST], <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Ici, nous avons : - Indiqué quelle statistique de synthèse nous voulons utiliser (<code>mean()</code>) - Indiqué sur quelle colonne nous voulons calculer cette statistique (<code>col_to_use</code>) - Création d’une condition indiquant les observations de cette colonne à utiliser dans le calcul (<code>[LOGIC_TEST]</code>)</p>
+<p>Pour donner un exemple concret, si nous voulions calculer la moyenne de la variable <code>age</code> mais <em>uniquement</em> pour les patients hospitalisés (c’est-à-dire dans les lignes où <code>hospitalisation == "oui"</code>) nous écririons :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">.by =</span> sous_prefecture,</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">n_patients =</span> <span class="fu">n</span>(),</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">moy_age_hosp =</span> <span class="fu">mean</span>(age[hospitalisation <span class="sc">==</span> <span class="st">"oui"</span>], <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>L’utilisation d’un test logique dans l’exemple ci-dessus est appelée <strong>indexation logique</strong>, où une condition est essentiellement utilisée pour filtrer les observations que vous souhaitez prendre en compte lors d’un calcul. L’indexation logique est très puissante, mais elle peut aussi demander un certain temps d’adaptation, alors ne vous inquiétez pas trop si ce n’est pas parfaitement clair à ce stade.</p>
+<div class="write">
+<p>Pouvez-vous utiliser cette syntaxe pour calculer l’âge moyen des patientes dans votre tableau ?</p>
+</div>
+<p>C’est très bien ! Nous commençons à obtenir un tableau récapitulatif groupé assez exhaustif avec beaucoup d’informations utiles par “sous-préfecture” ! Un défi supplémentaire pour vous :</p>
+<div class="write">
+<p><strong>DÉFI</strong> : Pourriez-vous ajouter une variable à votre tableau qui <strong>compte</strong> le nombre de patients décédés <em>parmi</em> ceux qui ont <em>&lt; 6 mois</em>.</p>
+<p><br><strong>Note.</strong> Vous voulez compter les lignes (donc utiliser <code>sum()</code>) qui remplissent une condition spécifique pour le résultat (<code>statut_sortie == "deces"</code>), mais <em>uniquement</em> lorsque <code>age_group == "&lt; 6 months"</code></p>
+</div>
+</section><section id="utiliser-la-sortie" class="level3"><h3 class="anchored" data-anchor-id="utiliser-la-sortie">Utiliser la sortie</h3>
+<p>Enfin, n’oubliez pas que <code>summarize()</code> renvoie un dataframe que nous pouvons ensuite manipuler davantage (par exemple : avec <code>filter()</code> et <code>mutate()</code>).</p>
+<div class="write">
+<p>Ajoutez un <code>mutate()</code> après avoir produit votre tableau récapitulatif pour calculer :</p>
+<ul>
+<li>La proportion de patients hospitalisés par sous-préfecture</li>
+<li>La proportion de patientes par sous-préfecture</li>
+</ul>
+</div>
+<p>L’en-tête de votre tableau final devrait ressembler à ceci :</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 11
+  sous_prefecture n_patients moy_age min_admission n_femme n_hosp moy_age_hosp
+  &lt;chr&gt;                &lt;int&gt;   &lt;dbl&gt; &lt;date&gt;          &lt;int&gt;  &lt;int&gt;        &lt;dbl&gt;
+1 Moissala              1808    6.84 2022-08-14        923    612         5.49
+2 Bouna                 1376    6.56 2023-01-11        669    412         5.67
+3 Bedjondo               534    7.07 2023-06-09        251    184         5.21
+4 Bekourou               496    6.84 2023-06-17        251    164         6.04
+5 Bedaya                 435    7.10 2023-07-04        209    147         6.16
+6 Koumra                 253    7.11 2023-08-14        138     84         6.26
+# ℹ 4 more variables: moy_age_femme &lt;dbl&gt;, n_deces_moins_6m &lt;int&gt;,
+#   prop_female &lt;dbl&gt;, prop_hosp &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</section></section><section id="cest-fait" class="level2"><h2 class="anchored" data-anchor-id="cest-fait">C’est fait !</h2>
+<p>Vous devriez être fiers de vous, la création de tableaux récapitulatifs est une compétence importante pour un épidémiologiste, et le faire en R est très efficace ! N’oubliez pas de sauvegarder votre code !</p>
+<div class="cell">
+<div class="cell-output-display">
+<a href="https://github.com/epicentre-msf/repicentre/blob/main/sessions_core/05_summary_table_solutions_fr.R">
+<button class="btn btn-default"><i class="fa fa-save"></i> Solutions exercices</button>
+</a>
+</div>
+</div>
+</section><section id="pour-aller-plus-loin" class="level2"><h2 class="anchored" data-anchor-id="pour-aller-plus-loin">Pour aller plus loin</h2>
+<section id="exercices-supplémentaires" class="level3"><h3 class="anchored" data-anchor-id="exercices-supplémentaires">Exercices supplémentaires</h3>
+<ol type="1">
+<li>Créez un tableau récapitulatif qui calcule les statistiques suivantes par <em>groupes d’âge</em> :</li>
+</ol>
+<ul>
+<li>Le nombre de patients</li>
+<li>La proportion d’hommes</li>
+<li>Le nombre de décès</li>
+<li>Le CFR</li>
+<li>Le nombre de décès parmi les patients atteints de pneumonie</li>
+</ul>
+<ol start="2" type="1">
+<li><p>Faites un tableau qui montre la proportion de patients par âge ayant reçu un vaccin contre la rougeole (par rappel oral ou par carte) et ceux qui ont reçu 1 ou 2 doses.</p></li>
+<li><p>Faites un tableau comparant la proportion de patients hospitalisés et non hospitalisés présentant un TDR positif pour le paludisme, de la fièvre, une éruption cutanée, une toux, des yeux rouges, une pneumonie, une encéphalite et un MUAC « rouge » ou « jaune » (moins de 125 mm).</p></li>
+<li><p>Calculer le nombre moyen de jours entre l’apparition des premiers symptômes et la consultation par sous-préfecture.</p></li>
+<li><p>Calculer le temps moyen passé à l’hôpital (i.e. jours entre l’admission et le résultat) par résultat (i.e. chez ceux qui ont guéri et ceux qui sont décédés).</p></li>
+</ol></section><section id="ressources-supplémentaires" class="level3"><h3 class="anchored" data-anchor-id="ressources-supplémentaires">Ressources supplémentaires</h3>
+<ul>
+<li>Le chapitre du <a href="https://epirhandbook.com/en/new_pages/grouping.html">manuel EpiR sur le regroupement des données</a>
+</li>
+<li>Une fois que vous avez des tableaux, vous pouvez les personnaliser en profondeur pour l’affichage/la publication à l’aide du paquetage <code>{gt}</code> :
+<ul>
+<li><a href="https://gt.rstudio.com/index.html">Site web de <code>gt</code></a></li>
+<li><a href="https://gt.albert-rapp.de/">Livre sur <code>gt</code></a></li>
+</ul>
+</li>
+</ul></section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copié");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copié");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
+<head>
+<link rel="alternate" hreflang="en" href="/sessions_extra/weekly_epicurves.html" />
+<link rel="alternate" hreflang="fr" href="/fr/sessions_extra/weekly_epicurves.fr.html" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="description" content="Apprenez à tracer des courbes épidémiques hebdomadaires et à améliorer les étiquettes des axes">
+<title>Courbes épidémiques hebdomadaires – {repicentre}</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script><script src="../site_libs/quarto-nav/headroom.min.js"></script><script src="../site_libs/clipboard/clipboard.min.js"></script><script src="../site_libs/quarto-search/autocomplete.umd.js"></script><script src="../site_libs/quarto-search/fuse.min.js"></script><script src="../site_libs/quarto-search/quarto-search.js"></script><meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script><script src="../site_libs/quarto-html/popper.min.js"></script><script src="../site_libs/quarto-html/tippy.umd.min.js"></script><script src="../site_libs/quarto-html/anchor.min.js"></script><link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-de84f8d6bb715db06a919283c2d1e787.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-9a023c9ade86a60361e96e3e3f11bc54.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script><link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-6ab5e0891aed6e954066009cd4eecacc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-b92d258d3900ea06ce3f9b55f30b4460.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Pas de résultats",
+    "search-matching-documents-text": "documents trouvés",
+    "search-copy-link-title": "Copier le lien vers la recherche",
+    "search-hide-matches-text": "Cacher les correspondances additionnelles",
+    "search-more-match-text": "correspondance de plus dans ce document",
+    "search-more-matches-text": "correspondances de plus dans ce document",
+    "search-clear-button-title": "Effacer",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Annuler",
+    "search-submit-button-title": "Envoyer",
+    "search-label": "Recherche"
+  }
+}</script><script src="../site_libs/font-awesome-6.5.2/js/script.js"></script><script type="text/javascript" src="../script.js"></script><link rel="stylesheet" href="../styles.css">
+</head>
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">{repicentre}</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Recherche"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Basculer la navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+<li class="nav-item"><div class="dropdown" id="languages-links-parent">
+<button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="languages-button"><i class="bi bi-globe2"></i> Français</button><ul class="dropdown-menu" id="languages-links"><li><a class="dropdown-item" href="/sessions_extra/weekly_epicurves.html" id="language-link-en">English</a></li></ul>
+</div></li>
+<li class="nav-item">
+    <a class="nav-link" href="../pathway.html"> 
+<span class="menu-text">Cours</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../explore.html"> 
+<span class="menu-text">Explorer</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../resources.html"> 
+<span class="menu-text">Ressources</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">À Propos</span></a>
+  </li>  
+</ul>
+</div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Basculer le mode sombre"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Sur cette page</h2>
+   
+  <ul>
+<li><a href="#objectifs" id="toc-objectifs" class="nav-link active" data-scroll-target="#objectifs">Objectifs</a></li>
+  <li><a href="#mise-en-place" id="toc-mise-en-place" class="nav-link" data-scroll-target="#mise-en-place">Mise en place</a></li>
+  <li>
+<a href="#donn%C3%A9es-hebdomadaires" id="toc-données-hebdomadaires" class="nav-link" data-scroll-target="#données-hebdomadaires">Données hebdomadaires</a>
+  <ul class="collapse">
+<li><a href="#num%C3%A9ros-de-semaine" id="toc-numéros-de-semaine" class="nav-link" data-scroll-target="#numéros-de-semaine">Numéros de semaine</a></li>
+  <li><a href="#premier-jour-de-la-semaine" id="toc-premier-jour-de-la-semaine" class="nav-link" data-scroll-target="#premier-jour-de-la-semaine">Premier jour de la semaine</a></li>
+  <li><a href="#agr%C3%A9ger" id="toc-agréger" class="nav-link" data-scroll-target="#agréger">Agréger</a></li>
+  </ul>
+</li>
+  <li><a href="#tracer-le-graphique" id="toc-tracer-le-graphique" class="nav-link" data-scroll-target="#tracer-le-graphique">Tracer le graphique</a></li>
+  <li>
+<a href="#am%C3%A9liorer-laxe" id="toc-améliorer-laxe" class="nav-link" data-scroll-target="#améliorer-laxe">Améliorer l’axe</a>
+  <ul class="collapse">
+<li><a href="#modifier-la-fr%C3%A9quence-des-tirets" id="toc-modifier-la-fréquence-des-tirets" class="nav-link" data-scroll-target="#modifier-la-fréquence-des-tirets">Modifier la fréquence des tirets</a></li>
+  <li><a href="#am%C3%A9liorer-les-%C3%A9tiquettes" id="toc-améliorer-les-étiquettes" class="nav-link" data-scroll-target="#améliorer-les-étiquettes">Améliorer les étiquettes</a></li>
+  </ul>
+</li>
+  </ul></nav>
+</div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title">Courbes épidémiques hebdomadaires</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Satellite</div>
+    <div class="quarto-category">Visualization</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Apprenez à tracer des courbes épidémiques hebdomadaires et à améliorer les étiquettes des axes
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header><section id="objectifs" class="level2"><h2 class="anchored" data-anchor-id="objectifs">Objectifs</h2>
+<p>Dans la session <a href="../sessions_core/06_epicurves.html">principale sur les grapiques</a>, vous avez appris à tracer une courbe épidémique du nombre de cas journaliers :</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="weekly_epicurves_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Ici les données sont agrégées <strong>par jour</strong>, ce qui raisonnable si l’épidémie est de courte durée ou si vous souhaitez zoomer sur une période spécifique. Il nous arrivera néanmoins de souvent vouloir tracer des courbes <strong>hebdomadaires</strong>.</p>
+<p>Dans cette tutoriel, nous apprendrons à agréger les données par semaine, à tracer le graphique et à améliorer les étiquettes de l’axe des abscisses.</p>
+<p><strong>Prérequis</strong> : la session sur les <a href="../sessions_core/06_epicurves.html">courbes épidémiques</a>.</p>
+</section><section id="mise-en-place" class="level2"><h2 class="anchored" data-anchor-id="mise-en-place">Mise en place</h2>
+<div class="setup">
+<p>Nous utiliserons la même liste linéaire nettoyée que précédemment et qui peut être téléchargée ici :</p>
+<div class="cell">
+<div class="cell-output-display">
+<a href="https://github.com/epicentre-msf/repicentre/raw/refs/heads/main/data/data/clean/moissala_linelist_clean_FR.rds">
+<button class="btn btn-default"><i class="fa fa-save"></i> Télécharger les données</button>
+</a>
+</div>
+</div>
+<p><br> Si ce n’est pas déjà fait, enregistrez le jeu de données dans <code>data/clean</code> puis créez un nouveau script appelé <code>courbe_hebdo.R</code> dans votre sous-dossier <code>R</code> (alternativement, vous pouvez rajouter une section au script sur les courbes épidémiques journalières).</p>
+<p><br> Si vous créez un nouveau script, ajoutez un en-tête approprié et chargez les paquets suivants : <code>{here}</code>, <code>{rio}</code>, <code>{tidyverse}</code> et <code>{scales}</code>. Importez ensuite les données propres (<code>moissala_linelist_clean_FR.rds</code>) dans R et enregistrez-les dans un objet <code>df_linelist</code>.</p>
+</div>
+<p>Au cours du tutoriel, les exemples porteront sur les sorties et <em>vous</em> tracerez la courbe épidémique à partir de la date de début des symptômes.</p>
+</section><section id="données-hebdomadaires" class="level2"><h2 class="anchored" data-anchor-id="données-hebdomadaires">Données hebdomadaires</h2>
+<p>Nous allons aborder deux façons d’agréger les données par semaine. Le concept de la première vous sera sans doute familier (semaines identifiées par leur <em>numéros</em>), mais nous nous concentrerons sur une méthode plus robuste (semaine identifiées par la date du <em>premier jour de la semaine</em>).</p>
+<section id="numéros-de-semaine" class="level3"><h3 class="anchored" data-anchor-id="numéros-de-semaine">Numéros de semaine</h3>
+<p>La manière la plus intuitive de d’agréger par semaine est d’utiliser des numéros de semaines, car les données du MSP sont souvent dans ce format. Vous avez sans doute créé de nombreuses courbes épidémiques dans ce format vous-mêmes.</p>
+<p>La fonction <code>isoweek()</code> du paquet <code>{lubridate}</code> accepte une date (ou un vecteur de dates) et renvoie le <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Les semaines ISO sont un standard international concernant les dates, afin d'éviter les différences entre pays sur le début de la semaine et sur la façon de définir la première semaine de l'année. Les semaines ISO commencent le lundi. Si vous travaillez avec le CDC américain, vous pouvez utiliser la fonction sœur epiweek() qui commence le dimanche.">numéro de semaine ISO</span>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>exemple_date <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">'2025-02-24'</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>exemple_date</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2025-02-24"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">isoweek</span>(exemple_date)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 9</code></pre>
+</div>
+</div>
+<p>Nous pouvons utiliser cette fonction pour créer une colonne <code>sem_sortie_num</code> dans nos données :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="ot">&lt;-</span> df_linelist <span class="sc">|&gt;</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sem_sortie_num =</span> <span class="fu">isoweek</span>(date_sortie))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Le début des colonnes <code>date_sortie</code> et <code>sem_sortie_num</code> ressemble à ceci (sans les <code>NA</code>) :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">|&gt;</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">drop_na</span>(date_sortie) <span class="sc">|&gt;</span> </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(date_sortie, sem_sortie_num) <span class="sc">|&gt;</span> </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  date_sortie sem_sortie_num
+1  2022-08-18             33
+2  2022-08-28             34
+3  2022-09-03             35
+4  2022-09-12             37
+5  2022-09-10             36
+6  2022-09-18             37</code></pre>
+</div>
+</div>
+<div class="write">
+<p>A vous de jouer. Utilisez les fonctions <code>mutate()</code> et <code>isoweek()</code> pour créer une nouvelle colonne dans votre data frame appelée <code>sem_symptomes_num</code> qui contient la semaine ISO associée à chaque <em>date de début des symptômes</em>. L’en-tête des colonnes <code>date_debut</code> et <code>sem_symptomes_num</code> devrait ressembler à ceci :</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>  date_debut sem_symptomes_num
+1 2022-08-13                32
+2 2022-08-18                33
+3 2022-08-17                33
+4 2022-08-22                34
+5 2022-08-30                35
+6 2022-08-30                35</code></pre>
+</div>
+</div>
+</div>
+<p>Nous pourrions maintenant utiliser <code>count()</code> sur cette colonne pour agréger les données par semaine, puis tracer le graphique avec <code>{ggplot2}</code> avec un code très similaire à la <a href="../sessions_core/06_epicurves.html">session principale</a>.</p>
+<p>Malheureusement il y a un problème. Avec le numéro de semaine il y a une première semaine en 2022… mais aussi en 2023, 2024 etc. Dans le cas d’une épidémie courte qui n’aurait lieu qu’en 2022, cela ne poserait pas problème. Cependant, notre data frame contient des données de la région entière, et les dates s’étendent de 2022 à 2023. Donc si nous comptions le nombre de patient par numéro de semaine, le tableau suivant serait erroné :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># FAUX</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">|&gt;</span> </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(sem_symptomes_num) <span class="sc">|&gt;</span> </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   sem_symptomes_num  n
+1                  1 36
+2                  2 35
+3                  3 42
+4                  4 56
+5                  5 70
+6                  6 78
+7                  7 85
+8                  8 49
+9                  9 62
+10                10 81</code></pre>
+</div>
+</div>
+<p>Pour résoudre le problème nous pouvons stratifier par <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Notez l'utilisation de la fonction isoyear() du paquet {lubridate}. C'est la fonction sœur de isoweek() et elle fait exactement ce que vous attendez : retourner l'année d'une date selon la norme ISO">année</span> :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">|&gt;</span> </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">annee_symptomes =</span> <span class="fu">isoyear</span>(date_debut)) <span class="sc">|&gt;</span> </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(annee_symptomes, sem_symptomes_num) <span class="sc">|&gt;</span> </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   annee_symptomes sem_symptomes_num  n
+1             2022                32  1
+2             2022                33  2
+3             2022                34  1
+4             2022                35  8
+5             2022                36  8
+6             2022                37 10
+7             2022                38 17
+8             2022                39 17
+9             2022                40 19
+10            2022                41 16</code></pre>
+</div>
+</div>
+<p>Ces chiffres sont désormais corrects. Vous pourriez les représenter avec <a href="../sessions_extra/faceting.html">plusieurs mini graphes par année sur une même figure</a>, ou simplement filtrer une année donnée et tracer la courbe avec les numéros de semaines sur l’axe des x. Dans le premier cas, cela donnerait ceci :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">|&gt;</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">annee_symptomes =</span> <span class="fu">isoyear</span>(date_debut)) <span class="sc">|&gt;</span> </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(annee_symptomes, sem_symptomes_num) <span class="sc">|&gt;</span> </span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> sem_symptomes_num,</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> n)) <span class="sc">+</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#2E4573"</span>) <span class="sc">+</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">16</span>) <span class="sc">+</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(annee_symptomes),  <span class="co"># Magie pour faire le graphe par année !</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>             <span class="at">ncol =</span> <span class="dv">1</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="weekly_epicurves_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Si vous n’avez pas lu le satellite sur <code>facet_wrap()</code>, ce n’est pas grave, voyez ce graphe comme une page de publicité pour la capacité de ggplot à faire des graphes multiples rapidement. Les explications sortent du cadre de ce tutoriel et nous allons vous montrer une autre façon d’agréger les données par semaine, qui est robuste aux données pluriannuelles.</p>
+</section><section id="premier-jour-de-la-semaine" class="level3"><h3 class="anchored" data-anchor-id="premier-jour-de-la-semaine">Premier jour de la semaine</h3>
+<p>Une autre manière d’agréger par semaine est d’utiliser la fonction <code>floor_date()</code> (également du package <code>{lubridate}</code>), qui <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="The floor ça veut dire le sol, l'étage en anglais, et les fonctions 'floor' arrondissent vers le bas">renvoie la <em>première date</em></span> d’une période donnée. Vous pouvez la considérer comme une sorte d’<span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Comme on pouvait s'y attendre, il existe aussi une fonction ceiling_date() qui arrondit les dates à la valeur la plus élevée d'une période">arrondi à la plus petite valeur</span>, mais pour les dates.</p>
+<p>La fonction a un argument <code>unit</code> pour choisir l’échelle de la période (semaine, mois…) et un argument <code>week_start</code> pour définir le premier jour de la semaine (les lundis sont <code>1</code>).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="ot">&lt;-</span> df_linelist <span class="sc">|&gt;</span> </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">sem_sortie_lundi =</span> <span class="fu">floor_date</span>(date_sortie,</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">unit =</span> <span class="st">"week"</span>,</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">week_start =</span> <span class="dv">1</span>)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Regardons les différentes colonnes de plus près pour bien comprendre :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">|&gt;</span> </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(date_sortie, sem_sortie_num, sem_sortie_lundi) <span class="sc">|&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(date_sortie) <span class="sc">|&gt;</span>     <span class="co"># Trie par date</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   date_sortie sem_sortie_num sem_sortie_lundi
+1   2022-08-18             33       2022-08-15
+2   2022-08-28             34       2022-08-22
+3   2022-09-03             35       2022-08-29
+4   2022-09-10             36       2022-09-05
+5   2022-09-12             37       2022-09-12
+6   2022-09-12             37       2022-09-12
+7   2022-09-16             37       2022-09-12
+8   2022-09-17             37       2022-09-12
+9   2022-09-18             37       2022-09-12
+10  2022-09-19             38       2022-09-19</code></pre>
+</div>
+</div>
+<p>Pour aider à comprendre on peut calculer le <em>jour</em> de la semaine associé à chaque date en utilisant la fonction <code>wday()</code> (qui appartient <em>aussi</em> à <code>{lubridate}</code>, y a comme un thème 😉) [wday est une abréviation pour week day] :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">|&gt;</span> </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calcule le premier jour de la semaine</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">jour_sortie =</span> <span class="fu">wday</span>(date_sortie, </span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">label =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>                       <span class="at">abbr =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">cest_bien_un_lundi  =</span> <span class="fu">wday</span>(sem_sortie_lundi, </span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>                               <span class="at">label =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>                               <span class="at">abbr =</span> <span class="cn">FALSE</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(date_sortie) <span class="sc">|&gt;</span>      <span class="co"># Trie par date</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(date_sortie,</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>         jour_sortie,</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>         sem_sortie_num,</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>         sem_sortie_lundi,</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>         cest_bien_un_lundi) <span class="sc">|&gt;</span> </span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   date_sortie jour_sortie sem_sortie_num sem_sortie_lundi cest_bien_un_lundi
+1   2022-08-18       jeudi             33       2022-08-15              lundi
+2   2022-08-28    dimanche             34       2022-08-22              lundi
+3   2022-09-03      samedi             35       2022-08-29              lundi
+4   2022-09-10      samedi             36       2022-09-05              lundi
+5   2022-09-12       lundi             37       2022-09-12              lundi
+6   2022-09-12       lundi             37       2022-09-12              lundi
+7   2022-09-16    vendredi             37       2022-09-12              lundi
+8   2022-09-17      samedi             37       2022-09-12              lundi
+9   2022-09-18    dimanche             37       2022-09-12              lundi
+10  2022-09-19       lundi             38       2022-09-19              lundi</code></pre>
+</div>
+</div>
+<p>Ceci illustre comment <code>sem_sortie_num</code> et <code>sem_sortie_lundi</code> sont deux façons de représenter une semaine donnée. Mais si les numéros de semaine ne sont pas uniques, les dates, elles, le sont !</p>
+<div class="write">
+<p>Ajoutez une nouvelle instruction à votre <code>mutate()</code> pour créer la variable <code>sem_symptomes_lundi</code> qui contient le premier jour de la semaine pour la date d’apparition des symptômes. Le premier jour de la semaine est un lundi au Tchad.</p>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Astuce
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Lisez la <a href="https://lubridate.tidyverse.org/reference/round_date.html">page d’aide</a> de <code>floor_date()</code> pour connaître la liste des unités possibles.</p>
+</div>
+</div>
+</section><section id="agréger" class="level3"><h3 class="anchored" data-anchor-id="agréger">Agréger</h3>
+<p>Maintenant que nous avons une variables qui identifie la semaine, nous pouvons enfin agréger nos données !</p>
+<div class="write">
+<p>Comptez le nombre de patients par semaine de début des symptômes, en utilisant le début de la semaine pour identifier les semaines (<code>sem_symptomes_lundi</code>).</p>
+<p>Voici les dix premières lignes de ce à quoi il devrait ressembler :</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>   sem_symptomes_lundi  n
+1           2022-08-08  1
+2           2022-08-15  2
+3           2022-08-22  1
+4           2022-08-29  8
+5           2022-09-05  8
+6           2022-09-12 10
+7           2022-09-19 17
+8           2022-09-26 17
+9           2022-10-03 19
+10          2022-10-10 16</code></pre>
+</div>
+</div>
+</div>
+</section></section><section id="tracer-le-graphique" class="level2"><h2 class="anchored" data-anchor-id="tracer-le-graphique">Tracer le graphique</h2>
+<p>Parfait. Nous pouvons maintenant passer nos données agrégées à la commande pour créer le graphique, en faisant quelques ajustements pour que le code précédent fonctionne.</p>
+<div class="write">
+<p>Créez un <code>ggplot</code> avec le même aspect que la courbé épidémique de la <a href="../sessions_core/06_epicurves.html#sec-epicurve-steps">session principale</a>, mais avec le premier jour de la semaine sur l’axe des abscisses. N’oubliez pas de mettre à jour les noms des axes !</p>
+<p>Il devrait ressembler à ceci :</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="weekly_epicurves_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Notez que même si les étiquettes sur l’axe des abscisses sont des dates, une barre représente les données d’une semaine (sept jours à compter du lundi).</p>
+</section><section id="améliorer-laxe" class="level2"><h2 class="anchored" data-anchor-id="améliorer-laxe">Améliorer l’axe</h2>
+<p>Il est maintenant temps d’améliorer cet axe des abscisses.</p>
+<p><code>{ggplot2}</code> crée automatiquement des étiquettes pour l’axe des x, en essayant de s’adapter à l’étendue des données. Ces valeurs par défaut ne nous conviennent pas toujours, et nous voulons pouvoir manuellement changer les étiquettes (plus fréquentes ou plus espacées, améliorer le format etc.).</p>
+<p>Pour modifier l’apparence de l’axe, nous allons utiliser une fonction de la famille <em>scale</em> de <code>{ggplot2}</code> : <code>scale_x_date()</code> [<em>scale</em> ici est l’échelle].</p>
+<section id="modifier-la-fréquence-des-tirets" class="level3"><h3 class="anchored" data-anchor-id="modifier-la-fréquence-des-tirets">Modifier la fréquence des tirets</h3>
+<p>Dans <code>{ggplot2}</code>, les <strong>breaks</strong> [<em>cassures</em>] contrôlent la <em>fréquence</em> des tirets sur l’axe.</p>
+<p>La fonction <code>scale_x_date()</code> a un argument <code>date_breaks</code> qui accepte l’intervalle entre deux étiquettes dans une chaîne de caractères aux formats suivants : <code>"1 week"</code>, <code>"2 weeks"</code>, <code>"4 months"</code>, <code>"2 years"</code>, etc.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">|&gt;</span> </span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(sem_sortie_lundi) <span class="sc">|&gt;</span> </span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> sem_sortie_lundi,</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> n)) <span class="sc">+</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#2E4573"</span>) <span class="sc">+</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Date de sortie"</span>,</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Patients"</span>,</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Sorties rougeole dans la région de Mandoul (Tchad)"</span>) <span class="sc">+</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"4 months"</span>) <span class="sc">+</span>  <span class="co"># Définit l'intervalle entre étiquettes</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">16</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
+(`geom_col()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="weekly_epicurves_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="write">
+<p>Modifiez votre code pour que la fréquence des tirets les rendent lisibles sur <em>votre</em> moniteur.</p>
+</div>
+</section><section id="améliorer-les-étiquettes" class="level3"><h3 class="anchored">Améliorer les étiquettes</h3>
+<p>Maintenant que nous avons géré l’intervalle entre les tirets, nous pouvons modifier les <em>étiquettes</em> elles-mêmes (la façon dont les dates sont affichées sur l’axe, <em>labels</em> en anglais). Par défaut, elles sont sous la forme <em>année-mois-jour</em>. Nous allons voir deux manières de changer ça</p>
+<div class="tabset-margin-container"></div>
+<div class="panel-tabset nav-pills">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Avec le paquet {scales}</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Avec la syntaxe strptime</a></li>
+</ul>
+<div class="tab-content nav-pills">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p>La fonction <code>scale_x_date()</code> a un argument <code>label</code> qui accepte plusieurs types d’entrées, telles qu’un vecteur contenant les dates ou une fonction qui génère des labels. Le paquet <code>{scales}</code> fournit une telle fonction, <code>label_date_short()</code>, qui tente de créer des étiquettes de dates efficaces et courtes.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">|&gt;</span> </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(sem_sortie_lundi) <span class="sc">|&gt;</span> </span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> sem_sortie_lundi,</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> n)) <span class="sc">+</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#2E4573"</span>) <span class="sc">+</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Date de sortie"</span>,</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Patients"</span>,</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Sorties rougeole dans la région de Mandoul (Tchad)"</span>) <span class="sc">+</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"2 months"</span>,</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>               <span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_date_short</span>()) <span class="sc">+</span> <span class="co"># Etiquettes courtes</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">15</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
+(`geom_col()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="weekly_epicurves_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="write">
+<p>Modifiez votre code et usez <code>label_date_short()</code> pour créer des étiquettes courtes.</p>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p>L’automatisation c’est sympa, mais si vous préférez avoir le contrôle total, R dispose d’une <em>syntaxe</em> pour décrire les formats de date et d’heure. Il existe une longue page d’aide (accessibles avec la commande <code>help(strptime)</code>) avec tous les éléments de syntaxe, mais voici un résumé des éléments les plus utiles pour décrire le format d’une date :</p>
+<p><strong>Numéro du jour</strong> :</p>
+<ul>
+<li>
+<code>%d</code>: de 01 à 31</li>
+<li>
+<code>%e</code>: de 1 à 31</li>
+</ul>
+<p><strong>Mois</strong> :</p>
+<ul>
+<li>
+<code>%b</code> : nom du mois, forme abréviée (la langue dépend de la locale de votre ordinateur)</li>
+<li>
+<code>%B</code> : nom du mois, complet (la langue dépend de la locale de votre ordinateur)</li>
+<li>
+<code>%m</code> : Numéro du mois</li>
+</ul>
+<p><strong>Année</strong> :</p>
+<ul>
+<li>
+<code>%y</code> : année à deux chiffres (sans le siècle)</li>
+<li>
+<code>%Y</code> : année à quatre chiffres</li>
+</ul>
+<p><strong>Séparateurs spéciaux</strong> :</p>
+<ul>
+<li>
+<code>%n</code> : nouvelle ligne</li>
+<li>
+<code>%t</code> : tab</li>
+</ul>
+<p>Vous pouvez assembler ces éléments dans une chaîne de caractères, que vous passez à différentes fonctions qui acceptent un <em>format</em> comme argument.</p>
+<p>Nous allons d’abord utiliser la fonction <code>format()</code> pour voir rapidement l’affichage qu’elle crée à partir d’une syntaxe <code>strptime</code>, puis nous illustrerons l’usage dans un graphe.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Crée un vecteur de dates pour explorer des formats différents</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>quelques_dates <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="fu">c</span>(<span class="st">"2024-10-06"</span>, <span class="st">"2024-12-15"</span>, <span class="st">"2025-01-20"</span>))</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Exemples de syntaxes possibles</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span>(quelques_dates, <span class="st">"%Y-%b-%d"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2024-oct.-06"  "2024-déc.-15"  "2025-janv.-20"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span>(quelques_dates, <span class="st">"%Y-%b"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2024-oct."  "2024-déc."  "2025-janv."</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span>(quelques_dates, <span class="st">"%Y %B %d"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2024 octobre 06"  "2024 décembre 15" "2025 janvier 20" </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span>(quelques_dates, <span class="st">"%y/%m/%d"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "24/10/06" "24/12/15" "25/01/20"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span>(quelques_dates, <span class="st">"%d/%m/%Y"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "06/10/2024" "15/12/2024" "20/01/2025"</code></pre>
+</div>
+</div>
+<p>Revenons à notre graphe. La fonction <code>scale_x_date()</code> a un argument <code>date_labels</code> qui accepte une chaîne de caractère dans le format <code>strptime</code> pour formater les étiquettes de dates.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="sc">|&gt;</span> </span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(sem_sortie_lundi) <span class="sc">|&gt;</span> </span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> sem_sortie_lundi,</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> n)) <span class="sc">+</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#2E4573"</span>) <span class="sc">+</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Date de sortie"</span>,</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Patients"</span>,</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Sorties rougeole dans la région de Mandoul (Tchad)"</span>) <span class="sc">+</span></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">date_breaks =</span> <span class="st">"2 months"</span>,      <span class="co"># Définit l'intervalle entre étiquettes</span></span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">date_labels =</span> <span class="st">"%Y%n%b%n%d"</span>) <span class="sc">+</span>  <span class="co"># Definit le format des étiquettes</span></span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">16</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
+(`geom_col()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="weekly_epicurves_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="write">
+<p>Modifiez votre graphe pour que les étiquettes soient comme ceci :</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="weekly_epicurves_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<section id="cest-fini" class="level2"><h2 class="anchored" data-anchor-id="cest-fini">C’est fini !</h2>
+<p>Bravo ! Les dates dans R sont un sujet compliqué, et leur format est souvent un peu effrayant. Nous espérons que cette petite introduction vous aura donné quelques astuces pour que vos courbes épidémiques soient lisibles.</p>
+<div class="cell">
+<div class="cell-output-display">
+<a href="https://github.com/epicentre-msf/repicentre/blob/main/solutions/extra/weekly_epicurves_solutions_fr.R">
+<button class="btn btn-default"><i class="fa fa-save"></i> Solutions</button>
+</a>
+</div>
+</div>
+</section><section id="aller-plus-loin" class="level2"><h2 class="anchored" data-anchor-id="aller-plus-loin">Aller plus loin</h2>
+<section id="exercices-supplémentaires" class="level3"><h3 class="anchored" data-anchor-id="exercices-supplémentaires">Exercices supplémentaires</h3>
+<ul>
+<li>Utilisez ce format dans cotre graphe : “2024-oct.”, “2024-dec.”</li>
+<li>Créez une courbe épidémique avec la date de consultation, avec le premier jour de la semaine sur l’axe des x (vous êtes libres du format de la date).</li>
+<li>Créez une courbe épidémique pour l’année 2023 qui montre le nombre d’admissions hospitalières hebdomadaires, avec le numéro ISO de la semaine en abscisse.</li>
+</ul></section><section id="défi" class="level3"><h3 class="anchored" data-anchor-id="défi">Défi</h3>
+<ul>
+<li>Tracez une courbe épidémique de la date d’apparition des symptômes par <strong>mois</strong>. Utilisez un format d’étiquette qui vous semble approprié et lisible.</li>
+</ul></section></section><section id="ressources" class="level2"><h2 class="anchored" data-anchor-id="ressources">Ressources</h2>
+<ul>
+<li>Le chapitre (en anglais) <a href="https://ggplot2-book.org/scales-position#sec-date-scales">“Elegant graphics for data analyses’</a> book on date scales</li>
+<li><a href="https://lubridate.tidyverse.org/articles/lubridate.html">La page d’aide de lubridate</a></li>
+</ul></section>
+</div>
+</div>
+</div>
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copié");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copié");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body>
+</html>
