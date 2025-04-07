@@ -184,7 +184,7 @@ downloadthis::download_link(
 <br>
 4. Unzip the archive and save the two Excel files it contains in the subfolder `data/raw`. 
 <br>
-5. Create a new script called `import_clean.R` and save it in the `R` subdirectory. Add a section to load the following packages: `{here}`, `{rio}`, and `{tidyverse}`.
+5. Create a new script called `import_clean.R` and save it in the `R` subdirectory. Add metadata and a section to load the following packages: `{here}`, `{rio}`, and `{tidyverse}`.
 :::
 
 
@@ -394,7 +394,7 @@ We use the following code to make sure that all the health zones have all the po
 ```{r}
 #| eval: true
 
-# Complete the missing week in kikula
+# Complete the missing week in Kitenge
 example_df |> 
   complete(
     nesting(province, health_zone), 
@@ -482,7 +482,7 @@ This is the end of question 3; if you are finished in advance, do not hesitate t
 We are going to carry on preparing the datasets for the analyses.
 
 ::: {.setup}
-If you have not had the time to clean both health zone and province in both datasets, as well as both igm columns in the lab dataset you can import cleaner versions of the data:
+1. If you have not had the time to clean both health zone and province in both datasets, as well as both igm columns in the lab dataset you can import cleaner versions of the data:
 
 ```{r}
 #| echo: false
@@ -497,7 +497,12 @@ downloadthis::download_link(
 )
 ```
 <br>
-Unzip the archive in your `data/clean` subfolder and import the `.rds` files in your RStudio project using `rio::import()` as usual. Assign the cleaned data frames to `data_surv`, `data_lab` and `data_surv_weeks` and carry on.
+Unzip the archive in your `data/clean` subfolder 
+
+
+2. Create a new script `analysis_surv.R` in the `R` subfolder. Add the metadata of the script, a package import section to import the packages `{here}`, `{rio}`, `{tidyverse}`, `{lubridate}` and `{zoo}`.
+
+3. Add an import data section and import the clean `.rds` files in R using the `import()` function as usual (your cleaned version or the one you just downloaded). Assign the cleaned data to `data_surv`, `data_lab` and `data_surv_weeks` and carry on.
 :::
 
 
@@ -598,7 +603,13 @@ data_surv_weeks |>
 :::
 
 ::: {.write}
-1. Add a step to your previous pipeline to sort the data frame by province, health zone and week with the `arrange()` function.
+1. Add a step to your previous pipeline to sort the data frame by province, health zone and week with the `arrange()` function, which is a sorting function from `{dplyr}`
+
+```{r}
+data_surv_weeks |> 
+  arrange(province, health_zone, week)
+```
+
 
 2. Then add the following code to calculate the cumulative sum:
 
@@ -624,7 +635,7 @@ Now that the complicated part is over (the computing of the cumulative sum) we a
 ::: {.write}
 1. Add a new step to your pipeline to calculate a binary indicator, `cumcases35` that is `1` if the cumulative sum of cases for that week is equal or above 35 and `0` if not.
 
-2. Add a new column `alert`, that is `1` if either the `cases20` indicator or the `cumcases35` indicator is `1` and `0` otherwise. You can use the `|` operator, which is R logical OR.
+2. Add a new column `alert`, that is `1` if either the `cases20` indicator or the `cumcases35` indicator is `1` and `0` otherwise. You can use the `|` operator, which is R logical OR (the test will output `TRUE` if at least one of the condition is `TRUE`)..
 
 3. When the pipe is working, assign the result to a `data_alert` data frame.
 
@@ -725,7 +736,7 @@ Use the `summarize()` function to display the first week the alert was raised fo
 Let us go back to the full surveillance dataset that contains more columns of interest.
 
 ::: {.write}
-1. Add a column `cunder_5` to `data_surv` that contains the the number of cases less than five months.
+1. Add a column `cunder_5` to `data_surv` that contains the the number of cases less than five years.
 
 2. Derive, for each health zone in alert, the following indicators (organized in a single table):
 
@@ -751,7 +762,7 @@ data_surv |>
     n_deaths  = sum(totaldeaths, na.rm = TRUE),
     n_under_5 = sum(cases_under_5, na.rm = TRUE),
     p_under_5 = n_under_5 / n_cases,
-    cfr       = n_deaths / n_cases
+    cfr       = 100 * n_deaths / n_cases
   )
 ```
 :::
@@ -856,7 +867,7 @@ rollapply(
 )
 ```
 
-It is a reasonnable way of dealing with incomplete windows. In our case however, we can do better: if there were 40 cases in week 1 it would be a cause for alert! We thus want the cumulative sum to be calculated from week one to be able to detect early alerts (keeping in mind that a *lack of alert* in the first two weeks may be a result of incomplete data). The `partial = TRUE` argument allows this:
+It is a reasonnable way of dealing with incomplete windows. In our case however, we can do better: if there were 40 cases in week 1 it would be a cause for alert! We thus want the cumulative sum to be calculated from week one to be able to detect early alerts. The `partial = TRUE` argument allows this:
 
 ```{r}
 #| eval: true
@@ -870,7 +881,11 @@ rollapply(
 
 This is close to what we need. 
 
-A last point: you may remember that arithmetic operations in R return `NA` if some of the values are `NA` and we usually need to pass the argument `na.rm = TRUE` to the functions for them to ignore missing values.
+::: {.callout-note}
+Keeping in mind that since the first two weeks have only partial data compared to later weeks, a *lack of alert* in these weeks does not necessarily means there is no alert, just that we do not have the data to detect it.
+:::
+
+You may remember that arithmetic operations in R return `NA` if some of the values are `NA` and we usually need to pass the argument `na.rm = TRUE` to the functions for them to ignore missing values.
 
 If we had a slightly less complete vector we would have a problem:
 
@@ -907,8 +922,8 @@ rollapply(
 Here we applied the `sum()` function to create a cumulative sum over 3 weeks. But you could, with minimal modifications, apply the `mean()` function to caclulate a moving average!
 :::
 
-::: {.callout-note}
-What about the `align` argument? It defines the position of the rolling windows compared to the value being calculated. The default is that the window is centered: the value *i* is the sum of values *i*, *i-1* and *i+1*.
+
+A last point on the `align` argument. It defines the position of the rolling windows compared to the value being calculated. The default is that the window is centered: the value *i* is the sum of values *i*, *i-1* and *i+1*.
 
 Example of the three alignements (pading with `NA` to better see what's happening):
 
@@ -934,7 +949,7 @@ rollapply(data  = c(5, 10, 1, 2, 5, 10),
 ```
 
 In our case we want the value for a given week to reflect this week and the week past, so we align the window right, to calculate backward in time (by opposition, if we aligned left we would calculate forwards in time).
-:::
+
 
 
 ### Nicely formatted percentages
@@ -952,4 +967,7 @@ scales::percent(0.8556,
                 accuracy = 0.1)
 ```
 
-You can wrap it around the values that you calulate in the summary tables to change the proportions into nicely formatted percentages. Note that once you are done the column is treated as text (since we added a `%` sign) and you will not be able to do further arithmetical operations on it.
+You can wrap it around the values that you calulate in the summary tables to change the proportions into nicely formatted percentages. 
+::: {.callout-important}
+Once you aplied that function the column is treated as text (since we added a `%` sign) and you will not be able to do further arithmetical operations on it.
+:::
