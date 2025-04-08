@@ -344,4 +344,4 @@ list_results <- list(
 
 # Exporte la liste au format RDS
 list_results |>
-  export(file = here("output", "list_results.rds"))
+  export(file = here("outputs", "list_results.rds"))

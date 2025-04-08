@@ -350,4 +350,4 @@ list_results <- list(
 
 # Save as RDS file
 list_results |>
-  export(file = here("output", "list_results.rds"))
+  export(file = here("outputs", "list_results.rds"))
