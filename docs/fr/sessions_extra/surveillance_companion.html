@@ -177,7 +177,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li>
 <a href="#sec-going-further" id="toc-sec-going-further" class="nav-link" data-scroll-target="#sec-going-further">Aller plus loin</a>
   <ul class="collapse">
-<li><a href="#explications-sur-rollaply" id="toc-explications-sur-rollaply" class="nav-link" data-scroll-target="#explications-sur-rollaply">Explications sur <code>rollaply()</code></a></li>
+<li><a href="#explications-sur-complete" id="toc-explications-sur-complete" class="nav-link" data-scroll-target="#explications-sur-complete">Explications sur <code>complete()</code></a></li>
+  <li><a href="#explications-sur-rollaply" id="toc-explications-sur-rollaply" class="nav-link" data-scroll-target="#explications-sur-rollaply">Explications sur <code>rollaply()</code></a></li>
   <li><a href="#formatage-des-pourcentages" id="toc-formatage-des-pourcentages" class="nav-link" data-scroll-target="#formatage-des-pourcentages">Formatage des pourcentages</a></li>
   </ul>
 </li>
@@ -247,7 +248,7 @@ Astuce
 </ul>
 <ol start="2" type="1">
 <li><p>Créez un <a href="../sessions_core/02_import_data.html#rstudio-projects">projet RStudio</a> à la racine du dossier <code>surveillance_case_study</code>.</p></li>
-<li><p>Téléchargez les données brutes.</p></li>
+<li><p>Si vous n’avez pas encore les données, téléchargez-les.</p></li>
 </ol>
 <div class="cell">
 <div class="cell-output-display">
@@ -256,7 +257,7 @@ Astuce
 </a>
 </div>
 </div>
-<p><br> 4. Dézippez l’archive et enregistrez les deux fichiers Excel dans le sous dossier <code>data/raw</code>. <br> 5. Créez un nouveau script <code>import_nettoyage.R</code> et enregistrez-le dans le sous dossier <code>R</code>. Ajoutez les métadonnées et une section pour charger les paquets <code>{here}</code>, <code>{rio}</code>, et <code>{tidyverse}</code>.</p>
+<p><br> 4. Dézippez l’archive si vous venez de télécharger les données. Quelle que soit la source, enregistrez les deux fichiers Excel dans le sous dossier <code>data/raw</code>. <br> 5. Créez un nouveau script <code>import_nettoyage.R</code> et enregistrez-le dans le sous dossier <code>R</code>. Ajoutez les métadonnées et une section pour charger les paquets <code>{here}</code>, <code>{rio}</code>, et <code>{tidyverse}</code>.</p>
 </div>
 </section><section id="importer-les-données" class="level3"><h3 class="anchored" data-anchor-id="importer-les-données">Importer les données</h3>
 <p><strong>Rappel de l’étude de cas</strong> : vous avez demandé l’accès aux données de surveillance de routine et aux données de laboratoire au MSP de la RDC. Le ministère a accepté de les partager avec vous toutes les semaines. Vous recevez le premier fichier à la semaine 20 en 2022 (note : les données sur lesquelles nous travaillerons sont simulées).</p>
@@ -441,122 +442,26 @@ Astuce
 <li>Y a-t-il des nombres de cas que vous estimez aberrants ?</li>
 </ul></section><section id="données-de-surveillance-complétées-q3" class="level3"><h3 class="anchored" data-anchor-id="données-de-surveillance-complétées-q3">Données de surveillance complétées (Q3)</h3>
 <p>Durant l’inspection des données vous avez du vous rendre compte qu’il y a des semaines manquantes pour certaines ZS dans les données de surveillance. Normalement, vous avez discuté les raisons possibles et des problèmes associés en plénière. Dans ce tutoriel, nous allons fournir le code pour compléter le data frame surveillance pour que toutes les ZS aient toutes les semaines (en faisant l’hypothèse que les semaines manquantes n’ont pas eu de cas ou de décès).</p>
-<p>Nous utiliserons la fonction <a href="https://tidyr.tidyverse.org/reference/complete.html"><code>complete()</code> du paquet <code>{tidyr}</code></a> pour ajouter les lignes manquantes et remplir les colonnes contenant des nombres (<code>totalcas</code> et <code>totaldeces</code>) avec des zéros.</p>
-<p>Dans le mini exemple ci-dessous la zone de santé de Kitenge n’a pas de ligne pour la semaine 2 :</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Data frame simplifié, avec seulement trois semaines</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>exemple_df <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">province   =</span> <span class="fu">c</span>(<span class="st">"haut_katanga"</span>, <span class="st">"haut_katanga"</span>, <span class="st">"haut_katanga"</span>, <span class="st">"haut_lomami"</span>, <span class="st">"haut_lomami"</span>),</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">zone_sante =</span> <span class="fu">c</span>(<span class="st">"likasi"</span>, <span class="st">"likasi"</span>, <span class="st">"likasi"</span>, <span class="st">"kitenge"</span>, <span class="st">"kitenge"</span>),</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">semaine    =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">3</span>),</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">totalcas  =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">2</span>))</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>exemple_df</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>      province zone_sante semaine totalcas
-1 haut_katanga     likasi       1        2
-2 haut_katanga     likasi       2        1
-3 haut_katanga     likasi       3        3
-4  haut_lomami    kitenge       1        1
-5  haut_lomami    kitenge       3        2</code></pre>
-</div>
-</div>
-<p>Nous pouvons utiliser le code suivant pour compléter toutes les zones de santé pour qu’elles aient toutes les semaines possible, ici les semaine de un à trois :</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compléte la semaine manquante à Kitenge</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>exemple_df <span class="sc">|&gt;</span> </span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">complete</span>(</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">nesting</span>(province, zone_sante), </span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">semaine =</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">3</span>),            <span class="co"># Vecteur de 1 à 3</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="fu">list</span>(<span class="at">totalcas =</span> <span class="dv">0</span>)       <span class="co"># Remplir avec des zéros (sinon, NA par défaut)</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  ) </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 4
-  province     zone_sante semaine totalcas
-  &lt;chr&gt;        &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;
-1 haut_katanga likasi           1        2
-2 haut_katanga likasi           2        1
-3 haut_katanga likasi           3        3
-4 haut_lomami  kitenge          1        1
-5 haut_lomami  kitenge          2        0
-6 haut_lomami  kitenge          3        2</code></pre>
-</div>
-</div>
-<p>Maintenant les deux zones de santé dans les deux provinces ont toutes les semaines possibles.</p>
-<p>Vous vous demandez peut être pourquoi nous avons écrit <code>nesting(province, zone_sante)</code> au lieu de juste <code>zone_sante</code>. La raison est qu’il peut y avoir deux zones de santé avec le même nom dans des provinces différentes. Nous devons donc tenir compte de la colonne <code>province</code>. L’argument <code>nesting()</code> indique à la fonction de n’utiliser que les <em>combinaisons existantes</em> des deux colonnes dans le data frame.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Petit encart pour voir ce qui se serait passé si nous avions passé les deux colonnes à la fonction <code>complete()</code> sans utiliser <code>nesting()</code> : la fonction aurait créé <em>toutes les combinaisons possibles</em> entre les catégories des colonnes <code>province</code> et <code>zone_sante</code>, ce qui n’a pas de sens dans notre cas.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>exemple_df <span class="sc">|&gt;</span> </span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">complete</span>(</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    province, zone_sante, </span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">semaine =</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">3</span>),  <span class="co"># Vecteur de 1 à 3</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="fu">list</span>(<span class="at">totalcas =</span> <span class="dv">0</span>)</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  ) </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 12 × 4
-   province     zone_sante semaine totalcas
-   &lt;chr&gt;        &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;
- 1 haut_katanga kitenge          1        0
- 2 haut_katanga kitenge          2        0
- 3 haut_katanga kitenge          3        0
- 4 haut_katanga likasi           1        2
- 5 haut_katanga likasi           2        1
- 6 haut_katanga likasi           3        3
- 7 haut_lomami  kitenge          1        1
- 8 haut_lomami  kitenge          2        0
- 9 haut_lomami  kitenge          3        2
-10 haut_lomami  likasi           1        0
-11 haut_lomami  likasi           2        0
-12 haut_lomami  likasi           3        0</code></pre>
-</div>
-</div>
-</div>
-</div>
-<p>Comme la base de données va être mise à jour chaque semaine, il serait pratique de choisir <em>automatiquement</em> la plage des semaines qui doivent être présentes dans les données. Pour ça, il nous suffit de remplacer les valeurs que nous avons codé <em>en dur</em> par la plus petite semaine existante dans les données et la plus grande :</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>exemple_df <span class="sc">|&gt;</span> </span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">complete</span>(</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">nesting</span>(province, zone_sante),</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">semaine =</span> <span class="fu">seq</span>(<span class="fu">min</span>(semaine, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),   <span class="co"># Vecteur allant du minimum</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>                  <span class="fu">max</span>(semaine, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)),  <span class="co"># au maximum de la colonne `semaine`</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="fu">list</span>(<span class="at">totalcas =</span> <span class="dv">0</span>)</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  ) </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 4
-  province     zone_sante semaine totalcas
-  &lt;chr&gt;        &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;
-1 haut_katanga likasi           1        2
-2 haut_katanga likasi           2        1
-3 haut_katanga likasi           3        3
-4 haut_lomami  kitenge          1        1
-5 haut_lomami  kitenge          2        0
-6 haut_lomami  kitenge          3        2</code></pre>
-</div>
-</div>
+<p>Nous utiliserons la fonction <a href="https://tidyr.tidyverse.org/reference/complete.html"><code>complete()</code> du paquet <code>{tidyr}</code></a> pour ajouter les lignes manquantes et remplir les colonnes contenant des nombres (<code>totalcas</code> et <code>totaldeces</code>) avec des zéros. A cause des contraintes de temps nous allons vous donner le code, mais quelques exemples et explicatins seront donnés dans la section <a href="#sec-going-further">Aller plus loin</a> que vous pourrez lire quand vous aurez le temps.</p>
 <div class="write">
 <ol type="1">
 <li><p>Commencez un nouveau pipeline à partir de <code>df_surv</code> et ne conservez dedans que les colonnes <code>province</code>, <code>zone_sante</code>, <code>semaine</code> et <code>totalcas</code>.</p></li>
 <li><p>Ajoutez une nouvelle étape à votre pipeline et collez le code ci-dessous pour compléter le data frame :</p></li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">complete</span>(</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nesting</span>(province, zone_sante),</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">semaine =</span> <span class="fu">seq</span>(<span class="fu">min</span>(semaine, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>                <span class="fu">max</span>(semaine, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)),</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">fill =</span> <span class="fu">list</span>(<span class="at">totalcas   =</span> <span class="dv">0</span>, </span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">totaldeces =</span> <span class="dv">0</span>  <span class="co"># on remplit aussi la colone totaldeces de zéros</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>) </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">complete</span>(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># On travaille sur les combinaisons existantes de province et ZS</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nesting</span>(province, zone_sante),</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># On voudra toutes les semaines entre le minimum (1) et le maximum (20) de la colonne semaine</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">semaine =</span> <span class="fu">seq</span>(<span class="fu">min</span>(semaine, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>                <span class="fu">max</span>(semaine, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)),</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Remplir les nouvelles semaines de zeros pour ces colonnes :</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">fill =</span> <span class="fu">list</span>(<span class="at">totalcas   =</span> <span class="dv">0</span>, </span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>              <span class="at">totaldeces =</span> <span class="dv">0</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>) </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="3" type="1">
 <li>Stockez le résultat dans un data frame appelé <code>df_surv_sem</code>, qui devrait ressembler à :</li>
@@ -583,7 +488,7 @@ Note
 </ol>
 </div>
 </section><section id="aller-plus-loin-1" class="level3"><h3 class="anchored" data-anchor-id="aller-plus-loin-1">Aller plus loin</h3>
-<p>C’est la fin de la question 3. Si vous terminez en avance, finissez l’inspection des données, listez les problèmes et nettoyez les colonnes que vous savez nettoyer avant de réexporter. Si c’est fait, allez explorer la <a href="https://tidyr.tidyverse.org/reference/complete.html">page d’aide</a> de la fonction <code>complete()</code> pour vous familiariser avec son fonctionnement.</p>
+<p>C’est la fin de la question 3. Si vous terminez en avance, finissez l’inspection des données, listez les problèmes et nettoyez les colonnes que vous savez nettoyer avant de réexporter. Si c’est fait, lisez les eplications sur la fonction <code>complete()</code> et allez explorer sa <a href="https://tidyr.tidyverse.org/reference/complete.html">page d’aide</a>.</p>
 </section></section><section id="définir-les-alertes-question-4" class="level2"><h2 class="anchored" data-anchor-id="définir-les-alertes-question-4">Définir les alertes (Question 4)</h2>
 <section id="préparer-le-jeu-de-données" class="level3"><h3 class="anchored" data-anchor-id="préparer-le-jeu-de-données">Préparer le jeu de données</h3>
 <p>Nous allons continuer la préparation de data frames prêts pour l’analyse.</p>
@@ -639,14 +544,14 @@ Note
 <p>Comme nous sommes contraint par le temps, nous allons vous fournir ici le code pour calculer la somme cumulée, et nous vous donnerons plus de détails sur la fonction dans la section <a href="#sec-going-further">Aller plus loin</a> que vous pourrez lire quand vous aurez le temps.</p>
 <p>Voici comment utiliser la fonction pour une zone de santé :</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Crée un mini data frame pour l'exemple</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>exemple_df <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">province   =</span> <span class="st">"Haut Katanga"</span>,</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">zone_sante =</span> <span class="st">"Dilolo"</span>,</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">semaine    =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">totalcas   =</span> <span class="fu">rep</span>(<span class="dv">1</span>, <span class="at">times =</span> <span class="dv">10</span>))</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>exemple_df </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Crée un mini data frame pour l'exemple</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>exemple_df <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">province   =</span> <span class="st">"Haut Katanga"</span>,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">zone_sante =</span> <span class="st">"Dilolo"</span>,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">semaine    =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">totalcas   =</span> <span class="fu">rep</span>(<span class="dv">1</span>, <span class="at">times =</span> <span class="dv">10</span>))</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>exemple_df </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       province zone_sante semaine totalcas
 1  Haut Katanga     Dilolo       1        1
@@ -660,16 +565,16 @@ Note
 9  Haut Katanga     Dilolo       9        1
 10 Haut Katanga     Dilolo      10        1</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>exemple_df <span class="sc">|&gt;</span> </span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cas_cumu =</span> <span class="fu">rollapply</span>(</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">data  =</span> totalcas,   <span class="co"># La colonne cible</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">width =</span> <span class="dv">3</span>,          <span class="co"># La taille de la fenêtre  </span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">FUN   =</span> sum,        <span class="co"># La fonction à appliquer, ici la somme</span></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">align =</span> <span class="st">"right"</span>,    <span class="co"># On cumule les valeurs passées jusqu'à présent</span></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">partial =</span> <span class="cn">TRUE</span>,     <span class="co"># Les somme partielles sont autorisées</span></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">na.rm =</span> <span class="cn">TRUE</span>        <span class="co"># Argument en plus à passer à la fonction sum()</span></span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>exemple_df <span class="sc">|&gt;</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cas_cumu =</span> <span class="fu">rollapply</span>(</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">data  =</span> totalcas,   <span class="co"># La colonne cible</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">width =</span> <span class="dv">3</span>,          <span class="co"># La taille de la fenêtre  </span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">FUN   =</span> sum,        <span class="co"># La fonction à appliquer, ici la somme</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">align =</span> <span class="st">"right"</span>,    <span class="co"># On cumule les valeurs passées jusqu'à présent</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">partial =</span> <span class="cn">TRUE</span>,     <span class="co"># Les somme partielles sont autorisées</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">na.rm =</span> <span class="cn">TRUE</span>        <span class="co"># Argument en plus à passer à la fonction sum()</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       province zone_sante semaine totalcas cas_cumu
 1  Haut Katanga     Dilolo       1        1        1
@@ -699,12 +604,12 @@ Note
 <p>C’est la même idée aujourd’hui, sauf qu’au lieux d’utiliser une fonction qui ne renvoie qu’une seule valeur par groupe (<code>summarize()</code>) nous allons utiliser une fonction qui retourne une valeur par <strong>ligne</strong> (<code>mutate()</code>), mais prendra en compte les informations du groupe.</p>
 <p>Pour petit rappel de comment <code>summarize()</code> + <code>.by</code> fonctionne, voici comment nous calculons le nombre total de cas suspects et décès par province :</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>df_surv_sem <span class="sc">|&gt;</span> </span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> province,  <span class="co"># Fait les choses PAR province</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">cas_tot   =</span> <span class="fu">sum</span>(totalcas, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">deces_tot =</span> <span class="fu">sum</span>(totaldeces, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df_surv_sem <span class="sc">|&gt;</span> </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> province,  <span class="co"># Fait les choses PAR province</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">cas_tot   =</span> <span class="fu">sum</span>(totalcas, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">deces_tot =</span> <span class="fu">sum</span>(totaldeces, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 3
   province     cas_tot deces_tot
@@ -722,24 +627,24 @@ Note
 <li>Ajoutez une étape à votre pipeline pour trier les données par province, zone de santé et semaine (dans cet ordre) avec la fonction <code>arrange()</code>, qui est une fonction de tri du package <code>{dplyr}</code>:</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>df_surv_sem <span class="sc">|&gt;</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(province, zone_sante, semaine)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df_surv_sem <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(province, zone_sante, semaine)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="2" type="1">
 <li>Ajoutez ensuite le code pour calculer la somme cumulée :</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">.by =</span> <span class="fu">c</span>(province, zone_sante),</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">cas_cumu =</span> <span class="fu">rollapply</span>(</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">data  =</span> totalcas,   <span class="co"># La colonne cible</span></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">width =</span> <span class="dv">3</span>,          <span class="co"># La taille de la fenêtre  </span></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">FUN   =</span> sum,        <span class="co"># La fonction à appliquer, ici la somme</span></span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">align =</span> <span class="st">"right"</span>,    <span class="co"># On cumule les valeurs passées jusqu'à présent</span></span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">partial =</span> <span class="cn">TRUE</span>,     <span class="co"># Les somme partielles sont autorisées</span></span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">na.rm =</span> <span class="cn">TRUE</span>        <span class="co"># Argument en plus à passer à la fonction sum()</span></span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">.by =</span> <span class="fu">c</span>(province, zone_sante),</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">cas_cumu =</span> <span class="fu">rollapply</span>(</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">data  =</span> totalcas,   <span class="co"># La colonne cible</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">width =</span> <span class="dv">3</span>,          <span class="co"># La taille de la fenêtre  </span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">FUN   =</span> sum,        <span class="co"># La fonction à appliquer, ici la somme</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">align =</span> <span class="st">"right"</span>,    <span class="co"># On cumule les valeurs passées jusqu'à présent</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">partial =</span> <span class="cn">TRUE</span>,     <span class="co"># Les somme partielles sont autorisées</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">na.rm =</span> <span class="cn">TRUE</span>        <span class="co"># Argument en plus à passer à la fonction sum()</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p>Maintenant que la somme cumulée est calculée, il ne nous reste plus qu’à calculer l’indicateur dichotomique qui résume les données cumulées pour chaque semaine, puis un indicateur combiné qui résume les deux indicateurs précédents.</p>
@@ -782,7 +687,7 @@ Note
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="surveillance_companion_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="768"></p>
+<figure class="figure"><p><img src="surveillance_companion_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="768"></p>
 </figure>
 </div>
 </div>
@@ -790,19 +695,19 @@ Note
 </div>
 <p>Nouvelle fonction utile, la fonction <code>facet_wrap()</code> permet de créer plusieurs graphiques d’un seul coup rassemblés en une seule figure. Consultez le satellite sur le <a href="../sessions_extra/faceting.html">faceting</a> si vous voulez en savoir plus.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>data_alerte <span class="sc">|&gt;</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(zone_sante <span class="sc">%in%</span> zone_sante_alertee) <span class="sc">|&gt;</span></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> semaine, </span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> totalcas)) <span class="sc">+</span> </span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#2E4573"</span>) <span class="sc">+</span> </span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">16</span>) <span class="sc">+</span> </span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Semaine"</span>,</span>
-<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"N cas"</span>,</span>
-<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Zone de santé de Kampemba (en alerte)"</span>) <span class="sc">+</span></span>
-<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(zone_sante))   <span class="co"># Un graphe par zone de santé</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>data_alerte <span class="sc">|&gt;</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(zone_sante <span class="sc">%in%</span> zone_sante_alertee) <span class="sc">|&gt;</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> semaine, </span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> totalcas)) <span class="sc">+</span> </span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#2E4573"</span>) <span class="sc">+</span> </span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">16</span>) <span class="sc">+</span> </span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Semaine"</span>,</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"N cas"</span>,</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Zone de santé de Kampemba (en alerte)"</span>) <span class="sc">+</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(zone_sante))   <span class="co"># Un graphe par zone de santé</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="surveillance_companion_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="768"></p>
+<figure class="figure"><p><img src="surveillance_companion_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="768"></p>
 </figure>
 </div>
 </div>
@@ -896,7 +801,110 @@ Astuce
 </div>
 </div>
 </section><section id="sec-going-further" class="level2"><h2 class="anchored" data-anchor-id="sec-going-further">Aller plus loin</h2>
-<section id="explications-sur-rollaply" class="level3"><h3 class="anchored" data-anchor-id="explications-sur-rollaply">Explications sur <code>rollaply()</code>
+<section id="explications-sur-complete" class="level3"><h3 class="anchored" data-anchor-id="explications-sur-complete">Explications sur <code>complete()</code>
+</h3>
+<p>Dans le mini exemple ci-dessous la zone de santé de Kitenge n’a pas de ligne pour la semaine 2 :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Data frame simplifié, avec seulement trois semaines</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>exemple_df <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">province   =</span> <span class="fu">c</span>(<span class="st">"haut_katanga"</span>, <span class="st">"haut_katanga"</span>, <span class="st">"haut_katanga"</span>, <span class="st">"haut_lomami"</span>, <span class="st">"haut_lomami"</span>),</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">zone_sante =</span> <span class="fu">c</span>(<span class="st">"likasi"</span>, <span class="st">"likasi"</span>, <span class="st">"likasi"</span>, <span class="st">"kitenge"</span>, <span class="st">"kitenge"</span>),</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">semaine    =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">3</span>),</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">totalcas  =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>exemple_df</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      province zone_sante semaine totalcas
+1 haut_katanga     likasi       1        2
+2 haut_katanga     likasi       2        1
+3 haut_katanga     likasi       3        3
+4  haut_lomami    kitenge       1        1
+5  haut_lomami    kitenge       3        2</code></pre>
+</div>
+</div>
+<p>Nous pouvons utiliser le code suivant pour compléter toutes les zones de santé pour qu’elles aient toutes les semaines possible, ici les semaine de un à trois :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compléte la semaine manquante à Kitenge</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>exemple_df <span class="sc">|&gt;</span> </span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">complete</span>(</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">nesting</span>(province, zone_sante), </span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">semaine =</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">3</span>),            <span class="co"># Vecteur de 1 à 3</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="fu">list</span>(<span class="at">totalcas =</span> <span class="dv">0</span>)       <span class="co"># Remplir avec des zéros (sinon, NA par défaut)</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  ) </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+  province     zone_sante semaine totalcas
+  &lt;chr&gt;        &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;
+1 haut_katanga likasi           1        2
+2 haut_katanga likasi           2        1
+3 haut_katanga likasi           3        3
+4 haut_lomami  kitenge          1        1
+5 haut_lomami  kitenge          2        0
+6 haut_lomami  kitenge          3        2</code></pre>
+</div>
+</div>
+<p>Maintenant les deux zones de santé dans les deux provinces ont toutes les semaines possibles.</p>
+<p>Vous vous demandez peut être pourquoi nous avons écrit <code>nesting(province, zone_sante)</code> au lieu de juste <code>zone_sante</code>. La raison est qu’il peut y avoir deux zones de santé avec le même nom dans des provinces différentes. Nous devons donc tenir compte de la colonne <code>province</code>. L’argument <code>nesting()</code> indique à la fonction de n’utiliser que les <em>combinaisons existantes</em> des deux colonnes dans le data frame.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Petit encart pour voir ce qui se serait passé si nous avions passé les deux colonnes à la fonction <code>complete()</code> sans utiliser <code>nesting()</code> : la fonction aurait créé <em>toutes les combinaisons possibles</em> entre les catégories des colonnes <code>province</code> et <code>zone_sante</code>, ce qui n’a pas de sens dans notre cas.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>exemple_df <span class="sc">|&gt;</span> </span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">complete</span>(</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    province, zone_sante, </span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">semaine =</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">3</span>),  <span class="co"># Vecteur de 1 à 3</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="fu">list</span>(<span class="at">totalcas =</span> <span class="dv">0</span>)</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  ) </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12 × 4
+   province     zone_sante semaine totalcas
+   &lt;chr&gt;        &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;
+ 1 haut_katanga kitenge          1        0
+ 2 haut_katanga kitenge          2        0
+ 3 haut_katanga kitenge          3        0
+ 4 haut_katanga likasi           1        2
+ 5 haut_katanga likasi           2        1
+ 6 haut_katanga likasi           3        3
+ 7 haut_lomami  kitenge          1        1
+ 8 haut_lomami  kitenge          2        0
+ 9 haut_lomami  kitenge          3        2
+10 haut_lomami  likasi           1        0
+11 haut_lomami  likasi           2        0
+12 haut_lomami  likasi           3        0</code></pre>
+</div>
+</div>
+</div>
+</div>
+<p>Comme la base de données va être mise à jour chaque semaine, il serait pratique de choisir <em>automatiquement</em> la plage des semaines qui doivent être présentes dans les données. Pour ça, il nous suffit de remplacer les valeurs que nous avons codé <em>en dur</em> par la plus petite semaine existante dans les données et la plus grande :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>exemple_df <span class="sc">|&gt;</span> </span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">complete</span>(</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">nesting</span>(province, zone_sante),</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">semaine =</span> <span class="fu">seq</span>(<span class="fu">min</span>(semaine, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),   <span class="co"># Vecteur allant du minimum</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>                  <span class="fu">max</span>(semaine, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)),  <span class="co"># au maximum de la colonne `semaine`</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="fu">list</span>(<span class="at">totalcas =</span> <span class="dv">0</span>)</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>  ) </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+  province     zone_sante semaine totalcas
+  &lt;chr&gt;        &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;
+1 haut_katanga likasi           1        2
+2 haut_katanga likasi           2        1
+3 haut_katanga likasi           3        3
+4 haut_lomami  kitenge          1        1
+5 haut_lomami  kitenge          2        0
+6 haut_lomami  kitenge          3        2</code></pre>
+</div>
+</div>
+</section><section id="explications-sur-rollaply" class="level3"><h3 class="anchored" data-anchor-id="explications-sur-rollaply">Explications sur <code>rollaply()</code>
 </h3>
 <p>Pour calculer la somme cumulée des cas sur trois semaine il nous faut <em>appliquer</em> (<em>apply</em> en anglais) la fonction sur des fenêtres glissantes de trois semaines.</p>
 <div class="cell">
