@@ -38,7 +38,7 @@ df_surv_brut <- import(here("data", "raw", "data_ids_sem20_2022_fr.xlsx"))
 
 # Données de laboratoire
 df_labo_brut <- import(
-  here("data", "surveillance_module", "raw", "data_labo_sem20_2022_fr.xlsx"), 
+  here("data", "raw", "data_labo_sem20_2022_fr.xlsx"), 
   skip = 7  # Saute les 7 premières lignes
 ) 
 
