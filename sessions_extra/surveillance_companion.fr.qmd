@@ -375,7 +375,7 @@ Si vous avez encore du temps, inspectez vos données plus avant :
 
 Durant l'inspection des données vous avez du vous rendre compte qu'il y a des semaines manquantes pour certaines ZS dans les données de surveillance. Normalement, vous avez discuté les raisons possibles et des problèmes associés en plénière. Dans ce tutoriel,  nous allons fournir le code pour compléter le data frame surveillance pour que toutes les ZS aient toutes les semaines (en faisant l'hypothèse que les semaines manquantes n'ont pas eu de cas ou de décès).
 
-Nous utiliserons la fonction [`complete()` du paquet `{tidyr}`](https://tidyr.tidyverse.org/reference/complete.html) pour ajouter les lignes manquantes et remplir les colonnes contenant des nombres (`totalcas` et `totaldeces`) avec des zéros. A cause des contraintes de temps nous allons vous donner le code, mais quelques exemples et explicatins seront donnés dans la section [Aller plus loin](#sec-going-further) que vous pourrez lire quand vous aurez le temps.
+Nous utiliserons la fonction [`complete()` du paquet `{tidyr}`](https://tidyr.tidyverse.org/reference/complete.html) pour ajouter les lignes manquantes et remplir les colonnes contenant des nombres (`totalcas` et `totaldeces`) avec des zéros. A cause des contraintes de temps nous allons vous donner le code, mais quelques exemples et explications seront donnés dans la section [Aller plus loin](#sec-going-further), que vous pourrez lire quand vous aurez le temps.
 
 
 ::: {.write}
