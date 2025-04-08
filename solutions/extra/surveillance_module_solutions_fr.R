@@ -335,7 +335,7 @@ export(df_labo,
 
 # Crée une liste contenant des objects divers
 list_results <- list(
-  alerte_20    = alerte_20, 
+  data_alerte  = data_alerte, 
   first_alerte = first_alerte, 
   p_epi        = p_epi, 
   table_surv   = table_surv, 

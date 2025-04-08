@@ -341,7 +341,7 @@ export(data_lab,
 
 # Create list of results
 list_results <- list(
-  alert_20    = alert_20, 
+  data_alert  = data_alert, 
   first_alert = first_alert, 
   p_epi       = p_epi, 
   table_surv  = table_surv, 
