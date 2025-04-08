@@ -372,74 +372,7 @@ If you still have time, perform more checks on the data:
 
 During the case study and the data checks, you realized that some weeks are missing from the surveillance dataset. You discussed the possible reasons for it, and the associated problems. Here we are going providing code to create a dataset that contains all weeks (assuming that missing weeks had zero cases and deaths).
 
-We will use the function [`complete()` from the `{tidyr}` package](https://tidyr.tidyverse.org/reference/complete.html) to add the missing lines and fill the columns containing numbers (`totalcases` and `totaldeaths`) with zeros.
-
-Look at the simplified example below: the Kitenge health zone has no row for week 2:
-
-```{r}
-#| eval: true
-
-# Create simplified data frame for the example, with three weeks
-example_df = data.frame(
-  province    = c("haut_katanga", "haut_katanga", "haut_katanga", "haut_lomami", "haut_lomami"),
-  health_zone = c("likasi", "likasi", "likasi", "kitenge", "kitenge"),
-  week        = c(1, 2, 3, 1, 3),
-  totalcases  = c(2, 1, 3, 1, 2))
-
-example_df
-```
-
-We use the following code to make sure that all the health zones have all the possible week values. Since the weeks range from one to three in that toy example, we pass a vector with weeks ranging from one to three:
-
-```{r}
-#| eval: true
-
-# Complete the missing week in Kitenge
-example_df |> 
-  complete(
-    nesting(province, health_zone), 
-    week = seq(1, 3),             # vector from 1 to 3
-    fill = list(totalcases = 0)   # fill new lines with zero (default is NA)
-  ) 
-```
-
-Now both health zones within provinces have values for all three weeks.
-
-You may be wondering why we used `nesting(province, health_zone)` and not just `health_zone`. The reason is that there could be two health zones in different provinces with the same name. So we need to keep the `province` column into account. The `nesting()` argument tells the function to only use the *existing* combinations of the two columns in the data frame.
-
-::: {.callout-note}
-
-If we were passing both column names to the `complete()` function, it would try to cross *all levels of `province` to all levels of `health_zone`*, which does not make sense in this case:
-
-```{r}
-#| eval: true
-
-# Complete the missing week in kikula
-example_df |> 
-  complete(
-    province, health_zone, 
-    week = seq(1, 3),  # vector from 1 to 3
-    fill = list(totalcases = 0)
-  ) 
-```
-:::
-
-
-It would be good to automatically pick the week series, since the data frame is going to change every week. To do that, we can remplace hardcoded values by the smallest and largest week number in the `week` column to get the range of weeks in the dataset:
-
-
-```{r}
-#| eval: true
-
-# Complete the missing week in kikula
-example_df |> 
-  complete(
-    nesting(province, health_zone),
-    week = seq(min(week, na.rm = TRUE),   # vector ranging from smallest to largest week numbers in dataset
-               max(week, na.rm = TRUE)),
-    fill = list(totalcases = 0)
-  ) 
-```
+We will use the function [`complete()` from the `{tidyr}` package](https://tidyr.tidyverse.org/reference/complete.html) to add the missing lines and fill the columns containing numbers (`totalcases` and `totaldeaths`) with zeros. Due to the constrained time, we will give you the code for now, but check out the details in the [Going further section](#sec-going-further) when you have time. 
 
 
 ::: {.write}
@@ -449,11 +382,16 @@ example_df |>
 
 ```{r}
 complete(
+  # Use all the existing combinaitions of province and health zone:
   nesting(province, health_zone),
+  
+  # All the combinations whould have all weeks from the minimum (1) to the maximum (20) of the week column.
   week = seq(min(week, na.rm = TRUE), 
              max(week, na.rm = TRUE)),
-  fill = list(totalcases   = 0, 
-              totaldeaths = 0 # also add zero to the totaldeaths column
+  
+  # Fill these two columns with zeros for the newly created weeks:
+  fill = list(totalcases  = 0,  
+              totaldeaths = 0 
   )
 ) 
 ```
@@ -472,8 +410,7 @@ data_surv_weeks |> head(10)
 
 ### Going further
 
-This is the end of question 3; if you are finished in advance, do not hesitate to carry on checking the data and listing potential problems and cleaning the columns. Or go explore the [`complete()` help page`](https://tidyr.tidyverse.org/reference/complete.html) to better understand how the function works.
-
+This is the end of question 3; if you are finished in advance, do not hesitate to carry on checking the data and listing potential problems and cleaning the columns. And go read the explanations for the `complete()` function, or its [help page`](https://tidyr.tidyverse.org/reference/complete.html).
 
 ## Defining alerts (Question 4)
 
@@ -829,6 +766,76 @@ downloadthis::download_link(
 
 
 ## Going Further {#sec-going-further}
+
+### Exploring the `complete()` function
+
+Look at the simplified example below: the Kitenge health zone has no row for week 2:
+
+```{r}
+#| eval: true
+
+# Create simplified data frame for the example, with three weeks
+example_df = data.frame(
+  province    = c("haut_katanga", "haut_katanga", "haut_katanga", "haut_lomami", "haut_lomami"),
+  health_zone = c("likasi", "likasi", "likasi", "kitenge", "kitenge"),
+  week        = c(1, 2, 3, 1, 3),
+  totalcases  = c(2, 1, 3, 1, 2))
+
+example_df
+```
+
+We use the following code to make sure that all the health zones have all the possible week values. Since the weeks range from one to three in that toy example, we pass a vector with weeks ranging from one to three:
+
+```{r}
+#| eval: true
+
+# Complete the missing week in Kitenge
+example_df |> 
+  complete(
+    nesting(province, health_zone), 
+    week = seq(1, 3),             # vector from 1 to 3
+    fill = list(totalcases = 0)   # fill new lines with zero (default is NA)
+  ) 
+```
+
+Now both health zones within provinces have values for all three weeks.
+
+You may be wondering why we used `nesting(province, health_zone)` and not just `health_zone`. The reason is that there could be two health zones in different provinces with the same name. So we need to keep the `province` column into account. The `nesting()` argument tells the function to only use the *existing* combinations of the two columns in the data frame.
+
+::: {.callout-note}
+
+If we were passing both column names to the `complete()` function, it would try to cross *all levels of `province` to all levels of `health_zone`*, which does not make sense in this case:
+
+```{r}
+#| eval: true
+
+# Complete the missing week in kikula
+example_df |> 
+  complete(
+    province, health_zone, 
+    week = seq(1, 3),  # vector from 1 to 3
+    fill = list(totalcases = 0)
+  ) 
+```
+:::
+
+
+It would be good to automatically pick the week series, since the data frame is going to change every week. To do that, we can remplace hardcoded values by the smallest and largest week number in the `week` column to get the range of weeks in the dataset:
+
+
+```{r}
+#| eval: true
+
+# Complete the missing week in kikula
+example_df |> 
+  complete(
+    nesting(province, health_zone),
+    week = seq(min(week, na.rm = TRUE),   # vector ranging from smallest to largest week numbers in dataset
+               max(week, na.rm = TRUE)),
+    fill = list(totalcases = 0)
+  ) 
+```
+
 
 ### Exploring the `rollaply()` function 
 

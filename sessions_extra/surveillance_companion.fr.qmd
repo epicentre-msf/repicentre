@@ -375,73 +375,7 @@ Si vous avez encore du temps, inspectez vos données plus avant :
 
 Durant l'inspection des données vous avez du vous rendre compte qu'il y a des semaines manquantes pour certaines ZS dans les données de surveillance. Normalement, vous avez discuté les raisons possibles et des problèmes associés en plénière. Dans ce tutoriel,  nous allons fournir le code pour compléter le data frame surveillance pour que toutes les ZS aient toutes les semaines (en faisant l'hypothèse que les semaines manquantes n'ont pas eu de cas ou de décès).
 
-Nous utiliserons la fonction [`complete()` du paquet `{tidyr}`](https://tidyr.tidyverse.org/reference/complete.html) pour ajouter les lignes manquantes et remplir les colonnes contenant des nombres (`totalcas` et `totaldeces`) avec des zéros.
-
-Dans le mini exemple ci-dessous la zone de santé de Kitenge n'a pas de ligne pour la semaine 2 :
-
-
-```{r}
-#| eval: true
-
-# Data frame simplifié, avec seulement trois semaines
-exemple_df = data.frame(
-  province   = c("haut_katanga", "haut_katanga", "haut_katanga", "haut_lomami", "haut_lomami"),
-  zone_sante = c("likasi", "likasi", "likasi", "kitenge", "kitenge"),
-  semaine    = c(1, 2, 3, 1, 3),
-  totalcas  = c(2, 1, 3, 1, 2))
-
-exemple_df
-```
-
-Nous pouvons utiliser le code suivant pour compléter toutes les zones de santé pour qu'elles aient toutes les semaines possible, ici les semaine de un à trois : 
-
-```{r}
-#| eval: true
-
-# Compléte la semaine manquante à Kitenge
-exemple_df |> 
-  complete(
-    nesting(province, zone_sante), 
-    semaine = seq(1, 3),            # Vecteur de 1 à 3
-    fill = list(totalcas = 0)       # Remplir avec des zéros (sinon, NA par défaut)
-  ) 
-```
-
-Maintenant les deux zones de santé dans les deux provinces ont toutes les semaines possibles.
-
-Vous vous demandez peut être pourquoi nous avons écrit `nesting(province, zone_sante)` au lieu de juste `zone_sante`. La raison est qu'il peut y avoir deux zones de santé avec le même nom dans des provinces différentes. Nous devons donc tenir compte de la colonne `province`. L'argument `nesting()` indique à la fonction de n'utiliser que les *combinaisons existantes* des deux colonnes dans le data frame.
-
-
-::: {.callout-note}
-Petit encart pour voir ce qui se serait passé si nous avions passé les deux colonnes à la fonction `complete()` sans utiliser `nesting()` : la fonction aurait créé *toutes les combinaisons possibles* entre les catégories des colonnes `province` et `zone_sante`, ce qui n'a pas de sens dans notre cas.
-
-```{r}
-#| eval: true
-
-exemple_df |> 
-  complete(
-    province, zone_sante, 
-    semaine = seq(1, 3),  # Vecteur de 1 à 3
-    fill = list(totalcas = 0)
-  ) 
-```
-:::
-
-
-Comme la base de données va être mise à jour chaque semaine, il serait pratique de choisir *automatiquement* la plage des semaines qui doivent être présentes dans les données.
-Pour ça, il nous suffit de remplacer les valeurs que nous avons codé *en dur* par la plus petite semaine existante dans les données et la plus grande :
-
-```{r}
-#| eval: true
-
-exemple_df |> 
-  complete(
-    nesting(province, zone_sante),
-    semaine = seq(min(semaine, na.rm = TRUE),   # Vecteur allant du minimum
-                  max(semaine, na.rm = TRUE)),  # au maximum de la colonne `semaine`
-    fill = list(totalcas = 0)
-  ) 
-```
+Nous utiliserons la fonction [`complete()` du paquet `{tidyr}`](https://tidyr.tidyverse.org/reference/complete.html) pour ajouter les lignes manquantes et remplir les colonnes contenant des nombres (`totalcas` et `totaldeces`) avec des zéros. A cause des contraintes de temps nous allons vous donner le code, mais quelques exemples et explicatins seront donnés dans la section [Aller plus loin](#sec-going-further) que vous pourrez lire quand vous aurez le temps.
 
 
 ::: {.write}
@@ -451,11 +385,16 @@ exemple_df |>
 
 ```{r}
 complete(
+  # On travaille sur les combinaisons existantes de province et ZS
   nesting(province, zone_sante),
+  
+  # On voudra toutes les semaines entre le minimum (1) et le maximum (20) de la colonne semaine
   semaine = seq(min(semaine, na.rm = TRUE), 
                 max(semaine, na.rm = TRUE)),
+  
+  # Remplir les nouvelles semaines de zeros pour ces colonnes :
   fill = list(totalcas   = 0, 
-              totaldeces = 0  # on remplit aussi la colone totaldeces de zéros
+              totaldeces = 0
   )
 ) 
 ```
@@ -474,7 +413,7 @@ df_surv_sem |> head(10)
 
 ### Aller plus loin
 
-C'est la fin de la question 3. Si vous terminez en avance, finissez l'inspection des données, listez les problèmes et nettoyez les colonnes que vous savez nettoyer avant de réexporter. Si c'est fait, allez explorer la [page d'aide](https://tidyr.tidyverse.org/reference/complete.html) de la fonction `complete()` pour vous familiariser avec son fonctionnement.
+C'est la fin de la question 3. Si vous terminez en avance, finissez l'inspection des données, listez les problèmes et nettoyez les colonnes que vous savez nettoyer avant de réexporter. Si c'est fait, lisez les eplications sur la fonction `complete()` et allez explorer sa [page d'aide](https://tidyr.tidyverse.org/reference/complete.html).
 
 
 ## Définir les alertes (Question 4)
@@ -823,6 +762,75 @@ downloadthis::download_link(
 
 
 ## Aller plus loin {#sec-going-further}
+
+### Explications sur `complete()`
+
+Dans le mini exemple ci-dessous la zone de santé de Kitenge n'a pas de ligne pour la semaine 2 :
+
+
+```{r}
+#| eval: true
+
+# Data frame simplifié, avec seulement trois semaines
+exemple_df = data.frame(
+  province   = c("haut_katanga", "haut_katanga", "haut_katanga", "haut_lomami", "haut_lomami"),
+  zone_sante = c("likasi", "likasi", "likasi", "kitenge", "kitenge"),
+  semaine    = c(1, 2, 3, 1, 3),
+  totalcas  = c(2, 1, 3, 1, 2))
+
+exemple_df
+```
+
+Nous pouvons utiliser le code suivant pour compléter toutes les zones de santé pour qu'elles aient toutes les semaines possible, ici les semaine de un à trois : 
+
+```{r}
+#| eval: true
+
+# Compléte la semaine manquante à Kitenge
+exemple_df |> 
+  complete(
+    nesting(province, zone_sante), 
+    semaine = seq(1, 3),            # Vecteur de 1 à 3
+    fill = list(totalcas = 0)       # Remplir avec des zéros (sinon, NA par défaut)
+  ) 
+```
+
+Maintenant les deux zones de santé dans les deux provinces ont toutes les semaines possibles.
+
+Vous vous demandez peut être pourquoi nous avons écrit `nesting(province, zone_sante)` au lieu de juste `zone_sante`. La raison est qu'il peut y avoir deux zones de santé avec le même nom dans des provinces différentes. Nous devons donc tenir compte de la colonne `province`. L'argument `nesting()` indique à la fonction de n'utiliser que les *combinaisons existantes* des deux colonnes dans le data frame.
+
+
+::: {.callout-note}
+Petit encart pour voir ce qui se serait passé si nous avions passé les deux colonnes à la fonction `complete()` sans utiliser `nesting()` : la fonction aurait créé *toutes les combinaisons possibles* entre les catégories des colonnes `province` et `zone_sante`, ce qui n'a pas de sens dans notre cas.
+
+```{r}
+#| eval: true
+
+exemple_df |> 
+  complete(
+    province, zone_sante, 
+    semaine = seq(1, 3),  # Vecteur de 1 à 3
+    fill = list(totalcas = 0)
+  ) 
+```
+:::
+
+
+Comme la base de données va être mise à jour chaque semaine, il serait pratique de choisir *automatiquement* la plage des semaines qui doivent être présentes dans les données.
+Pour ça, il nous suffit de remplacer les valeurs que nous avons codé *en dur* par la plus petite semaine existante dans les données et la plus grande :
+
+```{r}
+#| eval: true
+
+exemple_df |> 
+  complete(
+    nesting(province, zone_sante),
+    semaine = seq(min(semaine, na.rm = TRUE),   # Vecteur allant du minimum
+                  max(semaine, na.rm = TRUE)),  # au maximum de la colonne `semaine`
+    fill = list(totalcas = 0)
+  ) 
+```
+
 
 ### Explications sur `rollaply()` 
 
