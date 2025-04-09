@@ -144,11 +144,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#counting-multiple-columns-contingency-tables" id="toc-counting-multiple-columns-contingency-tables" class="nav-link" data-scroll-target="#counting-multiple-columns-contingency-tables">Counting Multiple Columns (Contingency Tables)</a></li>
   <li><a href="#filtering-out-nas" id="toc-filtering-out-nas" class="nav-link" data-scroll-target="#filtering-out-nas">Filtering out <code>NA</code>s</a></li>
   <li>
-<a href="#summary-table-statistics-by-sub-prefecture" id="toc-summary-table-statistics-by-sub-prefecture" class="nav-link" data-scroll-target="#summary-table-statistics-by-sub-prefecture">Summary Table: Statistics by Sub Prefecture</a>
+<a href="#sec-stratify" id="toc-sec-stratify" class="nav-link" data-scroll-target="#sec-stratify">Summary Table: Statistics by Sub Prefecture</a>
   <ul class="collapse">
 <li><a href="#counts" id="toc-counts" class="nav-link" data-scroll-target="#counts">Counts</a></li>
   <li><a href="#summarizing-continuous-variables" id="toc-summarizing-continuous-variables" class="nav-link" data-scroll-target="#summarizing-continuous-variables">Summarizing Continuous Variables</a></li>
-  <li><a href="#counting-with-a-condition" id="toc-counting-with-a-condition" class="nav-link" data-scroll-target="#counting-with-a-condition">Counting with a Condition</a></li>
+  <li><a href="#sec-summary-cond" id="toc-sec-summary-cond" class="nav-link" data-scroll-target="#sec-summary-cond">Counting with a Condition</a></li>
   <li><a href="#other-statistics" id="toc-other-statistics" class="nav-link" data-scroll-target="#other-statistics">Other Statistics</a></li>
   <li><a href="#use-the-output" id="toc-use-the-output" class="nav-link" data-scroll-target="#use-the-output">Use the Output</a></li>
   </ul>
@@ -278,7 +278,7 @@ Tip
 <p><code>drop_na()</code> is particularly useful as you can give it multiple column names to filter by. But be careful that doing so will remove <strong>all</strong> rows where <strong>one or more</strong> of those columns have a missing value.</p>
 </div>
 </div>
-</section><section id="summary-table-statistics-by-sub-prefecture" class="level2"><h2 class="anchored" data-anchor-id="summary-table-statistics-by-sub-prefecture">Summary Table: Statistics by Sub Prefecture</h2>
+</section><section id="sec-stratify" class="level2"><h2 class="anchored" data-anchor-id="sec-stratify">Summary Table: Statistics by Sub Prefecture</h2>
 <p>Ok now that we have produced some simple frequency and contingency tables we may want to increase the complexity. A common task in epidemiology is to look at summary statistics within subsets of the data.</p>
 <p>For example, we may be asked to produce patient statistics at the sub-prefecture level, ie: <em>for each sub-prefecture in the data</em>, we need to answer the following questions:</p>
 <ul>
@@ -378,7 +378,7 @@ Tip
 <p>Remember that with the arithmetic functions such as <code>mean()</code>, <code>median()</code>, <code>min()</code>, <code>max()</code>, you need to <strong>explicitly tell R</strong> to remove <code>NA</code>.</p>
 </div>
 </div>
-</section><section id="counting-with-a-condition" class="level3"><h3 class="anchored" data-anchor-id="counting-with-a-condition">Counting with a Condition</h3>
+</section><section id="sec-summary-cond" class="level3"><h3 class="anchored" data-anchor-id="sec-summary-cond">Counting with a Condition</h3>
 <p>We may also be interested in looking at the number of patients (rows) that fit a condition: the <em>number of patients that were female</em>. Counting by a logical condition can be done with the following syntax:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DO NOT RUN (PSEUDO-CODE)</span></span>

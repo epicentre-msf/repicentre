@@ -8,6 +8,7 @@ listing:
   contents:
     - 'sessions_core/*.qmd'
     - 'sessions_extra/*.qmd'
+    - 'sessions_companion/*.qmd'
 ---
 
 Choose your own adventure by browsing all available sessions.

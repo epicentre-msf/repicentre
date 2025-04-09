@@ -1,0 +1,1636 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<link rel="alternate" hreflang="en" href="https://epicentre-msf.github.io/repicentre/sessions_companion/surveillance_companion.html" />
+<link rel="alternate" hreflang="fr" href="https://epicentre-msf.github.io/repicentre/fr/sessions_companion/surveillance_companion.fr.html" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.39">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="description" content="Companion session to the surveillance Fetch-R module">
+<title>Surveillance – {repicentre}</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script><script src="../site_libs/quarto-nav/headroom.min.js"></script><script src="../site_libs/clipboard/clipboard.min.js"></script><script src="../site_libs/quarto-search/autocomplete.umd.js"></script><script src="../site_libs/quarto-search/fuse.min.js"></script><script src="../site_libs/quarto-search/quarto-search.js"></script><meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script><script src="../site_libs/quarto-html/popper.min.js"></script><script src="../site_libs/quarto-html/tippy.umd.min.js"></script><script src="../site_libs/quarto-html/anchor.min.js"></script><link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-0626ff4d7a71b55c8707dcae1d04a9b6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-e25cc82807363e79c52e96bc8b7855f1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script><link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-b814d3e578892f16fb585af6f47f426f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-35dfec4a88a4a8552367c65e80eaa027.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script><script src="../site_libs/font-awesome-6.5.2/js/script.js"></script><script type="text/javascript" src="../script.js"></script><link rel="stylesheet" href="../styles.css">
+</head>
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">{repicentre}</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+<li class="nav-item"><div class="dropdown" id="languages-links-parent">
+<button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="languages-button"><i class="bi bi-globe2"></i> English</button><ul class="dropdown-menu" id="languages-links"><li><a class="dropdown-item" href="https://epicentre-msf.github.io/repicentre/fr/sessions_companion/surveillance_companion.html" id="language-link-fr">Français</a></li></ul>
+</div></li>
+<li class="nav-item">
+    <a class="nav-link" href="../pathway.html"> 
+<span class="menu-text">Pathway</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../explore.html"> 
+<span class="menu-text">Explore</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../resources.html"> 
+<span class="menu-text">Resources</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+</div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+   
+  <ul>
+<li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
+  <li>
+<a href="#setup-question-2" id="toc-setup-question-2" class="nav-link" data-scroll-target="#setup-question-2">Setup (Question 2)</a>
+  <ul class="collapse">
+<li><a href="#setup-a-new-project" id="toc-setup-a-new-project" class="nav-link" data-scroll-target="#setup-a-new-project">Setup a new project</a></li>
+  <li><a href="#import-data-in-r" id="toc-import-data-in-r" class="nav-link" data-scroll-target="#import-data-in-r">Import data in R</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#cleaning-question-2-and-3" id="toc-cleaning-question-2-and-3" class="nav-link" data-scroll-target="#cleaning-question-2-and-3">Cleaning (Question 2 and 3)</a>
+  <ul class="collapse">
+<li><a href="#surveillance-data-q2" id="toc-surveillance-data-q2" class="nav-link" data-scroll-target="#surveillance-data-q2">Surveillance data (Q2)</a></li>
+  <li><a href="#laboratory-data-q2" id="toc-laboratory-data-q2" class="nav-link" data-scroll-target="#laboratory-data-q2">Laboratory data (Q2)</a></li>
+  <li><a href="#going-further" id="toc-going-further" class="nav-link" data-scroll-target="#going-further">Going further</a></li>
+  <li><a href="#complete-surveillance-dataset-q3" id="toc-complete-surveillance-dataset-q3" class="nav-link" data-scroll-target="#complete-surveillance-dataset-q3">Complete surveillance dataset (Q3)</a></li>
+  <li><a href="#going-further-1" id="toc-going-further-1" class="nav-link" data-scroll-target="#going-further-1">Going further</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#defining-alerts-question-4" id="toc-defining-alerts-question-4" class="nav-link" data-scroll-target="#defining-alerts-question-4">Defining alerts (Question 4)</a>
+  <ul class="collapse">
+<li><a href="#preparing-the-dataset" id="toc-preparing-the-dataset" class="nav-link" data-scroll-target="#preparing-the-dataset">Preparing the dataset</a></li>
+  <li><a href="#health-zones-in-alert" id="toc-health-zones-in-alert" class="nav-link" data-scroll-target="#health-zones-in-alert">Health zones in alert</a></li>
+  </ul>
+</li>
+  <li><a href="#draw-the-epicurve-question-4" id="toc-draw-the-epicurve-question-4" class="nav-link" data-scroll-target="#draw-the-epicurve-question-4">Draw the epicurve (Question 4)</a></li>
+  <li>
+<a href="#key-indicators-question-6" id="toc-key-indicators-question-6" class="nav-link" data-scroll-target="#key-indicators-question-6">Key indicators (Question 6)</a>
+  <ul class="collapse">
+<li><a href="#week-of-the-first-alert" id="toc-week-of-the-first-alert" class="nav-link" data-scroll-target="#week-of-the-first-alert">Week of the first alert</a></li>
+  <li><a href="#surveillance-data-indicators" id="toc-surveillance-data-indicators" class="nav-link" data-scroll-target="#surveillance-data-indicators">Surveillance data indicators</a></li>
+  <li><a href="#lab-data-indicators" id="toc-lab-data-indicators" class="nav-link" data-scroll-target="#lab-data-indicators">Lab data indicators</a></li>
+  </ul>
+</li>
+  <li><a href="#done" id="toc-done" class="nav-link" data-scroll-target="#done">Done!</a></li>
+  <li>
+<a href="#sec-going-further" id="toc-sec-going-further" class="nav-link" data-scroll-target="#sec-going-further">Going Further</a>
+  <ul class="collapse">
+<li><a href="#exploring-the-complete-function" id="toc-exploring-the-complete-function" class="nav-link" data-scroll-target="#exploring-the-complete-function">Exploring the <code>complete()</code> function</a></li>
+  <li><a href="#exploring-the-rollaply-function" id="toc-exploring-the-rollaply-function" class="nav-link" data-scroll-target="#exploring-the-rollaply-function">Exploring the <code>rollaply()</code> function</a></li>
+  <li><a href="#nicely-formatted-percentages" id="toc-nicely-formatted-percentages" class="nav-link" data-scroll-target="#nicely-formatted-percentages">Nicely formatted percentages</a></li>
+  </ul>
+</li>
+  </ul></nav>
+</div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title">Surveillance</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Companion</div>
+    <div class="quarto-category">Analysis</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Companion session to the surveillance Fetch-R module
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header><section id="objectives" class="level2"><h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
+<ul>
+<li>Reuse skills aquired in the FETCH-R modules (import, clean and visualize data)</li>
+<li>More specifically, analyze surveillance data to detect alerts and to help decide which alerts to prioritize for further field investigation.</li>
+</ul></section><section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p><strong>Warning</strong>. This session is a companion to the case study <em>Measles emergency response in the Katanga region (DRC)</em> from the FETCH Surveillance module and might not make sense as a standalone tutorial.</p>
+<p>From an R point of view, this tutorial builds on skills acquired throughout the FETCH-R modules, introduces a couple of useful generalist functions, and some more specialized ones.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Do not hesitate to refer to past sessions and your own scripts to remind yourself of some functions!</p>
+</div>
+</div>
+</section><section id="setup-question-2" class="level2"><h2 class="anchored" data-anchor-id="setup-question-2">Setup (Question 2)</h2>
+<p>Since this is part of a specific module, you will create a new RStudio project. We refer you <a href="../sessions_core/02_import_data.html">to the main session</a> for help creating a project and importing your data.</p>
+<section id="setup-a-new-project" class="level3"><h3 class="anchored" data-anchor-id="setup-a-new-project">Setup a new project</h3>
+<div class="setup">
+<ol type="1">
+<li>Create a folder <code>surveillance_case_study</code> associated with the FETCH Surveillance module. Add the following subfolders in it:</li>
+</ol>
+<ul>
+<li>📁 data
+<ul>
+<li>📁 clean</li>
+<li>📁 raw</li>
+</ul>
+</li>
+<li>📁 R</li>
+<li>📁 outputs</li>
+</ul>
+<ol start="2" type="1">
+<li><p>Create an <a href="../sessions_core/02_import_data.html#rstudio-projects">RStudio project</a> at the root of the <code>surveillance_case_study</code> folder.</p></li>
+<li><p>If you do not already have the data from the case study download them.</p></li>
+</ol>
+<div class="cell">
+<div class="cell-output-display">
+<a href="https://github.com/epicentre-msf/repicentre/raw/main/data/surveillance_module/raw/raw_data_en.zip">
+<button class="btn btn-default"><i class="fa fa-save"></i> Download raw data</button>
+</a>
+</div>
+</div>
+<p><br> 4. Unzip the archive if you just downloaded. Save the two Excel files in the subfolder <code>data/raw</code>. <br> 5. Create a new script called <code>import_clean.R</code> and save it in the <code>R</code> subdirectory. Add metadata and a section to load the following packages: <code>{here}</code>, <code>{rio}</code>, and <code>{tidyverse}</code>.</p>
+</div>
+</section><section id="import-data-in-r" class="level3"><h3 class="anchored" data-anchor-id="import-data-in-r">Import data in R</h3>
+<p><strong>Reminder from the case study</strong>: you requested access to the routine surveillance data and the laboratory data to the DRC MoH. The MoH agreed to share it with you on a weekly basis. The first dataset you received is of week 20 in 2022 (the data we are working on are simulated).</p>
+<div class="look">
+<p>If you have not done it already, open the raw data files in Excel (or another equivalent application) to inspect them.</p>
+</div>
+<p>The surveillance dataset is pretty straightforward to import. The lab dataset is slightly trickier: the data headers do not start at line one. Fear not, the <code>skip</code> argument from the <code>import()</code> function is made for this situation:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DO NOT RUN (PSEUDO-CODE)</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">import</span>(</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"raw"</span>, <span class="st">"example_file.xlsx"</span>), </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip =</span> <span class="dv">3</span>  <span class="co"># Skip the first three lines and start importing from line four.</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="write">
+<ol type="1">
+<li><p>Add a section to your script dedicated to data importation.</p></li>
+<li><p>Import the surveillance data and store it into a <code>data_surv_raw</code> data frame. Then, import the lab data and save it in a <code>data_lab_raw</code> data frame.</p></li>
+<li><p>Verify that the import went well for both data frames (Viewer, check the dimensions or start and tail of data frames).</p></li>
+</ol>
+</div>
+</section></section><section id="cleaning-question-2-and-3" class="level2"><h2 class="anchored" data-anchor-id="cleaning-question-2-and-3">Cleaning (Question 2 and 3)</h2>
+<section id="surveillance-data-q2" class="level3"><h3 class="anchored" data-anchor-id="surveillance-data-q2">Surveillance data (Q2)</h3>
+<p>Now that the data is correctly imported, we are going to perform some more checks, as usual, before a bit of cleaning.</p>
+<section id="quick-checks" class="level4"><h4 class="anchored" data-anchor-id="quick-checks">Quick checks</h4>
+<p>During the case study you won’t have time to <strong>inspect</strong> and <strong>clean</strong> <em>all</em> columns within the available time, so for now we will focus on key columns: <code>health_zone</code>, <code>week</code>, <code>totalcases</code> and <code>totaldeaths</code>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you work on this tutorial in your own time, inspect the quality of the other columns and cross-check information of several columns. We refer you to the discussion of the case study for more checks to perform.</p>
+</div>
+</div>
+<div class="write">
+<p>Add a section for the exploration and cleaning of the surveillance data into your script. <br> Now, explore the surveillance data frame and answer the following questions:</p>
+<ul>
+<li>What are the column names?</li>
+<li>How many provinces are in the dataset? Is this coherent with what you expect?</li>
+<li>How many health zones are in the dataset?</li>
+<li>What is the range of weeks?</li>
+<li>What is the min of <code>totalcases</code>?</li>
+<li>What is the max of the <code>totaldeaths</code>?</li>
+<li>Do you notice missing data for these columns? Are the strings of text clean?</li>
+</ul>
+</div>
+</section><section id="clean-strings" class="level4"><h4 class="anchored" data-anchor-id="clean-strings">Clean strings</h4>
+<p>Now that we have a better idea of what is the state of the data, let’s start cleaning. We are going to write a <em>cleaning pipeline</em> like we did in the main modules (check out your code for the end of the <a href="../sessions_core/04_data_verbs_conditional.html">cleaning modules</a> to see an example final pipeline).</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>To facilitate debugging your pipeline, add commands one by one, checking each new command before adding a new one.</p>
+</div>
+</div>
+<p>We are going to perform a couple of actions on the columns containing text to remove potential problems:</p>
+<ul>
+<li>transform them to lower case</li>
+<li>remove potential extra spaces</li>
+<li>replace <code>-</code> and spaces by <code>_</code>.</li>
+</ul>
+<p>Because you may not have the time to do all of text colums, work on the <code>health_zone</code> or the <code>province</code> column for the following instructions.</p>
+<div class="write">
+<p>Start a cleaning pipeline with a <code>mutate()</code> that turns the chosen column to lower case.</p>
+</div>
+<p>Now, we are going to introduce two handy functions for more text cleaning. The first one is the <code>str_squish()</code> function from the <code>{stringr}</code> package (<a href="https://stringr.tidyverse.org/reference/str_trim.html">help page here</a>), that removes spaces at the start or end of the strings, and replace multiple spaces in the middle of a string by a single space.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>examples <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">" Trailing spaces     "</span>,</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>              <span class="st">"Multiple     spaces"</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>              <span class="st">" Everything     here "</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">str_squish</span>(examples)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Trailing spaces" "Multiple spaces" "Everything here"</code></pre>
+</div>
+</div>
+<p>The other function, <code>str_replace</code> (also from the <a href="https://stringr.tidyverse.org/reference/str_replace.html?q=str_replace#null"><code>{stringr}</code> package</a>) does what you expect from its name: replace something in a string by something else. It has a <code>pattern</code> argument that take the bit of text to be replaced, and a <code>replacement</code> arguments that takes the bit of text to use as replacement:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace</span>(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"HAUT-KATANGA"</span>,    <span class="co"># A string of text (or a column, if used in a mutate)</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">pattern =</span> <span class="st">"-"</span>,     <span class="co"># The bit to replace</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">replacement =</span> <span class="st">"_"</span>  <span class="co"># The replacement</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "HAUT_KATANGA"</code></pre>
+</div>
+</div>
+<div class="write">
+<p>Add steps to your mutate to:</p>
+<ul>
+<li>Remove all unwanted spaces from your chosen column</li>
+<li>Change the <code>-</code> and to <code>_</code> in the column (in two steps)</li>
+</ul>
+<p>The head of these columns should now be:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>  country     province    health_zone disease
+1     drc haut_katanga mufunga_sampwe measles
+2     drc haut_katanga        sakania measles
+3     drc haut_katanga        mitwaba measles
+4     drc haut_katanga kilela_balanda measles
+5     drc haut_katanga         likasi measles
+6     drc haut_katanga         kikula measles</code></pre>
+</div>
+</div>
+<p>Store the result data frame in a <code>data_surv</code> object.</p>
+</div>
+</section><section id="save-the-clean-data" class="level4"><h4 class="anchored" data-anchor-id="save-the-clean-data">Save the clean data</h4>
+<div class="write">
+<p>Use the <code>{rio}</code> package to export <code>data_surv</code> to a <code>.rds</code> file called <code>data_ids_2022-w20_clean</code> in the <code>data/clean</code> subfolder of your project.</p>
+</div>
+</section></section><section id="laboratory-data-q2" class="level3"><h3 class="anchored" data-anchor-id="laboratory-data-q2">Laboratory data (Q2)</h3>
+<p>We are going to follow the same steps as before for the lab data, and focus for now on the columns <code>health_zone</code>, <code>igm_measles</code> and <code>igm_rubella</code>.</p>
+<section id="quick-checks-1" class="level4"><h4 class="anchored" data-anchor-id="quick-checks-1">Quick checks</h4>
+<div class="write">
+<p>Perform data checks on the colums names and dimensions. What are the categories for <code>igm_measles</code> and <code>igm_rubella</code>? What do you need to do to clean these columns?</p>
+</div>
+</section><section id="clean-and-recode-strings" class="level4"><h4 class="anchored" data-anchor-id="clean-and-recode-strings">Clean and recode strings</h4>
+<div class="write">
+<ol type="1">
+<li><p>Start a new cleaning pipeline to clean the lab data. As before, for one of the text column, change it to lower case, remove the extra spaces and replace the or <code>-</code> by <code>_</code>.</p></li>
+<li><p>Recode at least one of <code>igm_measles</code> or <code>igm_rubella</code> columns so that the categories are <code>negatif</code>, <code>positif</code> and <code>indetermine</code>.</p></li>
+<li><p>Store the cleaner version in a <code>data_lab</code> data frame</p></li>
+</ol>
+<p>The head of the cleaned columns should now be:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>   health_zone igm_measles igm_rubella
+1      kambove    negative    negative
+2      kambove    negative    negative
+3      kambove    negative    positive
+4      kambove    negative    negative
+5      kambove    negative    positive
+6      kambove    negative    negative
+7      kambove    negative    negative
+8      kambove    negative    positive
+9       manika    negative    negative
+10   kamalondo    negative    negative</code></pre>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>You can use the <code>case_when()</code> function to recode the IGM columns.</p>
+</div>
+</div>
+</div>
+</section><section id="save-the-clean-data-1" class="level4"><h4 class="anchored" data-anchor-id="save-the-clean-data-1">Save the clean data</h4>
+<div class="write">
+<p>Export the <code>data_lab</code> data frame to a <code>.rds</code> file called <code>data_lab_2022-w20_clean</code> in the <code>data/clean</code> subfolder of your project.</p>
+</div>
+</section></section><section id="going-further" class="level3"><h3 class="anchored" data-anchor-id="going-further">Going further</h3>
+<p>This is the end of the steps for question 2! If you finished in advance and there is still time, reuse the functions we just saw to clean the other text columns in both datasets and recode both IGM column in the lab dataset.</p>
+<p>If you still have time, perform more checks on the data:</p>
+<ul>
+<li>Display the health zone for which the numbers by age group add up to a different number than the total (if any)</li>
+<li>Are there any health zone for which the number of deaths is higher than the total number of cases?</li>
+<li>Are there duplicated lines (fully duplicated, or several values for health zone and week)?</li>
+<li>Are there unrealistic case numbers?</li>
+</ul></section><section id="complete-surveillance-dataset-q3" class="level3"><h3 class="anchored" data-anchor-id="complete-surveillance-dataset-q3">Complete surveillance dataset (Q3)</h3>
+<p>During the case study and the data checks, you realized that some weeks are missing from the surveillance dataset. You discussed the possible reasons for it, and the associated problems. Here we are going providing code to create a dataset that contains all weeks (assuming that missing weeks had zero cases and deaths).</p>
+<p>We will use the function <a href="https://tidyr.tidyverse.org/reference/complete.html"><code>complete()</code> from the <code>{tidyr}</code> package</a> to add the missing lines and fill the columns containing numbers (<code>totalcases</code> and <code>totaldeaths</code>) with zeros. Due to the constrained time, we will give you the code for now, but check out the details in the <a href="#sec-going-further">Going further section</a> when you have time.</p>
+<div class="write">
+<ol type="1">
+<li><p>Start a new pipeline that takes the <code>data_surv</code> data frame and keeps only the columns <code>province</code>, <code>health_zone</code>, <code>week</code> and <code>total cas</code>.</p></li>
+<li><p>Add a new step to your pipeline and paste the following code to complete the data frame:</p></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">complete</span>(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Use all the existing combinaitions of province and health zone:</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nesting</span>(province, health_zone),</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># All the combinations whould have all weeks from the minimum (1) to the maximum (20) of the week column.</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">week =</span> <span class="fu">seq</span>(<span class="fu">min</span>(week, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>             <span class="fu">max</span>(week, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)),</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Fill these two columns with zeros for the newly created weeks:</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">fill =</span> <span class="fu">list</span>(<span class="at">totalcases  =</span> <span class="dv">0</span>,  </span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>              <span class="at">totaldeaths =</span> <span class="dv">0</span> </span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="3" type="1">
+<li>Store the result of the pipeline in a data frame called <code>data_surv_weeks</code>. The head of that data frame looks like:</li>
+</ol>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 5
+   province     health_zone  week totalcases totaldeaths
+   &lt;chr&gt;        &lt;chr&gt;       &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;
+ 1 haut_katanga kafubu          1          0           0
+ 2 haut_katanga kafubu          2          0           0
+ 3 haut_katanga kafubu          3          0           0
+ 4 haut_katanga kafubu          4          0           0
+ 5 haut_katanga kafubu          5          0           0
+ 6 haut_katanga kafubu          6          0           0
+ 7 haut_katanga kafubu          7          0           0
+ 8 haut_katanga kafubu          8          0           0
+ 9 haut_katanga kafubu          9          0           0
+10 haut_katanga kafubu         10          0           0</code></pre>
+</div>
+</div>
+<ol start="4" type="1">
+<li>When you are done, export that data frame to a <code>.rds</code> file called <code>data_ids_2022-w20__weeks_clean</code> in the <code>data/clean</code> subfolder of your project.</li>
+</ol>
+</div>
+</section><section id="going-further-1" class="level3"><h3 class="anchored" data-anchor-id="going-further-1">Going further</h3>
+<p>This is the end of question 3; if you are finished in advance, do not hesitate to carry on checking the data and listing potential problems and cleaning the columns. And go read the explanations for the <code>complete()</code> function, or its <a href="https://tidyr.tidyverse.org/reference/complete.html">help page`</a>.</p>
+</section></section><section id="defining-alerts-question-4" class="level2"><h2 class="anchored" data-anchor-id="defining-alerts-question-4">Defining alerts (Question 4)</h2>
+<section id="preparing-the-dataset" class="level3"><h3 class="anchored" data-anchor-id="preparing-the-dataset">Preparing the dataset</h3>
+<p>We are going to carry on preparing the datasets for the analyses.</p>
+<div class="setup">
+<ol type="1">
+<li>If you have not had the time to clean both health zone and province in both datasets, as well as both igm columns in the lab dataset you can import cleaner versions of the data:</li>
+</ol>
+<div class="cell">
+<div class="cell-output-display">
+<a href="https://github.com/epicentre-msf/repicentre/raw/main/data/surveillance_module/clean/clean_data_en.zip">
+<button class="btn btn-default"><i class="fa fa-save"></i> Download clean data</button>
+</a>
+</div>
+</div>
+<p><br> Unzip the archive in your <code>data/clean</code> subfolder</p>
+<ol start="2" type="1">
+<li><p>Create a new script <code>analysis_surv.R</code> in the <code>R</code> subfolder. Add the metadata of the script, a package import section to import the packages <code>{here}</code>, <code>{rio}</code>, <code>{tidyverse}</code>, <code>{lubridate}</code> and <code>{zoo}</code>.</p></li>
+<li><p>Add an import data section and import the clean <code>.rds</code> files in R using the <code>import()</code> function as usual (your cleaned version or the one you just downloaded). Assign the cleaned data to <code>data_surv</code>, <code>data_lab</code> and <code>data_surv_weeks</code> and carry on.</p></li>
+</ol>
+</div>
+<section id="subset-health-zone" class="level4"><h4 class="anchored" data-anchor-id="subset-health-zone">Subset health zone</h4>
+<p>To simplify the work, we are going to focus on four health zones: Dilolo, Kampemba, Kowe, and Lwamba.</p>
+<div class="write">
+<p>Start a new pipeline from <code>data_surv_weeks</code>. Its first step is to only retain data for the the Dilolo, Kampemba, Kowe, and Lwamba health zones.</p>
+</div>
+</section><section id="weekly-indicator" class="level4"><h4 class="anchored" data-anchor-id="weekly-indicator">Weekly indicator</h4>
+<p>The first indicator we want to caclulate is whether <em>a health zone has 20 or more suspected cases in one week</em>. This indicator is binary and only considers data in a given health zone and week, which corresponds to individual rows of our data frame.</p>
+<div class="write">
+<p>Add a <code>mutate()</code> to your pipeline, to create a <code>cases20</code> column that contains <code>1</code> if a given health zone has 20 cases or more in that week, and <code>0</code> otherwise.</p>
+<p><br> The top of the data frame created by the pipe thus far looks like this:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 6
+   province     health_zone  week totalcases totaldeaths cases20
+   &lt;chr&gt;        &lt;chr&gt;       &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;   &lt;dbl&gt;
+ 1 haut_katanga kampemba        1         75           0       1
+ 2 haut_katanga kampemba        2         42           0       1
+ 3 haut_katanga kampemba        3         46           0       1
+ 4 haut_katanga kampemba        4         50           0       1
+ 5 haut_katanga kampemba        5         43           0       1
+ 6 haut_katanga kampemba        6         33           0       1
+ 7 haut_katanga kampemba        7         45           0       1
+ 8 haut_katanga kampemba        8         52           0       1
+ 9 haut_katanga kampemba        9         38           0       1
+10 haut_katanga kampemba       10         46           0       1</code></pre>
+</div>
+</div>
+</div>
+</section><section id="cumulative-indicator" class="level4"><h4 class="anchored" data-anchor-id="cumulative-indicator">Cumulative indicator</h4>
+<p>The second indicator you want to calculate is whether a health zone has more than 35 <em>cumulated suspected cases within three weeks</em>. This is a bit more complicated than the previous case: within health zone you need to calculate the sum of cases by groups of three weeks, but the groups are not fixed, they are <em>rolling</em> across time. We are getting in the territory of <em>moving</em> averages/sums/etc.</p>
+<section id="cumulative-sum" class="level5"><h5 class="anchored" data-anchor-id="cumulative-sum">Cumulative sum</h5>
+<p>We are going to use the <code>rollapply()</code> function from the <code>{zoo}</code> package, as it is versatile and powerful. As its name suggests, the <code>rollapply()</code> function applies a function in a rolling way to a vector or a column of a data frame.</p>
+<p>Since we are constrained in time, we are going to provide the code of the <code>rollapply()</code> function to calculate the cumulative sum over three weeks, but check out the details in the <a href="#sec-going-further">Going further section</a> when you have time.</p>
+<p>This is how to do it for <em>one health zone</em>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create mini example data frame</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>example_df <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">province    =</span> <span class="st">"Haut Katanga"</span>,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">health_zone =</span> <span class="st">"Dilolo"</span>,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">week        =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">totalcases  =</span> <span class="fu">rep</span>(<span class="dv">1</span>, <span class="at">times =</span> <span class="dv">10</span>))</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>example_df </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       province health_zone week totalcases
+1  Haut Katanga      Dilolo    1          1
+2  Haut Katanga      Dilolo    2          1
+3  Haut Katanga      Dilolo    3          1
+4  Haut Katanga      Dilolo    4          1
+5  Haut Katanga      Dilolo    5          1
+6  Haut Katanga      Dilolo    6          1
+7  Haut Katanga      Dilolo    7          1
+8  Haut Katanga      Dilolo    8          1
+9  Haut Katanga      Dilolo    9          1
+10 Haut Katanga      Dilolo   10          1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>example_df <span class="sc">|&gt;</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cumcas =</span> <span class="fu">rollapply</span>(</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">data  =</span> totalcases, <span class="co"># The column to work on</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">width =</span> <span class="dv">3</span>,          <span class="co"># Width of the window  </span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">FUN   =</span> sum,        <span class="co"># Function to apply, here the sum   </span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">align =</span> <span class="st">"right"</span>,    <span class="co"># We are counting backward in time</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">partial =</span> <span class="cn">TRUE</span>,     <span class="co"># Allows sum to be made even if window is less than three</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">na.rm =</span> <span class="cn">TRUE</span>        <span class="co"># Extra unamed argument to be passed to the sum function</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       province health_zone week totalcases cumcas
+1  Haut Katanga      Dilolo    1          1      1
+2  Haut Katanga      Dilolo    2          1      2
+3  Haut Katanga      Dilolo    3          1      3
+4  Haut Katanga      Dilolo    4          1      3
+5  Haut Katanga      Dilolo    5          1      3
+6  Haut Katanga      Dilolo    6          1      3
+7  Haut Katanga      Dilolo    7          1      3
+8  Haut Katanga      Dilolo    8          1      3
+9  Haut Katanga      Dilolo    9          1      3
+10 Haut Katanga      Dilolo   10          1      3</code></pre>
+</div>
+</div>
+</section><section id="by-health-zone" class="level5"><h5 class="anchored" data-anchor-id="by-health-zone">By health zone</h5>
+<p>Now, we want to do this cumulative sum <em>by health zone</em>. This is not that complicated: we are going to sort our data frame properly by health zone and week, and use the <code>.by</code> argument to tell the <code>mutate()</code> function to perform the action <em>by health zone</em>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You may remember from the <a href="../sessions_core/05_summary_table.html#sec-stratify">aggregation session</a> how we <em>summarized</em> by groups using the <code>.by</code> argument in the <code>summarize()</code> function. This is exactly the same idea, except that instead of returning <em>one value by group</em> (as <code>summarize()</code> does), we want to return one value per row (as <code>mutate()</code> does).</p>
+<p>As a little reminder of how <code>summarize()</code> + <code>.by</code> work, here is how we would calculate the total number of patients and deceased by province over the whole dataset:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>data_surv_weeks <span class="sc">|&gt;</span> </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> province,  <span class="co"># Do things by province</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">cases_tot =</span> <span class="fu">sum</span>(totalcases, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">dead_tot  =</span> <span class="fu">sum</span>(totaldeaths, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 3
+  province     cases_tot dead_tot
+  &lt;chr&gt;            &lt;dbl&gt;    &lt;dbl&gt;
+1 haut_katanga      5948       34
+2 haut_lomami       6928       70
+3 lualaba           1485        3
+4 tanganyika        7836      137</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="write">
+<ol type="1">
+<li>Add a step to your previous pipeline to sort the data frame by province, health zone and week with the <code>arrange()</code> function, which is a sorting function from <code>{dplyr}</code>
+</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>data_surv_weeks <span class="sc">|&gt;</span> </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(province, health_zone, week)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="2" type="1">
+<li>Then add the following code to calculate the cumulative sum:</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">.by =</span> <span class="fu">c</span>(province, health_zone),</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">cumcas =</span> <span class="fu">rollapply</span>(</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">data  =</span> totalcases,</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">width =</span> <span class="dv">3</span>,          <span class="co"># Width of the window  </span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">FUN   =</span> sum,        <span class="co"># Function to apply, here the sum   </span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">align =</span> <span class="st">"right"</span>,    <span class="co"># Windows are aligned to the right</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">partial =</span> <span class="cn">TRUE</span>,     <span class="co"># Allows sum to be made even if window is less than three</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">na.rm =</span> <span class="cn">TRUE</span>        <span class="co"># Extra unamed argument to be passed to the sum function</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p>Now that the complicated part is over (the computing of the cumulative sum) we are left to summarize the information with a binary indicator, for heach week and health zone. Then we can create a second indicator, that aggregates the result of both the weekly and cumulative indicators, to say if an alert is to be raised.</p>
+<div class="write">
+<ol type="1">
+<li><p>Add a new step to your pipeline to calculate a binary indicator, <code>cumcases35</code> that is <code>1</code> if the cumulative sum of cases for that week is equal or above 35 and <code>0</code> if not.</p></li>
+<li><p>Add a new column <code>alert</code>, that is <code>1</code> if either the <code>cases20</code> indicator or the <code>cumcases35</code> indicator is <code>1</code> and <code>0</code> otherwise. You can use the <code>|</code> operator, which is R logical OR (the test will output <code>TRUE</code> if at least one of the condition is <code>TRUE</code>)..</p></li>
+<li><p>When the pipe is working, assign the result to a <code>data_alert</code> data frame.</p></li>
+</ol>
+<p>The main columns of <code>data_alert</code> should look like this (other hidden for display):</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 7
+   health_zone  week totalcases cases20 cumcas cumcases35 alert
+   &lt;chr&gt;       &lt;dbl&gt;      &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;
+ 1 kampemba        1         75       1     75          1     1
+ 2 kampemba        2         42       1    117          1     1
+ 3 kampemba        3         46       1    163          1     1
+ 4 kampemba        4         50       1    138          1     1
+ 5 kampemba        5         43       1    139          1     1
+ 6 kampemba        6         33       1    126          1     1
+ 7 kampemba        7         45       1    121          1     1
+ 8 kampemba        8         52       1    130          1     1
+ 9 kampemba        9         38       1    135          1     1
+10 kampemba       10         46       1    136          1     1</code></pre>
+</div>
+</div>
+</div>
+</section></section></section><section id="health-zones-in-alert" class="level3"><h3 class="anchored" data-anchor-id="health-zones-in-alert">Health zones in alert</h3>
+<p>After all this work we can <em>finally</em> investigate which health zones are in alert in the last week of our dataset (the <em>now</em> of the case study, week 20)!</p>
+<div class="write">
+<p>Filter your data frame to only keep the 20th week. Which health zones are in alert?</p>
+<p>Create a vector <code>hz_alert</code> that contains the name of the health zones in alert, so that we can use it to filter data from these health zones later.</p>
+</div>
+</section></section><section id="draw-the-epicurve-question-4" class="level2"><h2 class="anchored" data-anchor-id="draw-the-epicurve-question-4">Draw the epicurve (Question 4)</h2>
+<p>Let us draw the epicurves of health zones currently in alert (in alert during week 20).</p>
+<p>We have drawn very similar curves in the <a href="../sessions_core/06_epicurves.html">epicurve session</a>. Here again we will use the <code>ggplot()</code> function with the <code>geom_col()</code> geom to create a barplot showing the distribution of cases. Since we already have the number of cases per week we do not need to <em>count</em> it ourselved like we did in the past.</p>
+<div class="write">
+<p>Draw an epicurve for one of the health zones in alert.</p>
+<p><br> The graph should look like this (but maybe for another health zone):</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="surveillance_companion_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>The <code>facet_wrap()</code> function allows us to plot several subplots in the same graph (see the <a href="../sessions_extra/faceting.html">faceting satellite</a> for more information on faceting):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>data_alert <span class="sc">|&gt;</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(health_zone <span class="sc">%in%</span> hz_alert) <span class="sc">|&gt;</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> week, </span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> totalcases)) <span class="sc">+</span> </span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#2E4573"</span>) <span class="sc">+</span> </span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">15</span>) <span class="sc">+</span> </span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Week"</span>,</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"N cases"</span>,</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Health zones in alert"</span>) <span class="sc">+</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(health_zone))   <span class="co"># One graph by health_zone</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="surveillance_companion_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="key-indicators-question-6" class="level2"><h2 class="anchored" data-anchor-id="key-indicators-question-6">Key indicators (Question 6)</h2>
+<p>Let’s gather more data on both alerts to help you decide which one to investigate.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This session builds on summarizing skills seen in <a href="../sessions_core/05_summary_table.html">the summary session</a>. Do not hesitate to check it or your code if you forgot something.</p>
+</div>
+</div>
+<section id="week-of-the-first-alert" class="level3"><h3 class="anchored" data-anchor-id="week-of-the-first-alert">Week of the first alert</h3>
+<div class="write">
+<p>Use the <code>summarize()</code> function to display the first week the alert was raised for each health zone in alert. Which health zone started first?</p>
+</div>
+</section><section id="surveillance-data-indicators" class="level3"><h3 class="anchored" data-anchor-id="surveillance-data-indicators">Surveillance data indicators</h3>
+<p>Let us go back to the full surveillance dataset that contains more columns of interest.</p>
+<div class="write">
+<ol type="1">
+<li><p>Add a column <code>cunder_5</code> to <code>data_surv</code> that contains the the number of cases less than five years.</p></li>
+<li><p>Derive, for each health zone in alert, the following indicators (organized in a single table):</p></li>
+</ol>
+<ul>
+<li>The number of cases</li>
+<li>The number of deaths</li>
+<li>The number of less than five year olds</li>
+<li>The CFR in percentage</li>
+<li>The percentage of reported cases under five</li>
+</ul>
+<p>The result should look like this:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>  health_zone n_cases n_deaths n_under_5 p_under_5     cfr
+1    kampemba     730        0       544 0.7452055 0.00000
+2      lwamba     256        2       233 0.9101562 0.78125</code></pre>
+</div>
+</div>
+</div>
+</section><section id="lab-data-indicators" class="level3"><h3 class="anchored" data-anchor-id="lab-data-indicators">Lab data indicators</h3>
+<p>Now we are going to use the laboratory data to derive a couple more indicators.</p>
+<div class="write">
+<p>For each health zone in alert, derive the following indicators within one table:</p>
+<ul>
+<li>The number of patients tested for measles</li>
+<li>The number of positives for measles</li>
+<li>The percentage of positives for measles</li>
+<li>The number of patients tested for rubella</li>
+<li>The number of positive for rubella</li>
+<li>The percentage of positive for rubella</li>
+</ul>
+<p>The result should look like this:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>  health_zone n_test_meas n_test_meas_pos positivity_measles n_test_rub
+1      lwamba          10               5          0.5000000         10
+2    kampemba          14               4          0.2857143         14
+  n_test_rub_pos positivity_rubella
+1              0         0.00000000
+2              1         0.07142857</code></pre>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Check out the section on <a href="../sessions_core/05_summary_table.html#sec-summary-cond">summaries with conditions</a> to remind you of the more advanced summaries.</p>
+</div>
+</div>
+</section></section><section id="done" class="level2"><h2 class="anchored" data-anchor-id="done">Done!</h2>
+<p>Congratulation, you are done!</p>
+<div class="cell">
+<div class="cell-output-display">
+<a href="https://github.com/epicentre-msf/repicentre/blob/main/solutions/extra/surveillance_module_solutions.R">
+<button class="btn btn-default"><i class="fa fa-save"></i> Solution File</button>
+</a>
+</div>
+</div>
+</section><section id="sec-going-further" class="level2"><h2 class="anchored" data-anchor-id="sec-going-further">Going Further</h2>
+<section id="exploring-the-complete-function" class="level3"><h3 class="anchored" data-anchor-id="exploring-the-complete-function">Exploring the <code>complete()</code> function</h3>
+<p>Look at the simplified example below: the Kitenge health zone has no row for week 2:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create simplified data frame for the example, with three weeks</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>example_df <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">province    =</span> <span class="fu">c</span>(<span class="st">"haut_katanga"</span>, <span class="st">"haut_katanga"</span>, <span class="st">"haut_katanga"</span>, <span class="st">"haut_lomami"</span>, <span class="st">"haut_lomami"</span>),</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">health_zone =</span> <span class="fu">c</span>(<span class="st">"likasi"</span>, <span class="st">"likasi"</span>, <span class="st">"likasi"</span>, <span class="st">"kitenge"</span>, <span class="st">"kitenge"</span>),</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">week        =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">3</span>),</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">totalcases  =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>example_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      province health_zone week totalcases
+1 haut_katanga      likasi    1          2
+2 haut_katanga      likasi    2          1
+3 haut_katanga      likasi    3          3
+4  haut_lomami     kitenge    1          1
+5  haut_lomami     kitenge    3          2</code></pre>
+</div>
+</div>
+<p>We use the following code to make sure that all the health zones have all the possible week values. Since the weeks range from one to three in that toy example, we pass a vector with weeks ranging from one to three:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Complete the missing week in Kitenge</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>example_df <span class="sc">|&gt;</span> </span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">complete</span>(</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">nesting</span>(province, health_zone), </span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">week =</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">3</span>),             <span class="co"># vector from 1 to 3</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="fu">list</span>(<span class="at">totalcases =</span> <span class="dv">0</span>)   <span class="co"># fill new lines with zero (default is NA)</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+  province     health_zone  week totalcases
+  &lt;chr&gt;        &lt;chr&gt;       &lt;dbl&gt;      &lt;dbl&gt;
+1 haut_katanga likasi          1          2
+2 haut_katanga likasi          2          1
+3 haut_katanga likasi          3          3
+4 haut_lomami  kitenge         1          1
+5 haut_lomami  kitenge         2          0
+6 haut_lomami  kitenge         3          2</code></pre>
+</div>
+</div>
+<p>Now both health zones within provinces have values for all three weeks.</p>
+<p>You may be wondering why we used <code>nesting(province, health_zone)</code> and not just <code>health_zone</code>. The reason is that there could be two health zones in different provinces with the same name. So we need to keep the <code>province</code> column into account. The <code>nesting()</code> argument tells the function to only use the <em>existing</em> combinations of the two columns in the data frame.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If we were passing both column names to the <code>complete()</code> function, it would try to cross <em>all levels of <code>province</code> to all levels of <code>health_zone</code></em>, which does not make sense in this case:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Complete the missing week in kikula</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>example_df <span class="sc">|&gt;</span> </span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">complete</span>(</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    province, health_zone, </span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">week =</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">3</span>),  <span class="co"># vector from 1 to 3</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="fu">list</span>(<span class="at">totalcases =</span> <span class="dv">0</span>)</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>  ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12 × 4
+   province     health_zone  week totalcases
+   &lt;chr&gt;        &lt;chr&gt;       &lt;dbl&gt;      &lt;dbl&gt;
+ 1 haut_katanga kitenge         1          0
+ 2 haut_katanga kitenge         2          0
+ 3 haut_katanga kitenge         3          0
+ 4 haut_katanga likasi          1          2
+ 5 haut_katanga likasi          2          1
+ 6 haut_katanga likasi          3          3
+ 7 haut_lomami  kitenge         1          1
+ 8 haut_lomami  kitenge         2          0
+ 9 haut_lomami  kitenge         3          2
+10 haut_lomami  likasi          1          0
+11 haut_lomami  likasi          2          0
+12 haut_lomami  likasi          3          0</code></pre>
+</div>
+</div>
+</div>
+</div>
+<p>It would be good to automatically pick the week series, since the data frame is going to change every week. To do that, we can remplace hardcoded values by the smallest and largest week number in the <code>week</code> column to get the range of weeks in the dataset:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Complete the missing week in kikula</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>example_df <span class="sc">|&gt;</span> </span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">complete</span>(</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">nesting</span>(province, health_zone),</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">week =</span> <span class="fu">seq</span>(<span class="fu">min</span>(week, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),   <span class="co"># vector ranging from smallest to largest week numbers in dataset</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>               <span class="fu">max</span>(week, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)),</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="fu">list</span>(<span class="at">totalcases =</span> <span class="dv">0</span>)</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>  ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+  province     health_zone  week totalcases
+  &lt;chr&gt;        &lt;chr&gt;       &lt;dbl&gt;      &lt;dbl&gt;
+1 haut_katanga likasi          1          2
+2 haut_katanga likasi          2          1
+3 haut_katanga likasi          3          3
+4 haut_lomami  kitenge         1          1
+5 haut_lomami  kitenge         2          0
+6 haut_lomami  kitenge         3          2</code></pre>
+</div>
+</div>
+</section><section id="exploring-the-rollaply-function" class="level3"><h3 class="anchored" data-anchor-id="exploring-the-rollaply-function">Exploring the <code>rollaply()</code> function</h3>
+<p>If we want to do a cumulative sum of cases over three weeks, we want to apply the <code>sum()</code> function over windows of three weeks.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>example_vect <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span>, <span class="at">time =</span> <span class="dv">10</span>)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>example_vect</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 1 1 1 1 1 1 1 1 1 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rollapply</span>(</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data  =</span> example_vect,</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">width =</span> <span class="dv">3</span>,       <span class="co"># Width of the window  </span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">FUN   =</span> sum,     <span class="co"># Function to apply, here the sum   </span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">align =</span> <span class="st">"right"</span>  <span class="co"># Value at row i is the sum of i, i-1 and i-2.</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3 3 3 3 3 3 3 3</code></pre>
+</div>
+</div>
+<p>We inputed a vector of ten values and obtained a vector of lenght height, containing the sums. Obviously the function has a way of dealing with the extremities, and the size of the output is smaller than the size of the input. This would be a problem in a <code>mutate()</code> that creates new columns in a data frame, that need to be the same length as the existing columns.</p>
+<p>You can control the behavior at the extremities:</p>
+<ul>
+<li>Fill with <code>NA</code> when there is not enough values to calculate a window of three</li>
+<li>Allow partial sums (some values represent less than three weeks)</li>
+</ul>
+<p>The argument <code>fill = NA</code> pads the extremities with <code>NA</code> (on the left in our case, since we aligned right):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rollapply</span>(</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data  =</span> example_vect,</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">width =</span> <span class="dv">3</span>,       <span class="co"># Width of the window  </span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">FUN   =</span> sum,     <span class="co"># Function to apply, here the sum   </span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">align =</span> <span class="st">"right"</span>, <span class="co"># Windows are aligned to the right</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">fill  =</span> <span class="cn">NA</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] NA NA  3  3  3  3  3  3  3  3</code></pre>
+</div>
+</div>
+<p>It is a reasonnable way of dealing with incomplete windows. In our case however, we can do better: if there were 40 cases in week 1 it would be a cause for alert! We thus want the cumulative sum to be calculated from week one to be able to detect early alerts. The <code>partial = TRUE</code> argument allows this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rollapply</span>(</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data    =</span> example_vect,</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">width   =</span> <span class="dv">3</span>,       <span class="co"># Width of the window  </span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">FUN     =</span> sum,     <span class="co"># Function to apply, here the sum   </span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">align   =</span> <span class="st">"right"</span>, <span class="co"># Windows are aligned to the right</span></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">partial =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 1 2 3 3 3 3 3 3 3 3</code></pre>
+</div>
+</div>
+<p>This is close to what we need.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Keeping in mind that since the first two weeks have only partial data compared to later weeks, a <em>lack of alert</em> in these weeks does not necessarily means there is no alert, just that we do not have the data to detect it.</p>
+</div>
+</div>
+<p>You may remember that arithmetic operations in R return <code>NA</code> if some of the values are <code>NA</code> and we usually need to pass the argument <code>na.rm = TRUE</code> to the functions for them to ignore missing values.</p>
+<p>If we had a slightly less complete vector we would have a problem:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>example_vect_missing <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="cn">NA</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rollapply</span>(</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">data  =</span> example_vect_missing,</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">width =</span> <span class="dv">3</span>,       <span class="co"># Width of the window  </span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">FUN   =</span> sum,     <span class="co"># Function to apply, here the sum   </span></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">align =</span> <span class="st">"right"</span>, <span class="co"># Windows are aligned to the right</span></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">partial =</span> <span class="cn">TRUE</span>   <span class="co"># Allows sum to be made even if window is less than three</span></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  1  2  3 NA NA NA</code></pre>
+</div>
+</div>
+<p>Fortunately we can pass the <code>na.rm = TRUE</code> argument to <code>rollapply()</code> so that it passes it to <code>sum()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rollapply</span>(</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data  =</span> example_vect_missing,</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">width =</span> <span class="dv">3</span>,       <span class="co"># Width of the window  </span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">FUN   =</span> sum,     <span class="co"># Function to apply, here the sum   </span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">align =</span> <span class="st">"right"</span>, <span class="co"># Windows are aligned to the right</span></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">partial =</span> <span class="cn">TRUE</span>,  <span class="co"># Allows sum to be made even if window is less than three</span></span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">na.rm =</span> <span class="cn">TRUE</span>     <span class="co"># Extra unamed argument to be passed to the sum function</span></span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 2 3 2 2 2</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Here we applied the <code>sum()</code> function to create a cumulative sum over 3 weeks. But you could, with minimal modifications, apply the <code>mean()</code> function to caclulate a moving average!</p>
+</div>
+</div>
+<p>A last point on the <code>align</code> argument. It defines the position of the rolling windows compared to the value being calculated. The default is that the window is centered: the value <em>i</em> is the sum of values <em>i</em>, <em>i-1</em> and <em>i+1</em>.</p>
+<p>Example of the three alignements (pading with <code>NA</code> to better see what’s happening):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rollapply</span>(<span class="at">data  =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">10</span>),</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">width =</span> <span class="dv">3</span>, </span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">FUN   =</span> sum,</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">align =</span> <span class="st">"left"</span>,</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">fill =</span> <span class="cn">NA</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 16 13  8 17 NA NA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rollapply</span>(<span class="at">data  =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">10</span>),</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">width =</span> <span class="dv">3</span>, </span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">FUN   =</span> sum,</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">align =</span> <span class="st">"center"</span>,</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">fill =</span> <span class="cn">NA</span>)  <span class="co"># The default</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] NA 16 13  8 17 NA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rollapply</span>(<span class="at">data  =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">10</span>),</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">width =</span> <span class="dv">3</span>, </span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">FUN   =</span> sum,</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">align =</span> <span class="st">"right"</span>,</span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">fill =</span> <span class="cn">NA</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] NA NA 16 13  8 17</code></pre>
+</div>
+</div>
+<p>In our case we want the value for a given week to reflect this week and the week past, so we align the window right, to calculate backward in time (by opposition, if we aligned left we would calculate forwards in time).</p>
+</section><section id="nicely-formatted-percentages" class="level3"><h3 class="anchored" data-anchor-id="nicely-formatted-percentages">Nicely formatted percentages</h3>
+<p>The <code>percent</code> function from the <code>{scales}</code> packages can add percentage formatting to a value.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>scales<span class="sc">::</span><span class="fu">percent</span>(<span class="fl">0.8556</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>It takes an <code>accuracy</code> arguments that controls the number of decimals:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>scales<span class="sc">::</span><span class="fu">percent</span>(<span class="fl">0.8556</span>,</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">accuracy =</span> <span class="fl">0.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You can wrap it around the values that you calulate in the summary tables to change the proportions into nicely formatted percentages.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Once you aplied that function the column is treated as text (since we added a <code>%</code> sign) and you will not be able to do further arithmetical operations on it.</p>
+</div>
+</div>
+
+
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body>
+</html>
