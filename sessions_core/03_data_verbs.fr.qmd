@@ -1,7 +1,7 @@
 ---
 title: Traitement de données, les bases
 description: Une introduction à la manipulation et au nettoyage des données à l'aide du paquet `{dplyr}`.
-image: ../img/under_construction.svg
+image: ../img/core/03_manipulation_basic/logo.svg
 categories:
   - Core
   - Manipulation des données
