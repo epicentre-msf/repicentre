@@ -1,10 +1,10 @@
 ---
 title: Surveillance
-description: Companion satellite to the surveillance Fetch-R module
-# image: ../img/core/06_epicurves/logo.svg
+description: Companion session to the surveillance Fetch-R module
+image: ../img/companion/surveillance/logo.svg
 categories:
-  - Satellite
-  - Surveillance
+  - Companion
+  - Analysis
 ---
 
 ```{r setup}
@@ -140,7 +140,7 @@ hz_alert <- data_alert |>
 
 ## Introduction
 
-This satellite is a companion to the case study _Measles emergency response in the Katanga region (DRC)_ from the FETCH Surveillance module and may thus not make sense as a standalone document.
+**Warning**. This session is a companion to the case study _Measles emergency response in the Katanga region (DRC)_ from the FETCH Surveillance module and might not make sense as a standalone tutorial.
 
 From an R point of view, this tutorial builds on skills acquired throughout the FETCH-R modules, introduces a couple of useful generalist functions, and some more specialized ones. 
 
@@ -975,6 +975,7 @@ scales::percent(0.8556,
 ```
 
 You can wrap it around the values that you calulate in the summary tables to change the proportions into nicely formatted percentages. 
+
 ::: {.callout-important}
 Once you aplied that function the column is treated as text (since we added a `%` sign) and you will not be able to do further arithmetical operations on it.
 :::

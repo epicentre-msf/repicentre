@@ -1,10 +1,10 @@
 ---
 title: Surveillance
 description: Tutoriel d'accompagnement au module Surveillance du FETCH
-# image: ../img/core/06_epicurves/logo.svg
+image: ../img/companion/surveillance/logo.svg
 categories:
-  - Satellite
-  - Surveillance
+  - Compagnon
+  - Analyse
 ---
 
 ```{r setup}
@@ -141,7 +141,7 @@ zone_sante_alertee <- data_alerte |>
 
 ## Introduction
 
-Ce satellite accompagne l'étude de cas _Réponse d'urgence contre la rougeole dans la région du Katanga (RDC)_ du module FETCH Surveillance. Ça n'a probablement pas beaucoup de sens d'essayer de le suivre sans les documents et les discussions de l'étude.
+Cette session accompagne l'étude de cas _Réponse d'urgence contre la rougeole dans la région du Katanga (RDC)_ du module FETCH Surveillance. Ça n'a probablement pas beaucoup de sens d'essayer de le suivre sans les documents et les discussions de l'étude.
 
 En ce qui concerne la partie *R* du module surveillance, nous nous appuierons sur les compétences acquises tout au long des modules FETCH-R, et introduirons quelques nouvelles fonctions utiles pour le nettoyage et les analyses.
 
