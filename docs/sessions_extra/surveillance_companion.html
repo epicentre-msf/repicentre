@@ -5,9 +5,9 @@
 <link rel="alternate" hreflang="fr" href="/fr/sessions_extra/surveillance_companion.fr.html" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.42">
+<meta name="generator" content="quarto-1.6.39">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta name="description" content="Companion satellite to the surveillance Fetch-R module">
+<meta name="description" content="Companion session to the surveillance Fetch-R module">
 <title>Surveillance – {repicentre}</title>
 <style>
 code{white-space: pre-wrap;}
@@ -58,11 +58,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script><script src="../site_libs/quarto-nav/headroom.min.js"></script><script src="../site_libs/clipboard/clipboard.min.js"></script><script src="../site_libs/quarto-search/autocomplete.umd.js"></script><script src="../site_libs/quarto-search/fuse.min.js"></script><script src="../site_libs/quarto-search/quarto-search.js"></script><meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js"></script><script src="../site_libs/quarto-html/popper.min.js"></script><script src="../site_libs/quarto-html/tippy.umd.min.js"></script><script src="../site_libs/quarto-html/anchor.min.js"></script><link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-de84f8d6bb715db06a919283c2d1e787.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-9a023c9ade86a60361e96e3e3f11bc54.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-0626ff4d7a71b55c8707dcae1d04a9b6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-e25cc82807363e79c52e96bc8b7855f1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script><link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-6ab5e0891aed6e954066009cd4eecacc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-b92d258d3900ea06ce3f9b55f30b4460.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-b814d3e578892f16fb585af6f47f426f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-35dfec4a88a4a8552367c65e80eaa027.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -188,14 +188,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title">Surveillance</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">Satellite</div>
-    <div class="quarto-category">Surveillance</div>
+    <div class="quarto-category">Companion</div>
+    <div class="quarto-category">Analysis</div>
   </div>
   </div>
 
 <div>
   <div class="description">
-    Companion satellite to the surveillance Fetch-R module
+    Companion session to the surveillance Fetch-R module
   </div>
 </div>
 
@@ -214,7 +214,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Reuse skills aquired in the FETCH-R modules (import, clean and visualize data)</li>
 <li>More specifically, analyze surveillance data to detect alerts and to help decide which alerts to prioritize for further field investigation.</li>
 </ul></section><section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>This satellite is a companion to the case study <em>Measles emergency response in the Katanga region (DRC)</em> from the FETCH Surveillance module and may thus not make sense as a standalone document.</p>
+<p><strong>Warning</strong>. This session is a companion to the case study <em>Measles emergency response in the Katanga region (DRC)</em> from the FETCH Surveillance module and might not make sense as a standalone tutorial.</p>
 <p>From an R point of view, this tutorial builds on skills acquired throughout the FETCH-R modules, introduces a couple of useful generalist functions, and some more specialized ones.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -1050,7 +1050,20 @@ Tip
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>scales<span class="sc">::</span><span class="fu">percent</span>(<span class="fl">0.8556</span>,</span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">accuracy =</span> <span class="fl">0.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>You can wrap it around the values that you calulate in the summary tables to change the proportions into nicely formatted percentages. ::: {.callout-important} Once you aplied that function the column is treated as text (since we added a <code>%</code> sign) and you will not be able to do further arithmetical operations on it. :::</p>
+<p>You can wrap it around the values that you calulate in the summary tables to change the proportions into nicely formatted percentages.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Once you aplied that function the column is treated as text (since we added a <code>%</code> sign) and you will not be able to do further arithmetical operations on it.</p>
+</div>
+</div>
 
 
 </section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
