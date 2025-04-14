@@ -1,16 +1,17 @@
-# Solutions pour le satellite du module surveillance
+# Solutions pour le tutoriel compagnon du module FETCH Surveillance
 # Auteurs : l'équipe du FETCH
-# Dernière mise à jour :  07/04/2025
+# Dernière mise à jour : 07/04/2025
 # Description : Code modèle associé avec le module de surveillance
 
 # Note : ici nous avons rassemblé le code pour le nettoyage et
 # la préparation des données dans un seul script pour faciliter
-# le téléchargement. C'est possible de faire ça : le projet est 
-# court. Néanmoins, séparer le code du nettoyage des données et
+# le téléchargement à la fin du tutoriel. 
+# Comme le projet est court ce n'est pas un choix aberrant. 
+# Néanmoins, séparer le code du nettoyage des données et celui
 # de l'analyse comme nous vous avons fait faire dans le tutoriel
-# est souvent une bonne pratique pour des projets un peu plus longs,
-# avec un nettoyage et des analyses plus conséquentes.
-# Nous pourrions avoir des documents Rmarkdown ou Quarto dans le
+# est souvent une bonne pratique pour des projets plus longs.
+
+# Nous pourrions également avoir des documents Rmarkdown ou Quarto dans le
 # projet pour créer des raports automatiquement basés sur les
 # résultats.
 
@@ -112,10 +113,12 @@ df_surv <- df_surv_brut |>
   ) |> 
   
   # Trie les données par province, ZS puis semaines (dans cet ordre)
+  # Important pour la somme cumulée plus bas
   arrange(province, zone_sante, semaine)
 
 
 # Crée jeu de donnes de surveillance avec une ligne par semaine
+# Important pour la somme cumulée plus bas
 df_surv_sem <- df_surv |> 
   select(province, zone_sante, semaine, totalcas, totaldeces) |>
   
@@ -129,7 +132,7 @@ df_surv_sem <- df_surv |>
   
   ## Prépare les colonnes d'alerte
   mutate(
-    # 20 cases or more
+    # 20 cas ou plus
     cas20 = case_when(
       totalcas >= 20 ~ 1, 
       .default = 0)) |>
@@ -214,8 +217,8 @@ df_labo |> distinct(igm_rubeole)
 
 ## Quatre zones ----------------------------------------------
 
-# Pour faciliter l'exploration, nous créons un data frame plus
-# petit ne contenant que quatre zones de santé
+# Pour faciliter l'exploration lors de l'étu de cas, nous créons 
+# un data frame plus petit ne contenant que quatre zones de santé
 data_alerte <- df_surv_sem |> 
   filter(zone_sante %in% c("dilolo", "kowe" ,"kampemba", "lwamba"))
 
@@ -232,20 +235,20 @@ data_alerte |>
 
 
 # Vecteur des zones de santé en alerte en semaine 20
-alerte_zs <- data_alerte |>
+zs_alerte <- data_alerte |>
   filter(semaine == 20,
          alerte == 1) |>
   pull(zone_sante) # transformer une colonne de data frame en vecteur
 
 # Ou tapé à la main :
-# alerte_zs <- c("kampemba", "lwamba")
+# zs_alerte <- c("kampemba", "lwamba")
 
 
 
 ## Courbe épidémique ---------------------------------------
 
 p_epi <- data_alerte |>
-  filter(zone_sante %in% alerte_zs) |>
+  filter(zone_sante %in% zs_alerte) |>
   ggplot(aes(x = semaine, 
              y = totalcas)) + 
   geom_col(fill = "#2E4573") + 
@@ -261,18 +264,18 @@ p_epi
 ## Indicateurs clés ----------------------------------------
 
 ### Première semaine en alerte -----------------------------
-first_alerte <- data_alerte |>
+premiere_alerte <- data_alerte |>
   filter(alerte == 1) |>
   summarise(
     .by = zone_sante,
     min_alerte = min(semaine))
 
-first_alerte
+premiere_alerte
 
 
 ### Surveillance -------------------------------------------
 table_surv <- df_surv |>
-  filter(zone_sante %in% alerte_zs) |>
+  filter(zone_sante %in% zs_alerte) |>
   mutate(cas_moins_5ans = cas011mois + cas1259mois) |>
   summarise(
     .by = zone_sante,
@@ -288,8 +291,8 @@ table_surv
 
 
 ### Laboratoire --------------------------------------------
-table_lab <- df_labo |>
-  filter(zone_sante %in% alerte_zs) |>
+table_labo <- df_labo |>
+  filter(zone_sante %in% zs_alerte) |>
   
   summarise(
     .by = zone_sante,
@@ -305,7 +308,7 @@ table_lab <- df_labo |>
                                     accuracy = 0.1)
   )
 
-table_lab
+table_labo
 
 
 
@@ -336,10 +339,10 @@ export(df_labo,
 # Crée une liste contenant des objects divers
 list_results <- list(
   data_alerte  = data_alerte, 
-  first_alerte = first_alerte, 
+  premiere_alerte = premiere_alerte, 
   p_epi        = p_epi, 
   table_surv   = table_surv, 
-  table_lab    = table_lab)
+  table_labo    = table_labo)
 
 
 # Exporte la liste au format RDS
