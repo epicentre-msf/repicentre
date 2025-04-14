@@ -1,14 +1,17 @@
-# Solutions to the Surveillance Module Satellite
+# Solutions to the Surveillance Module Companion
 # Author: the Fetch team
 # Last Update: 31/03/2025
-# Description: Model code associated with Surveillance module case study
+# Description: Model code associated with Surveillance Module case study
 
 
-# Note: here we gathered the data cleaning and preparation and the analyses
-# in only one script to have only one file to download. This is fine for 
-# because the project is small (short cleaning and anslyses.
-# Separating cleaning and data preparation from analyses as we had you do 
-# in the tutorial is often a good habit for larger projects though.
+# Note: here we gathered the data cleaning / prep and the analyses
+# in only one script to have only one file to download at the end 
+# of the tutorial.
+# This is fine because the project is small (short cleaning and analyses).
+# That being said, separating the cleaning and data preparation 
+# from analyses as we had you do in the tutorial is often a good 
+# choice,as soon as the codebase gets larger projects.
+
 # We could even have Rmarkdown or Quarto documents in the project to
 # run automatic reports based on the results.
 
@@ -113,15 +116,15 @@ data_surv <- data_surv_raw |>
     cases_under_5 = cases_0_11_months + cases_12_59_months
   ) |> 
   
-  # Sort data
+  # Sort data (important for the cumulative sum!)
   arrange(province, health_zone, week)
 
 
 # Reformat surveillance data to have 1 line for each week
-# filled in with 0 cases 
+# filled in with 0 cases (important for the cumulative sum later)
 
 # Use of tidyr::complete to add new records of week 1 to 20 
-# for each combined provinceince and health_zone with 0 value in the 
+# for each combined province and health_zone with 0 value in the 
 # totalcases and totaldeaths variables
 
 data_surv_weeks <- data_surv |> 
@@ -137,6 +140,7 @@ data_surv_weeks <- data_surv |>
   
   ## Prepare alert columns
   mutate(
+    
     # 20 cases or more
     cases20 = case_when(
       totalcases >= 20 ~ 1, 
@@ -153,11 +157,12 @@ data_surv_weeks <- data_surv |>
                        width = 3,        # Window width
                        sum,              # function to apply
                        na.rm = TRUE,     # Arguments to pass to the function (here, sum)
-                       align = "right",  
+                       align = "right",  # Backward calculation  
                        partial = TRUE)
   ) |> 
   
   mutate(    
+    
     # Binary indicator for 35 cumulative cases
     cumcases35 = case_when(
       cumcas >= 35 ~ 1, 
@@ -220,7 +225,9 @@ data_lab |> distinct(igm_rubella)
 # Analyses --------------------------------------------------
 
 ## Subset data ----------------------------------------------
-# For the case study we ran the analyses on only a subset of the dataset
+
+# To simplify the exploration during the case study we run 
+# the analyses on only a subset of the dataset
 data_alert <- data_surv_weeks |> 
   filter(health_zone %in% c("dilolo", "kowe" ,"kampemba", "lwamba"))
 
