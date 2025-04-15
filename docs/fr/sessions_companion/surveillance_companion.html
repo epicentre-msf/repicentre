@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
 <head>
-<link rel="alternate" hreflang="en" href="https://epicentre-msf.github.io/repicentre/sessions_companion/surveillance_companion.html" />
-<link rel="alternate" hreflang="fr" href="https://epicentre-msf.github.io/repicentre/fr/sessions_companion/surveillance_companion.fr.html" />
+<link rel="alternate" hreflang="en" href="/sessions_companion/surveillance_companion.html" />
+<link rel="alternate" hreflang="fr" href="/fr/sessions_companion/surveillance_companion.fr.html" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.6.42">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="description" content="Tutoriel d’accompagnement au module Surveillance du FETCH">
 <title>Surveillance – {repicentre}</title>
@@ -58,11 +58,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script><script src="../site_libs/quarto-nav/headroom.min.js"></script><script src="../site_libs/clipboard/clipboard.min.js"></script><script src="../site_libs/quarto-search/autocomplete.umd.js"></script><script src="../site_libs/quarto-search/fuse.min.js"></script><script src="../site_libs/quarto-search/quarto-search.js"></script><meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js"></script><script src="../site_libs/quarto-html/popper.min.js"></script><script src="../site_libs/quarto-html/tippy.umd.min.js"></script><script src="../site_libs/quarto-html/anchor.min.js"></script><link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-0626ff4d7a71b55c8707dcae1d04a9b6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-e25cc82807363e79c52e96bc8b7855f1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-de84f8d6bb715db06a919283c2d1e787.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-9a023c9ade86a60361e96e3e3f11bc54.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script><link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-b814d3e578892f16fb585af6f47f426f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-35dfec4a88a4a8552367c65e80eaa027.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-6ab5e0891aed6e954066009cd4eecacc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-b92d258d3900ea06ce3f9b55f30b4460.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -107,7 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
 <li class="nav-item"><div class="dropdown" id="languages-links-parent">
-<button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="languages-button"><i class="bi bi-globe2"></i> Français</button><ul class="dropdown-menu" id="languages-links"><li><a class="dropdown-item" href="https://epicentre-msf.github.io/repicentre/sessions_companion/surveillance_companion.html" id="language-link-en">English</a></li></ul>
+<button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="languages-button"><i class="bi bi-globe2"></i> Français</button><ul class="dropdown-menu" id="languages-links"><li><a class="dropdown-item" href="/sessions_companion/surveillance_companion.html" id="language-link-en">English</a></li></ul>
 </div></li>
 <li class="nav-item">
     <a class="nav-link" href="../pathway.html"> 
@@ -141,20 +141,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><a href="#objectifs" id="toc-objectifs" class="nav-link active" data-scroll-target="#objectifs">Objectifs</a></li>
   <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
   <li>
-<a href="#mise-en-place-question-2" id="toc-mise-en-place-question-2" class="nav-link" data-scroll-target="#mise-en-place-question-2">Mise en place (Question 2)</a>
+<a href="#mise-en-place" id="toc-mise-en-place" class="nav-link" data-scroll-target="#mise-en-place">Mise en place</a>
   <ul class="collapse">
 <li><a href="#cr%C3%A9er-le-projet" id="toc-créer-le-projet" class="nav-link" data-scroll-target="#créer-le-projet">Créer le projet</a></li>
   <li><a href="#importer-les-donn%C3%A9es" id="toc-importer-les-données" class="nav-link" data-scroll-target="#importer-les-données">Importer les données</a></li>
   </ul>
 </li>
   <li>
-<a href="#nettoyage-question-2-and-3" id="toc-nettoyage-question-2-and-3" class="nav-link" data-scroll-target="#nettoyage-question-2-and-3">Nettoyage (Question 2 and 3)</a>
+<a href="#nettoyage-des-donn%C3%A9es-question-2" id="toc-nettoyage-des-données-question-2" class="nav-link" data-scroll-target="#nettoyage-des-données-question-2">Nettoyage des données (Question 2)</a>
   <ul class="collapse">
-<li><a href="#donn%C3%A9es-de-surveillance-q2" id="toc-données-de-surveillance-q2" class="nav-link" data-scroll-target="#données-de-surveillance-q2">Données de surveillance (Q2)</a></li>
-  <li><a href="#donn%C3%A9es-labo-q2" id="toc-données-labo-q2" class="nav-link" data-scroll-target="#données-labo-q2">Données labo (Q2)</a></li>
+<li><a href="#donn%C3%A9es-de-surveillance" id="toc-données-de-surveillance" class="nav-link" data-scroll-target="#données-de-surveillance">Données de surveillance</a></li>
+  <li><a href="#donn%C3%A9es-labo" id="toc-données-labo" class="nav-link" data-scroll-target="#données-labo">Données labo</a></li>
+  <li><a href="#donn%C3%A9es-de-surveillance-compl%C3%A9t%C3%A9es" id="toc-données-de-surveillance-complétées" class="nav-link" data-scroll-target="#données-de-surveillance-complétées">Données de surveillance complétées</a></li>
   <li><a href="#aller-plus-loin" id="toc-aller-plus-loin" class="nav-link" data-scroll-target="#aller-plus-loin">Aller plus loin</a></li>
-  <li><a href="#donn%C3%A9es-de-surveillance-compl%C3%A9t%C3%A9es-q3" id="toc-données-de-surveillance-complétées-q3" class="nav-link" data-scroll-target="#données-de-surveillance-complétées-q3">Données de surveillance complétées (Q3)</a></li>
-  <li><a href="#aller-plus-loin-1" id="toc-aller-plus-loin-1" class="nav-link" data-scroll-target="#aller-plus-loin-1">Aller plus loin</a></li>
   </ul>
 </li>
   <li>
@@ -226,10 +225,10 @@ Astuce
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>N’hésitez pas à checker vos notes, vos scripts ou les tutoriels des sessions précédentes pour vous rafraîchir sur le fonctionnement de certaines fonctions quand vous en éprouvez le besoin.</p>
+<p>N’hésitez pas à scaner vos notes, vos scripts ou les tutoriels des sessions précédentes pour vous rafraîchir sur le fonctionnement de certaines fonctions quand vous en éprouvez le besoin.</p>
 </div>
 </div>
-</section><section id="mise-en-place-question-2" class="level2"><h2 class="anchored" data-anchor-id="mise-en-place-question-2">Mise en place (Question 2)</h2>
+</section><section id="mise-en-place" class="level2"><h2 class="anchored" data-anchor-id="mise-en-place">Mise en place</h2>
 <p>Comme cette session fait partie d’un module spécifique, vous allez créer un nouveau projet RStudio. Jetez un coup d’œil <a href="../sessions_core/02_import_data.html">à la session principale</a> si vous ne vous rappelez plus comment faire.</p>
 <section id="créer-le-projet" class="level3"><h3 class="anchored" data-anchor-id="créer-le-projet">Créer le projet</h3>
 <div class="setup">
@@ -279,9 +278,9 @@ Astuce
 <li><p>Vérifiez que l’importation s’est bien passée pour les deux data frames (vous avez plusieurs outils à votre disposition : Viewer, dimensions de l’objet, haut et bas du data frame…).</p></li>
 </ol>
 </div>
-</section></section><section id="nettoyage-question-2-and-3" class="level2"><h2 class="anchored" data-anchor-id="nettoyage-question-2-and-3">Nettoyage (Question 2 and 3)</h2>
+</section></section><section id="nettoyage-des-données-question-2" class="level2"><h2 class="anchored" data-anchor-id="nettoyage-des-données-question-2">Nettoyage des données (Question 2)</h2>
 <p>Maintenant que les données sont importées, nous pouvons effectuer quelques vérifications dessus, et les nettoyer.</p>
-<section id="données-de-surveillance-q2" class="level3"><h3 class="anchored" data-anchor-id="données-de-surveillance-q2">Données de surveillance (Q2)</h3>
+<section id="données-de-surveillance" class="level3"><h3 class="anchored" data-anchor-id="données-de-surveillance">Données de surveillance</h3>
 <section id="inspection-rapide" class="level4"><h4 class="anchored" data-anchor-id="inspection-rapide">Inspection rapide</h4>
 <p>Pendant l’étude de cas vous n’aurez peut-être pas le temps d’inspecter <em>et</em> nettoyer <em>toutes</em> les colonnes. Nous vous proposons donc de vous focaliser sur quelques colonnes clés : <code>zone_sante</code>, <code>semaine</code>, <code>totalcas</code> et <code>totaldeces</code>.</p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -381,7 +380,7 @@ Astuce
 <div class="write">
 <p>Utilisez le paquet <code>{rio}</code> pour exporter <code>df_surv</code> vers un fichier <code>.rds</code> appelé <code>data_ids_2022-20_clean</code> dans le sous dossier <code>data/clean</code> de votre projet.</p>
 </div>
-</section></section><section id="données-labo-q2" class="level3"><h3 class="anchored" data-anchor-id="données-labo-q2">Données labo (Q2)</h3>
+</section></section><section id="données-labo" class="level3"><h3 class="anchored" data-anchor-id="données-labo">Données labo</h3>
 <p>Nous allons suivre les mêmes étapes pour le jeu de données laboratoire. Nous nous focaliserons sur les colonnes <code>zone_sante</code>, <code>igm_rougeole</code> et <code>igm_rubeole</code>.</p>
 <section id="inspection-rapide-1" class="level4"><h4 class="anchored" data-anchor-id="inspection-rapide-1">Inspection rapide</h4>
 <div class="write">
@@ -432,15 +431,7 @@ Astuce
 <div class="write">
 <p>Exportez le data frame <code>df_labo</code> vers un fichier <code>.rds</code> appelé <code>df_labo_2022-w20_clean</code> dans le sous dossier <code>data/clean</code> de votre projet.</p>
 </div>
-</section></section><section id="aller-plus-loin" class="level3"><h3 class="anchored" data-anchor-id="aller-plus-loin">Aller plus loin</h3>
-<p>Vous êtes arrivés au bout de la question 2. Si vous avez terminé en avance, utilisez les fonctions vues pour nettoyer les autres colonnes de texte dans les deux data frames, et recodez les deux colonnes IGM dans les données labo.</p>
-<p>Si vous avez encore du temps, inspectez vos données plus avant :</p>
-<ul>
-<li>Affichez la zone de santé pour laquelle les totaux par groupe d’âge sont différents de la colonne total (pour les cas, puis pour les décès)</li>
-<li>Est-ce qu’il y a une ZS où le nombre de décès est plus élevé que le nombre de cas ?</li>
-<li>Y a-t-il des lignes dupliquées (entièrement dupliquées, ou plusieurs valeurs pour la zone de santé et la semaine) ?</li>
-<li>Y a-t-il des nombres de cas que vous estimez aberrants ?</li>
-</ul></section><section id="données-de-surveillance-complétées-q3" class="level3"><h3 class="anchored" data-anchor-id="données-de-surveillance-complétées-q3">Données de surveillance complétées (Q3)</h3>
+</section></section><section id="données-de-surveillance-complétées" class="level3"><h3 class="anchored" data-anchor-id="données-de-surveillance-complétées">Données de surveillance complétées</h3>
 <p>Durant l’inspection des données vous avez du vous rendre compte qu’il y a des semaines manquantes pour certaines ZS dans les données de surveillance. Normalement, vous avez discuté les raisons possibles et des problèmes associés en plénière. Dans ce tutoriel, nous allons fournir le code pour compléter le data frame surveillance pour que toutes les ZS aient toutes les semaines (en faisant l’hypothèse que les semaines manquantes n’ont pas eu de cas ou de décès).</p>
 <p>Nous utiliserons la fonction <a href="https://tidyr.tidyverse.org/reference/complete.html"><code>complete()</code> du paquet <code>{tidyr}</code></a> pour ajouter les lignes manquantes et remplir les colonnes contenant des nombres (<code>totalcas</code> et <code>totaldeces</code>) avec des zéros. A cause des contraintes de temps nous allons vous donner le code, mais quelques exemples et explications seront donnés dans la section <a href="#sec-going-further">Aller plus loin</a>, que vous pourrez lire quand vous aurez le temps.</p>
 <div class="write">
@@ -487,14 +478,23 @@ Astuce
 <li>exportez ce data frame dans un fichier <code>.rds</code> appelé <code>data_ids_2022-w20_weeks_clean</code> dans le sous dossier <code>data/clean</code> de votre projet.</li>
 </ol>
 </div>
-</section><section id="aller-plus-loin-1" class="level3"><h3 class="anchored" data-anchor-id="aller-plus-loin-1">Aller plus loin</h3>
-<p>C’est la fin de la question 3. Si vous terminez en avance, finissez l’inspection des données, listez les problèmes et nettoyez les colonnes que vous savez nettoyer avant de réexporter. Si c’est fait, lisez les eplications sur la fonction <code>complete()</code> et allez explorer sa <a href="https://tidyr.tidyverse.org/reference/complete.html">page d’aide</a>.</p>
+</section><section id="aller-plus-loin" class="level3"><h3 class="anchored" data-anchor-id="aller-plus-loin">Aller plus loin</h3>
+<p>Vous êtes arrivés au bout de la question 2. Si vous avez terminé en avance, utilisez les fonctions vues pour nettoyer les autres colonnes de texte dans les deux data frames, et recodez les deux colonnes IgM dans les données labo.</p>
+<p>Si vous avez encore du temps, inspectez vos données plus avant :</p>
+<ul>
+<li>Affichez la zone de santé pour laquelle les totaux par groupe d’âge sont différents de la colonne total (pour les cas, puis pour les décès)</li>
+<li>Est-ce qu’il y a une ZS où le nombre de décès est plus élevé que le nombre de cas ?</li>
+<li>Y a-t-il des lignes dupliquées (entièrement dupliquées, ou plusieurs valeurs pour la zone de santé et la semaine) ?</li>
+<li>Y a-t-il des nombres de cas que vous estimez aberrants ?</li>
+</ul>
+<p>Vous pouvez aussi lire les explications sur la fonction <code>complete()</code> à la fin du tutoriel et allez explorer la <a href="https://tidyr.tidyverse.org/reference/complete.html">page d’aide</a> de la fonction.</p>
 </section></section><section id="définir-les-alertes-question-4" class="level2"><h2 class="anchored" data-anchor-id="définir-les-alertes-question-4">Définir les alertes (Question 4)</h2>
 <section id="préparer-le-jeu-de-données" class="level3"><h3 class="anchored" data-anchor-id="préparer-le-jeu-de-données">Préparer le jeu de données</h3>
-<p>Nous allons continuer la préparation de data frames prêts pour l’analyse.</p>
+<p>Nous allons continuer la préparation de data frames pour l’analyse.</p>
+<section id="mise-en-place-1" class="level4"><h4 class="anchored" data-anchor-id="mise-en-place-1">Mise en place</h4>
 <div class="setup">
 <ol type="1">
-<li>Si vous n’avez pas eu le temps de nettoyer la zone de santé et la province dans les deux data frames, et les deux colonnes IGM dans le jeu de données labo, vous pouvez importer les jeux de données nettoyés :</li>
+<li>Si vous n’avez pas eu le temps de nettoyer la zone de santé et la province dans les deux data frames, et les deux colonnes IgM dans le jeu de données labo, vous pouvez importer les jeux de données nettoyés :</li>
 </ol>
 <div class="cell">
 <div class="cell-output-display">
@@ -506,16 +506,22 @@ Astuce
 <p><br> Dézippez l’archive et importez les données dans le sous dossier <code>data/clean</code></p>
 <ol start="2" type="1">
 <li><p>Créez un script <code>analyse_surveillance.R</code> dans le sous dossier <code>R</code>. Ajoutez les métadonnées, et une section pour importer les paquets <code>{here}</code>, <code>{rio}</code>, <code>{tidyverse}</code>, <code>{lubridate}</code> et <code>{zoo}</code>.</p></li>
-<li><p>Ajoutez une section d’import des données propres et importez les fichiers <code>.rds</code> dans R en utilisant la fonction <code>import()</code> comme d’habitude (soit les vôtres, soit ceux que vous venez de télécharger). Assignez ces données nettoyées aux data frames <code>df_surv</code>, <code>df_labo</code> and <code>df_surv_sem</code>.</p></li>
+<li><p>Ajoutez une section d’import des données propres et importez les fichiers <code>.rds</code> dans R en utilisant la fonction <code>import()</code> comme d’habitude (soit vos données nettoyées, soit celles que vous venez de télécharger). Assignez les jeux de données nettoyées aux data frames suivants :</p></li>
 </ol>
+<ul>
+<li>data_ids_2022-w20_clean –&gt; <code>df_surv</code>,</li>
+<li>data_ids_2022-w20_clean_weeks –&gt; <code>df_surv_sem</code>
+</li>
+<li>data_lab_2022-w20_clean –&gt; <code>df_labo</code>.</li>
+</ul>
 </div>
-<section id="sélection-des-zs" class="level4"><h4 class="anchored" data-anchor-id="sélection-des-zs">Sélection des ZS</h4>
+</section><section id="sélection-des-zs" class="level4"><h4 class="anchored" data-anchor-id="sélection-des-zs">Sélection des ZS</h4>
 <p>Pour simplifier le travail nous allons nous focaliser sur quatre zones de santé : Dilolo, Kampemba, Kowe, et Lwamba.</p>
 <div class="write">
 <p>Commencez une nouvelle chaîne de commande à partir du data frame <code>df_surv_sem</code>. La première étape est de filtrer les données pour ne conserver que les zones de santé Dilolo, Kampemba, Kowe, et Lwamba.</p>
 </div>
 </section><section id="indicateur-hebdomadaire" class="level4"><h4 class="anchored" data-anchor-id="indicateur-hebdomadaire">Indicateur hebdomadaire</h4>
-<p>Notre premier indicateur regarde si <em>une zone de santé a 20 cas suspects ou plus dans une semaine</em>. Cet indicateur est dichotomique et ne prend en compte que les données d’une zone de santé pour une semaine donnée (ça tombe bien, ça correspond aux lignes du data frame).</p>
+<p>Notre premier indicateur regarde si <em>une zone de santé a 20 cas suspects ou plus dans une semaine</em>. Cet indicateur est dichotomique et ne prend en compte que les données d’une zone de santé pour une semaine donnée.</p>
 <div class="write">
 <p>Ajoutez un <code>mutate()</code> à votre chaîne pour créer une colonne <code>cas20</code> qui contient la valeur <code>1</code> si une ZS a 20 cas ou plus cette semaine-là, et <code>0</code> sinon.</p>
 <p><br> Le début du data frame ressemble à ça :</p>
@@ -538,10 +544,10 @@ Astuce
 </div>
 </div>
 </section><section id="indicateur-cumulé" class="level4"><h4 class="anchored" data-anchor-id="indicateur-cumulé">Indicateur cumulé</h4>
-<p>Notre second indicateur regarde si une zone de santé compte plus de 35 <em>cas suspects cumulés en trois semaines</em>. C’est un peu plus compliqué à calculer que l’indicateur hebdomadaire : pour chaque zone de santé, il faut calculer la somme des cas par fenêtres de trois semaines, mais les groupes ne sont pas fixes, ils <em>glissent</em> dans le temps. Nous entrons ici dans le domaine des moyennes/sommes/etc. <em>mobiles</em> ou <em>glissantes</em>…</p>
+<p>Notre second indicateur regarde si une zone de santé compte plus de <em>35 cas suspects cumulés en trois semaines</em>. C’est un peu plus compliqué à calculer que l’indicateur hebdomadaire : pour chaque zone de santé, il faut calculer la somme des cas par fenêtres de trois semaines, mais les fenêtres ne sont pas fixes, elles <em>glissent</em> dans le temps. Nous entrons ici dans le domaine des moyennes/sommes/etc. <em>mobiles</em> ou <em>glissantes</em>…</p>
 <section id="somme-cumulée" class="level5"><h5 class="anchored" data-anchor-id="somme-cumulée">Somme cumulée</h5>
-<p>Nous allons utiliser la fonction <code>rollapply()</code> du paquet <code>{zoo}</code> pour calculer la somme cumulée car elle est polyvalente et puissante. Comme son nom l’indique, la fonction <code>rollapply()</code> <em>applique</em> une fonction de manière glissante (<em>roll</em> peut être traduit ici en “rouler”) à un vecteur ou à une colonne d’un data frame.</p>
-<p>Comme nous sommes contraint par le temps, nous allons vous fournir ici le code pour calculer la somme cumulée, et nous vous donnerons plus de détails sur la fonction dans la section <a href="#sec-going-further">Aller plus loin</a> que vous pourrez lire quand vous aurez le temps.</p>
+<p>Nous allons utiliser la fonction <code>rollapply()</code> du paquet <code>{zoo}</code> pour calculer la somme cumulée car elle est polyvalente et puissante. Comme son nom l’indique, la fonction <code>rollapply()</code> <em>applique</em> une fonction de manière glissante (<em>roll</em> peut être traduit ici en “rouler”) à un vecteur ou à une colonne d’un data frame. En d’autres termes, cette fonction récapitule pour une colonne donnée les informations de plusieurs <em>lignes consécutives</em> d’un data frame avec une fonction de notre choix (somme, moyenne etc.).</p>
+<p>Comme nous sommes contraint par le temps, nous allons vous fournir ici le code pour calculer la somme cumulée, et nous vous donnons plus de détails sur la fonction dans la section <a href="#sec-going-further">Aller plus loin</a> que vous pourrez lire quand vous aurez le temps.</p>
 <p>Voici comment utiliser la fonction pour une zone de santé :</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Crée un mini data frame pour l'exemple</span></span>
@@ -589,7 +595,8 @@ Astuce
 10 Haut Katanga     Dilolo      10        1        3</code></pre>
 </div>
 </div>
-<p>Ok, mais nous voudrions utiliser cette fonction dans un data frame qui contient plusieurs zones de santé, et faire la somme cumulée <em>par zone de santé</em>. Ce n’est pas si compliqué : nous allons trier notre jeu de données par zone de santé et semaine, puis utiliser l’argument <code>.by</code> dans le mutate pour effectuer les actions <em>par zone de santé</em>.</p>
+</section><section id="par-zone-de-santé" class="level5"><h5 class="anchored" data-anchor-id="par-zone-de-santé">Par zone de santé</h5>
+<p>Ok, mais nous voudrions utiliser cette fonction dans un data frame qui contient plusieurs zones de santé, et faire la somme cumulée <em>par zone de santé</em>. Ce n’est pas si compliqué : nous allons trier notre jeu de données par zone de santé et semaine, puis utiliser l’argument <code>.by</code> dans <code>mutate()</code> pour effectuer les actions <em>par zone de santé</em>.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -600,9 +607,9 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Rappelez-vous, nous avons déjà vu le <code>.by</code>. Nous l’avons utilisé au sein de la fonction <code>summarize()</code> lors de la session sur les <a href="../sessions_core/05_summary_table.html#sec-stratify">tableaux agrégés</a> pour faire des résumés <em>par groupe</em>.</p>
-<p>C’est la même idée aujourd’hui, sauf qu’au lieux d’utiliser une fonction qui ne renvoie qu’une seule valeur par groupe (<code>summarize()</code>) nous allons utiliser une fonction qui retourne une valeur par <strong>ligne</strong> (<code>mutate()</code>), mais prendra en compte les informations du groupe.</p>
-<p>Pour petit rappel de comment <code>summarize()</code> + <code>.by</code> fonctionne, voici comment nous calculons le nombre total de cas suspects et décès par province :</p>
+<p>Rappelez-vous, nous avons déjà vu le <code>.by</code> par le passé: nous l’avons utilisé au sein de la fonction <code>summarize()</code> lors de la session sur les <a href="../sessions_core/05_summary_table.html#sec-stratify">tableaux agrégés</a> pour faire des résumés <em>par groupe</em>.</p>
+<p>C’est la même idée aujourd’hui, sauf qu’au lieu d’utiliser une fonction qui ne renvoie qu’une seule valeur par groupe (<code>summarize()</code>) nous allons utiliser une fonction qui renvoie une valeur par <strong>ligne</strong> (<code>mutate()</code>), mais prend en compte les informations du groupe.</p>
+<p>Pour rappel de comment <code>summarize()</code> + <code>.by</code> fonctionne, voici comment calculer le nombre total de cas suspects et décès par province :</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df_surv_sem <span class="sc">|&gt;</span> </span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
@@ -624,7 +631,7 @@ Note
 </div>
 <div class="write">
 <ol type="1">
-<li>Ajoutez une étape à votre pipeline pour trier les données par province, zone de santé et semaine (dans cet ordre) avec la fonction <code>arrange()</code>, qui est une fonction de tri du package <code>{dplyr}</code>:</li>
+<li>Ajoutez une étape à votre pipeline pour trier les données par province, zone de santé et semaine (dans cet ordre) avec la fonction <code>arrange()</code>, qui est une fonction de tri du paquet <code>{dplyr}</code> :</li>
 </ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df_surv_sem <span class="sc">|&gt;</span></span>
@@ -637,22 +644,44 @@ Note
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">.by =</span> <span class="fu">c</span>(province, zone_sante),</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">cas_cumu =</span> <span class="fu">rollapply</span>(</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">data  =</span> totalcas,   <span class="co"># La colonne cible</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">width =</span> <span class="dv">3</span>,          <span class="co"># La taille de la fenêtre  </span></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">FUN   =</span> sum,        <span class="co"># La fonction à appliquer, ici la somme</span></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">align =</span> <span class="st">"right"</span>,    <span class="co"># On cumule les valeurs passées jusqu'à présent</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">data    =</span> totalcas,   <span class="co"># La colonne cible</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">width   =</span> <span class="dv">3</span>,          <span class="co"># La taille de la fenêtre  </span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">FUN     =</span> sum,        <span class="co"># La fonction à appliquer, ici la somme</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">align   =</span> <span class="st">"right"</span>,    <span class="co"># On cumule les valeurs passées jusqu'à présent</span></span>
 <span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">partial =</span> <span class="cn">TRUE</span>,     <span class="co"># Les somme partielles sont autorisées</span></span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">na.rm =</span> <span class="cn">TRUE</span>        <span class="co"># Argument en plus à passer à la fonction sum()</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">na.rm   =</span> <span class="cn">TRUE</span>        <span class="co"># Argument en plus à passer à la fonction sum()</span></span>
 <span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-<p>Maintenant que la somme cumulée est calculée, il ne nous reste plus qu’à calculer l’indicateur dichotomique qui résume les données cumulées pour chaque semaine, puis un indicateur combiné qui résume les deux indicateurs précédents.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La fonction <code>rollapply()</code> considère l’ordre du data frame pour décider où placer sa fenêtre, elle n’a pas de <em>compréhension</em> du temps : elle fait juste la somme des valeurs précédentes ou suivantes. En d’autres termes si on veut calculer la somme cumulée en semaine 15, la fonction somme les deux valeurs venant avant dans le data frame à la valeur de la ligne concernée. On veut donc que les deux lignes précédentes contiennent les valeurs des semaines 13 et 14 ! Ça implique que :</p>
+<ol type="1">
+<li>Le data frame est <strong>ordonné</strong> (ou <em>trié</em>) ! Si les deux lignes précédentes ne contiennent pas les semaines 13 et 14 de cette zone de santé la somme cumulée est fausse.</li>
+<li>Le data frame est <strong>complet</strong> : il y a des valeurs pour les semaines 14 et 15. Si la somme en semaine 15 en en fait la somme des semaines 12, 13 et 15 parce que la semaine 14 est manquante, le calcul est faux.</li>
+</ol>
+</div>
+</div>
+</section><section id="calculer-lindicateur-binaire" class="level5"><h5 class="anchored" data-anchor-id="calculer-lindicateur-binaire">Calculer l’indicateur binaire</h5>
+<p>Maintenant que la somme cumulée est calculée, on peut calculer l’indicateur dichotomique qui résume les données cumulées pour chaque semaine.</p>
+<div class="write">
+<p>Ajoutez une nouvelle étape à votre pipeline pour créer une colonne <code>cas_cumu35</code> qui contient <code>1</code> si la somme cumulée est supérieure ou égale à 35, et <code>0</code> sinon.</p>
+</div>
+</section></section><section id="indicateur-combiné" class="level4"><h4 class="anchored" data-anchor-id="indicateur-combiné">Indicateur combiné</h4>
+<p>Calculons finalement l’indicateur combiné qui résume les deux indicateurs précédents.</p>
 <div class="write">
 <ol type="1">
-<li><p>Ajoutez une nouvelle étape à votre pipeline pour créer une colonne <code>cas_cumu35</code> qui contient <code>1</code> si la somme cumulée est supérieure ou égale à 35, et <code>0</code> sinon.</p></li>
-<li><p>Dans le même mutate, ajoutez une colonne <code>alerte</code>, qui est <code>1</code> si ’l’indicateur <code>cas20</code> OU l’indicateur <code>cas_cumu35</code> est <code>1</code> et <code>0</code> sinon. Pour lest logique vous devrez utiliser l’opérateur <code>|</code> qui représente le <strong>OU</strong> logique (renverra <code>TRUE</code> si au moins une des conditions est remplie, à fortiori les deux).</p></li>
-<li><p>Assignez le résultat à un data frame <code>data_alerte</code>.</p></li>
+<li><p>Dans le même <code>mutate()</code> que précédement, ajoutez une colonne <code>alerte</code>, qui est <code>1</code> si l’indicateur <code>cas20</code> <strong>OU</strong> l’indicateur <code>cas_cumu35</code> est <code>1</code> et <code>0</code> sinon. Pour le test logique vous devrez utiliser l’opérateur <code>|</code> qui représente le <strong>OU</strong> logique. Cet opérateur renvoi <code>TRUE</code> si au moins une des conditions est remplie (et donc aussi si le deux sont remplies).</p></li>
+<li><p>Assignez le résultat à un data frame appelé <code>data_alerte</code>.</p></li>
 </ol>
 <p>Ce data frame ressemble à ceci (quelques colonnes sont cachées pour l’affichage) :</p>
 <div class="cell">
@@ -673,14 +702,15 @@ Note
 </div>
 </div>
 </div>
-</section></section></section><section id="zones-de-santé-en-alerte" class="level3"><h3 class="anchored" data-anchor-id="zones-de-santé-en-alerte">Zones de santé en alerte</h3>
+</section></section><section id="zones-de-santé-en-alerte" class="level3"><h3 class="anchored" data-anchor-id="zones-de-santé-en-alerte">Zones de santé en alerte</h3>
 <p>Maintenant que la préparation est finie, nous pouvons <em>enfin</em> regarder quelles zones de santé sont en alerte dans notre jeu de données, en particulier à la semaine 20 (les données les plus récentes selon l’étude de cas).</p>
 <div class="write">
 <p>Affichez les données filtrées pour ne voir que ce qui se passe à la semaine 20. Quelle zones sont en alerte en ce moment ?</p>
 <p>Créez un vecteur <code>zs_alerte</code> qui contient le nom des zones de santé qui sont en alerte à la semaine 20. Ce vecteur sera utilisé par la suite pour filtrer les données lors de l’analyse.</p>
 </div>
 </section></section><section id="tracer-la-courbe-épidémique-question-4" class="level2"><h2 class="anchored" data-anchor-id="tracer-la-courbe-épidémique-question-4">Tracer la courbe épidémique (Question 4)</h2>
-<p>Nous allons à présent tracer la courbe épi pour les zones en alerte à la semaine 20. Nous pouvons réutiliser le code vu lors de la session sur les <a href="../sessions_core/06_epicurves.html">courbes épidémiques</a> : nous utiliserons le paquet <code>ggplot()</code> et la fonction <code>geom_col()</code> pour créer un diagramme qui montre la distribution des cas par semaine. Petite nouveauté : par le passé nous avions une liste linaire où une ligne correspond à un patient, donc un cas. Aujourd’hui nous avons des données déjà agrégées par semaine et zone de santé : nul besoin de <em>compter</em> le nombre de cas nous même.</p>
+<p>Nous allons à présent tracer la courbe épi pour les zones en alerte à la semaine 20. Nous pouvons réutiliser le code vu lors de la session sur les <a href="../sessions_core/06_epicurves.html">courbes épidémiques</a> : nous utiliserons le paquet <code>ggplot()</code> et la fonction <code>geom_col()</code> pour créer un diagramme qui montre la distribution des cas par semaine.</p>
+<p>Petite nouveauté : par le passé nous avions une liste linaire où une ligne correspond à un patient, donc un cas. Aujourd’hui nous avons des données déjà agrégées par semaine et zone de santé : nul besoin de <em>compter</em> le nombre de cas nous même.</p>
 <div class="write">
 <p>Tracez la courbe épidémique pour <em>une</em> des zones de santé en alerte.</p>
 <p><br> Le graphe devrait ressembler à ceci (peut être avez-vous choisi l’autre zone) :</p>
@@ -693,25 +723,21 @@ Note
 </div>
 </div>
 </div>
-<p>Nouvelle fonction utile, la fonction <code>facet_wrap()</code> permet de créer plusieurs graphiques d’un seul coup rassemblés en une seule figure. Consultez le satellite sur le <a href="../sessions_extra/faceting.html">faceting</a> si vous voulez en savoir plus.</p>
+<p>Nouvelle fonction utile, la fonction <code>facet_wrap()</code> permet de créer plusieurs graphiques d’un seul coup rassemblés en une seule figure.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>data_alerte <span class="sc">|&gt;</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(zone_sante <span class="sc">%in%</span> zone_sante_alertee) <span class="sc">|&gt;</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> semaine, </span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> totalcas)) <span class="sc">+</span> </span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#2E4573"</span>) <span class="sc">+</span> </span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">16</span>) <span class="sc">+</span> </span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Semaine"</span>,</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"N cas"</span>,</span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Zone de santé de Kampemba (en alerte)"</span>) <span class="sc">+</span></span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(zone_sante))   <span class="co"># Un graphe par zone de santé</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="surveillance_companion_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="768"></p>
-</figure>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># NE PAS EXÉCUTER (PSEUDO-CODE)</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>données <span class="sc">|&gt;</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(...)) <span class="sc">+</span> </span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(f...) <span class="sc">+</span> </span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(...) <span class="sc">+</span> </span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(...) <span class="sc">+</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(zone_sante))   <span class="co"># Un graphe par zone de santé</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div class="write">
+<p>Tracez la courbe épidémique pour les deux zones en alerte en ajustant votre code et en utilisant <code>facet_wrap()</code>.</p>
 </div>
-</div>
+<p>Consultez le satellite sur le <a href="../sessions_extra/faceting.html">faceting</a> si vous voulez en savoir plus.</p>
 </section><section id="indicateurs-clés-question-6" class="level2"><h2 class="anchored" data-anchor-id="indicateurs-clés-question-6">Indicateurs clés (Question 6)</h2>
 <p>Nous pouvons calculer plus d’indicateurs sur les zones de santé pour nous aider à décider laquelle devrait faire l’objet d’une enquête (vu que vous n’avez pas le temps ni les ressources pour investiguer les deux).</p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -803,7 +829,8 @@ Astuce
 </section><section id="sec-going-further" class="level2"><h2 class="anchored" data-anchor-id="sec-going-further">Aller plus loin</h2>
 <section id="explications-sur-complete" class="level3"><h3 class="anchored" data-anchor-id="explications-sur-complete">Explications sur <code>complete()</code>
 </h3>
-<p>Dans le mini exemple ci-dessous la zone de santé de Kitenge n’a pas de ligne pour la semaine 2 :</p>
+<p>Nous allons ici donner quelques éléments pour comprendre un peut les arguments de la fonction <code>complete()</code>.</p>
+<p>Créons un mini exemple où la zone de santé de Kitenge n’a pas de ligne pour la semaine 2 :</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Data frame simplifié, avec seulement trois semaines</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>exemple_df <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
@@ -822,14 +849,15 @@ Astuce
 5  haut_lomami    kitenge       3        2</code></pre>
 </div>
 </div>
+<p>C’est problématique si l’on veut calculer une somme cumulée.</p>
 <p>Nous pouvons utiliser le code suivant pour compléter toutes les zones de santé pour qu’elles aient toutes les semaines possible, ici les semaine de un à trois :</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compléte la semaine manquante à Kitenge</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>exemple_df <span class="sc">|&gt;</span> </span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">complete</span>(</span>
 <span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">nesting</span>(province, zone_sante), </span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">semaine =</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">3</span>),            <span class="co"># Vecteur de 1 à 3</span></span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="fu">list</span>(<span class="at">totalcas =</span> <span class="dv">0</span>)       <span class="co"># Remplir avec des zéros (sinon, NA par défaut)</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">semaine =</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">3</span>),       <span class="co"># Vecteur de 1 à 3</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="fu">list</span>(<span class="at">totalcas =</span> <span class="dv">0</span>)  <span class="co"># Remplir avec des zéros (sinon, NA par défaut)</span></span>
 <span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  ) </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 4
@@ -844,7 +872,7 @@ Astuce
 </div>
 </div>
 <p>Maintenant les deux zones de santé dans les deux provinces ont toutes les semaines possibles.</p>
-<p>Vous vous demandez peut être pourquoi nous avons écrit <code>nesting(province, zone_sante)</code> au lieu de juste <code>zone_sante</code>. La raison est qu’il peut y avoir deux zones de santé avec le même nom dans des provinces différentes. Nous devons donc tenir compte de la colonne <code>province</code>. L’argument <code>nesting()</code> indique à la fonction de n’utiliser que les <em>combinaisons existantes</em> des deux colonnes dans le data frame.</p>
+<p>Vous vous demandez peut être pourquoi nous avons écrit <code>nesting(province, zone_sante)</code> au lieu de juste <code>zone_sante</code>. La raison est qu’il peut y avoir deux zones de santé avec le même nom dans des provinces différentes. Nous devons donc tenir compte de la colonne <code>province</code>. La fonction <code>nesting()</code> indique à la fonction <code>complee()</code> de n’utiliser <em>que les combinaisons existantes</em> des deux colonnes dans le data frame.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -924,12 +952,12 @@ Note
 <pre><code>[1] 3 3 3 3 3 3 3 3</code></pre>
 </div>
 </div>
-<p>Nous avons fourni en entrée un vecteur de 10 valeurs et obtenu en sortie un vecteur contenant les sommes. Manifestement, la fonction a fait des choix sur comment traiter les extrémités, et le résultat est plus court que le vecteur d’entré. Ce dernier point est un problème si l’on veut utiliser la fonction dans un <code>mutate()</code>, qi crée des colonnes dans un data frame, où toutes les colonnes ont la même taille.</p>
+<p>Nous avons fourni en entrée un vecteur de 10 valeurs et obtenu en sortie un vecteur contenant les sommes. Manifestement, la fonction a fait des choix sur comment traiter les extrémités, et le résultat est plus court que le vecteur d’entré. Ce dernier point est un problème si l’on veut utiliser la fonction dans un <code>mutate()</code>, qui crée des colonnes dans un data frame, où toutes les colonnes ont la même taille.</p>
 <p>Il est possible de contrôler le comportement de la fonction aux extrémités :</p>
 <ul>
-<li>Remplir les valeurs pour lesquelles il n’y a pas assez de valeur dans la fenêtre avec des <code>NA</code>
+<li>Remplir les lignes pour lesquelles il n’y a pas assez de valeur dans la fenêtre avec des <code>NA</code>
 </li>
-<li>Autoriser des calculs partiels (ici, des sommes partielles, en d’autres termes des valeurs ne représentent pas la somme sur <em>trois</em> semaines).</li>
+<li>Autoriser des calculs partiels (ici, des sommes partielles, en d’autres termes des valeurs ne représentent pas la somme sur <em>trois</em> semaines, mais moins).</li>
 </ul>
 <p>L’argument <code>fill = NA</code> remplit les valeurs manquantes aux extrémités concernées avec des <code>NA</code> (dans notre cas, à gauche, vu que l’on a aligné la fenêtre à droite) :</p>
 <div class="cell">
@@ -968,7 +996,7 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Gardez à l’esprit que les deux premières valeurs du vecteur (ou de la colonne) contiennent donc des sommes <em>partielles</em>. En conséquence, une <em>absence d’alerte</em> dans les deux premières semaines ne veut pas forcement dire grand chose.</p>
+<p>Gardez à l’esprit que les deux premières valeurs du vecteur (ou de la colonne) contiennent donc des sommes <em>partielles</em>. En conséquence, une <em>absence d’alerte</em> dans les deux premières semaines ne veut pas forcement dire qu’il n’y a pas d’alerte.</p>
 </div>
 </div>
 <p>Un dernier point : rappelez-vous qu’il faut utiliser <code>na.rm = TRUE</code> pour ignorer les valeurs manquantes dans la plupart des opérations arithmétiques dans R.</p>
@@ -1001,10 +1029,10 @@ Important
 <pre><code>[1] 1 2 3 2 2 2</code></pre>
 </div>
 </div>
-<p>Enfin, quelues mots sur l’argument <code>align</code>. Il définit la position de la fenêtre glissante par rapport à la valeur en train d’être calculée. Par défaut la fenêtre est centrée autour de la valeur à cacluler : la valeur calculée <em>i</em> est la somme des valeurs <em>i-1</em> (la valeur précédente) et la valeur <em>i+1</em> (la valeur suivante).</p>
+<p>Enfin, quelques mots sur l’argument <code>align</code>. Il définit la position de la fenêtre glissante par rapport à la valeur en train d’être calculée. Par défaut la fenêtre est centrée autour de la valeur à calculer : la valeur calculée <em>i</em> est la somme des valeurs <em>i-1</em> (la valeur de la ligne précédente) et la valeur <em>i+1</em> (la valeur de la ligne suivante).</p>
 <p>Exemples des trois alignements (en mettant des valeurs manquantes aux extrémités pour voir plus facilement ce qui se passe) :</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Alignement à gauche : la valeur est la somme des valeurs dans le futur</span></span>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Alignement à gauche : la valeur est la somme des valeurs suivantes dans le data frame</span></span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rollapply</span>(<span class="at">data  =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">10</span>),</span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">width =</span> <span class="dv">3</span>, </span>
 <span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">FUN   =</span> sum,</span>
@@ -1022,7 +1050,7 @@ Important
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] NA 16 13  8 17 NA</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Alignement à droite : somme des valeurs passées jusqu'à présent</span></span>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Alignement à droite : somme des valeurs précédentes dans le data frame</span></span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rollapply</span>(<span class="at">data  =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">10</span>),</span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">width =</span> <span class="dv">3</span>, </span>
 <span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">FUN   =</span> sum,</span>
@@ -1032,7 +1060,7 @@ Important
 <pre><code>[1] NA NA 16 13  8 17</code></pre>
 </div>
 </div>
-<p>Dans notre cas, nous voulons que la valeur pour une semaine donnée reflète cette semaine et les deux semaines précédentes, donc nous utilisons l’argument <code>align = "right"</code>, pour calculer <em>dans le passé</em>.</p>
+<p>Dans notre cas, nous voulons que la valeur pour une semaine donnée reflète cette semaine et les deux semaines précédentes, donc nous utilisons l’argument <code>align = "right"</code>, pour calculer <em>dans le passé</em> (si le data frame est ordonné dans l’ordre chronologique pour chaque zone de santé !).</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">

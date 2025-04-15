@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<link rel="alternate" hreflang="en" href="https://epicentre-msf.github.io/repicentre/sessions_companion/surveillance_companion.html" />
-<link rel="alternate" hreflang="fr" href="https://epicentre-msf.github.io/repicentre/fr/sessions_companion/surveillance_companion.fr.html" />
+<link rel="alternate" hreflang="en" href="/sessions_companion/surveillance_companion.html" />
+<link rel="alternate" hreflang="fr" href="/fr/sessions_companion/surveillance_companion.fr.html" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.6.42">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta name="description" content="Companion session to the surveillance Fetch-R module">
+<meta name="description" content="Companion tutorial to the surveillance FETCH module">
 <title>Surveillance – {repicentre}</title>
 <style>
 code{white-space: pre-wrap;}
@@ -58,11 +58,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script><script src="../site_libs/quarto-nav/headroom.min.js"></script><script src="../site_libs/clipboard/clipboard.min.js"></script><script src="../site_libs/quarto-search/autocomplete.umd.js"></script><script src="../site_libs/quarto-search/fuse.min.js"></script><script src="../site_libs/quarto-search/quarto-search.js"></script><meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js"></script><script src="../site_libs/quarto-html/popper.min.js"></script><script src="../site_libs/quarto-html/tippy.umd.min.js"></script><script src="../site_libs/quarto-html/anchor.min.js"></script><link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-0626ff4d7a71b55c8707dcae1d04a9b6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-e25cc82807363e79c52e96bc8b7855f1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-de84f8d6bb715db06a919283c2d1e787.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-9a023c9ade86a60361e96e3e3f11bc54.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script><link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-b814d3e578892f16fb585af6f47f426f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-35dfec4a88a4a8552367c65e80eaa027.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-6ab5e0891aed6e954066009cd4eecacc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-b92d258d3900ea06ce3f9b55f30b4460.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -107,7 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
 <li class="nav-item"><div class="dropdown" id="languages-links-parent">
-<button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="languages-button"><i class="bi bi-globe2"></i> English</button><ul class="dropdown-menu" id="languages-links"><li><a class="dropdown-item" href="https://epicentre-msf.github.io/repicentre/fr/sessions_companion/surveillance_companion.html" id="language-link-fr">Français</a></li></ul>
+<button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="languages-button"><i class="bi bi-globe2"></i> English</button><ul class="dropdown-menu" id="languages-links"><li><a class="dropdown-item" href="/fr/sessions_companion/surveillance_companion.html" id="language-link-fr">Français</a></li></ul>
 </div></li>
 <li class="nav-item">
     <a class="nav-link" href="../pathway.html"> 
@@ -141,20 +141,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
   <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
   <li>
-<a href="#setup-question-2" id="toc-setup-question-2" class="nav-link" data-scroll-target="#setup-question-2">Setup (Question 2)</a>
+<a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a>
   <ul class="collapse">
 <li><a href="#setup-a-new-project" id="toc-setup-a-new-project" class="nav-link" data-scroll-target="#setup-a-new-project">Setup a new project</a></li>
   <li><a href="#import-data-in-r" id="toc-import-data-in-r" class="nav-link" data-scroll-target="#import-data-in-r">Import data in R</a></li>
   </ul>
 </li>
   <li>
-<a href="#cleaning-question-2-and-3" id="toc-cleaning-question-2-and-3" class="nav-link" data-scroll-target="#cleaning-question-2-and-3">Cleaning (Question 2 and 3)</a>
+<a href="#cleaning-question-2" id="toc-cleaning-question-2" class="nav-link" data-scroll-target="#cleaning-question-2">Cleaning (Question 2)</a>
   <ul class="collapse">
-<li><a href="#surveillance-data-q2" id="toc-surveillance-data-q2" class="nav-link" data-scroll-target="#surveillance-data-q2">Surveillance data (Q2)</a></li>
+<li><a href="#surveillance-data" id="toc-surveillance-data" class="nav-link" data-scroll-target="#surveillance-data">Surveillance data</a></li>
   <li><a href="#laboratory-data-q2" id="toc-laboratory-data-q2" class="nav-link" data-scroll-target="#laboratory-data-q2">Laboratory data (Q2)</a></li>
+  <li><a href="#complete-surveillance-dataset" id="toc-complete-surveillance-dataset" class="nav-link" data-scroll-target="#complete-surveillance-dataset">Complete surveillance dataset</a></li>
   <li><a href="#going-further" id="toc-going-further" class="nav-link" data-scroll-target="#going-further">Going further</a></li>
-  <li><a href="#complete-surveillance-dataset-q3" id="toc-complete-surveillance-dataset-q3" class="nav-link" data-scroll-target="#complete-surveillance-dataset-q3">Complete surveillance dataset (Q3)</a></li>
-  <li><a href="#going-further-1" id="toc-going-further-1" class="nav-link" data-scroll-target="#going-further-1">Going further</a></li>
   </ul>
 </li>
   <li>
@@ -195,7 +194,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div>
   <div class="description">
-    Companion session to the surveillance Fetch-R module
+    Companion tutorial to the surveillance FETCH module
   </div>
 </div>
 
@@ -229,7 +228,7 @@ Tip
 <p>Do not hesitate to refer to past sessions and your own scripts to remind yourself of some functions!</p>
 </div>
 </div>
-</section><section id="setup-question-2" class="level2"><h2 class="anchored" data-anchor-id="setup-question-2">Setup (Question 2)</h2>
+</section><section id="setup" class="level2"><h2 class="anchored" data-anchor-id="setup">Setup</h2>
 <p>Since this is part of a specific module, you will create a new RStudio project. We refer you <a href="../sessions_core/02_import_data.html">to the main session</a> for help creating a project and importing your data.</p>
 <section id="setup-a-new-project" class="level3"><h3 class="anchored" data-anchor-id="setup-a-new-project">Setup a new project</h3>
 <div class="setup">
@@ -279,8 +278,8 @@ Tip
 <li><p>Verify that the import went well for both data frames (Viewer, check the dimensions or start and tail of data frames).</p></li>
 </ol>
 </div>
-</section></section><section id="cleaning-question-2-and-3" class="level2"><h2 class="anchored" data-anchor-id="cleaning-question-2-and-3">Cleaning (Question 2 and 3)</h2>
-<section id="surveillance-data-q2" class="level3"><h3 class="anchored" data-anchor-id="surveillance-data-q2">Surveillance data (Q2)</h3>
+</section></section><section id="cleaning-question-2" class="level2"><h2 class="anchored" data-anchor-id="cleaning-question-2">Cleaning (Question 2)</h2>
+<section id="surveillance-data" class="level3"><h3 class="anchored" data-anchor-id="surveillance-data">Surveillance data</h3>
 <p>Now that the data is correctly imported, we are going to perform some more checks, as usual, before a bit of cleaning.</p>
 <section id="quick-checks" class="level4"><h4 class="anchored" data-anchor-id="quick-checks">Quick checks</h4>
 <p>During the case study you won’t have time to <strong>inspect</strong> and <strong>clean</strong> <em>all</em> columns within the available time, so for now we will focus on key columns: <code>health_zone</code>, <code>week</code>, <code>totalcases</code> and <code>totaldeaths</code>.</p>
@@ -422,7 +421,7 @@ Tip
 </div>
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>You can use the <code>case_when()</code> function to recode the IGM columns.</p>
+<p>You can use the <code>case_when()</code> function to recode the IgM columns.</p>
 </div>
 </div>
 </div>
@@ -430,15 +429,7 @@ Tip
 <div class="write">
 <p>Export the <code>data_lab</code> data frame to a <code>.rds</code> file called <code>data_lab_2022-w20_clean</code> in the <code>data/clean</code> subfolder of your project.</p>
 </div>
-</section></section><section id="going-further" class="level3"><h3 class="anchored" data-anchor-id="going-further">Going further</h3>
-<p>This is the end of the steps for question 2! If you finished in advance and there is still time, reuse the functions we just saw to clean the other text columns in both datasets and recode both IGM column in the lab dataset.</p>
-<p>If you still have time, perform more checks on the data:</p>
-<ul>
-<li>Display the health zone for which the numbers by age group add up to a different number than the total (if any)</li>
-<li>Are there any health zone for which the number of deaths is higher than the total number of cases?</li>
-<li>Are there duplicated lines (fully duplicated, or several values for health zone and week)?</li>
-<li>Are there unrealistic case numbers?</li>
-</ul></section><section id="complete-surveillance-dataset-q3" class="level3"><h3 class="anchored" data-anchor-id="complete-surveillance-dataset-q3">Complete surveillance dataset (Q3)</h3>
+</section></section><section id="complete-surveillance-dataset" class="level3"><h3 class="anchored" data-anchor-id="complete-surveillance-dataset">Complete surveillance dataset</h3>
 <p>During the case study and the data checks, you realized that some weeks are missing from the surveillance dataset. You discussed the possible reasons for it, and the associated problems. Here we are going providing code to create a dataset that contains all weeks (assuming that missing weeks had zero cases and deaths).</p>
 <p>We will use the function <a href="https://tidyr.tidyverse.org/reference/complete.html"><code>complete()</code> from the <code>{tidyr}</code> package</a> to add the missing lines and fill the columns containing numbers (<code>totalcases</code> and <code>totaldeaths</code>) with zeros. Due to the constrained time, we will give you the code for now, but check out the details in the <a href="#sec-going-further">Going further section</a> when you have time.</p>
 <div class="write">
@@ -485,8 +476,16 @@ Tip
 <li>When you are done, export that data frame to a <code>.rds</code> file called <code>data_ids_2022-w20__weeks_clean</code> in the <code>data/clean</code> subfolder of your project.</li>
 </ol>
 </div>
-</section><section id="going-further-1" class="level3"><h3 class="anchored" data-anchor-id="going-further-1">Going further</h3>
-<p>This is the end of question 3; if you are finished in advance, do not hesitate to carry on checking the data and listing potential problems and cleaning the columns. And go read the explanations for the <code>complete()</code> function, or its <a href="https://tidyr.tidyverse.org/reference/complete.html">help page`</a>.</p>
+</section><section id="going-further" class="level3"><h3 class="anchored" data-anchor-id="going-further">Going further</h3>
+<p>This is the end of the steps for question 2! If you finished in advance reuse the functions we just saw to clean the other text columns in both datasets and recode both IgM columns in the lab dataset.</p>
+<p>If you still have time, perform more checks on the data:</p>
+<ul>
+<li>Display the health zone for which the numbers by age group add up to a different number than the total (if any)</li>
+<li>Are there any health zone for which the number of deaths is higher than the total number of cases?</li>
+<li>Are there duplicated lines (fully duplicated, or several values for health zone and week)?</li>
+<li>Are there unrealistic case numbers?</li>
+</ul>
+<p>You can also go read the the explanations for the <code>complete()</code> function at the end of this tutorial, or its <a href="https://tidyr.tidyverse.org/reference/complete.html">help page`</a>.</p>
 </section></section><section id="defining-alerts-question-4" class="level2"><h2 class="anchored" data-anchor-id="defining-alerts-question-4">Defining alerts (Question 4)</h2>
 <section id="preparing-the-dataset" class="level3"><h3 class="anchored" data-anchor-id="preparing-the-dataset">Preparing the dataset</h3>
 <p>We are going to carry on preparing the datasets for the analyses.</p>
@@ -504,8 +503,14 @@ Tip
 <p><br> Unzip the archive in your <code>data/clean</code> subfolder</p>
 <ol start="2" type="1">
 <li><p>Create a new script <code>analysis_surv.R</code> in the <code>R</code> subfolder. Add the metadata of the script, a package import section to import the packages <code>{here}</code>, <code>{rio}</code>, <code>{tidyverse}</code>, <code>{lubridate}</code> and <code>{zoo}</code>.</p></li>
-<li><p>Add an import data section and import the clean <code>.rds</code> files in R using the <code>import()</code> function as usual (your cleaned version or the one you just downloaded). Assign the cleaned data to <code>data_surv</code>, <code>data_lab</code> and <code>data_surv_weeks</code> and carry on.</p></li>
+<li><p>Add an import data section and import the clean <code>.rds</code> files in R using the <code>import()</code> function as usual (your cleaned version or the one you just downloaded). Assign the cleaned data to data frames:</p></li>
 </ol>
+<ul>
+<li>data_ids_2022-w20_clean –&gt; <code>df_surv</code>,</li>
+<li>data_ids_2022-w20_clean_weeks –&gt; <code>df_surv_sem</code>
+</li>
+<li>data_lab_2022-w20_clean –&gt; <code>df_labo</code>.</li>
+</ul>
 </div>
 <section id="subset-health-zone" class="level4"><h4 class="anchored" data-anchor-id="subset-health-zone">Subset health zone</h4>
 <p>To simplify the work, we are going to focus on four health zones: Dilolo, Kampemba, Kowe, and Lwamba.</p>
@@ -538,7 +543,7 @@ Tip
 </section><section id="cumulative-indicator" class="level4"><h4 class="anchored" data-anchor-id="cumulative-indicator">Cumulative indicator</h4>
 <p>The second indicator you want to calculate is whether a health zone has more than 35 <em>cumulated suspected cases within three weeks</em>. This is a bit more complicated than the previous case: within health zone you need to calculate the sum of cases by groups of three weeks, but the groups are not fixed, they are <em>rolling</em> across time. We are getting in the territory of <em>moving</em> averages/sums/etc.</p>
 <section id="cumulative-sum" class="level5"><h5 class="anchored" data-anchor-id="cumulative-sum">Cumulative sum</h5>
-<p>We are going to use the <code>rollapply()</code> function from the <code>{zoo}</code> package, as it is versatile and powerful. As its name suggests, the <code>rollapply()</code> function applies a function in a rolling way to a vector or a column of a data frame.</p>
+<p>We are going to use the <code>rollapply()</code> function from the <code>{zoo}</code> package, as it is versatile and powerful. As its name suggests, the <code>rollapply()</code> function applies a function in a rolling way to a vector or a column of a data frame. In other words, the function summarizes the information of a given column for a number of <em>consecutive rows</em> of a data frame with a function of your chosing (sum, mean etc.).</p>
 <p>Since we are constrained in time, we are going to provide the code of the <code>rollapply()</code> function to calculate the cumulative sum over three weeks, but check out the details in the <a href="#sec-going-further">Going further section</a> when you have time.</p>
 <p>This is how to do it for <em>one health zone</em>:</p>
 <div class="cell">
@@ -622,8 +627,7 @@ Note
 </div>
 <div class="write">
 <ol type="1">
-<li>Add a step to your previous pipeline to sort the data frame by province, health zone and week with the <code>arrange()</code> function, which is a sorting function from <code>{dplyr}</code>
-</li>
+<li>Add a step to your previous pipeline to sort the data frame by province, health zone and week with the <code>arrange()</code> function, which is a sorting function from <code>{dplyr}</code>:</li>
 </ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>data_surv_weeks <span class="sc">|&gt;</span> </span>
@@ -646,11 +650,33 @@ Note
 <span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-<p>Now that the complicated part is over (the computing of the cumulative sum) we are left to summarize the information with a binary indicator, for heach week and health zone. Then we can create a second indicator, that aggregates the result of both the weekly and cumulative indicators, to say if an alert is to be raised.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The <code>rollapply()</code> function does not understand the <em>meaning</em> of time: it only considers the <em>order</em> of the data frame to move its window, considering the values of rows before or after. For example, to caclulate the cumulative sum in week 15, the function adds the values of the two previous rows of the dataframe to the one of week 15. We thus want the previous rows to contain the values of week 13 and 14 of that health zone, which implies the following:</p>
+<ol type="1">
+<li><p>The data frame is <strong>sorted</strong> by health zone and week: if the two previous rows do not contain these weeks for the correct health zone, the sum will be wrong.</p></li>
+<li><p>The data frame is <strong>complete</strong>: there are values for all weeks. If week 14 were missing, the cumulative sum would sum the values of week 14, 13 and 12, which is wrong.</p></li>
+</ol>
+</div>
+</div>
+</section><section id="calculate-the-indicator" class="level5"><h5 class="anchored" data-anchor-id="calculate-the-indicator">Calculate the indicator</h5>
+<p>Now that twe computed the cumulative sum we can calculate the binary indicator for each week and health zone, which is easier.</p>
+<div class="write">
+<p>Add a new step to your pipeline to calculate a binary indicator, <code>cumcases35</code> that is <code>1</code> if the cumulative sum of cases for that week is equal or above 35 and <code>0</code> if not.</p>
+</div>
+</section></section><section id="combined-indicator" class="level4"><h4 class="anchored" data-anchor-id="combined-indicator">Combined indicator</h4>
+<p>We can finaly create a combined indicator, that aggregates the result of both the weekly and cumulative indicators, to say if an alert is to be raised.</p>
 <div class="write">
 <ol type="1">
-<li><p>Add a new step to your pipeline to calculate a binary indicator, <code>cumcases35</code> that is <code>1</code> if the cumulative sum of cases for that week is equal or above 35 and <code>0</code> if not.</p></li>
-<li><p>Add a new column <code>alert</code>, that is <code>1</code> if either the <code>cases20</code> indicator or the <code>cumcases35</code> indicator is <code>1</code> and <code>0</code> otherwise. You can use the <code>|</code> operator, which is R logical OR (the test will output <code>TRUE</code> if at least one of the condition is <code>TRUE</code>)..</p></li>
+<li><p>In the same <code>mutate()</code> as before, add a new column <code>alert</code>, that is <code>1</code> if either the <code>cases20</code> indicator <strong>or</strong> the <code>cumcases35</code> indicator is <code>1</code> and <code>0</code> otherwise. You need to use the <code>|</code> operator, which is R logical <strong>OR</strong> (the test will output <code>TRUE</code> if at least one of the condition is <code>TRUE</code>).</p></li>
 <li><p>When the pipe is working, assign the result to a <code>data_alert</code> data frame.</p></li>
 </ol>
 <p>The main columns of <code>data_alert</code> should look like this (other hidden for display):</p>
@@ -672,7 +698,7 @@ Note
 </div>
 </div>
 </div>
-</section></section></section><section id="health-zones-in-alert" class="level3"><h3 class="anchored" data-anchor-id="health-zones-in-alert">Health zones in alert</h3>
+</section></section><section id="health-zones-in-alert" class="level3"><h3 class="anchored" data-anchor-id="health-zones-in-alert">Health zones in alert</h3>
 <p>After all this work we can <em>finally</em> investigate which health zones are in alert in the last week of our dataset (the <em>now</em> of the case study, week 20)!</p>
 <div class="write">
 <p>Filter your data frame to only keep the 20th week. Which health zones are in alert?</p>
@@ -693,25 +719,18 @@ Note
 </div>
 </div>
 </div>
-<p>The <code>facet_wrap()</code> function allows us to plot several subplots in the same graph (see the <a href="../sessions_extra/faceting.html">faceting satellite</a> for more information on faceting):</p>
+<p>The <code>facet_wrap()</code> function allows us to plot several subplots in the same graph</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>data_alert <span class="sc">|&gt;</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(health_zone <span class="sc">%in%</span> hz_alert) <span class="sc">|&gt;</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> week, </span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> totalcases)) <span class="sc">+</span> </span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#2E4573"</span>) <span class="sc">+</span> </span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">15</span>) <span class="sc">+</span> </span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Week"</span>,</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"N cases"</span>,</span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Health zones in alert"</span>) <span class="sc">+</span></span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(health_zone))   <span class="co"># One graph by health_zone</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="surveillance_companion_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="768"></p>
-</figure>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DO NOT EXECUTE (PSEUDO-CODE)</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(...)) <span class="sc">+</span> </span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(f...) <span class="sc">+</span> </span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(...) <span class="sc">+</span> </span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(...) <span class="sc">+</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(health_zone))   <span class="co"># One graph by health zone</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</div>
+<p>You can later consult the <a href="../sessions_extra/faceting.html">faceting satellite</a> for more information on faceting.</p>
 </section><section id="key-indicators-question-6" class="level2"><h2 class="anchored" data-anchor-id="key-indicators-question-6">Key indicators (Question 6)</h2>
 <p>Let’s gather more data on both alerts to help you decide which one to investigate.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -802,7 +821,8 @@ Tip
 </div>
 </section><section id="sec-going-further" class="level2"><h2 class="anchored" data-anchor-id="sec-going-further">Going Further</h2>
 <section id="exploring-the-complete-function" class="level3"><h3 class="anchored" data-anchor-id="exploring-the-complete-function">Exploring the <code>complete()</code> function</h3>
-<p>Look at the simplified example below: the Kitenge health zone has no row for week 2:</p>
+<p>In this part we explore a bit the arguments of the <code>complete()</code> function.</p>
+<p>First, let’s create a simplified example where the Kitenge health zone has no row for week 2:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create simplified data frame for the example, with three weeks</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>example_df <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
@@ -883,7 +903,7 @@ Note
 </div>
 </div>
 </div>
-<p>It would be good to automatically pick the week series, since the data frame is going to change every week. To do that, we can remplace hardcoded values by the smallest and largest week number in the <code>week</code> column to get the range of weeks in the dataset:</p>
+<p>It would be good to automatically pick the week series, since the data frame is going to change every week. To do that, we can remplace <em>hardcoded</em> values by the smallest and largest week number in the <code>week</code> column to calculate the range of weeks in the dataset:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Complete the missing week in kikula</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>example_df <span class="sc">|&gt;</span> </span>
@@ -1011,7 +1031,7 @@ Tip
 <p>Here we applied the <code>sum()</code> function to create a cumulative sum over 3 weeks. But you could, with minimal modifications, apply the <code>mean()</code> function to caclulate a moving average!</p>
 </div>
 </div>
-<p>A last point on the <code>align</code> argument. It defines the position of the rolling windows compared to the value being calculated. The default is that the window is centered: the value <em>i</em> is the sum of values <em>i</em>, <em>i-1</em> and <em>i+1</em>.</p>
+<p>A last point on the <code>align</code> argument. It defines the position of the rolling windows compared to the value being calculated. The default is that the window is centered: the value <em>i</em> is the sum of values <em>i</em>, <em>i-1</em> (the value of the preceding row) and <em>i+1</em> (the value in the next row).</p>
 <p>Example of the three alignements (pading with <code>NA</code> to better see what’s happening):</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rollapply</span>(<span class="at">data  =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">10</span>),</span>
@@ -1039,7 +1059,7 @@ Tip
 <pre><code>[1] NA NA 16 13  8 17</code></pre>
 </div>
 </div>
-<p>In our case we want the value for a given week to reflect this week and the week past, so we align the window right, to calculate backward in time (by opposition, if we aligned left we would calculate forwards in time).</p>
+<p>In our case we want the value for a given week to reflect this week and the week past, so we align the window right, to calculate backward in time (if the data frame is sorted in chronological order by health zone!).</p>
 </section><section id="nicely-formatted-percentages" class="level3"><h3 class="anchored" data-anchor-id="nicely-formatted-percentages">Nicely formatted percentages</h3>
 <p>The <code>percent</code> function from the <code>{scales}</code> packages can add percentage formatting to a value.</p>
 <div class="cell">
