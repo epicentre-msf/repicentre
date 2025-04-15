@@ -1,6 +1,6 @@
 ---
 title: Surveillance
-description: Companion session to the surveillance Fetch-R module
+description: Companion tutorial to the surveillance FETCH module
 image: ../img/companion/surveillance/logo.svg
 categories:
   - Companion
@@ -149,7 +149,7 @@ Do not hesitate to refer to past sessions and your own scripts to remind yoursel
 :::
 
 
-## Setup (Question 2)
+## Setup
 
 Since this is part of a specific module, you will create a new RStudio project. We refer you [to the main session](../sessions_core/02_import_data.qmd) for help creating a project and importing your data.
 
@@ -216,9 +216,9 @@ import(
 
 
 
-## Cleaning (Question 2 and 3)
+## Cleaning (Question 2)
 
-### Surveillance data (Q2)
+### Surveillance data
 
 Now that the data is correctly imported, we are going to perform some more checks, as usual, before a bit of cleaning.
 
@@ -293,8 +293,8 @@ str_replace(
 :::  {.write}
 Add steps to your mutate to:
 
--   Remove all unwanted spaces from your chosen column
--   Change the `-` and to `_` in the column (in two steps)
+- Remove all unwanted spaces from your chosen column
+- Change the `-` and to `_` in the column (in two steps)
 
 The head of these columns should now be:
 
@@ -345,7 +345,7 @@ data_lab |> select(health_zone, igm_measles, igm_rubella) |> head(10)
 
 
 ::: {.callout-tip collapse=true}
-You can use the `case_when()` function to recode the IGM columns.
+You can use the `case_when()` function to recode the IgM columns.
 :::
 
 
@@ -356,19 +356,7 @@ Export the `data_lab` data frame to a `.rds` file called `data_lab_2022-w20_clea
 :::
 
 
-### Going further
-
-This is the end of the steps for question 2! If you finished in advance and there is still time, reuse the functions we just saw to clean the other text columns in both datasets and recode both IGM column in the lab dataset.
-
-If you still have time, perform more checks on the data:
-
-- Display the health zone for which the numbers by age group add up to a different number than the total (if any)
-- Are there any health zone for which the number of deaths is higher than the total number of cases?
-- Are there duplicated lines (fully duplicated, or several values for health zone and week)?
-- Are there unrealistic case numbers?
-
-
-### Complete surveillance dataset (Q3)
+### Complete surveillance dataset
 
 During the case study and the data checks, you realized that some weeks are missing from the surveillance dataset. You discussed the possible reasons for it, and the associated problems. Here we are going providing code to create a dataset that contains all weeks (assuming that missing weeks had zero cases and deaths).
 
@@ -410,7 +398,18 @@ data_surv_weeks |> head(10)
 
 ### Going further
 
-This is the end of question 3; if you are finished in advance, do not hesitate to carry on checking the data and listing potential problems and cleaning the columns. And go read the explanations for the `complete()` function, or its [help page`](https://tidyr.tidyverse.org/reference/complete.html).
+This is the end of the steps for question 2! If you finished in advance reuse the functions we just saw to clean the other text columns in both datasets and recode both IgM columns in the lab dataset.
+
+If you still have time, perform more checks on the data:
+
+- Display the health zone for which the numbers by age group add up to a different number than the total (if any)
+- Are there any health zone for which the number of deaths is higher than the total number of cases?
+- Are there duplicated lines (fully duplicated, or several values for health zone and week)?
+- Are there unrealistic case numbers?
+
+
+You can also go read the the explanations for the `complete()` function at the end of this tutorial, or its [help page`](https://tidyr.tidyverse.org/reference/complete.html).
+
 
 ## Defining alerts (Question 4)
 
@@ -439,7 +438,11 @@ Unzip the archive in your `data/clean` subfolder
 
 2. Create a new script `analysis_surv.R` in the `R` subfolder. Add the metadata of the script, a package import section to import the packages `{here}`, `{rio}`, `{tidyverse}`, `{lubridate}` and `{zoo}`.
 
-3. Add an import data section and import the clean `.rds` files in R using the `import()` function as usual (your cleaned version or the one you just downloaded). Assign the cleaned data to `data_surv`, `data_lab` and `data_surv_weeks` and carry on.
+3. Add an import data section and import the clean `.rds` files in R using the `import()` function as usual (your cleaned version or the one you just downloaded). Assign the cleaned data to data frames:
+
+- data_ids_2022-w20_clean --> `df_surv`, 
+- data_ids_2022-w20_clean_weeks --> `df_surv_sem`
+- data_lab_2022-w20_clean --> `df_labo`.
 :::
 
 
@@ -488,7 +491,7 @@ The second indicator you want to calculate is whether a health zone has more tha
 
 ##### Cumulative sum
 
-We are going to use the `rollapply()` function from the `{zoo}` package, as it is versatile and powerful. As its name suggests, the `rollapply()` function applies a function in a rolling way to a vector or a column of a data frame.
+We are going to use the `rollapply()` function from the `{zoo}` package, as it is versatile and powerful. As its name suggests, the `rollapply()` function applies a function in a rolling way to a vector or a column of a data frame. In other words, the function summarizes the information of a given column for a number of *consecutive rows* of a data frame with a function of your chosing (sum, mean etc.).
 
 Since we are constrained in time, we are going to provide the code of the `rollapply()` function to calculate the cumulative sum over three weeks, but check out the details in the [Going further section](#sec-going-further) when you have time. 
 
@@ -540,7 +543,7 @@ data_surv_weeks |>
 :::
 
 ::: {.write}
-1. Add a step to your previous pipeline to sort the data frame by province, health zone and week with the `arrange()` function, which is a sorting function from `{dplyr}`
+1. Add a step to your previous pipeline to sort the data frame by province, health zone and week with the `arrange()` function, which is a sorting function from `{dplyr}`:
 
 ```{r}
 data_surv_weeks |> 
@@ -566,15 +569,30 @@ mutate(
 
 :::
 
-Now that the complicated part is over (the computing of the cumulative sum) we are left to summarize the information with a binary indicator, for heach week and health zone. Then we can create a second indicator, that aggregates the result of both the weekly and cumulative indicators, to say if an alert is to be raised.
+::: {.callout-important}
+The `rollapply()` function does not understand the *meaning* of time: it only considers the *order* of the data frame to move its window, considering the values of rows before or after. For example, to caclulate the cumulative sum in week 15, the function adds the values of the two previous rows of the dataframe to the one of week 15. We thus want the previous rows to contain the values of week 13 and 14 of that health zone, which implies the following:
 
+1. The data frame is **sorted** by health zone and week: if the two previous rows do not contain these weeks for the correct health zone, the sum will be wrong.
+
+2. The data frame is **complete**: there are values for all weeks. If week 14 were missing, the cumulative sum would sum the values of week 14, 13 and 12, which is wrong.
+:::
+
+##### Calculate the indicator
+
+Now that twe computed the cumulative sum we can calculate the binary indicator for each week and health zone, which is easier. 
 
 ::: {.write}
-1. Add a new step to your pipeline to calculate a binary indicator, `cumcases35` that is `1` if the cumulative sum of cases for that week is equal or above 35 and `0` if not.
+Add a new step to your pipeline to calculate a binary indicator, `cumcases35` that is `1` if the cumulative sum of cases for that week is equal or above 35 and `0` if not.
+:::
 
-2. Add a new column `alert`, that is `1` if either the `cases20` indicator or the `cumcases35` indicator is `1` and `0` otherwise. You can use the `|` operator, which is R logical OR (the test will output `TRUE` if at least one of the condition is `TRUE`)..
+#### Combined indicator
 
-3. When the pipe is working, assign the result to a `data_alert` data frame.
+We can finaly create a combined indicator, that aggregates the result of both the weekly and cumulative indicators, to say if an alert is to be raised.
+
+::: {.write}
+1. In the same `mutate()` as before, add a new column `alert`, that is `1` if either the `cases20` indicator **or** the `cumcases35` indicator is `1` and `0` otherwise. You need to use the `|` operator, which is R logical **OR** (the test will output `TRUE` if at least one of the condition is `TRUE`).
+
+2. When the pipe is working, assign the result to a `data_alert` data frame.
 
 The main columns of `data_alert` should look like this (other hidden for display):
 
@@ -584,8 +602,6 @@ The main columns of `data_alert` should look like this (other hidden for display
 data_alert |>select(-province, -totaldeaths) |>
   head(10)
 ```
-
-
 :::
 
 
@@ -632,24 +648,20 @@ data_alert |>
 
 :::
 
-The `facet_wrap()` function allows us to plot several subplots in the same graph (see the [faceting satellite](../sessions_extra/faceting.qmd) for more information on faceting):
+The `facet_wrap()` function allows us to plot several subplots in the same graph 
 
 ```{r}
-#| eval: true
-#| fig-width: 8
+# DO NOT EXECUTE (PSEUDO-CODE)
 
-data_alert |>
-  filter(health_zone %in% hz_alert) |>
-  ggplot(aes(x = week, 
-             y = totalcases)) + 
-  geom_col(fill = "#2E4573") + 
-  theme_bw(base_size = 15) + 
-  labs(x = "Week",
-       y = "N cases",
-       title = "Health zones in alert") +
-  facet_wrap(vars(health_zone))   # One graph by health_zone
-
+data |>
+  ggplot(aes(...)) + 
+  geom_col(f...) + 
+  theme_bw(...) + 
+  labs(...) +
+  facet_wrap(vars(health_zone))   # One graph by health zone
 ```
+
+You can later consult the [faceting satellite](../sessions_extra/faceting.qmd) for more information on faceting.
 
 
 ## Key indicators (Question 6)
@@ -769,7 +781,9 @@ downloadthis::download_link(
 
 ### Exploring the `complete()` function
 
-Look at the simplified example below: the Kitenge health zone has no row for week 2:
+In this part we explore a bit the arguments of the `complete()` function.
+
+First, let's create a simplified example where the Kitenge health zone has no row for week 2:
 
 ```{r}
 #| eval: true
@@ -820,7 +834,7 @@ example_df |>
 :::
 
 
-It would be good to automatically pick the week series, since the data frame is going to change every week. To do that, we can remplace hardcoded values by the smallest and largest week number in the `week` column to get the range of weeks in the dataset:
+It would be good to automatically pick the week series, since the data frame is going to change every week. To do that, we can remplace *hardcoded* values by the smallest and largest week number in the `week` column to calculate the range of weeks in the dataset:
 
 
 ```{r}
@@ -930,7 +944,7 @@ Here we applied the `sum()` function to create a cumulative sum over 3 weeks. Bu
 :::
 
 
-A last point on the `align` argument. It defines the position of the rolling windows compared to the value being calculated. The default is that the window is centered: the value *i* is the sum of values *i*, *i-1* and *i+1*.
+A last point on the `align` argument. It defines the position of the rolling windows compared to the value being calculated. The default is that the window is centered: the value *i* is the sum of values *i*, *i-1* (the value of the preceding row) and *i+1* (the value in the next row).
 
 Example of the three alignements (pading with `NA` to better see what's happening):
 
@@ -955,7 +969,7 @@ rollapply(data  = c(5, 10, 1, 2, 5, 10),
           fill = NA)
 ```
 
-In our case we want the value for a given week to reflect this week and the week past, so we align the window right, to calculate backward in time (by opposition, if we aligned left we would calculate forwards in time).
+In our case we want the value for a given week to reflect this week and the week past, so we align the window right, to calculate backward in time (if the data frame is sorted in chronological order by health zone!).
 
 
 
