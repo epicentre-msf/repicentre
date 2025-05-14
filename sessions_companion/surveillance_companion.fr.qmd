@@ -141,7 +141,7 @@ zone_sante_alertee <- data_alerte |>
 
 ## Introduction
 
-Cette session accompagne l'étude de cas _Réponse d'urgence contre la rougeole dans la région du Katanga (RDC)_ du module FETCH Surveillance. Ça n'a probablement pas beaucoup de sens d'essayer de le suivre sans les documents et les discussions de l'étude.
+Cette session accompagne l'étude de cas _Réponse d'urgence contre la rougeole dans la région du Katanga (RDC)_ du module FETCH Surveillance. Ça n'a probablement pas beaucoup de sens d'essayer de la suivre sans les documents et les discussions de l'étude.
 
 En ce qui concerne la partie *R* du module surveillance, nous nous appuierons sur les compétences acquises tout au long des modules FETCH-R, et introduirons quelques nouvelles fonctions utiles pour le nettoyage et les analyses.
 
@@ -267,7 +267,7 @@ Peut être que vous n'aurez pas le temps de faire ces étapes pour toutes les co
 Commencez un *pipeline* de nettoyage avec un `mutate()` pour transformer la colonne de votre choix en minuscules.
 :::
 
-Nous allons maintenant voir deux petites fonctions très utiles pour le nettoyage du texte. La première est la fonction `str_squish()` du paquet `{stringr}` ([la page d'aide](https://stringr.tidyverse.org/reference/str_trim.html)), qui supprime les espaces au début ou à la fin des chaînes de caractères, et  les espaces surnuméraires ou qu'ils soient : 
+Nous allons maintenant voir deux petites fonctions très utiles pour le nettoyage du texte. La première est la fonction `str_squish()` du paquet `{stringr}` ([la page d'aide](https://stringr.tidyverse.org/reference/str_trim.html)), qui supprime les espaces au début ou à la fin des chaînes de caractères, et  les espaces surnuméraires où qu'ils soient : 
 
 ```{r}
 #| eval: true
@@ -395,7 +395,7 @@ complete(
 df_surv_sem |> head(10)
 ```
 
-4. exportez ce data frame dans un fichier `.rds` appelé `data_ids_2022-w20_weeks_clean` dans le sous dossier `data/clean` de votre projet.
+4. Exportez ce data frame dans un fichier `.rds` appelé `data_ids_2022-w20_weeks_clean` dans le sous dossier `data/clean` de votre projet.
 :::
 
 
@@ -411,7 +411,7 @@ Si vous avez encore du temps, inspectez vos données plus avant :
 - Y a-t-il des nombres de cas que vous estimez aberrants ?
 
 
-Vous pouvez aussi lire les explications sur la fonction `complete()` à la fin du tutoriel et allez explorer la [page d'aide](https://tidyr.tidyverse.org/reference/complete.html) de la fonction.
+Vous pouvez aussi lire les explications sur la fonction `complete()` à la fin du tutoriel et aller explorer la [page d'aide](https://tidyr.tidyverse.org/reference/complete.html) de la fonction.
 
 
 
@@ -419,7 +419,7 @@ Vous pouvez aussi lire les explications sur la fonction `complete()` à la fin d
 
 ### Préparer le jeu de données
 
-Nous allons continuer la préparation de data frames pour l'analyse.
+Nous allons continuer la préparation des data frames pour l'analyse.
 
 #### Mise en place
 
@@ -569,7 +569,7 @@ mutate(
     width   = 3,          # La taille de la fenêtre  
     FUN     = sum,        # La fonction à appliquer, ici la somme
     align   = "right",    # On cumule les valeurs passées jusqu'à présent
-    partial = TRUE,     # Les somme partielles sont autorisées
+    partial = TRUE,       # Les somme partielles sont autorisées
     na.rm   = TRUE        # Argument en plus à passer à la fonction sum()
   )
 )
@@ -577,10 +577,12 @@ mutate(
 :::
 
 ::: {.callout-important}
-La fonction `rollapply()` considère l'ordre du data frame pour décider où placer sa fenêtre, elle n'a pas de *compréhension* du temps : elle fait juste la somme des valeurs précédentes ou suivantes. En d'autres termes si on veut calculer la somme cumulée en semaine 15, la fonction somme les deux valeurs venant avant dans le data frame à la valeur de la ligne concernée. On veut donc que les deux lignes précédentes contiennent les valeurs des semaines 13 et 14 ! Ça implique que :
+La fonction `rollapply()` considère l'ordre du data frame pour décider où placer sa fenêtre, elle n'a pas de *compréhension* du temps : elle fait juste la somme des valeurs précédentes ou suivantes. 
 
-1. Le data frame est **ordonné** (ou *trié*) ! Si les deux lignes précédentes ne contiennent pas les semaines 13 et 14 de cette zone de santé la somme cumulée est fausse.
-2. Le data frame est **complet** : il y a des valeurs pour les semaines 14 et 15. Si la somme en semaine 15 en en fait la somme des semaines 12, 13 et 15 parce que la semaine 14 est manquante, le calcul est faux.
+Par exemple, si l'on veut calculer la somme cumulée en semaine 15, la fonction somme les deux valeurs venant avant dans le data frame à la valeur de la ligne concernée. On veut donc que les deux lignes précédentes contiennent les valeurs des semaines 13 et 14 ! Ça implique que :
+
+1. Le data frame est **ordonné** (ou *trié*) ! Si les deux lignes précédentes ne contiennent pas les semaines 13 et 14 de cette zone de santé, la somme cumulée est fausse.
+2. Le data frame est **complet**. Si la somme en semaine 15 est en fait la somme des semaines 12, 13 et 15 parce que la semaine 14 est manquante, le calcul est faux.
 :::
 
 ##### Calculer l'indicateur binaire
@@ -662,7 +664,7 @@ Nouvelle fonction utile, la fonction `facet_wrap()` permet de créer plusieurs g
 
 données |>
   ggplot(aes(...)) + 
-  geom_col(f...) + 
+  geom_col(...) + 
   theme_bw(...) + 
   labs(...) +
   facet_wrap(vars(zone_sante))   # Un graphe par zone de santé
@@ -682,7 +684,7 @@ Consultez le satellite sur le [faceting](../sessions_extra/faceting.qmd) si vous
 Nous pouvons calculer plus d'indicateurs sur les zones de santé pour nous aider à décider laquelle devrait faire l'objet d'une enquête (vu que vous n'avez pas le temps ni les ressources pour investiguer les deux).
 
 ::: {.callout-tip}
-Cette partie utilise les fonctions d'aggrégation vues quand nous avons appris à faire des [tableaux résumés](../sessions_core/05_summary_table.qmd). N'hésitez pas à vous rafraîchir si besoin.
+Cette partie utilise les fonctions d'aggrégation vues quand nous avons appris à faire des [tableaux résumés](../sessions_core/05_summary_table.qmd). N'hésitez pas à vous rafraîchir la mémoire si besoin.
 :::
 
 
@@ -813,22 +815,23 @@ exemple_df
 
 C'est problématique si l'on veut calculer une somme cumulée.
 
-Nous pouvons utiliser le code suivant pour compléter toutes les zones de santé pour qu'elles aient toutes les semaines possible, ici les semaine de un à trois : 
+Nous pouvons utiliser le code suivant pour compléter toutes les zones de santé pour qu'elles aient toutes les semaines possible, ici les semaines une à trois : 
+
 ```{r}
 #| eval: true
 
 # Compléte la semaine manquante à Kitenge
 exemple_df |> 
   complete(
-    nesting(province, zone_sante), 
-    semaine = seq(1, 3),       # Vecteur de 1 à 3
-    fill = list(totalcas = 0)  # Remplir avec des zéros (sinon, NA par défaut)
+    nesting(province, zone_sante), # Par province et zone, les explications arrivent juste après !
+    semaine = seq(1, 3),           # Vecteur de 1 à 3
+    fill = list(totalcas = 0)      # Remplir avec des zéros (sinon, NA par défaut)
   ) 
 ```
 
 Maintenant les deux zones de santé dans les deux provinces ont toutes les semaines possibles.
 
-Vous vous demandez peut être pourquoi nous avons écrit `nesting(province, zone_sante)` au lieu de juste `zone_sante`. La raison est qu'il peut y avoir deux zones de santé avec le même nom dans des provinces différentes. Nous devons donc tenir compte de la colonne `province`. La fonction `nesting()` indique à la fonction `complee()` de n'utiliser *que les combinaisons existantes* des deux colonnes dans le data frame.
+Vous vous demandez peut être pourquoi nous avons écrit `nesting(province, zone_sante)` au lieu de juste `zone_sante`. La raison est qu'il peut y avoir deux zones de santé avec le même nom dans des provinces différentes. Nous devons donc tenir compte de la colonne `province`. La fonction `nesting()` indique à la fonction `complete()` de n'utiliser *que les combinaisons existantes* des deux colonnes dans le data frame.
 
 
 ::: {.callout-note}

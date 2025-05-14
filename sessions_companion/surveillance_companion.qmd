@@ -329,7 +329,7 @@ Perform data checks on the colums names and dimensions. What are the categories 
 :::  {.write}
 1. Start a new cleaning pipeline to clean the lab data. As before, for one of the text column, change it to lower case, remove the extra spaces and replace the or `-` by `_`.
 
-2. Recode at least one of  `igm_measles` or `igm_rubella` columns so that the categories are `negatif`, `positif` and `indetermine`.
+2. Recode at least one of  `igm_measles` or `igm_rubella` columns so that the categories are `negative`, `positive` and `indetermined`.
 
 3. Store the cleaner version in a `data_lab` data frame
 
@@ -373,7 +373,8 @@ complete(
   # Use all the existing combinaitions of province and health zone:
   nesting(province, health_zone),
   
-  # All the combinations whould have all weeks from the minimum (1) to the maximum (20) of the week column.
+  # Ensure that all the combinations have all weeks from the
+  # minimum (1) to the maximum (20) of the week column:
   week = seq(min(week, na.rm = TRUE), 
              max(week, na.rm = TRUE)),
   
@@ -418,7 +419,7 @@ You can also go read the the explanations for the `complete()` function at the e
 We are going to carry on preparing the datasets for the analyses.
 
 ::: {.setup}
-1. If you have not had the time to clean both health zone and province in both datasets, as well as both igm columns in the lab dataset you can import cleaner versions of the data:
+1. If you have not had the time to clean both health zone and province in both datasets, as well as both IgM columns in the lab dataset you can import cleaner versions of the data:
 
 ```{r}
 #| echo: false
@@ -491,7 +492,7 @@ The second indicator you want to calculate is whether a health zone has more tha
 
 ##### Cumulative sum
 
-We are going to use the `rollapply()` function from the `{zoo}` package, as it is versatile and powerful. As its name suggests, the `rollapply()` function applies a function in a rolling way to a vector or a column of a data frame. In other words, the function summarizes the information of a given column for a number of *consecutive rows* of a data frame with a function of your chosing (sum, mean etc.).
+We are going to use the `rollapply()` function from the `{zoo}` package, as it is versatile and powerful. As its name suggests, the `rollapply()` function *applies* a function in a *rolling* way to a vector or a column of a data frame. In other words, the function summarizes the information of a given column for a number of *consecutive rows* of a data frame with a function of your chosing (sum, mean etc.).
 
 Since we are constrained in time, we are going to provide the code of the `rollapply()` function to calculate the cumulative sum over three weeks, but check out the details in the [Going further section](#sec-going-further) when you have time. 
 
@@ -526,7 +527,7 @@ example_df |>
 Now, we want to do this cumulative sum *by health zone*. This is not that complicated: we are going to sort our data frame properly by health zone and week, and use the `.by` argument to tell the `mutate()` function to perform the action *by health zone*.
 
 ::: {.callout-note}
-You may remember from the [aggregation session](../sessions_core/05_summary_table.qmd#sec-stratify) how we *summarized* by groups using the `.by` argument in the `summarize()` function. This is exactly the same idea, except that instead of returning *one value by group* (as `summarize()` does), we want to return one value per row (as `mutate()` does).
+You may remember from the [aggregation session](../sessions_core/05_summary_table.qmd#sec-stratify) how we *summarized by groups* using the `.by` argument in the `summarize()` function. This is exactly the same idea, except that instead of returning *one value by group* (as `summarize()` does), we want to return one value per row (as `mutate()` does).
 
 As a little reminder of how `summarize()` + `.by` work, here is how we would calculate the total number of patients and deceased by province over the whole dataset:
 
@@ -570,16 +571,18 @@ mutate(
 :::
 
 ::: {.callout-important}
-The `rollapply()` function does not understand the *meaning* of time: it only considers the *order* of the data frame to move its window, considering the values of rows before or after. For example, to caclulate the cumulative sum in week 15, the function adds the values of the two previous rows of the dataframe to the one of week 15. We thus want the previous rows to contain the values of week 13 and 14 of that health zone, which implies the following:
+The `rollapply()` function does not understand the *meaning* of time: it only considers the *order* of the data frame to move its window, considering the values of rows before or after. 
+
+For example, to calculate the cumulative sum in week 15, the function adds the values of the two previous rows of the dataframe to the one of week 15. We thus want the previous rows to contain the values of week 13 and 14 of that health zone, which implies the following:
 
 1. The data frame is **sorted** by health zone and week: if the two previous rows do not contain these weeks for the correct health zone, the sum will be wrong.
 
-2. The data frame is **complete**: there are values for all weeks. If week 14 were missing, the cumulative sum would sum the values of week 14, 13 and 12, which is wrong.
+2. The data frame is **complete**: there are values for all weeks. If week 14 were missing, the cumulative sum would sum the values of week 15, 13 and 12, which is wrong.
 :::
 
 ##### Calculate the indicator
 
-Now that twe computed the cumulative sum we can calculate the binary indicator for each week and health zone, which is easier. 
+Now that we computed the cumulative sum we can calculate the binary indicator for each week and health zone, which is easier. 
 
 ::: {.write}
 Add a new step to your pipeline to calculate a binary indicator, `cumcases35` that is `1` if the cumulative sum of cases for that week is equal or above 35 and `0` if not.
@@ -655,7 +658,7 @@ The `facet_wrap()` function allows us to plot several subplots in the same graph
 
 data |>
   ggplot(aes(...)) + 
-  geom_col(f...) + 
+  geom_col(...) + 
   theme_bw(...) + 
   labs(...) +
   facet_wrap(vars(health_zone))   # One graph by health zone
@@ -806,9 +809,9 @@ We use the following code to make sure that all the health zones have all the po
 # Complete the missing week in Kitenge
 example_df |> 
   complete(
-    nesting(province, health_zone), 
-    week = seq(1, 3),             # vector from 1 to 3
-    fill = list(totalcases = 0)   # fill new lines with zero (default is NA)
+    nesting(province, health_zone), # Work by province and health zone, we will explain below!
+    week = seq(1, 3),               # vector from 1 to 3
+    fill = list(totalcases = 0)     # fill new lines with zero (default is NA)
   ) 
 ```
 
@@ -969,7 +972,7 @@ rollapply(data  = c(5, 10, 1, 2, 5, 10),
           fill = NA)
 ```
 
-In our case we want the value for a given week to reflect this week and the week past, so we align the window right, to calculate backward in time (if the data frame is sorted in chronological order by health zone!).
+In our case we want the value for a given week to reflect this week and the past weeks, so we align the window right, to calculate backward in time (if the data frame is sorted in chronological order by health zone!).
 
 
 
