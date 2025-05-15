@@ -148,6 +148,8 @@ En ce qui concerne la partie *R* du module surveillance, nous nous appuierons su
 
 ::: {.callout-tip}
 N'hésitez pas à scaner vos notes, vos scripts ou les tutoriels des sessions précédentes pour vous rafraîchir sur le fonctionnement de certaines fonctions quand vous en éprouvez le besoin.
+
+Par ailleurs, les [encadrés contenant les instructions](../sessions_core/01_introduction.qmd#Exercise Format) sont les mêmes que dans les autres modules.
 :::
 
 
