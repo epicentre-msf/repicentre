@@ -61,7 +61,7 @@ df_labo <- df_labo_brut |>
     zone_sante = str_replace(zone_sante, "-", "_"),  # Replace - by _
     zone_sante = str_replace(zone_sante, " ", "_"),  # Replace space by _
     
-    # Recode igm modalities
+    # Recode IgM modalities
     igm_rougeole = case_when(
       igm_rougeole == 'pos' ~ 'positif', 
       igm_rougeole == 'neg' ~ 'negatif', 
@@ -141,17 +141,19 @@ zone_sante_alertee <- data_alerte |>
 
 ## Introduction
 
-Cette session accompagne l'étude de cas _Réponse d'urgence contre la rougeole dans la région du Katanga (RDC)_ du module FETCH Surveillance. Ça n'a probablement pas beaucoup de sens d'essayer de le suivre sans les documents et les discussions de l'étude.
+Cette session accompagne l'étude de cas _Réponse d'urgence contre la rougeole dans la région du Katanga (RDC)_ du module FETCH Surveillance. Ça n'a probablement pas beaucoup de sens d'essayer de la suivre sans les documents et les discussions de l'étude.
 
 En ce qui concerne la partie *R* du module surveillance, nous nous appuierons sur les compétences acquises tout au long des modules FETCH-R, et introduirons quelques nouvelles fonctions utiles pour le nettoyage et les analyses.
 
 
 ::: {.callout-tip}
-N'hésitez pas à checker vos notes, vos scripts ou les tutoriels des sessions précédentes pour vous rafraîchir sur le fonctionnement de certaines fonctions quand vous en éprouvez le besoin.
+N'hésitez pas à scaner vos notes, vos scripts ou les tutoriels des sessions précédentes pour vous rafraîchir sur le fonctionnement de certaines fonctions quand vous en éprouvez le besoin.
+
+Par ailleurs, les [encadrés contenant les instructions](../sessions_core/01_introduction.qmd#Exercise Format) sont les mêmes que dans les autres modules.
 :::
 
 
-## Mise en place (Question 2)
+## Mise en place
 
 Comme cette session fait partie d'un module spécifique, vous allez créer un nouveau projet RStudio. Jetez un coup d’œil [à la session principale](../sessions_core/02_import_data.qmd) si vous ne vous rappelez plus comment faire.
 
@@ -218,11 +220,11 @@ import(
 
 
 
-## Nettoyage (Question 2 and 3)
+## Nettoyage des données (Question 2)
 
 Maintenant que les données sont importées, nous pouvons effectuer quelques vérifications dessus, et les nettoyer.
 
-### Données de surveillance (Q2)
+### Données de surveillance
 
 #### Inspection rapide
 
@@ -267,7 +269,7 @@ Peut être que vous n'aurez pas le temps de faire ces étapes pour toutes les co
 Commencez un *pipeline* de nettoyage avec un `mutate()` pour transformer la colonne de votre choix en minuscules.
 :::
 
-Nous allons maintenant voir deux petites fonctions très utiles pour le nettoyage du texte. La première est la fonction `str_squish()` du paquet `{stringr}` ([la page d'aide](https://stringr.tidyverse.org/reference/str_trim.html)), qui supprime les espaces au début ou à la fin des chaînes de caractères, et  les espaces surnuméraires ou qu'ils soient : 
+Nous allons maintenant voir deux petites fonctions très utiles pour le nettoyage du texte. La première est la fonction `str_squish()` du paquet `{stringr}` ([la page d'aide](https://stringr.tidyverse.org/reference/str_trim.html)), qui supprime les espaces au début ou à la fin des chaînes de caractères, et  les espaces surnuméraires où qu'ils soient : 
 
 ```{r}
 #| eval: true
@@ -315,7 +317,7 @@ Stockez le résultat dans un data frame `df_surv`.
 Utilisez le paquet `{rio}` pour exporter `df_surv` vers un fichier `.rds` appelé `data_ids_2022-20_clean` dans le sous dossier `data/clean` de votre projet.
 :::
 
-### Données labo (Q2)
+### Données labo
 
 Nous allons suivre les mêmes étapes pour le jeu de données laboratoire. Nous nous focaliserons sur les colonnes `zone_sante`, `igm_rougeole` et `igm_rubeole`.
 
@@ -359,21 +361,9 @@ Exportez le data frame `df_labo` vers un fichier `.rds` appelé `df_labo_2022-w2
 :::
 
 
-### Aller plus loin
+### Données de surveillance complétées
 
-Vous êtes arrivés au bout de la question 2. Si vous avez terminé en avance, utilisez les fonctions vues pour nettoyer les autres colonnes de texte dans les deux data frames, et recodez les deux colonnes IGM dans les données labo.
-
-Si vous avez encore du temps, inspectez vos données plus avant :
-
-- Affichez la zone de santé pour laquelle les totaux par groupe d'âge sont différents de la colonne total (pour les cas, puis pour les décès)
-- Est-ce qu'il y a une ZS où le nombre de décès est plus élevé que le nombre de cas ?
-- Y a-t-il des lignes dupliquées (entièrement dupliquées, ou plusieurs valeurs pour la zone de santé et la semaine) ?
-- Y a-t-il des nombres de cas que vous estimez aberrants ?
-
-
-### Données de surveillance complétées (Q3)
-
-Durant l'inspection des données vous avez du vous rendre compte qu'il y a des semaines manquantes pour certaines ZS dans les données de surveillance. Normalement, vous avez discuté les raisons possibles et des problèmes associés en plénière. Dans ce tutoriel,  nous allons fournir le code pour compléter le data frame surveillance pour que toutes les ZS aient toutes les semaines (en faisant l'hypothèse que les semaines manquantes n'ont pas eu de cas ou de décès).
+Durant l'inspection des données vous avez du vous rendre compte qu'il y a des semaines manquantes pour certaines ZS dans les données de surveillance. Normalement, vous avez discuté les raisons possibles et des problèmes associés en plénière. Dans ce tutoriel, nous allons fournir le code pour compléter le data frame surveillance pour que toutes les ZS aient toutes les semaines (en faisant l'hypothèse que les semaines manquantes n'ont pas eu de cas ou de décès).
 
 Nous utiliserons la fonction [`complete()` du paquet `{tidyr}`](https://tidyr.tidyverse.org/reference/complete.html) pour ajouter les lignes manquantes et remplir les colonnes contenant des nombres (`totalcas` et `totaldeces`) avec des zéros. A cause des contraintes de temps nous allons vous donner le code, mais quelques exemples et explications seront donnés dans la section [Aller plus loin](#sec-going-further), que vous pourrez lire quand vous aurez le temps.
 
@@ -407,23 +397,36 @@ complete(
 df_surv_sem |> head(10)
 ```
 
-4. exportez ce data frame dans un fichier `.rds` appelé `data_ids_2022-w20_weeks_clean` dans le sous dossier `data/clean` de votre projet.
+4. Exportez ce data frame dans un fichier `.rds` appelé `data_ids_2022-w20_weeks_clean` dans le sous dossier `data/clean` de votre projet.
 :::
 
 
 ### Aller plus loin
 
-C'est la fin de la question 3. Si vous terminez en avance, finissez l'inspection des données, listez les problèmes et nettoyez les colonnes que vous savez nettoyer avant de réexporter. Si c'est fait, lisez les eplications sur la fonction `complete()` et allez explorer sa [page d'aide](https://tidyr.tidyverse.org/reference/complete.html).
+Vous êtes arrivés au bout de la question 2. Si vous avez terminé en avance, utilisez les fonctions vues pour nettoyer les autres colonnes de texte dans les deux data frames, et recodez les deux colonnes IgM dans les données labo.
+
+Si vous avez encore du temps, inspectez vos données plus avant :
+
+- Affichez la zone de santé pour laquelle les totaux par groupe d'âge sont différents de la colonne total (pour les cas, puis pour les décès)
+- Est-ce qu'il y a une ZS où le nombre de décès est plus élevé que le nombre de cas ?
+- Y a-t-il des lignes dupliquées (entièrement dupliquées, ou plusieurs valeurs pour la zone de santé et la semaine) ?
+- Y a-t-il des nombres de cas que vous estimez aberrants ?
+
+
+Vous pouvez aussi lire les explications sur la fonction `complete()` à la fin du tutoriel et aller explorer la [page d'aide](https://tidyr.tidyverse.org/reference/complete.html) de la fonction.
+
 
 
 ## Définir les alertes (Question 4)
 
 ### Préparer le jeu de données
 
-Nous allons continuer la préparation de data frames prêts pour l'analyse.
+Nous allons continuer la préparation des data frames pour l'analyse.
+
+#### Mise en place
 
 ::: {.setup}
-1. Si vous n'avez pas eu le temps de nettoyer la zone de santé et la province dans les deux data frames, et les deux colonnes IGM dans le jeu de données labo, vous pouvez importer les jeux de données nettoyés :
+1. Si vous n'avez pas eu le temps de nettoyer la zone de santé et la province dans les deux data frames, et les deux colonnes IgM dans le jeu de données labo, vous pouvez importer les jeux de données nettoyés :
 
 ```{r}
 #| echo: false
@@ -442,7 +445,12 @@ Dézippez l'archive et importez les données dans le sous dossier `data/clean`
 
 2. Créez un script `analyse_surveillance.R` dans le sous dossier `R`. Ajoutez les métadonnées, et une section pour importer les paquets `{here}`, `{rio}`, `{tidyverse}`, `{lubridate}` et `{zoo}`.
 
-3. Ajoutez une section  d'import des données propres et importez les fichiers `.rds` dans R en utilisant la fonction `import()` comme d'habitude (soit les vôtres, soit ceux que vous venez de télécharger). Assignez ces données nettoyées aux data frames `df_surv`, `df_labo` and `df_surv_sem`.
+3. Ajoutez une section  d'import des données propres et importez les fichiers `.rds` dans R en utilisant la fonction `import()` comme d'habitude (soit vos données nettoyées, soit celles que vous venez de télécharger). Assignez les jeux de données nettoyées aux data frames suivants :
+
+- data_ids_2022-w20_clean --> `df_surv`, 
+- data_ids_2022-w20_clean_weeks --> `df_surv_sem`
+- data_lab_2022-w20_clean --> `df_labo`.
+
 :::
 
 
@@ -457,7 +465,7 @@ Commencez  une nouvelle chaîne de commande à partir du data frame `df_surv_sem
 
 #### Indicateur hebdomadaire
 
-Notre premier indicateur regarde si *une zone de santé a 20 cas suspects ou plus dans une semaine*. Cet indicateur est dichotomique et ne prend en compte que les données d'une zone de santé pour une semaine donnée (ça tombe bien, ça correspond aux lignes du data frame).
+Notre premier indicateur regarde si *une zone de santé a 20 cas suspects ou plus dans une semaine*. Cet indicateur est dichotomique et ne prend en compte que les données d'une zone de santé pour une semaine donnée.
 
 ::: {.write}
 Ajoutez un `mutate()` à votre chaîne pour créer une colonne `cas20` qui contient la valeur `1` si une ZS a 20 cas ou plus cette semaine-là, et `0` sinon.
@@ -487,13 +495,13 @@ df_surv_sem |>
 
 #### Indicateur cumulé
 
-Notre second indicateur regarde si une zone de santé compte plus de 35 *cas suspects cumulés en trois semaines*. C'est un peu plus compliqué à calculer que l'indicateur hebdomadaire : pour chaque zone de santé, il faut calculer la somme des cas par fenêtres de trois semaines, mais les groupes ne sont pas fixes, ils *glissent* dans le temps. Nous entrons ici dans le domaine des moyennes/sommes/etc. *mobiles* ou *glissantes*...
+Notre second indicateur regarde si une zone de santé compte plus de *35 cas suspects cumulés en trois semaines*. C'est un peu plus compliqué à calculer que l'indicateur hebdomadaire : pour chaque zone de santé, il faut calculer la somme des cas par fenêtres de trois semaines, mais les fenêtres ne sont pas fixes, elles *glissent* dans le temps. Nous entrons ici dans le domaine des moyennes/sommes/etc. *mobiles* ou *glissantes*...
 
 ##### Somme cumulée
 
-Nous allons utiliser la fonction `rollapply()` du paquet `{zoo}` pour calculer la somme cumulée car elle est polyvalente et puissante. Comme son nom l'indique, la fonction `rollapply()` *applique* une fonction de manière glissante (*roll* peut être traduit ici en "rouler") à un vecteur ou à une colonne d'un data frame.
+Nous allons utiliser la fonction `rollapply()` du paquet `{zoo}` pour calculer la somme cumulée car elle est polyvalente et puissante. Comme son nom l'indique, la fonction `rollapply()` *applique* une fonction de manière glissante (*roll* peut être traduit ici en "rouler") à un vecteur ou à une colonne d'un data frame. En d'autres termes, cette fonction récapitule pour une colonne donnée les informations de plusieurs *lignes consécutives* d'un data frame avec une fonction de notre choix (somme, moyenne etc.).
 
-Comme nous sommes contraint par le temps, nous allons vous fournir ici le code pour calculer la somme cumulée, et nous vous donnerons plus de détails sur la fonction dans la section [Aller plus loin](#sec-going-further) que vous pourrez lire quand vous aurez le temps.
+Comme nous sommes contraint par le temps, nous allons vous fournir ici le code pour calculer la somme cumulée, et nous vous donnons plus de détails sur la fonction dans la section [Aller plus loin](#sec-going-further) que vous pourrez lire quand vous aurez le temps.
 
 Voici comment utiliser la fonction pour une zone de santé :
 
@@ -521,14 +529,18 @@ exemple_df |>
   )
 ```
 
-Ok, mais nous voudrions utiliser cette fonction dans un data frame qui contient plusieurs zones de santé, et faire la somme cumulée *par zone de santé*. Ce n'est pas si compliqué : nous allons trier notre jeu de données par zone de santé et semaine, puis utiliser l'argument `.by` dans le mutate pour effectuer les actions *par zone de santé*.
+
+##### Par zone de santé
+
+Ok, mais nous voudrions utiliser cette fonction dans un data frame qui contient plusieurs zones de santé, et faire la somme cumulée *par zone de santé*. Ce n'est pas si compliqué : nous allons trier notre jeu de données par zone de santé et semaine, puis utiliser l'argument `.by` dans `mutate()` pour effectuer les actions *par zone de santé*.
 
 ::: {.callout-note}
-Rappelez-vous, nous avons déjà vu le `.by`. Nous l'avons utilisé au sein de la fonction `summarize()` lors de la session sur les [tableaux agrégés](../sessions_core/05_summary_table.qmd#sec-stratify) pour faire des résumés *par groupe*.
+Rappelez-vous, nous avons déjà vu le `.by` par le passé: nous l'avons utilisé au sein de la fonction `summarize()` lors de la session sur les [tableaux agrégés](../sessions_core/05_summary_table.qmd#sec-stratify) pour faire des résumés *par groupe*.
 
-C'est la même idée aujourd'hui, sauf qu'au lieux d'utiliser une fonction qui ne renvoie qu'une seule valeur par groupe (`summarize()`) nous allons utiliser une fonction qui retourne une valeur par **ligne** (`mutate()`), mais prendra en compte les informations du groupe.
 
-Pour petit rappel de comment `summarize()` + `.by` fonctionne, voici comment nous calculons le nombre total de cas suspects et décès par province : 
+C'est la même idée aujourd'hui, sauf qu'au lieu d'utiliser une fonction qui ne renvoie qu'une seule valeur par groupe (`summarize()`) nous allons utiliser une fonction qui renvoie une valeur par **ligne** (`mutate()`), mais prend en compte les informations du groupe.
+
+Pour rappel de comment `summarize()` + `.by` fonctionne, voici comment calculer le nombre total de cas suspects et décès par province : 
 
 ```{r}
 #| eval: true
@@ -542,7 +554,7 @@ df_surv_sem |>
 :::
 
 ::: {.write}
-1. Ajoutez une étape à votre pipeline pour trier les données par province, zone de santé et semaine (dans cet ordre) avec la fonction `arrange()`, qui est une fonction de tri du package `{dplyr}`: 
+1. Ajoutez une étape à votre pipeline pour trier les données par province, zone de santé et semaine (dans cet ordre) avec la fonction `arrange()`, qui est une fonction de tri du paquet `{dplyr}` : 
 
 ```{r}
 df_surv_sem |>
@@ -555,26 +567,43 @@ df_surv_sem |>
 mutate(
   .by = c(province, zone_sante),
   cas_cumu = rollapply(
-    data  = totalcas,   # La colonne cible
-    width = 3,          # La taille de la fenêtre  
-    FUN   = sum,        # La fonction à appliquer, ici la somme
-    align = "right",    # On cumule les valeurs passées jusqu'à présent
-    partial = TRUE,     # Les somme partielles sont autorisées
-    na.rm = TRUE        # Argument en plus à passer à la fonction sum()
+    data    = totalcas,   # La colonne cible
+    width   = 3,          # La taille de la fenêtre  
+    FUN     = sum,        # La fonction à appliquer, ici la somme
+    align   = "right",    # On cumule les valeurs passées jusqu'à présent
+    partial = TRUE,       # Les somme partielles sont autorisées
+    na.rm   = TRUE        # Argument en plus à passer à la fonction sum()
   )
 )
 ```
 :::
 
-Maintenant que la somme cumulée est calculée, il ne nous reste plus qu'à calculer l'indicateur dichotomique qui résume les données cumulées pour chaque semaine, puis un indicateur combiné qui résume les deux indicateurs précédents.
+::: {.callout-important}
+La fonction `rollapply()` considère l'ordre du data frame pour décider où placer sa fenêtre, elle n'a pas de *compréhension* du temps : elle fait juste la somme des valeurs précédentes ou suivantes. 
 
+Par exemple, si l'on veut calculer la somme cumulée en semaine 15, la fonction somme les deux valeurs venant avant dans le data frame à la valeur de la ligne concernée. On veut donc que les deux lignes précédentes contiennent les valeurs des semaines 13 et 14 ! Ça implique que :
+
+1. Le data frame est **ordonné** (ou *trié*) ! Si les deux lignes précédentes ne contiennent pas les semaines 13 et 14 de cette zone de santé, la somme cumulée est fausse.
+2. Le data frame est **complet**. Si la somme en semaine 15 est en fait la somme des semaines 12, 13 et 15 parce que la semaine 14 est manquante, le calcul est faux.
+:::
+
+##### Calculer l'indicateur binaire
+
+Maintenant que la somme cumulée est calculée, on peut calculer l'indicateur dichotomique qui résume les données cumulées pour chaque semaine.
 
 ::: {.write}
-1. Ajoutez une nouvelle étape à votre pipeline pour créer une colonne `cas_cumu35` qui contient `1` si la somme cumulée est supérieure ou égale à 35, et `0` sinon.
+Ajoutez une nouvelle étape à votre pipeline pour créer une colonne `cas_cumu35` qui contient `1` si la somme cumulée est supérieure ou égale à 35, et `0` sinon.
+:::
 
-2. Dans le même mutate, ajoutez une colonne `alerte`, qui est `1` si 'l'indicateur  `cas20` OU l'indicateur `cas_cumu35`  est `1` et `0` sinon. Pour lest logique vous devrez utiliser l'opérateur `|` qui représente le **OU** logique (renverra `TRUE` si au moins une des conditions est remplie, à fortiori les deux).
 
-3. Assignez le résultat à un data frame `data_alerte`.
+#### Indicateur combiné
+
+Calculons finalement l'indicateur combiné qui résume les deux indicateurs précédents.
+
+::: {.write}
+1. Dans le même `mutate()` que précédement, ajoutez une colonne `alerte`, qui est `1` si l'indicateur `cas20` **OU** l'indicateur `cas_cumu35`  est `1` et `0` sinon. Pour le test logique vous devrez utiliser l'opérateur `|` qui représente le **OU** logique. Cet opérateur renvoi `TRUE` si au moins une des conditions est remplie (et donc aussi si le deux sont remplies).
+
+2. Assignez le résultat à un data frame appelé `data_alerte`.
 
 Ce data frame ressemble à ceci (quelques colonnes sont cachées pour l'affichage) :
 
@@ -603,6 +632,7 @@ Créez un vecteur `zs_alerte` qui contient le nom des zones de santé qui sont e
 ## Tracer la courbe épidémique (Question 4)
 
 Nous allons à présent tracer la courbe épi pour les zones en alerte à la semaine 20. Nous pouvons réutiliser le code vu lors de la session sur les [courbes épidémiques](../sessions_core/06_epicurves.qmd) : nous utiliserons le paquet `ggplot()` et la fonction `geom_col()` pour créer un diagramme qui montre la distribution des cas par semaine.
+
 Petite nouveauté : par le passé nous avions une liste linaire où une ligne correspond à un patient, donc un cas. Aujourd'hui nous avons des données déjà agrégées par semaine et zone de santé : nul besoin de *compter* le nombre de cas nous même.
 
 
@@ -629,23 +659,26 @@ data_alerte |>
 ```
 :::
 
-Nouvelle fonction utile, la fonction `facet_wrap()` permet de créer plusieurs graphiques d'un seul coup rassemblés en une seule figure. Consultez le satellite sur le [faceting](../sessions_extra/faceting.qmd) si vous voulez en savoir plus.
+Nouvelle fonction utile, la fonction `facet_wrap()` permet de créer plusieurs graphiques d'un seul coup rassemblés en une seule figure. 
 
 ```{r}
-#| eval: true
-#| fig-width: 8
+# NE PAS EXÉCUTER (PSEUDO-CODE)
 
-data_alerte |>
-  filter(zone_sante %in% zone_sante_alertee) |>
-  ggplot(aes(x = semaine, 
-             y = totalcas)) + 
-  geom_col(fill = "#2E4573") + 
-  theme_bw(base_size = 16) + 
-  labs(x = "Semaine",
-       y = "N cas",
-       title = "Zone de santé de Kampemba (en alerte)") +
+données |>
+  ggplot(aes(...)) + 
+  geom_col(...) + 
+  theme_bw(...) + 
+  labs(...) +
   facet_wrap(vars(zone_sante))   # Un graphe par zone de santé
 ```
+
+
+::: {.write}
+Tracez la courbe épidémique pour les deux zones en alerte en ajustant votre code et en utilisant `facet_wrap()`.
+:::
+
+
+Consultez le satellite sur le [faceting](../sessions_extra/faceting.qmd) si vous voulez en savoir plus.
 
 
 ## Indicateurs clés (Question 6)
@@ -653,7 +686,7 @@ data_alerte |>
 Nous pouvons calculer plus d'indicateurs sur les zones de santé pour nous aider à décider laquelle devrait faire l'objet d'une enquête (vu que vous n'avez pas le temps ni les ressources pour investiguer les deux).
 
 ::: {.callout-tip}
-Cette partie utilise les fonctions d'aggrégation vues quand nous avons appris à faire des [tableaux résumés](../sessions_core/05_summary_table.qmd). N'hésitez pas à vous rafraîchir si besoin.
+Cette partie utilise les fonctions d'aggrégation vues quand nous avons appris à faire des [tableaux résumés](../sessions_core/05_summary_table.qmd). N'hésitez pas à vous rafraîchir la mémoire si besoin.
 :::
 
 
@@ -765,8 +798,9 @@ downloadthis::download_link(
 
 ### Explications sur `complete()`
 
-Dans le mini exemple ci-dessous la zone de santé de Kitenge n'a pas de ligne pour la semaine 2 :
+Nous allons ici donner quelques éléments pour comprendre un peu les arguments de la fonction `complete()`.
 
+Créons un mini exemple où la zone de santé de Kitenge n'a pas de ligne pour la semaine 2 :
 
 ```{r}
 #| eval: true
@@ -781,27 +815,29 @@ exemple_df = data.frame(
 exemple_df
 ```
 
-Nous pouvons utiliser le code suivant pour compléter toutes les zones de santé pour qu'elles aient toutes les semaines possible, ici les semaine de un à trois : 
+C'est problématique si l'on veut calculer une somme cumulée.
+
+Nous pouvons utiliser le code suivant pour compléter toutes les zones de santé pour qu'elles aient toutes les semaines possibles, ici les semaines une à trois : 
 
 ```{r}
 #| eval: true
 
-# Compléte la semaine manquante à Kitenge
+# Complète la semaine manquante à Kitenge
 exemple_df |> 
   complete(
-    nesting(province, zone_sante), 
-    semaine = seq(1, 3),            # Vecteur de 1 à 3
-    fill = list(totalcas = 0)       # Remplir avec des zéros (sinon, NA par défaut)
+    nesting(province, zone_sante), # Par province et zone, les explications arrivent juste après !
+    semaine = seq(1, 3),           # Vecteur de 1 à 3
+    fill = list(totalcas = 0)      # Remplir avec des zéros (sinon, NA par défaut)
   ) 
 ```
 
 Maintenant les deux zones de santé dans les deux provinces ont toutes les semaines possibles.
 
-Vous vous demandez peut être pourquoi nous avons écrit `nesting(province, zone_sante)` au lieu de juste `zone_sante`. La raison est qu'il peut y avoir deux zones de santé avec le même nom dans des provinces différentes. Nous devons donc tenir compte de la colonne `province`. L'argument `nesting()` indique à la fonction de n'utiliser que les *combinaisons existantes* des deux colonnes dans le data frame.
+Pourquoi nous avons écrit `nesting(province, zone_sante)` au lieu de `zone_sante` tout simplement ? C'est qu'il pourrait y avoir deux zones de santé avec le même nom dans des provinces différentes. Nous devons donc tenir compte de la colonne `province`. La fonction `nesting()` indique à la fonction `complete()` de n'utiliser *que les combinaisons existantes* des deux colonnes dans le data frame.
 
 
 ::: {.callout-note}
-Petit encart pour voir ce qui se serait passé si nous avions passé les deux colonnes à la fonction `complete()` sans utiliser `nesting()` : la fonction aurait créé *toutes les combinaisons possibles* entre les catégories des colonnes `province` et `zone_sante`, ce qui n'a pas de sens dans notre cas.
+Petit encart pour voir ce qui se serait passé si nous avions passé les deux colonnes à la fonction `complete()` sans utiliser `nesting()` : la fonction aurait créé *toutes les combinaisons possibles* entre les catégories des colonnes `province` et `zone_sante`, ce qui n'a pas de sens dans le cas présent.
 
 ```{r}
 #| eval: true
@@ -816,8 +852,8 @@ exemple_df |>
 :::
 
 
-Comme la base de données va être mise à jour chaque semaine, il serait pratique de choisir *automatiquement* la plage des semaines qui doivent être présentes dans les données.
-Pour ça, il nous suffit de remplacer les valeurs que nous avons codé *en dur* par la plus petite semaine existante dans les données et la plus grande :
+Comme le jeu de données va être mise à jour chaque semaine, il serait pratique de choisir *automatiquement* la plage des semaines qui doivent être présentes dans les données.
+Pour ça, il suffit de remplacer les valeurs codées *en dur* par la plus petite semaine existante dans les données et la plus grande :
 
 ```{r}
 #| eval: true
@@ -834,7 +870,7 @@ exemple_df |>
 
 ### Explications sur `rollaply()` 
 
-Pour calculer la somme cumulée des cas sur trois semaine il nous faut *appliquer* (*apply* en anglais) la fonction sur des fenêtres glissantes de trois semaines.
+Pour calculer la somme cumulée des cas sur trois semaines il nous faut *appliquer* (*apply* en anglais) la fonction `rollaply()` sur des fenêtres glissantes de trois semaines.
 
 ```{r}
 #| eval: true
@@ -851,12 +887,12 @@ rollapply(
 )
 ```
 
-Nous avons fourni en entrée un vecteur de 10 valeurs et obtenu en sortie un vecteur contenant les sommes.  Manifestement, la fonction a fait des choix sur comment traiter les extrémités, et le résultat est plus court que le vecteur d'entré. Ce dernier point est un problème si l'on veut utiliser la fonction dans un `mutate()`, qi crée des colonnes dans un data frame, où toutes les colonnes ont la même taille.
+Nous avons fourni en entrée un vecteur de 10 valeurs et obtenu en sortie un vecteur contenant les sommes. Manifestement, la fonction a fait des choix sur comment traiter les extrémités, et le résultat est plus court que le vecteur d'entrée. Ce dernier point est un problème si l'on veut utiliser la fonction dans un `mutate()`, qui crée des colonnes dans un data frame, où toutes les colonnes ont la même taille.
 
 Il est possible de contrôler le comportement de la fonction aux extrémités : 
 
-- Remplir les valeurs pour lesquelles il n'y a pas assez de valeur dans la fenêtre avec des `NA`
-- Autoriser des calculs partiels (ici, des sommes partielles, en d'autres termes des valeurs ne représentent pas la somme sur *trois* semaines).
+- Remplir les lignes pour lesquelles il n'y a pas assez de valeurs dans la fenêtre avec des `NA`
+- Autoriser des calculs partiels (ici, des sommes partielles, en d'autres termes des valeurs ne représentent pas la somme sur *trois* semaines, mais moins).
 
 L'argument `fill = NA` remplit les valeurs manquantes aux extrémités concernées avec des `NA` (dans notre cas, à gauche, vu que l'on a aligné la fenêtre à droite) :
 
@@ -871,7 +907,7 @@ rollapply(
 )
 ```
 
-C'est souvent une façon raisonnable de gérer les valeurs aux extrémités où les fenêtres ne sont pas complètes. Néanmoins, dans notre cas, nous pouvons faire mieux. En effet, imaginons qu'il y ait 40 cas lors de la première semaine : même si nous n'avons pas de valeurs pour les deux semaines précédentes, l'alerte devrait être déclenchée ! Nous voudrions donc que la somme cumulée soit calculée *dès la première semaine* pour pouvoir détecter des alertes précoces !  L'argument `partial = TRUE` permet cela :
+C'est souvent une façon raisonnable de gérer les valeurs aux extrémités où les fenêtres ne sont pas complètes. Néanmoins, dans notre cas, nous pouvons faire mieux. En effet, imaginons qu'il y ait 40 cas lors de la première semaine : même si nous n'avons pas de valeurs pour les deux semaines précédentes, l'alerte devrait être déclenchée ! Nous voudrions donc que la somme cumulée soit calculée *dès la première semaine* pour pouvoir détecter des alertes précoces ! L'argument `partial = TRUE` permet cela :
 
 ```{r}
 #| eval: true
@@ -884,10 +920,10 @@ rollapply(
   )
 ```
 
-C'est mieux comme ça pour notre cas d'usage. 
+C'est mieux dans notre cas d'usage. 
 
 ::: {.callout-important}
-Gardez à l'esprit que les deux premières valeurs du vecteur (ou de la colonne) contiennent donc des sommes *partielles*. En conséquence, une *absence d'alerte* dans les deux premières semaines ne veut pas forcement dire grand chose.
+Gardez à l'esprit que les deux premières valeurs du vecteur (ou de la colonne) contiennent donc des sommes *partielles*. En conséquence, une *absence d'alerte* dans les deux premières semaines ne veut pas forcement dire qu'il n'y a pas d'alerte.
 :::
 
 Un dernier point : rappelez-vous qu'il faut utiliser `na.rm = TRUE` pour ignorer les valeurs manquantes dans la plupart des opérations arithmétiques dans R.
@@ -924,10 +960,8 @@ rollapply(
 ```
 
 
-
-Enfin, quelues mots sur l'argument `align`. Il définit la position de la fenêtre glissante par rapport à la valeur en train d'être calculée.
-Par défaut la fenêtre est centrée autour de la valeur à cacluler : la valeur calculée *i* est la somme des valeurs *i-1* (la valeur précédente) et la valeur *i+1* (la valeur suivante).
-
+Enfin, quelques mots sur l'argument `align`. Il définit la position de la fenêtre glissante par rapport à la valeur en train d'être calculée.
+Par défaut la fenêtre est centrée autour de la valeur à calculer : la valeur calculée *i* est la somme des valeurs *i-1* (la valeur de la ligne précédente) et la valeur *i+1* (la valeur de la ligne suivante).
 
 Exemples des trois alignements (en mettant des valeurs manquantes aux extrémités pour voir plus facilement ce qui se passe) :
 
@@ -935,7 +969,7 @@ Exemples des trois alignements (en mettant des valeurs manquantes aux extrémit�
 ```{r}
 #| eval: true
 
-# Alignement à gauche : la valeur est la somme des valeurs dans le futur
+# Alignement à gauche : la valeur est la somme des valeurs suivantes dans le data frame
 rollapply(data  = c(5, 10, 1, 2, 5, 10),
           width = 3, 
           FUN   = sum,
@@ -949,7 +983,7 @@ rollapply(data  = c(5, 10, 1, 2, 5, 10),
           align = "center",
           fill = NA)  # The default
 
-# Alignement à droite : somme des valeurs passées jusqu'à présent
+# Alignement à droite : somme des valeurs précédentes dans le data frame
 rollapply(data  = c(5, 10, 1, 2, 5, 10),
           width = 3, 
           FUN   = sum,
@@ -957,8 +991,7 @@ rollapply(data  = c(5, 10, 1, 2, 5, 10),
           fill = NA)
 ```
 
-Dans notre cas, nous voulons que la valeur pour une semaine donnée reflète cette semaine et les deux semaines précédentes, donc nous utilisons l'argument `align = "right"`, pour calculer *dans le passé*.
-
+Dans notre cas, nous voulons que la valeur pour une semaine donnée reflète cette semaine et les deux semaines précédentes, donc nous utilisons l'argument `align = "right"`, pour calculer *dans le passé* (si le data frame est trié dans l'ordre chronologique pour chaque zone de santé !).
 
 
 ::: {.callout-tip}
