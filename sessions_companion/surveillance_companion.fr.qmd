@@ -798,7 +798,7 @@ downloadthis::download_link(
 
 ### Explications sur `complete()`
 
-Nous allons ici donner quelques éléments pour comprendre un peut les arguments de la fonction `complete()`.
+Nous allons ici donner quelques éléments pour comprendre un peu les arguments de la fonction `complete()`.
 
 Créons un mini exemple où la zone de santé de Kitenge n'a pas de ligne pour la semaine 2 :
 
@@ -817,12 +817,12 @@ exemple_df
 
 C'est problématique si l'on veut calculer une somme cumulée.
 
-Nous pouvons utiliser le code suivant pour compléter toutes les zones de santé pour qu'elles aient toutes les semaines possible, ici les semaines une à trois : 
+Nous pouvons utiliser le code suivant pour compléter toutes les zones de santé pour qu'elles aient toutes les semaines possibles, ici les semaines une à trois : 
 
 ```{r}
 #| eval: true
 
-# Compléte la semaine manquante à Kitenge
+# Complète la semaine manquante à Kitenge
 exemple_df |> 
   complete(
     nesting(province, zone_sante), # Par province et zone, les explications arrivent juste après !
@@ -833,11 +833,11 @@ exemple_df |>
 
 Maintenant les deux zones de santé dans les deux provinces ont toutes les semaines possibles.
 
-Vous vous demandez peut être pourquoi nous avons écrit `nesting(province, zone_sante)` au lieu de juste `zone_sante`. La raison est qu'il peut y avoir deux zones de santé avec le même nom dans des provinces différentes. Nous devons donc tenir compte de la colonne `province`. La fonction `nesting()` indique à la fonction `complete()` de n'utiliser *que les combinaisons existantes* des deux colonnes dans le data frame.
+Pourquoi nous avons écrit `nesting(province, zone_sante)` au lieu de `zone_sante` tout simplement ? C'est qu'il pourrait y avoir deux zones de santé avec le même nom dans des provinces différentes. Nous devons donc tenir compte de la colonne `province`. La fonction `nesting()` indique à la fonction `complete()` de n'utiliser *que les combinaisons existantes* des deux colonnes dans le data frame.
 
 
 ::: {.callout-note}
-Petit encart pour voir ce qui se serait passé si nous avions passé les deux colonnes à la fonction `complete()` sans utiliser `nesting()` : la fonction aurait créé *toutes les combinaisons possibles* entre les catégories des colonnes `province` et `zone_sante`, ce qui n'a pas de sens dans notre cas.
+Petit encart pour voir ce qui se serait passé si nous avions passé les deux colonnes à la fonction `complete()` sans utiliser `nesting()` : la fonction aurait créé *toutes les combinaisons possibles* entre les catégories des colonnes `province` et `zone_sante`, ce qui n'a pas de sens dans le cas présent.
 
 ```{r}
 #| eval: true
@@ -852,8 +852,8 @@ exemple_df |>
 :::
 
 
-Comme la base de données va être mise à jour chaque semaine, il serait pratique de choisir *automatiquement* la plage des semaines qui doivent être présentes dans les données.
-Pour ça, il nous suffit de remplacer les valeurs que nous avons codé *en dur* par la plus petite semaine existante dans les données et la plus grande :
+Comme le jeu de données va être mise à jour chaque semaine, il serait pratique de choisir *automatiquement* la plage des semaines qui doivent être présentes dans les données.
+Pour ça, il suffit de remplacer les valeurs codées *en dur* par la plus petite semaine existante dans les données et la plus grande :
 
 ```{r}
 #| eval: true
@@ -870,7 +870,7 @@ exemple_df |>
 
 ### Explications sur `rollaply()` 
 
-Pour calculer la somme cumulée des cas sur trois semaine il nous faut *appliquer* (*apply* en anglais) la fonction sur des fenêtres glissantes de trois semaines.
+Pour calculer la somme cumulée des cas sur trois semaines il nous faut *appliquer* (*apply* en anglais) la fonction `rollaply()` sur des fenêtres glissantes de trois semaines.
 
 ```{r}
 #| eval: true
@@ -887,11 +887,11 @@ rollapply(
 )
 ```
 
-Nous avons fourni en entrée un vecteur de 10 valeurs et obtenu en sortie un vecteur contenant les sommes. Manifestement, la fonction a fait des choix sur comment traiter les extrémités, et le résultat est plus court que le vecteur d'entré. Ce dernier point est un problème si l'on veut utiliser la fonction dans un `mutate()`, qui crée des colonnes dans un data frame, où toutes les colonnes ont la même taille.
+Nous avons fourni en entrée un vecteur de 10 valeurs et obtenu en sortie un vecteur contenant les sommes. Manifestement, la fonction a fait des choix sur comment traiter les extrémités, et le résultat est plus court que le vecteur d'entrée. Ce dernier point est un problème si l'on veut utiliser la fonction dans un `mutate()`, qui crée des colonnes dans un data frame, où toutes les colonnes ont la même taille.
 
 Il est possible de contrôler le comportement de la fonction aux extrémités : 
 
-- Remplir les lignes pour lesquelles il n'y a pas assez de valeur dans la fenêtre avec des `NA`
+- Remplir les lignes pour lesquelles il n'y a pas assez de valeurs dans la fenêtre avec des `NA`
 - Autoriser des calculs partiels (ici, des sommes partielles, en d'autres termes des valeurs ne représentent pas la somme sur *trois* semaines, mais moins).
 
 L'argument `fill = NA` remplit les valeurs manquantes aux extrémités concernées avec des `NA` (dans notre cas, à gauche, vu que l'on a aligné la fenêtre à droite) :
@@ -907,7 +907,7 @@ rollapply(
 )
 ```
 
-C'est souvent une façon raisonnable de gérer les valeurs aux extrémités où les fenêtres ne sont pas complètes. Néanmoins, dans notre cas, nous pouvons faire mieux. En effet, imaginons qu'il y ait 40 cas lors de la première semaine : même si nous n'avons pas de valeurs pour les deux semaines précédentes, l'alerte devrait être déclenchée ! Nous voudrions donc que la somme cumulée soit calculée *dès la première semaine* pour pouvoir détecter des alertes précoces !  L'argument `partial = TRUE` permet cela :
+C'est souvent une façon raisonnable de gérer les valeurs aux extrémités où les fenêtres ne sont pas complètes. Néanmoins, dans notre cas, nous pouvons faire mieux. En effet, imaginons qu'il y ait 40 cas lors de la première semaine : même si nous n'avons pas de valeurs pour les deux semaines précédentes, l'alerte devrait être déclenchée ! Nous voudrions donc que la somme cumulée soit calculée *dès la première semaine* pour pouvoir détecter des alertes précoces ! L'argument `partial = TRUE` permet cela :
 
 ```{r}
 #| eval: true
@@ -920,7 +920,7 @@ rollapply(
   )
 ```
 
-C'est mieux comme ça pour notre cas d'usage. 
+C'est mieux dans notre cas d'usage. 
 
 ::: {.callout-important}
 Gardez à l'esprit que les deux premières valeurs du vecteur (ou de la colonne) contiennent donc des sommes *partielles*. En conséquence, une *absence d'alerte* dans les deux premières semaines ne veut pas forcement dire qu'il n'y a pas d'alerte.
@@ -991,7 +991,7 @@ rollapply(data  = c(5, 10, 1, 2, 5, 10),
           fill = NA)
 ```
 
-Dans notre cas, nous voulons que la valeur pour une semaine donnée reflète cette semaine et les deux semaines précédentes, donc nous utilisons l'argument `align = "right"`, pour calculer *dans le passé* (si le data frame est ordonné dans l'ordre chronologique pour chaque zone de santé !).
+Dans notre cas, nous voulons que la valeur pour une semaine donnée reflète cette semaine et les deux semaines précédentes, donc nous utilisons l'argument `align = "right"`, pour calculer *dans le passé* (si le data frame est trié dans l'ordre chronologique pour chaque zone de santé !).
 
 
 ::: {.callout-tip}
