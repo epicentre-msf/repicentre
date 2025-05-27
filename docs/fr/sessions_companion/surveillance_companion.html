@@ -390,6 +390,7 @@ Astuce
 </div>
 <div class="callout-body-container callout-body">
 <p>N’hésitez pas à scaner vos notes, vos scripts ou les tutoriels des sessions précédentes pour vous rafraîchir sur le fonctionnement de certaines fonctions quand vous en éprouvez le besoin.</p>
+<p>Par ailleurs, les <a href="../sessions_core/01_introduction.html#Exercise%20Format">encadrés contenant les instructions</a> sont les mêmes que dans les autres modules.</p>
 </div>
 </div>
 </section><section id="mise-en-place" class="level2"><h2 class="anchored" data-anchor-id="mise-en-place">Mise en place</h2>
@@ -994,7 +995,7 @@ Astuce
 </section><section id="sec-going-further" class="level2"><h2 class="anchored" data-anchor-id="sec-going-further">Aller plus loin</h2>
 <section id="explications-sur-complete" class="level3"><h3 class="anchored" data-anchor-id="explications-sur-complete">Explications sur <code>complete()</code>
 </h3>
-<p>Nous allons ici donner quelques éléments pour comprendre un peut les arguments de la fonction <code>complete()</code>.</p>
+<p>Nous allons ici donner quelques éléments pour comprendre un peu les arguments de la fonction <code>complete()</code>.</p>
 <p>Créons un mini exemple où la zone de santé de Kitenge n’a pas de ligne pour la semaine 2 :</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Data frame simplifié, avec seulement trois semaines</span></span>
@@ -1015,9 +1016,9 @@ Astuce
 </div>
 </div>
 <p>C’est problématique si l’on veut calculer une somme cumulée.</p>
-<p>Nous pouvons utiliser le code suivant pour compléter toutes les zones de santé pour qu’elles aient toutes les semaines possible, ici les semaines une à trois :</p>
+<p>Nous pouvons utiliser le code suivant pour compléter toutes les zones de santé pour qu’elles aient toutes les semaines possibles, ici les semaines une à trois :</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compléte la semaine manquante à Kitenge</span></span>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Complète la semaine manquante à Kitenge</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>exemple_df <span class="sc">|&gt;</span> </span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">complete</span>(</span>
 <span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">nesting</span>(province, zone_sante), <span class="co"># Par province et zone, les explications arrivent juste après !</span></span>
@@ -1037,7 +1038,7 @@ Astuce
 </div>
 </div>
 <p>Maintenant les deux zones de santé dans les deux provinces ont toutes les semaines possibles.</p>
-<p>Vous vous demandez peut être pourquoi nous avons écrit <code>nesting(province, zone_sante)</code> au lieu de juste <code>zone_sante</code>. La raison est qu’il peut y avoir deux zones de santé avec le même nom dans des provinces différentes. Nous devons donc tenir compte de la colonne <code>province</code>. La fonction <code>nesting()</code> indique à la fonction <code>complete()</code> de n’utiliser <em>que les combinaisons existantes</em> des deux colonnes dans le data frame.</p>
+<p>Pourquoi nous avons écrit <code>nesting(province, zone_sante)</code> au lieu de <code>zone_sante</code> tout simplement ? C’est qu’il pourrait y avoir deux zones de santé avec le même nom dans des provinces différentes. Nous devons donc tenir compte de la colonne <code>province</code>. La fonction <code>nesting()</code> indique à la fonction <code>complete()</code> de n’utiliser <em>que les combinaisons existantes</em> des deux colonnes dans le data frame.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1048,7 +1049,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Petit encart pour voir ce qui se serait passé si nous avions passé les deux colonnes à la fonction <code>complete()</code> sans utiliser <code>nesting()</code> : la fonction aurait créé <em>toutes les combinaisons possibles</em> entre les catégories des colonnes <code>province</code> et <code>zone_sante</code>, ce qui n’a pas de sens dans notre cas.</p>
+<p>Petit encart pour voir ce qui se serait passé si nous avions passé les deux colonnes à la fonction <code>complete()</code> sans utiliser <code>nesting()</code> : la fonction aurait créé <em>toutes les combinaisons possibles</em> entre les catégories des colonnes <code>province</code> et <code>zone_sante</code>, ce qui n’a pas de sens dans le cas présent.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>exemple_df <span class="sc">|&gt;</span> </span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">complete</span>(</span>
@@ -1076,7 +1077,7 @@ Note
 </div>
 </div>
 </div>
-<p>Comme la base de données va être mise à jour chaque semaine, il serait pratique de choisir <em>automatiquement</em> la plage des semaines qui doivent être présentes dans les données. Pour ça, il nous suffit de remplacer les valeurs que nous avons codé <em>en dur</em> par la plus petite semaine existante dans les données et la plus grande :</p>
+<p>Comme le jeu de données va être mise à jour chaque semaine, il serait pratique de choisir <em>automatiquement</em> la plage des semaines qui doivent être présentes dans les données. Pour ça, il suffit de remplacer les valeurs codées <em>en dur</em> par la plus petite semaine existante dans les données et la plus grande :</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>exemple_df <span class="sc">|&gt;</span> </span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">complete</span>(</span>
@@ -1099,7 +1100,7 @@ Note
 </div>
 </section><section id="explications-sur-rollaply" class="level3"><h3 class="anchored" data-anchor-id="explications-sur-rollaply">Explications sur <code>rollaply()</code>
 </h3>
-<p>Pour calculer la somme cumulée des cas sur trois semaine il nous faut <em>appliquer</em> (<em>apply</em> en anglais) la fonction sur des fenêtres glissantes de trois semaines.</p>
+<p>Pour calculer la somme cumulée des cas sur trois semaines il nous faut <em>appliquer</em> (<em>apply</em> en anglais) la fonction <code>rollaply()</code> sur des fenêtres glissantes de trois semaines.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vecteur pour les exemples</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>exemple_vect <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span>, <span class="at">time =</span> <span class="dv">10</span>)</span>
@@ -1117,10 +1118,10 @@ Note
 <pre><code>[1] 3 3 3 3 3 3 3 3</code></pre>
 </div>
 </div>
-<p>Nous avons fourni en entrée un vecteur de 10 valeurs et obtenu en sortie un vecteur contenant les sommes. Manifestement, la fonction a fait des choix sur comment traiter les extrémités, et le résultat est plus court que le vecteur d’entré. Ce dernier point est un problème si l’on veut utiliser la fonction dans un <code>mutate()</code>, qui crée des colonnes dans un data frame, où toutes les colonnes ont la même taille.</p>
+<p>Nous avons fourni en entrée un vecteur de 10 valeurs et obtenu en sortie un vecteur contenant les sommes. Manifestement, la fonction a fait des choix sur comment traiter les extrémités, et le résultat est plus court que le vecteur d’entrée. Ce dernier point est un problème si l’on veut utiliser la fonction dans un <code>mutate()</code>, qui crée des colonnes dans un data frame, où toutes les colonnes ont la même taille.</p>
 <p>Il est possible de contrôler le comportement de la fonction aux extrémités :</p>
 <ul>
-<li>Remplir les lignes pour lesquelles il n’y a pas assez de valeur dans la fenêtre avec des <code>NA</code>
+<li>Remplir les lignes pour lesquelles il n’y a pas assez de valeurs dans la fenêtre avec des <code>NA</code>
 </li>
 <li>Autoriser des calculs partiels (ici, des sommes partielles, en d’autres termes des valeurs ne représentent pas la somme sur <em>trois</em> semaines, mais moins).</li>
 </ul>
@@ -1150,7 +1151,7 @@ Note
 <pre><code> [1] 1 2 3 3 3 3 3 3 3 3</code></pre>
 </div>
 </div>
-<p>C’est mieux comme ça pour notre cas d’usage.</p>
+<p>C’est mieux dans notre cas d’usage.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1225,7 +1226,7 @@ Important
 <pre><code>[1] NA NA 16 13  8 17</code></pre>
 </div>
 </div>
-<p>Dans notre cas, nous voulons que la valeur pour une semaine donnée reflète cette semaine et les deux semaines précédentes, donc nous utilisons l’argument <code>align = "right"</code>, pour calculer <em>dans le passé</em> (si le data frame est ordonné dans l’ordre chronologique pour chaque zone de santé !).</p>
+<p>Dans notre cas, nous voulons que la valeur pour une semaine donnée reflète cette semaine et les deux semaines précédentes, donc nous utilisons l’argument <code>align = "right"</code>, pour calculer <em>dans le passé</em> (si le data frame est trié dans l’ordre chronologique pour chaque zone de santé !).</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
