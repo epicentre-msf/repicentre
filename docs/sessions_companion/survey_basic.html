@@ -205,8 +205,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
 <li>Aggregate data using <code>count()</code> and <code>summarize()</code>
 </li>
-<li>Produce tables using <code>gt()</code>
-</li>
 </ul>
 <p>If you need to revisit or learn any of these topics, please refer to the <a href="'https://epicentre-msf.github.io/repicentre/pathway.html'">core sessions of the learning pathway</a>.</p>
 </section><section id="setup" class="level2"><h2 class="anchored" data-anchor-id="setup">Setup</h2>
@@ -231,7 +229,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><code>here</code></li>
 <li><code>rio</code></li>
-<li><code>gt</code></li>
+<li><code>dplyr</code></li>
+<li><code>lubridate</code></li>
 <li><code>srvyr</code></li>
 </ul>
 <p>Then create a new section called <code>Import</code> and use <code>rio</code> to import the second sheet of your dataset into an object called <code>df_raw</code>. We don’t need all of the columns of this data, use <code>select()</code> to select only the following:</p>
@@ -362,6 +361,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="write">
 <p>Use <code>filter()</code> to check for instances of people who joined the family after they had died. How many times did this happen?</p>
 <p>The head of your output should look like this:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>  sex age born_date joined_date left_date  died_date born joined left died
+1   1  23      &lt;NA&gt;  2010-12-18      &lt;NA&gt; 2010-12-08    0      1    0    1
+  died_cause   hh
+1          1 1524</code></pre>
+</div>
+</div>
 </div>
 <p>Well that’s not great. How should we fix this? The exact best practice here is subject to a bit of debate but we recommend that you retain the date for death and remove the date for birth / joined (ie: reassign it to <code>NA</code>). Alternatively, if you catch this error during data collection you can ask the interviewer about the error. It may be the case that it was a typo and they remember the appropriate dates. Where possible, try to do this type of oversight on a daily basis so that issues can be corrected in real-time.</p>
 <p>If we can only keep one date, why do we give preference to the date of death? The date of death is the more important variable for the purpose of this particular survey and is also a rare event, meaning that any lost dates might have a disproportionate impact on results. Additionally, we might expect that the date of death is more likely to be reliable compared to other dates (such as the exact date of birth or when someone joined / left the household).</p>
@@ -394,10 +401,10 @@ Important
 <div class="write">
 <p>Add a step to your pipeline that ensures that anyone born in recall has an age of 0. If you have done this correctly, you should be able to filter df to look only at individuals born in recall and verify that their age is 0:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(born <span class="sc">==</span> <span class="st">'Yes'</span>) <span class="sc">|&gt;</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(age) <span class="sc">|&gt;</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unique</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(born <span class="sc">==</span> <span class="st">'Yes'</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(age) <span class="sc">|&gt;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unique</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0</code></pre>
 </div>
@@ -405,8 +412,8 @@ Important
 </div>
 <p>The second issue is a bit more complex. Let’s take a look at the individual(s) in question:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(left_date <span class="sc">&lt;</span> died_date)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(left_date <span class="sc">&lt;</span> died_date)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     sex age born_date joined_date  left_date  died_date born joined left died
 1   Male  25      &lt;NA&gt;        &lt;NA&gt; 2010-11-02 2011-03-08   No     No  Yes  Yes
@@ -445,9 +452,9 @@ Important
 <p>Our individual level data is looking nice but they are completely detached from our household level data (remember <code>df_hh</code> from the start of the tutorial?). For example, we might like to know the interview date associated with each individual as well as the cluster they were in. To do this, we need to perform a <strong>join</strong>.</p>
 <p>An in depth look at joins is beyond the scope of this session, but in essence joins are used to take the data from one dataframe and add it (row-wise) to another dataframe based on a variable that is shared by both datasets (such as an id). For example, here we want to go row by row in our individual level data (<code>df</code>) and add columns with the related household level information for each person (from <code>df_hh</code>). To do this, we will use the function <code>left_join()</code> from <code>{dplyr}</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(df_hh) <span class="sc">|&gt;</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(df_hh) <span class="sc">|&gt;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Joining with `by = join_by(hh)`</code></pre>
 </div>
@@ -481,8 +488,8 @@ Note
 <div class="callout-body-container callout-body">
 <p>What does the “left” in <code>left_join()</code> mean? In a simple sense, left joins involve one dataset that data is <strong>added to</strong> (Dataset A) and another that data is <strong>taken from</strong> (Dataset B). Dataset A is the “core dataset” and the output will always include all of it’s rows. Rows from Dataset B will be kept if and only if <code>left_join()</code> finds an appropriate row in Dataset A to which they can be added. In our data, for example, rows of data on households which had no members (and thus do not appear in <code>df</code>) will not be included in the output of the above join. <br><br> In a <code>left_join()</code> R will always consider the first argument to be the core dataset (Dataset A); ie:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># PSEUDO-CODE</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">left_join</span>(dataset_a, dataset_b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># PSEUDO-CODE</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">left_join</span>(dataset_a, dataset_b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -497,7 +504,7 @@ Note
 </ul>
 <p>If everything went well, the head of <code>df</code> should look like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     sex age born_date joined_date left_date died_date born joined left died
 1 Female  23      &lt;NA&gt;        &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;   No     No   No   No
@@ -544,19 +551,19 @@ Note
 </div>
 <p>Coming up with a good formula here is not trivial, so let’s go through it together. Let’s imagine a person who joined the household in late 2010 and then died in February of 2011. If we put this person’s data into a dataframe we might have something like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>example <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">date_interview =</span> <span class="fu">as.Date</span>(<span class="st">'2011-04-07'</span>),</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">born =</span> <span class="st">'No'</span>,</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">date_born =</span> <span class="cn">NA</span>,</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">joined =</span> <span class="st">'Yes'</span>,</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">date_joined =</span> <span class="fu">as.Date</span>(<span class="st">'2010-12-08'</span>),</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">left =</span> <span class="st">'No'</span>,</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">date_left =</span> <span class="cn">NA</span>,</span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">died =</span> <span class="st">'Yes'</span>,</span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">date_died =</span> <span class="fu">as.Date</span>(<span class="st">'2011-02-13'</span>)</span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>example</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>example <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">date_interview =</span> <span class="fu">as.Date</span>(<span class="st">'2011-04-07'</span>),</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">born =</span> <span class="st">'No'</span>,</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">date_born =</span> <span class="cn">NA</span>,</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">joined =</span> <span class="st">'Yes'</span>,</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">date_joined =</span> <span class="fu">as.Date</span>(<span class="st">'2010-12-08'</span>),</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">left =</span> <span class="st">'No'</span>,</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">date_left =</span> <span class="cn">NA</span>,</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">died =</span> <span class="st">'Yes'</span>,</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">date_died =</span> <span class="fu">as.Date</span>(<span class="st">'2011-02-13'</span>)</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>example</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  date_interview born date_born joined date_joined left date_left died
 1     2011-04-07   No        NA    Yes  2010-12-08   No        NA  Yes
@@ -566,12 +573,12 @@ Note
 </div>
 <p>To calculate this person’s time at risk, we need to get “when their person time started” and “when their person time ended”. Then we take the difference between those two dates. For the start of someone’s person time, we need to pull the date when they where born / joined the household or (if they were present for the full preiod) the start date for the recall period. We can do this using <code>case_when()</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>recall_start <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">'2010-10-17'</span>)</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>example <span class="sc">|&gt;</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pt_start =</span> <span class="fu">case_when</span>(born <span class="sc">==</span> <span class="st">'Yes'</span> <span class="sc">~</span> date_born,</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>                              joined <span class="sc">==</span> <span class="st">'Yes'</span> <span class="sc">~</span> date_joined,</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>                              <span class="at">.default =</span> recall_start))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>recall_start <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">'2010-10-17'</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>example <span class="sc">|&gt;</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pt_start =</span> <span class="fu">case_when</span>(born <span class="sc">==</span> <span class="st">'Yes'</span> <span class="sc">~</span> date_born,</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>                              joined <span class="sc">==</span> <span class="st">'Yes'</span> <span class="sc">~</span> date_joined,</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>                              <span class="at">.default =</span> recall_start))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  date_interview born date_born joined date_joined left date_left died
 1     2011-04-07   No        NA    Yes  2010-12-08   No        NA  Yes
@@ -581,10 +588,10 @@ Note
 </div>
 <p>Similarly, their time at risk ends when they die / leave or at the end of recall (when they were interviewed):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>example <span class="sc">|&gt;</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pt_end =</span> <span class="fu">case_when</span>(left <span class="sc">==</span> <span class="st">'Yes'</span> <span class="sc">~</span> date_left,</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>                            died <span class="sc">==</span> <span class="st">'Yes'</span> <span class="sc">~</span> date_died,</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>                            <span class="at">.default =</span> date_interview))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>example <span class="sc">|&gt;</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pt_end =</span> <span class="fu">case_when</span>(left <span class="sc">==</span> <span class="st">'Yes'</span> <span class="sc">~</span> date_left,</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>                            died <span class="sc">==</span> <span class="st">'Yes'</span> <span class="sc">~</span> date_died,</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>                            <span class="at">.default =</span> date_interview))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  date_interview born date_born joined date_joined left date_left died
 1     2011-04-07   No        NA    Yes  2010-12-08   No        NA  Yes
@@ -594,14 +601,14 @@ Note
 </div>
 <p>Putting it together, we can then calculate the total person time at risk as the difference between when the person time ended and when it started:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>example <span class="sc">|&gt;</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pt_start =</span> <span class="fu">case_when</span>(born <span class="sc">==</span> <span class="st">'Yes'</span> <span class="sc">~</span> date_born,</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>                              joined <span class="sc">==</span> <span class="st">'Yes'</span> <span class="sc">~</span> date_joined,</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">.default =</span> recall_start),</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">pt_end =</span> <span class="fu">case_when</span>(left <span class="sc">==</span> <span class="st">'Yes'</span> <span class="sc">~</span> date_left,</span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>                            died <span class="sc">==</span> <span class="st">'Yes'</span> <span class="sc">~</span> date_died,</span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>                            <span class="at">.default =</span> date_interview),</span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">pt =</span> pt_end <span class="sc">-</span> pt_start)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>example <span class="sc">|&gt;</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pt_start =</span> <span class="fu">case_when</span>(born <span class="sc">==</span> <span class="st">'Yes'</span> <span class="sc">~</span> date_born,</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>                              joined <span class="sc">==</span> <span class="st">'Yes'</span> <span class="sc">~</span> date_joined,</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">.default =</span> recall_start),</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">pt_end =</span> <span class="fu">case_when</span>(left <span class="sc">==</span> <span class="st">'Yes'</span> <span class="sc">~</span> date_left,</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>                            died <span class="sc">==</span> <span class="st">'Yes'</span> <span class="sc">~</span> date_died,</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>                            <span class="at">.default =</span> date_interview),</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">pt =</span> pt_end <span class="sc">-</span> pt_start)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  date_interview born date_born joined date_joined left date_left died
 1     2011-04-07   No        NA    Yes  2010-12-08   No        NA  Yes
@@ -639,7 +646,7 @@ Note
 </div>
 <p>Let’s use <code>range()</code> to look at the maximum and minimum values of <code>pt</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(df<span class="sc">$</span>pt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(df<span class="sc">$</span>pt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Time differences in days
 [1] NA NA</code></pre>
@@ -651,7 +658,7 @@ Note
 </div>
 <p>Option one artificially reduces the denominator of our mortality calculations, thus resulting in an overestimate of mortality. The second option will do the opposite. For today’s analysis we will go with option one and leave our code as is (missing values and all). Let’s look at our range again, this time ignoring the missing values:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(df<span class="sc">$</span>pt, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(df<span class="sc">$</span>pt, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Time differences in days
 [1] -141  172</code></pre>
@@ -663,16 +670,16 @@ Note
 </div>
 <p>For these individuals, instead of taking a difference (between the end and start of time at risk), we instead need to calculate two chunks of time (before they left and after they returned) and then add them together. Here’s how we can do it:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">pt =</span> <span class="fu">case_when</span>(</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>      joined_date <span class="sc">&gt;</span> left_date <span class="sc">&amp;</span> born <span class="sc">==</span> <span class="st">'Yes'</span> <span class="sc">~</span> (left_date <span class="sc">-</span> born_date) <span class="sc">+</span> (interview_date <span class="sc">-</span> joined_date),</span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>      joined_date <span class="sc">&gt;</span> left_date <span class="sc">~</span> (left_date <span class="sc">-</span> recall_start) <span class="sc">+</span> (interview_date <span class="sc">-</span> joined_date),</span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">.default =</span> pt</span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(tmp<span class="sc">$</span>pt, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">pt =</span> <span class="fu">case_when</span>(</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>      joined_date <span class="sc">&gt;</span> left_date <span class="sc">&amp;</span> born <span class="sc">==</span> <span class="st">'Yes'</span> <span class="sc">~</span> (left_date <span class="sc">-</span> born_date) <span class="sc">+</span> (interview_date <span class="sc">-</span> joined_date),</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>      joined_date <span class="sc">&gt;</span> left_date <span class="sc">~</span> (left_date <span class="sc">-</span> recall_start) <span class="sc">+</span> (interview_date <span class="sc">-</span> joined_date),</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">.default =</span> pt</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(tmp<span class="sc">$</span>pt, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Time differences in days
 [1]   0 172</code></pre>
@@ -707,7 +714,7 @@ Note
 </section><section id="mortality-calculations-1" class="level3"><h3 class="anchored" data-anchor-id="mortality-calculations-1">Mortality Calculations</h3>
 <p>Now we are (finally) ready to calculate mortality rates. We could do a basic calculation of this directly using the totals of number of deaths and cumulative person-time at risk:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(df<span class="sc">$</span>died <span class="sc">==</span> <span class="st">'Yes'</span>) <span class="sc">/</span> <span class="fu">sum</span>(df<span class="sc">$</span>pt, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">*</span> <span class="dv">10000</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(df<span class="sc">$</span>died <span class="sc">==</span> <span class="st">'Yes'</span>) <span class="sc">/</span> <span class="fu">sum</span>(df<span class="sc">$</span>pt, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">*</span> <span class="dv">10000</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.5405712</code></pre>
 </div>
@@ -730,11 +737,11 @@ Note
 </ol>
 <p>In principle, each of our clusters should have had 32 households. In practice, true cluster size may have deviated in some cases. We can use the function <code>n_distinct()</code> inside <code>summarize()</code> to add a column with the actual cluster size associated with each individual:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">.by =</span> clst_id,</span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">hh_count =</span> <span class="fu">n_distinct</span>(hh)</span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">.by =</span> clst_id,</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">hh_count =</span> <span class="fu">n_distinct</span>(hh)</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  clst_id hh_count
 1       1       32
@@ -792,12 +799,12 @@ Note
 </div>
 <p>For <code>{srvyr}</code> to use our newly added variables and perform calculations we need to create a “survey object”. This is a special class of dataframe that is specific to <code>{srvyr}</code> and is created using the function <code>as_survey_design()</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_survey_design</span>(</span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">ids =</span> clst_id,</span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">wt =</span> weight,</span>
-<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">fpc =</span> pop</span>
-<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_survey_design</span>(</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">ids =</span> clst_id,</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">wt =</span> weight,</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">fpc =</span> pop</span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="look">
 <p>Try running the above code. What is the class of <code>tmp</code>? Does this object behave like a normal dataframe? Try doing some basic manipulations; for example:</p>
@@ -809,12 +816,21 @@ Note
 <p>As you can see, once we apply <code>as_survey_design()</code>, we don’t have a normal dataframe anymore. So, we should <strong>store its output in a separate object</strong>, for example <code>tmp</code> or <code>df_srvy</code>. This ensures that <code>df</code> itself remains a standard dataframe available for other calculations, visualizations, etc.</p>
 <p><code>{srvyr}</code> offers a number of functions to calculate indicators on survey data, most of the time used <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="This is because these indicators normally involve data **aggregation**.">inside a <code>summarize()</code></span>. In our case, we will use the function <code>survey_ratio()</code> to calculate crude and specific mortality rates. The basic syntax of of <code>survey_ratio()</code> is pretty simple, for example we can use the following to calculate crude mortality rate:</p>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 4
-    cmr cmr_low cmr_upp cmr_deff
-  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;
-1 0.531   0.405   0.656     2.28</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_survey_design</span>(</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">ids =</span> clst_id,</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">wt =</span> weight,</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">fpc =</span> pop</span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">cmr =</span> <span class="fu">survey_ratio</span>(</span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">numerator =</span> (died <span class="sc">==</span> <span class="st">'Yes'</span>) <span class="sc">*</span> <span class="dv">10000</span>,</span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">denominator =</span> pt,</span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">vartype =</span> <span class="st">'ci'</span>,</span>
+<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">deff =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">na.rm =</span> <span class="cn">TRUE</span></span>
+<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Simple enough but let’s break down the arguments:</p>
 <ul>

@@ -7,8 +7,8 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.6.39">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta name="description" content="Session complémentaire au module FETCH de l’enquête">
-<title>Enquête standard sur la mortalité – {repicentre}</title>
+<meta name="description" content="Session complémentaire au module FETCH d’enquête">
+<title>Enquête standardisée sur la mortalité – {repicentre}</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -169,7 +169,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title">Enquête standard sur la mortalité</h1>
+<h1 class="title">Enquête standardisée sur la mortalité</h1>
   <div class="quarto-categories">
     <div class="quarto-category">Compagnon</div>
     <div class="quarto-category">Analyse</div>
@@ -178,7 +178,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div>
   <div class="description">
-    Session complémentaire au module FETCH de l’enquête
+    Session complémentaire au module FETCH d’enquête
   </div>
 </div>
 
@@ -205,8 +205,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
 <li>Agrégation des données à l’aide de <code>count()</code> et <code>summarize()</code>
 </li>
-<li>Production de tableaux à l’aide de <code>gt()</code>
-</li>
 </ul>
 <p>Si vous avez besoin de revoir ou d’apprendre l’un de ces sujets, veuillez vous reporter aux <a href="%22https://epicentre-msf.github.io/repicentre/pathway.html%22">sessions de base du parcours d’apprentissage</a>.</p>
 </section><section id="configuration" class="level2"><h2 class="anchored" data-anchor-id="configuration">Configuration</h2>
@@ -222,7 +220,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Le dossier que vous avez téléchargé contient un script R (presque) vide ainsi que des fichiers Excel pour le formulaire Kobo utilisé dans l’enquête et les données collectées avec celui-ci.</p>
 <div class="look">
-<p>Prenez une minute pour ouvrir et examiner le formulaire Kobo et les données brutes. Que contiennent les différents onglets de l’ensemble de données ?</p>
+<p>Prenez une minute pour ouvrir et examiner le formulaire Kobo et les données brutes. Que contiennent les différents onglets des données brutes ?</p>
 </div>
 </section><section id="import" class="level2"><h2 class="anchored" data-anchor-id="import">Import</h2>
 <p>Notre ensemble de données comporte deux onglets, le premier contenant les données au niveau des ménages et le second les données individuelles. Pour l’instant, nous nous intéressons principalement aux données individuelles, mais nous aurons finalement besoin des deux. Chargeons tout cela dans R (ainsi que les paquets que nous utiliserons dans la session d’aujourd’hui).</p>
@@ -231,7 +229,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><code>here</code></li>
 <li><code>rio</code></li>
-<li><code>gt</code></li>
+<li><code>dplyr</code></li>
+<li><code>lubridate</code></li>
 <li><code>srvyr</code></li>
 </ul>
 <p>Créez ensuite une nouvelle section appelée <code>Import</code> et utilisez <code>rio</code> pour importer la deuxième feuille de votre ensemble de données dans un objet appelé <code>df_raw</code>. Nous n’avons pas besoin de toutes les colonnes de ces données, utilisez <code>select()</code> pour sélectionner uniquement les suivantes :</p>
@@ -289,13 +288,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="st">  )</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="write">
-<p>Créez une nouvelle section dans votre script intitulée <code>Nettoyage</code>. Cette section comprendra un ‘pipeline de nettoyage’ qui prendra <code>df_raw</code>, effectuera plusieurs étapes de nettoyage et stockera le cadre de données résultant dans un objet appelé ‘df’. <br><br> À l’aide de ‘case_when()’, créez une nouvelle étape dans votre pipeline de nettoyage qui recode les variables catégorielles de votre ensemble de données. Vous pouvez utiliser le recodage ci-dessus pour ‘sex’. Pour les variables ‘born’, ‘joined’, ‘left’ et ‘died’, utilisez le recodage suivant :</p>
+<p>Créez une nouvelle section dans votre script intitulée <code>Nettoyage</code>. Cette section comprendra un ‘pipeline de nettoyage’ qui prendra <code>df_raw</code>, effectuera plusieurs étapes de nettoyage et stockera le cadre de données résultant dans un objet appelé ‘df’. <br><br> À l’aide de <code>case_when()</code>, créez une nouvelle étape dans votre pipeline de nettoyage qui recode les variables catégorielles de votre ensemble de données. Vous pouvez utiliser le recodage ci-dessus pour <code>sex</code>. Pour les variables <code>born</code>, <code>joined</code>, <code>left</code> et <code>died</code>, utilisez le recodage suivant :</p>
 <ul>
 <li>0 = Non</li>
 <li>1 = Oui</li>
 <li>99 = Inconnu</li>
 </ul>
-<p>Pour ‘died_cause’, utilisez le recodage suivant :</p>
+<p>Pour <code>died_cause</code>, utilisez le recodage suivant :</p>
 <ul>
 <li>1 = Diarrhée</li>
 <li>2 = Fièvre</li>
@@ -306,7 +305,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>99 = Inconnu</li>
 <li>NA = N’est pas décédé</li>
 </ul>
-<p>La tête de ‘df’ devrait ressembler à ceci :</p>
+<p>Les premiers rangs de <code>df</code> devrait ressembler à ceci :</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>    sex age born_date joined_date left_date died_date born joined left died
@@ -329,7 +328,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Combien de personnes sont décédées pour chaque cause potentielle ?</li>
 <li>Observez les combinaisons de <code>died</code>, <code>left</code>, <code>joined</code> et <code>born</code>. Quelles sont les combinaisons les plus courantes ? Cela vous semble-t-il logique ?</li>
-<li>Qui est le plus touché par le décès, les hommes ou les femmes ? Qui était le plus à risque ?</li>
+<li>Chez qui y’a-t-il plus de décès, les hommes ou les femmes ? Qui était le plus à risque ?</li>
 </ul>
 <p><br><strong>Astuce</strong>. N’oubliez pas que vous pouvez attribuer plusieurs noms de colonnes à <code>count()</code> afin de créer des tableaux de contingence.</p>
 </div>
@@ -356,7 +355,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section><section id="correction-des-problèmes-logiques" class="level3"><h3 class="anchored" data-anchor-id="correction-des-problèmes-logiques">Correction des problèmes logiques</h3>
 <p>Un formulaire Kobo bien conçu peut grandement contribuer à garantir la collecte de données de bonne qualité dès le départ. Par exemple, nous pouvons rendre certaines questions obligatoires afin d’éviter les données manquantes. Nous pouvons également créer des ‘contraintes’ qui généreront des messages d’erreur lorsque les données saisies enfreignent les règles prédéfinies ; par exemple, nous pouvons créer une contrainte qui empêche l’enquêteur de saisir une date de décès qui ne correspond pas à la période de rappel.</p>
 <div class="look">
-<p>Ouvrez le fichier Excel de l’enquête Kobo ‘retrospective-mortality_kobo.xlsx’ et examinez la colonne ‘contrainte’. Quelles sont les contraintes créées dans ce fichier ? Pouvez-vous penser à quelque chose qui n’a pas été pris en compte ?</p>
+<p>Ouvrez le fichier Excel de l’enquête Kobo <code>retrospective-mortality_kobo.xlsx</code> et examinez la colonne ‘contrainte’. Quelles sont les contraintes créées dans ce fichier ? Pouvez-vous penser à quelque chose qui n’a pas été pris en compte ?</p>
 </div>
 <p>Malgré toutes les protections que nous avons mises en place dans le processus de collecte, un peu de nettoyage sera toujours nécessaire. Par exemple, bien que nous ayons veillé à ce que toutes les dates se situent dans la période de rappel, nous n’avons pas créé de contrôles pour d’autres relations illogiques entre les dates. Voyons, par exemple, si quelqu’un est né après son décès :</p>
 <div class="cell">
@@ -366,6 +365,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="write">
 <p>Utilisez <code>filter()</code> pour vérifier s’il y a des cas de personnes qui ont rejoint la famille après leur décès. Combien de fois cela s’est-il produit ?</p>
 <p>Le début de votre sortie devrait ressembler à ceci :</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>  sex age born_date joined_date left_date  died_date born joined left died
+1   1  23      &lt;NA&gt;  2010-12-18      &lt;NA&gt; 2010-12-08    0      1    0    1
+  died_cause   hh
+1          1 1524</code></pre>
+</div>
+</div>
 </div>
 <p>Ce n’est pas terrible. Comment pouvons-nous corriger cela ? La meilleure pratique à adopter ici fait l’objet d’un débat, mais nous vous recommandons de conserver la date de décès et de supprimer la date de naissance/d’adhésion (c’est-à-dire la remplacer par ‘NA’). Sinon, si vous constatez cette erreur pendant la collecte des données, vous pouvez interroger l’enquêteur à ce sujet. Il se peut qu’il s’agisse d’une faute de frappe et qu’il se souvienne des dates exactes. Dans la mesure du possible, essayez d’effectuer ce type de contrôle quotidiennement afin de pouvoir corriger les problèmes en temps réel.</p>
 <p>Si nous ne pouvons conserver qu’une seule date, pourquoi privilégier la date de décès ? La date de décès est la variable la plus importante dans le cadre de cette enquête particulière. Il s’agit également d’un événement rare, ce qui signifie que toute date manquante pourrait avoir un impact disproportionné sur les résultats. De plus, on peut supposer que la date de décès est plus fiable que d’autres dates (telles que la date exacte de naissance ou la date d’arrivée/de départ d’une personne dans le foyer).</p>
@@ -398,10 +405,10 @@ Important
 <div class="write">
 <p>Ajoutez une étape à votre pipeline qui garantit que toute personne née pendant la période de rappel a un âge de 0. Si vous avez effectué cette opération correctement, vous devriez pouvoir filtrer df pour ne voir que les personnes nées pendant la période de rappel et vérifier que leur âge est 0 :</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(born <span class="sc">==</span> <span class="st">'Oui'</span>) <span class="sc">|&gt;</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(age) <span class="sc">|&gt;</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unique</span>()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(born <span class="sc">==</span> <span class="st">'Oui'</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(age) <span class="sc">|&gt;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unique</span>()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0</code></pre>
 </div>
@@ -409,8 +416,8 @@ Important
 </div>
 <p>Le deuxième problème est un peu plus complexe. Examinons les individus concernés :</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(left_date <span class="sc">&lt;</span> died_date)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(left_date <span class="sc">&lt;</span> died_date)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     sex age born_date joined_date  left_date  died_date born joined left died
 1   Male  25      &lt;NA&gt;        &lt;NA&gt; 2010-11-02 2011-03-08  Non    Non  Oui  Oui
@@ -427,7 +434,7 @@ Important
 </div>
 <p>Les personnes âgées de 3 et 60 ans ne posent pas de problème, elles ont simplement quitté le foyer puis l’ont réintégré. En revanche, la personne âgée de 25 ans semble avoir quitté le foyer puis être décédée sans jamais y revenir entre-temps. Que devons-nous faire ? Réfléchissons aux raisons pour lesquelles une telle situation pourrait apparaître dans nos données. Il existe deux options principales :</p>
 <ul>
-<li>Peut-être que la personne <strong>a</strong> réintégré le foyer, mais que le participant a oublié de le mentionner</li>
+<li>Peut-être que la personne <strong>a réintégré</strong> le foyer, mais que le participant a oublié de le mentionner</li>
 <li>Peut-être que le participant n’a pas bien compris que l’enquête ne prendrait en compte que les décès survenus alors que la personne était <strong>encore membre du foyer</strong> au moment de son décès</li>
 </ul>
 <p>Si possible, nous pourrions discuter avec l’enquêteur qui a mené cet entretien afin de déterminer quelle option est la plus probable. En l’absence d’informations supplémentaires, nous devrons probablement opter pour la deuxième option. Si nous faisons cela, nous devrons recoder cette personne comme étant vivante plutôt que décédée, car elle était encore en vie au moment où elle a quitté le ménage.</p>
@@ -449,9 +456,9 @@ Important
 <p>Nos données individuelles semblent correctes, mais elles sont complètement déconnectées de nos données au niveau des ménages (vous vous souvenez de <code>df_hh</code> au début du tutoriel ?). Par exemple, nous aimerions connaître la date de l’entretien associée à chaque individu ainsi que le groupe auquel il appartenait. Pour ce faire, nous devons effectuer une <strong>jointure</strong>.</p>
 <p>Une analyse approfondie des jointures dépasse le cadre de cette session, mais en substance, les jointures sont utilisées pour prendre les données d’un dataframe et les ajouter (ligne par ligne) à un autre dataframe sur la base d’une variable commune aux deux ensembles de données (telle qu’un identifiant). Par exemple, nous voulons ici parcourir ligne par ligne nos données individuelles (<code>df</code>) et ajouter des colonnes contenant les informations relatives au niveau des ménages pour chaque personne (à partir de <code>df_hh</code>). Pour ce faire, nous utiliserons la fonction <code>left_join()</code> de <code>{dplyr}</code> :</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">left_join</span>(df_hh) <span class="sc">|&gt;</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">left_join</span>(df_hh) <span class="sc">|&gt;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Joining with `by = join_by(hh)`</code></pre>
 </div>
@@ -485,8 +492,8 @@ Note
 <div class="callout-body-container callout-body">
 <p>Que signifie ‘left’ dans <code>left_join()</code> ? En termes simples, les jointures gauches impliquent un ensemble de données auquel des données sont <strong>ajoutées</strong> (ensemble de données A) et un autre dont des données sont <strong>extraites</strong> (ensemble de données B). L’ensemble de données A est l’‘ensemble de données principal’ et le résultat inclura toujours toutes ses lignes. Les lignes de l’ensemble de données B seront conservées si et seulement si <code>left_join()</code> trouve une ligne appropriée dans l’ensemble de données A à laquelle elles peuvent être ajoutées. Dans nos données, par exemple, les lignes de données sur les ménages qui n’avaient aucun membre (et qui n’apparaissent donc pas dans <code>df</code>) ne seront pas incluses dans le résultat de la jointure ci-dessus. <br><br> Dans une <code>left_join()</code>, R considérera toujours le premier argument comme l’ensemble de données principal (ensemble de données A) ; c’est-à-dire :</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># PSEUDO-CODE</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">left_join</span>(dataset_a, dataset_b)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># PSEUDO-CODE</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">left_join</span>(dataset_a, dataset_b)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -501,7 +508,7 @@ Note
 </ul>
 <p>Si tout s’est bien passé, l’en-tête de <code>df</code> devrait ressembler à ceci :</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     sex age born_date joined_date left_date died_date born joined left died
 1 Female  23      &lt;NA&gt;        &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;  Non    Non  Non  Non
@@ -548,19 +555,19 @@ Note
 </div>
 <p>Il n’est pas facile de trouver une bonne formule ici, alors examinons-la ensemble. Imaginons une personne qui a rejoint le ménage fin 2010 et qui est décédée en février 2011. Si nous insérons les données de cette personne dans un cadre de données, nous pourrions obtenir quelque chose comme ceci :</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>example <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">date_interview =</span> <span class="fu">as.Date</span>(<span class="st">"2011-04-07"</span>),</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">born =</span> <span class="st">"Non"</span>,</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">date_born =</span> <span class="cn">NA</span>,</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">joined =</span> <span class="st">"Oui"</span>,</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">date_joined =</span> <span class="fu">as.Date</span>(<span class="st">"2010-12-08"</span>),</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">left =</span> <span class="st">"Non"</span>,</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">date_left =</span> <span class="cn">NA</span>,</span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">died =</span> <span class="st">"Oui"</span>,</span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">date_died =</span> <span class="fu">as.Date</span>(<span class="st">"2011-02-13"</span>)</span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>example</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>example <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">date_interview =</span> <span class="fu">as.Date</span>(<span class="st">"2011-04-07"</span>),</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">born =</span> <span class="st">"Non"</span>,</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">date_born =</span> <span class="cn">NA</span>,</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">joined =</span> <span class="st">"Oui"</span>,</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">date_joined =</span> <span class="fu">as.Date</span>(<span class="st">"2010-12-08"</span>),</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">left =</span> <span class="st">"Non"</span>,</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">date_left =</span> <span class="cn">NA</span>,</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">died =</span> <span class="st">"Oui"</span>,</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">date_died =</span> <span class="fu">as.Date</span>(<span class="st">"2011-02-13"</span>)</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>example</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  date_interview born date_born joined date_joined left date_left died
 1     2011-04-07  Non        NA    Oui  2010-12-08  Non        NA  Oui
@@ -570,16 +577,16 @@ Note
 </div>
 <p>Pour calculer la durée d’exposition de cette personne, nous devons déterminer ‘quand sa période d’exposition a commencé’ et ‘quand elle s’est terminée’. Nous calculons ensuite la différence entre ces deux dates. Pour déterminer le début de la période d’exposition d’une personne, nous devons extraire la date à laquelle elle est née/a rejoint le foyer ou (si elle était présente pendant toute la période) la date de début de la période de rappel. Nous pouvons le faire à l’aide de <code>case_when()</code> :</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>recall_start <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2010-10-17"</span>)</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>example <span class="sc">|&gt;</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">pt_start =</span> <span class="fu">case_when</span>(</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>      born <span class="sc">==</span> <span class="st">"Oui"</span> <span class="sc">~</span> date_born,</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>      joined <span class="sc">==</span> <span class="st">"Oui"</span> <span class="sc">~</span> date_joined,</span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">.default =</span> recall_start</span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>recall_start <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2010-10-17"</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>example <span class="sc">|&gt;</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">pt_start =</span> <span class="fu">case_when</span>(</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>      born <span class="sc">==</span> <span class="st">"Oui"</span> <span class="sc">~</span> date_born,</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>      joined <span class="sc">==</span> <span class="st">"Oui"</span> <span class="sc">~</span> date_joined,</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">.default =</span> recall_start</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  date_interview born date_born joined date_joined left date_left died
 1     2011-04-07  Non        NA    Oui  2010-12-08  Non        NA  Oui
@@ -589,10 +596,10 @@ Note
 </div>
 <p>De même, leur période à risque prend fin lorsqu’ils décèdent / quittent l’entreprise ou à la fin du rappel (lorsqu’ils ont été interrogés) :</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>example <span class="sc">|&gt;</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pt_end =</span> <span class="fu">case_when</span>(left <span class="sc">==</span> <span class="st">"Oui"</span> <span class="sc">~</span> date_left,</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  died <span class="sc">==</span> <span class="st">"Oui"</span> <span class="sc">~</span> date_died,</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">.default =</span> date_interview))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>example <span class="sc">|&gt;</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pt_end =</span> <span class="fu">case_when</span>(left <span class="sc">==</span> <span class="st">"Oui"</span> <span class="sc">~</span> date_left,</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  died <span class="sc">==</span> <span class="st">"Oui"</span> <span class="sc">~</span> date_died,</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">.default =</span> date_interview))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  date_interview born date_born joined date_joined left date_left died
 1     2011-04-07  Non        NA    Oui  2010-12-08  Non        NA  Oui
@@ -602,17 +609,17 @@ Note
 </div>
 <p>En rassemblant ces informations, nous pouvons alors calculer le temps total passé à risque par une personne comme étant la différence entre la fin et le début de ce temps :</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>example <span class="sc">|&gt;</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">pt_start =</span> <span class="fu">case_when</span>(</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    born <span class="sc">==</span> <span class="st">"Oui"</span> <span class="sc">~</span> date_born,</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    joined <span class="sc">==</span> <span class="st">"Oui"</span> <span class="sc">~</span> date_joined,</span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">.default =</span> recall_start),</span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">pt_end =</span> <span class="fu">case_when</span>(</span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>    left <span class="sc">==</span> <span class="st">"Oui"</span> <span class="sc">~</span> date_left,</span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>    died <span class="sc">==</span> <span class="st">"Oui"</span> <span class="sc">~</span> date_died,</span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">.default =</span> date_interview),</span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">pt =</span> pt_end <span class="sc">-</span> pt_start)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>example <span class="sc">|&gt;</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">pt_start =</span> <span class="fu">case_when</span>(</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    born <span class="sc">==</span> <span class="st">"Oui"</span> <span class="sc">~</span> date_born,</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    joined <span class="sc">==</span> <span class="st">"Oui"</span> <span class="sc">~</span> date_joined,</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">.default =</span> recall_start),</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">pt_end =</span> <span class="fu">case_when</span>(</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>    left <span class="sc">==</span> <span class="st">"Oui"</span> <span class="sc">~</span> date_left,</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>    died <span class="sc">==</span> <span class="st">"Oui"</span> <span class="sc">~</span> date_died,</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">.default =</span> date_interview),</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">pt =</span> pt_end <span class="sc">-</span> pt_start)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  date_interview born date_born joined date_joined left date_left died
 1     2011-04-07  Non        NA    Oui  2010-12-08  Non        NA  Oui
@@ -650,7 +657,7 @@ Note
 </div>
 <p>Utilisons <code>range()</code> pour examiner les valeurs maximales et minimales de <code>pt</code> :</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(df<span class="sc">$</span>pt)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(df<span class="sc">$</span>pt)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Time differences in days
 [1] NA NA</code></pre>
@@ -662,7 +669,7 @@ Note
 </div>
 <p>La première option réduit artificiellement le dénominateur de nos calculs de mortalité, ce qui entraîne une surestimation de la mortalité. La deuxième option aura l’effet inverse. Pour l’analyse d’aujourd’hui, nous choisirons la première option et laisserons notre code tel quel (valeurs manquantes comprises). Examinons à nouveau notre plage, en ignorant cette fois les valeurs manquantes :</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(df<span class="sc">$</span>pt, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(df<span class="sc">$</span>pt, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Time differences in days
 [1] -141  172</code></pre>
@@ -674,16 +681,16 @@ Note
 </div>
 <p>Pour ces personnes, au lieu de prendre la différence (entre la fin et le début du temps de risque), nous devons calculer deux tranches de temps (avant leur départ et après leur retour), puis les additionner. Voici comment procéder :</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">pt =</span> <span class="fu">case_when</span>(</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>    joined_date <span class="sc">&gt;</span> left_date <span class="sc">&amp;</span> born <span class="sc">==</span> <span class="st">"Oui"</span> <span class="sc">~</span> (left_date <span class="sc">-</span> born_date) <span class="sc">+</span> (interview_date <span class="sc">-</span> joined_date),</span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>    joined_date <span class="sc">&gt;</span> left_date <span class="sc">~</span> (left_date <span class="sc">-</span> recall_start) <span class="sc">+</span> (interview_date <span class="sc">-</span> joined_date),</span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">.default =</span> pt</span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(tmp<span class="sc">$</span>pt, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">pt =</span> <span class="fu">case_when</span>(</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>    joined_date <span class="sc">&gt;</span> left_date <span class="sc">&amp;</span> born <span class="sc">==</span> <span class="st">"Oui"</span> <span class="sc">~</span> (left_date <span class="sc">-</span> born_date) <span class="sc">+</span> (interview_date <span class="sc">-</span> joined_date),</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>    joined_date <span class="sc">&gt;</span> left_date <span class="sc">~</span> (left_date <span class="sc">-</span> recall_start) <span class="sc">+</span> (interview_date <span class="sc">-</span> joined_date),</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">.default =</span> pt</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(tmp<span class="sc">$</span>pt, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Time differences in days
 [1]   0 172</code></pre>
@@ -718,7 +725,7 @@ Note
 </section><section id="calculs-de-mortalité-1" class="level3"><h3 class="anchored" data-anchor-id="calculs-de-mortalité-1">Calculs de mortalité</h3>
 <p>Nous sommes (enfin) prêts à calculer les taux de mortalité. Nous pourrions effectuer un calcul de base directement à partir du nombre total de décès et du temps cumulé passé à risque :</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(df<span class="sc">$</span>died <span class="sc">==</span> <span class="st">"Oui"</span>) <span class="sc">/</span> <span class="fu">sum</span>(df<span class="sc">$</span>pt, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">*</span> <span class="dv">10000</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(df<span class="sc">$</span>died <span class="sc">==</span> <span class="st">"Oui"</span>) <span class="sc">/</span> <span class="fu">sum</span>(df<span class="sc">$</span>pt, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">*</span> <span class="dv">10000</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.5405712</code></pre>
 </div>
@@ -741,10 +748,10 @@ Note
 </ol>
 <p>En principe, chacun de nos clusters aurait dû compter 32 ménages. Dans la pratique, la taille réelle des clusters a pu s’écarter dans certains cas. Nous pouvons utiliser la fonction <code>n_distinct()</code> dans <code>summarize()</code> pour ajouter une colonne avec la taille réelle du cluster associé à chaque individu :</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">.by =</span> clst_id,</span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">hh_count =</span> <span class="fu">n_distinct</span>(hh)) <span class="sc">|&gt;</span></span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">.by =</span> clst_id,</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">hh_count =</span> <span class="fu">n_distinct</span>(hh)) <span class="sc">|&gt;</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  clst_id hh_count
 1       1       32
@@ -756,7 +763,7 @@ Note
 </div>
 </div>
 <div class="write">
-<p>Créez une nouvelle section de votre code intitulée ‘Calculer la mortalité’. Écrivez un tuyau qui utilise l’instruction summarize ci-dessus pour calculer le nombre de ménages observés par cluster, puis utilisez <code>mutate()</code> pour ajouter les colonnes <code>weight</code> et <code>pop</code> contenant respectivement les poids et la taille totale de la population (en 2010, celle-ci était de 228 425 personnes). Stockez la sortie de ce tuyau dans un objet appelé <code>df_wt</code>. La tête de <code>df_wt</code> devrait ressembler à ceci :</p>
+<p>Créez une nouvelle section de votre code intitulée ‘Calculer la mortalité’. Écrivez une pipeline qui utilise l’instruction summarize ci-dessus pour calculer le nombre de ménages observés par cluster, puis utilisez <code>mutate()</code> pour ajouter les colonnes <code>weight</code> et <code>pop</code> contenant respectivement les poids et la taille totale de la population (en 2010, celle-ci était de 228 425 personnes). Stockez la sortie de ce pipeline dans un objet appelé <code>df_wt</code>. La tête de <code>df_wt</code> devrait ressembler à ceci :</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>  clst_id hh_count   weight    pop
@@ -802,29 +809,38 @@ Note
 </div>
 <p>Pour que <code>{srvyr}</code> utilise nos variables nouvellement ajoutées et effectue des calculs, nous devons créer un ‘objet d’enquête’. Il s’agit d’une classe spéciale de dataframe spécifique à <code>{srvyr}</code> et créée à l’aide de la fonction <code>as_survey_design()</code> :</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_survey_design</span>(</span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">ids =</span> clst_id,</span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">wt =</span> weight,</span>
-<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">fpc =</span> pop</span>
-<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_survey_design</span>(</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">ids =</span> clst_id,</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">wt =</span> weight,</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">fpc =</span> pop</span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="look">
 <p>Essayez d’exécuter le code ci-dessus. Quelle est la classe de <code>tmp</code> ? Cet objet se comporte-t-il comme un cadre de données normal ? Essayez d’effectuer quelques manipulations de base, par exemple :</p>
 <ul>
-<li>Extrayez les données de la colonne ‘age’</li>
+<li>Extrayez les données de la colonne <code>age</code>
+</li>
 <li>Filtrez pour ne voir que les personnes décédées</li>
 </ul>
 </div>
 <p>Comme vous pouvez le constater, une fois que nous avons appliqué <code>as_survey_design()</code>, nous n’avons plus de dataframe normal. Nous devons donc <strong>stocker son résultat dans un objet séparé</strong>, par exemple <code>tmp</code> ou <code>df_srvy</code>. Cela garantit que <code>df</code> reste un dataframe standard disponible pour d’autres calculs, visualisations, etc.</p>
 <p><code>{srvyr}</code> offre un certain nombre de fonctions permettant de calculer des indicateurs à partir des données d’enquête, la plupart du temps utilisées <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="En effet, ces indicateurs impliquent généralement une **agrégation** des données.">à l’intérieur d’une fonction <code>summarize()</code></span>. Dans notre cas, nous utiliserons la fonction <code>survey_ratio()</code> pour calculer les taux de mortalité bruts et spécifiques. La syntaxe de base de <code>survey_ratio()</code> est assez simple. Par exemple, nous pouvons utiliser ce qui suit pour calculer le taux de mortalité brut :</p>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 4
-    cmr cmr_low cmr_upp cmr_deff
-  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;
-1 0.531   0.405   0.656     2.28</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as_survey_design</span>(</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="at">ids =</span> clst_id,</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="at">wt =</span> weight,</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a><span class="at">fpc =</span> pop) <span class="sc">|&gt;</span></span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(</span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a><span class="at">cmr =</span> <span class="fu">survey_ratio</span>(</span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a><span class="at">numerator =</span> (died <span class="sc">==</span> <span class="st">"Oui"</span>) <span class="sc">*</span> <span class="dv">10000</span>,</span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a><span class="at">denominator =</span> pt,</span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a><span class="at">vartype =</span> <span class="st">"ci"</span>,</span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a><span class="at">deff =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a><span class="at">na.rm =</span> <span class="cn">TRUE</span></span>
+<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>C’est assez simple, mais analysons les arguments :</p>
 <ul>

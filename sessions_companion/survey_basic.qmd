@@ -38,7 +38,6 @@ This session assumes you have completed the basic learning pathway for R and are
 - Import data
 - Perform basic cleaning using `case_when()`
 - Aggregate data using `count()` and `summarize()`
-- Produce tables using `gt()`
 
 If you need to revisit or learn any of these topics, please refer to the [core sessions of the learning pathway]('https://epicentre-msf.github.io/repicentre/pathway.html').
 
@@ -78,7 +77,8 @@ In your script (`main.R`), add an appropriate header for the file and create a s
 
 - `here`
 - `rio`
-- `gt`
+- `dplyr`
+- `lubridate`
 - `srvyr`
 
 Then create a new section called `Import` and use `rio` to import the second sheet of your dataset into an object called `df_raw`. We don't need all of the columns of this data, use `select()` to select only the following:
@@ -271,6 +271,7 @@ Use `filter()` to check for instances of people who joined the family after they
 The head of your output should look like this:
 ```{r}
 #| echo: false
+#| eval: true
 df_raw |>
   filter(died_date < joined_date)
 ```
@@ -850,6 +851,7 @@ tmp <- df |>
     wt = weight,
     fpc = pop
   )
+
 ```
 
 ::: {.look}
@@ -864,8 +866,8 @@ As you can see, once we apply `as_survey_design()`, we don't have a normal dataf
 `{srvyr}` offers a number of functions to calculate indicators on survey data, most of the time used [inside a `summarize()`]{.hovertip bs-toggle='tooltip' bs-title="This is because these indicators normally involve data **aggregation**."}. In our case, we will use the function `survey_ratio()` to calculate crude and specific mortality rates. The basic syntax of of `survey_ratio()` is pretty simple, for example we can use the following to calculate crude mortality rate:
 
 ```{r}
-#| eval: true
-#| echo: false
+#| eval: false
+#| echo: true
 
 df |>
   as_survey_design(

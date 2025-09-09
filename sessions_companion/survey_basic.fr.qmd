@@ -1,6 +1,6 @@
 ---
-title : Enquête standard sur la mortalité
-description : Session complémentaire au module FETCH de l'enquête
+title : Enquête standardisée sur la mortalité
+description : Session complémentaire au module FETCH d'enquête
 image: ../img/companion/survey/logo.svg
 categories :
   - Compagnon
@@ -38,7 +38,6 @@ Cette session suppose que vous avez suivi le parcours d'apprentissage de base po
 - Importer des données
 - Effectuer un nettoyage de base à l'aide de `case_when()`
 - Agrégation des données à l'aide de `count()` et `summarize()`
-- Production de tableaux à l'aide de `gt()`
 
 Si vous avez besoin de revoir ou d'apprendre l'un de ces sujets, veuillez vous reporter aux [sessions de base du parcours d'apprentissage]("https://epicentre-msf.github.io/repicentre/pathway.html").
 
@@ -66,7 +65,7 @@ downloadthis::download_link(
 Le dossier que vous avez téléchargé contient un script R (presque) vide ainsi que des fichiers Excel pour le formulaire Kobo utilisé dans l'enquête et les données collectées avec celui-ci.
 
 ::: {.look}
-Prenez une minute pour ouvrir et examiner le formulaire Kobo et les données brutes. Que contiennent les différents onglets de l'ensemble de données ?
+Prenez une minute pour ouvrir et examiner le formulaire Kobo et les données brutes. Que contiennent les différents onglets des données brutes ?
 :::
 
 Import
@@ -78,7 +77,8 @@ Dans votre script (`main.R`), ajoutez un en-tête approprié pour le fichier et 
 
 - `here`
 - `rio`
-- `gt`
+- `dplyr`
+- `lubridate`
 - `srvyr`
 
 Créez ensuite une nouvelle section appelée `Import` et utilisez `rio` pour importer la deuxième feuille de votre ensemble de données dans un objet appelé `df_raw`. Nous n'avons pas besoin de toutes les colonnes de ces données, utilisez `select()` pour sélectionner uniquement les suivantes :
@@ -145,13 +145,13 @@ df <- df_raw |>
 ::: {.write}
 Créez une nouvelle section dans votre script intitulée `Nettoyage`. Cette section comprendra un 'pipeline de nettoyage' qui prendra `df_raw`, effectuera plusieurs étapes de nettoyage et stockera le cadre de données résultant dans un objet appelé 'df'. 
 <br><br>
-À l'aide de 'case_when()', créez une nouvelle étape dans votre pipeline de nettoyage qui recode les variables catégorielles de votre ensemble de données. Vous pouvez utiliser le recodage ci-dessus pour 'sex'. Pour les variables 'born', 'joined', 'left' et 'died', utilisez le recodage suivant :
+À l'aide de `case_when()`, créez une nouvelle étape dans votre pipeline de nettoyage qui recode les variables catégorielles de votre ensemble de données. Vous pouvez utiliser le recodage ci-dessus pour `sex`. Pour les variables `born`, `joined`, `left` et `died`, utilisez le recodage suivant :
 
 - 0 = Non
 - 1 = Oui
 - 99 = Inconnu
 
-Pour 'died_cause', utilisez le recodage suivant :
+Pour `died_cause`, utilisez le recodage suivant :
 
 - 1 = Diarrhée
 - 2 = Fièvre
@@ -162,7 +162,7 @@ Pour 'died_cause', utilisez le recodage suivant :
 - 99 = Inconnu
 - NA = N'est pas décédé
 
-La tête de 'df' devrait ressembler à ceci :
+Les premiers rangs de `df` devrait ressembler à ceci :
 
 ```{r}
 #| eval: true
@@ -195,7 +195,7 @@ Maintenant que nous avons des étiquettes plus claires, explorons un peu plus no
 
 - Combien de personnes sont décédées pour chaque cause potentielle ? 
 - Observez les combinaisons de `died`, `left`, `joined` et `born`. Quelles sont les combinaisons les plus courantes ? Cela vous semble-t-il logique ?
-- Qui est le plus touché par le décès, les hommes ou les femmes ? Qui était le plus à risque ?
+- Chez qui y'a-t-il plus de décès, les hommes ou les femmes ? Qui était le plus à risque ?
 
 <br>
 **Astuce**. N'oubliez pas que vous pouvez attribuer plusieurs noms de colonnes à `count()` afin de créer des tableaux de contingence. 
@@ -260,7 +260,7 @@ Un formulaire Kobo bien conçu peut grandement contribuer à garantir la collect
  
 
 ::: {.look}
-Ouvrez le fichier Excel de l'enquête Kobo 'retrospective-mortality_kobo.xlsx' et examinez la colonne 'contrainte'. Quelles sont les contraintes créées dans ce fichier ? Pouvez-vous penser à quelque chose qui n'a pas été pris en compte ?
+Ouvrez le fichier Excel de l'enquête Kobo `retrospective-mortality_kobo.xlsx` et examinez la colonne 'contrainte'. Quelles sont les contraintes créées dans ce fichier ? Pouvez-vous penser à quelque chose qui n'a pas été pris en compte ?
 :::
 
 Malgré toutes les protections que nous avons mises en place dans le processus de collecte, un peu de nettoyage sera toujours nécessaire. Par exemple, bien que nous ayons veillé à ce que toutes les dates se situent dans la période de rappel, nous n'avons pas créé de contrôles pour d'autres relations illogiques entre les dates. Voyons, par exemple, si quelqu'un est né après son décès :
@@ -276,6 +276,7 @@ Utilisez `filter()` pour vérifier s'il y a des cas de personnes qui ont rejoint
 Le début de votre sortie devrait ressembler à ceci :
 ```{r}
 #| echo: false
+#| eval: true
 df_raw |>
 filter(died_date < joined_date)
 ```
@@ -376,7 +377,7 @@ Examinez les trois personnes dans le résultat ci-dessus. Sont-elles toutes prob
 
 Les personnes âgées de 3 et 60 ans ne posent pas de problème, elles ont simplement quitté le foyer puis l'ont réintégré. En revanche, la personne âgée de 25 ans semble avoir quitté le foyer puis être décédée sans jamais y revenir entre-temps. Que devons-nous faire ? Réfléchissons aux raisons pour lesquelles une telle situation pourrait apparaître dans nos données. Il existe deux options principales :
 
-- Peut-être que la personne **a** réintégré le foyer, mais que le participant a oublié de le mentionner
+- Peut-être que la personne **a réintégré** le foyer, mais que le participant a oublié de le mentionner
 - Peut-être que le participant n'a pas bien compris que l'enquête ne prendrait en compte que les décès survenus alors que la personne était **encore membre du foyer** au moment de son décès
 
 Si possible, nous pourrions discuter avec l'enquêteur qui a mené cet entretien afin de déterminer quelle option est la plus probable. En l'absence d'informations supplémentaires, nous devrons probablement opter pour la deuxième option. Si nous faisons cela, nous devrons recoder cette personne comme étant vivante plutôt que décédée, car elle était encore en vie au moment où elle a quitté le ménage.
@@ -811,7 +812,7 @@ df |>
 ```
 
 ::: {.write}
-Créez une nouvelle section de votre code intitulée 'Calculer la mortalité'. Écrivez un tuyau qui utilise l'instruction summarize ci-dessus pour calculer le nombre de ménages observés par cluster, puis utilisez `mutate()` pour ajouter les colonnes `weight` et `pop` contenant respectivement les poids et la taille totale de la population (en 2010, celle-ci était de 228 425 personnes). Stockez la sortie de ce tuyau dans un objet appelé `df_wt`. La tête de `df_wt` devrait ressembler à ceci :
+Créez une nouvelle section de votre code intitulée 'Calculer la mortalité'. Écrivez une pipeline qui utilise l'instruction summarize ci-dessus pour calculer le nombre de ménages observés par cluster, puis utilisez `mutate()` pour ajouter les colonnes `weight` et `pop` contenant respectivement les poids et la taille totale de la population (en 2010, celle-ci était de 228 425 personnes). Stockez la sortie de ce pipeline dans un objet appelé `df_wt`. La tête de `df_wt` devrait ressembler à ceci :
 
 ```{r}
 #| eval: true
@@ -868,7 +869,7 @@ tmp <- df |>
 ::: {.look}
 Essayez d'exécuter le code ci-dessus. Quelle est la classe de `tmp` ? Cet objet se comporte-t-il comme un cadre de données normal ? Essayez d'effectuer quelques manipulations de base, par exemple :
 
-- Extrayez les données de la colonne 'age'
+- Extrayez les données de la colonne `age`
 - Filtrez pour ne voir que les personnes décédées
 :::
 
@@ -877,8 +878,8 @@ Comme vous pouvez le constater, une fois que nous avons appliqué `as_survey_des
 `{srvyr}` offre un certain nombre de fonctions permettant de calculer des indicateurs à partir des données d'enquête, la plupart du temps utilisées [à l'intérieur d'une fonction `summarize()`]{.hovertip bs-toggle="tooltip" bs-title='En effet, ces indicateurs impliquent généralement une **agrégation** des données.'}. Dans notre cas, nous utiliserons la fonction `survey_ratio()` pour calculer les taux de mortalité bruts et spécifiques. La syntaxe de base de `survey_ratio()` est assez simple. Par exemple, nous pouvons utiliser ce qui suit pour calculer le taux de mortalité brut :
 
 ```{r}
-#| eval: true
-#| echo: false
+#| eval: false
+#| echo: true
 
 df |>
 as_survey_design(
@@ -963,8 +964,6 @@ C'est terminé !
 ----------------------------------------------------------------------------------------------------
 Bravo, vous avez maintenant appris à importer, nettoyer et calculer les taux de mortalité à partir de données d'enquête de base sur la mortalité.
  
-
-
 ```{r}
 #| echo: false
 #| eval: true
@@ -977,8 +976,6 @@ downloadthis::download_link(
   self_contained = FALSE
 )
 ```
-
-
 
 Aller plus loin
 ----------------------------------------------------------------------------------------------------
