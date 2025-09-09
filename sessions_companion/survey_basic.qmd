@@ -39,7 +39,7 @@ This session assumes you have completed the basic learning pathway for R and are
 - Perform basic cleaning using `case_when()`
 - Aggregate data using `count()` and `summarize()`
 
-If you need to revisit or learn any of these topics, please refer to the [core sessions of the learning pathway]('https://epicentre-msf.github.io/repicentre/pathway.html').
+If you need to revisit or learn any of these topics, please refer to the [core sessions of the learning pathway](pathway.html).
 
 
 Setup
