@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
-<head>
-<link rel="alternate" hreflang="en" href="https://epicentre-msf.github.io/repicentre/sessions_core/04_data_verbs_conditional.html" />
-<link rel="alternate" hreflang="fr" href="https://epicentre-msf.github.io/repicentre/fr/sessions_core/04_data_verbs_conditional.fr.html" />
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.6.33">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
 <meta name="description" content="Using {dplyr} and conditional logic to filter and recode data">
+
 <title>Data Manipulation, Filtering and Recoding – {repicentre}</title>
 <style>
 code{white-space: pre-wrap;}
@@ -56,13 +56,26 @@ div.sourceCode
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script><script src="../site_libs/quarto-nav/headroom.min.js"></script><script src="../site_libs/clipboard/clipboard.min.js"></script><script src="../site_libs/quarto-search/autocomplete.umd.js"></script><script src="../site_libs/quarto-search/fuse.min.js"></script><script src="../site_libs/quarto-search/quarto-search.js"></script><meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js"></script><script src="../site_libs/quarto-html/popper.min.js"></script><script src="../site_libs/quarto-html/tippy.umd.min.js"></script><script src="../site_libs/quarto-html/anchor.min.js"></script><link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-0626ff4d7a71b55c8707dcae1d04a9b6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-e25cc82807363e79c52e96bc8b7855f1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script><link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-b814d3e578892f16fb585af6f47f426f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-35dfec4a88a4a8552367c65e80eaa027.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-6fbc3b7d0ac83ab8a043646d6c6d94a5.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-ebb886636e44b25a2e4e919ac2fea188.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-59274be23de1086093cf917752a9db10.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-31b7f221592b76be63f349b822ab6d6a.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -89,12 +102,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script src="../site_libs/font-awesome-6.5.2/js/script.js"></script><script type="text/javascript" src="../script.js"></script><link rel="stylesheet" href="../styles.css">
+}</script>
+<script src="../site_libs/font-awesome-6.5.2/js/script.js"></script>
+<script type="text/javascript" src="../script.js"></script>
+
+
+<link rel="stylesheet" href="../styles.css">
 </head>
+
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">{repicentre}</span>
@@ -106,10 +127,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-<li class="nav-item"><div class="dropdown" id="languages-links-parent">
-<button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="languages-button"><i class="bi bi-globe2"></i> English</button><ul class="dropdown-menu" id="languages-links"><li><a class="dropdown-item" href="https://epicentre-msf.github.io/repicentre/fr/sessions_core/04_data_verbs_conditional.html" id="language-link-fr">Français</a></li></ul>
-</div></li>
-<li class="nav-item">
+  <li class="nav-item">
     <a class="nav-link" href="../pathway.html"> 
 <span class="menu-text">Pathway</span></a>
   </li>  
@@ -126,48 +144,50 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
-</div> <!-- /navcollapse -->
+          </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
-    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
    
   <ul>
-<li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
   <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
-  <li>
-<a href="#using-conditional-logic-to-filter-data" id="toc-using-conditional-logic-to-filter-data" class="nav-link" data-scroll-target="#using-conditional-logic-to-filter-data">Using Conditional Logic to Filter Data</a>
+  <li><a href="#using-conditional-logic-to-filter-data" id="toc-using-conditional-logic-to-filter-data" class="nav-link" data-scroll-target="#using-conditional-logic-to-filter-data">Using Conditional Logic to Filter Data</a>
   <ul class="collapse">
-<li><a href="#this-equals-that" id="toc-this-equals-that" class="nav-link" data-scroll-target="#this-equals-that">This Equals That</a></li>
+  <li><a href="#this-equals-that" id="toc-this-equals-that" class="nav-link" data-scroll-target="#this-equals-that">This Equals That</a></li>
   <li><a href="#this-does-not-equal-that" id="toc-this-does-not-equal-that" class="nav-link" data-scroll-target="#this-does-not-equal-that">This Does Not Equal That</a></li>
   <li><a href="#greater-than-less-than" id="toc-greater-than-less-than" class="nav-link" data-scroll-target="#greater-than-less-than">Greater Than / Less Than</a></li>
   <li><a href="#filters-with-multiple-conditions" id="toc-filters-with-multiple-conditions" class="nav-link" data-scroll-target="#filters-with-multiple-conditions">Filters with Multiple Conditions</a></li>
   <li><a href="#sec-logic-statements" id="toc-sec-logic-statements" class="nav-link" data-scroll-target="#sec-logic-statements">Summary of Basic Logic Statements</a></li>
-  </ul>
-</li>
-  <li>
-<a href="#recoding-with-case_when" id="toc-recoding-with-case_when" class="nav-link" data-scroll-target="#recoding-with-case_when">Recoding with <code>case_when()</code></a>
+  </ul></li>
+  <li><a href="#recoding-with-case_when" id="toc-recoding-with-case_when" class="nav-link" data-scroll-target="#recoding-with-case_when">Recoding with <code>case_when()</code></a>
   <ul class="collapse">
-<li><a href="#the-in-operator" id="toc-the-in-operator" class="nav-link" data-scroll-target="#the-in-operator">The %in% operator</a></li>
-  </ul>
-</li>
+  <li><a href="#the-in-operator" id="toc-the-in-operator" class="nav-link" data-scroll-target="#the-in-operator">The %in% operator</a></li>
+  </ul></li>
   <li><a href="#a-last-bit-of-cleanup" id="toc-a-last-bit-of-cleanup" class="nav-link" data-scroll-target="#a-last-bit-of-cleanup">A Last Bit of Cleanup</a></li>
   <li><a href="#done" id="toc-done" class="nav-link" data-scroll-target="#done">Done!</a></li>
-  <li>
-<a href="#going-further" id="toc-going-further" class="nav-link" data-scroll-target="#going-further">Going Further</a>
+  <li><a href="#going-further" id="toc-going-further" class="nav-link" data-scroll-target="#going-further">Going Further</a>
   <ul class="collapse">
-<li><a href="#extra-exercises" id="toc-extra-exercises" class="nav-link" data-scroll-target="#extra-exercises">Extra Exercises</a></li>
+  <li><a href="#extra-exercises" id="toc-extra-exercises" class="nav-link" data-scroll-target="#extra-exercises">Extra Exercises</a></li>
+  </ul></li>
   </ul>
-</li>
-  </ul></nav>
-</div>
+</nav>
+    </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
 <h1 class="title">Data Manipulation, Filtering and Recoding</h1>
   <div class="quarto-categories">
     <div class="quarto-category">Core</div>
@@ -193,14 +213,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header><section id="objectives" class="level2"><h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
+</header>
+
+
+<section id="objectives" class="level2">
+<h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
 <ul>
 <li>Understand basic conditional logic statements</li>
-<li>Learn how to filter a data frame using <code>filter()</code>
-</li>
-<li>Learn how to recode variables using <code>case_when()</code>
-</li>
-</ul></section><section id="setup" class="level2"><h2 class="anchored" data-anchor-id="setup">Setup</h2>
+<li>Learn how to filter a data frame using <code>filter()</code></li>
+<li>Learn how to recode variables using <code>case_when()</code></li>
+</ul>
+</section>
+<section id="setup" class="level2">
+<h2 class="anchored" data-anchor-id="setup">Setup</h2>
 <p><strong>Dependencies.</strong> This session assumes that you know the basics of data manipulation with <code>{dplyr}</code>. If you need a refresher on this, please review the <a href="../sessions_core/03_data_verbs.html">third session in the learning pathway</a>.</p>
 <div class="setup">
 <p>This session will work with the <strong>raw</strong> Moissala linelist data, which can be downloaded here:</p>
@@ -213,10 +238,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p><br> Make sure this dataset is saved into the appropriate subdirectory of your R project and create a new script called <code>filtering_and_recoding_practice.R</code> in your <code>R</code> directory. Add an appropriate header and load the following packages: <code>{here}</code>, <code>{rio}</code>, and <code>{tidyverse}</code>. <br><br> Finally, add an import section where you use <code>{here}</code> and <code>{rio}</code> to load your data into an object called <code>df_raw</code>.</p>
 </div>
-</section><section id="using-conditional-logic-to-filter-data" class="level2"><h2 class="anchored" data-anchor-id="using-conditional-logic-to-filter-data">Using Conditional Logic to Filter Data</h2>
+</section>
+<section id="using-conditional-logic-to-filter-data" class="level2">
+<h2 class="anchored" data-anchor-id="using-conditional-logic-to-filter-data">Using Conditional Logic to Filter Data</h2>
 <p>In the last session we learned a lot of the core data verbs in <code>{dplyr}</code> for basic manipulation tasks like selecting particular variables of interest and modifying them to better suit our needs. Beyond selecting <strong>variables of interest</strong>, another common task we have as epidemiologists is selecting <strong>observations of interest</strong>; ie: filtering our data to look at particular observations that meet a <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="For example, looking only at hospitalized patients or cases from a particular region.">certain criteria</span>.</p>
 <p>Fortunately, <code>{dplyr}</code> has our back with the conveniently named function, <code>filter()</code>. To understand how to use it, however, we will need to learn a bit about how to construct <strong>conditional logic statements</strong> in R. This will be the focus of our session today.</p>
-<section id="this-equals-that" class="level3"><h3 class="anchored" data-anchor-id="this-equals-that">This Equals That</h3>
+<section id="this-equals-that" class="level3">
+<h3 class="anchored" data-anchor-id="this-equals-that">This Equals That</h3>
 <p>The basic syntax of <code>filter()</code> is pretty simple:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DO NOT RUN (PSEUDO-CODE)</span></span>
@@ -245,7 +273,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Take a look at your output and then take a look at the head of <code>df_raw</code>. Why does <code>df_raw</code> still contain patients who didn’t present with fever?</p>
 </div>
-</section><section id="this-does-not-equal-that" class="level3"><h3 class="anchored" data-anchor-id="this-does-not-equal-that">This Does Not Equal That</h3>
+</section>
+<section id="this-does-not-equal-that" class="level3">
+<h3 class="anchored" data-anchor-id="this-does-not-equal-that">This Does Not Equal That</h3>
 <p>Checking if something is the same is great, but a lot of the time we might have another question in mind. For example, we might want to know how many patients <strong>didn’t recover</strong>, whether this was because they died or because they left against medical advice.</p>
 <p>In this case, instead of writing <code>==</code> we will instead use <code>!=</code>. So, for example if we want to select all observations where patients <strong>didn’t</strong> recover we would write:</p>
 <div class="cell">
@@ -267,7 +297,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p><strong>Hint.</strong> Remember that you can use <code>count()</code> to check what the options were for <code>vacc_status</code>.</p>
 </div>
-</section><section id="greater-than-less-than" class="level3"><h3 class="anchored" data-anchor-id="greater-than-less-than">Greater Than / Less Than</h3>
+</section>
+<section id="greater-than-less-than" class="level3">
+<h3 class="anchored" data-anchor-id="greater-than-less-than">Greater Than / Less Than</h3>
 <p>The other common question we have is whether a value was greater or less than a particular threshold. For example, how many patients were under 5 years old? Here we will use <code>&lt;</code> and <code>&gt;</code> to evaluate whether a variable is <strong>less than</strong> or <strong>greater than</strong> a particular value, respectively.</p>
 <p>For example, to ask how many patients were <strong>less than</strong> <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Checking the number of patients under/over five years old is a common indicator when analysing measles data.">60 months old</span> we can write:</p>
 <div class="cell">
@@ -320,7 +352,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</section><section id="filters-with-multiple-conditions" class="level3"><h3 class="anchored" data-anchor-id="filters-with-multiple-conditions">Filters with Multiple Conditions</h3>
+</section>
+<section id="filters-with-multiple-conditions" class="level3">
+<h3 class="anchored" data-anchor-id="filters-with-multiple-conditions">Filters with Multiple Conditions</h3>
 <p>Want to combine several logic statements in a single filter? Easy. We can create a filter with multiple conditions by simply <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="And by putting it on its own line for good readability.">separating each condition with a comma</span>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DO NOT RUN (PSEUDO-CODE)</span></span>
@@ -347,13 +381,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p><strong>Hint.</strong> This filter has a condition on both <code>hospitalisation</code> status, <code>sub_prefecture</code>, <strong>and</strong> <code>muac</code>.</p>
 </div>
-</section><section id="sec-logic-statements" class="level3"><h3 class="anchored" data-anchor-id="sec-logic-statements">Summary of Basic Logic Statements</h3>
+</section>
+<section id="sec-logic-statements" class="level3">
+<h3 class="anchored" data-anchor-id="sec-logic-statements">Summary of Basic Logic Statements</h3>
 <p>Good job working through a quick tour of logic statements in R! Here is a handy table to help you remember the main logic statements we have learned so far:</p>
 <table class="caption-top table">
-<thead><tr class="header">
+<thead>
+<tr class="header">
 <th style="text-align: left;">Statement</th>
 <th style="text-align: center;">R</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Is A the same as B?</td>
@@ -380,9 +418,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: center;">A &lt;= B</td>
 </tr>
 </tbody>
-</table></section></section><section id="recoding-with-case_when" class="level2"><h2 class="anchored" data-anchor-id="recoding-with-case_when">Recoding with <code>case_when()</code>
-</h2>
-<p>As we have seen, conditional logic statements are incredibly useful when trying to filter our data, but you will find that they have many other uses as well. One of their other major use cases for us as epidemiologists is when we need to <span class="hovertip" data-bs-toggle="tooltip" data-bs-title='Recoding is the process of either standardizing the values of variable (such as making sure "f" and "female" are both coded as "F") or creating standardized groups of variable values (for example age groups).'>recode our data</span>. This is where the <code>{dplyr}</code> function <code>case_when()</code> is here to help us.</p>
+</table>
+</section>
+</section>
+<section id="recoding-with-case_when" class="level2">
+<h2 class="anchored" data-anchor-id="recoding-with-case_when">Recoding with <code>case_when()</code></h2>
+<p>As we have seen, conditional logic statements are incredibly useful when trying to filter our data, but you will find that they have many other uses as well. One of their other major use cases for us as epidemiologists is when we need to <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Recoding is the process of either standardizing the values of variable (such as making sure &quot;f&quot; and &quot;female&quot; are both coded as &quot;F&quot;) or creating standardized groups of variable values (for example age groups).">recode our data</span>. This is where the <code>{dplyr}</code> function <code>case_when()</code> is here to help us.</p>
 <p>The syntax of <code>case_when()</code> is a little more advanced than what we have seen so far, but we will go slowly and break it down. Once you get the hang of it, <code>case_when()</code> will become a very powerful part of your R toolbelt.</p>
 <p>We will almost always use <code>case_when()</code> inside of a <code>mutate()</code>, because we will use it either to recode an existing variable or to create a new one. The basic syntax works like this:</p>
 <div class="cell">
@@ -426,13 +467,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p><strong>Be careful.</strong> The order of your statements is important here. What <code>case_when()</code> will do is go through each statement from top to bottom and assign the first value that is <code>TRUE</code>. So in our above example, <code>case_when()</code> will ask the following questions in sequence:</p>
 <ul>
-<li>Does this patient have SAM (is <code>muac &lt; 110</code>)? <strong>If so</strong>, assign the value <code>"SAM"</code>
-</li>
-<li>
-<strong>If the patient didn’t have SAM</strong>, do they have MAM (is <code>muac &lt; 125</code>)? <strong>If so</strong>, assign the value `“MAM”</li>
-<li>
-<strong>If none of the above conditions were true</strong>, assign the default value <code>"Normal"</code>
-</li>
+<li>Does this patient have SAM (is <code>muac &lt; 110</code>)? <strong>If so</strong>, assign the value <code>"SAM"</code></li>
+<li><strong>If the patient didn’t have SAM</strong>, do they have MAM (is <code>muac &lt; 125</code>)? <strong>If so</strong>, assign the value `“MAM”</li>
+<li><strong>If none of the above conditions were true</strong>, assign the default value <code>"Normal"</code></li>
 </ul>
 <div class="write">
 <p>Try reordering the first and second conditions in the above <code>case_when()</code> so that you first check if <code>muac &lt; 125</code>. The head of your new data frame should now look like this:</p>
@@ -477,7 +514,8 @@ Note
 </div>
 </div>
 </div>
-<section id="the-in-operator" class="level3"><h3 class="anchored" data-anchor-id="the-in-operator">The %in% operator</h3>
+<section id="the-in-operator" class="level3">
+<h3 class="anchored" data-anchor-id="the-in-operator">The %in% operator</h3>
 <p>So now we can regroup variables into categories, great. But we can also use <code>case_when()</code> to standardize the values we see in a variable.</p>
 <div class="write">
 <p>Using <code>count()</code> inspect the categorical variables in <code>df_raw</code> to check if any have inconsistencies in their coding.</p>
@@ -527,29 +565,22 @@ Note
 </div>
 </div>
 </div>
-</section></section><section id="a-last-bit-of-cleanup" class="level2"><h2 class="anchored" data-anchor-id="a-last-bit-of-cleanup">A Last Bit of Cleanup</h2>
+</section>
+</section>
+<section id="a-last-bit-of-cleanup" class="level2">
+<h2 class="anchored" data-anchor-id="a-last-bit-of-cleanup">A Last Bit of Cleanup</h2>
 <p>Now that we know how to leverage <code>case_when()</code> and conditional logic (in addition to what we learned in the <a href="../sessions_core/03_data_verbs.html">last session</a>, we can actually put together a decent cleaning pipeline. I hope you kept your code from last time handy…</p>
 <div class="write">
 <p>Using what you have learned above and what you practiced in the last session, create a basic data cleaning pipe that creates a new data frame, <code>df</code>, after doing the following:</p>
 <ul>
-<li>Remove the variables <code>full_name</code> and <code>age_unit</code>
-</li>
+<li>Remove the variables <code>full_name</code> and <code>age_unit</code></li>
 <li>Rename the following variables:
 <ul>
-<li>
-<code>age</code> becomes <code>age_months</code>
-</li>
-<li>
-<code>sub_prefecture</code> becomes <code>prefecture</code>
-</li>
-<li>
-<code>village_commune</code> becomes <code>village</code>
-</li>
-<li>
-<code>health_facility_name</code> becomes <code>facility</code>
-</li>
-</ul>
-</li>
+<li><code>age</code> becomes <code>age_months</code></li>
+<li><code>sub_prefecture</code> becomes <code>prefecture</code></li>
+<li><code>village_commune</code> becomes <code>village</code></li>
+<li><code>health_facility_name</code> becomes <code>facility</code></li>
+</ul></li>
 <li>Add a variable <code>age_years</code> with patient age in years</li>
 <li>Update <code>region</code> and <code>prefecture</code> to use title case</li>
 <li>Update all date columns to use <code>Date</code> type</li>
@@ -621,7 +652,9 @@ Tip
 </div>
 </div>
 </div>
-</section><section id="done" class="level2"><h2 class="anchored" data-anchor-id="done">Done!</h2>
+</section>
+<section id="done" class="level2">
+<h2 class="anchored" data-anchor-id="done">Done!</h2>
 <p>Very well done. You’ve learned how to use basic data verbs, conditional logic, and create a basic data cleaning pipeline.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -630,11 +663,18 @@ Tip
 </a>
 </div>
 </div>
-</section><section id="going-further" class="level2"><h2 class="anchored" data-anchor-id="going-further">Going Further</h2>
-<section id="extra-exercises" class="level3"><h3 class="anchored" data-anchor-id="extra-exercises">Extra Exercises</h3>
+</section>
+<section id="going-further" class="level2">
+<h2 class="anchored" data-anchor-id="going-further">Going Further</h2>
+<section id="extra-exercises" class="level3">
+<h3 class="anchored" data-anchor-id="extra-exercises">Extra Exercises</h3>
 
 
-</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -860,6 +900,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -970,6 +1012,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
+      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
@@ -1200,5 +1243,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-</body>
-</html>
+</body></html>

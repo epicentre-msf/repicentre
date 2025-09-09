@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
-<head>
-<link rel="alternate" hreflang="en" href="https://epicentre-msf.github.io/repicentre/sessions_core/06_epicurves.html" />
-<link rel="alternate" hreflang="fr" href="https://epicentre-msf.github.io/repicentre/fr/sessions_core/06_epicurves.fr.html" />
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.6.33">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
 <meta name="description" content="Learn the basics of buidling plots with ggplot2, and create your first epicurve">
+
 <title>Basic Data Visualization – {repicentre}</title>
 <style>
 code{white-space: pre-wrap;}
@@ -56,13 +56,26 @@ div.sourceCode
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script><script src="../site_libs/quarto-nav/headroom.min.js"></script><script src="../site_libs/clipboard/clipboard.min.js"></script><script src="../site_libs/quarto-search/autocomplete.umd.js"></script><script src="../site_libs/quarto-search/fuse.min.js"></script><script src="../site_libs/quarto-search/quarto-search.js"></script><meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js"></script><script src="../site_libs/quarto-html/popper.min.js"></script><script src="../site_libs/quarto-html/tippy.umd.min.js"></script><script src="../site_libs/quarto-html/anchor.min.js"></script><link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-0626ff4d7a71b55c8707dcae1d04a9b6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-e25cc82807363e79c52e96bc8b7855f1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script><link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-b814d3e578892f16fb585af6f47f426f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-35dfec4a88a4a8552367c65e80eaa027.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-6fbc3b7d0ac83ab8a043646d6c6d94a5.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-ebb886636e44b25a2e4e919ac2fea188.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-59274be23de1086093cf917752a9db10.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-31b7f221592b76be63f349b822ab6d6a.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -89,12 +102,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script src="../site_libs/font-awesome-6.5.2/js/script.js"></script><script type="text/javascript" src="../script.js"></script><link rel="stylesheet" href="../styles.css">
+}</script>
+<script src="../site_libs/font-awesome-6.5.2/js/script.js"></script>
+<script type="text/javascript" src="../script.js"></script>
+
+
+<link rel="stylesheet" href="../styles.css">
 </head>
+
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">{repicentre}</span>
@@ -106,10 +127,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-<li class="nav-item"><div class="dropdown" id="languages-links-parent">
-<button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="languages-button"><i class="bi bi-globe2"></i> English</button><ul class="dropdown-menu" id="languages-links"><li><a class="dropdown-item" href="https://epicentre-msf.github.io/repicentre/fr/sessions_core/06_epicurves.html" id="language-link-fr">Français</a></li></ul>
-</div></li>
-<li class="nav-item">
+  <li class="nav-item">
     <a class="nav-link" href="../pathway.html"> 
 <span class="menu-text">Pathway</span></a>
   </li>  
@@ -126,53 +144,55 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
-</div> <!-- /navcollapse -->
+          </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
-    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
    
   <ul>
-<li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
   <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
   <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
-  <li>
-<a href="#paradigms-of-plotting" id="toc-paradigms-of-plotting" class="nav-link" data-scroll-target="#paradigms-of-plotting">Paradigms of Plotting</a>
+  <li><a href="#paradigms-of-plotting" id="toc-paradigms-of-plotting" class="nav-link" data-scroll-target="#paradigms-of-plotting">Paradigms of Plotting</a>
   <ul class="collapse">
-<li><a href="#breaking-it-down-a-visualization-and-its-parts" id="toc-breaking-it-down-a-visualization-and-its-parts" class="nav-link" data-scroll-target="#breaking-it-down-a-visualization-and-its-parts">Breaking it Down: A Visualization and its Parts</a></li>
+  <li><a href="#breaking-it-down-a-visualization-and-its-parts" id="toc-breaking-it-down-a-visualization-and-its-parts" class="nav-link" data-scroll-target="#breaking-it-down-a-visualization-and-its-parts">Breaking it Down: A Visualization and its Parts</a></li>
   <li><a href="#getting-started-with-ggplot2" id="toc-getting-started-with-ggplot2" class="nav-link" data-scroll-target="#getting-started-with-ggplot2">Getting Started with <code>{ggplot2}</code></a></li>
-  </ul>
-</li>
-  <li>
-<a href="#sec-epicurve-steps" id="toc-sec-epicurve-steps" class="nav-link" data-scroll-target="#sec-epicurve-steps">Building Your First <code>ggplot</code></a>
+  </ul></li>
+  <li><a href="#sec-epicurve-steps" id="toc-sec-epicurve-steps" class="nav-link" data-scroll-target="#sec-epicurve-steps">Building Your First <code>ggplot</code></a>
   <ul class="collapse">
-<li><a href="#preparing-your-data-aggregate-by-day" id="toc-preparing-your-data-aggregate-by-day" class="nav-link" data-scroll-target="#preparing-your-data-aggregate-by-day">Preparing Your Data: Aggregate by Day</a></li>
+  <li><a href="#preparing-your-data-aggregate-by-day" id="toc-preparing-your-data-aggregate-by-day" class="nav-link" data-scroll-target="#preparing-your-data-aggregate-by-day">Preparing Your Data: Aggregate by Day</a></li>
   <li><a href="#set-up-a-canvas-initialize-a-plot" id="toc-set-up-a-canvas-initialize-a-plot" class="nav-link" data-scroll-target="#set-up-a-canvas-initialize-a-plot">Set up a Canvas: Initialize a Plot</a></li>
   <li><a href="#plot-the-bars" id="toc-plot-the-bars" class="nav-link" data-scroll-target="#plot-the-bars">Plot the Bars</a></li>
   <li><a href="#add-some-labels" id="toc-add-some-labels" class="nav-link" data-scroll-target="#add-some-labels">Add Some Labels</a></li>
   <li><a href="#add-a-theme" id="toc-add-a-theme" class="nav-link" data-scroll-target="#add-a-theme">Add a Theme</a></li>
   <li><a href="#save-your-plot" id="toc-save-your-plot" class="nav-link" data-scroll-target="#save-your-plot">Save your plot</a></li>
-  </ul>
-</li>
+  </ul></li>
   <li><a href="#done" id="toc-done" class="nav-link" data-scroll-target="#done">Done!</a></li>
-  <li>
-<a href="#go-further" id="toc-go-further" class="nav-link" data-scroll-target="#go-further">Go Further</a>
+  <li><a href="#go-further" id="toc-go-further" class="nav-link" data-scroll-target="#go-further">Go Further</a>
   <ul class="collapse">
-<li><a href="#extra-exercises" id="toc-extra-exercises" class="nav-link" data-scroll-target="#extra-exercises">Extra Exercises</a></li>
+  <li><a href="#extra-exercises" id="toc-extra-exercises" class="nav-link" data-scroll-target="#extra-exercises">Extra Exercises</a></li>
   <li><a href="#challenge-exercises" id="toc-challenge-exercises" class="nav-link" data-scroll-target="#challenge-exercises">Challenge Exercises</a></li>
   <li><a href="#satellites" id="toc-satellites" class="nav-link" data-scroll-target="#satellites">Satellites</a></li>
-  </ul>
-</li>
+  </ul></li>
   <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">Resources</a></li>
-  </ul></nav>
-</div>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
 <h1 class="title">Basic Data Visualization</h1>
   <div class="quarto-categories">
     <div class="quarto-category">Core</div>
@@ -196,23 +216,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header><section id="objectives" class="level2"><h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
+</header>
+
+
+<section id="objectives" class="level2">
+<h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
 <ul>
-<li>Grasp the very basics of data visualization in R using <code>{ggplot2}</code>
-</li>
+<li>Grasp the very basics of data visualization in R using <code>{ggplot2}</code></li>
 <li>Build a basic epicurve</li>
-</ul></section><section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+</ul>
+</section>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <p>This session is a short introduction to data visualization using the popular <code>{ggplot2}</code> package. Keep in mind that visualization in general and even <code>{ggplot2}</code> in particular are huge subjects that we can’t cover in a single core session. This tutorial is intended as a taster to give you a feel for how plotting is typically done. To do that, we will come back to one of our most beloved epidemiological plots: <strong>the <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="An epicurve is a particular type of plot that shows the number of daily (or weekly) cases observed during an outbreak. These curves are fundamental in epidemiology and often use multicolored (stacked) bars to indicate not only the number of cases but also the proportion that were suspected/confirmed, alive/dead, etc.">epicurve</span></strong>.</p>
 <p>Our final plot will look like this:</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure">
+<p><img src="06_epicurves_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-</section><section id="setup" class="level2"><h2 class="anchored" data-anchor-id="setup">Setup</h2>
+</section>
+<section id="setup" class="level2">
+<h2 class="anchored" data-anchor-id="setup">Setup</h2>
 <p><strong>Dependencies.</strong> This session assumes that you know how to use RStudio that you are able to import data and that you know th basic data handling verbs that we have seen in the core sessions so far. If you need a refresher on either of these topics, we encourage you to review the core sessions in the learning pathway.</p>
 <div class="setup">
 <p>This session will use the clean version of the Moissala measles linelist data.</p>
@@ -225,36 +254,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p><br> Open your RStudio project and create a new script called <code>epicurves.R</code> with appropriate metadata. Load the following packages: <code>{here}</code>, <code>{rio}</code>, <code>{dplyr}</code>, <code>{lubridate}</code>, and <code>{ggplot2}</code>. Add a section to your script called <code># IMPORT DATA</code> where you import the <em>clean course dataset</em> (<code>moissala_linelist_clean_EN.rds</code>).</p>
 </div>
-</section><section id="paradigms-of-plotting" class="level2"><h2 class="anchored" data-anchor-id="paradigms-of-plotting">Paradigms of Plotting</h2>
+</section>
+<section id="paradigms-of-plotting" class="level2">
+<h2 class="anchored" data-anchor-id="paradigms-of-plotting">Paradigms of Plotting</h2>
 <p>In R, and indeed in everything, there are a lot of ways to approach data visualization. Two of the biggest paradigms are :</p>
 <ul>
 <li><p><strong>The All-In-One</strong>: this approach is characterized by having a single, typically somewhat complex, function that handles all aspects of building a plot. Base R as well as a variety of specialized packages tend to use this approach.</p></li>
 <li><p><span class="hovertip" data-bs-toggle="tooltip" data-bs-title="This paradigm is sometimes refered to as a 'Grammar of Graphics' approach as it it was first articulated in a book of the same name."><strong>Layered (or modular)</strong></span>: here, instead of creating a plot with a single function, we will use separate functions to add (or modify) different features of a plot (such as the primary shapes, labels, error bars, themes, etc). This is the strategy used by packages like <code>{ggplot2}</code>, <code>{highcharter}</code>, or <code>{echarts4r}</code>.</p></li>
 </ul>
 <p>An in depth discussion of why one might use one approach versus another is beyond the scope of this course, though we will note that most modern visualization packages tend to use a <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="This is because layered models tend to be more convenient when building complex or highly customized visualizations.">layered model</span>. With that in mind, let’s take a look at the types of layers we are talking about in our “layered” approach.</p>
-<section id="breaking-it-down-a-visualization-and-its-parts" class="level3"><h3 class="anchored" data-anchor-id="breaking-it-down-a-visualization-and-its-parts">Breaking it Down: A Visualization and its Parts</h3>
+<section id="breaking-it-down-a-visualization-and-its-parts" class="level3">
+<h3 class="anchored" data-anchor-id="breaking-it-down-a-visualization-and-its-parts">Breaking it Down: A Visualization and its Parts</h3>
 <p>For the purpose of this tutorial we will talk about only four visualization components (layers):</p>
 <ol type="1">
-<li>
-<strong>Canvas</strong> / <strong>Data</strong>
-</li>
+<li><strong>Canvas</strong> / <strong>Data</strong></li>
 <li><strong>Primary Shapes</strong></li>
 <li><strong>Labels</strong></li>
 <li><strong>Theme</strong></li>
 </ol>
 <p>To illustrate these components, let’s look at a basic schematic of an epicurve:</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="../img/core/06_epicurves/01_theory.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+<figure class="figure">
+<p><img src="../img/core/06_epicurves/01_theory.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
 <p>The most conceptually complex of the above layers is probably <strong>the canvas itself</strong>. Much as an artist needs to buy a canvas and conceptualize what they want to paint before they start painting, so too does a user of <code>{ggplot2}</code>. Creating the canvas is where we tell R that we want to start making a plot and what parts of the data that plot will use. Here, for example, we will tell R <em>“I want to make a plot where the x axis represents dates (or weeks sometimes) and the y axis represents cases”</em>. Once that canvas is set up we can start adding other layers in the same way that an artist would begin adding paint, their signature, or a frame.</p>
 <p>Now, let’s look at the syntax for these layers in <code>{ggplot2}</code> and how to put them together.</p>
-</section><section id="getting-started-with-ggplot2" class="level3"><h3 class="anchored" data-anchor-id="getting-started-with-ggplot2">Getting Started with <code>{ggplot2}</code>
-</h3>
-<p>The method of building a <span class="hovertip" data-bs-toggle="tooltip" data-bs-title='Here we will use the term "a ggplot" to refer to any plot made with the {ggplot2} package.'><code>ggplot</code></span> is relatively simple and takes the form:</p>
+</section>
+<section id="getting-started-with-ggplot2" class="level3">
+<h3 class="anchored" data-anchor-id="getting-started-with-ggplot2">Getting Started with <code>{ggplot2}</code></h3>
+<p>The method of building a <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Here we will use the term &quot;a ggplot&quot; to refer to any plot made with the {ggplot2} package."><code>ggplot</code></span> is relatively simple and takes the form:</p>
 <ol type="1">
-<li>Create a canvas using a duo of functions <code>ggplot(aes(...))</code>
-</li>
+<li>Create a canvas using a duo of functions <code>ggplot(aes(...))</code></li>
 <li>Add things to the canvas</li>
 </ol>
 <p><code>{ggplot2}</code> takes the idea of “adding something to the canvas” very literally: each new layer will be introduced to your plot using the <code>+</code> sign.</p>
@@ -280,7 +311,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>We can update our above schematic of an epicurve with these functions as follows:</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="../img/core/06_epicurves/02_functions.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+<figure class="figure">
+<p><img src="../img/core/06_epicurves/02_functions.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -297,41 +329,42 @@ Note
 </div>
 </div>
 <p>In the next part of the tutorial we will go through each of these steps (layers) individually using our course dataset to make your first epicurve.</p>
-</section></section><section id="sec-epicurve-steps" class="level2"><h2 class="anchored" data-anchor-id="sec-epicurve-steps">Building Your First <code>ggplot</code>
-</h2>
-<section id="preparing-your-data-aggregate-by-day" class="level3"><h3 class="anchored" data-anchor-id="preparing-your-data-aggregate-by-day">Preparing Your Data: Aggregate by Day</h3>
+</section>
+</section>
+<section id="sec-epicurve-steps" class="level2">
+<h2 class="anchored" data-anchor-id="sec-epicurve-steps">Building Your First <code>ggplot</code></h2>
+<section id="preparing-your-data-aggregate-by-day" class="level3">
+<h3 class="anchored" data-anchor-id="preparing-your-data-aggregate-by-day">Preparing Your Data: Aggregate by Day</h3>
 <p>Ultimately we would like to plot an epicurve of <em>daily cases</em>. You may have noticed, our current data is daily, but of course several cases may occur on some days. To plot an epicurve we will need to aggregate data by day. Fortunately, you already learned how to summarize data in previous sessions.</p>
 <div class="write">
 <p>Using <code>count()</code>, create a new dataframe called <code>df_cases</code> that summarizes the total number of cases observed per day. The head of this data frame should look like this:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 2
-  date_onset     n
-  &lt;date&gt;     &lt;int&gt;
-1 2022-08-13     1
-2 2022-08-17     1
-3 2022-08-18     1
-4 2022-08-22     1
-5 2022-08-30     2
-6 2022-09-01     1</code></pre>
+<pre><code>  date_onset n
+1 2022-08-13 1
+2 2022-08-17 1
+3 2022-08-18 1
+4 2022-08-22 1
+5 2022-08-30 2
+6 2022-09-01 1</code></pre>
 </div>
 </div>
 </div>
 <p>Great! Now we are ready to make our epicurve. In the following steps, <em>you</em>’ll be asked to use <code>df_cases</code> to plot a classic epicurve of the <em>number of daily admissions</em>. To demonstrate the functions you’ll be using, <em>I</em> will plot the curve of the number of daily <strong>hospitalizations</strong> as an example. To do that, I’ve built myself another dataframe, <code>df_outcome</code>, which looks like this:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 2
-  date_admission patients
-  &lt;date&gt;            &lt;int&gt;
-1 2022-08-14            1
-2 2022-08-25            1
-3 2022-09-02            1
-4 2022-09-06            1
-5 2022-09-09            1
-6 2022-09-10            1</code></pre>
+<pre><code>  date_admission patients
+1     2022-08-14        1
+2     2022-08-25        1
+3     2022-09-02        1
+4     2022-09-06        1
+5     2022-09-09        1
+6     2022-09-10        1</code></pre>
 </div>
 </div>
-</section><section id="set-up-a-canvas-initialize-a-plot" class="level3"><h3 class="anchored" data-anchor-id="set-up-a-canvas-initialize-a-plot">Set up a Canvas: Initialize a Plot</h3>
+</section>
+<section id="set-up-a-canvas-initialize-a-plot" class="level3">
+<h3 class="anchored" data-anchor-id="set-up-a-canvas-initialize-a-plot">Set up a Canvas: Initialize a Plot</h3>
 <p>The first step is creating your canvas by specifying your dataset and the names of the columns you’d like to visualize. This is done using <code>ggplot(aes(...))</code> with the following syntax:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DO NOT RUN (PSEUD-CODE)</span></span>
@@ -346,14 +379,16 @@ Note
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> patients))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure">
+<p><img src="06_epicurves_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Fabulous, take a look at that big beautiful box of potential. This is our empty canvas. In RStudio this plot should show up in the panel on the bottom right of the screen.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="../img/core/06_epicurves/03_plot_panel.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+<figure class="figure">
+<p><img src="../img/core/06_epicurves/03_plot_panel.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -379,17 +414,19 @@ Note
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure">
+<p><img src="06_epicurves_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Excellent! Now let’s add some bars.</p>
-</section><section id="plot-the-bars" class="level3"><h3 class="anchored" data-anchor-id="plot-the-bars">Plot the Bars</h3>
+</section>
+<section id="plot-the-bars" class="level3">
+<h3 class="anchored" data-anchor-id="plot-the-bars">Plot the Bars</h3>
 <p>Now that we have our canvas, it’s time to add some shapes. In <code>{ggplot2}</code>, the shapes plotted on a figure are called <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="You'll notice in the below examples that the function for all geometries starts with 'geom_'. This is designed to improve human readability and indeed all geometries in {ggplot2} start this way for consistency">geometries</span>. Geometries are the primary visual representation of your data and should feel pretty familiar. A few common types of geometries include:</p>
 <ul>
-<li>
-<span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Including epicurves!">Bar Plots</span> (<code>geom_col()</code> or <code>geom_bar()</code>)</li>
+<li><span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Including epicurves!">Bar Plots</span> (<code>geom_col()</code> or <code>geom_bar()</code>)</li>
 <li>Histograms (<code>geom_hist()</code>)</li>
 <li>Scatterplots (<code>geom_point()</code>)</li>
 <li>Line Plots (<code>geom_line()</code>)</li>
@@ -403,7 +440,8 @@ Note
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure">
+<p><img src="06_epicurves_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -417,7 +455,8 @@ Note
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#2E4573"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure">
+<p><img src="06_epicurves_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -429,7 +468,8 @@ Note
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure">
+<p><img src="06_epicurves_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -448,7 +488,9 @@ Note
 </div>
 </div>
 <p>Looking good. Now it’s time to make our plot just a <em>bit</em> more informative and just a <em>bit</em> more attractive by adding labels and a nicer theme.</p>
-</section><section id="add-some-labels" class="level3"><h3 class="anchored" data-anchor-id="add-some-labels">Add Some Labels</h3>
+</section>
+<section id="add-some-labels" class="level3">
+<h3 class="anchored" data-anchor-id="add-some-labels">Add Some Labels</h3>
 <p>A good plot needs some good labeling; <code>n</code> is hardly an informative axis title. Fortunately, <code>{ggplot2}</code> makes adding labels easy with the function <code>labs()</code>. This function will accept a variety of arguments allowing you to add a variety of label/title elements to your plot, for example:</p>
 <ul>
 <li>Axis Titles (<code>x =</code> and <code>y =</code>)</li>
@@ -466,24 +508,28 @@ Note
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Measles Hospitalizations in Mandoul Region (Chad)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure">
+<p><img src="06_epicurves_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
 </div>
 <div class="write">
-<p>Update your epicurve plot to add some reasonable axis labels and a nice title. <br><strong>Extra Credit!</strong> Try adding a data source using <code>caption</code>.</p>
+<p>Update your epicurve plot to add some reasonable axis labels and a nice title. <br> <strong>Extra Credit!</strong> Try adding a data source using <code>caption</code>.</p>
 </div>
 <p>Your plot might now look like (for example):</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure">
+<p><img src="06_epicurves_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
 </div>
-</section><section id="add-a-theme" class="level3"><h3 class="anchored" data-anchor-id="add-a-theme">Add a Theme</h3>
+</section>
+<section id="add-a-theme" class="level3">
+<h3 class="anchored" data-anchor-id="add-a-theme">Add a Theme</h3>
 <p>If we wanted to, we could stop here if our goal is to produce an informal plot. Ideally, however, it would be nice to use a somewhat more attractive theme and to <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="The text size of default plots is rarely large enough to be used in reports and almost never large enough to be used in presentations.">increase the text size</span>. To do this, we will add one last layer to our plot: a theme layer. Much like how geometries in <code>{ggplot2}</code> all start with <code>geom_</code>, all themes start with <code>theme_</code>. There are several themes available to you and you can check out what they look like on the <a href="https://ggplot2.tidyverse.org/reference/ggtheme.html"><code>{ggplot2}</code> website</a>.</p>
 <p>Today, we will use <code>theme_classic()</code>, which offers a simple but elegant output:</p>
 <div class="cell">
@@ -497,7 +543,8 @@ Note
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure">
+<p><img src="06_epicurves_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -514,22 +561,29 @@ Note
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">17</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure">
+<p><img src="06_epicurves_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>That looks better! Keep in mind that the font size needed will depend on what the plot is going to be used for (i.e. a presentation, an informal review, or a final report). Similarly, the exact theme you will want to use is ultimately a subjective choice. While there are guidelines, data visualization is as much an art as a science.</p>
+<p>That looks better! Keep in mind that the font size needed will depend on what the plot is going to be used for (i.e.&nbsp;a presentation, an informal review, or a final report). Similarly, the exact theme you will want to use is ultimately a subjective choice. While there are guidelines, data visualization is as much an art as a science.</p>
 <div class="write">
 <p>Add one final layer to your plot that adds a theme of your choice with an appropriate <code>base_size</code>.</p>
 </div>
-</section><section id="save-your-plot" class="level3"><h3 class="anchored" data-anchor-id="save-your-plot">Save your plot</h3>
+</section>
+<section id="save-your-plot" class="level3">
+<h3 class="anchored" data-anchor-id="save-your-plot">Save your plot</h3>
 <p>If you would like to save your epicurve, you can click on the “Export” button in the plot panel of RStudio:</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="../img/core/06_epicurves/04_plot_export.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+<figure class="figure">
+<p><img src="../img/core/06_epicurves/04_plot_export.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
-</section></section><section id="done" class="level2"><h2 class="anchored" data-anchor-id="done">Done!</h2>
+</section>
+</section>
+<section id="done" class="level2">
+<h2 class="anchored" data-anchor-id="done">Done!</h2>
 <p>Very well done team! You have build your first epicurve!</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -538,24 +592,43 @@ Note
 </a>
 </div>
 </div>
-</section><section id="go-further" class="level2"><h2 class="anchored" data-anchor-id="go-further">Go Further</h2>
-<section id="extra-exercises" class="level3"><h3 class="anchored" data-anchor-id="extra-exercises">Extra Exercises</h3>
+</section>
+<section id="go-further" class="level2">
+<h2 class="anchored" data-anchor-id="go-further">Go Further</h2>
+<section id="extra-exercises" class="level3">
+<h3 class="anchored" data-anchor-id="extra-exercises">Extra Exercises</h3>
 <ol type="1">
 <li>Use the <code>theme_minimal()</code> on one of your graph, with a base size font of 18.</li>
 <li>Go to <a href="https://r-charts.com/colors/">this site</a>, pick a color and update the color of your bars.</li>
-</ol></section><section id="challenge-exercises" class="level3"><h3 class="anchored" data-anchor-id="challenge-exercises">Challenge Exercises</h3>
+</ol>
+</section>
+<section id="challenge-exercises" class="level3">
+<h3 class="anchored" data-anchor-id="challenge-exercises">Challenge Exercises</h3>
 <ol type="1">
 <li>Instead of aggregating by date, count the number of patients by sub-prefecture. Try to adapt your epicurve code to create a barplot of the number of patients by sub-prefecture.</li>
-</ol></section><section id="satellites" class="level3"><h3 class="anchored" data-anchor-id="satellites">Satellites</h3>
+</ol>
+</section>
+<section id="satellites" class="level3">
+<h3 class="anchored" data-anchor-id="satellites">Satellites</h3>
 <ul>
 <li><a href="../sessions_extra/weekly_epicurves.html">Weekly Epicurves</a></li>
 <li><a href="../sessions_extra/faceting.html">Faceting</a></li>
-</ul></section></section><section id="resources" class="level2"><h2 class="anchored" data-anchor-id="resources">Resources</h2>
+</ul>
+</section>
+</section>
+<section id="resources" class="level2">
+<h2 class="anchored" data-anchor-id="resources">Resources</h2>
 <ul>
 <li>A <a href="https://ggplot2-book.org/">full book</a> on using <code>{ggplot2}</code><br>
 </li>
 <li>A <a href="https://www.epirhandbook.com/en/new_pages/epicurves.html">whole chapter</a> on epicurves</li>
-</ul></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -781,6 +854,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -891,6 +966,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
+      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
@@ -1121,5 +1197,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-</body>
-</html>
+</body></html>

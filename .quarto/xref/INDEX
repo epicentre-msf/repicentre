@@ -136,5 +136,17 @@
   },
   "sessions_extra/surveillance_companion.fr.qmd": {
     "surveillance_companion.fr.html": "b89bc49a"
+  },
+  "sessions_companion/surveillance_companion.fr.qmd": {
+    "surveillance_companion.fr.html": "a267d6c4"
+  },
+  "sessions_companion/survey_basic.qmd": {
+    "survey_basic.html": "7a520f5f"
+  },
+  "sessions_companion/surveillance_companion.qmd": {
+    "surveillance_companion.html": "f6f14026"
+  },
+  "sessions_companion/survey_basic.fr.qmd": {
+    "survey_basic.fr.html": "0b43a81b"
   }
 }
