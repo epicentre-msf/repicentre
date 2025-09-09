@@ -39,7 +39,7 @@ Cette session suppose que vous avez suivi le parcours d'apprentissage de base po
 - Effectuer un nettoyage de base à l'aide de `case_when()`
 - Agrégation des données à l'aide de `count()` et `summarize()`
 
-Si vous avez besoin de revoir ou d'apprendre l'un de ces sujets, veuillez vous reporter aux [sessions de base du parcours d'apprentissage]("https://epicentre-msf.github.io/repicentre/pathway.html").
+Si vous avez besoin de revoir ou d'apprendre l'un de ces sujets, veuillez vous reporter aux [sessions de base du parcours d'apprentissage](pathway.html).
 
 
 Configuration
