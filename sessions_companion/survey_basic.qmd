@@ -958,7 +958,7 @@ Well done, you have now worked through how to import, clean, and calculate morta
 #| eval: true
 
 downloadthis::download_link(
-  link = 'https://github.com/epicentre-msf/repicentre/blob/main/sessions_companion/survey_solutions.R',
+  link = 'https://github.com/epicentre-msf/repicentre/blob/main/solutions/companion/survey_solutions.R',
   button_label = 'Solution File',
   has_icon = TRUE,
   icon = "fa fa-save",

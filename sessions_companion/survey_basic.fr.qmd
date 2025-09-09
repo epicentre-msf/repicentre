@@ -970,11 +970,11 @@ Bravo, vous avez maintenant appris à importer, nettoyer et calculer les taux de
 #| eval: true
 
 downloadthis::download_link(
-link = "https://github.com/epicentre-msf/repicentre/blob/main/sessions_companion/survey_solutions.R",
-button_label = 'Solutions',
-has_icon = TRUE,
-icon = 'fa fa-save',
-self_contained = FALSE
+  link = 'https://github.com/epicentre-msf/repicentre/blob/main/solutions/companion/survey_solutions.R',
+  button_label = 'Solutions',
+  has_icon = TRUE,
+  icon = 'fa fa-save',
+  self_contained = FALSE
 )
 ```
 
