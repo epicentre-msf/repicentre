@@ -856,12 +856,21 @@ Note
 <p>As you can see, once we apply <code>as_survey_design()</code>, we don’t have a normal dataframe anymore. So, we should <strong>store its output in a separate object</strong>, for example <code>tmp</code> or <code>df_srvy</code>. This ensures that <code>df</code> itself remains a standard dataframe available for other calculations, visualizations, etc.</p>
 <p><code>{srvyr}</code> offers a number of functions to calculate indicators on survey data, most of the time used <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="This is because these indicators normally involve data **aggregation**.">inside a <code>summarize()</code></span>. In our case, we will use the function <code>survey_ratio()</code> to calculate crude and specific mortality rates. The basic syntax of of <code>survey_ratio()</code> is pretty simple, for example we can use the following to calculate crude mortality rate:</p>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 4
-    cmr cmr_low cmr_upp cmr_deff
-  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;
-1 0.531   0.405   0.656     2.28</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_survey_design</span>(</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">ids =</span> clst_id,</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">wt =</span> weight,</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">fpc =</span> pop</span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">cmr =</span> <span class="fu">survey_ratio</span>(</span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">numerator =</span> (died <span class="sc">==</span> <span class="st">'Yes'</span>) <span class="sc">*</span> <span class="dv">10000</span>,</span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">denominator =</span> pt,</span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">vartype =</span> <span class="st">'ci'</span>,</span>
+<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">deff =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">na.rm =</span> <span class="cn">TRUE</span></span>
+<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Simple enough but let’s break down the arguments:</p>
 <ul>

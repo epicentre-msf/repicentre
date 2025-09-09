@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Session complémentaire au module FETCH de l’enquête">
+<meta name="description" content="Session complémentaire au module FETCH d’enquête">
 
-<title>Enquête standard sur la mortalité – {repicentre}</title>
+<title>Enquête standardisée sur la mortalité – {repicentre}</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -189,7 +189,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Enquête standard sur la mortalité</h1>
+<h1 class="title">Enquête standardisée sur la mortalité</h1>
   <div class="quarto-categories">
     <div class="quarto-category">Compagnon</div>
     <div class="quarto-category">Analyse</div>
@@ -198,7 +198,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div>
   <div class="description">
-    Session complémentaire au module FETCH de l’enquête
+    Session complémentaire au module FETCH d’enquête
   </div>
 </div>
 
@@ -248,7 +248,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Le dossier que vous avez téléchargé contient un script R (presque) vide ainsi que des fichiers Excel pour le formulaire Kobo utilisé dans l’enquête et les données collectées avec celui-ci.</p>
 <div class="look">
-<p>Prenez une minute pour ouvrir et examiner le formulaire Kobo et les données brutes. Que contiennent les différents onglets de l’ensemble de données ?</p>
+<p>Prenez une minute pour ouvrir et examiner le formulaire Kobo et les données brutes. Que contiennent les différents onglets des données brutes ?</p>
 </div>
 </section>
 <section id="import" class="level2">
@@ -261,6 +261,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>rio</code></li>
 <li><code>gt</code></li>
 <li><code>srvyr</code></li>
+<li><code>tidyverse</code></li>
 </ul>
 <p>Créez ensuite une nouvelle section appelée <code>Import</code> et utilisez <code>rio</code> pour importer la deuxième feuille de votre ensemble de données dans un objet appelé <code>df_raw</code>. Nous n’avons pas besoin de toutes les colonnes de ces données, utilisez <code>select()</code> pour sélectionner uniquement les suivantes :</p>
 <ul>
@@ -315,7 +316,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="st">  )</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="write">
-<p>Créez une nouvelle section dans votre script intitulée <code>Nettoyage</code>. Cette section comprendra un ‘pipeline de nettoyage’ qui prendra <code>df_raw</code>, effectuera plusieurs étapes de nettoyage et stockera le cadre de données résultant dans un objet appelé ‘df’. <br><br> À l’aide de ‘case_when()’, créez une nouvelle étape dans votre pipeline de nettoyage qui recode les variables catégorielles de votre ensemble de données. Vous pouvez utiliser le recodage ci-dessus pour ‘sex’. Pour les variables ‘born’, ‘joined’, ‘left’ et ‘died’, utilisez le recodage suivant :</p>
+<p>Créez une nouvelle section dans votre script intitulée <code>Nettoyage</code>. Cette section comprendra un ‘pipeline de nettoyage’ qui prendra <code>df_raw</code>, effectuera plusieurs étapes de nettoyage et stockera le cadre de données résultant dans un objet appelé ‘df’. <br><br> À l’aide de <code>case_when()</code>, créez une nouvelle étape dans votre pipeline de nettoyage qui recode les variables catégorielles de votre ensemble de données. Vous pouvez utiliser le recodage ci-dessus pour <code>sex</code>. Pour les variables <code>born</code>, <code>joined</code>, <code>left</code> et <code>died</code>, utilisez le recodage suivant :</p>
 <ul>
 <li>0 = Non</li>
 <li>1 = Oui</li>
