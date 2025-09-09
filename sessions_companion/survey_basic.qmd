@@ -38,7 +38,6 @@ This session assumes you have completed the basic learning pathway for R and are
 - Import data
 - Perform basic cleaning using `case_when()`
 - Aggregate data using `count()` and `summarize()`
-- Produce tables using `gt()`
 
 If you need to revisit or learn any of these topics, please refer to the [core sessions of the learning pathway]('https://epicentre-msf.github.io/repicentre/pathway.html').
 
@@ -78,9 +77,9 @@ In your script (`main.R`), add an appropriate header for the file and create a s
 
 - `here`
 - `rio`
-- `gt`
+- `dplyr`
+- `lubridate`
 - `srvyr`
-- `tidyverse`
 
 Then create a new section called `Import` and use `rio` to import the second sheet of your dataset into an object called `df_raw`. We don't need all of the columns of this data, use `select()` to select only the following:
 

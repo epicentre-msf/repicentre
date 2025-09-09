@@ -38,7 +38,6 @@ Cette session suppose que vous avez suivi le parcours d'apprentissage de base po
 - Importer des données
 - Effectuer un nettoyage de base à l'aide de `case_when()`
 - Agrégation des données à l'aide de `count()` et `summarize()`
-- Production de tableaux à l'aide de `gt()`
 
 Si vous avez besoin de revoir ou d'apprendre l'un de ces sujets, veuillez vous reporter aux [sessions de base du parcours d'apprentissage]("https://epicentre-msf.github.io/repicentre/pathway.html").
 
@@ -78,9 +77,9 @@ Dans votre script (`main.R`), ajoutez un en-tête approprié pour le fichier et 
 
 - `here`
 - `rio`
-- `gt`
+- `dplyr`
+- `lubridate`
 - `srvyr`
-- `tidyverse`
 
 Créez ensuite une nouvelle section appelée `Import` et utilisez `rio` pour importer la deuxième feuille de votre ensemble de données dans un objet appelé `df_raw`. Nous n'avons pas besoin de toutes les colonnes de ces données, utilisez `select()` pour sélectionner uniquement les suivantes :
 
