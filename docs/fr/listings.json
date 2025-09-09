@@ -3,6 +3,7 @@
     "listing": "/explore.html",
     "items": [
       "/sessions_extra/weekly_epicurves.html",
+      "/sessions_companion/survey_basic.html",
       "/sessions_extra/data_exploration.html",
       "/sessions_extra/faceting.html",
       "/sessions_core/02_import_data.html",

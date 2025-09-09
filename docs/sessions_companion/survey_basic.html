@@ -1,0 +1,1438 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<link rel="alternate" hreflang="en" href="https://epicentre-msf.github.io/repicentre/sessions_companion/survey_basic.html" />
+<link rel="alternate" hreflang="fr" href="https://epicentre-msf.github.io/repicentre/fr/sessions_companion/survey_basic.fr.html" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.39">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="description" content="Companion session to the survey FETCH module">
+<title>Standard Mortality Survey – {repicentre}</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script><script src="../site_libs/quarto-nav/headroom.min.js"></script><script src="../site_libs/clipboard/clipboard.min.js"></script><script src="../site_libs/quarto-search/autocomplete.umd.js"></script><script src="../site_libs/quarto-search/fuse.min.js"></script><script src="../site_libs/quarto-search/quarto-search.js"></script><meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script><script src="../site_libs/quarto-html/popper.min.js"></script><script src="../site_libs/quarto-html/tippy.umd.min.js"></script><script src="../site_libs/quarto-html/anchor.min.js"></script><link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-0626ff4d7a71b55c8707dcae1d04a9b6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-e25cc82807363e79c52e96bc8b7855f1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script><link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-b814d3e578892f16fb585af6f47f426f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-35dfec4a88a4a8552367c65e80eaa027.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script><script src="../site_libs/font-awesome-6.5.2/js/script.js"></script><script type="text/javascript" src="../script.js"></script><link rel="stylesheet" href="../styles.css">
+</head>
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">{repicentre}</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+<li class="nav-item"><div class="dropdown" id="languages-links-parent">
+<button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="languages-button"><i class="bi bi-globe2"></i> English</button><ul class="dropdown-menu" id="languages-links"><li><a class="dropdown-item" href="https://epicentre-msf.github.io/repicentre/fr/sessions_companion/survey_basic.html" id="language-link-fr">Français</a></li></ul>
+</div></li>
+<li class="nav-item">
+    <a class="nav-link" href="../pathway.html"> 
+<span class="menu-text">Pathway</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../explore.html"> 
+<span class="menu-text">Explore</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../resources.html"> 
+<span class="menu-text">Resources</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+</div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+   
+  <ul>
+<li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
+  <li><a href="#import" id="toc-import" class="nav-link" data-scroll-target="#import">Import</a></li>
+  <li><a href="#first-look-and-recoding" id="toc-first-look-and-recoding" class="nav-link" data-scroll-target="#first-look-and-recoding">First Look (and Recoding)</a></li>
+  <li>
+<a href="#cleaning" id="toc-cleaning" class="nav-link" data-scroll-target="#cleaning">Cleaning</a>
+  <ul class="collapse">
+<li><a href="#dates-as-simple-dates" id="toc-dates-as-simple-dates" class="nav-link" data-scroll-target="#dates-as-simple-dates">Dates as (Simple) Dates</a></li>
+  <li><a href="#fixing-logical-issues" id="toc-fixing-logical-issues" class="nav-link" data-scroll-target="#fixing-logical-issues">Fixing Logical Issues</a></li>
+  </ul>
+</li>
+  <li><a href="#joining-household-level-data" id="toc-joining-household-level-data" class="nav-link" data-scroll-target="#joining-household-level-data">Joining Household Level Data</a></li>
+  <li>
+<a href="#mortality-calculations" id="toc-mortality-calculations" class="nav-link" data-scroll-target="#mortality-calculations">Mortality Calculations</a>
+  <ul class="collapse">
+<li><a href="#person-time-at-risk" id="toc-person-time-at-risk" class="nav-link" data-scroll-target="#person-time-at-risk">Person Time at Risk</a></li>
+  <li><a href="#mortality-calculations-1" id="toc-mortality-calculations-1" class="nav-link" data-scroll-target="#mortality-calculations-1">Mortality Calculations</a></li>
+  </ul>
+</li>
+  <li><a href="#done" id="toc-done" class="nav-link" data-scroll-target="#done">Done!</a></li>
+  <li>
+<a href="#going-further" id="toc-going-further" class="nav-link" data-scroll-target="#going-further">Going Further</a>
+  <ul class="collapse">
+<li><a href="#extra-exercises" id="toc-extra-exercises" class="nav-link" data-scroll-target="#extra-exercises">Extra Exercises</a></li>
+  </ul>
+</li>
+  </ul></nav>
+</div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title">Standard Mortality Survey</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Companion</div>
+    <div class="quarto-category">Analysis</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Companion session to the survey FETCH module
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header><section id="objectives" class="level2"><h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
+<ul>
+<li>Calculate person time at risk</li>
+<li>Use <code>{srvyr}</code> to estimate mortality rates</li>
+</ul></section><section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>This session focuses on how to do a basic analysis of data from a retrospective mortality survey using the MSF standard mortality survey protocol. We will be using a case study wherein a survey was conducted following a cholera epidemic in Haiti in 2010.</p>
+<p>This session assumes you have completed the basic learning pathway for R and are able to:</p>
+<ul>
+<li>Import data</li>
+<li>Perform basic cleaning using <code>case_when()</code>
+</li>
+<li>Aggregate data using <code>count()</code> and <code>summarize()</code>
+</li>
+<li>Produce tables using <code>gt()</code>
+</li>
+</ul>
+<p>If you need to revisit or learn any of these topics, please refer to the <a href="'https://epicentre-msf.github.io/repicentre/pathway.html'">core sessions of the learning pathway</a>.</p>
+</section><section id="setup" class="level2"><h2 class="anchored" data-anchor-id="setup">Setup</h2>
+<div class="setup">
+<p>This session uses a specific case study. Download and unzip the associated folder then open the <code>main.R</code> script from the <code>R</code> folder:</p>
+<div class="cell">
+<div class="cell-output-display">
+<a href="https://github.com/epicentre-msf/repicentre/raw/main/data/mod_survey/mortality_survey.zip">
+<button class="btn btn-default"><i class="fa fa-save"></i> Download</button>
+</a>
+</div>
+</div>
+</div>
+<p>The folder you have downloaded contains a (mostly) empty R script as well as Excel files for the Kobo form used in the survey and the data collected with it.</p>
+<div class="look">
+<p>Take a minute to open and investigate both the Kobo form and the raw data. What is contained in the different tabs of the dataset?</p>
+</div>
+</section><section id="import" class="level2"><h2 class="anchored" data-anchor-id="import">Import</h2>
+<p>Our dataset has two tabs, the first contains household level data and the second contains individual data. For now, we are most concerned with data about the individuals but we will ultimately need both. Let’s load it all into R (as well as the packages we will be using in today’s session).</p>
+<div class="write">
+<p>In your script (<code>main.R</code>), add an appropriate header for the file and create a section that loads the following packages:</p>
+<ul>
+<li><code>here</code></li>
+<li><code>rio</code></li>
+<li><code>gt</code></li>
+<li><code>srvyr</code></li>
+</ul>
+<p>Then create a new section called <code>Import</code> and use <code>rio</code> to import the second sheet of your dataset into an object called <code>df_raw</code>. We don’t need all of the columns of this data, use <code>select()</code> to select only the following:</p>
+<ul>
+<li><code>sex</code></li>
+<li><code>age</code></li>
+<li><code>born</code></li>
+<li><code>born_date</code></li>
+<li><code>joined</code></li>
+<li><code>joined_date</code></li>
+<li><code>left</code></li>
+<li><code>died</code></li>
+<li><code>died_date</code></li>
+<li><code>died_cause</code></li>
+<li>
+<code>_parent_index</code> renamed as <code>hh</code>
+</li>
+</ul>
+<p>Then create a second object called <code>df_hh</code> containing the first sheet of your dataset keeping only the following columns:</p>
+<ul>
+<li><code>interview_date</code></li>
+<li><code>clst_id</code></li>
+<li>
+<code>_index</code> renamed as <code>hh</code>
+</li>
+<li><code>present</code></li>
+<li><code>consent</code></li>
+</ul>
+<p><strong>Hint</strong>. Remember that when using <code>select()</code> you can quickly rename something by using an <code>=</code>, for example: <code>hh = '_parent_index'</code>.</p>
+</div>
+</section><section id="first-look-and-recoding" class="level2"><h2 class="anchored" data-anchor-id="first-look-and-recoding">First Look (and Recoding)</h2>
+<p>Great! Now that we’ve loaded our data let’s take a first look at our data. One of the first things we can do is check the structure of our data:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>df_raw <span class="sc">|&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We might also want to quickly check how many individuals in the dataset had died as our survey focuses on mortality:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df_raw <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(died)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="write">
+<p>Use <code>count()</code> to determine how many participants you had by sex.</p>
+</div>
+<p>Hm, <code>1</code> and <code>2</code> for sex are a bit ambiguous. It might be helpful to recode our categorical data to use more meaningful labels. For example:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df_raw <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># recoding</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sex =</span> <span class="fu">case_when</span>(sex <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">'Male'</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                         sex <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">'Female`,</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="st">                         .default = NA))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="write">
+<p>Create a new section in your script called <code>Cleaning</code>. This section will have a “cleaning pipe” that will take <code>df_raw</code>, perform several cleaning steps, and store the resulting dataframe into an object called <code>df</code>. <br><br> Using <code>case_when()</code>, create a new step in your cleaning pipe that recodes the categorical variables in your dateset. You can use the above recoding for <code>sex</code>. For the variables <code>born</code>, <code>joined</code>, <code>left</code>, <code>died</code> use the recoding:</p>
+<ul>
+<li>0 = No</li>
+<li>1 = Yes</li>
+<li>99 = Unknown</li>
+</ul>
+<p>For <code>died_cause</code> use the recoding:</p>
+<ul>
+<li>1 = Diarrhoea</li>
+<li>2 = Fever</li>
+<li>3 = Respiratory Disease</li>
+<li>4 = Accident</li>
+<li>5 = During Delivery</li>
+<li>6 = Other</li>
+<li>99 = Unknown</li>
+<li>NA = Did Not Die</li>
+</ul>
+<p>The head of <code>df</code> should look like this:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>     sex age born_date joined_date left_date died_date born joined left died
+1 Female  23      &lt;NA&gt;        &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;   No     No   No   No
+2   Male  30      &lt;NA&gt;        &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;   No     No   No   No
+3 Female  11      &lt;NA&gt;        &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;   No     No   No   No
+4 Female   5      &lt;NA&gt;        &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;   No     No   No   No
+5   Male   1      &lt;NA&gt;        &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;   No     No   No   No
+6 Female  19      &lt;NA&gt;        &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;   No     No   No   No
+   died_cause hh
+1 Did Not Die  1
+2 Did Not Die  1
+3 Did Not Die  1
+4 Did Not Die  1
+5 Did Not Die  1
+6 Did Not Die  1</code></pre>
+</div>
+</div>
+<p>Now that we have nicer labels, let’s explore our data a bit more. For example:</p>
+<ul>
+<li>How many people died of each potential cause?</li>
+<li>Look at the combinations of died, left, joined, and born. Which combinations are the most common? Does this make sense?</li>
+<li>Who died more, males or females? Who was more at risk?</li>
+</ul>
+<p><br><strong>Hint</strong>. Remember that you can give multiple column names to <code>count()</code> in order to create contingency tables.</p>
+</div>
+</section><section id="cleaning" class="level2"><h2 class="anchored" data-anchor-id="cleaning">Cleaning</h2>
+<section id="dates-as-simple-dates" class="level3"><h3 class="anchored" data-anchor-id="dates-as-simple-dates">Dates as (Simple) Dates</h3>
+<p>Let’s finish tidying up our data for analysis. One ting we need to do is make sure our data is all of the right type. We have already recoded everything for the categorical variables but we haven’t yet looked at dates.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(df_raw<span class="sc">$</span>born_date)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "POSIXct" "POSIXt" </code></pre>
+</div>
+</div>
+<p>It looks like our dates are of the type <code>POSITct</code>, let’s convert them to a more simple date format using <code>ymd()</code> from <code>{lubridate}</code>.</p>
+<div class="write">
+<p>Add a step to your cleaning pipleing that uses <code>ymd()</code> from <code>{lubridate}</code> to convert the dates for <code>born_date</code>, <code>joined_date</code>, <code>left_date</code>, and <code>died_date</code> to simple dates. <br><br></p>
+<p>The <code>class()</code> of <code>df$born_date</code> should now be <code>Date</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(df<span class="sc">$</span>born_date)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Date"</code></pre>
+</div>
+</div>
+</div>
+</section><section id="fixing-logical-issues" class="level3"><h3 class="anchored" data-anchor-id="fixing-logical-issues">Fixing Logical Issues</h3>
+<p>A well designed Kobo form can go a long way to ensure we are collecting good quality data right from the start. For instance, we can make certain questions required to avoid missingness. We can also create “constraints” that will produce error messages when entered data violates preset rules; for example we might create a constraint that does not let the surveyor enter a date of death that falls outside the recall period.</p>
+<div class="look">
+<p>Open the Kobo survey Excel file <code>retrospective-mortality_kobo.xlsx</code> and take a look at the column “constraint”. What were the constraints created in this file? Can you think of anything that wasn’t accounted for?</p>
+</div>
+<p>Despite all of the protections we set up in the collection process there will always be a bit of cleaning needed. For example, while we have made sure that all dates fall within the recall period we didn’t create checks for other illogical relationships between dates. Let’s take a look, for instance, to see if anyone was born after they had died:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df_raw <span class="sc">|&gt;</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(died_date <span class="sc">&lt;</span> born_date)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="write">
+<p>Use <code>filter()</code> to check for instances of people who joined the family after they had died. How many times did this happen?</p>
+<p>The head of your output should look like this:</p>
+</div>
+<p>Well that’s not great. How should we fix this? The exact best practice here is subject to a bit of debate but we recommend that you retain the date for death and remove the date for birth / joined (ie: reassign it to <code>NA</code>). Alternatively, if you catch this error during data collection you can ask the interviewer about the error. It may be the case that it was a typo and they remember the appropriate dates. Where possible, try to do this type of oversight on a daily basis so that issues can be corrected in real-time.</p>
+<p>If we can only keep one date, why do we give preference to the date of death? The date of death is the more important variable for the purpose of this particular survey and is also a rare event, meaning that any lost dates might have a disproportionate impact on results. Additionally, we might expect that the date of death is more likely to be reliable compared to other dates (such as the exact date of birth or when someone joined / left the household).</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In this instance, there were only a couple cases of “birth or joining the household after death” out of a dataset of over 18,000 people so removing their birth / join dates isn’t a huge deal. If errors like this are more common, however, it may signal an important problem with the form design and / or the training of the surveyors. Quickly looking for problems like this (even in Excel) after the pilot and during the data collection phase can help bring your attention to any issues while you still have time to fix them.</p>
+</div>
+</div>
+<div class="write">
+<p>Using <code>mutate()</code> and <code>case_when()</code>, add a step to your cleaning pipe to replace the problematic birth / joined dates with <code>NA</code>. How can you check if this worked correctly?</p>
+</div>
+<p>Can you see any other issues in the data? I see two:</p>
+<ul>
+<li>There are a few people who were born within the recall period but have an age greater than 0</li>
+<li>One person died after having left the household</li>
+</ul>
+<div class="look">
+<p>How would you handle these two issues? Think about the types of problems that might have produced them and the consequences of different cleaning strategies on your final results. <br><br><strong>Bonus</strong>. Do you think either of these could have been prevented through a better Kobo design?</p>
+</div>
+<p>Let’s consider the issue of being born in recall with an age above 0 first. How to handle ages below 1 can be tricky and surveyors should be explicitly trained on whether they “round up” or “round down”. Alternatively, modern surveys will tend to ask for age in months for individuals under a certain limit (typically 12, 23, or 59 months). Recording age in months for young children is particularly important in surveys that focus on issues like vaccination, malnutrition, or mortality where the health issues of interest are (potentially) associated with infants or children &lt; 5. A constraint could also have been added to the Kobo form to avoid this issue.</p>
+<p>For the purpose of this survey, we don’t have any information on months so the best we can do is impose a consistent rule that anything &lt; 12 months should be recorded as 0. This means that if a child was born during recall (which is a period of &lt; 12 months) then their age must be 0.</p>
+<div class="write">
+<p>Add a step to your pipeline that ensures that anyone born in recall has an age of 0. If you have done this correctly, you should be able to filter df to look only at individuals born in recall and verify that their age is 0:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(born <span class="sc">==</span> <span class="st">'Yes'</span>) <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(age) <span class="sc">|&gt;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unique</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+</div>
+</div>
+<p>The second issue is a bit more complex. Let’s take a look at the individual(s) in question:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(left_date <span class="sc">&lt;</span> died_date)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     sex age born_date joined_date  left_date  died_date born joined left died
+1   Male  25      &lt;NA&gt;        &lt;NA&gt; 2010-11-02 2011-03-08   No     No  Yes  Yes
+2 Female   3      &lt;NA&gt;  2011-01-05 2010-11-20 2011-03-28   No    Yes  Yes  Yes
+3 Female  60      &lt;NA&gt;  2011-03-08 2011-02-15 2011-03-15   No    Yes  Yes  Yes
+  died_cause   hh
+1  Diarrhoea   88
+2  Diarrhoea  236
+3  Diarrhoea 2861</code></pre>
+</div>
+</div>
+<div class="look">
+<p>Examine the three individuals in the above output. Are all of them problematic? Why or why not?</p>
+</div>
+<p>The 3 year old and 60 year old don’t pose a problem, they simply left and then rejoined the household. The 25 year old, on the other hand seems to have left and then died without ever coming back in between. What should we do? Let’s think about why something like this might have appeared in our data. There are two main options:</p>
+<ul>
+<li>Maybe the person <strong>did</strong> rejoin the household but the participant forgot to mention it</li>
+<li>Perhaps the participant did not fully understand that the survey would only consider deaths when someone was <strong>still a member of the household</strong> when they died</li>
+</ul>
+<p>If possible, we might discuss with the surveyor who conducted this interview to determine which option was more likely. In the absence of any additional information, however, we will probably need to go with option two. If we do that then we will need to recode this person as having lived rather than died as they were stil alive at the time that they left the household.</p>
+<div class="write">
+<p>Add another step to your pipeline that recodes this individual as having lived, ie: their <code>died</code> value should be reset to <code>'No'</code> and their date of death should be removed. If you check again for people who left the household prior to dying you should now see only two people:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>     sex age born_date joined_date  left_date  died_date born joined left died
+1 Female   3      &lt;NA&gt;  2011-01-05 2010-11-20 2011-03-28   No    Yes  Yes  Yes
+2 Female  60      &lt;NA&gt;  2011-03-08 2011-02-15 2011-03-15   No    Yes  Yes  Yes
+  died_cause   hh
+1  Diarrhoea  236
+2  Diarrhoea 2861</code></pre>
+</div>
+</div>
+<p><strong>Note</strong>. The decision to remove a death from the dataset is debatable. Remember that because deaths are rare events the addition / removal of one can have a disproportionate impact on mortality calculations. To minimize issues like this one, make sure to spend sufficient time when training surveyors to make sure they fully understand core concepts like the recall period and the idea of a “continuous household”. Giving specific examples like this one during training can help surveyors to navigate these issues appropriately when they come up during data collection.</p>
+</div>
+</section></section><section id="joining-household-level-data" class="level2"><h2 class="anchored" data-anchor-id="joining-household-level-data">Joining Household Level Data</h2>
+<p>Our individual level data is looking nice but they are completely detached from our household level data (remember <code>df_hh</code> from the start of the tutorial?). For example, we might like to know the interview date associated with each individual as well as the cluster they were in. To do this, we need to perform a <strong>join</strong>.</p>
+<p>An in depth look at joins is beyond the scope of this session, but in essence joins are used to take the data from one dataframe and add it (row-wise) to another dataframe based on a variable that is shared by both datasets (such as an id). For example, here we want to go row by row in our individual level data (<code>df</code>) and add columns with the related household level information for each person (from <code>df_hh</code>). To do this, we will use the function <code>left_join()</code> from <code>{dplyr}</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(df_hh) <span class="sc">|&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Joining with `by = join_by(hh)`</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     sex age born_date joined_date left_date died_date born joined left died
+1 Female  23      &lt;NA&gt;        &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;   No     No   No   No
+2   Male  30      &lt;NA&gt;        &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;   No     No   No   No
+3 Female  11      &lt;NA&gt;        &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;   No     No   No   No
+4 Female   5      &lt;NA&gt;        &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;   No     No   No   No
+5   Male   1      &lt;NA&gt;        &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;   No     No   No   No
+6 Female  19      &lt;NA&gt;        &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;   No     No   No   No
+   died_cause hh interview_date clst_id present consent
+1 Did Not Die  1     2011-03-29       1       1       1
+2 Did Not Die  1     2011-03-29       1       1       1
+3 Did Not Die  1     2011-03-29       1       1       1
+4 Did Not Die  1     2011-03-29       1       1       1
+5 Did Not Die  1     2011-03-29       1       1       1
+6 Did Not Die  1     2011-03-29       1       1       1</code></pre>
+</div>
+</div>
+<p>Notice that here R has used the column <code>hh</code> (household id) as the common variable between the datasets; you can see a message indicating this right above the output of <code>head()</code>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>What does the “left” in <code>left_join()</code> mean? In a simple sense, left joins involve one dataset that data is <strong>added to</strong> (Dataset A) and another that data is <strong>taken from</strong> (Dataset B). Dataset A is the “core dataset” and the output will always include all of it’s rows. Rows from Dataset B will be kept if and only if <code>left_join()</code> finds an appropriate row in Dataset A to which they can be added. In our data, for example, rows of data on households which had no members (and thus do not appear in <code>df</code>) will not be included in the output of the above join. <br><br> In a <code>left_join()</code> R will always consider the first argument to be the core dataset (Dataset A); ie:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># PSEUDO-CODE</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">left_join</span>(dataset_a, dataset_b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<div class="write">
+<p>Add a final step in your cleaning pipe that uses <code>left_join()</code> to add the household level data to each of the rows in <code>df</code> and then converts <code>interview_date</code> to use a basic date format (as you did with <code>born_date</code> etc). Your final pipe should now do the following:</p>
+<ul>
+<li>Use <code>df_raw</code> as an input</li>
+<li>Recode categorical variables</li>
+<li>Convert dates to simple y-m-d format</li>
+<li>Fix illogical data issues</li>
+<li>Join household indicators</li>
+</ul>
+<p>If everything went well, the head of <code>df</code> should look like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     sex age born_date joined_date left_date died_date born joined left died
+1 Female  23      &lt;NA&gt;        &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;   No     No   No   No
+2   Male  30      &lt;NA&gt;        &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;   No     No   No   No
+3 Female  11      &lt;NA&gt;        &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;   No     No   No   No
+4 Female   5      &lt;NA&gt;        &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;   No     No   No   No
+5   Male   1      &lt;NA&gt;        &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;   No     No   No   No
+6 Female  19      &lt;NA&gt;        &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;   No     No   No   No
+   died_cause hh interview_date clst_id present consent
+1 Did Not Die  1     2011-03-29       1       1       1
+2 Did Not Die  1     2011-03-29       1       1       1
+3 Did Not Die  1     2011-03-29       1       1       1
+4 Did Not Die  1     2011-03-29       1       1       1
+5 Did Not Die  1     2011-03-29       1       1       1
+6 Did Not Die  1     2011-03-29       1       1       1</code></pre>
+</div>
+</div>
+</div>
+</section><section id="mortality-calculations" class="level2"><h2 class="anchored" data-anchor-id="mortality-calculations">Mortality Calculations</h2>
+<p>With cleaning and joining out of the way we can finally move on to the fun part, analysis. We want to calculate the following:</p>
+<ul>
+<li>Crude Mortality Rate</li>
+<li>Under Five Mortality Rate</li>
+<li>Diarrhoea Specific Mortality Rate</li>
+</ul>
+<div class="look">
+<p>(On paper) Write out the formula for each of these indicators. Do we already have all the necessary variables in our dataset for the calculations?</p>
+</div>
+<p>These indicators are <strong>rates</strong>, meaning they require a denominator in <strong>person-time at risk</strong>. Our dataset doesn’t have a column for this yet. Let’s fix that.</p>
+<section id="person-time-at-risk" class="level3"><h3 class="anchored" data-anchor-id="person-time-at-risk">Person Time at Risk</h3>
+<p>For our survey, each individual’s <strong>person-time at risk</strong> is the time when they were:</p>
+<ul>
+<li>Alive <strong>and</strong>
+</li>
+<li>Part of the household</li>
+</ul>
+<p>Most people were alive and part of the household for the full recall period. For these people their time at risk is the full recall period. There are, however, a number of other options. For example:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="../img/companion/survey/person-time_EN.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<div class="look">
+<p>Most of these cases can all be handled the same way, in fact all but the last one. Take a minute and try to work out on paper a forumla for person time that we could use. Bonus points if you are able to convert this into code.</p>
+</div>
+<p>Coming up with a good formula here is not trivial, so let’s go through it together. Let’s imagine a person who joined the household in late 2010 and then died in February of 2011. If we put this person’s data into a dataframe we might have something like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>example <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">date_interview =</span> <span class="fu">as.Date</span>(<span class="st">'2011-04-07'</span>),</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">born =</span> <span class="st">'No'</span>,</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">date_born =</span> <span class="cn">NA</span>,</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">joined =</span> <span class="st">'Yes'</span>,</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">date_joined =</span> <span class="fu">as.Date</span>(<span class="st">'2010-12-08'</span>),</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">left =</span> <span class="st">'No'</span>,</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">date_left =</span> <span class="cn">NA</span>,</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">died =</span> <span class="st">'Yes'</span>,</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">date_died =</span> <span class="fu">as.Date</span>(<span class="st">'2011-02-13'</span>)</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>example</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  date_interview born date_born joined date_joined left date_left died
+1     2011-04-07   No        NA    Yes  2010-12-08   No        NA  Yes
+   date_died
+1 2011-02-13</code></pre>
+</div>
+</div>
+<p>To calculate this person’s time at risk, we need to get “when their person time started” and “when their person time ended”. Then we take the difference between those two dates. For the start of someone’s person time, we need to pull the date when they where born / joined the household or (if they were present for the full preiod) the start date for the recall period. We can do this using <code>case_when()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>recall_start <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">'2010-10-17'</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>example <span class="sc">|&gt;</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pt_start =</span> <span class="fu">case_when</span>(born <span class="sc">==</span> <span class="st">'Yes'</span> <span class="sc">~</span> date_born,</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>                              joined <span class="sc">==</span> <span class="st">'Yes'</span> <span class="sc">~</span> date_joined,</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>                              <span class="at">.default =</span> recall_start))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  date_interview born date_born joined date_joined left date_left died
+1     2011-04-07   No        NA    Yes  2010-12-08   No        NA  Yes
+   date_died   pt_start
+1 2011-02-13 2010-12-08</code></pre>
+</div>
+</div>
+<p>Similarly, their time at risk ends when they die / leave or at the end of recall (when they were interviewed):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>example <span class="sc">|&gt;</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pt_end =</span> <span class="fu">case_when</span>(left <span class="sc">==</span> <span class="st">'Yes'</span> <span class="sc">~</span> date_left,</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>                            died <span class="sc">==</span> <span class="st">'Yes'</span> <span class="sc">~</span> date_died,</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>                            <span class="at">.default =</span> date_interview))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  date_interview born date_born joined date_joined left date_left died
+1     2011-04-07   No        NA    Yes  2010-12-08   No        NA  Yes
+   date_died     pt_end
+1 2011-02-13 2011-02-13</code></pre>
+</div>
+</div>
+<p>Putting it together, we can then calculate the total person time at risk as the difference between when the person time ended and when it started:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>example <span class="sc">|&gt;</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pt_start =</span> <span class="fu">case_when</span>(born <span class="sc">==</span> <span class="st">'Yes'</span> <span class="sc">~</span> date_born,</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>                              joined <span class="sc">==</span> <span class="st">'Yes'</span> <span class="sc">~</span> date_joined,</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">.default =</span> recall_start),</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">pt_end =</span> <span class="fu">case_when</span>(left <span class="sc">==</span> <span class="st">'Yes'</span> <span class="sc">~</span> date_left,</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>                            died <span class="sc">==</span> <span class="st">'Yes'</span> <span class="sc">~</span> date_died,</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>                            <span class="at">.default =</span> date_interview),</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">pt =</span> pt_end <span class="sc">-</span> pt_start)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  date_interview born date_born joined date_joined left date_left died
+1     2011-04-07   No        NA    Yes  2010-12-08   No        NA  Yes
+   date_died   pt_start     pt_end      pt
+1 2011-02-13 2010-12-08 2011-02-13 67 days</code></pre>
+</div>
+</div>
+<div class="write">
+<p>Create a new section in your code called <code>Calculate Person Time</code> and initialize an object called <code>recall_start</code> with the date 2010-10-17. Add a code block adapting the above to create a <code>pt</code> column in <code>df</code> that calculates person time at risk. The head of <code>df</code> should now look like this:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>     sex age born_date joined_date left_date died_date born joined left died
+1 Female  23      &lt;NA&gt;        &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;   No     No   No   No
+2   Male  30      &lt;NA&gt;        &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;   No     No   No   No
+3 Female  11      &lt;NA&gt;        &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;   No     No   No   No
+4 Female   5      &lt;NA&gt;        &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;   No     No   No   No
+5   Male   1      &lt;NA&gt;        &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;   No     No   No   No
+6 Female  19      &lt;NA&gt;        &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;   No     No   No   No
+   died_cause hh interview_date clst_id present consent   pt_start     pt_end
+1 Did Not Die  1     2011-03-29       1       1       1 2010-10-17 2011-03-29
+2 Did Not Die  1     2011-03-29       1       1       1 2010-10-17 2011-03-29
+3 Did Not Die  1     2011-03-29       1       1       1 2010-10-17 2011-03-29
+4 Did Not Die  1     2011-03-29       1       1       1 2010-10-17 2011-03-29
+5 Did Not Die  1     2011-03-29       1       1       1 2010-10-17 2011-03-29
+6 Did Not Die  1     2011-03-29       1       1       1 2010-10-17 2011-03-29
+        pt
+1 163 days
+2 163 days
+3 163 days
+4 163 days
+5 163 days
+6 163 days</code></pre>
+</div>
+</div>
+</div>
+<p>Let’s use <code>range()</code> to look at the maximum and minimum values of <code>pt</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(df<span class="sc">$</span>pt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Time differences in days
+[1] NA NA</code></pre>
+</div>
+</div>
+<p>Looks like the value for person time at risk is sometimes missing. This happens when someone, for example, was born / joined / left / died but where the date information for that event is missing. How should we handle this? One option is to leave the value missing, meaning that person doesn’t contribute any person time at risk to the subsequent calculations of mortality. Alternatively, we can take the first availble value for which we have a date. So, for example, if we don’t know when someone was born we will use the start of the recall period as the begining of their person time at risk.</p>
+<div class="look">
+<p>What are the pros and cons of these two options? How would you adjust your above code to acheive option two?</p>
+</div>
+<p>Option one artificially reduces the denominator of our mortality calculations, thus resulting in an overestimate of mortality. The second option will do the opposite. For today’s analysis we will go with option one and leave our code as is (missing values and all). Let’s look at our range again, this time ignoring the missing values:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(df<span class="sc">$</span>pt, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Time differences in days
+[1] -141  172</code></pre>
+</div>
+</div>
+<p>Now we get numbers, but it looks like we have some negative values. What’s going on? Think back to the figure at the begining of this section. While most cases can be managed with our current calculation, it doesn’t account for individuals who left and then rejoined the household because this individuals will have <code>joined_date &gt; left_date</code>.</p>
+<div class="look">
+<p>Think about these individuals who leave and rejoin a household and the dates involved. Can you think of an equation for their person time at risk? How do you think this might be coded?</p>
+</div>
+<p>For these individuals, instead of taking a difference (between the end and start of time at risk), we instead need to calculate two chunks of time (before they left and after they returned) and then add them together. Here’s how we can do it:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">pt =</span> <span class="fu">case_when</span>(</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>      joined_date <span class="sc">&gt;</span> left_date <span class="sc">&amp;</span> born <span class="sc">==</span> <span class="st">'Yes'</span> <span class="sc">~</span> (left_date <span class="sc">-</span> born_date) <span class="sc">+</span> (interview_date <span class="sc">-</span> joined_date),</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>      joined_date <span class="sc">&gt;</span> left_date <span class="sc">~</span> (left_date <span class="sc">-</span> recall_start) <span class="sc">+</span> (interview_date <span class="sc">-</span> joined_date),</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">.default =</span> pt</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(tmp<span class="sc">$</span>pt, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Time differences in days
+[1]   0 172</code></pre>
+</div>
+</div>
+<div class="write">
+<p>Adapt your person-time code pipe to include this correction for individuals who left and rejoined the household. Then add a line remove the columns <code>pt_start</code> and <code>pt_end</code> as we won’t be using them anymore (and they won’t be accurate for individuals who left and returned). The head of <code>df</code> should now look like this:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>     sex age born_date joined_date left_date died_date born joined left died
+1 Female  23      &lt;NA&gt;        &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;   No     No   No   No
+2   Male  30      &lt;NA&gt;        &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;   No     No   No   No
+3 Female  11      &lt;NA&gt;        &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;   No     No   No   No
+4 Female   5      &lt;NA&gt;        &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;   No     No   No   No
+5   Male   1      &lt;NA&gt;        &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;   No     No   No   No
+6 Female  19      &lt;NA&gt;        &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;   No     No   No   No
+   died_cause hh interview_date clst_id present consent       pt
+1 Did Not Die  1     2011-03-29       1       1       1 163 days
+2 Did Not Die  1     2011-03-29       1       1       1 163 days
+3 Did Not Die  1     2011-03-29       1       1       1 163 days
+4 Did Not Die  1     2011-03-29       1       1       1 163 days
+5 Did Not Die  1     2011-03-29       1       1       1 163 days
+6 Did Not Die  1     2011-03-29       1       1       1 163 days</code></pre>
+</div>
+</div>
+<p><strong>Bonus</strong>. Why did our above <code>case_when</code> need to have a separate case for individuals born during recall?</p>
+</div>
+<p>Nice, we are just about ready to calculate mortality! Notice that right now our values for person time are represented as a time difference (<code>difftime</code> class) in number of days. For our onward calculations it would be better if this were a simple numeric type.</p>
+<div class="write">
+<p>Add a final step in your person-time pipe that convers <code>pt</code> to a numeric type using <code>as.numeric()</code>.</p>
+</div>
+</section><section id="mortality-calculations-1" class="level3"><h3 class="anchored" data-anchor-id="mortality-calculations-1">Mortality Calculations</h3>
+<p>Now we are (finally) ready to calculate mortality rates. We could do a basic calculation of this directly using the totals of number of deaths and cumulative person-time at risk:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(df<span class="sc">$</span>died <span class="sc">==</span> <span class="st">'Yes'</span>) <span class="sc">/</span> <span class="fu">sum</span>(df<span class="sc">$</span>pt, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">*</span> <span class="dv">10000</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.5405712</code></pre>
+</div>
+</div>
+<div class="look">
+<p>How would you interpret this mortality rate? Is it high? <br><br> In 2010, the baseline mortality rate in Haiti was 9 deaths per 1,000 person-years. Knowing this, calculate the <strong>excess mortality</strong> observed during this epidemic (expressed in excess deaths per 10,000 person-days)? <br><br><strong>Hint</strong>. Start by converting the baseline rate to be represented in deaths per 10,000 person-days.</p>
+</div>
+<p>So far so good, but we haven’t included any confidence intervals in our calculation nor have we taken our survey design into account. To do this, we will make use of the <code>{srvyr}</code> package. This package was built for complex analysis of survey data and provides statistical methods to adjust for design effect and finite population size. An in depth discussion of design effect and how to adjust for it is beyond the scope of this lesson but, in essence, design effects are introduced when we use a sampling process that is not fully random. For example, the use of cluster sampling in this survey creates a design effect as we might expect people within a cluster to be more similar to each other than they are to other randomly selected people in the population. When we adjust for design effect we widen our confidence intervals (reduce our precision) to account for this non-random similarity.</p>
+<p>To perform these adjustments <code>{srvyr}</code> needs to know a few things:</p>
+<ul>
+<li>The id of the sample units requiring adjustment (in this case cluster ids)</li>
+<li>The size of the population (needed to resolve both design affect and account for finite population size)</li>
+<li>The weight of each cluster</li>
+</ul>
+<p>The weight of the cluster is the product of two fractions:</p>
+<ol type="1">
+<li>Total population size / sample size <strong>and</strong>
+</li>
+<li>Expected cluster / true size of the given cluster</li>
+</ol>
+<p>In principle, each of our clusters should have had 32 households. In practice, true cluster size may have deviated in some cases. We can use the function <code>n_distinct()</code> inside <code>summarize()</code> to add a column with the actual cluster size associated with each individual:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">.by =</span> clst_id,</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">hh_count =</span> <span class="fu">n_distinct</span>(hh)</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  clst_id hh_count
+1       1       32
+2       2       32
+3       3       32
+4       4       32
+5       5       32
+6       6       32</code></pre>
+</div>
+</div>
+<div class="write">
+<p>Create a new section of your code called <code>Calculate Mortality</code>. Write a pipe that uses the above summarize statement to calculate number of households observed per cluster and then uses <code>mutate()</code> to add create columns <code>weight</code> and <code>pop</code> respectively containing the weights and total population size (in 2010, this was 228,425 people). Store the output of this pipe into an object called <code>df_wt</code>. The head of <code>df_wt</code> should look like this:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>  clst_id hh_count   weight    pop
+1       1       32 12.38546 228425
+2       2       32 12.38546 228425
+3       3       32 12.38546 228425
+4       4       32 12.38546 228425
+5       5       32 12.38546 228425
+6       6       32 12.38546 228425</code></pre>
+</div>
+</div>
+<p><strong>Hint</strong>. The formula for <code>weight</code> is <code>(population_size / sample_size) * (32 / hh_count)</code>. <br><br> Now, use <code>left_join()</code> to join the newly created weight and population data onto <code>df</code>. The head of <code>df</code> should now look like this:</p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Joining with `by = join_by(clst_id)`</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>     sex age born_date joined_date left_date died_date born joined left died
+1 Female  23      &lt;NA&gt;        &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;   No     No   No   No
+2   Male  30      &lt;NA&gt;        &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;   No     No   No   No
+3 Female  11      &lt;NA&gt;        &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;   No     No   No   No
+4 Female   5      &lt;NA&gt;        &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;   No     No   No   No
+5   Male   1      &lt;NA&gt;        &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;   No     No   No   No
+6 Female  19      &lt;NA&gt;        &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;   No     No   No   No
+   died_cause hh interview_date clst_id present consent  pt hh_count   weight
+1 Did Not Die  1     2011-03-29       1       1       1 163       32 12.38546
+2 Did Not Die  1     2011-03-29       1       1       1 163       32 12.38546
+3 Did Not Die  1     2011-03-29       1       1       1 163       32 12.38546
+4 Did Not Die  1     2011-03-29       1       1       1 163       32 12.38546
+5 Did Not Die  1     2011-03-29       1       1       1 163       32 12.38546
+6 Did Not Die  1     2011-03-29       1       1       1 163       32 12.38546
+     pop
+1 228425
+2 228425
+3 228425
+4 228425
+5 228425
+6 228425</code></pre>
+</div>
+</div>
+</div>
+<p>For <code>{srvyr}</code> to use our newly added variables and perform calculations we need to create a “survey object”. This is a special class of dataframe that is specific to <code>{srvyr}</code> and is created using the function <code>as_survey_design()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_survey_design</span>(</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">ids =</span> clst_id,</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">wt =</span> weight,</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">fpc =</span> pop</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="look">
+<p>Try running the above code. What is the class of <code>tmp</code>? Does this object behave like a normal dataframe? Try doing some basic manipulations; for example:</p>
+<ul>
+<li>Pull the data from the age column</li>
+<li>Filter to see only individuals who died</li>
+</ul>
+</div>
+<p>As you can see, once we apply <code>as_survey_design()</code>, we don’t have a normal dataframe anymore. So, we should <strong>store its output in a separate object</strong>, for example <code>tmp</code> or <code>df_srvy</code>. This ensures that <code>df</code> itself remains a standard dataframe available for other calculations, visualizations, etc.</p>
+<p><code>{srvyr}</code> offers a number of functions to calculate indicators on survey data, most of the time used <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="This is because these indicators normally involve data **aggregation**.">inside a <code>summarize()</code></span>. In our case, we will use the function <code>survey_ratio()</code> to calculate crude and specific mortality rates. The basic syntax of of <code>survey_ratio()</code> is pretty simple, for example we can use the following to calculate crude mortality rate:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 4
+    cmr cmr_low cmr_upp cmr_deff
+  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;
+1 0.531   0.405   0.656     2.28</code></pre>
+</div>
+</div>
+<p>Simple enough but let’s break down the arguments:</p>
+<ul>
+<li>
+<code>numerator</code> is the numerator of our ratio, in this case the number of people who died (individuals for whom <code>died</code> was <code>'Yes'</code>) times 10,000 (to get a final result in 10,000 person-days)</li>
+<li>
+<code>denominator</code> is the denominator of our ratio, in this case the amount of person time at risk (<code>pt</code>)</li>
+<li>
+<code>vartype</code> any variable(s) we want included to estimate error, here we chose confidence interval (<code>'ci'</code>) but we could also ask for standard error (<code>'se'</code>)</li>
+<li>
+<code>deff</code> indicates whether we want an estimate of design effect to be included</li>
+<li>
+<code>na.rm</code> indicates whether <code>{srvyr}</code> should ignore missing values when performing the calculation</li>
+</ul>
+<p>The output of this code is a new dataframe with our point estimate (<code>cmr</code>), confidence interval (<code>cmr_low</code> and <code>cmr_upp</code>), and the associated design effect.</p>
+<div class="write">
+<p>In the above example we calculated crude mortality. Because this survey is associated with a particular outbreak (of cholera), we might also be interested in the disease specific mortality attributable to diarrhoea. Using the crude mortality code as a model, write code to calculate the diarrhoea specific mortality rate. You should find the following:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 4
+   dsmr dsmr_low dsmr_upp dsmr_deff
+  &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+1 0.369    0.257    0.482      2.64</code></pre>
+</div>
+</div>
+<p>We would also like to calculate under 5 mortality rate. In this case, we calculate crude mortality on the <strong>subset</strong> of our population that is under 5, ie: we need to filter our dataframe down to children under 5. Write some code to calculate under 5 mortality, remembering that you’ll need to filter prior to creating your survey design object. You should find the following:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 4
+   u5mr u5mr_low u5mr_upp u5mr_deff
+  &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+1 0.677    0.363    0.990      1.14</code></pre>
+</div>
+</div>
+<p>How would you interpret all of the above mortality rates? Take a minute to outline how you might present these findings. Are there any other indicators you might want to calculate for a more complete investigation?</p>
+</div>
+</section></section><section id="done" class="level2"><h2 class="anchored" data-anchor-id="done">Done!</h2>
+<p>Well done, you have now worked through how to import, clean, and calculate mortality rates from basic mortality survey data.</p>
+<div class="cell">
+<div class="cell-output-display">
+<a href="https://github.com/epicentre-msf/repicentre/blob/main/sessions_companion/survey_solutions.R">
+<button class="btn btn-default"><i class="fa fa-save"></i> Solution File</button>
+</a>
+</div>
+</div>
+</section><section id="going-further" class="level2"><h2 class="anchored" data-anchor-id="going-further">Going Further</h2>
+<section id="extra-exercises" class="level3"><h3 class="anchored" data-anchor-id="extra-exercises">Extra Exercises</h3>
+<ol type="1">
+<li><p>Earlier, we calculated <strong>excess mortality rate</strong>, ie: how much higher our observed mortality was compared to baseline. Another indicator that we often present is the number of <strong>excess deaths</strong> observed during the recall period. How would you calculate this?</p></li>
+<li><p>Use <code>{ggplot2}</code> to create a bar plot of deaths over time.</p></li>
+<li><p>Take a look at the documentation for <code>{srvyr}</code> and see if you can use <code>survey_mean()</code> to calculate proportional mortality by cause of death.</p></li>
+<li><p>Use <code>{gt}</code> to create an attractive output table of the proportional mortality data you generated above.</p></li>
+<li><p>In the cleaning section we corrected for cases where someone was born in the recall period but had an age &gt; 0. How could this have been prevented with a Kobo constraint?</p></li>
+</ol></section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body>
+</html>
