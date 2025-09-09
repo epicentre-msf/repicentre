@@ -1,6 +1,7 @@
 ---
 title: Standard Mortality Survey
 description: Companion session to the survey FETCH module
+image: ../img/companion/survey/logo.svg
 categories:
   - Companion
   - Analysis
@@ -53,7 +54,7 @@ This session uses a specific case study. Download and unzip the associated folde
 #| eval: true
 
 downloadthis::download_link(
-  link = 'https://github.com/epicentre-msf/repicentre/raw/main/data/survey/survey_basic.zip',
+  link = "https://github.com/epicentre-msf/repicentre/raw/main/data/mod_survey/mortality_survey.zip",
   button_label = "Download",
   has_icon = TRUE,
   icon = "fa fa-save",
