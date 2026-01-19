@@ -493,7 +493,7 @@ Extra challenge
 ----------------------------------------------------------------------------------------------------
 ### Adding contact type 
 
-Our consensus tree is looking good, but if you look into our contact data, you will see that we have information about the **type of contact** between two cases. Can you come up with a way of adding these informations in our tree df, so that we can colorize the *edges* of the network using different contact type ? 
+Our final tree is looking good, but if you look into our contact data, you will see that we have information about the **type of contact** between two cases. Can you come up with a way of adding these informations in our tree df, so that we can colorize the *edges* of the network using different contact type ? 
 
 ::: {.callout-tip}
 There may be need to join some data together ...
