@@ -1,0 +1,506 @@
+---
+title: Transmission chains visualisation
+date: last-modified
+---
+
+```{r setup}
+#| include: false
+#| eval: true
+knitr::opts_chunk$set(echo = FALSE, eval = TRUE)
+library(outbreaker2)
+library(epicontacts)
+library(tidyverse)
+```
+
+Objectives
+----------------------------------------------------------------------------------------------------
+- Manipulate transmission chains data in R 
+- Plot transmission network using `{epicontacts}`
+
+Ressources
+----------------------------------------------------------------------------------------------------
+During this session we will be using a new R package, so please make sure it is downloaded.
+
+**`{epicontacts}`**
+<br>
+This R package serves as the basis for handling, visualisation and analysis of epidemiological contact or transmission chains data. You can check the [Github account](https://github.com/reconhub/epicontacts) or the [attached website and vignettes](https://www.repidemicsconsortium.org/epicontacts/). 
+
+
+```{r}
+#| eval: false
+#| echo: true
+install.packages('epicontacts')
+```
+
+Data
+----------------------------------------------------------------------------------------------------
+
+For the sake of simplicity, you will be using data simulated from the 9th EVD outbreak in DRC. These data are shared as a `.rds` file that contains a list: 
+
+| Dataset | Type | Description | Contents |
+|---------|------|-------------|-----------------------|
+| `evd_linelist` | Dataframe | Epidemiological linelist | • 49 cases (suspected, probable, confirmed)<br>• Key epidemiological dates<br>• Demographic information |
+| `evd_contact` | Dataframe | Contact tracing data | • List of all case-to-case contacts<br>• Contact relationships between cases |
+| `evd_chain` | Dataframe | The real transmision tree | • transmision tree for comparion and evaluation of model |
+
+```{r}
+#| echo: false
+#| eval: true
+data <- episimdata::evd_data
+
+# remove sequences 
+data <- data[-4]
+
+saveRDS(data, "data/clean/simulated_evd_data.rds")
+
+downloadthis::download_link(
+  "data/clean/simulated_evd_data.rds",
+  button_label = 'Download the data',
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  self_contained = FALSE
+)
+```
+
+Setup
+----------------------------------------------------------------------------------------------------
+
+::: {.setup}
+
+In order to organise our analysis, and make it as replicable as possible we will be using an `Rproject` called `evd-transmission` and organised as follow:
+
+- 📁 data 
+  - 📁 clean 
+  - 📁 raw 
+- 📁 R
+- 📁 outputs
+
+- Open a new R script called `chains-visualisation.R` and load `{epicontacts}` and other libraries you use for data handling.
+
+- import all of our data (we will use the linelist) in a `dat` object.
+
+:::
+
+```{r}
+dat <- readRDS(here::here("data", "clean", "simulated_evd_data.rds"))
+```
+
+Outbreak description
+----------------------------------------------------------------------------------------------------
+As described earlier, our data are simulated based on the data from the 9th EVD outbreak in DRC. The linelist contains id, epidemiological data and demographics about the case in our outbreak - As a starting point for our analysis let's describe our outbreak in terms of *time*, *person* and calculate a *Case Fatality Ratio* (CFR).
+
+::: {.write}
+Extract the linelist df from the list into an object called `linelist`. Inspect it. Then use the method of your choice to produce an *epicurve*, *age pyramid* and a table of CFR by sex.
+:::
+
+#### *Epicurve*
+
+```{r}
+#| echo: false
+linelist <- dat$evd_linelist
+```
+
+```{r}
+epivis::plot_epicurve( 
+  linelist, 
+date_col = t_onset,
+ classification, 
+ label_weeks = TRUE, 
+ floor_date_week = TRUE,
+ sec_date_axis = TRUE, 
+ y_lab = "Number of cases",
+  date_lab = "Symptom onset (epiweek)",
+  date_max = "2018-06-05"
+ ) +
+  epithemes::epitheme_gg()
+
+```
+
+#### *Age pyramid*
+
+```{r}
+epivis::plot_pyramid(
+  linelist, 
+  age_col = age,
+  gender_col = sex,
+  gender_levels = c("male", "female"), 
+  colours = c( "#2E4473" , "#C0392B"),
+  x_lab = "Age group",
+  y_lab = "Number of cases",
+  show_data_labs = TRUE, 
+  lab_nudge_factor = 50
+  
+) + 
+  epithemes::epitheme_gg(axis_text_size = 10) +
+  
+  theme(legend.position = "top")
+
+```
+
+
+::: {.callout-tip}
+
+The above epicurve and age pyramid were made using an epicentre package for epidemiological visualisation called `{epivis}`. You can download it using `remotes::install_github("epicentre-msf/epivis")`, and check the [website](https://epicentre-msf.github.io/epivis/)
+
+:::
+
+#### *CFR table*
+
+```{r}
+
+overall <- linelist |> 
+  select(outcome) |> 
+  summarise( n = n(), 
+             n_valid = sum(!is.na(outcome)), 
+             n_death = sum(outcome == "dead"), 
+             cfr = round(digits = 2, n_death / n_valid * 100), 
+             variable = "Overall"
+  ) 
+
+sex <- linelist |> 
+  select(outcome, sex) |> 
+  summarise( .by = sex, 
+             n = n(), 
+             n_valid = sum(!is.na(outcome)), 
+             n_death = sum(outcome == "dead"), 
+             cfr = round(digits = 2, n_death / n_valid * 100), 
+             variable = "Gender"
+  ) |> rename(group = sex)
+
+age <- linelist |> 
+  mutate(age_group = epikit::age_categories(age, upper = 80)) |> 
+  select(outcome, age_group) |> 
+  summarise( .by = age_group, 
+             n = n(), 
+             n_valid = sum(!is.na(outcome)), 
+             n_death = sum(outcome == "dead"), 
+             cfr = round(digits = 2, n_death / n_valid * 100), 
+             variable = "Age group"
+  ) |> 
+  rename(group = age_group)
+
+epi_class <- linelist |> 
+  select(outcome, classification) |> 
+  summarise( .by = classification, 
+             n = n(), 
+             n_valid = sum(!is.na(outcome)), 
+             n_death = sum(outcome == "dead"), 
+             cfr = round(digits = 2, n_death / n_valid * 100), 
+             variable = "Epi class"
+  ) |> rename(group = classification)
+
+bind_rows(
+  overall, bind_rows(sex, age, epi_class) |> arrange(group) 
+) |> 
+  select(variable, group, n, n_death, cfr) |> 
+  group_by(variable) |> 
+  epithemes::epitheme_gt() |> 
+  gt::cols_label(
+    "group"~"",
+    "n" ~ "N cases", 
+    "n_death" ~ "deaths", 
+    "cfr" ~"CFR (%)") |> 
+  
+  gtExtras::gt_highlight_rows(
+    rows = 1,
+    fill = "lightgrey"
+  )
+```
+
+Transmission chains data ----------------------------------------------------------------------------------------------------
+
+This outbreak was small enough that extensive field investigations could be carried out. All the data collected during these were entered into the linelist, and were used to create what we call a **transmission tree**. Simply put, a transmission tree is a type of network visualisation, where every *node* represents a case, and every *edge* a transmission event. It shows us **who infected whom**. 
+
+For each of the EVD case discovered by our field epidemiologists, we list all of it's possible infectors using the contact data. For each of these potential infector, epidemiologists compute the incubation delay, that is difference between symptom onset date in our case, and the date of probable exposure to our potential infector. Because we know what is a probable incubation period for Ebola (3 - 10 days), we can rule out all infectors that would result in an incubation period outside this range. In some cases, this is sufficient to identify a clear infector of a case. When there are several infectors still plausible, it becomes a bit trickier. If time and logistics allow it, further investigations can be conducted, otherwise we can rely on more complex inference and modelling methods to incorporate contact, temporal and genetic data together and probabilistically reconstruct the chains of transmissions. While these methods are powerful, they are very complex, time-consuming and not straightforward to use on the field. 
+
+```{r}
+dat$evd_chain |> as_tibble()
+```
+
+Our current dataset contains on of the transmission tree reconstructed by our teams, and it is stored as the `evd_chain` object in our `dat` list. 
+
+::: {.write}
+Have a look at this dataset - Can you understand how it is organised and what each variable represents ?
+:::
+
+A transmission chain dataset (and all other network dataset) is organised with as **one row = one transmission event**, that is each row of the dataset represents an infection event, and visually an *edge*, a link between two nodes. We have 4 variables, of which 3 are of interest to us: (forget about `branch_length`)
+
+- `to` represents a case of EVD.
+- `from` represents the case of EVD that infected `to` (infector).
+- `t_inf` represents the supposed time of infection of case `to`. This is the likely date of exposure to its `from` infector.
+
+::: {.write}
+**Advanced question:** 
+
+- Can you find an easy and straightfoward way of calculating the number of secondary cases that each infector infected ? 
+
+- Can you find the case ID that infected most people and how many did they infect ? 
+
+*no worries if you struggle here, solution will be provided at the end*
+:::
+
+::: {.tip}
+`from` contains the ID of the potential infectors ...
+:::
+
+`{epicontacts}` ----------------------------------------------------------------------------------------------------
+
+Now that we have explored our transmission tree dataset, we want to visualise it as a network (also called a graph), of *nodes* and *edges* and for this we need to use the package `{epicontacts}`. 
+
+### `make_epicontact()`
+We first need to define an object of class `epicontacts`, which contain two components: i) a linelist and ii) a contact dataframe (or in our case a transmission tree df with `from`/`to` variables. 
+
+Each row of the linelist should represent unique observations of cases, and each row of the contact list should represent unique pairs of contacts. Each can include arbitrary features, but both datasets should share an identification scheme. We then use the function `make_epicontact()` to bundle both the linelist and the contact df together. 
+
+```{r}
+#| warning: false
+#| message: false
+#| echo: true
+epi_tree <- make_epicontacts(
+  linelist = dat$evd_linelist,
+  contacts = dat$evd_chain, 
+  id = "id",
+  from = "from",
+  to = "to",
+  directed = TRUE
+)
+
+```
+
+::: {.callout-tip}
+We use the argument `directed = TRUE` to specify that there is a direction to transmission `from` -> `to`.
+:::
+
+::: {.write}
+Make an epicontact object for the transmission tree and inspect it
+:::
+
+### Visualise a network
+
+To visualise an epicontact object you can simply use the `plot()` function. This will open an interactive visualisation window, where you can move cases around, click on the nodes to display informations from the linelist and use the selector to highlight some cases. 
+
+```{r}
+#| echo: true
+plot(epi_tree)
+```
+
+When visualising a a transmission chain as a network, cases are referred as **nodes**, while transmission events as **edges**. Both these features of the network can be customised in `epicontacts`. We can attribute color, size and shape to nodes using variables in the linelist (cases data), and change the width, color of edges using variable in the contact df (transmission events data). You can also attribute fix values to all these attributes. 
+
+```{r}
+#| echo: true
+plot(epi_tree, 
+node_color = "classification", 
+edge_width = 5
+)
+
+```
+
+Adding differnet shapes to our nodes is feasible using the `shape` argument and passing a vector of shapes associated to each values using icons from `codeawesome` (see `?codeawesome` for a list of options)
+
+```{r}
+#| echo: true
+plot(epi_tree, 
+node_color = "sex", 
+edge_width = 5,
+node_shape = "sex",
+node_size = 40,
+shapes = c(male = "male", female = "female")
+)
+```
+
+::: {.callout-tip}
+There are a lot of arguments to customize the plot appearance and functionality. For a full list of options use `?vis_epicontacts()`
+:::
+
+::: {.write}
+Plot the transmission tree and explore options that seems interesting for you
+:::
+
+### Temporal axis
+
+While our above visualisation is looking nice, it lacks some key temporal information from our tree. `epicontacts` provides an easy way of adding time axis using the argument `x_axis =`, which comes with additionnal arguments like `n_breaks` and `date_labels` to customise this x-axis. 
+
+```{r}
+#| echo: true
+#| warning: false
+plot(epi_tree, 
+x_axis = "t_inf",
+n_breaks = 10,
+node_color = "classification", 
+edge_width = 5
+)
+
+```
+
+Once an `x_axis` is added to our network, we can switch between a `branching` or `rectangle` shape for the graph, with options to dodge cases that are on the same line in a `rectangle` network, and select the position of the index case relative to its contact with `parent_pos =`: 
+
+```{r}
+#| echo: true
+#| warning: false
+plot(epi_tree, 
+x_axis = "t_inf",
+n_breaks = 10,
+network_shape = "rectangle", 
+parent_pos = "top", 
+position_dodge = TRUE,
+node_color = "classification", 
+edge_width = 5
+)
+```
+
+::: {.callout-tip}
+This type of representation is very informative of the temporal spread of the outbreak !
+:::
+
+::: {.write}
+Play around with the different options for a timed network
+:::
+
+### Timelines
+
+Our network is now timed, and link all of our cases together. However, there is another type of information that we could add to it. Instead of representating the nodes (cases) with a single point (or symbol), we could plot a timeline for their disease given that we have their date of symptom onset and outcome, this would be useful to see where cases disease overlap !
+
+This is also easily achievable in `epicontacts` using the `timeline` argument, to which we pass a dataframe of start/end date for each of our case. We can define shapes for the final symbol of the timeline, and colors. When plotting each case as a timeline, new arguments are used to customise the timeline or the end node. 
+
+| Argument | Description |
+|-------|-----------------|
+| `timeline` | Data frame containing temporal information for each case |
+| `tl_end_node_shape` | Maps the shape of end nodes to a column in your timeline data (e.g., "outcome") |
+| `tl_end_node_size` | Sets the size of end nodes (numeric value or numeric variable) |
+| `tl_end_node_color` | Maps the color of end nodes to a column in your data |
+| `tl_edge_color` | Defines the color of timeline edges |
+| `tl_edge_width` | Sets the width of timeline edges (numeric value or numeric variable) |
+| `tl_edge_label` | Specifies which column to use for edge labels |
+
+when shapes or color type of arguments are provided we need to provide a dataframe of all color and shapes values for the network: 
+
+```{r}
+#| echo: true
+#| warning: false
+
+  timeline <- epi_tree$linelist |>
+    transmute(
+      id,
+      start = t_onset,
+      end = t_outcome,
+      classification,
+      outcome = outcome,
+      hospitalised, 
+      health_zone
+    )
+
+  shapes <- c(
+    dead = "asterisk",
+    recovered = "heartbeat"
+  )
+
+  ## define colours
+  colours <- c(
+    "confirmed" = "#c5283d",
+    "probable" = "#e9724c",
+    "suspected" = "#ffc857",
+    "non-case" = "#377771",
+    "NA" = "grey"
+  )
+
+tree <- plot(
+  epi_tree, 
+x_axis = "t_onset",
+n_breaks = 10,
+network_shape = "rectangle", 
+parent_pos = "top", 
+position_dodge = TRUE,
+node_color = "classification", 
+timeline = timeline, 
+tl_end_node_shape = "outcome", 
+tl_edge_color = "health_zone",
+tl_edge_width = 10,
+tl_edge_label = "id",  
+shapes = shapes, 
+col_pal = colours, 
+arrow_size = 0.5,
+height = 1500,
+width = 1200, 
+label = FALSE
+)
+
+tree
+
+```
+
+::: {.callout-tip}
+If the network becomes to crammed, we can increase the `height` and `width` arguments to make it clearer
+:::
+
+::: {.write}
+- Look at the code above - can you understand what each argument does ? 
+
+- Try to plot yours, and play around with options
+:::
+
+::: {.look}
+- Now that you have visualised the transmission tree for this outbreak, what interesting information can you observe ? 
+
+- Which caase transmitted most EVD, are these the ones you found before ? 
+- Can you note something regarding cases disease onset ? 
+- Any other type of information you want to add to it ?
+:::
+
+### Save the output
+
+Once you are happy with your transmission tree, we can save it to be re-used later or shared with colleagues. You can save the object as a `.rds` file if you are to re-use it in R later
+
+```{r}
+#| eval: false 
+#| echo: true
+
+saveRDS(tree, "output/timeline_tree.rds")
+```
+
+You can also save an `.html` version of that file using `visSave()` from `{visNetwork}`. This will produce an interactive file that you can share with anyone and open in any browser, even without internet connection. 
+
+```{r}
+#| eval: false 
+#| echo: true
+
+visNetwork::visSave(tree, "output/timeline_tree.html")
+```
+
+Finally, saving these network outputs as an image is unfortunately less easy and requires you to save the file as an html and then take a screenshot of this file using the `{webshot}` package. In the code below, we are converting the html file saved above into a PNG:
+
+```{r}
+#| eval: false 
+#| echo: true
+
+webshot::webshot(url = "output/timeline_tree.html", file = "output/timeline_tree.png")
+
+```
+
+Extra challenge
+----------------------------------------------------------------------------------------------------
+### Adding contact type 
+
+Our consensus tree is looking good, but if you look into our contact data, you will see that we have information about the **type of contact** between two cases. Can you come up with a way of adding these informations in our tree df, so that we can colorize the *edges* of the network using different contact type ? 
+
+::: {.callout-tip}
+There may be need to join some data together ...
+:::
+
+Done!
+
+----------------------------------------------------------------------------------------------------
+Congratulations on visualising those transmission trees ! `epicontacts` has loads of options for customisation so do not feel overwhelmed ! You can read [this chapter](https://www.epirhandbook.com/en/new_pages/transmission_chains.html) from the **Epidemiologist R handbook** if you want to learn more about it ! 
+
+```{r}
+#| echo: false
+#| eval: true
+
+downloadthis::download_file(
+  'solutions/extra/chains-visualisation-solution.R',
+  button_label = 'Solutions file',
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  self_contained = FALSE
+)
+
+```
