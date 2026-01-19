@@ -44,7 +44,6 @@ Your mission will focus on the following core objectives:
 2. Generate _descriptive tables and summaries_ to explore the Person dynamics of this outbreak.
 3. Create simple yet _comprehensive plots_ to visualize the Time dynamics of the outbreak, along with key epidemiological characteristics.
 
-
 You can download the linelist as an `.xlsx` file right here: [Download the data](downloads/Moissalla-measles-linelist-EN.xslx){download="Moissalla-measles-linelist-EN.xslx"}
 
 _Time is of the essence, so let’s get started!_
