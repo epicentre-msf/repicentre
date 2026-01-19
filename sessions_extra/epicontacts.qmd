@@ -509,13 +509,10 @@ Congratulations on visualising those transmission trees ! `epicontacts` has load
 #| eval: false
 
 downloadthis::download_file(
-  'solutions/extra/chains-visualisation-solution.R',
+  'https://github.com/epicentre-msf/repicentre/blob/main/solutions/extra/chains-visualisation-solution.R',
   button_label = 'Solutions file',
   has_icon = TRUE,
   icon = "fa fa-save",
   self_contained = FALSE
 )
-
-https://github.com/epicentre-msf/repicentre/blob/main/solutions/extra/data_exploration_fr.R',
-
 ```
