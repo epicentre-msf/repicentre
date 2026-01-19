@@ -46,12 +46,12 @@ For the sake of simplicity, you will be using data simulated from the 9th EVD ou
 ```{r}
 #| echo: false
 #| eval: true
-data <- episimdata::evd_data
+#data <- episimdata::evd_data
 
 # remove sequences 
-data <- data[-4]
+#data <- data[-4]
 
-saveRDS(data, "data/clean/simulated_evd_data.rds")
+#saveRDS(data, here::here("data", "clean", "simulated_evd_data.rds"))
 
 downloadthis::download_link(
   "data/clean/simulated_evd_data.rds",
@@ -207,15 +207,12 @@ bind_rows(
   )
 ```
 
-Transmission chains data ----------------------------------------------------------------------------------------------------
+Transmission chains data
+----------------------------------------------------------------------------------------------------
 
 This outbreak was small enough that extensive field investigations could be carried out. All the data collected during these were entered into the linelist, and were used to create what we call a **transmission tree**. Simply put, a transmission tree is a type of network visualisation, where every *node* represents a case, and every *edge* a transmission event. It shows us **who infected whom**. 
 
 For each of the EVD case discovered by our field epidemiologists, we list all of it's possible infectors using the contact data. For each of these potential infector, epidemiologists compute the incubation delay, that is difference between symptom onset date in our case, and the date of probable exposure to our potential infector. Because we know what is a probable incubation period for Ebola (3 - 10 days), we can rule out all infectors that would result in an incubation period outside this range. In some cases, this is sufficient to identify a clear infector of a case. When there are several infectors still plausible, it becomes a bit trickier. If time and logistics allow it, further investigations can be conducted, otherwise we can rely on more complex inference and modelling methods to incorporate contact, temporal and genetic data together and probabilistically reconstruct the chains of transmissions. While these methods are powerful, they are very complex, time-consuming and not straightforward to use on the field. 
-
-```{r}
-dat$evd_chain |> as_tibble()
-```
 
 Our current dataset contains on of the transmission tree reconstructed by our teams, and it is stored as the `evd_chain` object in our `dat` list. 
 
@@ -223,11 +220,17 @@ Our current dataset contains on of the transmission tree reconstructed by our te
 Have a look at this dataset - Can you understand how it is organised and what each variable represents ?
 :::
 
-A transmission chain dataset (and all other network dataset) is organised with as **one row = one transmission event**, that is each row of the dataset represents an infection event, and visually an *edge*, a link between two nodes. We have 4 variables, of which 3 are of interest to us: (forget about `branch_length`)
+A transmission chain dataset (and all other network dataset) is organised as **one row = one transmission event**, that is each row of the dataset represents an infection event, and visually an *edge*, a link between two nodes. We have 4 variables, of which 3 are of interest to us: (forget about `branch_length`)
 
 - `to` represents a case of EVD.
 - `from` represents the case of EVD that infected `to` (infector).
 - `t_inf` represents the supposed time of infection of case `to`. This is the likely date of exposure to its `from` infector.
+
+
+```{r}
+dat$evd_chain |> as_tibble()
+```
+
 
 ::: {.write}
 **Advanced question:** 
@@ -243,7 +246,8 @@ A transmission chain dataset (and all other network dataset) is organised with a
 `from` contains the ID of the potential infectors ...
 :::
 
-`{epicontacts}` ----------------------------------------------------------------------------------------------------
+`{epicontacts}` 
+----------------------------------------------------------------------------------------------------
 
 Now that we have explored our transmission tree dataset, we want to visualise it as a network (also called a graph), of *nodes* and *edges* and for this we need to use the package `{epicontacts}`. 
 
@@ -284,6 +288,15 @@ To visualise an epicontact object you can simply use the `plot()` function. This
 plot(epi_tree)
 ```
 
+:::{.look}
+See this first transmission tree - can you interpret it ? 
+
+- It is interactive ! You can hover your mouse, click on nodes and move them around by dragging them 
+- You can use the Top-left filter to choose a case ID to highlight
+
+How do you interpret these two star-like tree topologies that are displayed ?
+:::
+
 When visualising a a transmission chain as a network, cases are referred as **nodes**, while transmission events as **edges**. Both these features of the network can be customised in `epicontacts`. We can attribute color, size and shape to nodes using variables in the linelist (cases data), and change the width, color of edges using variable in the contact df (transmission events data). You can also attribute fix values to all these attributes. 
 
 ```{r}
@@ -295,7 +308,7 @@ edge_width = 5
 
 ```
 
-Adding differnet shapes to our nodes is feasible using the `shape` argument and passing a vector of shapes associated to each values using icons from `codeawesome` (see `?codeawesome` for a list of options)
+Adding different shapes to our nodes is possible using the `shape` argument and passing a vector of shapes associated to each values using icons from `codeawesome` (see `?codeawesome` for a list of options)
 
 ```{r}
 #| echo: true
@@ -441,9 +454,9 @@ If the network becomes to crammed, we can increase the `height` and `width` argu
 ::: {.look}
 - Now that you have visualised the transmission tree for this outbreak, what interesting information can you observe ? 
 
-- Which caase transmitted most EVD, are these the ones you found before ? 
-- Can you note something regarding cases disease onset ? 
-- Any other type of information you want to add to it ?
+- Which cases are the biggest transmitter of EVD and are these the ones you found before ? 
+- Can you observe something regarding the disease onset of cases relative to their infector ? 
+- Any other type of information you want to add there ?
 :::
 
 ### Save the output
@@ -493,7 +506,7 @@ Congratulations on visualising those transmission trees ! `epicontacts` has load
 
 ```{r}
 #| echo: false
-#| eval: true
+#| eval: false
 
 downloadthis::download_file(
   'solutions/extra/chains-visualisation-solution.R',
@@ -502,5 +515,7 @@ downloadthis::download_file(
   icon = "fa fa-save",
   self_contained = FALSE
 )
+
+https://github.com/epicentre-msf/repicentre/blob/main/solutions/extra/data_exploration_fr.R',
 
 ```
