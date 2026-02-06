@@ -1,7 +1,7 @@
 ---
 title: Intoduction to shiny dashboards
 description: Learn how to work and customise simple {shiny} apps
-image: ../img/core/06_epicurves/logo.svg
+image: ../img/extra/shiny/Shiny-logo.png
 categories:
   - Satellite
   - Visualization
