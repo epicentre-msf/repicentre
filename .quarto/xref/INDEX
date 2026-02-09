@@ -148,5 +148,11 @@
   },
   "sessions_companion/survey_basic.fr.qmd": {
     "survey_basic.fr.html": "0b43a81b"
+  },
+  "sessions_extra/shiny-intro.qmd": {
+    "shiny-intro.html": "9e140340"
+  },
+  "sessions_extra/shiny-intro.en.qmd": {
+    "shiny-intro.en.html": "376c930d"
   }
 }
