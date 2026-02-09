@@ -1,7 +1,7 @@
 ---
-title: Intoduction to shiny dashboards
+title: Intoduction to Shiny
 description: Learn how to work and customise simple {shiny} apps
-image: ../img/extra/shiny/Shiny-logo.png
+image: ../img/extra/shiny_intro/logo.svg
 categories:
   - Satellite
   - Visualization
@@ -764,7 +764,7 @@ And this is a clap, you are done ! Congrats on building and tweaking your first 
 #| eval: true
 
 downloadthis::download_link(
-    link = 'https://github.com/epicentre-msf/repicentre/blob/main/sessions_extra/shiny-intro_solutions_en.R',
+    link = 'https://github.com/epicentre-msf/repicentre/blob/main/sessions_extra/shiny_intro_solutions.R',
   button_label = 'Solution File',
   has_icon = TRUE,
   icon = "fa fa-save",
@@ -783,5 +783,5 @@ Shiny is a huge field within the R community and there are a lots of amazing res
 **R packages**
 
 - [{epishiny}](https://epicentre-msf.github.io/epishiny/) - provides simple functions that produce engaging, feature-rich interactive visualisations and dashboards from epidemiological data using R’s shiny. (developped by [Epicentre Data Science Team](https://epicentre-msf.github.io/gallery/))
-- [{shinyWidgets}](https://github.com/dreamRs/shinyWidgets) - gives you many many more widgets that can be used in your app.epishi
-- [{highcharter}](https://jkunst.com/highcharter/) - R wrapper for the Highcharts (javascript) library for interactive visualisations
+- [{shinyWidgets}](https://github.com/dreamRs/shinyWidgets) - gives you many many more widgets that can be used in your app
+- [{highcharter}](https://jkunst.com/highcharter/) - R wrapper for the Highcharts (javascript) library for interactive visualisations (license required, potentially paid)
