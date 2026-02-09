@@ -764,7 +764,7 @@ And this is a clap, you are done ! Congrats on building and tweaking your first 
 #| eval: true
 
 downloadthis::download_link(
-    link = 'https://github.com/epicentre-msf/repicentre/blob/main/sessions_extra/shiny_intro_solutions.R',
+    link = 'https://github.com/epicentre-msf/repicentre/blob/main/solutions/extra/shiny_intro_solutions.R',
   button_label = 'Solution File',
   has_icon = TRUE,
   icon = "fa fa-save",
