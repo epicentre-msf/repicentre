@@ -511,7 +511,7 @@ Write the following tests:
 -  Is `vec1` equal to `vec2`? The output should be `r vec1 == vec2`.
 -  Are the values of `vec1` superior or equal to `vec2`? The output should be `r vec1 >= vec2`.
 -  Are the values of `vec1` present anywhere in `vec2`? The output should be `r vec1 %in% vec2`.
--  Test is the values of `vec2` are `NA`. **Hint**: you should use the `is.na()` function.
+-  Test if the values of `vec2` are `NA`. **Hint**: you should use the `is.na()` function.
 
 2. Write a command to check if the facility "Moissala Ouest" exists in our linelist.
 
