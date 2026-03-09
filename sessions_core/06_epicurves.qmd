@@ -152,7 +152,7 @@ We can update our above schematic of an epicurve with these functions as follows
 ![](../img/core/06_epicurves/02_functions.png){fig-align="center"}
 
 ::: {.callout-note}
-Notice that in the above example, our very first line is actually our dataset being piped into the `ggplot()` function. This makes sense since `{ggplot2}` needs to know what data you'd like to visualize. **But be careful,** make sure that **this line ends in a pipe** (`|>`) and not in a `+` sign like t |> he other ones.
+Notice that in the above example, our very first line is actually our dataset being piped into the `ggplot()` function. This makes sense since `{ggplot2}` needs to know what data you'd like to visualize. **But be careful,** make sure that **this line ends in a pipe** (`|>`) and not in a `+` sign like the other ones.
 :::
 
 In the next part of the tutorial we will go through each of these steps (layers) individually using our course dataset to make your first epicurve.
