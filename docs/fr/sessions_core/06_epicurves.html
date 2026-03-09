@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
 <head>
-<link rel="alternate" hreflang="en" href="https://epicentre-msf.github.io/repicentre//sessions_core/06_epicurves.html" />
-<link rel="alternate" hreflang="fr" href="https://epicentre-msf.github.io/repicentre//fr/sessions_core/06_epicurves.fr.html" />
+<link rel="alternate" hreflang="en" href="/sessions_core/06_epicurves.html" />
+<link rel="alternate" hreflang="fr" href="/fr/sessions_core/06_epicurves.fr.html" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.8.26">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta name="description" content="Apprenez les bases de la visualisation avec ggplot2, et créez votre première épicurve">
-<title>Introduction to data visualization with ggplot2 – {repicentre}</title>
+<meta name="description" content="Découvrez les bases de ggplot2 et créez votre première courbe épidémique">
+<title>Introduction à la visualisation de données avec ggplot2 – {repicentre}</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -59,13 +59,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script><script src="../site_libs/quarto-nav/headroom.min.js"></script><script src="../site_libs/clipboard/clipboard.min.js"></script><script src="../site_libs/quarto-search/autocomplete.umd.js"></script><script src="../site_libs/quarto-search/fuse.min.js"></script><script src="../site_libs/quarto-search/quarto-search.js"></script><meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script><script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script><script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script><script src="../site_libs/quarto-html/popper.min.js"></script><script src="../site_libs/quarto-html/tippy.umd.min.js"></script><script src="../site_libs/quarto-html/anchor.min.js"></script><link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-f1aadacce99040138bbb613f9330654f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-7ac2f9da8c2617a4fdd15004b4601015.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script><link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-bd9e9ee71991698ccdf231aaeb59f575.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-04ce264712e6490513e553b82ad07e3b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-bd9e9ee71991698ccdf231aaeb59f575.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-63b190c79e12f21edfb5aa510d2b1118.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-6c9d4b6e8397689ef559897df4fbe577.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-63b190c79e12f21edfb5aa510d2b1118.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -271,7 +271,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
 <li class="nav-item"><div class="dropdown" id="languages-links-parent">
-<button class="btn btn-primary dropdown-toggle babelquarto-languages-button" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="languages-button"><i class="bi bi-globe2"></i> Français</button><ul class="dropdown-menu" id="languages-links"><li><a class="dropdown-item" href="https://epicentre-msf.github.io/repicentre//sessions_core/06_epicurves.html" id="language-link-en">English</a></li></ul>
+<button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="languages-button"><i class="bi bi-globe2"></i> Français</button><ul class="dropdown-menu" id="languages-links"><li><a class="dropdown-item" href="/sessions_core/06_epicurves.html" id="language-link-en">English</a></li></ul>
 </div></li>
 <li class="nav-item">
     <a class="nav-link" href="../pathway.html"> 
@@ -304,31 +304,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
 <li><a href="#objectifs" id="toc-objectifs" class="nav-link active" data-scroll-target="#objectifs">Objectifs</a></li>
   <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
-  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
+  <li><a href="#mise-en-place" id="toc-mise-en-place" class="nav-link" data-scroll-target="#mise-en-place">Mise en place</a></li>
   <li>
 <a href="#les-paradigmes-de-la-cr%C3%A9ation-de-graphiques" id="toc-les-paradigmes-de-la-création-de-graphiques" class="nav-link" data-scroll-target="#les-paradigmes-de-la-création-de-graphiques">Les paradigmes de la création de graphiques</a>
   <ul class="collapse">
 <li><a href="#d%C3%A9composition-dun-graphique" id="toc-décomposition-dun-graphique" class="nav-link" data-scroll-target="#décomposition-dun-graphique">Décomposition d’un graphique</a></li>
-  <li><a href="#ossature-dun-ggplot" id="toc-ossature-dun-ggplot" class="nav-link" data-scroll-target="#ossature-dun-ggplot">Ossature d’un <code>ggplot</code></a></li>
+  <li><a href="#structure-dun-ggplot" id="toc-structure-dun-ggplot" class="nav-link" data-scroll-target="#structure-dun-ggplot">Structure d’un <code>ggplot</code></a></li>
   </ul>
 </li>
   <li>
 <a href="#sec-epicurve-steps" id="toc-sec-epicurve-steps" class="nav-link" data-scroll-target="#sec-epicurve-steps">Votre premier <code>ggplot</code></a>
   <ul class="collapse">
-<li><a href="#pr%C3%A9parer-vos-donn%C3%A9es-agr%C3%A9gation-par-jour" id="toc-préparer-vos-données-agrégation-par-jour" class="nav-link" data-scroll-target="#préparer-vos-données-agrégation-par-jour">Préparer vos données : Agrégation par jour</a></li>
+<li><a href="#pr%C3%A9parer-les-donn%C3%A9es-agr%C3%A9gation-par-jour" id="toc-préparer-les-données-agrégation-par-jour" class="nav-link" data-scroll-target="#préparer-les-données-agrégation-par-jour">Préparer les données : agrégation par jour</a></li>
   <li><a href="#cr%C3%A9er-le-canevas" id="toc-créer-le-canevas" class="nav-link" data-scroll-target="#créer-le-canevas">Créer le canevas</a></li>
-  <li><a href="#ajouter-les-formes" id="toc-ajouter-les-formes" class="nav-link" data-scroll-target="#ajouter-les-formes">Ajouter les formes</a></li>
+  <li><a href="#ajouter-des-formes" id="toc-ajouter-des-formes" class="nav-link" data-scroll-target="#ajouter-des-formes">Ajouter des formes</a></li>
   <li><a href="#ajouter-les-titres" id="toc-ajouter-les-titres" class="nav-link" data-scroll-target="#ajouter-les-titres">Ajouter les titres</a></li>
   <li><a href="#changer-le-th%C3%A8me" id="toc-changer-le-thème" class="nav-link" data-scroll-target="#changer-le-thème">Changer le thème</a></li>
   <li><a href="#sauvegarder-votre-graphique" id="toc-sauvegarder-votre-graphique" class="nav-link" data-scroll-target="#sauvegarder-votre-graphique">Sauvegarder votre graphique</a></li>
   </ul>
 </li>
-  <li><a href="#la-fin" id="toc-la-fin" class="nav-link" data-scroll-target="#la-fin">La Fin !</a></li>
+  <li><a href="#cest-fini" id="toc-cest-fini" class="nav-link" data-scroll-target="#cest-fini">C’est fini !</a></li>
   <li>
 <a href="#aller-plus-loin" id="toc-aller-plus-loin" class="nav-link" data-scroll-target="#aller-plus-loin">Aller plus loin</a>
   <ul class="collapse">
 <li><a href="#exercices-suppl%C3%A9mentaires" id="toc-exercices-supplémentaires" class="nav-link" data-scroll-target="#exercices-supplémentaires">Exercices supplémentaires</a></li>
-  <li><a href="#exercices-de-d%C3%A9fi" id="toc-exercices-de-défi" class="nav-link" data-scroll-target="#exercices-de-défi">Exercices de défi</a></li>
+  <li><a href="#d%C3%A9fi" id="toc-défi" class="nav-link" data-scroll-target="#défi">Défi</a></li>
   <li><a href="#satellites" id="toc-satellites" class="nav-link" data-scroll-target="#satellites">Satellites</a></li>
   </ul>
 </li>
@@ -337,7 +337,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title">Introduction to data visualization with ggplot2</h1>
+<h1 class="title">Introduction à la visualisation de données avec ggplot2</h1>
   <div class="quarto-categories">
     <div class="quarto-category">Core</div>
     <div class="quarto-category">Visualization</div>
@@ -346,7 +346,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div>
   <div class="description">
-    Apprenez les bases de la visualisation avec ggplot2, et créez votre première épicurve
+    Découvrez les bases de ggplot2 et créez votre première courbe épidémique
   </div>
 </div>
 
@@ -362,11 +362,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header><section id="objectifs" class="level2"><h2 class="anchored" data-anchor-id="objectifs">Objectifs</h2>
 <ul>
-<li>Découvrir les bases de la visualisation de données en R avec le package <code>{ggplot2}</code>
+<li>S’initier aux bases de la visualisation de données en R avec le paquet <code>{ggplot2}</code>
 </li>
 <li>Construire une courbe épidémique simple</li>
 </ul></section><section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>Pour cette dernière session, nous allons vous donner une courte introduction à la visualisation de données à l’aide du package <code>{ggplot2}</code>, un outil populaire. Gardez en tête que la visualisation de données est un énorme sujet, et <code>{ggplot2}</code> un vaste package et il n’est pas réaliste de tout traiter en trois heures. La session d’aujourd’hui est une introduction que nous espérons douce aux concepts de base de la visualisation, en prenant pour objet un graphe fameux en épidémiologie, <strong>la <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Les courbes épidémiques sont un type particulier de représentation qui montre le nombre journalier ou hebdomadaire de cas observés pendant une épidémie. Ces courbes sont très utilisées en épidémiologie, et peuvent être complexifiées en ajoutant le statut du cas, son type de décharge, etc.">courbe épidémique</span></strong>.</p>
+<p>Cette session introduit les concepts de base pour créer des graphiques avec un paquet populaire, <code>{ggplot2}</code>. Il ne sera pas possible de tout traiter en trois heures : visualiser les données est un vaste sujet et <code>{ggplot2}</code> en particulier est très puissant. Nous nous focaliserons sur une initiation aux concepts de base en créant le graphique le plus connu en épidémiologie, la <strong><span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Une courbe épidémique montre le nombre journalier ou hebdomadaire de cas observés pendant une épidémie. C'est un graphique très utilisés en épidémiologie. Il peut être complexifiés en ajoutant le statut du cas, son type de décharge, etc.">courbe épidémique</span></strong>.</p>
 <p>Notre visualisation finale ressemblera à ceci :</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -376,10 +376,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</section><section id="setup" class="level2"><h2 class="anchored" data-anchor-id="setup">Setup</h2>
-<p><strong>Dépendances.</strong> Cette session suppose que vous savez utiliser RStudio, que vous êtes capable d’importer des données et que vous connaissez les verbes de base de manipulation des données que nous avons vus dans les sessions de base jusqu’à présent. Si vous avez besoin d’un rappel sur l’un de ces sujets, nous vous encourageons à revoir les sessions de base du parcours d’apprentissage.</p>
+</section><section id="mise-en-place" class="level2"><h2 class="anchored" data-anchor-id="mise-en-place">Mise en place</h2>
+<p><strong>Prérequis</strong> Cette leçon part du principe que vous savez utiliser RStudio, êtes capable d’importer des données et connaissez les verbes de base du traitement des données. Rafraîchissez-vous si besoin sur les <a href="https://epicentre-msf.github.io/repicentre//fr/pathway.html">leçons précédentes</a>.</p>
 <div class="setup">
-<p>Cette session utilisera la version nettoyée de l’ensemble de données Moissala sur la rougeole.</p>
+<p>Cette session utilisera la version nettoyée de la liste linéaire rougeole à Mandoul</p>
 <div class="cell">
 <div class="cell-output-display">
 <a href="https://github.com/epicentre-msf/repicentre/raw/main/data/FETCHR.zip">
@@ -387,17 +387,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </a>
 </div>
 </div>
-<p><br> Ouvrez votre projet Rstudio du cours et créez un nouveau script appelé “courbe_epi.R” avec les métadonnées appropriées. Enregistrez le dans <code>R/</code>. Pour cette session, nous aurons besoin de charger les packages <code>{here}</code>, <code>{rio}</code>, <code>{dplyr}</code>, <code>{lubridate}</code>, et<code>{ggplot2}</code>. Ajoutez une section <code># IMPORTATION DONNÉES</code> où vous importez les données nettoyées du cours (<code>linelist_moissala_clean_FR.RDS</code>).</p>
+<p><br> Ouvrez le projet Rstudio du cours et créez un nouveau script appelé “courbe_epi.R” avec les métadonnées appropriées. Enregistrez le dans <code>R/</code>. Pour cette leçon, nous aurons besoin de charger les paquets <code>{here}</code>, <code>{rio}</code>, <code>{dplyr}</code>, <code>{lubridate}</code>, et<code>{ggplot2}</code>. Ajoutez une section <code># IMPORT DONNÉES</code> où vous importez les données nettoyées du cours (<code>linelist_moissala_clean_FR.RDS</code>).</p>
 </div>
 </section><section id="les-paradigmes-de-la-création-de-graphiques" class="level2"><h2 class="anchored" data-anchor-id="les-paradigmes-de-la-création-de-graphiques">Les paradigmes de la création de graphiques</h2>
-<p>In R, and indeed in everything, there are a loIl y a de nombreuses approches à la visualisation de données, en général et en R en particulier. Les deux plus grands paradigmes sont :</p>
+<p>Il y a plusieurs manières d’approcher la visualisation de données en général et en R en particulier. Les deux paradigmes les plus connus sont :</p>
 <ul>
-<li><p><strong>Tout en un</strong> : cette approche est caractérisée par l’existence d’une fonction (en général complexe) pour gérer tous les aspects de la construction d’un graphique. Base R par exemple, utilise cette approche (et n’est pas le seul).</p></li>
-<li><p><span class="hovertip" data-bs-toggle="tooltip" data-bs-title="TParfois surnommé la 'grammaire des graphiques', du nom du livre qui a mis en place les fondements de ce paradigme."><strong>Graphiques en couches (ou modulaires)</strong></span> : le graphique est décomposé en éléments (formes, titres, barres d’erreurs, thèmes…) associées à des couches. Différentes fonctions ajoutent ou modifient ces éléments. Ce paradigme est utilisé par les packages <code>{ggplot2}</code>, <code>{highcharter}</code>, ou <code>{echarts4r}</code> et un certain nombre d’outils modernes.</p></li>
+<li><p><strong>Tout en un</strong> : cette approche est caractérisée par l’existence d’une fonction (souvent complexe) pour gérer tous les aspects de la construction d’un graphique. Base R par exemple, utilise cette approche (et ce n’est pas le seul).</p></li>
+<li><p><span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Ce paradigme est parfois surnommé 'la grammaire des graphiques', en référence au titre du livre qui en a jeté les fondements."><strong>Graphiques modulaires / en couches</strong></span> : le graphique est décomposé en éléments (formes, titres, barres d’erreurs, thèmes…) associées à des couches. Différentes fonctions ajoutent ou modifient ces éléments. Ce paradigme est utilisé par les paquets <code>{ggplot2}</code>, <code>{highcharter}</code>, ou <code>{echarts4r}</code> et un certain nombre d’autres outils modernes.</p></li>
 </ul>
-<p>Une discussion approfondie sur les raisons pour lesquelles on peut utiliser une approche plutôt qu’une autre dépasse le cadre de ce cours, mais nous noterons que la plupart des paquets de visualisation modernes ont tendance à utiliser un [modèle en couches] {.hovertip bs-toggle=‘tooltip’ bs-title=“C’est parce que les modèles en couches ont tendance à être plus pratiques lors de la construction de visualisations complexes ou hautement personnalisées.”}. En gardant cela à l’esprit, examinons les types de couches dont nous parlons dans notre approche « en couches ».</p>
+<p>Une discussion approfondie des avantages et inconvénients de chacune des approches dépasse le cadre de ce cours. Néanmoins, on peut noter que la plupart des outils de visualisation modernes utilisent l’approche <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Cette approche est plus pratique pour créer des visualisations complexes et personnalisées">en couches</span>. Gardons cela à l’esprit, et découvrons ce que sont les fameuses “couches” de l’approche modulaire.</p>
 <section id="décomposition-dun-graphique" class="level3"><h3 class="anchored" data-anchor-id="décomposition-dun-graphique">Décomposition d’un graphique</h3>
-<p>Dans ce tutoriel, nous décomposons les graphiques en quatre composantes (couches) :</p>
+<p>Dans ce tutoriel, nous décomposons les graphiques en quatre composantes (nos couches) :</p>
 <ol type="1">
 <li>Le <strong>canevas</strong> / les <strong>données</strong>
 </li>
@@ -407,24 +407,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Le <strong>thème</strong>
 </li>
 </ol>
-<p>On peut illustrer ces composants avec la courbé épidémique schématique suivante :</p>
+<p>On peut illustrer ces composantes avec la courbé épidémique schématique suivante :</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="../img/core/06_epicurves/01_theory.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
-<p>La première couche, le caneva (ou la toile) est fondamentale. Comme un artiste prépare sa toile vierge et ses outils avant de se lancer dans une peinture, R doit en premier lieu créer un canevas prêt à accueillir les éléments de représentation graphique. C’est lors de la création du canevas que nous indiquons à R que nous voulons créer un graphique, et avec quelles variables.</p>
-<p>Ici, nous allons spécifier à R que nous voulons un graphique où l’axe horizontal représente la date, et l’axe vertical représente le nombre de cas. Une fois le canevas mise en place, nous ajouterons d’autres couches, comme un artiste ajouterait de la peinture, leur signature ou un cadre.</p>
-</section><section id="ossature-dun-ggplot" class="level3"><h3 class="anchored" data-anchor-id="ossature-dun-ggplot">Ossature d’un <code>ggplot</code>
+<p>La première couche, le canevas est fondamentale. Tel un artiste qui prépare sa toile vierge et ses outils avant de se lancer dans une peinture, R doit d’abord créer un canevas prêt à accueillir les éléments de représentation graphique. C’est <em>en créant le canevas que nous indiquons à R que nous allons créer un graphique, et avec quelles variables sur quel axe</em>. Une fois ce canevas mise en place, nous ajouterons d’autres couches, comme un artiste ajouterait de la peinture, leur signature ou un cadre.</p>
+</section><section id="structure-dun-ggplot" class="level3"><h3 class="anchored" data-anchor-id="structure-dun-ggplot">Structure d’un <code>ggplot</code>
 </h3>
-<p>La recette pour construire un ggplot (un graphe produit par le package <code>{ggplot}</code>) est de la forme suivante :</p>
+<p>La recette pour construire un <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Surnom donné à un graphique crée avec le paquet {ggplot2}."><code>ggplot</code></span> est simple :</p>
 <ol type="1">
-<li>Création d’un canevas à l’aide de <code>ggplot(aes(...))</code>
+<li>Création d’un canevas à l’aide du duo de fonctions <code>ggplot(aes(...))</code><br>
 </li>
-<li>Ajout de couches sur le canevas avec <code>+</code>
+<li>Ajout de couches au canevas avec l’opérateur <code>+</code>
 </li>
 </ol>
-<p>Notez que <code>{ggplot2}</code> utilise l’opérateur <code>+</code> pour <strong>ajouter</strong> des couches sur le graphe.</p>
-<p>La syntaxe générale d’un <code>ggplot</code> est :</p>
+<p>La syntaxe générale d’un <code>ggplot</code> est donc :</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># NE PAS EXÉCUTER (PSEUDO-CODE)</span></span>
@@ -466,16 +464,16 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Dans l’exemple précédent, nous passons le jeu de données à la fonction <code>ggplot()</code> à l’aide de l’opérateur <strong>pipe</strong> (comme nous l’avons souvent fait avec d’autres fonctions). C’est possible car le premier argument nécessaire de la fonction est le dataframe contenant les variables à représenter. <strong>Soyez attentifs</strong>, il est facile de se tromper et de chercher à utiliser un <code>+</code> à la place du <code>|&gt;</code></p>
+<p>Notez que l’on passe le jeu de données à la fonction <code>ggplot()</code> à l’aide de l’opérateur <strong>pipe</strong>, comme nous l’avons fait précédement. Ça fonctionne ici aussi car <code>ggplot ()</code> a besoin de connaître le data frame contenant les variables à représenter. <strong>Mais attention</strong> à ne pas utiliser un <code>+</code> à la place du <code>|&gt;</code> par confusion, cela générera rera une erreur.</p>
 </div>
 </div>
-<p>Dans la section suivante, nous allons décrire les différentes étapes plus en détail, en utilisant notre jeu de données rougeole à Moissala pour faire notre première courbe épidémique.</p>
+<p>Dans la section suivante, nous allons décrire les différentes composantes du graphique plus en détail, pour créer notre première courbe épidémique de la rougeole à Mandoul.</p>
 </section></section><section id="sec-epicurve-steps" class="level2"><h2 class="anchored" data-anchor-id="sec-epicurve-steps">Votre premier <code>ggplot</code>
 </h2>
-<section id="préparer-vos-données-agrégation-par-jour" class="level3"><h3 class="anchored" data-anchor-id="préparer-vos-données-agrégation-par-jour">Préparer vos données : Agrégation par jour</h3>
-<p>Nous aimerions tracer une courbe des <em>cas quotidiens</em>. Vous l’aurez peut-être remarqué, nos données actuelles sont quotidiennes, mais il est évident que plusieurs cas peuvent se produire certains jours. Donc,il faut agréger les données par jour. Heureusement, vous avez déjà appris à résumer les données lors des sessions précédentes.</p>
+<section id="préparer-les-données-agrégation-par-jour" class="level3"><h3 class="anchored" data-anchor-id="préparer-les-données-agrégation-par-jour">Préparer les données : agrégation par jour</h3>
+<p>Vous savez que les données de la linelist sont quotidiennes, mais qu’il est possible d’avoir plusieurs cas par jours. Donc, si nous voulons tracer une courbe des <em>cas quotidiens</em>, il faut agréger les données par jour. Heureusement, vous avez appris à résumer les données lors de la <a href="https://epicentre-msf.github.io/repicentre//fr/sessions_core/05_summary_table.html">session précédente</a> !</p>
 <div class="write">
-<p>En utilisant <code>count()</code>, créez un nouveau dataframe appelé <code>df_cases</code> qui résume le nombre total de cas observés par jour. L’en-tête de ce cadre de données devrait ressembler à ceci :</p>
+<p>Utilisez <code>count()</code> pour créer un nouveau data frame appelé <code>df_cases</code> qui résume le nombre total de cas observés par jour de début des symptomes. Le début du data frame devrait ressembler à ceci :</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>  date_debut n
@@ -488,8 +486,8 @@ Note
 </div>
 </div>
 </div>
-<p>Bien !</p>
-<p>Dans les étapes suivantes, <strong>vous</strong> allez utiliser <code>df_cas</code> pour tracer une courbe épidémique du nombre <strong>de cas</strong> par semaine. En revanche, les exemples données dans les exercices pour illustrer le fonctionnement des fonctions seront faits sur le nombre de <strong>hospitalisations</strong> par semaine. Pour cela, j’utiliserai un dataframe <code>df_hopital</code>, qui ressemble à ceci :</p>
+<p>Top ! Nos données sont prêtes à être utilisées.</p>
+<p>Dans les étapes suivantes, <em>vous</em> vous utiliserez <code>df_cas</code> pour tracer une courbe épidémique du <em>nombre de cas par jours</em>. Mais le <em>tutoriel</em> illustra le fonctionnement des fonctions en traçant le <em>nombre d’hospitalisations quotidiennes</em>. À cet effet, nous créons un data frame <code>df_hopital</code> qui ressemble à ceci :</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>  date_admission patients
@@ -502,17 +500,17 @@ Note
 </div>
 </div>
 </section><section id="créer-le-canevas" class="level3"><h3 class="anchored" data-anchor-id="créer-le-canevas">Créer le canevas</h3>
-<p>La première étape est de créer votre “canevas” en spécifiant votre jeu de données et le nom des colonnes que vous voulez représenter sur le graphique. Cela est fait à l’aide de la fonction <code>ggplot(aes())</code> selon la syntaxe suivante :</p>
+<p>La première étape consiste à créer votre “canevas” en spécifiant le jeu de données et le nom des colonnes que vous voulez représenter sur le graphique. Cela est fait à l’aide de la fonction <code>ggplot(aes())</code> selon la syntaxe suivante :</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># NE PAS EXÉCUTER (PSEUDO-CODE)</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>df_data <span class="sc">|&gt;</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x_axis_variable_name,</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> y_axis_variable_name))</span></code></pre></div>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> variable_axe_x,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> variable_axe_y))</span></code></pre></div>
 <button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button>
 </div>
 </div>
-<p>Pour l’exemple, je vais placer la date (<code>date_admission</code>) sur l’axe des x et le nombre de patients (<code>patients</code>) sur l’axe des y :</p>
+<p>Pour la courbe épidémique des hospitalisations nous voulons les jours sur l’axe des x (<code>date_admission</code>) et le nombre de patients (<code>patients</code>) sur l’axe des y :</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df_hopital <span class="sc">|&gt;</span></span>
@@ -527,11 +525,12 @@ Note
 </div>
 </div>
 </div>
-<p>Dans Rstudio, ce graphique devrait apparaître dans l’onglet “Plots” dans le panneau en bas à droite (par défaut) :</p>
+<p>Lorsque vous exécutez le code, ce graphique devrait apparaître dans l’onglet “Plots” dans le panneau en bas à droite (par défaut) de RStudio :</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="../img/core/06_epicurves/03_plot_panel.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
+<p>Nous avons donc un canevas vide, prêt à accueillir nos données !</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -542,13 +541,12 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Just like with <code>{dplyr}</code>, we write our column names without quotation marks. This is unsurprising as <code>{ggplot2}</code>, like <code>{dplyr}</code>, is a member of the <code>{tidyverse}</code> and therefore uses similar syntax.</p>
+<p>Comme avec les fonctions de <code>{dplyr}</code>, il n’y a pas besoin d’utiliser des guillemets pour écrire les noms des colonnes. Ce n’est pas surprenant, <code>{ggplot2}</code> fait également partie de l’écosystème de paquets <code>{tidyverse}</code>, qui a harmonisé sa syntaxe.</p>
 </div>
 </div>
-<p>Qu’est ce que cette fonction <code>aes()</code> que nous avons imbriqué dans la fonction <code>ggplot()</code> ?</p>
-<p>La fonction <code>aes()</code> n’est jamais utilisée seule, elle est toujours passée à <code>ggplot()</code>. Elle sert à faire correspondre les <em>variables</em> du jeu de données aux <em>éléments visuels du graphique</em> (en anglais on parle de “mapping”, qui est occasionnellement traduit par “mappage”). Les plus basiques de ces éléments graphiques sont les <strong>axes</strong>, mais on peut aussi définir comment la couleur ou la taille d’éléments varie en fonction de variables dans les données (par exemple, statut à la sortie).</p>
+<p>Ok, mais c’est quoi ce <code>aes()</code> imbriqué dans la fonction <code>ggplot()</code> ? Cette fonction, qui n’est utilisée que dans la fonction <code>ggplot()</code>, sert à faire correspondre les <em>variables</em> du jeu de données aux <em>éléments visuels du graphique</em> tels que les axes [en anglais cette correspondance est nommée “mapping”, et “aes” vient du terme “aesthetic”, traduit par “esthétique”]. Les plus basiques de ces éléments graphiques sont les <strong>axes</strong>, mais on peut aussi définir comment la couleur ou la taille d’éléments varie en fonction de variables dans les données (par exemple, statut à la sortie).</p>
 <div class="write">
-<p>Créez une nouvelle section <code># PLOT COURBE EPI</code>. Ensuite, en vous inspirant de l’exemple précédent, créez la base d’un ggplot avec le dataframe <code>df_cas</code>, et définissez l’axe des x et des x.</p>
+<p>Créez une nouvelle section <code># PLOT COURBE EPI</code> puis créer un graphe (vide pour le moment) avec le data frame <code>df_cas</code>, et les axes en x et y appropriés.</p>
 </div>
 <p>Pour le moment, le résultat devrait ressembler à ceci :</p>
 <div class="cell">
@@ -559,19 +557,18 @@ Note
 </div>
 </div>
 </div>
-<p>Très bien. Maintenant, ajoutons les barres</p>
-</section><section id="ajouter-les-formes" class="level3"><h3 class="anchored" data-anchor-id="ajouter-les-formes">Ajouter les formes</h3>
-<p>Maintenant que la toile est prête, commençons à dessiner dessus, et ajoutons des formes. Dans <code>{ggplot2}</code>, les formes géométriques sont surnommées des <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Vous remarquerez dans les exemples ci-dessous que la fonction de toutes les géométries commence par 'geom_'. Ceci a pour but d'améliorer la lisibilité et en effet toutes les géométries dans {ggplot2} commencent de cette manière.">“géométries”</span> ou “geom” en raccourci, et représentent les données. Les geoms les plus courants sont :</p>
+</section><section id="ajouter-des-formes" class="level3"><h3 class="anchored" data-anchor-id="ajouter-des-formes">Ajouter des formes</h3>
+<p>Maintenant que la toile est prête, nous pouvons dessiner dessus et ajouter des formes. Dans <code>{ggplot2}</code>, les formes géométriques sont surnommées des <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Vous verrez que les fonctions de toutes les géométries commence par 'geom_'. Cette homogénéité de la syntaxe améliore grandement la lisibilité !">“géométries”</span> ou “geom” en raccourci, et représentent les données. Les geoms les plus courants sont :</p>
 <ul>
 <li>
 <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Dont les courbes épidémiques...">Diagrammes en bâtons</span> (<code>geom_col()</code> or <code>geom_bar()</code>)</li>
 <li>Histogrammes (<code>geom_histogram()</code>)</li>
-<li>Nuages de points(<code>geom_point()</code>)</li>
-<li>Courbes(<code>geom_line()</code>)</li>
-<li>Diagramme en boîte à moustache (boxplots) (<code>geom_boxplot()</code>)</li>
+<li>Nuages de points (<code>geom_point()</code>)</li>
+<li>Courbes (<code>geom_line()</code>)</li>
+<li>Boîtes à moustache (boxplots) (<code>geom_boxplot()</code>)</li>
 </ul>
-<p>Aujourd’hui nous allons nous concentrer sur les diagrammes en bâton, pour créer une courbe épidémique. Nous allons <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="La différence entre geom_bar() et geom_col() est que geom_col() fonctionne sur des données déjà agrégées alors que geom_bar() prend des données non-agrégées et les agrège elle même.">utiliser la fonction <code>geom_col()</code></span>.</p>
-<p>Nous allons maintenant rajouter les barres à la courbe des cas hospitalisés. Rappelez-vous que l’on ajoute une nouvelle couche à notre objet ggplot à l’aide de <code>+</code>.</p>
+<p>Aujourd’hui nous allons nous concentrer sur les diagrammes en bâtons pour créer une courbe épidémique. Nous allons pour celà utiliser la <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="La différence entre geom_bar() et geom_col() est que geom_col() fonctionne sur des données déjà agrégées alors que geom_bar() prend des données non-agrégées et les agrège elle même.">fonction <code>geom_col()</code></span>.</p>
+<p>Rajoutons les barres à la courbe des cas hospitalisés. Rappelez-vous que l’on ajoute une nouvelle couche à notre objet ggplot à l’aide de <code>+</code>.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df_hopital <span class="sc">|&gt;</span></span>
@@ -587,8 +584,7 @@ Note
 </div>
 </div>
 </div>
-<p>C’est génial, cela ressemble vraiment à une épicurve. Bien qu’elle ait l’air un peu… grise. Si nous voulons mettre à jour la couleur de nos barres (appelée le <code>fill</code>), nous devons simplement <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Les couleurs des remplissages et des bordures dans {ggplot2} peuvent être spécifiées de plusieurs façons. Ici, nous utilisons un 'hex code' (cherche-le sur google), qui nous permet de donner un code unique pour des couleurs spécifiques. En cas de besoin, vous pouvez également spécifier des couleurs simples par leur nom. Par exemple, des arguments comme 'blue' ou 'green' seraient également acceptés.">ajouter l’argument <code>fill</code></span> to <code>geom_col()</code>.</p>
-<p>Faisons un essai :</p>
+<p>Ça commence à ressembler à une courbe épi, bien qu’elle soit un peu… grise… Nous pouvons heureusement changer la couleur de remplissage des barres avec en passant <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Les couleurs peuvent être spécifiées de plusieurs façons dans {ggplot2}. Ici, nous utilisons un 'hex code' (internet est votre ami), qui donne un code unique à chaque couleur. Vous pouvez également spécifier des couleurs simples par leur nom. Par exemple, des arguments comme 'blue' ou 'green' sont acceptés.">l’argument <code>fill</code></span> à <code>geom_col()</code>.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df_hopital <span class="sc">|&gt;</span></span>
@@ -605,7 +601,7 @@ Note
 </div>
 </div>
 <div class="write">
-<p>Mettez à jour votre graphe pour ajouter les barres avec la couleur <code>#2E4573</code>.</p>
+<p>Mettez à jour votre graphe pour ajouter des barres de couleur <code>#2E4573</code>.</p>
 </div>
 <p>Votre graphe devrait ressembler à ceci :</p>
 <div class="cell">
@@ -626,19 +622,20 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Dans <code>{ggplot2}</code>, les couches <strong>doivent</strong> être ajoutées à un objet ggplot existant (le canevas définit à l’étape 1). Exécuter la fonction <code>geom_col()</code> toute seule ne produira pas un graphe. Si l’on reprend notre analogie avec la peinture, ce serait comme essayer d’utiliser la peinture sans support (toile).</p>
+<p>Dans <code>{ggplot2}</code>, les couches <strong>doivent</strong> être ajoutées à un objet ggplot existant (le canevas). Exécuter la fonction <code>geom_col()</code> toute seule ne produira pas un graphe. Si l’on reprend l’analogie de la peinture, ce serait comme essayer d’utiliser de la peinture sans support (toile).</p>
 </div>
 </div>
-<p>Ce graphe s’améliore d’instant en instant ! Maintenant il est temps de le rendre un petit peu plus informatif…</p>
+<p>L’apparence du graphique s’améliore. Maintenant il est temps de le rendre plus informatif.</p>
 </section><section id="ajouter-les-titres" class="level3"><h3 class="anchored" data-anchor-id="ajouter-les-titres">Ajouter les titres</h3>
-<p>Un bon graphique doit avoir des titres et des labels informatifs or pour le moment, ce n’est pas le cas de nos graphiques (<code>n</code> n’est pas très informatif).</p>
-<p>La fonction <code>lab()</code> permet d’ajouter des titres et labels à plusieurs éléments du graphique :</p>
+<p>Un bon graphique doit avoir des titres et des étiquettes informatifs or pour le moment, ce n’est pas le cas de notre œuvre (<code>n</code> n’est pas très informatif).</p>
+<p>La fonction <code>lab()</code> permet d’ajouter facilement des titres et et étiquettes à plusieurs éléments du graphique :</p>
 <ul>
-<li>Titre des axes (<code>x =</code> et<code>y =</code>)</li>
+<li>Titre / étiquettes des axes (<code>x =</code> et<code>y =</code>)</li>
 <li>Titre du graphique (<code>title =</code>)</li>
-<li><span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Qui peut être utilisée pour indiquer la source des données, par exemple.">Caption</span></li>
+<li>
+<span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Qui peut être utilisée pour indiquer la source des données, par exemple.">Légende</span> (<code>caption =</code>)</li>
 </ul>
-<p>Comme avec les autres couches, nous pouvons ajouter la couche contenant les titres et labels à notre graphe avec le signe <code>+</code> :</p>
+<p>Comme pour les autres couches, on ajoute la couche <code>lab()</code> à notre graphe avec le signe <code>+</code> :</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df_hopital <span class="sc">|&gt;</span></span>
@@ -646,7 +643,7 @@ Note
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> patients)) <span class="sc">+</span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#2E4573"</span>) <span class="sc">+</span></span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Date"</span>,</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Patients par Jour"</span>,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Patients / jour"</span>,</span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Hospitalisations pour rougeole dans la région de Madoul (Tchad)"</span>)</span></code></pre></div>
 <button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button>
 </div>
@@ -660,7 +657,7 @@ Note
 <div class="write">
 <p>Ajoutez des titres raisonnables à votre graphe. <br><strong>Bonus.</strong> Ajoutez une source des données en utilisant <code>caption</code>.</p>
 </div>
-<p>Votre graphe pourrait maintenant ressembler à celle-ci (par exemple) :</p>
+<p>Votre graphe peut ressembler à ceci (par exemple) :</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -670,8 +667,8 @@ Note
 </div>
 </div>
 </section><section id="changer-le-thème" class="level3"><h3 class="anchored" data-anchor-id="changer-le-thème">Changer le thème</h3>
-<p>Le thème de base de ggplot n’est pas très attractif, et la taille des polices est trop petite pour être lisible sur la majorité des supports. Si vous voulez utiliser votre graphique dans des rapports ou des présentations, il vaudrait mieux améliorer son apparence.</p>
-<p>Pour cela, il suffit d’ajouter une couche “thème” à notre graphe (la dernière couche pour aujourd’hui !). Si le nom des fonctions des geoms commençait toujours par <code>geom_</code>, le nom de toutes les fonctions de thème commence par <code>theme_</code>. Il existe plusieurs thèmes prédéfinis, et vous pouvez aller les regarder sur le <a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">site de <code>{ggplot2}</code></a>.</p>
+<p>Si vous explorez vos données, vous pourriez vous arrêter ici. En revanche, si vous voulez utiliser votre graphique dans des rapports ou des présentations, il faut faire un effort d’apparence. En effet, le thème par défaut de ggplot n’est pas très attractif, et la taille des polices est trop petite pour être lisible sur la majorité des supports.</p>
+<p>Il suffit d’ajouter une couche “thème” à notre graphe (la dernière couche que nous aborderons dans cette leçon). Si le nom des fonctions des geoms commençait toujours par <code>geom_</code>, le nom de toutes les fonctions de thème commence par <code>theme_</code>. Il existe plusieurs thèmes prédéfinis que vous pouvez les découvrir sur le <a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">site de <code>{ggplot2}</code></a>.</p>
 <p>Aujourd’hui, nous allons utiliser <code>theme_classic()</code>, qui offre une alternative élégante au thème de base :</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold">
@@ -692,7 +689,7 @@ Note
 </div>
 </div>
 </div>
-<p>C’est déjà plus joli. Maintenant, nous voudrions augmenter la taille de la police. Nous pouvons faire ça en <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="La 'base size' de la police est la taille de police utilisée comme base pour calculer toutes les tailles de police sur le graphique. Si elle est augmentée, tous les éléments de texte seront plus gros, et ce de manière proportionnelle.">ajustant la taille de la police à l’aide de l’argument <code>base_size</code></span>:</p>
+<p>Maintenant, nous allons augmenter la taille des éléments texte en <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="La 'base size' en anglais est la taille de police utilisée comme base pour calculer toutes les tailles de police sur le graphique. Si elle est augmente, tous les éléments de texte sont plus gros, et ce de manière proportionnelle.">ajustant la taille de la “police de base”</span> à l’aide de l’argument <code>base_size</code> :</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df_hopital <span class="sc">|&gt;</span></span>
@@ -712,19 +709,19 @@ Note
 </div>
 </div>
 </div>
-<p>’est beaucoup mieux !</p>
-<p>Rappelez-vous que la taille de la police doit être choisie en fonction de la destination du graphe (présentation, rapport informel, rapport final ?). Il en va de même pour le choix du thème, qui reste un choix partiellement subjectif. Il existe des principes de visualisation qui peuvent guider vos choix lors de la création d’un graphe (ou d’une table), mais la visualisation de données est autant un art qu’une science.</p>
+<p>Ça sera beaucoup mieux dans vos diapos, croyez-nous !</p>
+<p>En général, retenez qu’il faut ajuster la taille de la police en fonction de la destination du graphe : présentation, exploration informel, rapport final etc. Il en va de même pour le choix du thème, qui reste un choix partiellement subjectif. Quelques grands principes de lisibilité guident vos choix, mais la visualisation de données est autant un art qu’une science.</p>
 <div class="write">
 <p>Ajoutez une dernière couche à votre graphe pour ajouter un thème de votre choix, avec une taille de police plus appropriée.</p>
 </div>
 </section><section id="sauvegarder-votre-graphique" class="level3"><h3 class="anchored" data-anchor-id="sauvegarder-votre-graphique">Sauvegarder votre graphique</h3>
-<p>Si vous souhaitez enregistrer votre graphe, vous pouvez cliquer sur le bouton « Exporter » dans le panneau de tracé de RStudio :</p>
+<p>Si vous souhaitez enregistrer votre graphe, vous pouvez cliquer sur le bouton « Exporter » dans le panneau des graphiques de RStudio :</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="../img/core/06_epicurves/04_plot_export.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
-</section></section><section id="la-fin" class="level2"><h2 class="anchored" data-anchor-id="la-fin">La Fin !</h2>
-<p>Bravo! Vous avez créé votre première courbe épidémique en R !</p>
+</section></section><section id="cest-fini" class="level2"><h2 class="anchored" data-anchor-id="cest-fini">C’est fini !</h2>
+<p>Bravo! Vous avez créé votre première courbe épidémique avec R !</p>
 <div class="cell">
 <div class="cell-output-display">
 <a href="https://github.com/epicentre-msf/repicentre/blob/main/sessions_core/06_epicurves_solutions_fr.R">
@@ -735,20 +732,18 @@ Note
 </section><section id="aller-plus-loin" class="level2"><h2 class="anchored" data-anchor-id="aller-plus-loin">Aller plus loin</h2>
 <section id="exercices-supplémentaires" class="level3"><h3 class="anchored" data-anchor-id="exercices-supplémentaires">Exercices supplémentaires</h3>
 <ol type="1">
-<li>Utilisez le <code>theme_minimal()</code> sur un de vos graphiques, avec une police de taille de base de 18.</li>
-<li>Allez sur <a href="https://r-charts.com/colors/">ce site</a>, choisissez une couleur et mettez à jour la couleur de vos barres.</li>
-</ol></section><section id="exercices-de-défi" class="level3"><h3 class="anchored" data-anchor-id="exercices-de-défi">Exercices de défi</h3>
-<ol type="1">
-<li>Au lieu d’agréger par date, comptez le nombre de patients par sous-préfecture. Essayez d’adapter votre code pour créer un diagramme à barres du nombre de patients par sous-préfecture.</li>
-</ol></section><section id="satellites" class="level3"><h3 class="anchored" data-anchor-id="satellites">Satellites</h3>
+<li>Utilisez le <code>theme_minimal()</code> sur un de vos graphiques, avec une taille de police de base de 18.</li>
+<li>Allez sur <a href="https://r-charts.com/colors/">ce site</a>, choisissez une couleur et modifier la couleur de vos barres.</li>
+</ol></section><section id="défi" class="level3"><h3 class="anchored" data-anchor-id="défi">Défi</h3>
+<p>Au lieu d’agréger les données par date, comptez le nombre de patients par sous-préfecture et créez le graphe associé, qui montre le nombre de patients par sous-préfecture.</p>
+</section><section id="satellites" class="level3"><h3 class="anchored" data-anchor-id="satellites">Satellites</h3>
 <ul>
 <li><a href="../sessions_extra/weekly_epicurves.html">Courbes épidémiques hebdomadaires</a></li>
 <li><a href="../sessions_extra/faceting.html">Graphiques multiples (facetting)</a></li>
 </ul></section></section><section id="ressources" class="level2"><h2 class="anchored" data-anchor-id="ressources">Ressources</h2>
 <ul>
-<li>Un <a href="https://ggplot2-book.org/">livre complet</a> sur l’utilisation de <code>{ggplot2}</code>.<br>
-</li>
-<li>Un <a href="https://www.epirhandbook.com/en/new_pages/epicurves.html">chapitre entier</a> sur les épicurves</li>
+<li>Un <a href="https://ggplot2-book.org/">livre complet</a> sur l’utilisation de <code>{ggplot2}</code> (en anglais).</li>
+<li>Un <a href="https://www.epirhandbook.com/fr/new_pages/epicurves.fr.html">chapitre entier</a> en français sur les courbes épidémiques (mais n’hésitez pas à parcourir les chapitres précédents pour en apprendre plus sur les graphiques avec <code>{ggplot2}</code>).</li>
 </ul></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
@@ -835,7 +830,7 @@ Note
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/epicentre-msf\.github\.io\/repicentre\/fr");
+        var filterRegex = new RegExp('/' + window.location.host + '/');
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
