@@ -530,7 +530,7 @@ Bravo. Lors des deux dernières sessions vous avez appris à utiliser les foncti
 #| echo: false
 #| eval: true
 downloadthis::download_link(
-  link = 'https://github.com/epicentre-msf/repicentre/blob/main/sessions_core/03_data_verbs_conditional_solutions.fr.R',
+  link = 'https://github.com/epicentre-msf/repicentre/blob/main/sessions_core/04_data_verbs_conditional_solutions.fr.R',
   button_label = "Solutions exercices",
   has_icon = TRUE,
   icon = "fa fa-save",
