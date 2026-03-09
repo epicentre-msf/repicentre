@@ -1,6 +1,6 @@
 ---
-title: Introduction to data visualization with ggplot2
-description: Apprenez les bases de la visualisation avec ggplot2, et créez votre première épicurve
+title: Introduction à la visualisation de données avec ggplot2
+description: Découvrez les bases de ggplot2 et créez votre première courbe épidémique
 image: ../img/core/06_epicurves/logo.svg
 categories:
   - Core
@@ -37,12 +37,12 @@ df_hopital <- df_linelist |>
 
 ## Objectifs
 
-- Découvrir les bases de la visualisation de données en R avec le package `{ggplot2}`
+- S'initier aux bases de la visualisation de données en R avec le paquet `{ggplot2}`
 - Construire une courbe épidémique simple  
 
 ## Introduction
 
-Pour cette dernière session, nous allons vous donner une courte introduction à la visualisation de données à l'aide du package `{ggplot2}`, un outil populaire. Gardez en tête que la visualisation de données est un énorme sujet, et `{ggplot2}` un vaste package et il n'est pas réaliste de tout traiter en trois heures. La session d'aujourd'hui est une introduction que nous espérons douce aux concepts de base de la visualisation, en prenant pour objet un graphe fameux en épidémiologie, **la [courbe épidémique]{.hovertip bs-toggle='tooltip' bs-title="Les courbes épidémiques sont un type particulier de représentation qui montre le nombre journalier ou hebdomadaire de cas observés pendant une épidémie. Ces courbes sont très utilisées en épidémiologie, et peuvent être complexifiées en ajoutant le statut du cas, son type de décharge, etc."}**.
+Cette session introduit les concepts de base pour créer des graphiques avec un paquet populaire, `{ggplot2}`. Il ne sera pas possible de tout traiter en trois heures : visualiser les données est un vaste sujet et `{ggplot2}` en particulier est très puissant. Nous nous focaliserons sur une initiation aux concepts de base en créant le graphique le plus connu en épidémiologie, la **[courbe épidémique]{.hovertip bs-toggle='tooltip' bs-title="Une courbe épidémique montre le nombre journalier ou hebdomadaire de cas observés pendant une épidémie. C'est un graphique très utilisés en épidémiologie. Il peut être complexifiés en ajoutant le statut du cas, son type de décharge, etc."}**.
 
 Notre visualisation finale ressemblera à ceci :
 
@@ -55,20 +55,20 @@ df_linelist |>
   ggplot(aes(x = date_debut,
              y = n)) +
   geom_col(fill = "#2E4573") +
-  labs(x = "Date of onset",
-       y = "Cases",
-       title = 'Measles cases in Mandoul region (Chad)') +
+  labs(x = "Début des symptomes",
+       y = "Cas",
+       title = "Cas de rougeole dans la région de Mandoul, (Tchad)") +
   theme_classic(base_size = 15)
 ```
 
 
-Setup
+Mise en place
 ----------------------------------------------------------------------------------------------------
 
-**Dépendances.** Cette session suppose que vous savez utiliser RStudio, que vous êtes capable d'importer des données et que vous connaissez les verbes de base de manipulation des données que nous avons vus dans les sessions de base jusqu'à présent. Si vous avez besoin d'un rappel sur l'un de ces sujets, nous vous encourageons à revoir les sessions de base du parcours d'apprentissage.
+**Prérequis** Cette leçon part du principe que vous savez utiliser RStudio, êtes capable d'importer des données et connaissez les verbes de base du traitement des données. Rafraîchissez-vous si besoin sur les [leçons précédentes](https://epicentre-msf.github.io/repicentre//fr/pathway.html).
 
 ::: {.setup}
-Cette session utilisera la version nettoyée de l'ensemble de données Moissala sur la rougeole.
+Cette session utilisera la version nettoyée de la liste linéaire rougeole à Mandoul
 
 ```{r}
 #| echo: false
@@ -83,48 +83,45 @@ downloadthis::download_link(
 )
 ```
 <br>
-Ouvrez votre projet Rstudio du cours et créez un nouveau script appelé "courbe_epi.R" avec les métadonnées appropriées. Enregistrez le dans `R/`. Pour cette session, nous aurons besoin de charger les packages `{here}`, `{rio}`, `{dplyr}`, `{lubridate}`, et`{ggplot2}`. Ajoutez une section `# IMPORTATION DONNÉES` où vous importez les données nettoyées du cours (`linelist_moissala_clean_FR.RDS`). 
+Ouvrez le projet Rstudio du cours et créez un nouveau script appelé "courbe_epi.R" avec les métadonnées appropriées. Enregistrez le dans `R/`. Pour cette leçon, nous aurons besoin de charger les paquets `{here}`, `{rio}`, `{dplyr}`, `{lubridate}`, et`{ggplot2}`. Ajoutez une section `# IMPORT DONNÉES` où vous importez les données nettoyées du cours (`linelist_moissala_clean_FR.RDS`). 
 :::
 
 
 ## Les paradigmes de la création de graphiques
 
-In R, and indeed in everything, there are a loIl y a de nombreuses approches à la visualisation de données, en général et en R en particulier. Les deux plus grands paradigmes sont :
+Il y a plusieurs manières d'approcher la visualisation de données en général et en R en particulier. Les deux paradigmes les plus connus sont :
 
-- **Tout en un** :  cette approche est caractérisée par l'existence d'une fonction (en général complexe) pour gérer tous les aspects de la construction d'un graphique. Base R par exemple, utilise cette approche (et n'est pas le seul).
+- **Tout en un** :  cette approche est caractérisée par l'existence d'une fonction (souvent complexe) pour gérer tous les aspects de la construction d'un graphique. Base R par exemple, utilise cette approche (et ce n'est pas le seul).
 
-- [**Graphiques en couches (ou modulaires)**]{.hovertip bs-toggle='tooltip' bs-title="TParfois surnommé la 'grammaire des graphiques', du nom du livre qui a mis en place les fondements de ce paradigme."} : le graphique est décomposé en éléments (formes, titres, barres d'erreurs, thèmes...) associées à des couches. Différentes fonctions ajoutent ou modifient ces éléments. Ce paradigme est utilisé par les packages `{ggplot2}`, `{highcharter}`, ou `{echarts4r}` et un certain nombre d'outils modernes.
+- [**Graphiques modulaires / en couches**]{.hovertip bs-toggle='tooltip' bs-title="Ce paradigme est parfois surnommé 'la grammaire des graphiques', en référence au titre du livre qui en a jeté les fondements."} : le graphique est décomposé en éléments (formes, titres, barres d'erreurs, thèmes...) associées à des couches. Différentes fonctions ajoutent ou modifient ces éléments. Ce paradigme est utilisé par les paquets `{ggplot2}`, `{highcharter}`, ou `{echarts4r}` et un certain nombre d'autres outils modernes.
 
-Une discussion approfondie sur les raisons pour lesquelles on peut utiliser une approche plutôt qu'une autre dépasse le cadre de ce cours, mais nous noterons que la plupart des paquets de visualisation modernes ont tendance à utiliser un [modèle en couches] {.hovertip bs-toggle='tooltip' bs-title="C'est parce que les modèles en couches ont tendance à être plus pratiques lors de la construction de visualisations complexes ou hautement personnalisées."}. En gardant cela à l'esprit, examinons les types de couches dont nous parlons dans notre approche « en couches ».
+Une discussion approfondie des avantages et inconvénients de chacune des approches dépasse le cadre de ce cours. Néanmoins, on peut noter que la plupart des outils de visualisation modernes utilisent l'approche [en couches]{.hovertip bs-toggle='tooltip' bs-title="Cette approche est plus pratique pour créer des visualisations complexes et personnalisées"}. Gardons cela à l'esprit, et découvrons ce que sont les fameuses "couches" de l'approche modulaire.
 
 
 ### Décomposition d'un graphique
 
-Dans ce tutoriel, nous décomposons les graphiques en quatre composantes (couches) : 
+Dans ce tutoriel, nous décomposons les graphiques en quatre composantes (nos couches) : 
 
 1. Le **canevas** / les **données**
 2. Les **formes** géométriques primaires
 3. Les **titres et labels**
 4. Le **thème**
 
-On peut illustrer ces composants avec la courbé épidémique schématique suivante :
+On peut illustrer ces composantes avec la courbé épidémique schématique suivante :
 
 ![](../img/core/06_epicurves/01_theory.png){fig-align="center"}
 
-La première couche, le caneva (ou la toile) est fondamentale. Comme un artiste prépare sa toile vierge et ses outils avant de se lancer dans une peinture, R doit en premier lieu créer un canevas prêt à accueillir les éléments de représentation graphique. C'est lors de la création du canevas que nous indiquons à R que nous voulons créer un graphique, et avec quelles variables.
+La première couche, le canevas est fondamentale. Tel un artiste qui prépare sa toile vierge et ses outils avant de se lancer dans une peinture, R doit d'abord créer un canevas prêt à accueillir les éléments de représentation graphique. C'est *en créant le canevas que nous indiquons à R que nous allons créer un graphique, et avec quelles variables sur quel axe*. Une fois ce canevas mise en place, nous ajouterons d'autres couches, comme un artiste ajouterait de la peinture, leur signature ou un cadre.
 
-Ici, nous allons spécifier à R que nous voulons un graphique où l'axe horizontal représente la date, et l'axe vertical représente le nombre de cas. Une fois le canevas mise en place, nous ajouterons d'autres couches, comme un artiste ajouterait de la peinture, leur signature ou un cadre.
 
-### Ossature d'un `ggplot` 
+### Structure d'un `ggplot` 
 
-La recette pour construire un ggplot (un graphe produit par le package `{ggplot}`) est de la forme suivante : 
+La recette pour construire un [`ggplot`]{.hovertip bs-toggle='tooltip' bs-title='Surnom donné à un graphique crée avec le paquet {ggplot2}.'} est simple : 
 
-1. Création d'un canevas à l'aide de `ggplot(aes(...))`
-2. Ajout de couches sur le canevas avec `+`
+1. Création d'un canevas à l'aide du duo de fonctions `ggplot(aes(...))`  
+2. Ajout de couches au canevas avec l'opérateur `+`  
 
-Notez que `{ggplot2}` utilise l'opérateur `+` pour **ajouter** des couches sur le graphe.
-
-La syntaxe générale d'un `ggplot` est :
+La syntaxe générale d'un `ggplot` est donc :
 
 ```{r}
 # NE PAS EXÉCUTER (PSEUDO-CODE)
@@ -155,19 +152,20 @@ Nous pouvons mettre à jour notre précédent schéma avec ces fonctions :
 ![](../img/core/06_epicurves/02_functions.png){fig-align="center"}
 
 ::: {.callout-note}
-Dans l'exemple précédent, nous passons le jeu de données à la fonction `ggplot()` à l'aide de l'opérateur **pipe** (comme nous l'avons souvent fait avec d'autres fonctions). C'est possible car le premier argument nécessaire de la fonction est le dataframe contenant les variables à représenter. **Soyez attentifs**, il est facile de se tromper et de chercher à utiliser un `+` à la place du `|>`
+Notez que l’on passe le jeu de données à la fonction `ggplot()` à l'aide de l'opérateur **pipe**, comme nous l'avons fait précédement. Ça fonctionne ici aussi car `ggplot ()` a besoin de connaître le data frame contenant les variables à représenter. **Mais attention** à ne pas utiliser un `+` à la place du `|>` par confusion, cela générera rera une erreur.
 :::
 
-Dans la section suivante, nous allons décrire les différentes étapes plus en détail, en utilisant notre jeu de données rougeole à Moissala pour faire notre première courbe épidémique.
+Dans la section suivante, nous allons décrire les différentes composantes du graphique plus en détail, pour créer notre première courbe épidémique de la rougeole à Mandoul.
+
 
 ## Votre premier `ggplot` {#sec-epicurve-steps}
 
-### Préparer vos données : Agrégation par jour
+### Préparer les données : agrégation par jour
 
-Nous aimerions tracer une courbe des *cas quotidiens*. Vous l'aurez peut-être remarqué, nos données actuelles sont quotidiennes, mais il est évident que plusieurs cas peuvent se produire certains jours. Donc,il faut agréger les données par jour. Heureusement, vous avez déjà appris à résumer les données lors des sessions précédentes.
+Vous savez que les données de la linelist sont quotidiennes, mais qu'il est possible d'avoir plusieurs cas par jours. Donc, si nous voulons tracer une courbe des *cas quotidiens*, il faut agréger les données par jour. Heureusement, vous avez appris à résumer les données lors de la [session précédente](https://epicentre-msf.github.io/repicentre//fr/sessions_core/05_summary_table.html) !
 
 ::: {.write}
-En utilisant `count()`, créez un nouveau dataframe appelé `df_cases` qui résume le nombre total de cas observés par jour. L'en-tête de ce cadre de données devrait ressembler à ceci :
+Utilisez `count()` pour créer un nouveau data frame appelé `df_cases` qui résume le nombre total de cas observés par jour de début des symptomes. Le début du data frame devrait ressembler à ceci :
 
 ```{r}
 #| echo: false
@@ -178,9 +176,9 @@ head(df_cases)
 :::
 
 
-Bien ! 
+Top ! Nos données sont prêtes à être utilisées.
 
-Dans les étapes suivantes, **vous** allez utiliser `df_cas` pour tracer une courbe épidémique du nombre **de cas** par semaine. En revanche, les exemples données dans les exercices pour illustrer le fonctionnement des fonctions seront faits sur le nombre de **hospitalisations** par semaine. Pour cela, j'utiliserai un dataframe `df_hopital`, qui ressemble à ceci : 
+Dans les étapes suivantes, *vous* vous utiliserez `df_cas` pour tracer une courbe épidémique du *nombre de cas par jours*. Mais le *tutoriel* illustra le fonctionnement des fonctions en traçant le *nombre d’hospitalisations quotidiennes*. À cet effet, nous créons un data frame `df_hopital` qui ressemble à ceci : 
 
 ```{r}
 #| echo: false
@@ -191,16 +189,16 @@ head(df_hopital)
 
 ### Créer le canevas
 
-La première étape est de créer votre "canevas" en spécifiant votre jeu de données et le nom des colonnes que vous voulez représenter sur le graphique. Cela est fait à l'aide de la fonction `ggplot(aes())` selon la syntaxe suivante :
+La première étape consiste à créer votre "canevas" en spécifiant le jeu de données et le nom des colonnes que vous voulez représenter sur le graphique. Cela est fait à l'aide de la fonction `ggplot(aes())` selon la syntaxe suivante :
 
 ```{r}
 # NE PAS EXÉCUTER (PSEUDO-CODE)
 df_data |>
-  ggplot(aes(x = x_axis_variable_name,
-             y = y_axis_variable_name))
+  ggplot(aes(x = variable_axe_x,
+             y = variable_axe_y))
 ```
 
-Pour l'exemple, je vais placer la date (`date_admission`) sur l'axe des x et le nombre de patients (`patients`) sur l'axe des y :
+Pour la courbe épidémique des hospitalisations nous voulons les jours sur l'axe des x (`date_admission`) et le nombre de patients (`patients`) sur l'axe des y :
 
 ```{r}
 #| eval: true
@@ -209,21 +207,21 @@ df_hopital |>
              y = patients))
 ```
 
-Dans Rstudio, ce graphique devrait apparaître dans l'onglet "Plots" dans le panneau en bas à droite (par défaut) : 
+Lorsque vous exécutez le code, ce graphique devrait apparaître dans l'onglet "Plots" dans le panneau en bas à droite (par défaut) de RStudio : 
 
 ![](../img/core/06_epicurves/03_plot_panel.png){fig-align="center"}
 
+Nous avons donc un canevas vide, prêt à accueillir nos données !
+
 ::: {.callout-note}
-Just like with `{dplyr}`, we write our column names without quotation marks. This is unsurprising as `{ggplot2}`, like `{dplyr}`, is a member of the `{tidyverse}` and therefore uses similar syntax.
+Comme avec les fonctions de `{dplyr}`, il n’y a pas besoin d’utiliser des guillemets pour écrire les noms des colonnes. Ce n’est pas surprenant, `{ggplot2}` fait également partie de l’écosystème de paquets `{tidyverse}`, qui a harmonisé sa syntaxe.
 :::
 
-Qu'est ce que cette fonction `aes()` que nous avons imbriqué dans la fonction `ggplot()` ? 
-
-La fonction `aes()` n'est jamais utilisée seule, elle est toujours passée à `ggplot()`. Elle sert à faire correspondre les *variables* du jeu de données aux *éléments visuels du graphique* (en anglais on parle de "mapping", qui est occasionnellement traduit par "mappage"). Les plus basiques de ces éléments graphiques sont les **axes**, mais on peut aussi définir comment la couleur ou la taille d'éléments varie en fonction de variables dans les données (par exemple, statut à la sortie).
+Ok, mais c’est quoi ce `aes()` imbriqué dans la fonction `ggplot()` ? Cette fonction, qui n’est utilisée que dans la fonction `ggplot()`, sert à faire correspondre les *variables* du jeu de données aux *éléments visuels du graphique* tels que les axes [en anglais cette correspondance est nommée "mapping", et "aes" vient du terme "aesthetic", traduit par "esthétique"]. Les plus basiques de ces éléments graphiques sont les **axes**, mais on peut aussi définir comment la couleur ou la taille d'éléments varie en fonction de variables dans les données (par exemple, statut à la sortie).
 
 
 ::: {.write}
-Créez une nouvelle section `# PLOT COURBE EPI`. Ensuite, en vous inspirant de l'exemple précédent, créez la base d'un ggplot avec le dataframe `df_cas`, et définissez l'axe des x et des x.
+Créez une nouvelle section `# PLOT COURBE EPI` puis créer un graphe (vide pour le moment) avec le data frame `df_cas`, et les axes en x et y appropriés.
 :::
 
 Pour le moment, le résultat devrait ressembler à ceci :
@@ -236,22 +234,21 @@ df_cases |>
              y = n))
 ```
 
-Très bien. Maintenant, ajoutons les barres
 
 
-### Ajouter les formes
+### Ajouter des formes
 
-Maintenant que la toile est prête, commençons à dessiner dessus, et ajoutons des formes. Dans `{ggplot2}`, les formes géométriques sont surnommées des ["géométries"]{.hovertip bs-toggle='tooltip' bs-title="Vous remarquerez dans les exemples ci-dessous que la fonction de toutes les géométries commence par 'geom_'. Ceci a pour but d'améliorer la lisibilité et en effet toutes les géométries dans {ggplot2} commencent de cette manière."} ou "geom" en raccourci, et représentent les données. Les geoms les plus courants sont : 
+Maintenant que la toile est prête, nous pouvons dessiner dessus et ajouter des formes. Dans `{ggplot2}`, les formes géométriques sont surnommées des ["géométries"]{.hovertip bs-toggle='tooltip' bs-title="Vous verrez que les fonctions de toutes les géométries commence par 'geom_'. Cette homogénéité de la syntaxe améliore grandement la lisibilité !"} ou "geom" en raccourci, et représentent les données. Les geoms les plus courants sont : 
 
 - [Diagrammes en bâtons]{.hovertip bs-toggle='tooltip' bs-title="Dont les courbes épidémiques..."} (`geom_col()` or `geom_bar()`)
 - Histogrammes (`geom_histogram()`)
-- Nuages de points(`geom_point()`)
-- Courbes(`geom_line()`)
-- Diagramme en boîte à moustache (boxplots) (`geom_boxplot()`)
+- Nuages de points (`geom_point()`)
+- Courbes (`geom_line()`)
+- Boîtes à moustache (boxplots) (`geom_boxplot()`)
 
-Aujourd'hui nous allons nous concentrer sur les diagrammes en bâton, pour créer une courbe épidémique. Nous allons [utiliser la fonction `geom_col()`]{.hovertip bs-toggle='tooltip' bs-title="La différence entre geom_bar() et geom_col() est que geom_col() fonctionne sur des données déjà agrégées alors que geom_bar() prend des données non-agrégées et les agrège elle même."}. 
+Aujourd'hui nous allons nous concentrer sur les diagrammes en bâtons pour créer une courbe épidémique. Nous allons pour celà utiliser la [fonction `geom_col()`]{.hovertip bs-toggle='tooltip' bs-title="La différence entre geom_bar() et geom_col() est que geom_col() fonctionne sur des données déjà agrégées alors que geom_bar() prend des données non-agrégées et les agrège elle même."}. 
 
-Nous allons maintenant rajouter les barres à la courbe des cas hospitalisés. Rappelez-vous que l'on ajoute une nouvelle couche à notre objet ggplot à l'aide de `+`.
+Rajoutons les barres à la courbe des cas hospitalisés. Rappelez-vous que l'on ajoute une nouvelle couche à notre objet ggplot à l'aide de `+`.
 
 ```{r}
 #| eval: true
@@ -263,10 +260,8 @@ df_hopital |>
   geom_col()
 ```
 
-C'est génial, cela ressemble vraiment à une épicurve. Bien qu'elle ait l'air un peu... grise. Si nous voulons mettre à jour la couleur de nos barres (appelée le `fill`), nous devons simplement [ajouter l'argument `fill`]{.hovertip bs-toggle='tooltip' bs-title="Les couleurs des remplissages et des bordures dans {ggplot2} peuvent être spécifiées de plusieurs façons. Ici, nous utilisons un 'hex code' (cherche-le sur google), qui nous permet de donner un code unique pour des couleurs spécifiques. En cas de besoin, vous pouvez également spécifier des couleurs simples par leur nom. Par exemple, des arguments comme 'blue' ou 'green' seraient également acceptés."} to `geom_col()`. 
+Ça commence à ressembler à une courbe épi, bien qu'elle soit un peu... grise... Nous pouvons heureusement changer la couleur de remplissage des barres avec en passant [l'argument `fill`]{.hovertip bs-toggle='tooltip' bs-title="Les couleurs peuvent être spécifiées de plusieurs façons dans {ggplot2}. Ici, nous utilisons un 'hex code' (internet est votre ami), qui donne un code unique à chaque couleur. Vous pouvez également spécifier des couleurs simples par leur nom. Par exemple, des arguments comme 'blue' ou 'green' sont acceptés."} à `geom_col()`. 
 
-
-Faisons un essai :
 
 ```{r}
 #| eval: true
@@ -280,7 +275,7 @@ df_hopital |>
 ```
 
 ::: {.write}
-Mettez à jour votre graphe pour ajouter les barres avec la couleur `#2E4573`.
+Mettez à jour votre graphe pour ajouter des barres de couleur `#2E4573`.
 :::
 
 Votre graphe devrait ressembler à ceci : 
@@ -298,23 +293,23 @@ df_cases |>
 
 
 ::: {.callout-note}
-Dans `{ggplot2}`, les couches **doivent** être ajoutées à un objet ggplot existant (le canevas définit à l'étape 1). Exécuter la fonction `geom_col()` toute seule ne produira pas un graphe. Si l'on reprend notre analogie avec la peinture, ce serait comme essayer d'utiliser la peinture sans support (toile).
+Dans `{ggplot2}`, les couches **doivent** être ajoutées à un objet ggplot existant (le canevas). Exécuter la fonction `geom_col()` toute seule ne produira pas un graphe. Si l'on reprend l’analogie de la peinture, ce serait comme essayer d'utiliser de la peinture sans support (toile).
 :::
 
-Ce graphe s'améliore d'instant en instant ! Maintenant il est temps de le rendre un petit peu plus informatif...
+L’apparence du graphique s’améliore. Maintenant il est temps de le rendre plus informatif.
 
 
 ### Ajouter les titres
 
-Un bon graphique doit avoir des titres et des labels informatifs or pour le moment, ce n'est pas le cas de nos graphiques (`n` n'est pas très informatif). 
+Un bon graphique doit avoir des titres et des étiquettes informatifs or pour le moment, ce n'est pas le cas de notre œuvre (`n` n'est pas très informatif). 
 
-La fonction `lab()` permet d'ajouter des titres et labels à plusieurs éléments du graphique : 
+La fonction `lab()` permet d'ajouter facilement des titres et et étiquettes à plusieurs éléments du graphique : 
 
-- Titre des axes (`x = ` et`y = `)
+- Titre / étiquettes des axes (`x = ` et`y = `)
 - Titre du graphique (`title = `)
-- [Caption]{.hovertip bs-toggle='tooltip' bs-title="Qui peut être utilisée pour indiquer la source des données, par exemple."}
+- [Légende]{.hovertip bs-toggle='tooltip' bs-title="Qui peut être utilisée pour indiquer la source des données, par exemple."} (`caption = `)
 
-Comme avec les autres couches, nous pouvons ajouter la couche contenant les titres et labels à notre graphe avec le signe `+` :
+Comme pour les autres couches, on ajoute la couche `lab()` à notre graphe avec le signe `+` :
 
 ```{r}
 #| eval: true
@@ -325,7 +320,7 @@ df_hopital |>
              y = patients)) +
   geom_col(fill = "#2E4573") +
   labs(x = "Date",
-       y = "Patients par Jour",
+       y = "Patients / jour",
        title = "Hospitalisations pour rougeole dans la région de Madoul (Tchad)")
 ```
 
@@ -335,7 +330,7 @@ Ajoutez des titres raisonnables à votre graphe.
 **Bonus.** Ajoutez une source des données en utilisant `caption`.
 :::
 
-Votre graphe pourrait maintenant ressembler à celle-ci (par exemple) :
+Votre graphe peut ressembler à ceci (par exemple) :
 
 ```{r}
 #| eval: true
@@ -346,17 +341,17 @@ df_cases |>
   ggplot(aes(x = date_debut,
              y = n)) +
   geom_col(fill = "#2E4573") +
-  labs(x = "Date of onset",
-       y = "Measles Cases",
-       title = "Measles cases in Mandoul region (Chad)",
-       caption = "Source: Simultated measles linelist data")
+  labs(x = "Date de début des symptomes",
+       y = "Nombre de cas",
+       title = "Cas de rougeole dans la région de Mandoul (Tchad)",
+       caption = "Source : données de linelist simulées")
 ```
 
 ### Changer le thème
 
-Le thème de base de ggplot n'est pas très attractif, et la taille des polices est trop petite pour être lisible sur la majorité des supports. Si vous voulez utiliser votre graphique dans des rapports ou des présentations, il vaudrait mieux améliorer son apparence. 
+Si vous explorez vos données, vous pourriez vous arrêter ici. En revanche, si vous voulez utiliser votre graphique dans des rapports ou des présentations, il faut faire un effort d’apparence. En effet, le thème par défaut de ggplot n'est pas très attractif, et la taille des polices est trop petite pour être lisible sur la majorité des supports.
 
-Pour cela, il suffit d'ajouter une couche "thème" à notre graphe (la dernière couche pour aujourd'hui !). Si le nom des fonctions des geoms commençait toujours par `geom_`, le nom de toutes les fonctions de thème commence par `theme_`. Il existe plusieurs thèmes prédéfinis, et vous pouvez aller les regarder sur le [site de `{ggplot2}`](https://ggplot2.tidyverse.org/reference/ggtheme.html). 
+Il suffit d'ajouter une couche "thème" à notre graphe (la dernière couche que nous aborderons dans cette leçon). Si le nom des fonctions des geoms commençait toujours par `geom_`, le nom de toutes les fonctions de thème commence par `theme_`. Il existe plusieurs thèmes prédéfinis que vous pouvez les découvrir sur le [site de `{ggplot2}`](https://ggplot2.tidyverse.org/reference/ggtheme.html). 
 
 Aujourd'hui, nous allons utiliser `theme_classic()`, qui offre une alternative élégante au thème de base :
 
@@ -375,7 +370,7 @@ df_hopital |>
   theme_classic()
 ```
 
-C'est déjà plus joli. Maintenant, nous voudrions augmenter la taille de la police. Nous pouvons faire ça en [ajustant la taille de la police à l'aide de l'argument `base_size`]{.hovertip bs-toggle='tooltip' bs-title="La 'base size' de la police est la taille de police utilisée comme base pour calculer toutes les tailles de police sur le graphique. Si elle est augmentée, tous les éléments de texte seront plus gros, et ce de manière proportionnelle."}:
+Maintenant, nous allons augmenter la taille des éléments texte en [ajustant la taille de la "police de base"]{.hovertip bs-toggle='tooltip' bs-title="La 'base size' en anglais est la taille de police utilisée comme base pour calculer toutes les tailles de police sur le graphique. Si elle est augmente, tous les éléments de texte sont plus gros, et ce de manière proportionnelle."} à l'aide de l'argument `base_size` :
 
 ```{r}
 #| eval: true
@@ -391,9 +386,9 @@ df_hopital |>
   theme_classic(base_size = 17)
 ```
 
-'est beaucoup mieux !
+Ça sera beaucoup mieux dans vos diapos, croyez-nous !
 
-Rappelez-vous que la taille de la police doit être choisie en fonction de la destination du graphe (présentation, rapport informel, rapport final ?). Il en va de même pour le choix du thème, qui reste un choix partiellement subjectif. Il existe des principes de visualisation qui peuvent guider vos choix lors de la création d'un graphe (ou d'une table), mais la visualisation de données est autant un art qu'une science.
+En général, retenez qu’il faut ajuster la taille de la police en fonction de la destination du graphe : présentation, exploration informel, rapport final etc. Il en va de même pour le choix du thème, qui reste un choix partiellement subjectif. Quelques grands principes de lisibilité guident vos choix, mais la visualisation de données est autant un art qu'une science.
 
 ::: {.write}
 Ajoutez une dernière couche à votre graphe pour ajouter un thème de votre choix, avec une taille de police plus appropriée.
@@ -402,14 +397,14 @@ Ajoutez une dernière couche à votre graphe pour ajouter un thème de votre cho
 
 ### Sauvegarder votre graphique
 
-Si vous souhaitez enregistrer votre graphe, vous pouvez cliquer sur le bouton « Exporter » dans le panneau de tracé de RStudio :
+Si vous souhaitez enregistrer votre graphe, vous pouvez cliquer sur le bouton « Exporter » dans le panneau des graphiques de RStudio :
 
 ![](../img/core/06_epicurves/04_plot_export.png){fig-align="center"}
 
 
-## La Fin !
+## C’est fini !
 
-Bravo! Vous avez créé votre première courbe épidémique en R ! 
+Bravo! Vous avez créé votre première courbe épidémique avec R ! 
 
 ```{r}
 #| echo: false
@@ -424,17 +419,18 @@ downloadthis::download_link(
 )
 ```
 
+
 Aller plus loin
 ----------------------------------------------------------------------------------------------------
 
 ### Exercices supplémentaires
 
-1. Utilisez le `theme_minimal()` sur un de vos graphiques, avec une police de taille de base de 18.
-2. Allez sur [ce site](https://r-charts.com/colors/), choisissez une couleur et mettez à jour la couleur de vos barres.
+1. Utilisez le `theme_minimal()` sur un de vos graphiques, avec une taille de police de base de 18.
+2. Allez sur [ce site](https://r-charts.com/colors/), choisissez une couleur et modifier la couleur de vos barres.
 
-### Exercices de défi
+### Défi
 
-1. Au lieu d'agréger par date, comptez le nombre de patients par sous-préfecture. Essayez d'adapter votre code pour créer un diagramme à barres du nombre de patients par sous-préfecture.
+Au lieu d'agréger les données par date, comptez le nombre de patients par sous-préfecture et créez le graphe associé, qui montre le nombre de patients par sous-préfecture.
 
 
 ### Satellites
@@ -445,6 +441,5 @@ Aller plus loin
 
 ## Ressources
 
-- Un [livre complet](https://ggplot2-book.org/) sur l'utilisation de `{ggplot2}`.  
-- Un [chapitre entier](https://www.epirhandbook.com/en/new_pages/epicurves.html) sur les épicurves
-
+- Un [livre complet](https://ggplot2-book.org/) sur l'utilisation de `{ggplot2}` (en anglais). 
+- Un [chapitre entier](https://www.epirhandbook.com/fr/new_pages/epicurves.fr.html) en français sur les courbes épidémiques (mais n’hésitez pas à parcourir les chapitres précédents pour en apprendre plus sur les graphiques avec `{ggplot2}`).
