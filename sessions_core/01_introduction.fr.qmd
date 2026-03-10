@@ -179,7 +179,7 @@ Pour créer un nouveau script, allez dans le menu `File > New File > R Script`. 
 Pour enregistrer votre script, utilisez le menu `File > Save As` ou le raccourci clavier `CTRL + S`.
 
 ::: {.setup}
-Créez un script et enregistrez-le sous le nom `decouverte.R`(n'oubliez l'extension !). Pour l'instant, vous pouvez l'enregistrer sur votre bureau ou à tout autre endroit pratique, mais nous aborderons l'organisation des scripts dans la [prochaine session](../sessions_core/02_import_data.qmd#folder-structure).
+Créez un script et enregistrez-le sous le nom `decouverte.R` (n'oubliez pas l'extension !). Pour l'instant, vous pouvez l'enregistrer sur votre bureau ou à tout autre endroit pratique, mais nous aborderons l'organisation des scripts dans la [prochaine session](../sessions_core/02_import_data.qmd#folder-structure).
 :::
 
 #### Exécuter du code à partir d'un script
