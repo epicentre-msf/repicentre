@@ -1,7 +1,6 @@
 ---
 title: Traitement de données, recoder et filtrer
 description: Apprenez à recoder vos variables avec `{dplyr}` et comment sélectionner les lignes d'un data frame suivant certains critères
-date: last-modified
 image: ../img/core/04_manipulation_conditionals/logo.svg
 categories:
   - Core

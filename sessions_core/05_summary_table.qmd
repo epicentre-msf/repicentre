@@ -149,7 +149,7 @@ df_linelist |>
 `drop_na()` is particularly useful as you can give it multiple column names to filter by. But be careful that doing so will remove **all** rows where **one or more** of those columns have a missing value.
 :::
 
-## Summary Table: Statistics by Sub Prefecture
+## Summary Table: Statistics by Sub Prefecture {#sec-stratify}
 
 Ok now that we have produced some simple frequency and contingency tables we may want to increase the complexity. A common task in epidemiology is to look at summary statistics within subsets of the data.
 
@@ -259,7 +259,7 @@ Add the minimum date of admission to your table for each of the `sub_prefecture`
 Remember that with the arithmetic functions such as `mean()`, `median()`, `min()`, `max()`, you need to **explicitly tell R** to remove `NA`. 
 :::
 
-### Counting with a Condition
+### Counting with a Condition {#sec-summary-cond}
 
 We may also be interested in looking at the number of patients (rows) that fit a condition: the *number of patients that were female*. Counting by a logical condition can be done with the following syntax:
 
