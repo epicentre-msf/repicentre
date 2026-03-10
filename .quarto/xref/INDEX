@@ -94,5 +94,65 @@
   },
   "sessions_extra/data_exploration.qmd": {
     "data_exploration.html": "b7e41942"
+  },
+  "sessions_extra/surveillance_companion.qmd": {
+    "surveillance_companion.html": "c45dd225"
+  },
+  "sessions_core/03_data_verbs.fr.qmd": {
+    "03_data_verbs.fr.html": "228a75f0"
+  },
+  "sessions_core/04_data_verbs_conditional.fr.qmd": {
+    "04_data_verbs_conditional.fr.html": "7615c18b"
+  },
+  "sessions_core/05_summary_table.fr.qmd": {
+    "05_summary_table.fr.html": "862811a3"
+  },
+  "sessions_core/06_epicurves.fr.qmd": {
+    "06_epicurves.fr.html": "0c4a702b"
+  },
+  "sessions_extra/faceting.fr.qmd": {
+    "faceting.fr.html": "8602e4d6"
+  },
+  "sessions_extra/weekly_epicurves.fr.qmd": {
+    "weekly_epicurves.fr.html": "a889ea4d"
+  },
+  "sessions_core/04_data_verbs_conditional.qmd": {
+    "04_data_verbs_conditional.html": "feadd6dd"
+  },
+  "sessions_core/05_summary_table.qmd": {
+    "05_summary_table.html": "e33dc38b"
+  },
+  "sessions_core/06_epicurves.qmd": {
+    "06_epicurves.html": "234d200c"
+  },
+  "sessions_extra/faceting.qmd": {
+    "faceting.html": "4da327f6"
+  },
+  "sessions_extra/weekly_epicurves.qmd": {
+    "weekly_epicurves.html": "e331bd84"
+  },
+  "template.qmd": {
+    "template.html": "bf917210"
+  },
+  "sessions_extra/surveillance_companion.fr.qmd": {
+    "surveillance_companion.fr.html": "b89bc49a"
+  },
+  "sessions_companion/surveillance_companion.fr.qmd": {
+    "surveillance_companion.fr.html": "a267d6c4"
+  },
+  "sessions_companion/survey_basic.qmd": {
+    "survey_basic.html": "7a520f5f"
+  },
+  "sessions_companion/surveillance_companion.qmd": {
+    "surveillance_companion.html": "f6f14026"
+  },
+  "sessions_companion/survey_basic.fr.qmd": {
+    "survey_basic.fr.html": "0b43a81b"
+  },
+  "sessions_extra/shiny-intro.qmd": {
+    "shiny-intro.html": "9e140340"
+  },
+  "sessions_extra/shiny-intro.en.qmd": {
+    "shiny-intro.en.html": "376c930d"
   }
 }
