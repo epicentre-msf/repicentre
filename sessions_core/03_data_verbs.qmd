@@ -501,7 +501,7 @@ df %>% select(prefecture, facility) %>% distinct()
 
 9. Create a `delay_consultation` column, that contains the number of days between the onset of symptoms and the consultation.
 
-10. Train with pipe: rewrite the following commands, which we have sees today or in past sessions using `{dplyr}` verbs and the *pipe*
+10. Train with pipe: rewrite the following commands, which we saw today or in past sessions using `{dplyr}` verbs and the *pipe*
 
 ```{r}
 class(df_raw$age)
@@ -511,7 +511,7 @@ mean(df$muac)
 min(df$age_months)
 ```
 
-**Note**: you will often use the pipe to create cleaning pipeline, but it is not *mandatory.*
+**Note**: you will often use the pipe to create cleaning pipeline, but it is not *mandatory*.
 
 
 ### Challenge
@@ -541,7 +541,7 @@ df_raw %>%
 
 **From base R to `{tidyverse}` syntax**
 
-The code below contains steps to create a `df1` data frame written in base R syntax. It uses function and syntax that we have seen in all the previous sessions. Can you rewrite it with `{dplyr}` verbs and the *pipe* to obtain an identical `df1` data frame?
+The code below contains steps to create a `df1` data frame written in base R syntax. It uses functions and syntax that we have seen in all the previous sessions. Can you rewrite it with `{dplyr}` verbs and the *pipe* to obtain an identical `df1` data frame?
 
 ```{r}
 df1 <- df_raw
@@ -582,7 +582,7 @@ df_raw |>
 ```
 
 ::: {.callout-tip}
-To debug a pipeline, run it step by step (by pairs of statement `input |> function()`) to see the problems that may arise at each step (inspect the error if error there is, and the intermediate data frame created). Make your way down the pipe to fix each step that needs to be fixed.
+To debug a pipeline, run it step by step (by pairs of statement `input |> function()`) to identify problems that may arise at each step (inspect the error if error there is, and the intermediate data frame created). Make your way down the pipe to fix each step that needs to be fixed.
 :::
 
 ::: {.callout-important}
