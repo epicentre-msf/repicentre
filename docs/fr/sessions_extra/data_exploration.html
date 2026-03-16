@@ -311,7 +311,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#types-des-variables" id="toc-types-des-variables" class="nav-link" data-scroll-target="#types-des-variables">Types des variables</a></li>
   <li><a href="#exploration-des-variables-continues" id="toc-exploration-des-variables-continues" class="nav-link" data-scroll-target="#exploration-des-variables-continues">Exploration des variables continues</a></li>
   <li><a href="#exploration-des-variables-cat%C3%A9gorielles" id="toc-exploration-des-variables-catégorielles" class="nav-link" data-scroll-target="#exploration-des-variables-catégorielles">Exploration des variables catégorielles</a></li>
-  <li><a href="#cest-fait" id="toc-cest-fait" class="nav-link" data-scroll-target="#cest-fait">C’est fait !</a></li>
+  <li><a href="#cest-fini" id="toc-cest-fini" class="nav-link" data-scroll-target="#cest-fini">C’est fini !</a></li>
   </ul></nav>
 </div>
 <!-- main -->
@@ -341,25 +341,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header><section id="objectifs" class="level2"><h2 class="anchored" data-anchor-id="objectifs">Objectifs</h2>
 <ul>
-<li>Effectuer une exploration rapide d’un ensemble de données importé</li>
+<li>Effectuer une exploration rapide d’un jeu de données importé</li>
 <li>Produire des tableaux de fréquence pour les variables</li>
 </ul></section><section id="setup" class="level2"><h2 class="anchored" data-anchor-id="setup">Setup</h2>
 <p><strong>Dependances.</strong> Cette session supplémentaire suppose que vous avez suivi les sessions <a href="../sessions_core/01_introduction.html">introduction à R et R studio</a>, et <a href="../sessions_core/02_import_data.html">importation de données</a>.</p>
 <div class="setup">
-<p>Pour cette session, nous travaillerons avec notre liste brute de rougeole de Moissala qui peut être téléchargée ici :</p>
+<p>Pour cette session, nous travaillerons avec les données sales de la liste linéaire sur la rougeole dans la région de Mandoul (Tchad), qui peut être téléchargée ici :</p>
 <div class="cell">
 <div class="cell-output-display">
 <a href="https://github.com/epicentre-msf/repicentre/raw/main/data/FETCHR.zip">
-<button class="btn btn-default"><i class="fa fa-save"></i>  Course Folder</button>
+<button class="btn btn-default"><i class="fa fa-save"></i> Télécharger les données</button>
 </a>
 </div>
 </div>
-<p><br> Assurez-vous qu’il est correctement stocké dans <code>data/raw</code> de votre projet. Ensuite, ouvrez un nouveau script appelé <code>data-exploration.R</code>, et assurez-vous que les paquets <code>{here}</code>, <code>{rio}</code> et <code>{dplyr}</code> sont chargés. Enfin, importez les données dans R sous la forme d’un objet appelé <code>df_linelist</code>.</p>
+<p><br> Assurez-vous qu’elle est correctement enregistrée dans <code>data/raw</code> de votre projet. Ensuite, ouvrez un nouveau script appelé <code>data-exploration.R</code>, et assurez-vous que les paquets <code>{here}</code>, <code>{rio}</code> et <code>{dplyr}</code> sont chargés. Enfin, importez les données dans R sous la forme d’un objet appelé <code>df_linelist</code>.</p>
 </div>
 </section><section id="exploration-des-données" class="level2"><h2 class="anchored" data-anchor-id="exploration-des-données">Exploration des données</h2>
 <p>Juste après avoir importé des données dans R, nous pouvons avoir envie d’y jeter un coup d’œil. Lorsque l’on parle d’exploration de données, on veut généralement faire plusieurs choses :</p>
 <ul>
-<li>Examiner les dimensions des données (c’est-à-dire le nombre de lignes et de colonnes).</li>
+<li>Examiner les dimensions des données (c’est-à-dire le nombre de lignes et de colonnes)</li>
 <li>Examiner les noms des colonnes</li>
 <li>Visualiser les premières ou les dernières lignes</li>
 <li>Déterminer le type des variables</li>
@@ -379,31 +379,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>En utilisant la méthode de votre choix, obtenez les dimensions de votre data frame <code>df_linelist</code>.</p>
 </div>
 </section><section id="noms-de-variables" class="level2"><h2 class="anchored" data-anchor-id="noms-de-variables">Noms de variables</h2>
-<p>Comme nous allons utiliser les noms des variables très souvent au cours de notre analyse, nous voulons nous familiariser avec eux dès le début. De plus, nous devons identifier celles qui devront être renommées lors du nettoyage des données. La fonction <code>names()</code> renvoie un vecteur de tous les noms de variables dans notre cadre de données :</p>
+<p>Comme nous allons utiliser les noms des variables très souvent au cours de notre analyse, nous voulons nous familiariser avec eux dès le début. De plus, nous devons identifier celles qui devront être renommées lors du nettoyage des données. La fonction <code>names()</code> renvoie un vecteur de tous les noms de variables dans notre data frame :</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(df_linelist)</span></code></pre></div>
 <button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "id"                   "full_name"            "sex"                 
- [4] "age"                  "age_unit"             "region"              
- [7] "sub_prefecture"       "village_commune"      "date_onset"          
-[10] "date_consultation"    "hospitalisation"      "date_admission"      
-[13] "health_facility_name" "malaria_rdt"          "fever"               
-[16] "rash"                 "cough"                "red_eye"             
-[19] "pneumonia"            "encephalitis"         "muac"                
-[22] "vacc_status"          "vacc_doses"           "outcome"             
-[25] "date_outcome"        </code></pre>
+<pre><code> [1] "id"                  "nom_complet"         "sexe"               
+ [4] "age"                 "unite_age"           "region"             
+ [7] "sous_prefecture"     "village_commune"     "date_debut"         
+[10] "date_consultation"   "hospitalisation"     "date_admission"     
+[13] "nom_structure_sante" "tdr_paludisme"       "fievre"             
+[16] "eruption"            "toux"                "yeux_rouges"        
+[19] "pneumonie"           "encephalite"         "pb"                 
+[22] "statut_vaccinal"     "doses_vaccin"        "issue"              
+[25] "date_issue"         </code></pre>
 </div>
 </div>
 <div class="look">
-<p>Que pensez-vous des noms de votre ensemble de données ? Pouvez-vous déjà repérer des noms de variables que vous aimeriez renommer ?</p>
+<p>Que pensez-vous des noms de votre jeu de données ? Pouvez-vous déjà repérer des noms de variables que vous aimeriez renommer ?</p>
 </div>
 </section><section id="inspecter-vos-données" class="level2"><h2 class="anchored" data-anchor-id="inspecter-vos-données">Inspecter vos données</h2>
 <p>Il est également intéressant d’inspecter vos données, cela peut vous permettre de repérer plus facilement certaines incohérences, des variables avec beaucoup de valeurs manquantes, et cela vous permettra de voir à quelles valeurs s’attendre pour chacune d’entre elles. Vous pouvez <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Print est un mot de programmation qui signifie afficher une sortie dans votre console.">“print”</span> vos données dans la console en :</p>
 <ol type="1">
-<li>Exécutant l’objet <code>df_linelist</code> seul (attention, vous ne voudrez peut-être pas faire cela si vous avez un grand ensemble de données).</li>
+<li>Exécutant l’objet <code>df_linelist</code> seul (attention, vous ne voudrez peut-être pas faire cela si vous avez un grand jeu de données).</li>
 <li>Utilisant la fonction <code>head()</code> pour voir les 6 premières lignes (vous pouvez augmenter ce nombre en utilisant l’argument <code>n</code>)</li>
 <li>Utilisant la fonction <code>tail()</code> pour voir les 6 dernières lignes (encore une fois, vous pouvez augmenter ce nombre en utilisant l’argument <code>n</code>)</li>
 </ol>
@@ -418,14 +418,14 @@ Astuce
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Soyez très prudent avec <code>View()</code> sur un grand jeu de données car cela peut faire planter votre session RStudio. Pour éviter cela, vous pouvez imprimer la sortie dans la console.</p>
+<p>Soyez très prudent avec <code>View()</code> sur un grand jeu de données car cela peut faire planter votre session RStudio. Pour éviter cela, vous pouvez afficher la sortie dans la console.</p>
 </div>
 </div>
 <div class="write">
 <p>Pouvez-vous afficher les 15 premières lignes de vos données ? Que se passe-t-il lorsque vous modifiez la largeur de votre fenêtre de console et que vous exécutez à nouveau la commande ?</p>
 </div>
 </section><section id="types-des-variables" class="level2"><h2 class="anchored" data-anchor-id="types-des-variables">Types des variables</h2>
-<p>Nous voulons maintenant vérifier le type des différentes variables. C’est important car une partie du nettoyage des données consiste à s’assurer que les variables numériques sont de type <code>numeric</code>, dates <code>Date</code>, et que les variables catégorielles sont de type <code>factor</code> ou <code>character</code>. Vous avez déjà vu la fonction <code>class()</code>, qui permet de vérifier le type d’un vecteur. Dans R, chaque variable d’un dataframe est un vecteur. Nous pouvons extraire toutes les valeurs de ce vecteur en utilisant le <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="C'est ce qu'on appelle 'base indexing' dans R">sign <code>$</code></span>, et les passer à la fonction <code>class()</code> :</p>
+<p>Nous voulons maintenant vérifier le type des différentes variables. C’est important car une partie du nettoyage des données consiste à s’assurer que les variables numériques sont de type <code>numeric</code>, dates <code>Date</code>, et que les variables catégorielles sont de type <code>factor</code> ou <code>character</code>. Vous avez déjà vu la fonction <code>class()</code>, qui permet de vérifier le type d’un vecteur. Dans R, chaque variable d’un data frame est un vecteur. Nous pouvons extraire toutes les valeurs de ce vecteur en utilisant <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="C'est ce qu'on appelle 'base indexing' dans R">l’opérateur <code>$</code></span>, et les passer à la fonction <code>class()</code> :</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(df_linelist<span class="sc">$</span>age)</span></code></pre></div>
@@ -433,9 +433,9 @@ Astuce
 </div>
 </div>
 <div class="write">
-<p>Essayez d’extraire toutes les valeurs de la variable <code>sex</code>. Quelle est le type de cette variable ?</p>
+<p>Essayez d’extraire toutes les valeurs de la variable <code>sexe</code>. Quel est le type de cette variable ?</p>
 </div>
-<p>Vous pouvez également utiliser <code>str()</code> sur votre dataframe pour vérifier le type de toutes les variables à la fois :</p>
+<p>Vous pouvez également utiliser <code>str()</code> sur votre data frame pour vérifier le type de toutes les variables à la fois :</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df_linelist)</span></code></pre></div>
@@ -446,7 +446,7 @@ Astuce
 <p>Utilisez <code>str()</code> pour vérifier le type de données de chaque colonne. Y a-t-il quelque chose d’étrange ? Rappelez-vous que vous pouvez aussi utiliser des fonctions comme <code>is.character()</code> et <code>is.numeric()</code> si vous voulez tester le type d’une colonne en particulier.</p>
 </div>
 </section><section id="exploration-des-variables-continues" class="level2"><h2 class="anchored" data-anchor-id="exploration-des-variables-continues">Exploration des variables continues</h2>
-<p>Maintenant que vous savez comment extraire les valeurs d’une variable, vous pouvez vouloir explorer certaines des valeurs des variables numériques pour vérifier les incohérences. Calculer des statistiques récapitulatives pour ces variables, et Base R fournit de nombreuses fonctions pratiques :</p>
+<p>Maintenant que vous savez comment extraire les valeurs d’une variable, vous pouvez vouloir explorer certaines des valeurs des variables numériques pour vérifier les incohérences ou calculer des statistiques récapitulatives pour ces variables. Base R fournit de nombreuses fonctions pratiques :</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 23%">
@@ -481,9 +481,9 @@ Astuce
 </tr>
 <tr class="even">
 <td><code>median()</code></td>
-<td>Valeur moyenne</td>
+<td>Valeur médiane</td>
 <td><code>median(x)</code></td>
-<td>Valeur moyenne</td>
+<td>Valeur médiane</td>
 </tr>
 <tr class="odd">
 <td><code>range()</code></td>
@@ -542,35 +542,35 @@ Astuce
 <ul>
 <li>La valeur minimale de <code>age</code>
 </li>
-<li>Le maximum du <code>pb</code>
+<li>Le maximum de <code>pb</code>
 </li>
 </ul>
 <p><strong>Des problèmes ?</strong></p>
 </div>
 </section><section id="exploration-des-variables-catégorielles" class="level2"><h2 class="anchored" data-anchor-id="exploration-des-variables-catégorielles">Exploration des variables catégorielles</h2>
-<p>Enfin, examinons les valeurs de nos variables catégorielles. Pour ce faire, nous pouvons utiliser des tableaux de fréquence. C’est pratique car :</p>
+<p>Enfin, examinons les valeurs de nos variables catégorielles. Pour ce faire, nous pouvons utiliser des tableaux de fréquence. C’est pratique car ils nous permettent de voir rapidement :</p>
 <ol type="1">
-<li>Ils nous permettent de voir rapidement les valeurs uniques d’une variable catégorielle</li>
-<li>Le nombre d’observations pour chacune de ces catégories</li>
+<li>les valeurs uniques d’une variable catégorielle</li>
+<li>le nombre d’observations pour chacune de ces catégories</li>
 </ol>
-<p>Pour ce faire, on utilise la fonction <code>count()</code> du <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Nous en apprendrons plus sur ce package lors de la prochaine session.">package <code>{dplyr}</code></span>, qui accepte un dataframe et le nom d’une (ou plusieurs !) colonne(s) en tant qu’arguments. Il compte alors le <strong>nombre d’observations</strong> de chaque élément unique dans cette colonne. Par exemple, voyons les valeurs possibles de la variable <code>sex</code> :</p>
+<p>Pour ce faire, on utilise la fonction <code>count()</code> du <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Nous en apprendrons plus sur ce paquet lors de la prochaine session.">paquet <code>{dplyr}</code></span>, qui accepte un data frame et le nom d’une (ou plusieurs !) colonne(s) en tant qu’arguments. Il compte alors le <strong>nombre d’observations</strong> de chaque élément unique dans cette colonne. Par exemple, voyons les valeurs possibles de la variable <code>sexe</code> :</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(df_linelist, sex)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(df_linelist, sexe)</span></code></pre></div>
 <button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button>
 </div>
 </div>
-<p>Le résultat est un nouveau dataframe, plus petit, contenant le nombre de patients observés, stratifié par <code>sex</code>. Il semble que cette variable nécessite un recodage… Nous le ferons dans une prochaine session.</p>
+<p>Le résultat est un nouveau data frame, plus petit, contenant le nombre de patients observés, stratifié par <code>sexe</code>. Il semble que cette variable nécessite un recodage… Nous le ferons dans une prochaine session.</p>
 <div class="write">
-<p>En utilisant les données de votre liste, examinez les valeurs de la variable <code>outcome</code>. A quoi cela ressemble-t-il ?</p>
+<p>En utilisant les données de votre liste linéaire, examinez les valeurs de la variable <code>issue</code>. Qu’est ce que ça donne ?</p>
 <p>Maintenant, essayez d’ajouter l’argument <code>sort = TRUE</code> à la fonction <code>count()</code>. Que fait cet argument ?</p>
 </div>
-</section><section id="cest-fait" class="level2"><h2 class="anchored" data-anchor-id="cest-fait">C’est fait !</h2>
+</section><section id="cest-fini" class="level2"><h2 class="anchored" data-anchor-id="cest-fini">C’est fini !</h2>
 <p>Bravo pour ce premier coup d’œil sur vos données !</p>
 <div class="cell">
 <div class="cell-output-display">
 <a href="https://github.com/epicentre-msf/repicentre/blob/main/solutions/extra/data_exploration_fr.R">
-<button class="btn btn-default"><i class="fa fa-save"></i> Solution File</button>
+<button class="btn btn-default"><i class="fa fa-save"></i> Solutions exercices</button>
 </a>
 </div>
 </div>
