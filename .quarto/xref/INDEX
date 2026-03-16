@@ -154,5 +154,8 @@
   },
   "sessions_extra/shiny-intro.en.qmd": {
     "shiny-intro.en.html": "376c930d"
+  },
+  "sessions_extra/shiny_intro.qmd": {
+    "shiny_intro.html": "2323b7e6"
   }
 }
