@@ -426,7 +426,7 @@ downloadthis::download_link(
     - le nombre de décès parmi les patients atteints de pneumonie
 
 2. **Vaccination par âge** : créez un tableau stratifié par classe d'âge qui montre :
-
+   
     - le nombre et la proportion de patients vaccinés contre la rougeole (oral ou par carte)
     - le nombre et la proportion de patients ayant reçu une dose
     - le nombre et la proportion de patients ayant reçu deux doses

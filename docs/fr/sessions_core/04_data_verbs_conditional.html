@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
 <head>
-<link rel="alternate" hreflang="en" href="/sessions_core/04_data_verbs_conditional.html" />
-<link rel="alternate" hreflang="fr" href="/fr/sessions_core/04_data_verbs_conditional.fr.html" />
+<link rel="alternate" hreflang="en" href="https://epicentre-msf.github.io/repicentre//sessions_core/04_data_verbs_conditional.html" />
+<link rel="alternate" hreflang="fr" href="https://epicentre-msf.github.io/repicentre//fr/sessions_core/04_data_verbs_conditional.fr.html" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.8.27">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="description" content="Apprenez à recoder vos variables avec {dplyr} et comment sélectionner les lignes d’un data frame suivant certains critères">
 <title>Traitement de données, recoder et filtrer – {repicentre}</title>
@@ -59,13 +59,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script><script src="../site_libs/quarto-nav/headroom.min.js"></script><script src="../site_libs/clipboard/clipboard.min.js"></script><script src="../site_libs/quarto-search/autocomplete.umd.js"></script><script src="../site_libs/quarto-search/fuse.min.js"></script><script src="../site_libs/quarto-search/quarto-search.js"></script><meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script><script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script><script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script><script src="../site_libs/quarto-html/popper.min.js"></script><script src="../site_libs/quarto-html/tippy.umd.min.js"></script><script src="../site_libs/quarto-html/anchor.min.js"></script><link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-7ac2f9da8c2617a4fdd15004b4601015.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-f1aadacce99040138bbb613f9330654f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script><link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-63b190c79e12f21edfb5aa510d2b1118.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-6c9d4b6e8397689ef559897df4fbe577.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-63b190c79e12f21edfb5aa510d2b1118.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-bd9e9ee71991698ccdf231aaeb59f575.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-04ce264712e6490513e553b82ad07e3b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-bd9e9ee71991698ccdf231aaeb59f575.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -271,7 +271,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
 <li class="nav-item"><div class="dropdown" id="languages-links-parent">
-<button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="languages-button"><i class="bi bi-globe2"></i> Français</button><ul class="dropdown-menu" id="languages-links"><li><a class="dropdown-item" href="/sessions_core/04_data_verbs_conditional.html" id="language-link-en">English</a></li></ul>
+<button class="btn btn-primary dropdown-toggle babelquarto-languages-button" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="languages-button"><i class="bi bi-globe2"></i> Français</button><ul class="dropdown-menu" id="languages-links"><li><a class="dropdown-item" href="https://epicentre-msf.github.io/repicentre//sessions_core/04_data_verbs_conditional.html" id="language-link-en">English</a></li></ul>
 </div></li>
 <li class="nav-item">
     <a class="nav-link" href="../pathway.html"> 
@@ -451,20 +451,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="write">
-<p>Affichez un data frame ne contenant que les patients souffrant de <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="C'est-à-dire les patients dont le PB est inférieur à 110">malnutrition aiguë sévère</span>. Le début de la colonne concernée est :</p>
+<p>Affichez un data frame ne contenant que les patients souffrant de <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="C'est-à-dire les patients dont le PB est inférieur à 115">malnutrition aiguë sévère</span>. Le début de la colonne concernée est :</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>    pb
-1  244
-2  232
-3  123
-4  210
-5   80
-6  220
-7  152
-8  155
-9  232
-10 135</code></pre>
+1   80
+2   88
+3   60
+4   85
+5   86
+6   68
+7   80
+8   86
+9  107
+10  92</code></pre>
 </div>
 </div>
 <p>Ecrivez un autre filtre qui sélectionne les patients âgés de plus de <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="15 ans équivaut à 180 mois.">15 ans</span>. L’en-tête de votre colonne d’âge doit ressembler à ceci :</p>
@@ -529,7 +529,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="write">
-<p>Créez un filtre qui sélectionne tous les patients de la sous-préfecture de Koumra hospitalisés et sévèrement malnutris Cela donne :</p>
+<p>Créez un filtre qui sélectionne tous les patients de la sous-préfecture de Koumra hospitalisés et sévèrement malnutris. Cela donne :</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>    id sous_prefecture hospitalisation  pb
@@ -598,12 +598,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button>
 </div>
 </div>
-<p>Ainsi, pour recoder les patients avec un PB inférieur à 110mm comme <code>"MAS"</code>, nous écrivons la commande suivante dans notre <code>case_when()</code> :</p>
+<p>Ainsi, pour recoder les patients avec un PB inférieur à 115mm comme <code>"MAS"</code>, nous écrivons la commande suivante dans notre <code>case_when()</code> :</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># NE PAS EXÉCUTER (PSEUDO-CODE)</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># [condition] ~ [valeur si VRAIE]</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>   pb <span class="sc">&lt;</span> <span class="dv">110</span>   <span class="sc">~</span> <span class="st">"MAS"</span></span></code></pre></div>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>   pb <span class="sc">&lt;</span> <span class="dv">115</span>   <span class="sc">~</span> <span class="st">"MAS"</span></span></code></pre></div>
 <button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button>
 </div>
 </div>
@@ -614,7 +614,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df_brut <span class="sc">|&gt;</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">malnut =</span> <span class="fu">case_when</span>(</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    pb <span class="sc">&lt;</span> <span class="dv">110</span> <span class="sc">~</span> <span class="st">"MAS"</span>,</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    pb <span class="sc">&lt;</span> <span class="dv">115</span> <span class="sc">~</span> <span class="st">"MAS"</span>,</span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    pb <span class="sc">&lt;</span> <span class="dv">125</span> <span class="sc">~</span> <span class="st">"MAM"</span>,</span>
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">.default =</span> <span class="st">"Normal"</span>))</span></code></pre></div>
 <button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button>
@@ -647,7 +647,7 @@ Important
 <p>L’ordre des conditions logiques est important ! <code>case_when()</code> teste les conditions <em>dans l’ordre que vous lui donnez</em> et attribue une valeur <em>dès qu’une condition est <code>TRUE</code></em>.</p>
 <p>Ainsi, dans l’exemple ci-dessus, <code>case_when()</code> pose ces questions suivantes dans l’ordre :</p>
 <ul>
-<li>Est-ce que <code>pb &lt; 110</code> pour ce patient ? <strong>Si oui</strong>, attribuer la valeur <code>"MAS"</code>
+<li>Est-ce que <code>pb &lt; 115</code> pour ce patient ? <strong>Si oui</strong>, attribuer la valeur <code>"MAS"</code>
 </li>
 <li>
 <em>Si le patient n’est pas MAS</em>, est-ce que <code>pb &lt; 125</code> ? <strong>Si oui</strong>, attribuer la valeur <code>"MAM"</code>
@@ -699,7 +699,7 @@ Note
 <p><strong>Faites attention à l’ordre !</strong> L’en-tête des colonnes concernées doit ressembler à ceci :</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>   age  age_group
+<pre><code>   age groupe_age
 1   36    &lt; 5 Ans
 2    5    &lt; 5 Ans
 3  156 5 - 15 Ans
@@ -798,7 +798,7 @@ Note
 <li>Renommer les variables suivantes :
 <ul>
 <li>
-<code>age</code> devient <code>age_ans</code>
+<code>age</code> devient <code>age_mois</code>
 </li>
 <li>
 <code>sous_prefecture</code> devient <code>prefecture</code>
@@ -865,7 +865,7 @@ Note
 <div class="cell">
 <div class="code-copy-outer-scaffold">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">export</span>(<span class="fu">here</span>(<span class="st">'data'</span>, <span class="st">'clean'</span>, <span class="st">'measles_linelist_clean.xlsx'</span>))</span></code></pre></div>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">export</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"clean"</span>, <span class="st">"measles_linelist_clean.xlsx"</span>))</span></code></pre></div>
 <button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button>
 </div>
 </div>
@@ -885,7 +885,7 @@ Astuce
 <div class="cell">
 <div class="code-copy-outer-scaffold">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">export</span>(<span class="fu">here</span>(<span class="st">'data'</span>, <span class="st">'clean'</span>, <span class="st">'measles_linelist_clean.rds'</span>)) <span class="co"># TADAM !</span></span></code></pre></div>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">export</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"clean"</span>, <span class="st">"measles_linelist_clean.rds"</span>)) <span class="co"># TADAM !</span></span></code></pre></div>
 <button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button>
 </div>
 </div>
@@ -990,7 +990,7 @@ Astuce
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/epicentre-msf\.github\.io\/repicentre\/fr");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
