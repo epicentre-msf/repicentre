@@ -108,22 +108,22 @@ df_linelist |>
     
     n_patients = n(),
     n_malaria = sum(malaria_rdt == "positive", na.rm = TRUE),
-    n_fever   = sum(fever, na.rm = TRUE),
-    n_rash    = sum(rash, na.rm = TRUE),
-    n_cough   = sum(cough, na.rm = TRUE),
+    n_fever = sum(fever, na.rm = TRUE),
+    n_rash = sum(rash, na.rm = TRUE),
+    n_cough = sum(cough, na.rm = TRUE),
     n_red_eye = sum(red_eye, na.rm = TRUE),
-    n_pneumonia    = sum(pneumonia, na.rm = TRUE),
+    n_pneumonia = sum(pneumonia, na.rm = TRUE),
     n_encephalitis = sum(encephalitis, na.rm = TRUE),
-    n_muac         = sum(muac < 125, na.rm = TRUE),
+    n_muac = sum(muac < 125, na.rm = TRUE),
     
     prop_malaria = n_malaria/n_patients,
-    prop_fever   = n_fever/n_patients,
-    prop_rash    = n_rash/n_patients,
-    prop_cough   = n_cough/n_patients,
+    prop_fever = n_fever/n_patients,
+    prop_rash = n_rash/n_patients,
+    prop_cough = n_cough/n_patients,
     prop_red_eye = n_red_eye/n_patients,
-    prop_pneumonia    = n_pneumonia/n_patients,
+    prop_pneumonia = n_pneumonia/n_patients,
     prop_encephalitis = n_encephalitis/n_patients,
-    prop_muac         = n_muac/n_patients
+    prop_muac = n_muac/n_patients
   ) |>
   select(hospitalisation, n_patients,
          prop_malaria, prop_fever, prop_rash, prop_cough,
@@ -133,7 +133,7 @@ df_linelist |>
 df_linelist |>
      summarize(
          .by = sub_prefecture,
-         n   = sum(!is.na(date_consultation) & !is.na(date_onset)),
+         n = sum(!is.na(date_consultation) & !is.na(date_onset)),
          lag = mean(date_consultation - date_onset) )
 
 # 5) time from admission to outcome by outcome

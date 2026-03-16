@@ -57,20 +57,20 @@ df_linelist |>
   summarize(
     .by = sous_prefecture,
     
-    n_patients       = n(),
-    moy_age          = mean(age),
-    min_admission    = min(date_admission, na.rm = TRUE),
-    n_femmes          = sum(sexe == "f", na.rm = TRUE),
-    n_hosp           = sum(hospitalisation == "oui", na.rm = TRUE),
-    moy_age_hosp     = mean(age[hospitalisation == "oui"], na.rm = TRUE),
-    moy_age_femmes   = mean(age[sexe == "f"], na.rm = TRUE),
+    n_patients = n(),
+    moy_age = mean(age),
+    min_admission = min(date_admission, na.rm = TRUE),
+    n_femmes = sum(sexe == "f", na.rm = TRUE),
+    n_hosp = sum(hospitalisation == "oui", na.rm = TRUE),
+    moy_age_hosp = mean(age[hospitalisation == "oui"], na.rm = TRUE),
+    moy_age_femmes = mean(age[sexe == "f"], na.rm = TRUE),
     n_deces_moins_6m = sum(statut_sortie[age_groupe == "< 6 mois"] == "deces", na.rm = TRUE)
   ) |>
   
   # Ajoute des proportions :
   mutate(
     prop_femme = n_femmes / n_patients,
-    prop_hosp  = n_hosp / n_patients
+    prop_hosp = n_hosp / n_patients
   )
 
 
@@ -83,9 +83,9 @@ df_linelist |>
   summarize(
     .by = age_groupe,
     n_patients = n(),
-    n_homme    = sum(sexe == "m", na.rm = TRUE),
+    n_homme = sum(sexe == "m", na.rm = TRUE),
     prop_homme = n_homme / n_patients,
-    n_deces    = sum(statut_sortie == "deces", na.rm = TRUE),
+    n_deces = sum(statut_sortie == "deces", na.rm = TRUE),
     
     # Récupère le nombre de patients avec sortie connue (dénominateur létalité)
     n_sorties_valides = sum(statut_sortie %in% c("deces", "gueri"), na.rm = TRUE),
@@ -111,13 +111,13 @@ df_linelist |>
     
     n_patients = n(),
     
-    n_vacc    = sum(vacc_status %in%c("Oui - oral", "Oui - carte"), na.rm = TRUE),
+    n_vacc = sum(vacc_status %in%c("Oui - oral", "Oui - carte"), na.rm = TRUE),
     prop_vacc = n_vacc / n_patients,
     
-    n_vacc_une_dose    = sum(vacc_doses %in% c("1 dose"), na.rm = TRUE),
+    n_vacc_une_dose = sum(vacc_doses %in% c("1 dose"), na.rm = TRUE),
     prop_vacc_une_dose = n_vacc_une_dose / n_patients,
     
-    n_vacc_deux_doses    = sum(vacc_doses %in% c("2 doses"), na.rm = TRUE),
+    n_vacc_deux_doses = sum(vacc_doses %in% c("2 doses"), na.rm = TRUE),
     prop_vacc_deux_doses = n_vacc_deux_doses / n_patients
   )
 
@@ -133,13 +133,13 @@ df_linelist |>
     
     n_patients = n(),
     
-    n_malaria    = sum(rdt_palu == "positif", na.rm = TRUE),
+    n_malaria = sum(rdt_palu == "positif", na.rm = TRUE),
     prop_malaria = n_malaria / n_patients,
     
-    n_fievre    = sum(fievre, na.rm = TRUE),
+    n_fievre = sum(fievre, na.rm = TRUE),
     prop_fievre = n_fievre / n_patients,
     
-    n_eruption    = sum(eruption_cutanee, na.rm = TRUE),
+    n_eruption = sum(eruption_cutanee, na.rm = TRUE),
     prop_eruption = n_eruption / n_patients,
     
     n_cough = sum(toux, na.rm = TRUE),
@@ -167,7 +167,7 @@ df_linelist |>
 df_linelist |>
   summarize(
     .by = sous_prefecture,
-    n   = sum(!is.na(date_consultation) & !is.na(date_debut)),
+    n = sum(!is.na(date_consultation) & !is.na(date_debut)),
     delai_moyen = mean(date_consultation - date_debut) )
 
 
