@@ -176,7 +176,7 @@ Vous pouvez extraire les valeurs d'une variable en utilisant `$`, et les passer 
 Utilisez la syntaxe `$` pour obtenir : 
 
 - La valeur minimale de `age`
-- Le maximum de `muac`
+- Le maximum du `pb`
 
 **Des problèmes ?**
 :::
