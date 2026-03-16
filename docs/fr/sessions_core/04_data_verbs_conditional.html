@@ -451,20 +451,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="write">
-<p>Affichez un data frame ne contenant que les patients souffrant de <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="C'est-à-dire les patients dont le PB est inférieur à 110">malnutrition aiguë sévère</span>. Le début de la colonne concernée est :</p>
+<p>Affichez un data frame ne contenant que les patients souffrant de <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="C'est-à-dire les patients dont le PB est inférieur à 115">malnutrition aiguë sévère</span>. Le début de la colonne concernée est :</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>    pb
-1  244
-2  232
-3  123
-4  210
-5   80
-6  220
-7  152
-8  155
-9  232
-10 135</code></pre>
+1   80
+2   88
+3   60
+4   85
+5   86
+6   68
+7   80
+8   86
+9  107
+10  92</code></pre>
 </div>
 </div>
 <p>Ecrivez un autre filtre qui sélectionne les patients âgés de plus de <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="15 ans équivaut à 180 mois.">15 ans</span>. L’en-tête de votre colonne d’âge doit ressembler à ceci :</p>
@@ -529,7 +529,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="write">
-<p>Créez un filtre qui sélectionne tous les patients de la sous-préfecture de Koumra hospitalisés et sévèrement malnutris Cela donne :</p>
+<p>Créez un filtre qui sélectionne tous les patients de la sous-préfecture de Koumra hospitalisés et sévèrement malnutris. Cela donne :</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>    id sous_prefecture hospitalisation  pb
@@ -598,12 +598,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button>
 </div>
 </div>
-<p>Ainsi, pour recoder les patients avec un PB inférieur à 110mm comme <code>"MAS"</code>, nous écrivons la commande suivante dans notre <code>case_when()</code> :</p>
+<p>Ainsi, pour recoder les patients avec un PB inférieur à 115mm comme <code>"MAS"</code>, nous écrivons la commande suivante dans notre <code>case_when()</code> :</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># NE PAS EXÉCUTER (PSEUDO-CODE)</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># [condition] ~ [valeur si VRAIE]</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>   pb <span class="sc">&lt;</span> <span class="dv">110</span>   <span class="sc">~</span> <span class="st">"MAS"</span></span></code></pre></div>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>   pb <span class="sc">&lt;</span> <span class="dv">115</span>   <span class="sc">~</span> <span class="st">"MAS"</span></span></code></pre></div>
 <button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button>
 </div>
 </div>
@@ -614,7 +614,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df_brut <span class="sc">|&gt;</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">malnut =</span> <span class="fu">case_when</span>(</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    pb <span class="sc">&lt;</span> <span class="dv">110</span> <span class="sc">~</span> <span class="st">"MAS"</span>,</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    pb <span class="sc">&lt;</span> <span class="dv">115</span> <span class="sc">~</span> <span class="st">"MAS"</span>,</span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    pb <span class="sc">&lt;</span> <span class="dv">125</span> <span class="sc">~</span> <span class="st">"MAM"</span>,</span>
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">.default =</span> <span class="st">"Normal"</span>))</span></code></pre></div>
 <button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button>
@@ -647,7 +647,7 @@ Important
 <p>L’ordre des conditions logiques est important ! <code>case_when()</code> teste les conditions <em>dans l’ordre que vous lui donnez</em> et attribue une valeur <em>dès qu’une condition est <code>TRUE</code></em>.</p>
 <p>Ainsi, dans l’exemple ci-dessus, <code>case_when()</code> pose ces questions suivantes dans l’ordre :</p>
 <ul>
-<li>Est-ce que <code>pb &lt; 110</code> pour ce patient ? <strong>Si oui</strong>, attribuer la valeur <code>"MAS"</code>
+<li>Est-ce que <code>pb &lt; 115</code> pour ce patient ? <strong>Si oui</strong>, attribuer la valeur <code>"MAS"</code>
 </li>
 <li>
 <em>Si le patient n’est pas MAS</em>, est-ce que <code>pb &lt; 125</code> ? <strong>Si oui</strong>, attribuer la valeur <code>"MAM"</code>
@@ -699,7 +699,7 @@ Note
 <p><strong>Faites attention à l’ordre !</strong> L’en-tête des colonnes concernées doit ressembler à ceci :</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>   age  age_group
+<pre><code>   age groupe_age
 1   36    &lt; 5 Ans
 2    5    &lt; 5 Ans
 3  156 5 - 15 Ans
@@ -798,7 +798,7 @@ Note
 <li>Renommer les variables suivantes :
 <ul>
 <li>
-<code>age</code> devient <code>age_ans</code>
+<code>age</code> devient <code>age_mois</code>
 </li>
 <li>
 <code>sous_prefecture</code> devient <code>prefecture</code>
@@ -865,7 +865,7 @@ Note
 <div class="cell">
 <div class="code-copy-outer-scaffold">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">export</span>(<span class="fu">here</span>(<span class="st">'data'</span>, <span class="st">'clean'</span>, <span class="st">'measles_linelist_clean.xlsx'</span>))</span></code></pre></div>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">export</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"clean"</span>, <span class="st">"measles_linelist_clean.xlsx"</span>))</span></code></pre></div>
 <button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button>
 </div>
 </div>
@@ -885,7 +885,7 @@ Astuce
 <div class="cell">
 <div class="code-copy-outer-scaffold">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">export</span>(<span class="fu">here</span>(<span class="st">'data'</span>, <span class="st">'clean'</span>, <span class="st">'measles_linelist_clean.rds'</span>)) <span class="co"># TADAM !</span></span></code></pre></div>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">export</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"clean"</span>, <span class="st">"measles_linelist_clean.rds"</span>)) <span class="co"># TADAM !</span></span></code></pre></div>
 <button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button>
 </div>
 </div>

@@ -134,14 +134,14 @@ df_raw |>
 ```
 
 :::{.write}
-Create a filter that selects all patients with severe accute malnutrition (ie: patients with a MUAC less than 110). The head of `muac` should look like this:
+Create a filter that selects all patients with severe accute malnutrition (ie: patients with a MUAC less than 115). The head of `muac` should look like this:
 
 ```{r}
 #| eval: true
 #| echo: false
 
 df_raw |>
-  filter(muac < 110) |>
+  filter(muac < 115) |>
   select(muac) |>
   head()
 ```
@@ -212,7 +212,7 @@ Create a filter that selects all patients with severe accute malnutrition who we
 df_raw |>
   filter(sub_prefecture == 'KOUMRA',
          hospitalisation == 'yes',
-         muac < 110) |>
+         muac < 115) |>
   select(id, sub_prefecture, hospitalisation, muac)
 ```
 
@@ -257,10 +257,10 @@ So the first thing to notice is that, with the exception of the last line, each 
 [condition] ~ [value when condition is TRUE]
 ```
 
-So for example, if we want our `case_when()` to say that anytime a patient had a MUAC less than 110 we want to have a value of `"SAM"`, we would have something like this:
+So for example, if we want our `case_when()` to say that anytime a patient had a MUAC less than 115 we want to have a value of `"SAM"`, we would have something like this:
 
 ```{r}
-muac < 110 ~ 'SAM'
+muac < 115 ~ 'SAM'
 ```
 
 We can add multiple possible outcomes by adding additional lines. In this case, our next condition might check if the patient is moderately but not severly malnourished using the statement `muac < 125 ~ 'MAM'`. 
@@ -271,7 +271,7 @@ To put this together, if we wanted to create a variable that classifies the maln
 
 ```{r}
 df_raw |>
-  mutate(malnut = case_when(muac < 110 ~ 'SAM',
+  mutate(malnut = case_when(muac < 115 ~ 'SAM',
                             muac < 125 ~ 'MAM',
                             .default = 'Normal'))
 ```
@@ -284,7 +284,7 @@ Try running the above code to see if it successfully creates a new column `malnu
 #| echo: false
 
 df_raw |>
-  mutate(malnut = case_when(muac < 110 ~ 'SAM',
+  mutate(malnut = case_when(muac < 115 ~ 'SAM',
                             muac < 125 ~ 'MAM',
                             .default = 'Normal')) |>
   select(muac, malnut) |>
@@ -294,7 +294,7 @@ df_raw |>
 
 **Be careful.** The order of your statements is important here. What `case_when()` will do is go through each statement from top to bottom and assign the first value that is `TRUE`. So in our above example, `case_when()` will ask the following questions in sequence:
 
-- Does this patient have SAM (is `muac < 110`)? **If so**, assign the value `"SAM"`
+- Does this patient have SAM (is `muac < 115`)? **If so**, assign the value `"SAM"`
 - **If the patient didn't have SAM**, do they have MAM (is `muac < 125`)? **If so**, assign the value `"MAM"
 - **If none of the above conditions were true**, assign the default value `"Normal"`
                             
@@ -307,7 +307,7 @@ Try reordering the first and second conditions in the above `case_when()` so tha
 
 df_raw |>
   mutate(malnut = case_when(muac < 125 ~ 'MAM',
-                            muac < 110 ~ 'SAM',
+                            muac < 115 ~ 'SAM',
                             .default = 'Normal')) |>
   select(muac, malnut) |>
   head()
