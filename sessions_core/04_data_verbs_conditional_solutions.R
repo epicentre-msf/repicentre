@@ -59,21 +59,21 @@ is.na(vec2)
 
 # 3. Filtering
 
-df %>% filter(prefecture == "Bedaya")
-df %>% filter(fever != "Yes")
-df %>% filter(malaria_rdt == "negative")
-df %>% filter(!is.na(fever))
-df %>% filter(year(date_admission) == 2023)
-df %>% filter(age_years >= 15, hospitalisation == "yes")
-df %>% filter(prefecture == "Moissala", facility == "Moissala Est", date_admission < as.Date("2023-02-01"))
-df %>% filter(muac <115, age_months < 59)
-df %>% filter()
-df %>% filter()
+df |> filter(prefecture == "Bedaya")
+df |> filter(fever != "Yes")
+df |> filter(malaria_rdt == "negative")
+df |> filter(!is.na(fever))
+df |> filter(year(date_admission) == 2023)
+df |> filter(age_years >= 15, hospitalisation == "yes")
+df |> filter(prefecture == "Moissala", facility == "Moissala Est", date_admission < as.Date("2023-02-01"))
+df |> filter(muac <115, age_months < 59)
+df |> filter()
+df |> filter()
 
 
 # 4. Cleaning
 
-df %>% 
+df |> 
   mutate(
     hospitalisation = str_to_title(hospitalisation),
     malaria_rdt =  str_to_title(malaria_rdt),
@@ -96,7 +96,7 @@ df %>%
 
 # 5. Simplify
 
-df %>% 
+df |> 
   mutate(age_group2 = case_when(
       age_months < 6 ~ "< 6 months",
       age_months < 12  ~ "6 - 11 months",
@@ -108,7 +108,7 @@ df %>%
 
 # 6. Fix
 
-df %>% 
+df |> 
   mutate(age_group2= case_when(
     age_months < 6 ~ '< 6 months',
     age_months < 12 ~ '6 - 11 months',
@@ -120,19 +120,19 @@ df %>%
 
 ## CHALLENGE
 # 1.
-df %>% 
-  filter(prefecture == "Bouna",  year(date_admission) == 2022) %>% 
+df |> 
+  filter(prefecture == "Bouna",  year(date_admission) == 2022) |> 
   export(here('data', 'clean', 'data_hospit_bouna.csv'))
 
 # 2.
-df %>%
+df |>
   filter(prefecture == "Moissala",
          facility %in% c("Moissala Est", "Moissala Nord", "Moissala Sud", 
-                         "Hôpital du District de Moissala")) %>% 
+                         "Hôpital du District de Moissala")) |> 
   count(facility)
 
 # 3.
-df %>% 
-  count(id) %>% 
-  filter(n > 1) %>% 
+df |> 
+  count(id) |> 
+  filter(n > 1) |> 
   export(here('data', 'clean', 'check_duplicates.xlsx'))
