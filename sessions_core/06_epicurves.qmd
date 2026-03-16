@@ -274,7 +274,7 @@ df_hospital |>
 ```
 
 ::: {.write}
-Update your epicurve plot to add bars with the color `#E4573`.
+Update your epicurve plot to add bars with the color `#2E4573`.
 :::
 
 Your plot should now look like this:

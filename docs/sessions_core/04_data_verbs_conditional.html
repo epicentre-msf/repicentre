@@ -452,7 +452,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="write">
-<p>Create a filter that selects all patients with severe accute malnutrition (ie: patients with a MUAC less than 110). The head of <code>muac</code> should look like this:</p>
+<p>Create a filter that selects all patients with severe accute malnutrition (ie: patients with a MUAC less than 115). The head of <code>muac</code> should look like this:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>  muac
@@ -589,10 +589,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button>
 </div>
 </div>
-<p>So for example, if we want our <code>case_when()</code> to say that anytime a patient had a MUAC less than 110 we want to have a value of <code>"SAM"</code>, we would have something like this:</p>
+<p>So for example, if we want our <code>case_when()</code> to say that anytime a patient had a MUAC less than 115 we want to have a value of <code>"SAM"</code>, we would have something like this:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>muac <span class="sc">&lt;</span> <span class="dv">110</span> <span class="sc">~</span> <span class="st">'SAM'</span></span></code></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>muac <span class="sc">&lt;</span> <span class="dv">115</span> <span class="sc">~</span> <span class="st">'SAM'</span></span></code></pre></div>
 <button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button>
 </div>
 </div>
@@ -602,7 +602,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="code-copy-outer-scaffold">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df_raw <span class="sc">|&gt;</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">malnut =</span> <span class="fu">case_when</span>(muac <span class="sc">&lt;</span> <span class="dv">110</span> <span class="sc">~</span> <span class="st">'SAM'</span>,</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">malnut =</span> <span class="fu">case_when</span>(muac <span class="sc">&lt;</span> <span class="dv">115</span> <span class="sc">~</span> <span class="st">'SAM'</span>,</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>                            muac <span class="sc">&lt;</span> <span class="dv">125</span> <span class="sc">~</span> <span class="st">'MAM'</span>,</span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>                            <span class="at">.default =</span> <span class="st">'Normal'</span>))</span></code></pre></div>
 <button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button>
@@ -624,7 +624,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p><strong>Be careful.</strong> The order of your statements is important here. What <code>case_when()</code> will do is go through each statement from top to bottom and assign the first value that is <code>TRUE</code>. So in our above example, <code>case_when()</code> will ask the following questions in sequence:</p>
 <ul>
-<li>Does this patient have SAM (is <code>muac &lt; 110</code>)? <strong>If so</strong>, assign the value <code>"SAM"</code>
+<li>Does this patient have SAM (is <code>muac &lt; 115</code>)? <strong>If so</strong>, assign the value <code>"SAM"</code>
 </li>
 <li>
 <strong>If the patient didn’t have SAM</strong>, do they have MAM (is <code>muac &lt; 125</code>)? <strong>If so</strong>, assign the value `“MAM”</li>

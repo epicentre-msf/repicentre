@@ -23,22 +23,22 @@ df_linelist <- df_brut |>
   
   # Renomme certaines colonnes
   rename(
-    age_mois = age,
+    age_mois   = age,
     prefecture = sous_prefecture,
-    village = village_commune,
-    structure = nom_structure_sante) |>
+    village    = village_commune,
+    structure  = nom_structure_sante) |>
   
   mutate(
     # Calcule l'age en années et change le format du texte
     age_ans = age_mois / 12,
-    region = stringr::str_to_title(region),
-    prefecture = stringr::str_to_title(prefecture),
+    region = str_to_title(region),
+    prefecture = str_to_title(prefecture),
     
     # Passe les dates en format "Date"
-    date_debut = lubridate::ymd(date_debut),
-    date_consultation = lubridate::ymd(date_consultation),
-    date_admission = lubridate::ymd(date_admission),
-    date_issue = lubridate::ymd(date_issue),
+    date_debut        = ymd(date_debut),
+    date_consultation = ymd(date_consultation),
+    date_admission    = ymd(date_admission),
+    date_issue        = ymd(date_issue),
     
     # Nettoie la colonne sexe
     sexe = case_when(
