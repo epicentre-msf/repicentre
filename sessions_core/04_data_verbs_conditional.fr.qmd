@@ -584,7 +584,7 @@ Effectuez les tests suivants :
 
 
 ```{r}
-df %>% 
+df |> 
   mutate(groupe_age2 = case_when(
     age_mois < 6 ~ "< 6 mois",
     age_mois >= 6 & age_mois < 12  ~ "6 - 11 mois",
@@ -600,7 +600,7 @@ df %>%
 6. **Corriger** : quelqu'un a tenté de corriger le code ci-dessus, mais a commis quelques erreurs (vicieuses, elles n'empêchent pas la commande de s'exécuter, mais le résultat est faux !). Essayez de les corriger. Vous savez que vous avez tout corrigé quand vous obtenez le même résultat qu'auparavant.
 
 ```{r}
-df %>% 
+df |> 
   mutate(groupe_age2 = case_when(
     age_mois <= 6 ~ "< 6 mois",
     age_mois < 11 ~ "6 - 11 mois",
@@ -618,9 +618,7 @@ df %>%
 
 2. Affichez un data frame contenant le *nombre de participants* venant de la sous-préfecture de Moissala et qui ont été hospitalisés dans une des structures de Moissala (pour faire simple, les structures avec "Moissala" dans leur nom).
 
-:::{.callout-tip}
-Pour la dernière étape, vous pouvez utiliser l'opérateur `%in%` que l'on a vu dans cette session ou aller lire la page d'aide de la [fonction `str_detect()`](https://stringr.tidyverse.org/reference/str_detect.html) et tenter de l'utiliser à l'intérieur de la fonction `filter()`.
-:::
+**Indice :** Pour la dernière étape, vous pouvez utiliser l'opérateur `%in%` que l'on a vu dans cette session ou aller lire la page d'aide de la [fonction `str_detect()`](https://stringr.tidyverse.org/reference/str_detect.html) et tenter de l'utiliser à l'intérieur de la fonction `filter()`.
 
 La sortie ressemble à ceci :
 
@@ -656,16 +654,14 @@ df <- df_brut |>
       .default = "Inconnu")) |>
   distinct() 
 
-df %>%
+df |>
   filter(prefecture == "Moissala",
          structure %in% c("Moissala Est", "Moissala Nord", "Moissala Sud", 
-                         "Hôpital du District de Moissala")) %>% 
+                         "Hôpital du District de Moissala")) |> 
   count(structure)
 ```
 
 3. Créez un fichier Excel qui contient la liste de tous les patients qui sont présents plus d'une fois dans vos données *nettoyées*. Pourquoi ces patients doivent-ils probablement être examinés de plus près ?
 
-:::{.callout-tip collapse=true}
-Pour faire ça vous avez besoin des fonctions `count()`, `filter()` et `export()` + `here()`.
-:::
+**Indice :** Pour faire ça vous avez besoin des fonctions `count()`, `filter()` et `export()` + `here()`.
 

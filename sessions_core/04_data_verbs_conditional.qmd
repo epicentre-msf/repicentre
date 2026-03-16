@@ -537,7 +537,7 @@ Write the following tests:
 5. **Refactor**: the following code runs without errors but is too long because the writer ignored one of the rule of `case_when()`. Simplify the command. Do not forget to check that you obtain the same result at the end!
 
 ```{r}
-df %>% 
+df |> 
   mutate(age_group2 = case_when(
     age_months < 6 ~ "< 6 months",
     age_months >= 6 & age_months < 12  ~ "6 - 11 months",
@@ -553,7 +553,7 @@ df %>%
 6. **Fix**: someone tried to fix the above code but made mistakes (the error does not cause the code to fail to run, but the output is wrong). Can you fix them? You know you are done when you have the same counts as before.
 
 ```{r}
-df %>% 
+df |> 
   mutate(age_group2 = case_when(
     age_months <= 6 ~ '< 6 months',
     age_months < 11 ~ '6 - 11 months',
@@ -571,9 +571,7 @@ df %>%
 
 2. Print a data frame containing the *number of patients* coming from the Moissala sub-prefecture that attended one of the Moissala facilities (here, we consider the facilities with "Moissala" in their name).
 
-:::{.callout-tip}
-For the last step you can use the `%in%` operator that we saw today, or go read the help page of the [`str_detect()` function](https://stringr.tidyverse.org/reference/str_detect.html) and adapt the code to use in a `filter()`.
-:::
+**Hint.** For the last step you can use the `%in%` operator that we saw today, or go read the help page of the [`str_detect()` function](https://stringr.tidyverse.org/reference/str_detect.html) and adapt the code to use in a `filter()`.
 
 The output should look like this:
 
@@ -605,16 +603,14 @@ df <- df_raw |>
                          .default = "Unknown")) |>
   distinct()
 
-df %>%
+df |>
   filter(prefecture == "Moissala",
          facility %in% c("Moissala Est", "Moissala Nord", "Moissala Sud", 
-                         "Hôpital du District de Moissala")) %>% 
+                         "Hôpital du District de Moissala")) |> 
   count(facility)
 ```
 
 3. Create an Excel file that contains a list of IDs that are present more than once in the *clean data*. Do you understand why these IDs may need to be examined?
 
-:::{.callout-tip collapse=true}
-You need the functions `count()`, `filter()` and `export()` + `here()` friend to do all that.
-:::
+**Hint.** You need the functions `count()`, `filter()` and `export()` + `here()` friend to do all that.
 
