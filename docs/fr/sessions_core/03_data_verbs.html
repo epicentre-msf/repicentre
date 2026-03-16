@@ -377,7 +377,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </a>
 </div>
 </div>
-<p><br> Si ce n’est pas déjà fait, enregistrez le jeu de données dans le sous-dossier approprié de votre projet RStudio puis créez un nouveau script appelé <code>fonctions_donnees.R</code> dans votre sous-dossier <code>R</code>. Ajoutez un en-tête approprié et chargez les paquets suivants : <code>{here}</code>, <code>{rio}</code> et <code>{tidyverse}</code>. <br><br> Enfin, ajoutez une section dédiée à l’import des données, utilisez <code>{here}</code> et <code>{rio}</code> pour importer vos données dans R, et assignez-les à un objet que nous appellerons <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Notez que nous ne nommons pas tout de suite l'objet df_linelist comme nous l'avions fait précédemment. La raison deviendra manifeste sous peu"><code>df_brut</code></span>.</p>
+<p><br> Si ce n’est pas déjà fait, enregistrez le jeu de données dans le sous-dossier approprié de votre projet RStudio puis créez un nouveau script appelé <code>fonctions_donnees.R</code> dans votre sous-dossier <code>R</code>. Ajoutez un en-tête approprié et chargez les paquets suivants : <code>{here}</code>, <code>{rio}</code> et <code>{tidyverse}</code>. <br><br> Enfin, ajoutez une section dédiée à l’import des données, utilisez <code>{here}</code> et <code>{rio}</code> pour importer vos données dans R, et assignez-les à un objet que nous appellerons <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Notez que nous ne nommons pas tout de suite l'objet df_linelist comme nous l'avions fait précédemment. La raison deviendra manifeste sous peu."><code>df_brut</code></span>.</p>
 </div>
 </section><section id="traiter-ses-données-avec-dplyr" class="level2"><h2 class="anchored" data-anchor-id="traiter-ses-données-avec-dplyr">Traiter ses données avec <code>{dplyr}</code>
 </h2>
@@ -482,9 +482,9 @@ Note
 </li>
 </ul>
 </div>
-<p>Il peut être difficile de vérifier si une commande fonctionne car R affiche le data frame en entier. Dans ce cas, une <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Nous en verrons une autre à la fin de la leçon.">première solution</span> consiste à créer un objet temporaire plus facile à manipuler. Vous pouvez le nommer comme vous voulez, mais un nom commun est <code>temp</code> (ou <code>tmp</code> en anglais).</p>
+<p>Quand nous n’enregistrons pas le data frame renvoyé par la fonction, il s’affiche dans la console, ce qui est peu lisible : il est laborieux de vérifier que votre commande a bien renommé les colonnes (ce serait encore pire si le data frame contenait 100 colonnes !). Une <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Nous en verrons une autre à la fin de la leçon avec le pipe, et une dernière est d'imbriquer la commande à tester directement dans une autre fonction, telle que names().">première stratégie</span> consiste à enregistrer le data frame intermédiaire dans un objet pour pouvoir l’examiner avec des fonctions connue. Vous pouvez nommer cet objet temporaire comme vous voulez, mais un nom commun est <code>temp</code> (ou <code>tmp</code> en anglais) pour indiquer que ce n’est pas un objet final à être conservé.</p>
 <div class="write">
-<p>Répétez le dernier exercice en assignant la sortie de la commande à un objet appelé <code>temp</code>. Vous pouvez alors utiliser la fonction <code>names()</code> pour vérifier que les noms des colonnes ont bien changé. La sortie de <code>names()</code> devrait être :</p>
+<p>Utilisez le code que vous venez d’écrire et créez un objet <code>temp</code> qui contient le data frame avec les collones renommées. Utilisez ensuite la fonction <code>names()</code> pour vérifier que les noms des colonnes ont bien changé. La sortie de <code>names()</code> devrait être :</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "id"                "nom_complet"       "sexe"             
@@ -536,7 +536,7 @@ Important
 <p>Utilisez <code>mutate()</code> pour créer une nouvelle colonne <code>age_ans</code> qui exprime l’âge en années plutôt qu’en mois. L’en-tête de la colonne ressemble à ceci :</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>   age_years
+<pre><code>     age_ans
 1  3.0000000
 2  0.4166667
 3 13.0000000
@@ -746,11 +746,11 @@ Astuce
 <div class="cell">
 <div class="code-copy-outer-scaffold">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>df_linelist <span class="ot">&lt;-</span> df_brut <span class="sc">|&gt;</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">prefecture =</span> sub_prefecture,</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">prefecture =</span> sous_prefecture,</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">village    =</span> village_commune,</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">facility   =</span> health_facility_name) <span class="sc">|&gt;</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>full_name) <span class="sc">|&gt;</span></span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">age_years =</span> age <span class="sc">/</span> <span class="dv">12</span>)</span></code></pre></div>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">facility   =</span> nom_structure_sante) <span class="sc">|&gt;</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>nom_complet) <span class="sc">|&gt;</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">age_ans =</span> age <span class="sc">/</span> <span class="dv">12</span>)</span></code></pre></div>
 <button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button>
 </div>
 </div>
@@ -764,7 +764,7 @@ Astuce
 <li>Renommer les variables suivantes :
 <ul>
 <li>
-<code>age</code> devient <code>age_ans</code>
+<code>age</code> devient <code>age_mois</code>
 </li>
 <li>
 <code>sous_prefecture</code> devient <code>prefecture</code>
