@@ -63,7 +63,7 @@ Récapitulons. Dans les sessions précédentes vous avez effectué l'une des tâ
 
 ## Croiser plusieurs colonnes (tables de contingence)
 
-Au cours de la session [d'exploration des données](../sessions_extra/data_exploration.qmd), vous utilisé la fonction `count()` pour créer une table contenant les effectifs d'une variable catégorielle. Aujourd'hui nous allons apprendre à calculer les effectifs en croisant deux variables ou plus. Ces tableaux sont appelés [tableaux de contingence]{.hovertip bs-toggle='tooltip' bs-title='Ou tableaux croisés. Ou tableaux à double entrée. Ils montrent comment les observations sont réparties entre différentes combinaisons de catégories.'}. 
+Au cours de la session [d'exploration des données](../sessions_extra/data_exploration.qmd), vous avez utilisé la fonction `count()` pour créer une table contenant les effectifs d'une variable catégorielle. Aujourd'hui nous allons apprendre à calculer les effectifs en croisant deux variables ou plus. Ces tableaux sont appelés [tableaux de contingence]{.hovertip bs-toggle='tooltip' bs-title='Ou tableaux croisés. Ou tableaux à double entrée. Ils montrent comment les observations sont réparties entre différentes combinaisons de catégories.'}. 
 
 Par exemple, nous avions calculé le nombre de patients par sous-préfecture, mais nous voulons aller plus loin et calculer le nombre patients par sous-préfecture *et stratifié par classe d'âge*. Cela nous permettrait de voir si des zones ont des patients anormalement âgés et identifier de bons candidats pour des campagnes de rattrapage. 
 
