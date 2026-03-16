@@ -534,7 +534,7 @@ Write the following tests:
     - Create a simplified `vacc_status_simple` column with modalities "Yes", "No", "Unknown"
 
 
-5. **Refactor**: the following code runs without errors but is too long because the writer ignored one of the rule of `case_when()`. Simplify the command. Do not forget to check that you obtain the same result at the end!
+5. **Refactor**: the following code runs without errors but is longer than it needs to be because the author did not fully understand how `case_when()` works. Simplify the command. Do not forget to check that you obtain the same result at the end!
 
 ```{r}
 df |> 
@@ -550,7 +550,7 @@ df |>
   )
 ```
 
-6. **Fix**: someone tried to fix the above code but made mistakes (the error does not cause the code to fail to run, but the output is wrong). Can you fix them? You know you are done when you have the same counts as before.
+6. **Fix**: someone tried to fix the above code but made mistakes (the code runs but the output is wrong). Can you fix them? You know you are done when you have the same counts as before.
 
 ```{r}
 df |> 
@@ -559,7 +559,7 @@ df |>
     age_months < 11 ~ '6 - 11 months',
     age_years < 5 ~ '12 - 59 months',
     age_years <= 15 ~ '5 - 15 years',
-    age_years >= 15 ~ '> 15 years',
+    age_years > 15 ~ '> 15 years',
     .default = 'Unknown')
   )
 ```

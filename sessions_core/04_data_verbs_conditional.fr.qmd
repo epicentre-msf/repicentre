@@ -606,7 +606,7 @@ df |>
     age_mois < 11 ~ "6 - 11 mois",
     age_ans < 5 ~ "12 - 59 mois",
     age_ans <= 15 ~ "5 - 15 ans",
-    age_ans >= 15 ~ "> 15 ans",
+    age_ans > 15 ~ "> 15 ans",
     .default = "Inconnu")
   )
 ```
