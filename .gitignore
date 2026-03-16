@@ -27,5 +27,7 @@
 .Thumbs.db
 Thumbs.db
 
-# r projects 
+# r projects
 *.Rproj
+
+**/*.quarto_ipynb
