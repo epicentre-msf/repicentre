@@ -631,7 +631,7 @@ Important
 <button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "/tmp/RtmpRJBDYU/file78046edf2bee/data/raw/example_linelist.xlsx"</code></pre>
+<pre><code>[1] "/tmp/RtmpRJBDYU/file78044ee6e2a6/data/raw/example_linelist.xlsx"</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -641,7 +641,7 @@ Important
 <button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "/tmp/RtmpRJBDYU/file78046edf2bee/data/raw/example_linelist.xlsx"</code></pre>
+<pre><code>[1] "/tmp/RtmpRJBDYU/file78044ee6e2a6/data/raw/example_linelist.xlsx"</code></pre>
 </div>
 </div>
 <p>Voyez comme nous n’avons défini que le chemin relatif et la fonction a reconstitué le chemin absolu. Celà marchera donc sur l’ordinateur d’un collègue, y compris sur un autre système d’exploitation, du moment que la structure du répertoire de travail est intacte.</p>
@@ -679,7 +679,7 @@ Astuce
 </div>
 </div>
 </section></section><section id="sec-import" class="level3"><h3 class="anchored" data-anchor-id="sec-import">Importer les données</h3>
-<p>Dans R, différents formats de fichiers sont importés par différentes fonctions spécialisées, ce qui est fastidieux à mémoriser et à charger. La fonction <code>import()</code> du paquet <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Pour R Input and Output, c'est à dire entrées et sorties dans R"><code>{rio}</code></span> nous fait gagner du temps en reconnaissant l’extension des fichiers et en <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Ce type de fonction, qui fournit une interface unifiée à d'autres fonctions spécifiques, est connu sous le nom de 'wrapper', c'est à dire 'emballage'.">appellent automatiquement une fonction spécialisée</span> pour charger les données.</p>
+<p>Dans R, différents formats de fichiers sont importés par différentes fonctions spécialisées, ce qui est fastidieux à mémoriser et à charger. La fonction <code>import()</code> du paquet <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Pour R Input and Output, c'est à dire entrées et sorties dans R"><code>{rio}</code></span> nous fait gagner du temps en reconnaissant l’extension des fichier et en <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Ce type de fonction, qui fournit une interface unifiée à d'autres fonctions spécifiques, est connu sous le nom de 'wrapper', c'est à dire 'emballage'.">appelent automatiquement une fonction spécialisée</span> pour charger les données.</p>
 <p>Comme <code>import()</code> ne fait qu’appeler d’autres fonctions en arrière-plan, il est possible qu’elle ait besoin d’arguments optionnels spécifiques pour certains types de fichier.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -702,7 +702,7 @@ Astuce
 <button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button>
 </div>
 </div>
-<p>Notez que nous avons imbriqué la commande <code>here()</code> <strong>à l’intérieur de</strong> la commande <code>import()</code>. L’imbrication de fonctions est autorisée et même courante en R. R évalue les fonctions imbriquées de l’intérieur (<code>here()</code>) à l’extérieur (<code>import()</code>). La valeur renvoyée par <code>here()</code> est donc utilisée comme <em>valeur d’entrée</em> d’<code>import()</code>.</p>
+<p>Notez que nous avons imbriqué la commande <code>here()</code> <strong>à l’intérieur de</strong> la commande <code>import()</code>. L’imbrication de fonctions est autorisée et même courrante en R. R évalue les fonctions imbriquées de l’intérieur (<code>here()</code>) à l’extérieur (<code>import()</code>). La valeur renvoyée par <code>here()</code> est donc utilisée comme <em>valeur d’entrée</em> d’<code>import()</code>.</p>
 <div class="write">
 <p>Importez le fichier <code>Moissalla-rougeole-liste-lineaire-FR.xlsx</code> en utilisant <code>here()</code> et <code>import()</code>.</p>
 </div>

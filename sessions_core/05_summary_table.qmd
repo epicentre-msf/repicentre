@@ -24,7 +24,7 @@ df_linelist <- rio::import(here("data", "clean", "moissala_linelist_clean_EN.rds
 -   Create contingency tables with `count()`
 -   Compute summary statistics by group using `summarize()`
 -   Review how to subset rows using `filter()` and create/modify variables with `mutate()`
--   Create ordered categorical variables
+
 
 ## Setup
 
