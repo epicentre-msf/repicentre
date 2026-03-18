@@ -28,7 +28,7 @@ Objectifs
 Setup
 ----------------------------------------------------------------------------------------------------
 
-**Prérequis** Ce tutoriel part du principe que vous avez suivi les sessions [introduction à R et R studio](../sessions_core/01_introduction.html), et [importation de données](../sessions_core/02_import_data.html).  
+**Prérequis:** ce tutoriel part du principe que vous avez suivi les sessions [introduction à R et R studio](../sessions_core/01_introduction.html), et [importation de données](../sessions_core/02_import_data.html).  
 
 ::: {.setup}
 Pour cette session, nous travaillerons avec les données non nettoyées de la liste linéaire rougeole dans la région de Mandoul (Tchad), qui peut être téléchargée ici : 
@@ -52,14 +52,14 @@ Assurez-vous qu'elle est correctement enregistrée dans le dossier `data/raw` de
 Introduction
 ---------------------------------------------------------------------------------
 
-Juste après avoir importé des données dans R, il est très important de les inspecter. Lorsque l'on parle d'exploration de données, on veut généralement faire plusieurs choses telles que :
+Il est très important d’inspecter les données que l’on vient d’importer dans R. Lorsque l'on parle d'exploration de données, on veut généralement faire plusieurs choses telles que :
 
-- Examiner les dimensions des données (c'est-à-dire le nombre de lignes et de colonnes)
+- Examiner les dimensions des données (le nombre de lignes et de colonnes)
 - Examiner les noms des colonnes 
-- Visualiser les premières ou les dernières lignes 
+- Inspecter les premières ou les dernières lignes 
 - Déterminer le type des variables
 - Déterminer la plage de valeurs des variables continues (min et max)
-- Observer les valeurs possibles de chaque variable catégorielle 
+- Inspecter les valeurs possibles de chaque variable catégorielle 
 
 Ce processus est crucial et nous permet de nous familiariser avec nos données et d'identifier les problèmes qui seront traités lors de l'étape de nettoyage.
 
@@ -67,16 +67,16 @@ Ce processus est crucial et nous permet de nous familiariser avec nos données e
 Exploration basique
 -------------------------------------------------------------------------------
 
-La toute première chose que vous voulez savoir sur vos données, ce sont les **dimensions**, c'est-à-dire le **nombre de lignes** et le **nombre de colonnes** qui composent vos données. Il existe plusieurs façons d'obtenir ces informations dans R : 
+La première chose à déterminer est la **taille** du jeu de données, c'est-à-dire son **nombre de lignes** et son **nombre de colonnes**. Il existe plusieurs façons d'obtenir ces informations dans R : 
 
-1. Regardez votre *volet environnement* dans RStudio et vérifiez vos données : le nombre à côté (`5230x25`) nous indique qu'il s'agit d'un data frame avec `5230` lignes et `25` colonnes.
+1. Inspecter le data frame dans le *volet environnement* de RStudio : le nombre à côté (`5230x25`) nous indique qu'il fait `5230` lignes et `25` colonnes.
 2. Utilisez `dim()` sur vos données pour renvoyer un vecteur avec le nombre de lignes et le nombre de colonnes.
-3. Utilisez `ncol()` pour obtenir le nombre de colonnes et `nrow()` pour le nombre de lignes indépendament.
+3. Utilisez `ncol()` et `nrow()` pour obtenir le nombre de colonnes et de lignes respectivement.
 
 Gardez ces nombres en tête afin de pouvoir repérer rapidement tout changement inattendu dans vos données au cours de votre analyse (augmentation ou diminution imprévue du nombre de lignes, ou de colonnes).
 
 ::: {.write}
-En utilisant la méthode de votre choix, obtenez les dimensions de votre data frame `df_linelist`.
+En utilisant la méthode de votre choix, obtenez les dimensions de du data frame `df_linelist`.
 :::
 
 
@@ -89,7 +89,7 @@ names(df_linelist)
 ```
 
 ::: {.look}
-Que pensez-vous des noms de votre jeu de données ? Pouvez-vous déjà repérer des noms de variables que vous aimeriez renommer ?
+Que pensez-vous des noms de votre jeu de données ? Pouvez-vous déjà repérer des variables que vous aimeriez renommer ?
 :::
 
 ### Inspecter vos données
@@ -100,10 +100,10 @@ Il est également important d'inspecter vos données, cela peut vous permettre d
 2. utilisant la fonction `head()` pour voir les 6 premières lignes (vous pouvez augmenter ce nombre en utilisant l'argument `n`)
 2. utilisant la fonction `tail()` pour voir les 6 dernières lignes (vous pouvez aussi augmenter ce nombre en utilisant l'argument `n`)
 
-Ces méthodes n'afficheront que les 40 premières lignes de vos données au maximum, car c'est la limite de votre console. Une alternative est d'utiliser la fonction `View()` (avec un V majuscule !) pour voir vos données sous forme de tableur. Cela ouvrira une nouvelle fenêtre avec vos données affichées comme dans une feuille de calcul Excel. Notez que cette commande ne fait qu'afficher les données, elle ne vous permet pas de les modifier !
+Ces méthodes n'afficheront que les 40 premières lignes de vos données au maximum, car c'est la limite de votre console. Une alternative est d'utiliser la fonction `View()` (avec un V majuscule !) pour voir vos données sous forme de tableur. Cela ouvrira un nouvel onglet avec vos données affichées comme dans une feuille de calcul Excel. Notez que cette commande ne fait qu'afficher les données, elle ne vous permet pas de les modifier !
 
 :::{.callout-tip}
-Soyez très prudent avec `View()` sur un grand jeu de données car cela peut faire planter votre session RStudio. Pour éviter cela, vous pouvez afficher la sortie dans la console.
+Soyez prudent avec `View()` sur un grand jeu de données car cela peut faire planter votre session RStudio. Pour éviter cela, vous pouvez afficher la sortie dans la console.
 :::
 
 :::{.write}
@@ -152,7 +152,7 @@ Lors de l'exploration des variables continues, nous pouvons vouloir vérifier le
 | `quantile()` | Quantiles spécifiés | `quantile(x, probs = c(0.25, 0.75))` | Quantiles demandés |
 | `sd()` | Ecart-type | `sd(x)` | Ecart-type |
 | `var()` | Variance | `var(x)` | Variance |
-| `sum()` | Somme des valeurs | `sum(x)` | Somme |
+| `sum()` | Somme | `sum(x)` | Somme |
 
 :::{.callout-important}
 Ces fonctions exigent que vous supprimiez explicitement les valeurs manquantes (`NA`) en utilisant l'argument `na.rm = TRUE`
@@ -177,7 +177,7 @@ Enfin, examinons les valeurs de nos variables catégoriques à l'aide de tables 
 1. les valeurs uniques d'une variable catégorique (i.e. les catégories/modalités/niveaux/classes/groupes... les noms sont nombreux)
 2. le nombre d'observations pour chacune de ces catégories
 
-Pour ce faire, on utilise la fonction `count()` du [paquet `{dplyr}`]{.hovertip bs-toggle='tooltip' bs-title="Nous en apprendrons plus sur ce paquet lors de la prochaine session."}, qui accepte un dataframe et le nom d'une (ou plusieurs) colonne(s) en tant qu'arguments, et renvoit le **nombre d'observations** de chaque élément unique dans cette colonne. Par exemple, affichons les valeurs possibles de la variable `sexe` et leurs effectifs : 
+Pour ce faire, on utilise la fonction `count()` du [paquet `{dplyr}`]{.hovertip bs-toggle='tooltip' bs-title="Nous en apprendrons plus sur ce paquet lors de la prochaine session."}, qui accepte un data frame et le nom d'une ou plusieurs colonnes en tant qu'arguments, et renvoi le **nombre d'observations** de chaque élément unique dans cette colonne. Par exemple, affichons les valeurs possibles de la variable `sexe` et leurs effectifs : 
 
 ```{r}
 #| eval: true
