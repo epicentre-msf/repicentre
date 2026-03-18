@@ -353,7 +353,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Explorer rapidement un jeu de données après son importation dans R</li>
 <li>Produire des tableaux d’effectifs univariés</li>
 </ul></section><section id="setup" class="level2"><h2 class="anchored" data-anchor-id="setup">Setup</h2>
-<p><strong>Prérequis</strong> Ce tutoriel part du principe que vous avez suivi les sessions <a href="../sessions_core/01_introduction.html">introduction à R et R studio</a>, et <a href="../sessions_core/02_import_data.html">importation de données</a>.</p>
+<p><strong>Prérequis:</strong> ce tutoriel part du principe que vous avez suivi les sessions <a href="../sessions_core/01_introduction.html">introduction à R et R studio</a>, et <a href="../sessions_core/02_import_data.html">importation de données</a>.</p>
 <div class="setup">
 <p>Pour cette session, nous travaillerons avec les données non nettoyées de la liste linéaire rougeole dans la région de Mandoul (Tchad), qui peut être téléchargée ici :</p>
 <div class="cell">
@@ -366,26 +366,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><br> Assurez-vous qu’elle est correctement enregistrée dans le dossier <code>data/raw</code> de votre projet. Ensuite, créez un nouveau script appelé <code>data-exploration.R</code>, et chargez les paquets <code>{here}</code>, <code>{rio}</code> et <code>{dplyr}</code>. Enfin, importez les données dans R sous la forme d’un objet appelé <code>df_linelist</code>.</p>
 </div>
 </section><section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>Juste après avoir importé des données dans R, il est très important de les inspecter. Lorsque l’on parle d’exploration de données, on veut généralement faire plusieurs choses telles que :</p>
+<p>Il est très important d’inspecter les données que l’on vient d’importer dans R. Lorsque l’on parle d’exploration de données, on veut généralement faire plusieurs choses telles que :</p>
 <ul>
-<li>Examiner les dimensions des données (c’est-à-dire le nombre de lignes et de colonnes)</li>
+<li>Examiner les dimensions des données (le nombre de lignes et de colonnes)</li>
 <li>Examiner les noms des colonnes</li>
-<li>Visualiser les premières ou les dernières lignes</li>
+<li>Inspecter les premières ou les dernières lignes</li>
 <li>Déterminer le type des variables</li>
 <li>Déterminer la plage de valeurs des variables continues (min et max)</li>
-<li>Observer les valeurs possibles de chaque variable catégorielle</li>
+<li>Inspecter les valeurs possibles de chaque variable catégorielle</li>
 </ul>
 <p>Ce processus est crucial et nous permet de nous familiariser avec nos données et d’identifier les problèmes qui seront traités lors de l’étape de nettoyage.</p>
 </section><section id="exploration-basique" class="level2"><h2 class="anchored" data-anchor-id="exploration-basique">Exploration basique</h2>
-<p>La toute première chose que vous voulez savoir sur vos données, ce sont les <strong>dimensions</strong>, c’est-à-dire le <strong>nombre de lignes</strong> et le <strong>nombre de colonnes</strong> qui composent vos données. Il existe plusieurs façons d’obtenir ces informations dans R :</p>
+<p>La première chose à déterminer est la <strong>taille</strong> du jeu de données, c’est-à-dire son <strong>nombre de lignes</strong> et son <strong>nombre de colonnes</strong>. Il existe plusieurs façons d’obtenir ces informations dans R :</p>
 <ol type="1">
-<li>Regardez votre <em>volet environnement</em> dans RStudio et vérifiez vos données : le nombre à côté (<code>5230x25</code>) nous indique qu’il s’agit d’un data frame avec <code>5230</code> lignes et <code>25</code> colonnes.</li>
+<li>Inspecter le data frame dans le <em>volet environnement</em> de RStudio : le nombre à côté (<code>5230x25</code>) nous indique qu’il fait <code>5230</code> lignes et <code>25</code> colonnes.</li>
 <li>Utilisez <code>dim()</code> sur vos données pour renvoyer un vecteur avec le nombre de lignes et le nombre de colonnes.</li>
-<li>Utilisez <code>ncol()</code> pour obtenir le nombre de colonnes et <code>nrow()</code> pour le nombre de lignes indépendament.</li>
+<li>Utilisez <code>ncol()</code> et <code>nrow()</code> pour obtenir le nombre de colonnes et de lignes respectivement.</li>
 </ol>
 <p>Gardez ces nombres en tête afin de pouvoir repérer rapidement tout changement inattendu dans vos données au cours de votre analyse (augmentation ou diminution imprévue du nombre de lignes, ou de colonnes).</p>
 <div class="write">
-<p>En utilisant la méthode de votre choix, obtenez les dimensions de votre data frame <code>df_linelist</code>.</p>
+<p>En utilisant la méthode de votre choix, obtenez les dimensions de du data frame <code>df_linelist</code>.</p>
 </div>
 <section id="noms-de-variables" class="level3"><h3 class="anchored" data-anchor-id="noms-de-variables">Noms de variables</h3>
 <p>Explorons les noms des variables que nous allons utiliser en permanence lors de l’analyse, et identifions ceux qui pourraient être améliorés. La fonction <code>names()</code> renvoie un vecteur de tous les noms de colonnes d’un data frame :</p>
@@ -407,7 +407,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="look">
-<p>Que pensez-vous des noms de votre jeu de données ? Pouvez-vous déjà repérer des noms de variables que vous aimeriez renommer ?</p>
+<p>Que pensez-vous des noms de votre jeu de données ? Pouvez-vous déjà repérer des variables que vous aimeriez renommer ?</p>
 </div>
 </section><section id="inspecter-vos-données" class="level3"><h3 class="anchored" data-anchor-id="inspecter-vos-données">Inspecter vos données</h3>
 <p>Il est également important d’inspecter vos données, cela peut vous permettre de repérer certaines incohérences, des variables avec beaucoup de valeurs manquantes, et cela vous permettra de voir à quelles valeurs s’attendre pour chacune d’entre elles. Vous pouvez <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Le mot anglais que vous rencontrerez est 'print', qui signifie imprimer, et est utilisé en programmation pour afficher une sortie dans votre console.">afficher</span> vos données dans la console en :</p>
@@ -416,7 +416,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>utilisant la fonction <code>head()</code> pour voir les 6 premières lignes (vous pouvez augmenter ce nombre en utilisant l’argument <code>n</code>)</li>
 <li>utilisant la fonction <code>tail()</code> pour voir les 6 dernières lignes (vous pouvez aussi augmenter ce nombre en utilisant l’argument <code>n</code>)</li>
 </ol>
-<p>Ces méthodes n’afficheront que les 40 premières lignes de vos données au maximum, car c’est la limite de votre console. Une alternative est d’utiliser la fonction <code>View()</code> (avec un V majuscule !) pour voir vos données sous forme de tableur. Cela ouvrira une nouvelle fenêtre avec vos données affichées comme dans une feuille de calcul Excel. Notez que cette commande ne fait qu’afficher les données, elle ne vous permet pas de les modifier !</p>
+<p>Ces méthodes n’afficheront que les 40 premières lignes de vos données au maximum, car c’est la limite de votre console. Une alternative est d’utiliser la fonction <code>View()</code> (avec un V majuscule !) pour voir vos données sous forme de tableur. Cela ouvrira un nouvel onglet avec vos données affichées comme dans une feuille de calcul Excel. Notez que cette commande ne fait qu’afficher les données, elle ne vous permet pas de les modifier !</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -427,7 +427,7 @@ Astuce
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Soyez très prudent avec <code>View()</code> sur un grand jeu de données car cela peut faire planter votre session RStudio. Pour éviter cela, vous pouvez afficher la sortie dans la console.</p>
+<p>Soyez prudent avec <code>View()</code> sur un grand jeu de données car cela peut faire planter votre session RStudio. Pour éviter cela, vous pouvez afficher la sortie dans la console.</p>
 </div>
 </div>
 <div class="write">
@@ -530,7 +530,7 @@ Astuce
 </tr>
 <tr class="even">
 <td><code>sum()</code></td>
-<td>Somme des valeurs</td>
+<td>Somme</td>
 <td><code>sum(x)</code></td>
 <td>Somme</td>
 </tr>
@@ -565,7 +565,7 @@ Important
 <li>les valeurs uniques d’une variable catégorique (i.e. les catégories/modalités/niveaux/classes/groupes… les noms sont nombreux)</li>
 <li>le nombre d’observations pour chacune de ces catégories</li>
 </ol>
-<p>Pour ce faire, on utilise la fonction <code>count()</code> du <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Nous en apprendrons plus sur ce paquet lors de la prochaine session.">paquet <code>{dplyr}</code></span>, qui accepte un dataframe et le nom d’une (ou plusieurs) colonne(s) en tant qu’arguments, et renvoit le <strong>nombre d’observations</strong> de chaque élément unique dans cette colonne. Par exemple, affichons les valeurs possibles de la variable <code>sexe</code> et leurs effectifs :</p>
+<p>Pour ce faire, on utilise la fonction <code>count()</code> du <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Nous en apprendrons plus sur ce paquet lors de la prochaine session.">paquet <code>{dplyr}</code></span>, qui accepte un data frame et le nom d’une ou plusieurs colonnes en tant qu’arguments, et renvoi le <strong>nombre d’observations</strong> de chaque élément unique dans cette colonne. Par exemple, affichons les valeurs possibles de la variable <code>sexe</code> et leurs effectifs :</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(df_linelist, sexe)</span></code></pre></div>

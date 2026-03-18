@@ -549,12 +549,12 @@ Tip
 <p><em>Any problems?</em></p>
 </div>
 </section><section id="exploring-categorical-variables" class="level2"><h2 class="anchored" data-anchor-id="exploring-categorical-variables">Exploring Categorical Variables</h2>
-<p>Finally, let’s look at the values in our categorical variables. For this we can use frequency tables. This is handy as:</p>
+<p>Finally, let’s look at the values in our categorical variables. For this we can use frequency tables. This is handy as it allows us to quickly see:</p>
 <ol type="1">
-<li>It allows us to quickly see the unique values in a categorical variable</li>
+<li>The unique values in a categorical variable</li>
 <li>The number of observations for each of those categories</li>
 </ol>
-<p>This is done using the function <code>count()</code> from the <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="We will learn more about this package in the next session.">package <code>{dplyr}</code></span>, which accepts the a dataframe and the name of one (or more!) column(s) as arguments. It will then count the <strong>number of observations</strong> of each unique element in that column. For example, let’s see the possible values of the variable <code>sex</code>:</p>
+<p>This is done using the function <code>count()</code> from the <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="We will learn more about this package in the next session.">package <code>{dplyr}</code></span>, which accepts the a dataframe and the name of one or more columns as arguments. It will then count the <strong>number of observations</strong> of each unique element in that column. For example, let’s see the possible values of the variable <code>sex</code>:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(df_linelist, sex)</span></code></pre></div>
