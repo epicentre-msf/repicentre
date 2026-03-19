@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
 <head>
-<link rel="alternate" hreflang="en" href="https://epicentre-msf.github.io/repicentre//pathway.html" />
-<link rel="alternate" hreflang="fr" href="https://epicentre-msf.github.io/repicentre//fr/pathway.fr.html" />
+<link rel="alternate" hreflang="en" href="https://epicentre-msf.github.io/repicentre//explore.html" />
+<link rel="alternate" hreflang="fr" href="https://epicentre-msf.github.io/repicentre//fr/explore.fr.html" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.8.27">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta name="description" content="An intro to R starting from the very beginning">
-<title>Pathway – {repicentre}</title>
+<meta name="description" content="Tout partout en même temps">
+<title>Explorer – {repicentre}</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -45,35 +45,35 @@ ul.task-list li input[type="checkbox"] {
   ],
   "show-item-context": false,
   "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
+    "search-no-results-text": "Pas de résultats",
+    "search-matching-documents-text": "documents trouvés",
+    "search-copy-link-title": "Copier le lien vers la recherche",
+    "search-hide-matches-text": "Cacher les correspondances additionnelles",
+    "search-more-match-text": "correspondance de plus dans ce document",
+    "search-more-matches-text": "correspondances de plus dans ce document",
+    "search-clear-button-title": "Effacer",
     "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-detached-cancel-button-title": "Annuler",
+    "search-submit-button-title": "Envoyer",
+    "search-label": "Recherche"
   }
 }</script><script>
 
   window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-articles-links .list');
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
     if (!listingTargetEl) {
       // No listing discovered, do not attach.
       return; 
     }
 
     const options = {
-      valueNames: ['listing-title','listing-author','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-title","listing-author","listing-image","listing-description"],
+      searchColumns: ["listing-title","listing-author","listing-image","listing-description","listing-categories"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-articles-links'] = new List('listing-articles-links', options);
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
 
     if (window['quarto-listing-loaded']) {
       window['quarto-listing-loaded']();
@@ -282,51 +282,68 @@ window.Quarto = {
     <span class="navbar-title">{repicentre}</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+            <div id="quarto-search" class="" title="Recherche"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Basculer la navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
 <li class="nav-item"><div class="dropdown" id="languages-links-parent">
-<button class="btn btn-primary dropdown-toggle babelquarto-languages-button" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="languages-button"><i class="bi bi-globe2"></i> English</button><ul class="dropdown-menu" id="languages-links"><li><a class="dropdown-item" href="https://epicentre-msf.github.io/repicentre//fr/pathway.html" id="language-link-fr">Français</a></li></ul>
+<button class="btn btn-primary dropdown-toggle babelquarto-languages-button" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="languages-button"><i class="bi bi-globe2"></i> Français</button><ul class="dropdown-menu" id="languages-links"><li><a class="dropdown-item" href="https://epicentre-msf.github.io/repicentre//explore.html" id="language-link-en">English</a></li></ul>
 </div></li>
 <li class="nav-item">
-    <a class="nav-link active" href="./pathway.html" aria-current="page"> 
-<span class="menu-text">Pathway</span></a>
+    <a class="nav-link" href="./pathway.html"> 
+<span class="menu-text">Cours</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./explore.html"> 
-<span class="menu-text">Explore</span></a>
+    <a class="nav-link active" href="./explore.html" aria-current="page"> 
+<span class="menu-text">Explorer</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./resources.html"> 
-<span class="menu-text">Resources</span></a>
+<span class="menu-text">Ressources</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./about.html"> 
-<span class="menu-text">About</span></a>
+<span class="menu-text">À Propos</span></a>
   </li>  
 </ul>
 </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Basculer le mode sombre"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    </div>
+    <h5 class="quarto-listing-category-title">Catégories</h5>
+<div class="quarto-listing-category category-unnumbered">
+<div class="category" data-category="QW5hbHlzZQ==">Analyse</div>
+<div class="category" data-category="Q29tcGFnbm9u">Compagnon</div>
+<div class="category" data-category="Q29yZQ==">Core</div>
+<div class="category" data-category="RGF0YSUyMEV4cGxvcmF0aW9u">Data Exploration</div>
+<div class="category" data-category="RGF0YSUyMEltcG9ydA==">Data Import</div>
+<div class="category" data-category="RGF0YSUyMFR5cGVz">Data Types</div>
+<div class="category" data-category="TG9naXF1ZQ==">Logique</div>
+<div class="category" data-category="TWFuaXB1bGF0aW9uJTIwZGVzJTIwZG9ubiVDMyVBOWVz">Manipulation des données</div>
+<div class="category" data-category="TmV0dG95YWdlJTIwZGVzJTIwZG9ubiVDMyVBOWVz">Nettoyage des données</div>
+<div class="category" data-category="UiUyMEJhc2ljcw==">R Basics</div>
+<div class="category" data-category="UlN0dWRpbw==">RStudio</div>
+<div class="category" data-category="U2F0ZWxsaXRl">Satellite</div>
+<div class="category" data-category="VGFibGVhdXglMjByJUMzJUE5c3VtJUMzJUE5cw==">Tableaux résumés</div>
+<div class="category" data-category="VmlzdWFsaXphdGlvbg==">Visualization</div>
+</div>
+</div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title">Pathway</h1>
+<h1 class="title">Explorer</h1>
 </div>
 
 <div>
   <div class="description">
-    An intro to R starting from the very beginning
+    Tout partout en même temps
   </div>
 </div>
 
@@ -340,118 +357,322 @@ window.Quarto = {
   
 
 
-</header><p>These sessions can be followed in order to get a baseline level in R. The series assumes <strong>no prior experience in R</strong> and is suitable for beginners.</p>
-<p>Looking for more? Want more flexibility? Consider browsing the <a href="explore.html">full session catalog</a>.</p>
+</header><p>Choisissez votre propre aventure en parcourant toutes les sessions disponibles.</p>
 
 
 
 
-<div class="quarto-listing quarto-listing-container-default" id="listing-articles-links">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="Q29yZSUyQ1IlMjBCYXNpY3MlMkNEYXRhJTIwVHlwZXM=" data-listing-file-modified-sort="1773923998261" data-listing-reading-time-sort="24" data-listing-word-count-sort="4762">
-<div class="thumbnail"><a href="./sessions_core/01_introduction.html" class="no-external">
+<div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
+<div class="list grid quarto-listing-cols-3">
+<div class="g-col-1" data-index="0" data-categories="U2F0ZWxsaXRlJTJDVmlzdWFsaXphdGlvbg==" data-listing-file-modified-sort="1773924041354" data-listing-reading-time-sort="16" data-listing-word-count-sort="3100">
+<a href="./sessions_extra/weekly_epicurves.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./img/core/06_epicurves/logo.svg" class="thumbnail-image card-img" style="height: 150px;"></p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Courbes épidémiques hebdomadaires
+</h5>
+<div class="listing-categories">
 
-<img loading="lazy" src="./img/core/01_introduction/logo.svg" class="thumbnail-image"></a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./sessions_core/01_introduction.html" class="no-external">Introduction to R</a>
-</h3>
-<div class="delink listing-description"><a href="./sessions_core/01_introduction.html" class="no-external">
-<p>Your first steps in R. Learn your way around Rstudio, and meet some common R objects.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./sessions_core/01_introduction.html" class="no-external">
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="Q29yZSUyQ1JTdHVkaW8lMkNEYXRhJTIwSW1wb3J0" data-listing-file-modified-sort="1773923998261" data-listing-reading-time-sort="16" data-listing-word-count-sort="3102">
-<div class="thumbnail"><a href="./sessions_core/02_import_data.html" class="no-external">
+<div class="listing-category" onclick="window.quartoListingCategory('U2F0ZWxsaXRl'); return false;">Satellite</div>
 
-<img loading="lazy" src="./img/core/02_import/logo.svg" class="thumbnail-image"></a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./sessions_core/02_import_data.html" class="no-external">Data Importation</a>
-</h3>
-<div class="delink listing-description"><a href="./sessions_core/02_import_data.html" class="no-external">
-<p>Create an Rstudio project, install useful packages and start importing data to work in R</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./sessions_core/02_import_data.html" class="no-external">
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="Q29yZSUyQ0RhdGElMjBNYW5pcHVsYXRpb24lMkNEYXRhJTIwQ2xlYW5pbmc=" data-listing-file-modified-sort="1773923998261" data-listing-reading-time-sort="18" data-listing-word-count-sort="3470">
-<div class="thumbnail"><a href="./sessions_core/03_data_verbs.html" class="no-external">
+<div class="listing-category" onclick="window.quartoListingCategory('VmlzdWFsaXphdGlvbg=='); return false;">Visualization</div>
 
-<img loading="lazy" src="./img/core/03_manipulation_basic/logo.svg" class="thumbnail-image"></a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./sessions_core/03_data_verbs.html" class="no-external">Data Manipulation, Basics</a>
-</h3>
-<div class="delink listing-description"><a href="./sessions_core/03_data_verbs.html" class="no-external">
-<p>An introduction to data manipulation and cleaning using <code>{dplyr}</code></p>
-</a></div>
 </div>
-<div class="metadata">
-<a href="./sessions_core/03_data_verbs.html" class="no-external">
-</a>
+<div class="card-text listing-description delink">
+<p>Apprenez à tracer des courbes épidémiques hebdomadaires et à améliorer les étiquettes des axes</p>
 </div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="Q29yZSUyQ0RhdGElMjBNYW5pcHVsYXRpb24lMkNEYXRhJTIwQ2xlYW5pbmclMkNMb2dpYw==" data-listing-file-modified-sort="1773923998261" data-listing-reading-time-sort="19" data-listing-word-count-sort="3789">
-<div class="thumbnail"><a href="./sessions_core/04_data_verbs_conditional.html" class="no-external">
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
 
-<img loading="lazy" src="./img/core/04_manipulation_conditionals/logo.svg" class="thumbnail-image"></a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./sessions_core/04_data_verbs_conditional.html" class="no-external">Data Manipulation, Filtering and Recoding</a>
-</h3>
-<div class="delink listing-description"><a href="./sessions_core/04_data_verbs_conditional.html" class="no-external">
-<p>Using <code>{dplyr}</code> and conditional logic to filter and recode data</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./sessions_core/04_data_verbs_conditional.html" class="no-external">
-</a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="4" data-categories="Q29yZSUyQ1N1bW1hcnklMjBUYWJsZXM=" data-listing-file-modified-sort="1773923998261" data-listing-reading-time-sort="11" data-listing-word-count-sort="2079">
-<div class="thumbnail"><a href="./sessions_core/05_summary_table.html" class="no-external">
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="1" data-categories="Q29tcGFnbm9uJTJDQW5hbHlzZQ==" data-listing-file-modified-sort="1773924041354" data-listing-reading-time-sort="32" data-listing-word-count-sort="6251">
+<a href="./sessions_companion/survey_basic.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./img/companion/survey/logo.svg" class="thumbnail-image card-img" style="height: 150px;"></p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Enquête standardisée sur la mortalité
+</h5>
+<div class="listing-categories">
 
-<img loading="lazy" src="./img/core/05_summary_tables/logo.svg" class="thumbnail-image"></a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./sessions_core/05_summary_table.html" class="no-external">Summary Tables</a>
-</h3>
-<div class="delink listing-description"><a href="./sessions_core/05_summary_table.html" class="no-external">
-<p>Create summary tables</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./sessions_core/05_summary_table.html" class="no-external">
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="5" data-categories="Q29yZSUyQ1Zpc3VhbGl6YXRpb24=" data-listing-file-modified-sort="1773923998261" data-listing-reading-time-sort="16" data-listing-word-count-sort="3140">
-<div class="thumbnail"><a href="./sessions_core/06_epicurves.html" class="no-external">
+<div class="listing-category" onclick="window.quartoListingCategory('Q29tcGFnbm9u'); return false;">Compagnon</div>
 
-<img loading="lazy" src="./img/core/06_epicurves/logo.svg" class="thumbnail-image"></a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./sessions_core/06_epicurves.html" class="no-external">Basic Data Visualization</a>
-</h3>
-<div class="delink listing-description"><a href="./sessions_core/06_epicurves.html" class="no-external">
-<p>Learn the basics of buidling plots with ggplot2, and create your first epicurve</p>
-</a></div>
+<div class="listing-category" onclick="window.quartoListingCategory('QW5hbHlzZQ=='); return false;">Analyse</div>
+
 </div>
-<div class="metadata">
-<a href="./sessions_core/06_epicurves.html" class="no-external">
-</a>
+<div class="card-text listing-description delink">
+<p>Session complémentaire au module FETCH d’enquête</p>
+</div>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+
 </div>
 </div>
 </div>
-<div class="listing-no-matching d-none">No matching items</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="2" data-categories="U2F0ZWxsaXRlJTJDRGF0YSUyMEV4cGxvcmF0aW9u" data-listing-file-modified-sort="1773924041354" data-listing-reading-time-sort="7" data-listing-word-count-sort="1308">
+<a href="./sessions_extra/data_exploration.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./img/extra/data_exploration/logo.svg" class="thumbnail-image card-img" style="height: 150px;"></p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Exploration des données
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('U2F0ZWxsaXRl'); return false;">Satellite</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RGF0YSUyMEV4cGxvcmF0aW9u'); return false;">Data Exploration</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>Explorez vos données après l’importation</p>
+</div>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="3" data-categories="U2F0ZWxsaXRlJTJDVmlzdWFsaXphdGlvbg==" data-listing-file-modified-sort="1773924041354" data-listing-reading-time-sort="9" data-listing-word-count-sort="1761">
+<a href="./sessions_extra/faceting.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./img/core/06_epicurves/logo.svg" class="thumbnail-image card-img" style="height: 150px;"></p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Graphiques multiples (facetting)
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('U2F0ZWxsaXRl'); return false;">Satellite</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('VmlzdWFsaXphdGlvbg=='); return false;">Visualization</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>Apprenez à créer plusieurs mini graphiques “par catégorie” en une seule commande</p>
+</div>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="4" data-categories="Q29yZSUyQ1JTdHVkaW8lMkNEYXRhJTIwSW1wb3J0" data-listing-file-modified-sort="1773924041354" data-listing-reading-time-sort="16" data-listing-word-count-sort="3051">
+<a href="./sessions_core/02_import_data.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./img/core/02_import/logo.svg" class="thumbnail-image card-img" style="height: 150px;"></p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Importation des données
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('Q29yZQ=='); return false;">Core</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UlN0dWRpbw=='); return false;">RStudio</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RGF0YSUyMEltcG9ydA=='); return false;">Data Import</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>Créez un projet Rstudio, installez les paquets utiles et importez des données pour travailler dans R.</p>
+</div>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="5" data-categories="Q29yZSUyQ1IlMjBCYXNpY3MlMkNEYXRhJTIwVHlwZXM=" data-listing-file-modified-sort="1773924041354" data-listing-reading-time-sort="24" data-listing-word-count-sort="4792">
+<a href="./sessions_core/01_introduction.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./img/core/01_introduction/logo.svg" class="thumbnail-image card-img" style="height: 150px;"></p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Introduction à R
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('Q29yZQ=='); return false;">Core</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UiUyMEJhc2ljcw=='); return false;">R Basics</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RGF0YSUyMFR5cGVz'); return false;">Data Types</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>Vos premiers pas dans R. Familiarisez-vous avec Rstudio et avec les objets courants de R.</p>
+</div>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="6" data-categories="Q29yZSUyQ1Zpc3VhbGl6YXRpb24=" data-listing-file-modified-sort="1773924041354" data-listing-reading-time-sort="15" data-listing-word-count-sort="2924">
+<a href="./sessions_core/06_epicurves.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./img/core/06_epicurves/logo.svg" class="thumbnail-image card-img" style="height: 150px;"></p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Introduction à la visualisation de données avec ggplot2
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('Q29yZQ=='); return false;">Core</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('VmlzdWFsaXphdGlvbg=='); return false;">Visualization</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>Découvrez les bases de ggplot2 et créez votre première courbe épidémique</p>
+</div>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="7" data-categories="Q29tcGFnbm9uJTJDQW5hbHlzZQ==" data-listing-file-modified-sort="1773924041354" data-listing-reading-time-sort="34" data-listing-word-count-sort="6795">
+<a href="./sessions_companion/surveillance_companion.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./img/companion/surveillance/logo.svg" class="thumbnail-image card-img" style="height: 150px;"></p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Surveillance
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('Q29tcGFnbm9u'); return false;">Compagnon</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('QW5hbHlzZQ=='); return false;">Analyse</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>Tutoriel d’accompagnement au module Surveillance du FETCH</p>
+</div>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="8" data-categories="Q29yZSUyQ1RhYmxlYXV4JTIwciVDMyVBOXN1bSVDMyVBOXM=" data-listing-file-modified-sort="1773924041354" data-listing-reading-time-sort="14" data-listing-word-count-sort="2749">
+<a href="./sessions_core/05_summary_table.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./img/core/05_summary_tables/logo.svg" class="thumbnail-image card-img" style="height: 150px;"></p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Tableaux récapitulatifs
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('Q29yZQ=='); return false;">Core</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('VGFibGVhdXglMjByJUMzJUE5c3VtJUMzJUE5cw=='); return false;">Tableaux résumés</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>Résummer les données dans des tables</p>
+</div>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="9" data-categories="Q29yZSUyQ01hbmlwdWxhdGlvbiUyMGRlcyUyMGRvbm4lQzMlQTllcyUyQ05ldHRveWFnZSUyMGRlcyUyMGRvbm4lQzMlQTllcw==" data-listing-file-modified-sort="1773924041354" data-listing-reading-time-sort="19" data-listing-word-count-sort="3652">
+<a href="./sessions_core/03_data_verbs.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./img/core/03_manipulation_basic/logo.svg" class="thumbnail-image card-img" style="height: 150px;"></p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Traitement de données, les bases
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('Q29yZQ=='); return false;">Core</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TWFuaXB1bGF0aW9uJTIwZGVzJTIwZG9ubiVDMyVBOWVz'); return false;">Manipulation des données</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TmV0dG95YWdlJTIwZGVzJTIwZG9ubiVDMyVBOWVz'); return false;">Nettoyage des données</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>Une introduction à la manipulation et au nettoyage des données à l’aide du paquet <code>{dplyr}</code>.</p>
+</div>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="10" data-categories="Q29yZSUyQ01hbmlwdWxhdGlvbiUyMGRlcyUyMGRvbm4lQzMlQTllcyUyQ05ldHRveWFnZSUyMGRlcyUyMGRvbm4lQzMlQTllcyUyQ0xvZ2lxdWU=" data-listing-file-modified-sort="1773924041354" data-listing-reading-time-sort="18" data-listing-word-count-sort="3565">
+<a href="./sessions_core/04_data_verbs_conditional.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./img/core/04_manipulation_conditionals/logo.svg" class="thumbnail-image card-img" style="height: 150px;"></p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Traitement de données, recoder et filtrer
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('Q29yZQ=='); return false;">Core</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TWFuaXB1bGF0aW9uJTIwZGVzJTIwZG9ubiVDMyVBOWVz'); return false;">Manipulation des données</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TmV0dG95YWdlJTIwZGVzJTIwZG9ubiVDMyVBOWVz'); return false;">Nettoyage des données</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TG9naXF1ZQ=='); return false;">Logique</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>Apprenez à recoder vos variables avec <code>{dplyr}</code> et comment sélectionner les lignes d’un data frame suivant certains critères</p>
+</div>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+
+</div>
+</div>
+</div>
+</div></a>
+</div>
+</div>
+<div class="listing-no-matching d-none">Aucun article correspondant</div>
 </div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
@@ -490,12 +711,12 @@ window.Quarto = {
       // flash "checked"
       button.classList.add('code-copy-button-checked');
       var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
+      button.setAttribute("title", "Copié");
       let tooltip;
       if (window.bootstrap) {
         button.setAttribute("data-bs-toggle", "tooltip");
         button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
+        button.setAttribute("data-bs-title", "Copié");
         tooltip = new bootstrap.Tooltip(button, 
           { trigger: "manual", 
             customClass: "code-copy-button-tooltip",
@@ -538,7 +759,7 @@ window.Quarto = {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/epicentre-msf\.github\.io\/repicentre\/fr");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
