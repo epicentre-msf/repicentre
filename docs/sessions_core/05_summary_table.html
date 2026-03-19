@@ -322,6 +322,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <a href="#going-further" id="toc-going-further" class="nav-link" data-scroll-target="#going-further">Going Further</a>
   <ul class="collapse">
 <li><a href="#extra-exercises" id="toc-extra-exercises" class="nav-link" data-scroll-target="#extra-exercises">Extra Exercises</a></li>
+  <li><a href="#challenge-exercises" id="toc-challenge-exercises" class="nav-link" data-scroll-target="#challenge-exercises">Challenge Exercises</a></li>
   <li><a href="#additional-resources" id="toc-additional-resources" class="nav-link" data-scroll-target="#additional-resources">Additional Resources</a></li>
   </ul>
 </li>
@@ -461,7 +462,6 @@ Tip
 <li>What is their average age?</li>
 <li>What was the earliest date of admission?</li>
 <li>How many patients have been hospitalized?</li>
-<li>Among children under 6 months, how many have died?</li>
 </ul>
 <p>This is exactly what the function <code>summarize()</code> has been made for! It allows us to calculate summary statistics on a dataset, and the syntax is similar to that of <code>mutate()</code>:</p>
 <div class="cell">
@@ -626,11 +626,6 @@ Tip
 <div class="write">
 <p>Can you use this syntax to calculate the mean age of female patients in your table?</p>
 </div>
-<p>That is looking great! We are starting to get a pretty exhaustive grouped summary table with a lot of useful information by <code>sub_prefecture</code>! An extra challenge for you:</p>
-<div class="write">
-<p><strong>CHALLENGE</strong>: Could you add a variable to your table that <strong>counts</strong> the number of patients that died <em>among</em> the ones that are <em>&lt; 6 months old</em>.</p>
-<p><br><strong>Hint.</strong> You want to count rows (so use <code>sum()</code>) that fill a specific condition for outcome (<code>outcome == "dead"</code>), but <em>only</em> when <code>age_group == "&lt; 6 months"</code></p>
-</div>
 </section><section id="use-the-output" class="level3"><h3 class="anchored" data-anchor-id="use-the-output">Use the Output</h3>
 <p>Finally, remember that <code>summarize()</code> returns a dataframe that we can then further manipulate (eg: with <code>filter()</code> and <code>mutate()</code>).</p>
 <div class="write">
@@ -650,13 +645,13 @@ Tip
 4       Bekourou        496 6.836694    2023-06-17      251    164
 5         Bedaya        435 7.098851    2023-07-04      209    147
 6         Koumra        253 7.106719    2023-08-14      138     84
-  mean_age_hosp mean_age_female n_death_u6m prop_female prop_hosp
-1      5.485294        6.748646          71   0.5105088 0.3384956
-2      5.665049        6.633782          61   0.4861919 0.2994186
-3      5.211957        6.948207          22   0.4700375 0.3445693
-4      6.042683        6.840637          25   0.5060484 0.3306452
-5      6.156463        7.105263          17   0.4804598 0.3379310
-6      6.261905        6.456522           7   0.5454545 0.3320158</code></pre>
+  mean_age_hosp mean_age_female prop_female prop_hosp
+1      5.485294        6.748646   0.5105088 0.3384956
+2      5.665049        6.633782   0.4861919 0.2994186
+3      5.211957        6.948207   0.4700375 0.3445693
+4      6.042683        6.840637   0.5060484 0.3306452
+5      6.156463        7.105263   0.4804598 0.3379310
+6      6.261905        6.456522   0.5454545 0.3320158</code></pre>
 </div>
 </div>
 </section></section><section id="done" class="level2"><h2 class="anchored" data-anchor-id="done">Done!</h2>
@@ -672,22 +667,21 @@ Tip
 <section id="extra-exercises" class="level3"><h3 class="anchored" data-anchor-id="extra-exercises">Extra Exercises</h3>
 <ol type="1">
 <li>
-<p>Make a summary table that summarizes:</p>
+<p>Make an <em>age-stratified</em> summary table that summarizes:</p>
 <ul>
 <li><p>The number of patients</p></li>
-<li><p>The proportion of male</p></li>
+<li><p>The proportion male</p></li>
 <li><p>The number of deaths</p></li>
 <li><p>The CFR</p></li>
-<li>
-<p>The number of deaths among patients that had pneumonia</p>
-<p>in all the different <em>age groups</em> !</p>
-</li>
 </ul>
 </li>
 <li><p>Make a table that shows the proportion of patients by age with any measles vaccine (by oral recall or card) and those with 1 or 2 doses.</p></li>
 <li><p>Make a table that compares the proportion of hospitalised and non-hospitalised patients with positive malaria RDT, fever, rash, cough, red eye, pneumonia, encephalitis, and “red” or “yellow” MUAC (less than 125 mm).</p></li>
 <li><p>Calculate the mean days from first symptom onset to consultation by sub-prefecture.</p></li>
 <li><p>Calculate the mean time spent in hospital (i.e. days from admission to outcome) by outcome (i.e. in those who recovered and those who died).</p></li>
+</ol></section><section id="challenge-exercises" class="level3"><h3 class="anchored" data-anchor-id="challenge-exercises">Challenge Exercises</h3>
+<ol type="1">
+<li>Create a table stratified by sub-prefecture that <strong>counts</strong> the number of patients that died among the ones that are <em>&lt; 6 months old</em>. <strong>Hint.</strong> You want to count rows (so use <code>sum()</code>) that fill a specific condition for outcome (<code>outcome == "dead"</code>), but <em>only</em> when <code>age_group == "&lt; 6 months"</code>.</li>
 </ol></section><section id="additional-resources" class="level3"><h3 class="anchored" data-anchor-id="additional-resources">Additional Resources</h3>
 <ul>
 <li>The <a href="https://epirhandbook.com/en/new_pages/grouping.html">EpiR Handbook chapter on grouping data</a>
