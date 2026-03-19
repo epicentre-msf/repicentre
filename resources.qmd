@@ -1,0 +1,5 @@
+---
+title: "Resources"
+---
+
+This page will (eventually) contain external resources to continue your R learning journey.
