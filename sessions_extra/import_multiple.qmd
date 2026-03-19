@@ -1,8 +1,8 @@
 ---
-title: Import multiple files and sheets
+title: Import Multiple Files/Sheets
 description: Learn how to import multiple sheets from an Excel file, or several Excel files.
 date: last-modified
-image: ../img/satellite/import_multiple_000_logo.png
+image: ../img/extra/import_multiple/logo.svg
 categories:
   - Satellite
   - Data Import
@@ -314,4 +314,3 @@ downloadthis::download_link(
 
 An introduction to [regular expressions](https://r4ds.hadley.nz/regexps)
 
-## Extra Exercises
