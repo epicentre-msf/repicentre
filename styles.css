@@ -266,6 +266,7 @@ div.quarto-post .metadata {
   color: white;
 }
 
+
 /* darkmode toggle -------------------------------------------------------------------------------*/
 .quarto-reader-toggle .bi::before, .quarto-color-scheme-toggle .bi::before {
   height: 2rem;
@@ -273,3 +274,17 @@ div.quarto-post .metadata {
   background-size: 2rem 2rem;
 }
 
+
+/* logo ------------------------------------------------------------------------------------------*/
+.navbar .navbar-nav.navbar-nav-right::after,
+.navbar-collapse::after {
+  content: "";
+  display: inline-block;
+  background-image: url("/img/logo_msf-epicentre.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 220px;   
+  height: 44px;
+  margin-left: auto;
+  vertical-align: middle;
+}
