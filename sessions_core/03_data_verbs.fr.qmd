@@ -52,7 +52,7 @@ downloadthis::download_link(
 <br>
 Si ce n'est pas déjà fait, enregistrez le jeu de données dans le sous-dossier approprié de votre projet RStudio puis créez un nouveau script appelé `fonctions_donnees.R` dans votre sous-dossier `R`. Ajoutez un en-tête approprié et chargez les paquets suivants : `{here}`, `{rio}` et `{tidyverse}`.
 <br><br>
-Enfin, ajoutez une section dédiée à l'import des données, utilisez `{here}` et `{rio}` pour importer vos données dans R, et assignez-les à un objet que nous appellerons [`df_brut`]{.hovertip bs-toggle='tooltip' bs-title="Notez que nous ne nommons pas tout de suite l'objet df_linelist comme nous l'avions fait précédemment. La raison deviendra manifeste sous peu"}.
+Enfin, ajoutez une section dédiée à l'import des données, utilisez `{here}` et `{rio}` pour importer vos données dans R, et assignez-les à un objet que nous appellerons [`df_brut`]{.hovertip bs-toggle='tooltip' bs-title="Notez que nous ne nommons pas tout de suite l'objet df_linelist comme nous l'avions fait précédemment. La raison deviendra manifeste sous peu."}.
 :::
 
 
@@ -149,10 +149,11 @@ Utilisez la fonction `rename()` sur `df_brut` pour renommer les colonnes :
 - `nom_structure_sante` en `structure`
 :::
 
-Il peut être difficile de vérifier si une commande fonctionne car R affiche le data frame en entier. Dans ce cas, une [première solution]{.hovertip bs-toggle='tooltip' bs-title="Nous en verrons une autre à la fin de la leçon."} consiste à créer un objet temporaire plus facile à manipuler. Vous pouvez le nommer comme vous voulez, mais un nom commun est `temp` (ou `tmp` en anglais).
+Quand nous n'enregistrons pas le data frame renvoyé par la fonction, il s'affiche dans la console, ce qui est peu lisible : il est laborieux de vérifier que votre commande a bien renommé les colonnes (ce serait encore pire si le data frame contenait 100 colonnes !). Une [première stratégie]{.hovertip bs-toggle='tooltip' bs-title="Nous en verrons une autre à la fin de la leçon avec le pipe, et une dernière est d'imbriquer la commande à tester directement dans une autre fonction, telle que names()."} consiste à enregistrer le data frame intermédiaire dans un objet pour pouvoir l'examiner avec des fonctions connue. Vous pouvez nommer cet objet temporaire comme vous voulez, mais un nom commun est `temp` (ou `tmp` en anglais) pour indiquer que ce n'est pas un objet final à être conservé.
+
 
 :::{.write}
-Répétez le dernier exercice en assignant la sortie de la commande à un objet appelé `temp`. Vous pouvez alors utiliser la fonction `names()` pour vérifier que les noms des colonnes ont bien changé. La sortie de `names()` devrait être :
+Utilisez le code que vous venez d'écrire et créez un objet `temp` qui contient le data frame avec les collones renommées. Utilisez ensuite la fonction `names()` pour vérifier que les noms des colonnes ont bien changé. La sortie de `names()` devrait être :
 
 ```{r}
 #| eval: true
@@ -197,8 +198,8 @@ Utilisez `mutate()` pour créer une nouvelle colonne `age_ans` qui exprime l'âg
 #| eval: true
 #| echo: false
 df_brut |>
-  mutate(age_years = age / 12) |>
-  select(age_years) |>
+  mutate(age_ans = age / 12) |>
+  select(age_ans) |>
   head()
 ```
 :::
@@ -391,11 +392,11 @@ Nous pourrions donc remplacer le code précédent par ceci :
 
 ```{r}
 df_linelist <- df_brut |>
-  rename(prefecture = sub_prefecture,
+  rename(prefecture = sous_prefecture,
          village    = village_commune,
-         facility   = health_facility_name) |>
-  select(-full_name) |>
-  mutate(age_years = age / 12)
+         facility   = nom_structure_sante) |>
+  select(-nom_complet) |>
+  mutate(age_ans = age / 12)
 ```
 
 C'est beaucoup plus fluide que de réaffecter `df_linelist` après chaque étape ! 
@@ -409,7 +410,7 @@ Rappel des étapes :
 
 - Supprimer les variables `nom_complet` et `unite_age`
 - Renommer les variables suivantes :
-  - `age` devient `age_ans`
+  - `age` devient `age_mois`
   - `sous_prefecture` devient `prefecture`
   - `village_commune` devient `village`
   - `nom_structure_sante` devient `structure`

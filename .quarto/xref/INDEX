@@ -137,10 +137,25 @@
   "sessions_extra/surveillance_companion.fr.qmd": {
     "surveillance_companion.fr.html": "b89bc49a"
   },
-  "sessions_companion/surveillance_companion.qmd": {
-    "surveillance_companion.html": "79509d35"
-  },
   "sessions_companion/surveillance_companion.fr.qmd": {
-    "surveillance_companion.fr.html": "d48b80b3"
+    "surveillance_companion.fr.html": "a267d6c4"
+  },
+  "sessions_companion/survey_basic.qmd": {
+    "survey_basic.html": "7a520f5f"
+  },
+  "sessions_companion/surveillance_companion.qmd": {
+    "surveillance_companion.html": "f6f14026"
+  },
+  "sessions_companion/survey_basic.fr.qmd": {
+    "survey_basic.fr.html": "0b43a81b"
+  },
+  "sessions_extra/shiny-intro.qmd": {
+    "shiny-intro.html": "9e140340"
+  },
+  "sessions_extra/shiny-intro.en.qmd": {
+    "shiny-intro.en.html": "376c930d"
+  },
+  "sessions_extra/shiny_intro.qmd": {
+    "shiny_intro.html": "2323b7e6"
   }
 }
