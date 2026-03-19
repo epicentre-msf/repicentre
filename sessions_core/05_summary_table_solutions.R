@@ -43,7 +43,7 @@ df_linelist |>
 
 # Summary table -----------------------------------------
 
-# Here is the summary table you should have built:
+# Here is the final summary table you should have built:
 
 df_linelist |>
   summarize(
@@ -54,8 +54,7 @@ df_linelist |>
     n_female = sum(sex == "f", na.rm = TRUE),
     n_hosp = sum(hospitalisation == "yes", na.rm = TRUE),
     mean_age_hosp = mean(age[hospitalisation == "yes"], na.rm = TRUE),
-    mean_age_female = mean(age[sex == "f"], na.rm = TRUE),
-    n_death_u6m = sum(outcome[age_group == "< 6 months"] == "dead", na.rm = TRUE)
+    mean_age_female = mean(age[sex == "f"], na.rm = TRUE)
   ) |>
   mutate(
     prop_female = n_female / n_patients,
@@ -75,16 +74,14 @@ df_linelist |>
     n_deaths = sum(outcome == "dead", na.rm = TRUE),
     # get number of patients with a valid outcome to compute CFR
     n_outcome_valid = sum(outcome %in% c("dead", "recovered"), na.rm = TRUE),
-    CFR = n_deaths / n_outcome_valid * 100,
-    n_deaths_pneumo = sum(outcome[pneumonia == 1] == "dead", na.rm = TRUE)
+    CFR = n_deaths / n_outcome_valid * 100
   ) |>
   # only keep variable of interest
   select(
     age_group,
     prop_male,
     n_deaths,
-    CFR,
-    n_deaths_pneumo
+    CFR
   )
 
 # 2) summarise vaccination status by age group
@@ -146,4 +143,10 @@ df_linelist |>
     lag = mean(time_in_hosp)
   )
 
+# Challenge Exercises
+df_linelist |>
+  summarize(
+    .by = sub_prefecture,
+    n_death_u6m = sum(outcome[age_group == "< 6 months"] == "dead", na.rm = TRUE)
+  ) 
 
