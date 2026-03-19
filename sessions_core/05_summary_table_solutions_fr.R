@@ -89,8 +89,7 @@ df_linelist |>
     
     # Récupère le nombre de patients avec sortie connue (dénominateur létalité)
     n_sorties_valides = sum(statut_sortie %in% c("deces", "gueri"), na.rm = TRUE),
-    letalite = n_deces / n_sorties_valides * 100,
-    n_mort_pneumo = sum(statut_sortie[pneumonie == 1] == "deces", na.rm = TRUE)
+    letalite = n_deces / n_sorties_valides * 100
   ) |>
   
   # Garde seulement les variables qui nous intéressent
@@ -98,8 +97,7 @@ df_linelist |>
     age_groupe,
     prop_homme,
     n_deces,
-    letalite,
-    n_mort_pneumo
+    letalite
   )
 
 
@@ -180,4 +178,12 @@ df_linelist|>
     n = n(),
     duree_sejour_moyenne = mean(duree_sejour)
   )
+
+
+# Defi
+df_linelist |>
+  summarize(
+    .by = sub_prefecture,
+    n_death_u6m = sum(outcome[age_group == "< 6 months"] == "dead", na.rm = TRUE)
+  ) 
 

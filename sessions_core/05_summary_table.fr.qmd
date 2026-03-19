@@ -158,7 +158,6 @@ Dans ce tutoriel, nous allons ensemble construire une grosse table rassemblant d
 - Quel est leur âge moyen ? 
 - Quelle a été la date d'admission la plus ancienne ? 
 - Combien de patients ont été hospitalisés ? 
-- Parmi les enfants de moins de 6 mois, combien sont décédés ?
 - etc.
 
 Notre table finale ressemblera à ça : 
@@ -177,7 +176,6 @@ df_final <- df_linelist |>
     n_hosp           = sum(hospitalisation == "oui", na.rm = TRUE),
     moy_age_hosp     = mean(age[hospitalisation == "oui"], na.rm = TRUE),
     moy_age_femmes   = mean(age[sexe == "f"], na.rm = TRUE),
-    n_deces_moins_6m = sum(statut_sortie[age_groupe == "< 6 mois"] == "deces", na.rm = TRUE)
   ) |>
   
   # Ajoute des proportions :
@@ -367,15 +365,6 @@ df_linelist |>
 ```
 :::
 
-Bravo ! Nous avons un super tableau stratifié par sous-préfecture avec de nombreuses statistiques descriptives utiles. Un défi supplémentaire pour vous : 
-
-::: {.write}
-**DÉFI** : Pourriez-vous ajouter une variable à votre tableau qui **compte** le nombre de patients décédés *parmi* ceux qui ont *< 6 mois*. 
-
-<br>
-**Note.** Vous voulez compter les lignes (donc utiliser `sum()`) qui remplissent une condition spécifique pour le résultat (`statut_sortie == "deces"`), mais *uniquement* lorsque `age_group == "< 6 months"`
-:::
-
 ### Utiliser le data frame créé 
 
 Enfin, n'oubliez pas que `summarize()` renvoie un data frame que nous pouvons ensuite manipuler davantage (par exemple : avec `filter()` et `mutate()`). 
@@ -447,6 +436,11 @@ downloadthis::download_link(
 4. Calculer le nombre moyen de jours entre l'apparition des premiers symptômes et la consultation, par sous-préfecture.
 
 5. Calculer la durée de séjour moyenne à l'hôpital (i.e. jours entre l'admission et la sortie) par statut à la sortie non manquant.
+
+
+### Exercices de défi
+1. Créez un tableau stratifié par sub-prefecture qui **compte** le nombre de patients décédés parmi ceux qui ont *< 6 mois*. **Indice.** Vous voulez compter les lignes (donc utiliser `sum()`) qui remplissent une condition spécifique pour le résultat (`statut_sortie == "deces"`), mais *uniquement* lorsque `age_group == "< 6 months"`.
+
 
 ### Ressources supplémentaires
 

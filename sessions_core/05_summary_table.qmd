@@ -159,7 +159,6 @@ For example, we may be asked to produce patient statistics at the sub-prefecture
 - What is their average age? 
 - What was the earliest date of admission? 
 - How many patients have been hospitalized? 
-- Among children under 6 months, how many have died? 
 
 This is exactly what the function `summarize()` has been made for! It allows us to calculate summary statistics on a dataset, and the syntax is similar to that of `mutate()`:
 
@@ -320,15 +319,6 @@ The use of a logical test in the example above is called **logical indexing**, w
 Can you use this syntax to calculate the mean age of female patients in your table?
 :::
 
-That is looking great! We are starting to get a pretty exhaustive grouped summary table with a lot of useful information by `sub_prefecture`! An extra challenge for you:
-
-:::: write
-**CHALLENGE**: Could you add a variable to your table that **counts** the number of patients that died *among* the ones that are *\< 6 months old*.
-
-<br>
-**Hint.** You want to count rows (so use `sum()`) that fill a specific condition for outcome (`outcome == "dead"`), but *only* when `age_group == "< 6 months"`
-::::
-
 ### Use the Output 
 
 Finally, remember that `summarize()` returns a dataframe that we can then further manipulate (eg: with `filter()` and `mutate()`). 
@@ -355,7 +345,6 @@ sub_pref_df <- df_linelist |>
     n_hosp = sum(hospitalisation == "yes", na.rm = TRUE),
     mean_age_hosp = mean(age[hospitalisation == "yes"], na.rm = TRUE),
     mean_age_female = mean(age[sex == "f"], na.rm = TRUE),
-    n_death_u6m = sum(outcome[age_group == "< 6 months"] == "dead", na.rm = TRUE),
     prop_female = n_female / n_patients,
     prop_hosp = n_hosp / n_patients
   )
@@ -385,20 +374,16 @@ downloadthis::download_link(
 
 ### Extra Exercises
 
-1.  Make a summary table that summarizes:
+1.  Make an *age-stratified* summary table that summarizes:
 
     -   The number of patients
 
-    -   The proportion of male
+    -   The proportion male
 
     -   The number of deaths
 
     -   The CFR
 
-    -   The number of deaths among patients that had pneumonia
-
-        in all the different *age groups* !
-        
 2. Make a table that shows the proportion of patients by age with any measles vaccine (by oral recall or card) and those with 1 or 2 doses.
 
 3. Make a table that compares the proportion of hospitalised and non-hospitalised patients with positive malaria RDT, fever, rash, cough, red eye, pneumonia, encephalitis, and "red" or "yellow" MUAC (less than 125 mm).
@@ -406,6 +391,11 @@ downloadthis::download_link(
 4. Calculate the mean days from first symptom onset to consultation by sub-prefecture.
 
 5. Calculate the mean time spent in hospital (i.e. days from admission to outcome) by outcome (i.e. in those who recovered and those who died).
+
+### Challenge Exercises
+1. Create a table stratified by sub-prefecture that **counts** the number of patients that died among the ones that are *\< 6 months old*. **Hint.** You want to count rows (so use `sum()`) that fill a specific condition for outcome (`outcome == "dead"`), but *only* when `age_group == "< 6 months"`.
+
+
 
 ### Additional Resources
 
