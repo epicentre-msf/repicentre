@@ -283,8 +283,8 @@ div.quarto-post .metadata {
   background-image: url("/img/logo_msf-epicentre.svg");
   background-size: contain;
   background-repeat: no-repeat;
-  /*width: 120px;   */
-  height: 35px;
+  width: 220px;   
+  height: 44px;
   margin-left: auto;
   vertical-align: middle;
 }
