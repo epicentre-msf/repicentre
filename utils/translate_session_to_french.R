@@ -26,7 +26,7 @@ translate_session_to_french <- function(
 
   # Update the glossary
   babeldown::deepl_upsert_glossary(
-    filename = "glossary-en-fr.csv",
+    filename = here::here("utils", "glossary-en-fr.csv"),
     target_lang = "French",
     source_lang = "English"
   )
@@ -71,7 +71,7 @@ translate_session_to_french <- function(
 # Example ----------------------------------------------------------------
 # Notice there is a final error but the translation worked ! this is because the function was designed for quarto books and not single .qmd files
 
-# translate_session_to_french(
-#   session_type = "core",
-#   session_name = "02_import_data.qmd"
-# )
+ translate_session_to_french(
+   session_type = "extra",
+   session_name = "data_exploration.qmd"
+ )

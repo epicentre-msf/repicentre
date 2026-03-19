@@ -2,7 +2,6 @@
 title: Introduction à R
 description: Vos premiers pas dans R. Familiarisez-vous avec Rstudio et
   avec les objets courants de R.
-date: last-modified
 image: ../img/core/01_introduction/logo.svg
 categories:
 - Core
@@ -180,7 +179,7 @@ Pour créer un nouveau script, allez dans le menu `File > New File > R Script`. 
 Pour enregistrer votre script, utilisez le menu `File > Save As` ou le raccourci clavier `CTRL + S`.
 
 ::: {.setup}
-Créez un script et enregistrez-le sous le nom `decouverte.R`(n'oubliez l'extension !). Pour l'instant, vous pouvez l'enregistrer sur votre bureau ou à tout autre endroit pratique, mais nous aborderons l'organisation des scripts dans la [prochaine session](../sessions_core/02_import_data.qmd#folder-structure).
+Créez un script et enregistrez-le sous le nom `decouverte.R` (n'oubliez pas l'extension !). Pour l'instant, vous pouvez l'enregistrer sur votre bureau ou à tout autre endroit pratique, mais nous aborderons l'organisation des scripts dans la [prochaine session](../sessions_core/02_import_data.qmd#folder-structure).
 :::
 
 #### Exécuter du code à partir d'un script
@@ -295,7 +294,7 @@ R est sensible à la casse (majuscules ou minuscules), ce qui signifie que `"ABC
 :::
 
 ::: {callout-note}
-Si vous souhaitez créer une chaîne de caractères contenant des guillemets, il faut [échapper]{.hovertip bs-toggle='tooltip' bs-title="Certains caractères de R sont spéciaux, ils constituent généralement un type de commande à part entière. Lorsque vous souhaitez utiliser l'un de ces caractères spéciaux dans un texte normal, vous devez explicitement demander à R d'ignorer la fonctionnalité spéciale du caractère. Ce processus est appelé échapper le caractère spécial"} les guillements les faisant précéder d'un `\ `. Par exemple : `"Elle dit \"Bonjour\" et s'en alla"` ou `'C\'est une belle journée'`. Si vous avez utilisé des guillements doubles pour créer votre chaîne de caractères, vous pouvez utiliser des guillemets simples à l'intérieur de celle-ci (par exemple : `"C'est une belle journée"`) et vice versa (par exemple : `'Elle dit "Bonjour" et s'en alla'`).
+Si vous souhaitez créer une chaîne de caractères contenant des guillemets, il faut [échapper]{.hovertip bs-toggle='tooltip' bs-title="Certains caractères de R sont spéciaux, ils constituent généralement un type de commande à part entière. Lorsque vous souhaitez utiliser l'un de ces caractères spéciaux dans un texte normal, vous devez explicitement demander à R d'ignorer la fonctionnalité spéciale du caractère. Ce processus est appelé échapper le caractère spécial"} les guillemets les faisant précéder d'un `\ `. Par exemple : `"Elle dit \"Bonjour\" et s'en alla"` ou `'C\'est une belle journée'`. Si vous avez utilisé des guillemets doubles pour créer votre chaîne de caractères, vous pouvez utiliser des guillemets simples à l'intérieur de celle-ci (par exemple : `"C'est une belle journée"`) et vice versa (par exemple : `'Elle dit "Bonjour" et s\'en alla'`).
 :::
 
 ### Booléen (logique)
@@ -679,7 +678,7 @@ C'est tout pour cette session, bravo pour vos débuts avec R et RStudio !
 #| eval: true
 
 downloadthis::download_link(
-  link = 'https://github.com/epicentre-msf/repicentre/blob/main/sessions_core/01_introduction_solutions.fr.R',
+  link = 'https://github.com/epicentre-msf/repicentre/blob/main/sessions_core/01_introduction_solutions_fr.R',
   button_label = 'Solutions exercices',
   has_icon = TRUE,
   icon = "fa fa-save",
