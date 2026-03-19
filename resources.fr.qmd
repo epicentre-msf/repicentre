@@ -1,5 +1,0 @@
----
-title: "Ressources"
----
-
-Cette page contiendra (éventuellement) des ressources externes pour poursuivre votre parcours d'apprentissage du R.
