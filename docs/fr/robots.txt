@@ -1,1 +1,1 @@
-Sitemap: https://epicentre-msf.github.io/repicentre/fr/sitemap.xml
+Sitemap: /fr/sitemap.xml
