@@ -5,6 +5,7 @@ project:
 website:
   title: "{repicentre}"
   navbar:
+    search: false
     left:
       - pathway.qmd
       - explore.qmd
@@ -27,7 +28,6 @@ format:
 
 comments:
   hypothesis: false
-
 
 babelquarto:
   languagecodes:

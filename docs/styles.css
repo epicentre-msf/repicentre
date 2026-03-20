@@ -185,6 +185,27 @@ img#about {
   
 
 /* cards -----------------------------------------------------------------------------------------*/
+
+/* push metadata block off pathway card */
+div.quarto-post .metadata {
+  margin-left: -18em;
+}
+
+.card {
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px;
+  transition: 0.5s;
+}
+
+.card:hover {
+  box-shadow: 5px 5px 15px;
+}
+
+.card .card-img {
+  padding-top: 15px;
+}
+
+
 .homepage-card-grid {
   display: flex;
   /*flex-direction: column;*/
@@ -245,6 +266,7 @@ img#about {
   color: white;
 }
 
+
 /* darkmode toggle -------------------------------------------------------------------------------*/
 .quarto-reader-toggle .bi::before, .quarto-color-scheme-toggle .bi::before {
   height: 2rem;
@@ -252,29 +274,17 @@ img#about {
   background-size: 2rem 2rem;
 }
 
-/* nav-link */
-.a-red{
-  cursor: pointer;
-  font-weight: 250;
-  color: black;
-  position: relative;
-}
 
-.a-red::after{
-  text-decoration: none;
+/* logo ------------------------------------------------------------------------------------------*/
+.navbar .navbar-nav.navbar-nav-right::after,
+.navbar-collapse::after {
   content: "";
-  background: #f3afaf ;
-  width: 100% + 5px;
-  position: absolute;
-  bottom: 1px;
-  height: 5px;
-  left: -2px; 
-  right: 0;
-  z-index:-1;
-	transition: all .3s cubic-bezier(0.445, 0.05, 0.55, 0.95);
-	text-decoration: none;
-}
-
-.a-red:hover::after{
-	height: calc(100%)
+  display: inline-block;
+  background-image: url("img/logo_msf-epicentre.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 220px;   
+  height: 44px;
+  margin-left: auto;
+  vertical-align: middle;
 }

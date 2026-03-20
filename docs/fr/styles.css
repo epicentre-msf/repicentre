@@ -185,6 +185,27 @@ img#about {
   
 
 /* cards -----------------------------------------------------------------------------------------*/
+
+/* push metadata block off pathway card */
+div.quarto-post .metadata {
+  margin-left: -18em;
+}
+
+.card {
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px;
+  transition: 0.5s;
+}
+
+.card:hover {
+  box-shadow: 5px 5px 15px;
+}
+
+.card .card-img {
+  padding-top: 15px;
+}
+
+
 .homepage-card-grid {
   display: flex;
   /*flex-direction: column;*/
@@ -245,6 +266,7 @@ img#about {
   color: white;
 }
 
+
 /* darkmode toggle -------------------------------------------------------------------------------*/
 .quarto-reader-toggle .bi::before, .quarto-color-scheme-toggle .bi::before {
   height: 2rem;
@@ -252,3 +274,17 @@ img#about {
   background-size: 2rem 2rem;
 }
 
+
+/* logo ------------------------------------------------------------------------------------------*/
+.navbar .navbar-nav.navbar-nav-right::after,
+.navbar-collapse::after {
+  content: "";
+  display: inline-block;
+  background-image: url("img/logo_msf-epicentre.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 220px;   
+  height: 44px;
+  margin-left: auto;
+  vertical-align: middle;
+}

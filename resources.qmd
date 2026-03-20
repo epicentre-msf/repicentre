@@ -2,4 +2,57 @@
 title: "Resources"
 ---
 
-This page will (eventually) contain external resources to continue your R learning journey.
+This page contains a non-exhaustive list of resources for learning R with a focus on epidemiology in humanitarian settings. 
+
+**Want to add some other resources?** Suggestions and contributions are welcome! Please [open an issue](https://github.com/epicentre-msf/repicentre/issues) or get in touch.
+
+<br>
+
+#### R Programming
+
+- [DataCamp — Introduction to R](https://www.datacamp.com/courses/free-introduction-to-r). Interactive and beginner-friendly introduction to R.
+
+- [Posit Cloud Primers](https://posit.cloud/learn/primers). Browser-based interactive R tutorials covering the basics through to data visualisation and iteration.
+
+- [R for Data Science](https://r4ds.hadley.nz/). A good introduction to the tidyverse, covering data import, transformation,
+  visualisation, and communication.
+
+- [Advanced R](https://adv-r.hadley.nz/). Deep dive into R's internals and programming patterns.
+
+<br>
+
+#### Focus: Epidemiology and Statistics
+
+- [The Epidemiologist R Handbook](https://epirhandbook.com/). An excellent resource for applied epidemiology in R. Written with field epidemiologists in mind, it covers outbreak investigation, survey analysis, GIS mapping, automated reporting, and more. Available in multiple languages.
+
+- [Introduction to R for Health Data Science](https://argoshare.is.ed.ac.uk/healthyr_book/). Focused on health data, includes survival analysis and logistic regression.
+
+- [Statistical Inference via Data Science](https://moderndive.com/). Gentle introduction to statistical thinking with R and the tidyverse.
+
+- [The MSF-Epicentre Github](https://github.com/epicentre-msf). Provides a number of publicly available packages tailored to the specific needs of of MSF epidemiologists.
+
+- [`{sitrep}`](https://github.com/R4EPI/sitrep). Developed by R4EPIs / MSF. Templates and functions for situation reports in outbreak and survey contexts.
+
+- [R4EPIs Project](https://r4epis.netlify.app/). MSF & RECON initiative providing standardised R templates and tutorials for field epidemiology: outbreak investigation, mortality surveys, and vaccination coverage surveys.
+
+<br>
+
+#### Focus: Surveys and Needs Assessments
+
+- [`{srvyr}`](https://cran.r-project.org/package=srvyr). Tidyverse-style analysis tools for complex survey data (cluster sampling, stratification, weights). Particularly useful for SMART nutrition surveys, mortality surveys, and other humanitarian assessments. This package is based off of [`{survey}`](https://cran.r-project.org/package=survey).
+
+- [Exploring Complex Survey Data Analysis Using R](https://tidy-survey-r.github.io/tidy-survey-book/). A useful text providing an in depth look at using `{srvyr}` and `{survey}`
+
+
+<br>
+
+#### Focus: GIS & Mapping
+
+- [Geocomputation with R](https://r.geocompx.org/). Full guide to spatial data analysis and mapping in R.
+
+<br>
+
+#### Focus: Reporting & Reproducibility
+
+- [Quarto](https://quarto.org/docs/guide/) — A rich text format well suited for reproducible and automated reporting. Quarto supports reports, websites, and even simple dashboards.
+

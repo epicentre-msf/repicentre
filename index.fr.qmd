@@ -8,7 +8,7 @@ format:
 ---
 
 ::: {.div #homepage-text}
-[Welcome to `{repicentre}`]{.h1}
+[Bienvenue à `{repicentre}`]{.h1}
 
 Une plateforme open source pour apprendre R dans les contextes humanitaires. Qu'aimeriez-vous faire ?
 :::
@@ -45,7 +45,7 @@ Catalogue complet de cours d'autoformation<br>
 <img class='card-img' src='img/expand.svg' alt='expand'>
 
 ::: {.card-body}
-[Élargir]{.card-title}<br>
+[Ressources]{.card-title}<br>
 Ressources externes pour aller plus loin<br>
 <br>
 <a href='resources.html' class='btn'>Start</a>

@@ -1,5 +1,5 @@
 ---
-title: Chemin
+title: Cours
 description: 'Une introduction à R en commençant par le début'
 listing:
   - id: articles-links
@@ -7,7 +7,10 @@ listing:
     contents:
       - '01_introduction.qmd'
       - '02_import_data.qmd'
-    
+      - '03_data_verbs.qmd'
+      - '04_data_verbs_conditional.qmd'
+      - '05_summary_table.qmd'
+      - '06_epicurves.qmd'
 ---
 <div style="text-align: justify;">
 

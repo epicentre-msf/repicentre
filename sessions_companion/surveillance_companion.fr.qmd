@@ -1,0 +1,1020 @@
+---
+title: Surveillance
+description: Tutoriel d'accompagnement au module Surveillance du FETCH
+image: ../img/companion/surveillance/logo.svg
+categories:
+  - Compagnon
+  - Analyse
+---
+
+```{r setup}
+#| include: false
+#| eval: true
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+
+library(here)        # For paths
+library(rio)         # Import and export data
+library(tidyverse)   # Data manipulation
+library(zoo)  
+
+# Surveillance data
+df_surv_brut <- import(here("data", "surveillance_module", "raw", 
+                            "data_ids_sem20_2022_fr.xlsx"))
+
+# Laboratory data
+df_labo_brut <- import(
+  here("data", "surveillance_module", "raw", "data_labo_sem20_2022_fr.xlsx"), 
+  skip = 7  # Skip the first seven lines
+) 
+
+
+df_surv <- df_surv_brut |> 
+  mutate(
+    
+    # Format strings to lower case
+    pays       = tolower(pays),
+    province   = tolower(province),
+    zone_sante = tolower(zone_sante),
+    maladie    = tolower(maladie),
+    
+    
+    # Remove excess spaces with the str_squish() function from 
+    # the stringr package, very usefull!
+    province   = str_squish(province),
+    zone_sante = str_squish(zone_sante),
+    
+    
+    # Remove spaces or "-" with the str_replace() function from 
+    # the stringr package
+    province   = str_replace(province, pattern = "-", replacement = "_"), 
+    province   = str_replace(province, pattern = " ", replacement = "_"),
+    zone_sante = str_replace(zone_sante, pattern = "-", replacement = "_"), 
+    zone_sante = str_replace(zone_sante, pattern = " ", replacement = "_")
+  )
+
+df_labo <- df_labo_brut |> 
+  mutate(
+    
+    # Clean strings
+    zone_sante = tolower(zone_sante),    # Format strings to lower case
+    zone_sante = str_squish(zone_sante), # Remove excess spaces
+    zone_sante = str_replace(zone_sante, "-", "_"),  # Replace - by _
+    zone_sante = str_replace(zone_sante, " ", "_"),  # Replace space by _
+    
+    # Recode IgM modalities
+    igm_rougeole = case_when(
+      igm_rougeole == 'pos' ~ 'positif', 
+      igm_rougeole == 'neg' ~ 'negatif', 
+      .default = igm_rougeole),
+    
+    igm_rubeole = case_when(
+      igm_rubeole == 'pos' ~ 'positif', 
+      igm_rubeole == 'neg' ~ 'negatif', 
+      .default = igm_rubeole)
+  )
+
+df_surv_sem <- df_surv |> 
+  select(province, zone_sante, semaine, totalcas, totaldeces) |>
+  complete(
+    nesting(province, zone_sante),
+    semaine = seq(min(df_surv$semaine, na.rm = TRUE), 
+                  max(df_surv$semaine, na.rm = TRUE)),
+    fill = list(totalcas = 0, 
+                totaldeces = 0)
+  ) 
+
+
+# Analyse
+data_alerte <- df_surv_sem |>
+  
+  # Select the 4 health zones
+  filter(zone_sante %in% c("dilolo", "kowe" ,"kampemba", "lwamba")) |>
+  
+  # Order by province, zone_sante and semaine
+  arrange(province, zone_sante, semaine) |>
+  
+  # Binary indicator for 20 cases (semainely indicator by health zone)
+  mutate(
+    cas20 = case_when(
+      totalcas >= 20 ~ 1, 
+      .default = 0)) |>
+  
+  
+  # Cumulative indictors, need to be calculated by health zone
+  mutate(
+    
+    # Group by province and health zone
+    .by = c(province, zone_sante),
+    
+    # Cumulative cases over 3 semaine window (zoo::rollapply)
+    cas_cumu = rollapply(totalcas, 
+                         width = 3,        # Window width
+                         sum,              # function to apply
+                         na.rm = TRUE,     # Arguments to pass to the function (here, sum)
+                         align = "right",  
+                         partial = TRUE),
+    
+    # Binary indicator for 35 cumulative cases
+    cas_cumu35 = case_when(cas_cumu >= 35 ~ 1, 
+                           .default = 0),
+    
+    
+    # Combined alerte indicator
+    # The operator | is a logical OR. Here we test:
+    # is cas20 equal to 1 OR is cas_cumu35 equal to 1
+    alerte = case_when(
+      (cas20 == 1 | cas_cumu35 == 1) ~ 1, 
+      .default = 0)
+  )
+
+zone_sante_alertee <- data_alerte |>
+  filter(semaine == 20)  |>
+  filter(alerte == 1) |>
+  pull(zone_sante)
+```
+
+## Objectifs
+
+- Travailler les compétences acquises dans les deux modules FETCH-R (importation, nettoyage et visualisation des données).
+- Analyser des données de surveillance rougeole pour détecter les alertes et aider à prioriser quelles alertes doivent être approfondies avec une enquête sur le terrain.
+
+
+## Introduction
+
+Cette session accompagne l'étude de cas _Réponse d'urgence contre la rougeole dans la région du Katanga (RDC)_ du module FETCH Surveillance. Ça n'a probablement pas beaucoup de sens d'essayer de la suivre sans les documents et les discussions de l'étude.
+
+En ce qui concerne la partie *R* du module surveillance, nous nous appuierons sur les compétences acquises tout au long des modules FETCH-R, et introduirons quelques nouvelles fonctions utiles pour le nettoyage et les analyses.
+
+
+::: {.callout-tip}
+N'hésitez pas à scaner vos notes, vos scripts ou les tutoriels des sessions précédentes pour vous rafraîchir sur le fonctionnement de certaines fonctions quand vous en éprouvez le besoin.
+
+Par ailleurs, les [encadrés contenant les instructions](../sessions_core/01_introduction.qmd#Exercise Format) sont les mêmes que dans les autres modules.
+:::
+
+
+## Mise en place
+
+Comme cette session fait partie d'un module spécifique, vous allez créer un nouveau projet RStudio. Jetez un coup d’œil [à la session principale](../sessions_core/02_import_data.qmd) si vous ne vous rappelez plus comment faire.
+
+### Créer le projet
+
+:::  {.setup}
+1. Créez un dossier `surveillance_case_study` sur votre ordinateur, associé avec le module Surveillance du FETCH. Ajoutez les sous dossiers suivants à l'intérieur :
+
+- 📁 data
+  - 📁 clean
+  - 📁 raw
+- 📁 R
+- 📁 outputs
+
+2. Créez un [projet RStudio](../sessions_core/02_import_data.qmd#rstudio-projects) à la racine du dossier `surveillance_case_study`.
+
+3. Si vous n'avez pas encore les données, téléchargez-les.
+
+```{r}
+#| echo: false
+#| eval: true
+
+downloadthis::download_link(
+  link = 'https://github.com/epicentre-msf/repicentre/raw/main/data/surveillance_module/raw/donnes_brutes_fr.zip',
+  button_label = "Télécharger les données brutes",
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  self_contained = FALSE
+)
+```
+
+<br>
+4. Dézippez l'archive si vous venez de télécharger les données. Quelle que soit la source, enregistrez les deux fichiers Excel dans le sous dossier `data/raw`. 
+<br>
+5. Créez un nouveau script `import_nettoyage.R` et enregistrez-le dans le sous dossier `R`. Ajoutez les métadonnées et une section pour charger les paquets `{here}`, `{rio}`, et `{tidyverse}`.
+:::
+
+
+### Importer les données
+
+**Rappel de l'étude de cas** : vous avez demandé l'accès aux données de surveillance de routine et aux données de laboratoire au MSP de la RDC. Le ministère a accepté de les partager avec vous toutes les semaines. Vous recevez le premier fichier à la semaine 20 en 2022 (note : les données sur lesquelles nous travaillerons sont simulées).
+
+:::  {.look}
+Si vous ne l'avez pas déjà fait, ouvrez les deux fichiers dans un tableur (Excel ou autre) pour les inspecter avant l'importation.
+:::
+
+Le jeu de données de surveillance a l'air facile à importer. En revanche, le jeu de données laboratoire pourrait vous inquiéter, avec ses lignes supplémentaires avant les données... Heureusement, la fonction `import()` que nous utilisons a un argument `skip` qui permet de gérer ce cas courant :
+
+```{r}
+# NE PAS EXÉCUTER (PSEUDO-CODE)
+import(
+  here("data", "raw", "fichier_exemple.xlsx"), 
+  skip = 3  # Sauter les trois premières lignes, l'import commence à la ligne 4
+) 
+```
+
+:::  {.write}
+1. Ajoutez une section pour l'import des données à votre script.
+
+2. Importez le jeu de données surveillance et stockez le dans un objet `df_surv_brut`. Ensuite, importez le jeu de données laboratoire et stockez le dans un objet `df_labo_brut`. 
+
+3. Vérifiez que l'importation s'est bien passée pour les deux data frames (vous avez plusieurs outils à votre disposition : Viewer, dimensions de l'objet, haut et bas du data frame...).
+:::
+
+
+
+## Nettoyage des données (Question 2)
+
+Maintenant que les données sont importées, nous pouvons effectuer quelques vérifications dessus, et les nettoyer.
+
+### Données de surveillance
+
+#### Inspection rapide
+
+Pendant l'étude de cas vous n'aurez peut-être pas le temps d'inspecter *et* nettoyer *toutes* les colonnes. Nous vous proposons donc de vous focaliser sur quelques colonnes clés : `zone_sante`, `semaine`, `totalcas` et `totaldeces`.
+
+::: {.callout-note}
+Si vous revenez sur le tutoriel plus tard ou finissez en avance, n'hésitez pas à vérifier la qualité des autres variables, et à recouper les informations de différentes colonnes. Nous vous renvoyons à la discussion lors de l'étude ou aux documents du module de gestion des données pour des idées de vérifications à effectuer.
+:::
+
+::: {.write}
+Ajoutez une section pour l'exploration et le nettoyage des données de surveillance dans votre script. 
+<br>
+Maintenant, explorez le data frame et répondez aux questions suivantes :
+
+- Quels sont les noms des colonnes ?
+- Combien de provinces y a-t-il dans le jeu de données actuel ? Cela correspond-il à ce que vous attendez ?
+- Combien de zones de santé y a-t-il dans le jeu de données ? Cela correspond-il à ce que vous attendez ?
+- Quel est la plage des semaines ?
+- Quelle est la valeur minimale de `totalcas` ?
+- Quel est le maximum de `totaldeces` ?
+- Remarquez-vous des données manquantes pour les colonnes ci-dessus ? Les chaînes de caractère (rappel : le texte) sont-elles propres ?
+:::
+
+
+#### Nettoyer les chaînes de caractères
+
+Maintenant que nous avons une meilleure idée de l'état des données, nettoyons-les. Nous allons écrire un *pipeline de nettoyage* (ou *chaîne de commandes*) comme dans les modules R précédents (voir votre code à la fin du [module de nettoyage](../sessions_core/04_data_verbs_conditional.qmd)).
+
+:::  {.callout-tip}
+Pour faciliter le débogage  de la chaîne de commandes, **ajoutez et testez les étapes unes par unes** !
+:::
+
+Nous allons améliorer un peu les colonnes de texte afin d'éliminer des problèmes potentiels :
+
+- passer tout en minuscules (homogénéise)
+- supprimer les espaces surnuméraires (éventuels)
+- remplacer `-` et les espaces par `_`.
+
+Peut être que vous n'aurez pas le temps de faire ces étapes pour toutes les colonnes. Pour commencer, choisissez une de ces deux colonnes : `zone_sante` ou `prov` pour appliquer les instructions. Vous pourrez faire les autres plus tard.
+
+:::  {.write}
+Commencez un *pipeline* de nettoyage avec un `mutate()` pour transformer la colonne de votre choix en minuscules.
+:::
+
+Nous allons maintenant voir deux petites fonctions très utiles pour le nettoyage du texte. La première est la fonction `str_squish()` du paquet `{stringr}` ([la page d'aide](https://stringr.tidyverse.org/reference/str_trim.html)), qui supprime les espaces au début ou à la fin des chaînes de caractères, et  les espaces surnuméraires où qu'ils soient : 
+
+```{r}
+#| eval: true
+
+exemples <- c(" Espaces au début et à la fin     ",
+              "Espaces     multiples",
+              " Tous les     problèmes  ")
+
+str_squish(exemples)
+```
+
+L'autre fonction, `str_replace` (également du [paquet `{stringr}`](https://stringr.tidyverse.org/reference/str_replace.html?q=str_replace#null)) remplace un bout de texte dans une chaîne de caractères par un autre bout de texte, sans surprise. L'argument `pattern` accepte le texte à remplacer, et l'argument `replacement` le texte à utiliser comme remplacement.
+
+```{r}
+#| eval: true
+
+str_replace(
+  "HAUT-KATANGA",    # Le texte sur lequel on travaille (peut être une colonne)
+  pattern = "-",     # Le bout à remplacer
+  replacement = "_"  # Le remplacement
+)
+```
+
+:::  {.write}
+Ajoutez des lignes à votre mutate pour, sur la colonne de votre choix :
+
+- Nettoyer les espaces
+- Changer les `-` et les espaces en `_` (deux étapes)
+
+Le début d'au moins une des colonnes devrait ressembler à :
+
+```{r}
+#| eval: true
+#| echo: false
+
+df_surv |> select(pays, province, zone_sante, maladie) |> head()
+```
+
+Stockez le résultat dans un data frame `df_surv`.
+:::
+
+#### Enregistrer les données nettoyées
+
+:::  {.write}
+Utilisez le paquet `{rio}` pour exporter `df_surv` vers un fichier `.rds` appelé `data_ids_2022-20_clean` dans le sous dossier `data/clean` de votre projet.
+:::
+
+### Données labo
+
+Nous allons suivre les mêmes étapes pour le jeu de données laboratoire. Nous nous focaliserons sur les colonnes `zone_sante`, `igm_rougeole` et `igm_rubeole`.
+
+#### Inspection rapide
+
+:::  {.write}
+Inspectez les colonnes mentionnées, et les dimensions du data frame. 
+
+Quelles sont les catégories des colonnes `igm_rougeole` et `igm_rubeole` ? Quel type de nettoyage sera à effectuer dessus ?
+:::
+
+#### Nettoyage et recodage
+
+:::  {.write}
+
+1. Démarrez un nouveau *pipeline* de nettoyage pour les données labo. Choisissez une colonne de texte et passez là en minuscules, puis supprimez les espaces surnuméraires. Enfin, remplacez les espaces et les `-` par `_`.
+
+2. Recodez au moins une des colonnes `igm_rougeole` ou `igm_rubeole` pour que les catégories soient `negatif`, `positif` et `indeterminé`.
+
+3. Stockez la version nettoyée dans un data frame `df_labo`
+
+L'en-tête des colonnes nettoyées devrait maintenant être :
+
+```{r}
+#| eval: true
+#| echo: false
+df_labo |> select(zone_sante, igm_rougeole, igm_rubeole) |> head(10)
+```
+:::
+
+
+::: {.callout-tip collapse=true}
+Vous pouvez utiliser la fonction `case_when()` pour recoder les colonnes contenant les résultats des tests anticorps. 
+:::
+
+
+#### Enregistrer les données nettoyées
+
+:::  {.write}
+Exportez le data frame `df_labo` vers un fichier `.rds` appelé `df_labo_2022-w20_clean` dans le sous dossier `data/clean` de votre projet.
+:::
+
+
+### Données de surveillance complétées
+
+Durant l'inspection des données vous avez du vous rendre compte qu'il y a des semaines manquantes pour certaines ZS dans les données de surveillance. Normalement, vous avez discuté les raisons possibles et des problèmes associés en plénière. Dans ce tutoriel, nous allons fournir le code pour compléter le data frame surveillance pour que toutes les ZS aient toutes les semaines (en faisant l'hypothèse que les semaines manquantes n'ont pas eu de cas ou de décès).
+
+Nous utiliserons la fonction [`complete()` du paquet `{tidyr}`](https://tidyr.tidyverse.org/reference/complete.html) pour ajouter les lignes manquantes et remplir les colonnes contenant des nombres (`totalcas` et `totaldeces`) avec des zéros. A cause des contraintes de temps nous allons vous donner le code, mais quelques exemples et explications seront donnés dans la section [Aller plus loin](#sec-going-further), que vous pourrez lire quand vous aurez le temps.
+
+
+::: {.write}
+1. Commencez un nouveau pipeline à partir de `df_surv` et ne conservez dedans que les colonnes `province`, `zone_sante`, `semaine` et `totalcas`. 
+
+2. Ajoutez une nouvelle étape à votre pipeline et collez le code ci-dessous pour compléter le data frame :
+
+```{r}
+complete(
+  # On travaille sur les combinaisons existantes de province et ZS
+  nesting(province, zone_sante),
+  
+  # On voudra toutes les semaines entre le minimum (1) et le maximum (20) de la colonne semaine
+  semaine = seq(min(semaine, na.rm = TRUE), 
+                max(semaine, na.rm = TRUE)),
+  
+  # Remplir les nouvelles semaines de zeros pour ces colonnes :
+  fill = list(totalcas   = 0, 
+              totaldeces = 0
+  )
+) 
+```
+
+3. Stockez le résultat dans un data frame appelé `df_surv_sem`, qui devrait ressembler à :
+
+```{r}
+#| eval: true
+#| echo: false
+df_surv_sem |> head(10)
+```
+
+4. Exportez ce data frame dans un fichier `.rds` appelé `data_ids_2022-w20_weeks_clean` dans le sous dossier `data/clean` de votre projet.
+:::
+
+
+### Aller plus loin
+
+Vous êtes arrivés au bout de la question 2. Si vous avez terminé en avance, utilisez les fonctions vues pour nettoyer les autres colonnes de texte dans les deux data frames, et recodez les deux colonnes IgM dans les données labo.
+
+Si vous avez encore du temps, inspectez vos données plus avant :
+
+- Affichez la zone de santé pour laquelle les totaux par groupe d'âge sont différents de la colonne total (pour les cas, puis pour les décès)
+- Est-ce qu'il y a une ZS où le nombre de décès est plus élevé que le nombre de cas ?
+- Y a-t-il des lignes dupliquées (entièrement dupliquées, ou plusieurs valeurs pour la zone de santé et la semaine) ?
+- Y a-t-il des nombres de cas que vous estimez aberrants ?
+
+
+Vous pouvez aussi lire les explications sur la fonction `complete()` à la fin du tutoriel et aller explorer la [page d'aide](https://tidyr.tidyverse.org/reference/complete.html) de la fonction.
+
+
+
+## Définir les alertes (Question 4)
+
+### Préparer le jeu de données
+
+Nous allons continuer la préparation des data frames pour l'analyse.
+
+#### Mise en place
+
+::: {.setup}
+1. Si vous n'avez pas eu le temps de nettoyer la zone de santé et la province dans les deux data frames, et les deux colonnes IgM dans le jeu de données labo, vous pouvez importer les jeux de données nettoyés :
+
+```{r}
+#| echo: false
+#| eval: true
+
+downloadthis::download_link(
+  link = 'https://github.com/epicentre-msf/repicentre/raw/main/data/surveillance_module/clean/clean_data_fr.zip',
+  button_label = "Télécharger données propres",
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  self_contained = FALSE
+)
+```
+<br>
+Dézippez l'archive et importez les données dans le sous dossier `data/clean`
+
+2. Créez un script `analyse_surveillance.R` dans le sous dossier `R`. Ajoutez les métadonnées, et une section pour importer les paquets `{here}`, `{rio}`, `{tidyverse}`, `{lubridate}` et `{zoo}`.
+
+3. Ajoutez une section  d'import des données propres et importez les fichiers `.rds` dans R en utilisant la fonction `import()` comme d'habitude (soit vos données nettoyées, soit celles que vous venez de télécharger). Assignez les jeux de données nettoyées aux data frames suivants :
+
+- data_ids_2022-w20_clean --> `df_surv`, 
+- data_ids_2022-w20_clean_weeks --> `df_surv_sem`
+- data_lab_2022-w20_clean --> `df_labo`.
+
+:::
+
+
+#### Sélection des ZS
+
+Pour simplifier le travail nous allons nous focaliser sur quatre zones de santé : Dilolo, Kampemba, Kowe, et Lwamba.
+
+::: {.write}
+Commencez  une nouvelle chaîne de commande à partir du data frame `df_surv_sem`. La première étape est de filtrer les données pour ne conserver que les zones de santé Dilolo, Kampemba, Kowe, et Lwamba.
+:::
+
+
+#### Indicateur hebdomadaire
+
+Notre premier indicateur regarde si *une zone de santé a 20 cas suspects ou plus dans une semaine*. Cet indicateur est dichotomique et ne prend en compte que les données d'une zone de santé pour une semaine donnée.
+
+::: {.write}
+Ajoutez un `mutate()` à votre chaîne pour créer une colonne `cas20` qui contient la valeur `1` si une ZS a 20 cas ou plus cette semaine-là, et `0` sinon.
+
+<br>
+Le début du data frame ressemble à ça :
+
+```{r}
+#| echo: false
+#| eval: true
+
+df_surv_sem |>
+  
+  # Select the 4 health zones
+  filter(zone_sante %in% c("dilolo", "kowe" ,"kampemba", "lwamba")) |>
+  
+  # Order by province, health zone and semaine
+  arrange(province, zone_sante, semaine) |>
+  
+  # Binary indicator for 20 cases (semainely indicator by health zone)
+  mutate(
+    cas20 = case_when(
+      totalcas >= 20 ~ 1, 
+      .default = 0))  |> head(10)
+```
+:::
+
+#### Indicateur cumulé
+
+Notre second indicateur regarde si une zone de santé compte plus de *35 cas suspects cumulés en trois semaines*. C'est un peu plus compliqué à calculer que l'indicateur hebdomadaire : pour chaque zone de santé, il faut calculer la somme des cas par fenêtres de trois semaines, mais les fenêtres ne sont pas fixes, elles *glissent* dans le temps. Nous entrons ici dans le domaine des moyennes/sommes/etc. *mobiles* ou *glissantes*...
+
+##### Somme cumulée
+
+Nous allons utiliser la fonction `rollapply()` du paquet `{zoo}` pour calculer la somme cumulée car elle est polyvalente et puissante. Comme son nom l'indique, la fonction `rollapply()` *applique* une fonction de manière glissante (*roll* peut être traduit ici en "rouler") à un vecteur ou à une colonne d'un data frame. En d'autres termes, cette fonction récapitule pour une colonne donnée les informations de plusieurs *lignes consécutives* d'un data frame avec une fonction de notre choix (somme, moyenne etc.).
+
+Comme nous sommes contraint par le temps, nous allons vous fournir ici le code pour calculer la somme cumulée, et nous vous donnons plus de détails sur la fonction dans la section [Aller plus loin](#sec-going-further) que vous pourrez lire quand vous aurez le temps.
+
+Voici comment utiliser la fonction pour une zone de santé :
+
+```{r}
+#| eval: true
+
+# Crée un mini data frame pour l'exemple
+exemple_df = data.frame(
+  province   = "Haut Katanga",
+  zone_sante = "Dilolo",
+  semaine    = 1:10,
+  totalcas   = rep(1, times = 10))
+
+exemple_df 
+
+exemple_df |> 
+  mutate(cas_cumu = rollapply(
+    data  = totalcas,   # La colonne cible
+    width = 3,          # La taille de la fenêtre  
+    FUN   = sum,        # La fonction à appliquer, ici la somme
+    align = "right",    # On cumule les valeurs passées jusqu'à présent
+    partial = TRUE,     # Les somme partielles sont autorisées
+    na.rm = TRUE        # Argument en plus à passer à la fonction sum()
+  )
+  )
+```
+
+
+##### Par zone de santé
+
+Ok, mais nous voudrions utiliser cette fonction dans un data frame qui contient plusieurs zones de santé, et faire la somme cumulée *par zone de santé*. Ce n'est pas si compliqué : nous allons trier notre jeu de données par zone de santé et semaine, puis utiliser l'argument `.by` dans `mutate()` pour effectuer les actions *par zone de santé*.
+
+::: {.callout-note}
+Rappelez-vous, nous avons déjà vu le `.by` par le passé: nous l'avons utilisé au sein de la fonction `summarize()` lors de la session sur les [tableaux agrégés](../sessions_core/05_summary_table.qmd#sec-stratify) pour faire des résumés *par groupe*.
+
+
+C'est la même idée aujourd'hui, sauf qu'au lieu d'utiliser une fonction qui ne renvoie qu'une seule valeur par groupe (`summarize()`) nous allons utiliser une fonction qui renvoie une valeur par **ligne** (`mutate()`), mais prend en compte les informations du groupe.
+
+Pour rappel de comment `summarize()` + `.by` fonctionne, voici comment calculer le nombre total de cas suspects et décès par province : 
+
+```{r}
+#| eval: true
+df_surv_sem |> 
+  summarize(
+    .by = province,  # Fait les choses PAR province
+    cas_tot   = sum(totalcas, na.rm = TRUE),
+    deces_tot = sum(totaldeces, na.rm = TRUE)
+  )
+```
+:::
+
+::: {.write}
+1. Ajoutez une étape à votre pipeline pour trier les données par province, zone de santé et semaine (dans cet ordre) avec la fonction `arrange()`, qui est une fonction de tri du paquet `{dplyr}` : 
+
+```{r}
+df_surv_sem |>
+  arrange(province, zone_sante, semaine)
+```
+
+2. Ajoutez ensuite le code pour calculer la somme cumulée : 
+
+```{r}
+mutate(
+  .by = c(province, zone_sante),
+  cas_cumu = rollapply(
+    data    = totalcas,   # La colonne cible
+    width   = 3,          # La taille de la fenêtre  
+    FUN     = sum,        # La fonction à appliquer, ici la somme
+    align   = "right",    # On cumule les valeurs passées jusqu'à présent
+    partial = TRUE,       # Les somme partielles sont autorisées
+    na.rm   = TRUE        # Argument en plus à passer à la fonction sum()
+  )
+)
+```
+:::
+
+::: {.callout-important}
+La fonction `rollapply()` considère l'ordre du data frame pour décider où placer sa fenêtre, elle n'a pas de *compréhension* du temps : elle fait juste la somme des valeurs précédentes ou suivantes. 
+
+Par exemple, si l'on veut calculer la somme cumulée en semaine 15, la fonction somme les deux valeurs venant avant dans le data frame à la valeur de la ligne concernée. On veut donc que les deux lignes précédentes contiennent les valeurs des semaines 13 et 14 ! Ça implique que :
+
+1. Le data frame est **ordonné** (ou *trié*) ! Si les deux lignes précédentes ne contiennent pas les semaines 13 et 14 de cette zone de santé, la somme cumulée est fausse.
+2. Le data frame est **complet**. Si la somme en semaine 15 est en fait la somme des semaines 12, 13 et 15 parce que la semaine 14 est manquante, le calcul est faux.
+:::
+
+##### Calculer l'indicateur binaire
+
+Maintenant que la somme cumulée est calculée, on peut calculer l'indicateur dichotomique qui résume les données cumulées pour chaque semaine.
+
+::: {.write}
+Ajoutez une nouvelle étape à votre pipeline pour créer une colonne `cas_cumu35` qui contient `1` si la somme cumulée est supérieure ou égale à 35, et `0` sinon.
+:::
+
+
+#### Indicateur combiné
+
+Calculons finalement l'indicateur combiné qui résume les deux indicateurs précédents.
+
+::: {.write}
+1. Dans le même `mutate()` que précédement, ajoutez une colonne `alerte`, qui est `1` si l'indicateur `cas20` **OU** l'indicateur `cas_cumu35`  est `1` et `0` sinon. Pour le test logique vous devrez utiliser l'opérateur `|` qui représente le **OU** logique. Cet opérateur renvoi `TRUE` si au moins une des conditions est remplie (et donc aussi si le deux sont remplies).
+
+2. Assignez le résultat à un data frame appelé `data_alerte`.
+
+Ce data frame ressemble à ceci (quelques colonnes sont cachées pour l'affichage) :
+
+```{r}
+#| echo: false
+#| eval: true
+data_alerte |>select(-province, -totaldeces) |>
+  head(10)
+```
+
+:::
+
+
+### Zones de santé en alerte
+
+Maintenant que la préparation est finie, nous pouvons *enfin* regarder quelles zones de santé sont en alerte dans notre jeu de données, en particulier à la semaine 20 (les données les plus récentes selon l'étude de cas).
+
+
+::: {.write}
+Affichez les données filtrées pour ne voir que ce qui se passe à la semaine 20. Quelle zones sont en alerte en ce moment ?
+
+Créez un vecteur `zs_alerte` qui contient le nom des zones de santé qui sont en alerte à la semaine 20. Ce vecteur sera utilisé par la suite pour filtrer les données lors de l'analyse.
+:::
+
+
+## Tracer la courbe épidémique (Question 4)
+
+Nous allons à présent tracer la courbe épi pour les zones en alerte à la semaine 20. Nous pouvons réutiliser le code vu lors de la session sur les [courbes épidémiques](../sessions_core/06_epicurves.qmd) : nous utiliserons le paquet `ggplot()` et la fonction `geom_col()` pour créer un diagramme qui montre la distribution des cas par semaine.
+
+Petite nouveauté : par le passé nous avions une liste linaire où une ligne correspond à un patient, donc un cas. Aujourd'hui nous avons des données déjà agrégées par semaine et zone de santé : nul besoin de *compter* le nombre de cas nous même.
+
+
+::: {.write}
+Tracez la courbe épidémique pour *une* des zones de santé en alerte.
+
+<br>
+Le graphe devrait ressembler à ceci (peut être avez-vous choisi l'autre zone) : 
+
+```{r}
+#| echo: false
+#| eval: true
+#| fig-width: 8
+
+data_alerte |>
+  filter(zone_sante == "kampemba") |>
+  ggplot(aes(x = semaine, 
+             y = totalcas)) + 
+  geom_col(fill = "#2E4573") + 
+  theme_bw(base_size = 16) + 
+  labs(x = "Semaine",
+       y = "N cas",
+       title = "Zone de santé de Kampemba (en alerte)")
+```
+:::
+
+Nouvelle fonction utile, la fonction `facet_wrap()` permet de créer plusieurs graphiques d'un seul coup rassemblés en une seule figure. 
+
+```{r}
+# NE PAS EXÉCUTER (PSEUDO-CODE)
+
+données |>
+  ggplot(aes(...)) + 
+  geom_col(...) + 
+  theme_bw(...) + 
+  labs(...) +
+  facet_wrap(vars(zone_sante))   # Un graphe par zone de santé
+```
+
+
+::: {.write}
+Tracez la courbe épidémique pour les deux zones en alerte en ajustant votre code et en utilisant `facet_wrap()`.
+:::
+
+
+Consultez le satellite sur le [faceting](../sessions_extra/faceting.qmd) si vous voulez en savoir plus.
+
+
+## Indicateurs clés (Question 6)
+
+Nous pouvons calculer plus d'indicateurs sur les zones de santé pour nous aider à décider laquelle devrait faire l'objet d'une enquête (vu que vous n'avez pas le temps ni les ressources pour investiguer les deux).
+
+::: {.callout-tip}
+Cette partie utilise les fonctions d'aggrégation vues quand nous avons appris à faire des [tableaux résumés](../sessions_core/05_summary_table.qmd). N'hésitez pas à vous rafraîchir la mémoire si besoin.
+:::
+
+
+### Première semaine en alerte
+
+::: {.write}
+Utilisez la fonction `summarize()` pour afficher les premières semaines où les ZS sont passées en alerte. Quelle zone de santé a été en alerte en premier ?
+:::
+
+
+### Indicateurs des données de surveillance
+
+Reprenons le jeu de données de surveillance avec toutes les colonnes, `df_surv`.
+
+::: {.write}
+1. Ajoutez-lui une colonne `cas_moins_5ans` qui contient le nombre total de cas rapportés ayant moins de cinq ans.
+
+2. Dérivez, pour chaque zone en alerte, les indicateurs suivants, organisés en un seul tableau : 
+
+- Le nombre de cas
+- Le nombre de morts
+- Le nombre de moins de cinq ans
+- La mortalité en pourcentage
+- Le pourcentage de moins de cinq ans.
+
+Le résultat ressemble à : 
+
+```{r}
+#| echo: false
+#| eval: true
+
+df_surv |>
+  filter(zone_sante %in% zone_sante_alertee) |>
+  mutate(cas_moins_5ans = cas011mois + cas1259mois) |>
+  summarise(
+    .by = zone_sante,
+    
+    n_cas     = sum(totalcas, na.rm = TRUE),
+    n_deces   = sum(totaldeces, na.rm = TRUE),
+    n_moins_5 = sum(cas_moins_5ans, na.rm = TRUE),
+    p_moins_5 = 100 * n_moins_5 / n_cas,
+    mortalite = 100 * n_deces / n_cas
+  )
+```
+:::
+
+
+### Indicateurs des données labo
+
+Intéressons-nous à présent aux données de laboratoire pour compléter les indicateurs précédents.
+
+::: {.write}
+Pour chacune des zones en alerte, dérivez les indicateurs suivants :
+
+- Le nombre de patients testés pour la rougeole
+- Le nombre de positifs pour la rougeole
+- La proportion de positifs pour la rougeole
+- Le nombre de patients testés pour la rubéole
+- Le nombre de positifs pour la rubéole
+- La proportion de positifs pour la rubéole
+
+Le résultat devrait ressembler à ceci :
+
+```{r}
+#| echo: false
+#| eval: true
+
+df_labo |>
+  filter(zone_sante %in% zone_sante_alertee) |>
+  
+  summarise(
+    .by = zone_sante,
+    
+    n_test_roug     = sum(!is.na(igm_rougeole)),
+    n_test_roug_pos = sum(igm_rougeole == "positif", na.rm = TRUE),
+    positivite_roug = n_test_roug_pos / n_test_roug,
+    
+    n_test_rub     = sum(!is.na(igm_rubeole)),
+    n_test_rub_pos = sum(igm_rubeole == "positif", na.rm = TRUE),
+    positivite_rub = n_test_rub_pos / n_test_rub
+  )
+```
+:::
+
+::: {.callout-tip}
+Si vous avez du mal avec cette question, rafraîchissez-vous sur les [résumés conditionnels](../sessions_core/05_summary_table.qmd#sec-summary-cond).
+:::
+
+
+## C'est fini !
+
+Bravo, vous êtes venus à bout de ce tutoriel !
+
+```{r}
+#| echo: false
+#| eval: true
+
+downloadthis::download_link(
+  link = 'https://github.com/epicentre-msf/repicentre/blob/main/solutions/extra/surveillance_module_solutions_fr.R',
+  button_label = 'Solutions',
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  self_contained = FALSE
+)
+```
+
+
+## Aller plus loin {#sec-going-further}
+
+### Explications sur `complete()`
+
+Nous allons ici donner quelques éléments pour comprendre un peu les arguments de la fonction `complete()`.
+
+Créons un mini exemple où la zone de santé de Kitenge n'a pas de ligne pour la semaine 2 :
+
+```{r}
+#| eval: true
+
+# Data frame simplifié, avec seulement trois semaines
+exemple_df = data.frame(
+  province   = c("haut_katanga", "haut_katanga", "haut_katanga", "haut_lomami", "haut_lomami"),
+  zone_sante = c("likasi", "likasi", "likasi", "kitenge", "kitenge"),
+  semaine    = c(1, 2, 3, 1, 3),
+  totalcas  = c(2, 1, 3, 1, 2))
+
+exemple_df
+```
+
+C'est problématique si l'on veut calculer une somme cumulée.
+
+Nous pouvons utiliser le code suivant pour compléter toutes les zones de santé pour qu'elles aient toutes les semaines possibles, ici les semaines une à trois : 
+
+```{r}
+#| eval: true
+
+# Complète la semaine manquante à Kitenge
+exemple_df |> 
+  complete(
+    nesting(province, zone_sante), # Par province et zone, les explications arrivent juste après !
+    semaine = seq(1, 3),           # Vecteur de 1 à 3
+    fill = list(totalcas = 0)      # Remplir avec des zéros (sinon, NA par défaut)
+  ) 
+```
+
+Maintenant les deux zones de santé dans les deux provinces ont toutes les semaines possibles.
+
+Pourquoi nous avons écrit `nesting(province, zone_sante)` au lieu de `zone_sante` tout simplement ? C'est qu'il pourrait y avoir deux zones de santé avec le même nom dans des provinces différentes. Nous devons donc tenir compte de la colonne `province`. La fonction `nesting()` indique à la fonction `complete()` de n'utiliser *que les combinaisons existantes* des deux colonnes dans le data frame.
+
+
+::: {.callout-note}
+Petit encart pour voir ce qui se serait passé si nous avions passé les deux colonnes à la fonction `complete()` sans utiliser `nesting()` : la fonction aurait créé *toutes les combinaisons possibles* entre les catégories des colonnes `province` et `zone_sante`, ce qui n'a pas de sens dans le cas présent.
+
+```{r}
+#| eval: true
+
+exemple_df |> 
+  complete(
+    province, zone_sante, 
+    semaine = seq(1, 3),  # Vecteur de 1 à 3
+    fill = list(totalcas = 0)
+  ) 
+```
+:::
+
+
+Comme le jeu de données va être mise à jour chaque semaine, il serait pratique de choisir *automatiquement* la plage des semaines qui doivent être présentes dans les données.
+Pour ça, il suffit de remplacer les valeurs codées *en dur* par la plus petite semaine existante dans les données et la plus grande :
+
+```{r}
+#| eval: true
+
+exemple_df |> 
+  complete(
+    nesting(province, zone_sante),
+    semaine = seq(min(semaine, na.rm = TRUE),   # Vecteur allant du minimum
+                  max(semaine, na.rm = TRUE)),  # au maximum de la colonne `semaine`
+    fill = list(totalcas = 0)
+  ) 
+```
+
+
+### Explications sur `rollaply()` 
+
+Pour calculer la somme cumulée des cas sur trois semaines il nous faut *appliquer* (*apply* en anglais) la fonction `rollaply()` sur des fenêtres glissantes de trois semaines.
+
+```{r}
+#| eval: true
+
+# Vecteur pour les exemples
+exemple_vect <- rep(1, time = 10)
+exemple_vect
+
+rollapply(
+  data  = exemple_vect,
+  width = 3,       # Largeur de la fenêtre
+  FUN   = sum,     # Fonction à appliquer (ici, la somme)
+  align = "right"  # Calcul dans le passé
+)
+```
+
+Nous avons fourni en entrée un vecteur de 10 valeurs et obtenu en sortie un vecteur contenant les sommes. Manifestement, la fonction a fait des choix sur comment traiter les extrémités, et le résultat est plus court que le vecteur d'entrée. Ce dernier point est un problème si l'on veut utiliser la fonction dans un `mutate()`, qui crée des colonnes dans un data frame, où toutes les colonnes ont la même taille.
+
+Il est possible de contrôler le comportement de la fonction aux extrémités : 
+
+- Remplir les lignes pour lesquelles il n'y a pas assez de valeurs dans la fenêtre avec des `NA`
+- Autoriser des calculs partiels (ici, des sommes partielles, en d'autres termes des valeurs ne représentent pas la somme sur *trois* semaines, mais moins).
+
+L'argument `fill = NA` remplit les valeurs manquantes aux extrémités concernées avec des `NA` (dans notre cas, à gauche, vu que l'on a aligné la fenêtre à droite) :
+
+```{r}
+#| eval: true
+rollapply(
+  data  = exemple_vect,
+  width = 3,       # Largeur de la fenêtre
+  FUN   = sum,     # Fonction à appliquer (ici, la somme)
+  align = "right", # Calcul dans le passé
+  fill  = NA
+)
+```
+
+C'est souvent une façon raisonnable de gérer les valeurs aux extrémités où les fenêtres ne sont pas complètes. Néanmoins, dans notre cas, nous pouvons faire mieux. En effet, imaginons qu'il y ait 40 cas lors de la première semaine : même si nous n'avons pas de valeurs pour les deux semaines précédentes, l'alerte devrait être déclenchée ! Nous voudrions donc que la somme cumulée soit calculée *dès la première semaine* pour pouvoir détecter des alertes précoces ! L'argument `partial = TRUE` permet cela :
+
+```{r}
+#| eval: true
+rollapply(
+  data    = exemple_vect,
+  width = 3,        # Largeur de la fenêtre
+  FUN   = sum,      # Fonction à appliquer (ici, la somme)
+  align = "right",  # Calcul dans le passé
+  partial = TRUE    # Autorise les sommes partielles aux extrémités
+  )
+```
+
+C'est mieux dans notre cas d'usage. 
+
+::: {.callout-important}
+Gardez à l'esprit que les deux premières valeurs du vecteur (ou de la colonne) contiennent donc des sommes *partielles*. En conséquence, une *absence d'alerte* dans les deux premières semaines ne veut pas forcement dire qu'il n'y a pas d'alerte.
+:::
+
+Un dernier point : rappelez-vous qu'il faut utiliser `na.rm = TRUE` pour ignorer les valeurs manquantes dans la plupart des opérations arithmétiques dans R.
+
+Si nous avions un vecteur un peu moins complet, nous aurions des problèmes :
+
+```{r}
+#| eval: true
+
+exemple_vect_na <- c(1, 1, 1, NA, 1, 1)
+
+rollapply(
+  data  = exemple_vect_na,
+  width = 3,       # Largeur de la fenêtre
+  FUN   = sum,     # Fonction à appliquer (ici, la somme)
+  align = "right", # Calcul dans le passé
+  partial = TRUE   # Autorise les sommes partielles aux extrémités
+)
+```
+
+Oups. Heureusement, nous pouvons passer l'argument `na.rm = TRUE` à la fonction `rollapply()` pour qu'elle le passe à la fonction `sum()`.
+
+```{r}
+#| eval: true
+
+rollapply(
+  data  = exemple_vect_na,
+  width = 3,       # Largeur de la fenêtre
+  FUN   = sum,     # Fonction à appliquer (ici, la somme)
+  align = "right", # Calcul dans le passé
+  partial = TRUE,  # Autorise les sommes partielles aux extrémités
+  na.rm = TRUE     # Argument en plus non nommé à passer à sum()
+)
+```
+
+
+Enfin, quelques mots sur l'argument `align`. Il définit la position de la fenêtre glissante par rapport à la valeur en train d'être calculée.
+Par défaut la fenêtre est centrée autour de la valeur à calculer : la valeur calculée *i* est la somme des valeurs *i-1* (la valeur de la ligne précédente) et la valeur *i+1* (la valeur de la ligne suivante).
+
+Exemples des trois alignements (en mettant des valeurs manquantes aux extrémités pour voir plus facilement ce qui se passe) :
+
+
+```{r}
+#| eval: true
+
+# Alignement à gauche : la valeur est la somme des valeurs suivantes dans le data frame
+rollapply(data  = c(5, 10, 1, 2, 5, 10),
+          width = 3, 
+          FUN   = sum,
+          align = "left", 
+          fill = NA)
+
+# Alignement centré : somme des valeurs de chaque côté
+rollapply(data  = c(5, 10, 1, 2, 5, 10),
+          width = 3, 
+          FUN   = sum,
+          align = "center",
+          fill = NA)  # The default
+
+# Alignement à droite : somme des valeurs précédentes dans le data frame
+rollapply(data  = c(5, 10, 1, 2, 5, 10),
+          width = 3, 
+          FUN   = sum,
+          align = "right",
+          fill = NA)
+```
+
+Dans notre cas, nous voulons que la valeur pour une semaine donnée reflète cette semaine et les deux semaines précédentes, donc nous utilisons l'argument `align = "right"`, pour calculer *dans le passé* (si le data frame est trié dans l'ordre chronologique pour chaque zone de santé !).
+
+
+::: {.callout-tip}
+Dans ce tutoriel nous avons appliqué la fonction `sum()` à des fenêtres de trois semaines pour calculer une *somme cumulée*. Mais le code peut être facilement modifié pour calculer une *moyenne glissante* sur une fenêtre de votre choix !
+:::
+
+### Formatage  des pourcentages
+
+La fonction `percent()` du paquet `{scales}` formate une valeur ou un vecteur de valeurs en pourcentages.
+
+```{r}
+scales::percent(0.8556)
+```
+
+Il y a un argument `accuracy` pour contrôler le nombre de décimales à afficher : 
+
+```{r}
+scales::percent(0.8556,
+                accuracy = 0.1)
+```
+
+Vous pouvez fournir un vecteur (ou une colonne !) de proportions à la fonction pour afficher les valeurs en pourcentages, ce qui est plus lisible dans un tableau résumé. 
+
+::: {.callout-important}
+La colonne ainsi crée *n'est plus* une colonne numérique : l'ajout du signe `%` transforme la colonne en texte. Vous ne pourrez donc plus effectuer d'opérations arithmétiques dessus.
+:::
