@@ -2,4 +2,69 @@
 title: "Ressources"
 ---
 
-Cette page contiendra (éventuellement) des ressources externes pour poursuivre votre parcours d'apprentissage du R.
+Cette page contient une liste non exhaustive de ressources pour apprendre le langage R, en mettant l'accent sur l'épidémiologie dans les contextes humanitaires. Attention, le plupart de ces ressources sont en anglais, mais une section spécifique est consacrée aux ressources en français. Notez que certaines ressources, comme le manuel « [The Epidemiologist R Handbook](https://www.epirhandbook.com/fr/index.fr.html) », sont également disponibles en plusieurs langues, dont le français. 
+
+**Vous souhaitez ajouter d'autres ressources ?** Vos suggestions et contributions sont les bienvenues ! Veuillez [ouvrir un issue](https://github.com/epicentre-msf/repicentre/issues) ou nous contacter.
+
+<br>
+
+#### Ressources en français
+
+- [Introduction à R et au tidyverse](https://juba.github.io/tidyverse/). Une introduction claire et progressive à R et au tidyverse.
+
+- [Analyse-R](https://larmarange.github.io/analyse-R/). Guide complet couvrant la manipulation de données, les graphiques, les statistiques et les modèles.
+
+- [R et espace](https://rcarto.github.io/espace/). Cartographie et analyse spatiale avec R. Idéal pour la visualisation géographique de données de terrain.
+
+- [Guide-R](https://larmarange.github.io/guide-R/). Un guide plus récent et complémentaire à Analyse-R, avec une approche moderne du tidyverse.
+
+<br>
+
+#### Programmation R
+
+- [DataCamp — Introduction à R](https://www.datacamp.com/courses/free-introduction-to-r). Introduction interactive et adaptée aux débutants à R.
+
+- [Posit Cloud Primers](https://posit.cloud/learn/primers). Tutoriels R interactifs accessibles via un navigateur, couvrant les bases jusqu'à la visualisation des données et l'itération.
+
+- [R pour data science](https://r4ds.hadley.nz/). Une bonne introduction à tidyverse, couvrant l'importation, la transformation,
+  la visualisation et la communication des données.
+
+- [R avancé](https://adv-r.hadley.nz/). Une exploration approfondie des mécanismes internes et des modèles de programmation de R.
+
+<br>
+
+#### Thème : Épidémiologie et statistiques
+
+- [The Epidemiologist R Handbook](https://www.epirhandbook.com/fr/index.fr.html). Une excellente ressource pour l'épidémiologie appliquée en R. Rédigé à l'intention des épidémiologistes de terrain, cet ouvrage couvre l'enquête sur les épidémies, l'analyse d'enquêtes, la cartographie SIG, la production automatisée de rapports, et bien plus encore. Disponible en plusieurs langues.
+
+- [Introduction à R pour la science des données de santé](https://argoshare.is.ed.ac.uk/healthyr_book/). Axé sur les données de santé, ce guide aborde notamment l'analyse de survie et la régression logistique.
+
+- [Inférence statistique via data science](https://moderndive.com/). Une introduction en douceur à la pensée statistique avec R et le tidyverse.
+
+- [Le Github MSF-Epicentre](https://github.com/epicentre-msf). Fournit un certain nombre de paquets accessibles au public, adaptés aux besoins spécifiques des épidémiologistes de MSF.
+
+- [`{sitrep}`](https://github.com/R4EPI/sitrep). Développé par R4EPIs / MSF. Modèles et fonctions pour les rapports de situation dans le cadre d'épidémies et d'enquêtes.
+
+- [Projet R4EPIs](https://r4epis.netlify.app/). Initiative de MSF et RECON proposant des modèles R standardisés et des tutoriels pour l'épidémiologie de terrain : enquêtes sur les épidémies, enquêtes de mortalité et enquêtes sur la couverture vaccinale.
+
+<br>
+
+#### Thème : Enquêtes et évaluations des besoins
+
+- [`{srvyr}`](https://cran.r-project.org/package=srvyr). Outils d'analyse de type Tidyverse pour les données d'enquête complexes (échantillonnage par grappes, stratification, pondération). Particulièrement utile pour les enquêtes nutritionnelles SMART, les enquêtes de mortalité et autres évaluations humanitaires. Ce package est basé sur [`{survey}`](https://cran.r-project.org/package=survey).
+
+- [Exploration de l'analyse de données d'enquête complexes à l'aide de R](https://tidy-survey-r.github.io/tidy-survey-book/). Un ouvrage utile offrant un aperçu approfondi de l'utilisation de `{srvyr}` et `{survey}`
+
+<br>
+
+#### Thème : GIS et cartographie
+
+- [Géocomputation avec R](https://r.geocompx.org/). Guide complet sur l'analyse des données spatiales et la cartographie dans R.
+
+<br>
+
+#### Thème : Rapports et reproductibilité
+
+- [Quarto](https://quarto.org/docs/guide/) — Un format de texte enrichi bien adapté à la création de rapports reproductibles et automatisés. Quarto prend en charge les rapports, les sites web et même les tableaux de bord simples.
+
+
