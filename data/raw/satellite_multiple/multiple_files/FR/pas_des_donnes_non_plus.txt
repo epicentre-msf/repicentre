@@ -1,1 +1,0 @@
-Faites comme si je n'étais pas là, je suis là pour rajouter du défi quand vous apprendrez file.paths() dans le tutoriel.
