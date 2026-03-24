@@ -599,19 +599,6 @@ df_linelist |>
   )
 ```
 
-6. **Corriger** : quelqu'un a tenté de corriger le code ci-dessus, mais a commis quelques erreurs (vicieuses, elles n'empêchent pas la commande de s'exécuter, mais le résultat est faux !). Essayez de les corriger. Vous savez que vous avez tout corrigé quand vous obtenez le même résultat qu'auparavant.
-
-```{r}
-df_linelist |> 
-  mutate(groupe_age2 = case_when(
-    age_mois <= 6 ~ "< 6 mois",
-    age_mois < 11 ~ "6 - 11 mois",
-    age_ans < 5 ~ "12 - 59 mois",
-    age_ans <= 15 ~ "5 - 14 ans",
-    age_ans > 16 ~ "15+ ans",
-    .default = "Inconnu")
-  )
-```
 
 
 ### Défis

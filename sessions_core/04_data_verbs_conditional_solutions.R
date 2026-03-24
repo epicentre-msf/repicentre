@@ -106,18 +106,6 @@ df |>
     .default = "Unknown")
   )
 
-# 6. Fix
-
-df |> 
-  mutate(age_group2 = case_when(
-    age_months < 6 ~ "< 6 months",
-    age_months < 12  ~ "6 - 11 months",
-    age_months < 60 ~ "12 - 59 months",
-    age_years < 15 ~ "5 - 14 years",
-    age_years >= 15 ~ "15 + years",
-    .default = "Unknown")
-  )
-    
 
 ## CHALLENGE
 # 1.

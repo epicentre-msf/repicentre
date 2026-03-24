@@ -122,18 +122,6 @@ df_linelist |>
     .default = "Inconnu")
   ) 
 
-# 6. Résoudre les problèmes
-
-df_linelist |> 
-  mutate(groupe_age2 = case_when(
-    age_mois < 6 ~ "< 6 mois",
-    age_mois < 12  ~ "6 - 11 mois",
-    age_mois < 60 ~ "12 - 59 mois",
-    age_ans < 15 ~ "5 - 14 ans",
-    age_ans >= 15 ~ "15+ ans",
-    .default = "Inconnu")
-  )
-
 ## DÉFI -------------------------------------------------------------------------
 # 1.
 df_linelist |> 
