@@ -14,9 +14,9 @@ listing:
 ---
 <div style="text-align: justify;">
 
-Welcome to the main sessions !
+Welcome to the main sessions ! They can be followed in order to get a baseline level in R. The series assumes **no prior experience in R** and is suitable for beginners. 
 
-They can be followed in order to get a baseline level in R. The series assumes **no prior experience in R** and is suitable for beginners. 
+These sessions will follow a case study focused on measles in Chad.
 
 ## Context  
 <div style="float: right; margin-left: 1rem; width: 300px;">
@@ -41,15 +41,14 @@ Between August 2022 and November 2023, a (simulated) measles outbreak has been r
 
 The teams on the ground have gathered data on suspected measles cases from various health facilities in the region and compiled this information into a linelist. Now, they are seeking an epidemiologist to analyze this data. _This is where you come into the picture_.
 
-Your mission will focus on the following core objectives:
+Following the sessions below, your mission will focus on the following core objectives:
 
 1. _Clean and standardize_ the linelist to ensure the data is ready for further analysis.
 2. Generate _descriptive tables and summaries_ to explore the Person dynamics of this outbreak.
 3. Create simple yet _comprehensive plots_ to visualize the Time dynamics of the outbreak, along with key epidemiological characteristics.
 
-You can download the linelist as an `.xlsx` file right here: [Download the data](downloads/Moissalla-measles-linelist-EN.xslx){download="Moissalla-measles-linelist-EN.xslx"}
 
-_Time is of the essence, so let’s get started!_
+**Time is of the essence, so let’s get started!** 
 
 ---
 </div>
