@@ -541,20 +541,6 @@ df |>
   ) 
 ```
 
-6. **Fix**: someone tried to fix the above code but made mistakes (the code runs but the output is wrong). Can you fix them? You know you are done when you have the same counts as before.
-
-```{r}
-df |> 
-  mutate(age_group2 = case_when(
-    age_months <= 6 ~ '< 6 months',
-    age_months < 11 ~ '6 - 11 months',
-    age_years < 5 ~ '12 - 59 months',
-    age_years <= 15 ~ '5 - 14 years',
-    age_years > 16 ~ '15 + years',
-    .default = 'Unknown')
-  )
-```
-
 
 ### Challenge
 
