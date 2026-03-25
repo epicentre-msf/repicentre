@@ -17,7 +17,7 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 library(rio)    
 library(here)  
 
-path_data_raw <- here("data", "raw", "satellite_multiple")
+path_data_raw <- here("data", "satellite_multiple")
 
 lab_data_list <- import_list(here(path_data_raw, "multiple_sheets",
                                    "msf_laboratory_moissala_2023-09-24_first.xlsx")) 
