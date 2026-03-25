@@ -107,10 +107,14 @@ The object `lab_data_list` is a **list** that contains several data frames (one 
 
 ```{r}
 #| eval: true
+# Structure of the list:
+str(lab_data_list)  
 
-str(lab_data_list)     # Structure of the list
-length(lab_data_list)  # Nb of items in the list
-names(lab_data_list)   # Name of the items of the list
+# Nb of items in the list:
+length(lab_data_list)  
+
+# Name of the items of the list:
+names(lab_data_list)   
 ```
 
 You can also go and click on the list [in the Environment panel](../sessions_core/01_introduction.qmd#sec-envt) to inspect its structure, and open it in the Viewer, as we did for data frames. 
@@ -133,7 +137,7 @@ head(lab_data_list$positive)
 head(lab_data_list[[1]]) 
 
 # Access by position the first element of the list:
-head(lab_data_list[1])
+lab_data_list[1]
 ```
 
 
@@ -284,7 +288,7 @@ list.files(path = path_mult, pattern = "moissala_linelist")
 # All file names that contain "msf_ll":
 list.files(path = path_mult, pattern = "msf_ll")  # Nothing matches
 
-# All the files that contain "doc"
+# All the files that contain "doc":
 list.files(path = path_mult, pattern = "doc")
 ```
 

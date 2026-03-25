@@ -104,13 +104,13 @@ L'objet `lab_data_list` est une **liste** qui contient plusieurs data frames (un
 
 ```{r}
 #| eval: true
-# Structure de la liste:
+# Structure de la liste :
 str(lab_data_list)     
 
-# Nb d'éléments de la liste:
+# Nb d'éléments de la liste :
 length(lab_data_list)  
 
-# Nom des éléments de la liste:
+# Nom des éléments de la liste :
 names(lab_data_list)   
 ```
 
@@ -128,13 +128,13 @@ Vous pouvez accéder aux éléments d'une liste avec [ces commandes]{.hovertip b
 ```{r}
 #| eval: true
 
-# Accéder à l'élément par son nom
+# Accéder à l'élément par son nom :
 head(lab_data_list$positive)  
 
- # Accéder au contenu du premier élément
+# Accéder au contenu du premier élément :
 head(lab_data_list[[1]])  
 
- # Accéder au premier élément de la liste (par position)
+# Accéder au premier élément de la liste (par position) :
 lab_data_list[1]  
 ```
 
