@@ -32,11 +32,28 @@ lab_data_list <- import_list(here(path_data_raw, "multiple_sheets",
 
 ## Setup
 
-We expect you to be working in the course project. You can add this tutorial to the `import_data.R` script that you created in the [Import data core session](../sessions_core/02_import_data.qmd), or create a new script. 
+This satellite builds on the [Import data core session](../sessions_core/02_import_data.qmd), so we expect you to be working in the course project. You can add the commands from this tutorial to the `import_data.R` script that you created in that session, or create a new script. 
 
 
 ::: {.setup}
-If you are working in a new script, add metadata about it at the top and load the `{rio}` and `{here}` packages. Then create a `path_data_raw` object that points to the directory `data / raw` of the course folder.
+Download the zip folder containing data and save it in the `data/raw` subfolder of your course project. If you do not have a course project, either go to the [Import data core session](../sessions_core/02_import_data.qmd) to download it or create a RStudio project in a folder, and make sure you have a `data/raw` subfolder to store the data.
+
+```{r}
+#| echo: false
+#| eval: true
+
+downloadthis::download_link(
+  link = 'https://github.com/epicentre-msf/repicentre/raw/main/data/satellite_multiple.zip',
+  button_label = 'Data',
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  self_contained = FALSE
+)
+```
+
+
+
+If you are working in a new script, add metadata about it at the top and load the `{rio}` and `{here}` packages. Then create a `path_data_raw` object that points to the directory `data/raw` of the course folder.
 :::
 
 
@@ -69,7 +86,7 @@ The `import_list()` function can import all the sheets from an [Excel file]{.hov
 ```{r}
 # PSEUDO CODE -- DO NOT RUN
 
-# returns a list of data frames
+# Returns a list of data frames:
 import_list(here(path_data_raw, "example_linelist.xlsx")) 
 ```
 
@@ -101,17 +118,22 @@ You can also go and click on the list [in the Environment panel](../sessions_cor
 ::: {.look}
 The View is a bit different. Click on the buttons you see and see what happens.
 
-**Hint** There are buttons that you can click on both on the left and right of the Viewer pane.
+
+**Hint:** There are buttons that you can click on both on the left and right of the Viewer pane, but the ones on the right appear only when you hover your mouse over a line.
 :::
 
 You can access elements of the list with [these commands]{.hovertip bs-toggle='tooltip' bs-title="We added the head() function to shorten the output, but you can remove it to print the whole elements."}
 
 ```{r}
 #| eval: true
+# Access by name:
+head(lab_data_list$positive)  
 
-head(lab_data_list$positive)  # Access by name
-head(lab_data_list[[1]])   # Access the content of the first element
-lab_data_list[1]   # Access by position the first element of the list
+# Access the content of the first element:
+head(lab_data_list[[1]]) 
+
+# Access by position the first element of the list:
+head(lab_data_list[1])
 ```
 
 
@@ -131,11 +153,13 @@ import_list(
 ```
 
 ::: {.write}
-Use the `import_list()` function to import all the sheets of `msf_laboratory_moissala_2023-09-24_first.xlsx`in one go, and store it in an object called `lab_data`, which is a *single data frame* containing all the data.
-:::
+Use the `import_list()` function to import all the sheets of `msf_laboratory_moissala_2023-09-24_first.xlsx` in one go, and store it in an object called `lab_data`, which is a *single data frame* containing all the data.
 
 
 You may use the `rbind_label = ` argument and provide a string for the column name, or not and see what happens.
+:::
+
+
 
 
 ### Slightly More Messy Sheets
@@ -202,7 +226,7 @@ import_list(vector_paths) # returns a list
 
 
 ::: {.look}
-Go to the sub-folder `data / raw /satellite_multiple/multiple_files/EN`. Open the files to check their content. Would it make sense to concatenate the data together at import in this case?
+Go to the sub-folder `data / raw /satellite_multiple/multiple_files/EN`. Open the Excel files to check their content. Would it make sense to concatenate the data together at import in this case?
 :::
 
 ::: {.write}
@@ -244,7 +268,7 @@ Remember that thanks to `{here}` and relative paths within the course directory,
 
 Now, this is nice and all but there are those pesky files that are not Excel which we would like to avoid. An easy way is to use the `pattern` argument of `list.files()`. It takes a string of text that is matched to the names of files, to keep only the ones you want.
 
-The `pattern` argument accepts regular expressions, or regex for short, which are [*way* out of our scope here]{.hovertip bs-toggle='tooltip' bs-title="Regular expressions have their own syntax that is not limited to R. They are super powerful but also hard to use so if you are new to R you should probably wait a bit before diving into them."}. Here we are only giving you pointers to create a simple pattern.
+The `pattern` argument accepts regular expressions, or regex for short, which are [*way* out of our scope here]{.hovertip bs-toggle='tooltip' bs-title="Regular expressions have their own syntax that is not limited to R. They are super powerful but also hard to use so if you are new to R you should probably wait a bit before diving into them."}. Here we are only giving you pointers to create a simple _pattern_.
 
 The function will return file names that match the pattern: 
 
