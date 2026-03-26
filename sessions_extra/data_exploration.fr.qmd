@@ -15,7 +15,8 @@ library(here) # for filepaths
 library(rio)  # import and export files
 library(dplyr)
 
-df_linelist <- import(here::here("data", "raw", "moissala_linelist_FR.xlsx"))
+df_linelist <- import(file = here('data', 'scenario', 'TCH_measles',
+                                  'raw', 'moissala_linelist_FR.xlsx'))
 ```
 
 Objectifs
