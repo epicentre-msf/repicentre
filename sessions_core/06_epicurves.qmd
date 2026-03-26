@@ -29,7 +29,6 @@ df_cases <- df_linelist |>
 
 # Data for our examples
 df_hospital <- df_linelist |>
-  mutate(date_admission = ymd(date_admission)) %>% 
   count(date_admission, 
         name = 'patients') |>
   tidyr::drop_na(date_admission)
@@ -74,7 +73,7 @@ This session will use the clean version of the Moissala measles linelist data.
 #| eval: true
 
 downloadthis::download_link(
-  link = 'https://github.com/epicentre-msf/repicentre/raw/main/data/FETCHR.zip',
+  link = 'https://github.com/epicentre-msf/repicentre/raw/main/data/scenarios/TCH_measles/mandoul_measles.zip',
   button_label = ' Course Folder',
   has_icon = TRUE,
   icon = "fa fa-save",

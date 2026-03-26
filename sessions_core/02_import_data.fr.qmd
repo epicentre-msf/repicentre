@@ -44,7 +44,7 @@ Si ce n'est pas déjà fait, téléchargez le dossier du cours décompressez-le.
 #| eval: true
 
 downloadthis::download_link(
-  link = 'https://github.com/epicentre-msf/repicentre/raw/main/data/FETCHR.zip',
+  link = 'https://github.com/epicentre-msf/repicentre/raw/main/data/scenarios/TCH_measles/mandoul_rougeole_starter.zip',
   button_label = ' Dossier du cours',
   has_icon = TRUE,
   icon = "fa fa-save",

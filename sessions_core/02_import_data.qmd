@@ -44,7 +44,7 @@ If not done already, download and unzip the course folder. Save the uncompressed
 #| eval: true
 
 downloadthis::download_link(
-  link = 'https://github.com/epicentre-msf/repicentre/raw/main/data/FETCHR.zip',
+  link = 'https://github.com/epicentre-msf/repicentre/raw/main/data/scenarios/TCH_measles/mandoul_measles_starter.zip',
   button_label = ' Course Folder',
   has_icon = TRUE,
   icon = "fa fa-save",
