@@ -19,7 +19,7 @@ library(scales)
 
 
 # The data
-df_linelist <- rio::import(file = here::here('data', 'scenario', 'TCH_measles',
+df_linelist <- rio::import(file = here::here('data', 'scenarios', 'TCH_measles',
                                              'clean', 'moissala_linelist_clean_FR.rds')) |>
   mutate(
     
