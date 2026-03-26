@@ -16,7 +16,8 @@ library(here)
 library(tidyverse)
 
 # Import data
-df_linelist <- rio::import(here("data", "clean", "moissala_linelist_clean_FR.rds")) |> 
+df_linelist <- rio::import(file = here::here('data', 'scenario', 'TCH_measles',
+                                             'clean', 'moissala_linelist_clean_EN.rds')) |>
   as_tibble()
 ```
 
