@@ -1,7 +1,6 @@
 ---
 title: Import Multiple Files/Sheets
 description: Learn how to import multiple sheets from an Excel file, or several Excel files.
-date: last-modified
 image: ../img/extra/import_multiple/logo.svg
 categories:
   - Satellite
