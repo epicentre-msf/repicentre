@@ -19,8 +19,8 @@ library(scales)
 
 
 # The data
-df_linelist <- rio::import(here::here("data", "clean",
-                                      "moissala_linelist_clean_FR.rds")) |> 
+df_linelist <- rio::import(file = here::here('data', 'scenario', 'TCH_measles',
+                                             'clean', 'moissala_linelist_clean_FR.rds')) |>
   mutate(
     
     # Week ISO numbers
@@ -57,7 +57,7 @@ df_linelist |>
   geom_col(fill = '#2E4573') +
   labs(x = "Date de début des symptomes",
        y = "Patients",
-       title = "Cas de rougeole dans la région de mandoul (Tchad)",
+       title = "Cas de rougeole dans la région de Mandoul (Tchad)",
        caption = "Données fictives") +
   theme_classic(base_size = 16) 
 ```
