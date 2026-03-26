@@ -65,7 +65,8 @@ library(here)
 library(rio)
 library(dplyr)
 
-df_linelist <- import(here::here("data", "raw", "moissala_linelist_EN.xlsx"))
+df_linelist <- import(file = here('data', 'scenarios', 'TCH_measles',
+                                  'raw', 'moissala_linelist_EN.xlsx'))
 
 ```
 

@@ -16,7 +16,8 @@ library(here)
 library(tidyverse)
 
 # Import data
-df_linelist <- rio::import(here("data", "clean", "moissala_linelist_clean_FR.rds")) |> 
+df_linelist <- rio::import(file = here::here('data', 'scenarios', 'TCH_measles',
+                                             'clean', 'moissala_linelist_clean_FR.rds')) |>
   as_tibble()
 ```
 
@@ -39,7 +40,7 @@ Cette session utilise une version nettoyée de la liste linéaire rougeole à Ma
 #| eval: true
 
 downloadthis::download_link(
-  link = 'https://github.com/epicentre-msf/repicentre/raw/main/data/FETCHR.zip',
+  link = 'https://github.com/epicentre-msf/repicentre/raw/main/data/scenarios/TCH_measles/mandoul_rougeole.zip',
   button_label = "Linelist rougeole nettoyée",
   has_icon = TRUE,
   icon = "fa fa-save",

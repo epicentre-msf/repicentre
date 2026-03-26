@@ -16,7 +16,8 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 
 library(tidyverse)
 
-df_brut <- rio::import(here::here('data', 'raw', 'moissala_linelist_FR.xlsx'))
+df_brut <- rio::import(file = here::here('data', 'scenarios', 'TCH_measles',
+                                         'raw', 'moissala_linelist_FR.xlsx'))
 ```
 
 
@@ -42,7 +43,7 @@ Nous utiliserons la linelist avec des données brutes que vous avez importée lo
 #| eval: true
 
 downloadthis::download_link(
-  link = 'https://github.com/epicentre-msf/repicentre/raw/refs/heads/main/data/raw/moissala_linelist_FR.xlsx',
+  link = 'https://github.com/epicentre-msf/repicentre/raw/refs/heads/main/data/scenarios/TCH_measles/raw/moissala_linelist_FR.xlsx',
   button_label = 'Télécharger les données',
   has_icon = TRUE,
   icon = "fa fa-save",
