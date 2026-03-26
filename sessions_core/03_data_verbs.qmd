@@ -16,7 +16,8 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 
 library(dplyr)
 
-df_raw <- rio::import(here::here('data', 'raw', 'moissala_linelist_EN.xlsx'))
+df_raw <- rio::import(file = here::here('data', 'scenario', 'TCH_measles',
+                                        'raw', 'moissala_linelist_EN.xlsx'))
 ```
 
 
@@ -43,7 +44,7 @@ This session will work with the **raw** Moissala linelist data, which can be dow
 #| eval: true
 
 downloadthis::download_link(
-  link = 'https://github.com/epicentre-msf/repicentre/raw/refs/heads/main/data/raw/moissala_linelist_EN.xlsx',
+  link = 'https://github.com/epicentre-msf/repicentre/raw/refs/heads/main/data/scenario/TCH_measles/raw/moissala_linelist_EN.xlsx',
   button_label = ' Download Data',
   has_icon = TRUE,
   icon = "fa fa-save",
