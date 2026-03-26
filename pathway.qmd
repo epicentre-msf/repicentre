@@ -24,11 +24,11 @@ These sessions will follow a case study focused on measles in Chad.
   <p style="font-size: 0.5em; color: gray;width: 90%;">MSF presence in Chad in 2023.</p>
 </div>
 
-[Médecins Sans Frontières](https://www.msf.org/){.a-red} has been present in Chad since 1981 and still operates in several parts of the country where our teams provide medical care and assistance to displaced people and local communities, who often struggle with a lack of food, in the east and the south of the country.
+[Médecins Sans Frontières](https://www.msf.org/) has been present in Chad since 1981 and still operates in several parts of the country where our teams provide medical care and assistance to displaced people and local communities, who often struggle with a lack of food, in the east and the south of the country.
 
 We work to prevent or help mitigate the seasonal peaks of malnutrition and malaria among children, including across the Sahel region in Adre, on the border with Sudan, which is an area marked by violence and displacement. After the 2023 resurgence of violence in neighbouring Darfur (Sudan), MSF has launched a large-scale emergency response to assist the thousands of refugees arriving in eastern Chad. We also improve healthcare for women and children, and work on preventing and responding to measles outbreaks. 
 
-You can find more information about [MSF activities in Chad here](https://www.msf.org/chad){.a-red}.
+You can find more information about [MSF activities in Chad here](https://www.msf.org/chad).
 
 ## Your mission
 
@@ -52,3 +52,5 @@ Following the sessions below, your mission will focus on the following core obje
 
 ---
 </div>
+
+

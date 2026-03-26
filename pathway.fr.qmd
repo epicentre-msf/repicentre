@@ -14,9 +14,9 @@ listing:
 ---
 <div style="text-align: justify;">
 
-Bienvenue dans les sessions principales !
+Bienvenue dans les sessions principales ! Elles peuvent être suivies dans l'ordre pour obtenir un niveau de base en R. La série ne nécessite **aucune expérience préalable en R** et convient aux débutants.
 
-Elles peuvent être suivies dans l'ordre pour obtenir un niveau de base en R. La série ne nécessite **aucune expérience préalable en R** et convient aux débutants.
+Ces sessions s'appuieront sur une étude de cas consacrée à la rougeole au Tchad.
 
 ## Contexte  
 <div style="float: right; margin-left: 1rem; width: 300px;">
@@ -24,11 +24,11 @@ Elles peuvent être suivies dans l'ordre pour obtenir un niveau de base en R. La
   <p style="font-size: 0.5em; color: gray;width: 90%;">Présence de MSF au Tchad en 2023.</p>
 </div>
 
-[Médecins Sans Frontières](https://www.msf.org/){.a-red} est présent au Tchad depuis 1981 et continue d'opérer dans plusieurs régions du pays où nos équipes fournissent des soins médicaux et une assistance aux personnes déplacées et aux communautés locales, qui sont souvent confrontées à un manque de nourriture, dans l'est et le sud du pays.
+[Médecins Sans Frontières](https://www.msf.org/) est présent au Tchad depuis 1981 et continue d'opérer dans plusieurs régions du pays où nos équipes fournissent des soins médicaux et une assistance aux personnes déplacées et aux communautés locales, qui sont souvent confrontées à un manque de nourriture, dans l'est et le sud du pays.
 
 Nous travaillons pour prévenir ou atténuer les pics saisonniers de malnutrition et de paludisme chez les enfants, notamment dans la région du Sahel à Adré, à la frontière avec le Soudan, une zone marquée par la violence et les déplacements de population. Après une résurgence de violence en 2023 dans le Darfour voisin (Soudan), MSF a lancé une réponse d'urgence à grande échelle pour assister les milliers de réfugiés arrivant dans l'est du Tchad. Nous améliorons également les soins de santé pour les femmes et les enfants, et travaillons à la prévention et à la réponse aux épidémies de rougeole.
 
-Vous pouvez trouver plus d'informations sur [les activités de MSF au Tchad ici](https://www.msf.org/chad){.a-red}.
+Vous pouvez trouver plus d'informations sur [les activités de MSF au Tchad ici](https://www.msf.org/chad).
 
 ## Votre mission
 
@@ -41,15 +41,13 @@ Entre août 2022 et novembre 2023, une épidémie de rougeole (simulée) a ravag
 
 Les équipes sur le terrain ont collecté des données sur les cas suspects de rougeole dans divers établissements de santé de la région et ont compilé ces informations dans une liste de cas. Maintenant, elles recherchent un épidémiologiste pour analyser ces données. _C'est là que vous entrez en scène_.
 
-Votre mission se concentrera sur les objectifs principaux suivants :
+En suivant les tutoriels ci-dessous, votre mission se concentrera sur les objectifs principaux suivants :
 
 1. _Nettoyer et standardiser_ la liste de cas pour s'assurer que les données sont prêtes pour une analyse approfondie.
 2. Générer des _tableaux descriptifs et des résumés_ pour explorer la dynamique des Personnes de cette épidémie.
 3. Créer des _graphiques simples mais complets_ pour visualiser la dynamique Temporelle de l'épidémie, ainsi que les caractéristiques épidémiologiques clés.
 
-Vous pouvez télécharger la liste de cas au format `.xlsx` ici : [Télécharger les données](downloads/Moissalla-measles-linelist-FR.xslx){download="Moissalla-measles-linelist-FR.xslx"}
-
-_Le temps presse, alors commençons !_
+**Le temps presse, alors commençons !**
 
 ---
 </div>
