@@ -49,7 +49,7 @@ Cet encadré vous demande **d'observer ou étudier** quelque chose.
 **Exemple :** Inspectez l'interface de RStudio.
 :::
 
-Au cours de ces exercices, vous rencontrerez certainement des **erreurs**, qui se produisent lorsque R n'est pas en mesure d'exécuter une commande. Cela peut se produire pour de nombreuses raisons : une faute d'orthographe dans le nom d'un objet ou d'une fonction, le mauvais type de données fournis etc. Lorsqu'une erreur se produit, R **arrête** les calculs en cours et affiche un message expliquant ce qu'il s'est passé. **Il est tout à fait normal d'avoir des erreurs, ça arrive tout le temps, à tous les programmeurs, qu'ils soient novices ou experts**. Comme lorsque vous apprenez une langue (non informatique), vous vous améliorerez avec la pratique, en faisant des erreurs et en apprenant à les corriger.
+Au cours de ces exercices, vous rencontrerez certainement des **erreurs**, qui se produisent lorsque R n'est pas en mesure d'exécuter une commande. Les raisons sont multiples : une faute d'orthographe dans le nom d'un objet ou d'une fonction, le mauvais type de données fournis etc. Lorsqu'une erreur se produit, R **arrête** les calculs en cours et affiche un message expliquant ce qu'il s'est passé. **Les erreurs arrivent à tous les programmeurs, novices comme experts**. Comme quand on apprend une langue, l'amélioration vient avec la pratique, en faisant des erreurs et en apprenant à les corriger.
 
 ## RStudio et R
 
