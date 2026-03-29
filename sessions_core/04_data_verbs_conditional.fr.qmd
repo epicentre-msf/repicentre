@@ -37,7 +37,7 @@ Mise en place
 ----------------------------------------------------------------------------------
 **Prérequis** : cette leçon part du principe que vous connaissez les bases de la manipulation de données avec `{dplyr}`, et en particulier la fonction `mutate()`. Aller vous [rafraîchir si besoin](03_data_verbs.qmd). 
 
-Nous allons également poursuivre l'étude de cas sur la rougeole de Mandoul ; **si vous n'avez pas encore suivi les autres sessions du cours, veillez à [télécharger le dossier du cours](https://github.com/epicentre-msf/repicentre/raw/main/data/scenarios/TCH_measles/mandoul_measles.zip) avant de continuer**.
+Nous allons également poursuivre l'étude de cas sur la rougeole de Mandoul ; **si vous n'avez pas encore suivi les autres sessions du cours, veillez à [télécharger le dossier du cours](https://github.com/epicentre-msf/repicentre/raw/main/data/scenarios/TCH_measles/mandoul_rougeole.zip) avant de continuer**.
 
 
 ::: {.setup}

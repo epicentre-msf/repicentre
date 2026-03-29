@@ -78,26 +78,12 @@ La première option est fastidieuse et source d'erreurs, et nous la déconseillo
 
 ## Mise en place
 
+Nous allons utiliser l'étude de cas sur la rougeole de Mandoul ; **si vous n'avez pas encore suivi les autres sessions du cours, veillez à [télécharger le dossier du cours](https://github.com/epicentre-msf/repicentre/raw/main/data/scenarios/TCH_measles/mandoul_rougeole.zip) avant de continuer**.
+
 ::: {.setup}
-Nous utiliserons la même liste linéaire nettoyée que précédemment et qui peut être téléchargée ici :
-
-```{r}
-#| echo: false
-#| eval: true
-
-downloadthis::download_link(
-  link = 'https://github.com/epicentre-msf/repicentre/raw/main/data/clean/moissala_linelist_clean_FR.rds',
-  button_label = 'Télécharger les données',
-  has_icon = TRUE,
-  icon = "fa fa-save",
-  self_contained = FALSE
-)
-```
-
-<br>
-Si ce n'est pas déjà fait, enregistrez le jeu de données dans `data/clean` puis créez un nouveau script appelé `faceting.R` dans votre sous-dossier `R` (alternativement, vous pouvez rajouter une section au script sur les courbes épis). 
-
-<br> Si vous créez un nouveau script, ajoutez un en-tête approprié et chargez les paquets suivants : `{here}`, `{rio}` et `{tidyverse}`. Importez ensuite les données propres dans R et enregistrez-les dans un objet `df_linelist`.
+Pour cette session, nous travaillerons avec les données **brutes** de la liste linéaire rougeole pour la région de Mandoul. 
+<br><br>
+Créez un nouveau script appelé `faceting.R` dans votre sous-dossier `R` (alternativement, vous pouvez rajouter une section au script sur les courbes épis). Ajoutez un en-tête approprié et chargez les paquets suivants : `{here}`, `{rio}` et `{tidyverse}`. Importez ensuite les données propres dans R et enregistrez-les dans un objet `df_linelist`.
 :::
 
 
