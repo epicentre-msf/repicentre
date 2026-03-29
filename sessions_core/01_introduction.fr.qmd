@@ -270,7 +270,7 @@ R dispose de plusieurs [types de données]{.hovertip bs-toggle='tooltip' bs-titl
 
 ### Numérique
 
-Le type numérique englobe les *entiers* [*integers* en anglais] et les *doubles* (nombres décimaux). Les nombres en R n'ont pas de signalétique, tapez simplement la valeur brute dans votre script ou votre console.
+Le type numérique englobe les *entiers* [*integers* en anglais] et les *nombres décimaux* [*doubles*]. Les nombres en R n'ont pas de signalétique, tapez simplement la valeur brute dans votre script ou votre console.
 
 ### Chaînes de caractères
 
