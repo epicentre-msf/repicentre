@@ -37,9 +37,9 @@ Setup
 
 
 ::: {.setup}
-This session will work with the **raw** Mandoul linelist data. Make sure this dataset is saved into the appropriate subdirectory of your R project and create a new script called `data_verbs_practice.R` in your `R` directory. Add an appropriate header and load the following packages: `{here}`, `{rio}`, and `{tidyverse}`.
+This session will work with the **raw** Mandoul linelist data. 
 <br><br>
-Finally, add an import section where you use `{here}` and `{rio}` to load your data into an object called [`df_raw`]{.hovertip bs-toggle='tooltip' bs-title="Note, that we are calling this our raw data, not `df_linelist` as we did previously. You will see why later."}.
+Create a new script called `data_verbs_practice.R` in your `R` directory. Add an appropriate header and load the following packages: `{here}`, `{rio}`, and `{tidyverse}`. Next, add an import section where you use `{here}` and `{rio}` to load your data into an object called [`df_raw`]{.hovertip bs-toggle='tooltip' bs-title="Note, that we are calling this our raw data, not `df_linelist` as we did previously. You will see why later."}.
 :::
 
 
