@@ -67,21 +67,8 @@ df_linelist |>
 
 
 ::: {.setup}
-This session will use the clean version of the Mandoul measles linelist data.
-
-```{r}
-#| echo: false
-#| eval: true
-
-downloadthis::download_link(
-  link = 'https://github.com/epicentre-msf/repicentre/raw/main/data/scenarios/TCH_measles/mandoul_measles.zip',
-  button_label = ' Course Folder',
-  has_icon = TRUE,
-  icon = "fa fa-save",
-  self_contained = FALSE
-)
-```
-<br>
+This session will use the **clean** version of the Mandoul measles linelist data.
+<br><br>
 Open your RStudio project and create a new script called `epicurves.R` with appropriate metadata. Load the following packages: `{here}`, `{rio}`, `{dplyr}`, `{lubridate}`, and `{ggplot2}`. Add a section to your script called `# IMPORT DATA` where you import the *clean course dataset* (`moissala_linelist_clean_EN.rds`).
 :::
 

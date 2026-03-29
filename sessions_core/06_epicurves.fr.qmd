@@ -68,21 +68,8 @@ Mise en place
 
 
 ::: {.setup}
-Cette session utilisera la version nettoyée de la liste linéaire rougeole à Mandoul
-
-```{r}
-#| echo: false
-#| eval: true
-
-downloadthis::download_link(
-  link = 'https://github.com/epicentre-msf/repicentre/raw/main/data/scenarios/TCH_measles/mandoul_rougeole.zip',
-  button_label = ' Course Folder',
-  has_icon = TRUE,
-  icon = "fa fa-save",
-  self_contained = FALSE
-)
-```
-<br>
+Cette session utilisera la version **nettoyée** de la liste linéaire rougeole à Mandoul.
+<br><br>
 Ouvrez le projet Rstudio du cours et créez un nouveau script appelé "courbe_epi.R" avec les métadonnées appropriées. Enregistrez le dans `R/`. Pour cette leçon, nous aurons besoin de charger les paquets `{here}`, `{rio}`, `{dplyr}`, `{lubridate}`, et`{ggplot2}`. Ajoutez une section `# IMPORT DONNÉES` où vous importez les données nettoyées du cours (`linelist_moissala_clean_FR.RDS`). 
 :::
 
