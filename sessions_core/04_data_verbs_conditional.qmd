@@ -32,26 +32,14 @@ Setup
 ----------------------------------------------------------------------------------------------------
 **Dependencies.** This session assumes that you know the basics of data manipulation with `{dplyr}`. If you need a refresher on this, please review the [third session in the learning pathway](03_data_verbs.qmd).
 
+We will also be continuing with the Mandoul measles case study; **if you haven't done the previous course sessions then be sure to [download the course folder](https://github.com/epicentre-msf/repicentre/raw/main/data/scenarios/TCH_measles/mandoul_measles.zip) before moving forward**.
+
+
 
 ::: {.setup}
-This session will work with the **raw** Moissala linelist data, which can be downloaded here:
-
-```{r}
-#| echo: false
-#| eval: true
-
-downloadthis::download_link(
-  link = 'https://github.com/epicentre-msf/repicentre/raw/refs/heads/main/data/scenarios/TCH_measles/raw/moissala_linelist_EN.xlsx',
-  button_label = ' Download Data',
-  has_icon = TRUE,
-  icon = "fa fa-save",
-  self_contained = FALSE
-)
-```
-<br>
-Make sure this dataset is saved into the appropriate subdirectory of your R project and create a new script called `filtering_and_recoding_practice.R` in your `R` directory. Add an appropriate header and load the following packages: `{here}`, `{rio}`, and `{tidyverse}`.
+This session will work with the **raw** Mandoul linelist data.
 <br><br>
-Finally, add an import section where you use `{here}` and `{rio}` to load your data into an object called `df_raw`.
+Create a new script called `filtering_and_recoding_practice.R` in your `R` directory. Add an appropriate header and load the following packages: `{here}`, `{rio}`, and `{tidyverse}`. Finally, add an import section where you use `{here}` and `{rio}` to load your data into an object called `df_raw`.
 :::
 
 

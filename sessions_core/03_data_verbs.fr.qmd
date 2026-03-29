@@ -35,25 +35,12 @@ Mise en place
 -------------------------------------------------------------------------
 **Prérequis** : cette leçon part du principe que vous savez comment utiliser RStudio et que vous êtes capable d'importer des données. Rafraîchissez-vous si besoin avec les [deux premières leçons](https://epicentre-msf.github.io/repicentre/pathway.html).
 
+Nous allons également poursuivre l'étude de cas sur la rougeole de Mandoul ; **si vous n'avez pas encore suivi les autres sessions du cours, veillez à [télécharger le dossier du cours](https://github.com/epicentre-msf/repicentre/raw/main/data/scenarios/TCH_measles/mandoul_measles.zip) avant de continuer**.
+
 ::: {.setup}
-Nous utiliserons la linelist avec des données brutes que vous avez importée lors de la leçon précédente, et qui peut être téléchargée ici :
-
-```{r}
-#| echo: false
-#| eval: true
-
-downloadthis::download_link(
-  link = 'https://github.com/epicentre-msf/repicentre/raw/refs/heads/main/data/scenarios/TCH_measles/raw/moissala_linelist_FR.xlsx',
-  button_label = 'Télécharger les données',
-  has_icon = TRUE,
-  icon = "fa fa-save",
-  self_contained = FALSE
-)
-```
-<br>
-Si ce n'est pas déjà fait, enregistrez le jeu de données dans le sous-dossier approprié de votre projet RStudio puis créez un nouveau script appelé `fonctions_donnees.R` dans votre sous-dossier `R`. Ajoutez un en-tête approprié et chargez les paquets suivants : `{here}`, `{rio}` et `{tidyverse}`.
+Nous utiliserons la linelist avec des données **brutes** que vous avez importée lors de la leçon précédente. 
 <br><br>
-Enfin, ajoutez une section dédiée à l'import des données, utilisez `{here}` et `{rio}` pour importer vos données dans R, et assignez-les à un objet que nous appellerons [`df_brut`]{.hovertip bs-toggle='tooltip' bs-title="Notez que nous ne nommons pas tout de suite l'objet df_linelist comme nous l'avions fait précédemment. La raison deviendra manifeste sous peu."}.
+Créez un nouveau script appelé `fonctions_donnees.R` dans votre sous-dossier `R`. Ajoutez un en-tête approprié et chargez les paquets suivants : `{here}`, `{rio}` et `{tidyverse}`. Puis, ajoutez une section dédiée à l'import des données, utilisez `{here}` et `{rio}` pour importer vos données dans R, et assignez-les à un objet que nous appellerons [`df_brut`]{.hovertip bs-toggle='tooltip' bs-title="Notez que nous ne nommons pas tout de suite l'objet df_linelist comme nous l'avions fait précédemment. La raison deviendra manifeste sous peu."}.
 :::
 
 

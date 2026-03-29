@@ -35,28 +35,15 @@ Dans la session précédente vous avez appris les bases du traitement de donnée
 
 Mise en place
 ----------------------------------------------------------------------------------
-**Prérequis** : cette leçon part du principe que vous connaissez les bases de la manipulation de données avec `{dplyr}`, et en particulier la fonction `mutate()`. Aller vous [rafraîchir si besoin](03_data_verbs.qmd).
+**Prérequis** : cette leçon part du principe que vous connaissez les bases de la manipulation de données avec `{dplyr}`, et en particulier la fonction `mutate()`. Aller vous [rafraîchir si besoin](03_data_verbs.qmd). 
+
+Nous allons également poursuivre l'étude de cas sur la rougeole de Mandoul ; **si vous n'avez pas encore suivi les autres sessions du cours, veillez à [télécharger le dossier du cours](https://github.com/epicentre-msf/repicentre/raw/main/data/scenarios/TCH_measles/mandoul_measles.zip) avant de continuer**.
+
 
 ::: {.setup}
-Nous utiliserons la liste linéaire avec les données brutes qui peut être téléchargée ici :
-  
-```{r}
-#| echo: false
-#| eval: true
-
-downloadthis::download_link(
-  link = 'https://github.com/epicentre-msf/repicentre/raw/refs/heads/main/data/scenarios/TCH_measles/raw/moissala_linelist_FR.xlsx',
-  button_label = "Télécharger les données",
-  has_icon = TRUE,
-  icon = "fa fa-save",
-  self_contained = FALSE
-)
-```
-
-<br>
-  Si ce n'est pas déjà fait, enregistrez la dans le sous-dossier approprié de votre projet RStudio puis créez un nouveau script appelé `filtrer_recoder.R` dans votre sous-dossier `R`. Ajoutez un en-tête approprié et chargez les paquets suivants : `{here}`, `{rio}` et `{tidyverse}`.
+Nous utiliserons la liste linéaire avec les données **brutes**.
 <br><br>
-Enfin, ajoutez une section dédiée à l'import des données, utilisez `{here}` et `{rio}` pour importer vos données dans R, et assignez-les à un objet que nous appellerons `df_brut`
+Si ce n'est pas déjà fait, enregistrez la dans le sous-dossier approprié de votre projet RStudio puis créez un nouveau script appelé `filtrer_recoder.R` dans votre sous-dossier `R`. Ajoutez un en-tête approprié et chargez les paquets suivants : `{here}`, `{rio}` et `{tidyverse}`. Enfin, ajoutez une section dédiée à l'import des données, utilisez `{here}` et `{rio}` pour importer vos données dans R, et assignez-les à un objet que nous appellerons `df_brut`
 :::
 
 
