@@ -361,17 +361,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Review how to subset rows using <code>filter()</code> and create/modify variables with <code>mutate()</code>
 </li>
 </ul></section><section id="setup" class="level2"><h2 class="anchored" data-anchor-id="setup">Setup</h2>
-<p><strong>Dependencies.</strong> This session assumes that you know how to use RStudio that you are able to import data and that you know th basic data handling verbs that we have seen in the core sessions so far. If you need a refresher on either of these topics, we encourage you to review the core sessions in the learning pathway.</p>
+<p><strong>Dependencies.</strong> This session assumes that you know how to use RStudio that you are able to import data and that you know the basic data handling verbs that we have seen in the core sessions so far. If you need a refresher on any of these topics, we encourage you to review the core sessions in the learning pathway.</p>
+<p>We will also be continuing with the Mandoul measles case study; <strong>if you haven’t done the previous course sessions then be sure to <a href="https://github.com/epicentre-msf/repicentre/raw/main/data/scenarios/TCH_measles/mandoul_measles.zip">download the course folder</a> before moving forward</strong>.</p>
 <div class="setup">
-<p>This session will use the clean version of the Moissala measles dataset.</p>
-<div class="cell">
-<div class="cell-output-display">
-<a href="https://github.com/epicentre-msf/repicentre/raw/main/data/scenarios/TCH_measles/mandoul_measles.zip">
-<button class="btn btn-default"><i class="fa fa-save"></i>  Course Folder</button>
-</a>
-</div>
-</div>
-<p><br> Open your RStudio Project and create a new script in the R folder called <code>tables.R</code> with appropriate metadata and a “Packages” section that imports: <code>{rio}</code>, <code>{here}</code> and <code>{tidyverse}</code>. Add an “Import Data” section that loads the <em>cleaned</em> version of the measles linelist.</p>
+<p>This session will use the <strong>clean</strong> version of the Mandoul measles dataset. <br><br> Open your RStudio Project and create a new script in the R folder called <code>tables.R</code> with appropriate metadata and a “Packages” section that imports: <code>{rio}</code>, <code>{here}</code> and <code>{tidyverse}</code>. Add an “Import Data” section that loads the <em>cleaned</em> version of the measles linelist.</p>
 </div>
 </section><section id="introduction-data-aggregation" class="level2"><h2 class="anchored" data-anchor-id="introduction-data-aggregation">Introduction: Data aggregation</h2>
 <p>OK so let’s recap, you have just performed one of the most <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Some consider it to be 80% of the work!">important tasks</span> of an epidemiologist: the <strong>data cleaning</strong>. Now that you have clean and standardized data, you can get into the real business and start analysing them. Analyses typically start with some tables and summaries that describe our data:</p>

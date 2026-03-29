@@ -377,16 +377,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section><section id="setup" class="level2"><h2 class="anchored" data-anchor-id="setup">Setup</h2>
 <p><strong>Dependencies.</strong> This session assumes that you know how to use RStudio that you are able to import data and that you know th basic data handling verbs that we have seen in the core sessions so far. If you need a refresher on either of these topics, we encourage you to review the core sessions in the learning pathway.</p>
+<p>We will also be continuing with the Mandoul measles case study; <strong>if you haven’t done the previous course sessions then be sure to <a href="https://github.com/epicentre-msf/repicentre/raw/main/data/scenarios/TCH_measles/mandoul_measles.zip">download the course folder</a> before moving forward</strong>.</p>
 <div class="setup">
-<p>This session will use the clean version of the Moissala measles linelist data.</p>
-<div class="cell">
-<div class="cell-output-display">
-<a href="https://github.com/epicentre-msf/repicentre/raw/main/data/scenarios/TCH_measles/mandoul_measles.zip">
-<button class="btn btn-default"><i class="fa fa-save"></i>  Course Folder</button>
-</a>
-</div>
-</div>
-<p><br> Open your RStudio project and create a new script called <code>epicurves.R</code> with appropriate metadata. Load the following packages: <code>{here}</code>, <code>{rio}</code>, <code>{dplyr}</code>, <code>{lubridate}</code>, and <code>{ggplot2}</code>. Add a section to your script called <code># IMPORT DATA</code> where you import the <em>clean course dataset</em> (<code>moissala_linelist_clean_EN.rds</code>).</p>
+<p>This session will use the <strong>clean</strong> version of the Mandoul measles linelist data. <br><br> Open your RStudio project and create a new script called <code>epicurves.R</code> with appropriate metadata. Load the following packages: <code>{here}</code>, <code>{rio}</code>, <code>{dplyr}</code>, <code>{lubridate}</code>, and <code>{ggplot2}</code>. Add a section to your script called <code># IMPORT DATA</code> where you import the <em>clean course dataset</em> (<code>moissala_linelist_clean_EN.rds</code>).</p>
 </div>
 </section><section id="paradigms-of-plotting" class="level2"><h2 class="anchored" data-anchor-id="paradigms-of-plotting">Paradigms of Plotting</h2>
 <p>In R, and indeed in everything, there are a lot of ways to approach data visualization. Two of the biggest paradigms are :</p>
@@ -517,7 +510,7 @@ Note
 </div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -550,7 +543,7 @@ Note
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -577,7 +570,7 @@ Note
 </div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -594,7 +587,7 @@ Note
 </div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -606,7 +599,7 @@ Note
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -646,7 +639,7 @@ Note
 </div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -658,7 +651,7 @@ Note
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -680,7 +673,7 @@ Note
 </div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -700,7 +693,7 @@ Note
 </div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
