@@ -218,7 +218,7 @@ It is helpful to future you and others to start your scripts with a few commente
 # Author :  Mathilde Mousset
 # Creation Date : 23/11/2024
 # Last Update : 30/11/2024
-# Description : Import and clean measles surveillance data from Moissala
+# Description : Import and clean measles surveillance data from Mandoul
 ```
 
 

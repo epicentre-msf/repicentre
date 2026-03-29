@@ -30,7 +30,8 @@ df_linelist <- rio::import(file = here::here('data', 'scenarios', 'TCH_measles',
 
 ## Setup
 
-**Prérequis** : cette session part du principe que vous avez effectué les sessions obligatoires précédentes, en particulier que vous savez importer vos données et utiliser les verbes principaux de `{dplyr}`. Aller vous [rafraîchir si besoin](03_data_verbs.qmd).
+**Prérequis** : cette session part du principe que vous avez effectué les sessions obligatoires précédentes, en particulier que vous savez importer vos données et utiliser les verbes principaux de `{dplyr}`. Aller vous [rafraîchir si besoin](03_data_verbs.qmd). Nous allons également poursuivre l'étude de cas sur la rougeole de Mandoul ; **si vous n'avez pas encore suivi les autres sessions du cours, veillez à [télécharger le dossier du cours](https://github.com/epicentre-msf/repicentre/raw/main/data/scenarios/TCH_measles/mandoul_measles.zip) avant de continuer**.
+
 
 :::{.setup}
 Cette session utilise une version nettoyée de la liste linéaire rougeole à Mandoul (Tchad).

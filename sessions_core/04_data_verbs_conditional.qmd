@@ -30,11 +30,12 @@ Objectives
 
 Setup
 ----------------------------------------------------------------------------------------------------
-**Dependencies.** This session assumes that you know the basics of data manipulation with `{dplyr}`. If you need a refresher on this, please review the [third session in the learning pathway](03_data_verbs.qmd).
+**Dependencies.** This session assumes that you know the basics of data manipulation with `{dplyr}`. If you need a refresher on this, please review the [third session in the learning pathway](03_data_verbs.qmd). We will also be continuing with the Mandoul measles case study; **if you haven't done the previous course sessions then be sure to [download the course folder](https://github.com/epicentre-msf/repicentre/raw/main/data/scenarios/TCH_measles/mandoul_measles.zip) before moving forward**.
+
 
 
 ::: {.setup}
-This session will work with the **raw** Moissala linelist data, which can be downloaded here:
+This session will work with the **raw** Mandoul linelist data, which can be downloaded here:
 
 ```{r}
 #| echo: false

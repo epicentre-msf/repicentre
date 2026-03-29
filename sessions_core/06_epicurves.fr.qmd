@@ -64,7 +64,8 @@ df_linelist |>
 Mise en place
 ----------------------------------------------------------------------------------------------------
 
-**Prérequis** Cette leçon part du principe que vous savez utiliser RStudio, êtes capable d'importer des données et connaissez les verbes de base du traitement des données. Rafraîchissez-vous si besoin sur les [leçons précédentes](https://epicentre-msf.github.io/repicentre//fr/pathway.html).
+**Prérequis** Cette leçon part du principe que vous savez utiliser RStudio, êtes capable d'importer des données et connaissez les verbes de base du traitement des données. Rafraîchissez-vous si besoin sur les [leçons précédentes](https://epicentre-msf.github.io/repicentre//fr/pathway.html). Nous allons également poursuivre l'étude de cas sur la rougeole de Mandoul ; **si vous n'avez pas encore suivi les autres sessions du cours, veillez à [télécharger le dossier du cours](https://github.com/epicentre-msf/repicentre/raw/main/data/scenarios/TCH_measles/mandoul_measles.zip) avant de continuer**.
+
 
 ::: {.setup}
 Cette session utilisera la version nettoyée de la liste linéaire rougeole à Mandoul

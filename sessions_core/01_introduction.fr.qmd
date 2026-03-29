@@ -213,7 +213,7 @@ Il est utile pour vous et vos collègues de commencer vos scripts par quelques l
 # Auteure :  Mathilde Mousset
 # Date de création : 23/11/2024
 # Dernière mise à jour : 28/01/2024
-# Description : Importat et nettoyage des données de surveillance rougeole de Moissala
+# Description : Importat et nettoyage des données de surveillance rougeole de Mandoul
 ```
 
 ::: {.write}
