@@ -31,7 +31,7 @@ Setup
 
 **Prérequis:** ce tutoriel part du principe que vous avez suivi les sessions [introduction à R et R studio](../sessions_core/01_introduction.html), et [importation de données](../sessions_core/02_import_data.html).  
 
-Nous allons également poursuivre l'étude de cas sur la rougeole de Mandoul ; **si vous n'avez pas encore suivi les autres sessions du cours, veillez à [télécharger le dossier du cours](https://github.com/epicentre-msf/repicentre/raw/main/data/scenarios/TCH_measles/mandoul_measles.zip) avant de continuer**.
+Nous allons également poursuivre l'étude de cas sur la rougeole de Mandoul ; **si vous n'avez pas encore suivi les autres sessions du cours, veillez à [télécharger le dossier du cours](https://github.com/epicentre-msf/repicentre/raw/main/data/scenarios/TCH_measles/mandoul_rougeole.zip) avant de continuer**.
 
 ::: {.setup}
 Pour cette session, nous travaillerons avec les données **brutes** de la liste linéaire rougeole pour la région de Mandoul. 
