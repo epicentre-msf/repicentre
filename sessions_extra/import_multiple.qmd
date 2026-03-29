@@ -36,7 +36,7 @@ This satellite builds on the [Import data core session](../sessions_core/02_impo
 
 
 ::: {.setup}
-Download the below zip folder and save it in the `data/raw` subfolder of your course project. If you do not have a course project, either go to the [Import data core session](../sessions_core/02_import_data.qmd) to download it or create a RStudio project in a folder, and make sure you have a `data/raw` subfolder to store the data.
+Download and decompress the below folder containing data and an `.Rproj` file for this session. Navigate into it nd Place it inside a folder R  the below zip folder and save it in the `data/raw` subfolder of your course project. If you do not have a course project, either go to the [Import data core session](../sessions_core/02_import_data.qmd) to download it or create a RStudio project in a folder, and make sure you have a `data/raw` subfolder to store the data.
 
 ```{r}
 #| echo: false
