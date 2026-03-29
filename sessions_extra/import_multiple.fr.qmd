@@ -1,7 +1,6 @@
 ---
 title: Importer plusieurs feuilles ou fichiers
 description: Apprenez à importer plusieurs feuilles d'un fichier Excel, ou plusieurs fichiers Excel.
-date: last-modified
 image: ../img/extra/import_multiple/logo.svg
 categories:
   - Satellite
