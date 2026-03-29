@@ -39,25 +39,9 @@ Mise en place
 
 
 ::: {.setup}
-Nous utiliserons la liste linéaire avec les données brutes qui peut être téléchargée ici :
-  
-```{r}
-#| echo: false
-#| eval: true
-
-downloadthis::download_link(
-  link = 'https://github.com/epicentre-msf/repicentre/raw/refs/heads/main/data/scenarios/TCH_measles/raw/moissala_linelist_FR.xlsx',
-  button_label = "Télécharger les données",
-  has_icon = TRUE,
-  icon = "fa fa-save",
-  self_contained = FALSE
-)
-```
-
-<br>
-  Si ce n'est pas déjà fait, enregistrez la dans le sous-dossier approprié de votre projet RStudio puis créez un nouveau script appelé `filtrer_recoder.R` dans votre sous-dossier `R`. Ajoutez un en-tête approprié et chargez les paquets suivants : `{here}`, `{rio}` et `{tidyverse}`.
+Nous utiliserons la liste linéaire avec les données **brutes**.
 <br><br>
-Enfin, ajoutez une section dédiée à l'import des données, utilisez `{here}` et `{rio}` pour importer vos données dans R, et assignez-les à un objet que nous appellerons `df_brut`
+Si ce n'est pas déjà fait, enregistrez la dans le sous-dossier approprié de votre projet RStudio puis créez un nouveau script appelé `filtrer_recoder.R` dans votre sous-dossier `R`. Ajoutez un en-tête approprié et chargez les paquets suivants : `{here}`, `{rio}` et `{tidyverse}`. Enfin, ajoutez une section dédiée à l'import des données, utilisez `{here}` et `{rio}` pour importer vos données dans R, et assignez-les à un objet que nous appellerons `df_brut`
 :::
 
 
