@@ -1,0 +1,339 @@
+---
+title: Importer plusieurs feuilles ou fichiers
+description: Apprenez à importer plusieurs feuilles d'un fichier Excel, ou plusieurs fichiers Excel.
+date: last-modified
+image: ../img/extra/import_multiple/logo.svg
+categories:
+  - Satellite
+  - Data Import
+---
+
+```{r setup}
+#| include: false
+#| eval: true
+
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+
+library(rio)    
+library(here)  
+
+path_data_raw <- here('data', 'session-specific', 'import-multiple', 'satellite_multiple_FR',
+                      'data', 'raw')
+
+lab_data_list <- import_list(here(path_data_raw, "multiple_sheets",
+                                   "msf_laboratory_moissala_2023-09-24_first.xlsx")) 
+```
+
+
+## Objectifs
+
+- Savoir importer des données de plusieurs fichiers différents
+- Savoir importer les données de plusieurs feuilles différentes
+
+
+## Mise en place
+
+::: {.setup}
+Téléchargez et dé-zippez le dossier suivant contenant les données et `.Rproj` pour ce tutoriel.
+
+```{r}
+#| echo: false
+#| eval: true
+
+downloadthis::download_link(
+  link = 'https://github.com/epicentre-msf/repicentre/raw/main/data/session-specific/import-multiple/satellite_multiple-importation_FR.zip',
+  button_label = 'Dossier de la Session',
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  self_contained = FALSE
+)
+```
+
+<br><br>
+Accédez au nouveau dossier et créez un nouveau script nommé `import_multiple.R`. Ajoutez un en-tête approprié au script et chargez les paquets `{rio}` et `{here}`. Créez un objet `path_data_raw` qui pointe vers le répertoire `data/raw` du dossier du cours.
+:::
+
+
+
+
+## Introduction
+
+Vous avez appris à importer plusieurs types de fichiers à l'aide du  [paquet {rio}](https://gesistsa.github.io/rio/index.html#supported-file-formats) lors du cours sur [l'import de données](../sessions_core/02_import_data.qmd). Dans 90% des cas, vous utiliserez ce paquet pour importer des fichiers `.xlsx` et `.csv`. Dans ce satellite, nous allons apprendre à importer des données lorsqu’elles sont dispersées entre plusieurs feuilles ou fichiers, ce qui est un problème courant. Par exemple : 
+
+- Vous avez un fichier Excel avec des donnés de linelist, des données d'occupation des lits et des données labo dans différentes feuilles, et vous voudriez tout importer dans R.
+
+- Vous avez plusieurs fichiers Excel dont vous voudriez importer les données (un fichier linelist, un fichier lab etc.)
+
+- Vous avec un fichier Excel avec des données dans plusieurs feuilles, mais cette fois [toutes les feuilles sont dans le même format]{.hovertip bs-toggle='tooltip' bs-title="Vous avez sans doute déjà vu des données de surveillance où une feuille représente une semaine ou un district, et il y a environ 20000 feuilles..."}, et il vous faut toutes les importer.
+
+- Vous avez plusieurs fichiers Excel tous formatés de la même manière (une linelist par site par exemple) et vous voudriez importer toutes les données et les rassembler dans un même data frame.
+
+On peut résoudre les deux premiers cas avec des commandes différentes visant les feuilles ou fichiers différents, et stocker les données dans des data frames différents. C'est valable s'il n'y a pas trop de jeux de données différents. En revanche, les deux cas suivants peuvent être automatisés !
+
+Dans ce tutoriel, nous allons voir comment le paquet `{rio}` règle ces problèmes avec la fonction `import_list()`, qui peut importer plusieurs *éléments* d'un coup. Ici, les *éléments* peuvent être des fichiers ou des feuilles, en fonction de quels arguments on passe à la fonction.
+
+
+## Importer plusieurs feuilles
+
+La fonction `import_list()` peut importer toutes les feuilles d'un  [fichier Excel]{.hovertip bs-toggle='tooltip' bs-title="Ou tous les éléments d'un objet multiple, tel qu'un fichier .Rdata ou .zip"} et les stocker dans une liste. Celà évite d'avoir à écrire une commande `import()` différente par feuille.
+
+
+```{r}
+# NE PAS EXÉCUTER (PSEUDO-CODE)
+
+# Renvoi une liste de data frames
+import_list(here(path_data_raw, "example_linelist.xlsx")) 
+```
+
+Imaginons que vous ayez un fichier labo avec les patients positifs, négatifs et indéterminés sur [trois feuilles différentes]{.hovertip bs-toggle='tooltip' bs-title="C'est bizarre mais vous avez sans doute déjà vu pire..."} et vous voulez importer ces données.
+
+::: {.look}
+Allez dans le sous-dossier  `data/raw/satellite_multiple/multiple_sheets/`. Il y a deux versions des données labo. Ouvrez les deux fichiers et inspectez leur structure. Voyez-vous en quoi les deux fichier diffèrent ?
+:::
+
+On va commencer par le premier fichier, qui est un peu plus propre.
+
+::: {.write}
+Utilisez la fonction `import_list()` pour importer toutes les feuilles de `msf_laboratory_moissala_2023-09-24_first.xlsx` d'un coup, et stockez ces données dans un objet `lab_data_list`.
+:::
+
+
+L'objet `lab_data_list` est une **liste** qui contient plusieurs data frames (un data frame par feuille). Il est possible que vous ne soyez pas encore familiarisés avec les listes. Pour le moment nous nous contenterons de jeter un œil à la structure de l'objet avec des fonctions que vous connaissez : 
+
+
+```{r}
+#| eval: true
+# Structure de la liste :
+str(lab_data_list)     
+
+# Nb d'éléments de la liste :
+length(lab_data_list)  
+
+# Nom des éléments de la liste :
+names(lab_data_list)   
+```
+
+Vous pouvez aussi cliquer sur le nom de la liste dans le 
+[panneau Environment](../sessions_core/01_introduction.qmd#sec-envt) pour inspecter sa structure et l'ouvrir dans le Viewer, comme on l'a fait pour les data frames.
+
+::: {.look}
+Vous noterez que la View est un peu différente. Cliquez sur les boutons que vous voyez pour voir ce qui se passe.
+
+**Indice :** Il y a des boutons à la gauche et à la droite du panneau Viewer, mais ceux de droite n'apparaissent que quand on passe la souris sur la ligne.
+:::
+
+Vous pouvez accéder aux éléments d'une liste avec [ces commandes]{.hovertip bs-toggle='tooltip' bs-title="Nous avons ajouté la fonction head() pour raccourcir la sortie, mais vous pouvez l'enlever de votre côté pour voir les éléments en entier."}
+
+```{r}
+#| eval: true
+
+# Accéder à l'élément par son nom :
+head(lab_data_list$positive)  
+
+# Accéder au contenu du premier élément :
+head(lab_data_list[[1]])  
+
+# Accéder au premier élément de la liste (par position) :
+lab_data_list[1]  
+```
+
+
+### Concaténer un un data frame
+
+Si vous êtes sûrs que les données dans les différentes feuilles ont toutes la même structure, vous pouvez demander à R de concaténer les différents data frames en un seul à l'aide de l'argument `rbind = TRUE` [*bind* veut dire *lier* en anglais, et le "r" est un raccourcis pour *row*, la ligne; cette commande concatène les jeux de données par les lignes] :
+
+```{r}
+# NE PAS EXÉCUTER (PSEUDO-CODE)
+
+# Renvoyer un data frame concaténé :
+import_list(
+  here(path_data_raw, "example_linelist.xlsx"), 
+  rbind = TRUE,  # Indique à R de rassembler les données en un seul df
+  rbind_label = "Sheet_position"  # Optionnel : garde le nom de la feuille d'origine
+)
+```
+
+::: {.write}
+Utilisez la fonction `import_list()` pour importer toutes les feuilles de `msf_laboratory_moissala_2023-09-24_first.xlsx` d'un seul coup, et stockez les données dans un *data frame unique* `lab_data`.
+
+Vous pouvez utiliser l'argument `rbind_label = ` et lui fournir une chaîne de caractères pour le nom de la colonne et voir ce qui se passe.
+:::
+
+
+
+### Feuilles un peu différentes
+
+Maintenant nous allons travailler avec le second jeu de données dans le dossier, `msf_laboratory_moissala_2023-09-24_second.xlsx`. Vous devriez avoir réalisé lors de l'exploration que ces données sont un peu moins propres :
+
+- la colonne `CT value` n'existe que sur la troisième feuille
+- la colonne `Laboratory id` n'est pas au même endroit sur les trois feuilles
+- la date des tests n'a pas le même nom sur les trois feuilles
+
+Que va faire la fonction `import_list()` dans ces conditions ?
+
+```{r}
+#| eval: true
+lab_data_messy <- import_list(
+  here(path_data_raw, "multiple_sheets",
+       "msf_laboratory_moissala_2023-09-24_second.xlsx"),
+  rbind = TRUE,
+  rbind_label = "Sheet_position")
+```
+
+::: {.look}
+Exécutez le code de l'encart précédent et utilisez les outils à votre disposition pour inspecter la structure et le contenu de l'objet `lab_data_messy` : 
+
+- Qu'est devenue la colonne `CT value` ? A-t-elle été importée ? Si oui, comment est-elle remplie ?  
+- Et la colonne `Laboratory id` ?
+- Que sont devenues les colonnes de dates ? Ont-elles été ignorées ?
+:::
+
+Comme vous pouvez le voir, la fonction se comporte assez raisonnablement :
+
+- La correspondance entre colonnes des différentes feuilles se fait sur leur **nom** :  les variables qui ont le même nom dans les différentes feuilles vont être concaténées quelque soit leurs positions.
+
+- Le corollaire est que si le nom est un peu différent les colonnes seront traitées comme des variables différentes ! Vérifiez vos noms de variables !
+
+- Si une colonne n'existe que dans une feuille, elle existera dans le data frame final mais contiendra des valeurs `NA` pour les individus venant des feuilles ou la variable n'existe pas ([rappel sur les valeurs `NA`](../sessions_core/01_introduction.qmd#sec-missing-values)).
+
+Maintenant que vous savez comment importer des données de plusieurs feuilles, on va voir comment importer les données de plusieurs _fichiers_.
+
+## Importer plusieurs fichiers
+
+Le paquet `{rio}` étant bien fait, la fonction `import_list()` peut aussi recevoir un vecteur contenant des noms de fichiers à importer. Elle importe alors tous les fichier et les stocke sans une liste (sauf si vous utilisez `rbind = TRUE` ici aussi).
+
+```{r}
+# NE PAS EXÉCUTER (PSEUDO-CODE)
+
+# Créer un vecteur de fichiers (fictifs)
+vector_paths <- c(
+  here(path_data_raw, "example_linelist_A.xlsx"),
+  here(path_data_raw, "example_linelist_B.xlsx"),
+  here(path_data_raw, "example_linelist_C.xlsx"),
+  here(path_data_raw, "example_linelist_D.xlsx"),
+  here(path_data_raw, "example_linelist_E.xlsx"),
+  here(path_data_raw, "example_linelist_F.xlsx"),
+  here(path_data_raw, "example_linelist_G.xlsx"),
+  here(path_data_raw, "example_linelist_H.xlsx"),
+  here(path_data_raw, "example_linelist_I.xlsx"),
+  here(path_data_raw, "example_linelist_J.xlsx"),
+  here(path_data_raw, "example_linelist_K.xlsx"),
+  here(path_data_raw, "example_linelist_L.xlsx"),
+  here(path_data_raw, "example_linelist_M.xlsx")
+)
+
+import_list(vector_paths) # renvoi une liste
+```
+
+
+::: {.look}
+Allez dans le sous-dossier `data/raw/multiple_files`. Ouvrez les fichiers Excel pour inspecter leur contenu. Est-ce que ça aurait du sens de les concaténer en un seul data frame ?
+:::
+
+::: {.write}
+Importez tous les fichiers Excel d'un coup et stockez-les dans un data frame `linelist_data`.
+
+Inspectez le data frame créé : combien y-a-t'il de lignes ? De colonnes ? Est ce que l'import s'est passé comme vous le souhaitiez ? 
+:::
+
+
+### Automatiser les chemins d'accès avec `file.path()`
+
+#### Lister tous les fichiers
+
+Lister manuellement tous les fichiers que vous vouliez importer, c'était instructif pour comprendre ce que la fonction `import_list()` attend comme argument, mais dans la vraie vie, c'est fastidieux et il y a un vrai risque de faire des typos et des erreurs.
+
+Nous allons voir comment utiliser la fonction `list.files()` pour automatiquement générer les chemins d'accès. Son argument principal, `path`, accepte un chemin de dossier, et renvoi un vecteur contenant les noms des fichiers.
+
+```{r}
+#| eval: true
+
+path_mult <- here::here(path_data_raw, "multiple_files") # optionel, pour raccourcir les instructions suivantes
+
+list.files(path = path_mult) # Renvoi un vecteur de noms de fichier
+```
+On peut demander à la fonction de renvoyer les chemins absolus plutôt que les noms de fichier avec l'argument `full.names = TRUE` :
+
+```{r}
+#| eval: true
+list.files(path = path_mult,
+           full.names = TRUE)
+```
+
+::: {.callout-note}
+Rappelez-vous que grâce à `{here}` et aux chemins relatifs identiques dans le dossier de cours, ces chemins absolus s'adapteront et fonctionneront également sur votre ordinateur.
+:::
+
+#### Garder seulement les fichiers Excel
+
+Ça commence à être pas mal, mais on a aussi listé d'autres fichiers  qui traînaient dans le dossier et qu'on ne veut pas importer. Pour régler ça on va utiliser l'argument `pattern` de la fonction `list.files()` [*pattern* est un *motif* en anglais]. Ce dernier accepte une chaîne de caractères à rechercher dans les noms des fichiers, pour ne garder que certains d'entre eux. Il accepte des **expressions régulières**, dites regex, qui vont [au delà du contenu de ce tutoriel]{.hovertip bs-toggle='tooltip' bs-title="Les expressions régulières ne sont pas limitées à R et ont une syntaxe propre. Elles sont très puissantes, mais aussi un peu dures à prendre en main. Si vous débutez en R, vous pouvez sans doute attendre un peu avant de rajouter ça sur votre pile"}. Ici nous vous guidons pour créer un _motif_ adapté.
+
+La fonction ne va renvoyer que les noms de fichier qui contiennent le motif donné : 
+
+```{r}
+#| eval: true
+
+# Tous les fichiers contenant "bedaya" :
+list.files(path = path_mult, pattern = "BEDAYA") 
+
+# Tous les fichiers contenant "msf_linelist" :
+list.files(path = path_mult, pattern = "moissala_linelist") 
+
+# Tous les fichiers contenant "msf_ll" :
+list.files(path = path_mult, pattern = "msf_ll")  # Rien ne correspond
+
+# Tous les fichiers contenant "doc" :
+list.files(path = path_mult, pattern = "doc")
+```
+Vous avez remarqué que dans le dernier cas deux fichiers contiennent "doc" dans leur chemin, l'un dans le *nom* lui même, l'autre dans *l'extension* ? Si on veut ne garder que le document Word il faut écrire un motif plus précis.
+
+```{r}
+#| eval: true
+# Renvoyer le document word
+list.files(path = path_mult, pattern = "\\.doc$") 
+```
+
+La syntaxe du motif est plus restrictive : 
+
+- Le `\\.` au début est la [manière des regex]{.hovertip bs-toggle='tooltip' bs-title="C'est plus compliqué que ça n'en a l'air car le '.' a un sens spétial en regex, et donc on doit ajouter le \\\. On ne va pas rentrer dans les détails ici."} de dire qu'il devrait y avoir un "." avant "doc".
+
+- Le `$` à la fin du motif indique qu'il devrait être trouvé à la fin du nom de fichier.
+
+Ce motif permet donc de chercher les *fichiers qui contiennent ".doc" comme extension*.
+
+::: {.write}
+Ecrivez une commande qui utilise `list.files()` et du regex pour lister tous les fichiers qui finissent en ".xlsx".
+
+
+Ensuite, mettez à jour votre code précédent pour importer tous ces fichiers dans R et les concaténer en un seul data frame, sans les répétitions.
+:::
+
+::: {.callout-tip}
+L'argument `recursive = TRUE` permet de faire la liste de tous les fichiers présents y compris dans les sous-dossiers de votre chemin ciblé, ce qui peut être pratique si vos données sont rangées dans des sous dossiers.
+:::
+
+## C'est fini !
+
+Bravo, vous savez maintenant importer plusieurs fichiers ou feuilles d'un seul coup. Ce sera très utile pour importer les données agrégées par semaine ou mois qui doivent vous être familières si vous travaillez avec des données de surveillance.
+
+Peut-être était-ce votre premier contact avec les expressions régulières, qui sont un sujet à part entière, donc ne vous inquiétez pas si cette partie vous semble un peu obscure, c'est quelque chose que vous pourrez apprendre plus tard si vous en avez besoin.
+
+
+
+```{r}
+#| echo: false
+#| eval: true
+
+downloadthis::download_link(
+  link = 'https://github.com/epicentre-msf/repicentre/blob/main/solutions/extra/import_multiple_fr.R',
+  button_label = 'Solution File',
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  self_contained = FALSE
+)
+```
+
+## Resources
+
+Une introduction aux [expressions régulières](https://r4ds.hadley.nz/regexps)
+

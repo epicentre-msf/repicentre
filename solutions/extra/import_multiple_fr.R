@@ -1,7 +1,7 @@
 # Solutions du satellite pour importer plusieurs fichiers d'un coup
 # Auteurs: La team Fetch
 # Date de création : 17/02/2025
-# Dernière mise à jour : 17/02/2025
+# Dernière mise à jour : 24/03/2026
 # Description : Solutions des exercices de code
 
 
