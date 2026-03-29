@@ -368,16 +368,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
 </ul></section><section id="setup" class="level2"><h2 class="anchored" data-anchor-id="setup">Setup</h2>
 <p><strong>Dependencies.</strong> This session assumes that you know how to use RStudio and that you are able to import data. If you need a refresher on either of these topics, we encourage you to review the <a href="https://epicentre-msf.github.io/repicentre/pathway.html">first two sessions in the learning pathway</a>.</p>
+<p>We will also be continuing with the Mandoul measles case study; <strong>if you haven’t done the previous course sessions then be sure to <a href="https://github.com/epicentre-msf/repicentre/raw/main/data/scenarios/TCH_measles/mandoul_measles.zip">download the course folder</a> before moving forward</strong>.</p>
 <div class="setup">
-<p>This session will work with the <strong>raw</strong> Moissala linelist data, which can be downloaded here:</p>
-<div class="cell">
-<div class="cell-output-display">
-<a href="https://github.com/epicentre-msf/repicentre/raw/refs/heads/main/data/raw/moissala_linelist_EN.xlsx">
-<button class="btn btn-default"><i class="fa fa-save"></i>  Download Data</button>
-</a>
-</div>
-</div>
-<p><br> Make sure this dataset is saved into the appropriate subdirectory of your R project and create a new script called <code>data_verbs_practice.R</code> in your <code>R</code> directory. Add an appropriate header and load the following packages: <code>{here}</code>, <code>{rio}</code>, and <code>{tidyverse}</code>. <br><br> Finally, add an import section where you use <code>{here}</code> and <code>{rio}</code> to load your data into an object called <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Note, that we are calling this our raw data, not `df_linelist` as we did previously. You will see why later."><code>df_raw</code></span>.</p>
+<p>This session will work with the <strong>raw</strong> Mandoul linelist data. <br><br> Create a new script called <code>data_verbs_practice.R</code> in your <code>R</code> directory. Add an appropriate header and load the following packages: <code>{here}</code>, <code>{rio}</code>, and <code>{tidyverse}</code>. Next, add an import section where you use <code>{here}</code> and <code>{rio}</code> to load your data into an object called <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Note, that we are calling this our raw data, not `df_linelist` as we did previously. You will see why later."><code>df_raw</code></span>.</p>
 </div>
 </section><section id="manipulating-data-with-dplyr" class="level2"><h2 class="anchored" data-anchor-id="manipulating-data-with-dplyr">Manipulating Data with <code>{dplyr}</code>
 </h2>

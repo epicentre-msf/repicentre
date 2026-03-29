@@ -391,7 +391,7 @@ Important
 <p>Si ce n’est pas déjà fait, téléchargez le dossier du cours décompressez-le. Sauvegardez le dossier non compressé à un endroit <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="OneDrive ne fonctionne pas bien avec R car il va constamment synchroniser certains fichiers, ce qui peut entraîner des erreurs ou des problèmes de mémoire"><strong>non connecté à OneDrive</strong></span> et ouvrez-le.</p>
 <div class="cell">
 <div class="cell-output-display">
-<a href="https://github.com/epicentre-msf/repicentre/raw/main/data/FETCHR.zip">
+<a href="https://github.com/epicentre-msf/repicentre/raw/main/data/scenarios/TCH_measles/mandoul_rougeole_starter.zip">
 <button class="btn btn-default"><i class="fa fa-save"></i>  Dossier du cours</button>
 </a>
 </div>
@@ -630,7 +630,7 @@ Important
 <button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "/tmp/RtmpRJBDYU/file78047b6934fc/data/raw/example_linelist.xlsx"</code></pre>
+<pre><code>[1] "/tmp/RtmpRJBDYU/file78042f1d3966/data/raw/example_linelist.xlsx"</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -640,7 +640,7 @@ Important
 <button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "/tmp/RtmpRJBDYU/file78047b6934fc/data/raw/example_linelist.xlsx"</code></pre>
+<pre><code>[1] "/tmp/RtmpRJBDYU/file78042f1d3966/data/raw/example_linelist.xlsx"</code></pre>
 </div>
 </div>
 <p>Voyez comme nous n’avons défini que le chemin relatif et la fonction a reconstitué le chemin absolu. Celà marchera donc sur l’ordinateur d’un collègue, y compris sur un autre système d’exploitation, du moment que la structure du répertoire de travail est intacte.</p>
@@ -649,7 +649,7 @@ Important
 <p>Exécutez le code ci-dessus dans la console. Quel chemin d’accès <code>here("data", "raw")</code> vous donne-t-il ?</p>
 </div>
 <div class="write">
-<p>Utilisez <code>here()</code> pour créer le chemin vers le fichier <code>Moissalla-rougeole-liste-lineaire-FR.xlsx</code>.</p>
+<p>Utilisez <code>here()</code> pour créer le chemin vers le fichier <code>moissala_linelist_FR.xlsx</code>.</p>
 </div>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -703,7 +703,7 @@ Astuce
 </div>
 <p>Notez que nous avons imbriqué la commande <code>here()</code> <strong>à l’intérieur de</strong> la commande <code>import()</code>. L’imbrication de fonctions est autorisée et même courante en R. R évalue les fonctions imbriquées de l’intérieur (<code>here()</code>) à l’extérieur (<code>import()</code>). La valeur renvoyée par <code>here()</code> est donc utilisée comme <em>valeur d’entrée</em> d’<code>import()</code>.</p>
 <div class="write">
-<p>Importez le fichier <code>Moissalla-rougeole-liste-lineaire-FR.xlsx</code> en utilisant <code>here()</code> et <code>import()</code>.</p>
+<p>Importez le fichier <code>moissala_linelist_FR.xlsx</code> en utilisant <code>here()</code> et <code>import()</code>.</p>
 </div>
 <p>Si votre importation a fonctionné correctement, R affichera les données dans la console mais ne les enregistrera pas dans l’environnement car nous ne <a href="../sessions_core/01_introduction.html#sec-assignement-operator">les avons pas assignées à un objet</a>.</p>
 <div class="write">

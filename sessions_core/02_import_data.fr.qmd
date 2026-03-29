@@ -16,8 +16,8 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 library(here) # for file paths
 library(rio)  # import and export files
 
-df_linelist <- import(file = here("data", "raw",
-              "moissala_linelist_FR.xlsx"))
+df_linelist <- import(file = here('data', 'scenarios', 'TCH_measles',
+                                  'raw', 'moissala_linelist_FR.xlsx'))
 ```
 
 ## Objectifs
@@ -44,7 +44,7 @@ Si ce n'est pas déjà fait, téléchargez le dossier du cours décompressez-le.
 #| eval: true
 
 downloadthis::download_link(
-  link = 'https://github.com/epicentre-msf/repicentre/raw/main/data/FETCHR.zip',
+  link = 'https://github.com/epicentre-msf/repicentre/raw/main/data/scenarios/TCH_measles/mandoul_rougeole_starter.zip',
   button_label = ' Dossier du cours',
   has_icon = TRUE,
   icon = "fa fa-save",
@@ -267,7 +267,7 @@ Exécutez le code ci-dessus dans la console. Quel chemin d'accès `here("data", 
 :::
 
 ::: {.write}
-Utilisez `here()` pour créer le chemin vers le fichier `Moissalla-rougeole-liste-lineaire-FR.xlsx`.
+Utilisez `here()` pour créer le chemin vers le fichier `moissala_linelist_FR.xlsx`.
 :::
 
 ::: {.callout-important}
@@ -299,7 +299,7 @@ import(file = here("data", "raw", "example_linelist.xlsx"))
 Notez que nous avons imbriqué la commande `here()` **à l'intérieur de** la commande `import()`. L'imbrication de fonctions est autorisée et même courante en R. R évalue les fonctions imbriquées de l'intérieur (`here()`) à l'extérieur (`import()`). La valeur renvoyée par `here()` est donc utilisée comme *valeur d'entrée* d'`import()`.
 
 ::: {.write}
-Importez le fichier `Moissalla-rougeole-liste-lineaire-FR.xlsx` en utilisant `here()` et `import()`.
+Importez le fichier `moissala_linelist_FR.xlsx` en utilisant `here()` et `import()`.
 :::
 
 Si votre importation a fonctionné correctement, R affichera les données dans la console mais ne les enregistrera pas dans l'environnement car nous ne [les avons pas assignées à un objet](../sessions_core/01_introduction.qmd#sec-assignement-operator).

@@ -366,16 +366,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
 </ul></section><section id="mise-en-place" class="level2"><h2 class="anchored" data-anchor-id="mise-en-place">Mise en place</h2>
 <p><strong>Prérequis</strong> : cette leçon part du principe que vous connaissez les bases de la manipulation de données avec <code>{dplyr}</code>, et en particulier la fonction <code>mutate()</code>. Aller vous <a href="../sessions_core/03_data_verbs.html">rafraîchir si besoin</a>.</p>
+<p>Nous allons également poursuivre l’étude de cas sur la rougeole de Mandoul ; <strong>si vous n’avez pas encore suivi les autres sessions du cours, veillez à <a href="https://github.com/epicentre-msf/repicentre/raw/main/data/scenarios/TCH_measles/mandoul_measles.zip">télécharger le dossier du cours</a> avant de continuer</strong>.</p>
 <div class="setup">
-<p>Nous utiliserons la liste linéaire avec les données brutes qui peut être téléchargée ici :</p>
-<div class="cell">
-<div class="cell-output-display">
-<a href="https://github.com/epicentre-msf/repicentre/raw/refs/heads/main/data/raw/moissala_linelist_FR.xlsx">
-<button class="btn btn-default"><i class="fa fa-save"></i> Télécharger les données</button>
-</a>
-</div>
-</div>
-<p><br> Si ce n’est pas déjà fait, enregistrez la dans le sous-dossier approprié de votre projet RStudio puis créez un nouveau script appelé <code>filtrer_recoder.R</code> dans votre sous-dossier <code>R</code>. Ajoutez un en-tête approprié et chargez les paquets suivants : <code>{here}</code>, <code>{rio}</code> et <code>{tidyverse}</code>. <br><br> Enfin, ajoutez une section dédiée à l’import des données, utilisez <code>{here}</code> et <code>{rio}</code> pour importer vos données dans R, et assignez-les à un objet que nous appellerons <code>df_brut</code></p>
+<p>Nous utiliserons la liste linéaire avec les données <strong>brutes</strong>. <br><br> Si ce n’est pas déjà fait, enregistrez la dans le sous-dossier approprié de votre projet RStudio puis créez un nouveau script appelé <code>filtrer_recoder.R</code> dans votre sous-dossier <code>R</code>. Ajoutez un en-tête approprié et chargez les paquets suivants : <code>{here}</code>, <code>{rio}</code> et <code>{tidyverse}</code>. Enfin, ajoutez une section dédiée à l’import des données, utilisez <code>{here}</code> et <code>{rio}</code> pour importer vos données dans R, et assignez-les à un objet que nous appellerons <code>df_brut</code></p>
 </div>
 </section><section id="filtrer-des-données-avec-des-conditions-logiques" class="level2"><h2 class="anchored" data-anchor-id="filtrer-des-données-avec-des-conditions-logiques">Filtrer des données avec des conditions logiques</h2>
 <p>Nous avons appris précédemment comment comment sélectionner les <em>colonnes</em> d’un data frame. Nous allons à présent apprendre la tâche complémentaire, qui est la sélection des <em>lignes</em> d’un data frame. C’est une tâche particulièrement courante du travail d’épidémiologiste qui permet de sélectionner des observations qui satisfont à <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Par exemple, ne considérer que les patients hospitalisés ou venant d'une région particulière.">certains critères</span>. Le paquet <code>{dplyr}</code> possède bien évidement une fonction pour ça, la fonction <code>filter()</code>.</p>
