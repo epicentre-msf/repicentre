@@ -17,7 +17,8 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 library(rio)    
 library(here)  
 
-path_data_raw <- here("data", "satellite_multiple")
+path_data_raw <- here('data', 'session-specific', 'import-multiple', 'satellite_multiple_FR',
+                      'data', 'raw')
 
 lab_data_list <- import_list(here(path_data_raw, "multiple_sheets",
                                    "msf_laboratory_moissala_2023-09-24_first.xlsx")) 
@@ -32,26 +33,24 @@ lab_data_list <- import_list(here(path_data_raw, "multiple_sheets",
 
 ## Mise en place
 
-Ce satellite est une prolongation du cours sur [l'importation des données](../sessions_core/02_import_data.qmd). Nous nous placerons donc dans le même dossier que ce cours là. Vous pouvez ajouter les commandes que vous verrez dans cette leçon à la suite de votre script d'import des données, ou créer un nouveau script.
-
-
 ::: {.setup}
-Téléchargez et dé-zippez le dossier suivant contenant les données de ce tutoriel dans le sous dossier `data/raw` de votre dossier du cours. Si vous n'avez pas le dossier du cours, allez le télécharger depuis [la session précédente](../sessions_core/02_import_data.qmd), ou créez un dossier avec un projet RStudio et des sous dossiers `data/raw` où enregistrer les données.
+Téléchargez et dé-zippez le dossier suivant contenant les données et `.Rproj` pour ce tutoriel.
 
 ```{r}
 #| echo: false
 #| eval: true
 
 downloadthis::download_link(
-  link = 'https://github.com/epicentre-msf/repicentre/raw/main/data/satellite_multiple.zip',
-  button_label = 'Données',
+  link = 'https://github.com/epicentre-msf/repicentre/raw/main/data/session-specific/import-multiple/satellite_multiple-importation_FR.zip',
+  button_label = 'Dossier de la Session',
   has_icon = TRUE,
   icon = "fa fa-save",
   self_contained = FALSE
 )
 ```
 
-Si vous travaillez dans un nouveau script, ajoutez les méta-données pertinentes et chargez les paquets `{rio}` et `{here}`. Ensuite, créez un objet `path_data_raw` qui pointe vers le dossier `data / raw`du dossier du cours.
+<br><br>
+Accédez au nouveau dossier et créez un nouveau script nommé `import_multiple.R`. Ajoutez un en-tête approprié au script et chargez les paquets `{rio}` et `{here}`. Créez un objet `path_data_raw` qui pointe vers le répertoire `data/raw` du dossier du cours.
 :::
 
 
@@ -89,7 +88,7 @@ import_list(here(path_data_raw, "example_linelist.xlsx"))
 Imaginons que vous ayez un fichier labo avec les patients positifs, négatifs et indéterminés sur [trois feuilles différentes]{.hovertip bs-toggle='tooltip' bs-title="C'est bizarre mais vous avez sans doute déjà vu pire..."} et vous voulez importer ces données.
 
 ::: {.look}
-Allez dans le sous-dossier  `data/raw/satellite_multiple/multiple_sheets`. Il y a deux versions des données labo. Ouvrez les deux fichiers et inspectez leur structure. Voyez-vous en quoi les deux fichier diffèrent ?
+Allez dans le sous-dossier  `data/raw/satellite_multiple/multiple_sheets/`. Il y a deux versions des données labo. Ouvrez les deux fichiers et inspectez leur structure. Voyez-vous en quoi les deux fichier diffèrent ?
 :::
 
 On va commencer par le premier fichier, qui est un peu plus propre.
@@ -228,7 +227,7 @@ import_list(vector_paths) # renvoi une liste
 
 
 ::: {.look}
-Allez dans le sous-dossier `data / raw /satellite_multiple/multiple_files/FR`. Ouvrez les fichiers Excel pour inspecter leur contenu. Est-ce que ça aurait du sens de les concaténer en un seul data frame ?
+Allez dans le sous-dossier `data/raw/multiple_files`. Ouvrez les fichiers Excel pour inspecter leur contenu. Est-ce que ça aurait du sens de les concaténer en un seul data frame ?
 :::
 
 ::: {.write}
@@ -249,7 +248,7 @@ Nous allons voir comment utiliser la fonction `list.files()` pour automatiquemen
 ```{r}
 #| eval: true
 
-path_mult <- here::here(path_data_raw, "multiple_files", "FR") # optionel, pour raccourcir les instructions suivantes
+path_mult <- here::here(path_data_raw, "multiple_files") # optionel, pour raccourcir les instructions suivantes
 
 list.files(path = path_mult) # Renvoi un vecteur de noms de fichier
 ```

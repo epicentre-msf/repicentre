@@ -1,7 +1,6 @@
 ---
 title: Import Multiple Files/Sheets
 description: Learn how to import multiple sheets from an Excel file, or several Excel files.
-date: last-modified
 image: ../img/extra/import_multiple/logo.svg
 categories:
   - Satellite
@@ -17,7 +16,8 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 library(rio)    
 library(here)  
 
-path_data_raw <- here("data", "satellite_multiple")
+path_data_raw <- here('data', 'session-specific', 'import-multiple', 'satellite_multiple_EN',
+                      'data', 'raw')
 
 lab_data_list <- import_list(here(path_data_raw, "multiple_sheets",
                                    "msf_laboratory_moissala_2023-09-24_first.xlsx")) 
@@ -32,28 +32,23 @@ lab_data_list <- import_list(here(path_data_raw, "multiple_sheets",
 
 ## Setup
 
-This satellite builds on the [Import data core session](../sessions_core/02_import_data.qmd), so we expect you to be working in the course project. You can add the commands from this tutorial to the `import_data.R` script that you created in that session, or create a new script. 
-
-
 ::: {.setup}
-Download and decompress the below folder containing data and an `.Rproj` file for this session. Navigate into it nd Place it inside a folder R  the below zip folder and save it in the `data/raw` subfolder of your course project. If you do not have a course project, either go to the [Import data core session](../sessions_core/02_import_data.qmd) to download it or create a RStudio project in a folder, and make sure you have a `data/raw` subfolder to store the data.
-
+Download and decompress the below folder containing data and an `.Rproj` file for this session. 
 ```{r}
 #| echo: false
 #| eval: true
 
 downloadthis::download_link(
-  link = 'https://github.com/epicentre-msf/repicentre/raw/main/data/satellite_multiple.zip',
-  button_label = 'Data',
+  link = 'https://github.com/epicentre-msf/repicentre/raw/main/data/session-specific/import-multiple/satellite_multiple-importation_EN.zip',
+  button_label = 'Session Folder',
   has_icon = TRUE,
   icon = "fa fa-save",
   self_contained = FALSE
 )
 ```
 
-
-
-If you are working in a new script, add metadata about it at the top and load the `{rio}` and `{here}` packages. Then create a `path_data_raw` object that points to the directory `data/raw` of the course folder.
+<br><br>
+Navigate into the new folder and create a new script called `import_multiple.R`. Add an appropriate header to the script and load `{rio}` and `{here}`. Create a `path_data_raw` object that points to the directory `data/raw` of the course folder.
 :::
 
 
@@ -230,7 +225,7 @@ import_list(vector_paths) # returns a list
 
 
 ::: {.look}
-Go to the sub-folder `data / raw /satellite_multiple/multiple_files/EN`. Open the Excel files to check their content. Would it make sense to concatenate the data together at import in this case?
+Go to the sub-folder `data/raw/multiple_files/`. Open the Excel files to check their content. Would it make sense to concatenate the data together at import in this case?
 :::
 
 ::: {.write}
@@ -251,7 +246,7 @@ We will now use the function `list.files()` to automatically retrieve the file p
 ```{r}
 #| eval: true
 
-path_mult <- here::here(path_data_raw, "multiple_files", "EN") # optional, to shorten the following code
+path_mult <- here::here(path_data_raw, "multiple_files") # optional, to shorten the following code
 
 list.files(path = path_mult) # returns a vector of file names
 ```
