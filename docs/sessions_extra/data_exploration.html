@@ -344,16 +344,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Produce frequency tables for variables</li>
 </ul></section><section id="setup" class="level2"><h2 class="anchored" data-anchor-id="setup">Setup</h2>
 <p><strong>Dependencies.</strong> This extra session assumes that you have completed the sessions <a href="../sessions_core/01_introduction.html">introduction to R and R studio</a>, and <a href="../sessions_core/02_import_data.html">data importation</a>.</p>
+<p>We will also be continuing with the Mandoul measles case study; <strong>if you haven’t done the previous course sessions then be sure to <a href="https://github.com/epicentre-msf/repicentre/raw/main/data/scenarios/TCH_measles/mandoul_measles.zip">download the course folder</a> before moving forward</strong>.</p>
 <div class="setup">
-<p>For this session we will work with our raw Moissala measles linelist which can be downloaded here:</p>
-<div class="cell">
-<div class="cell-output-display">
-<a href="https://github.com/epicentre-msf/repicentre/raw/main/data/FETCHR.zip">
-<button class="btn btn-default"><i class="fa fa-save"></i>  Course Folder</button>
-</a>
-</div>
-</div>
-<p><br> Make sure it is appropriately stored in <code>data/raw</code> of your project. Then open a new script called <code>data-exploration.R</code>, and make sure packages <code>{here}</code>, <code>{rio}</code> and <code>{dplyr}</code> are loaded. Finally, import the data into R as an object called <code>df_linelist</code>.</p>
+<p>For this session we will work with our <strong>raw</strong> Mandoul measles linelist. <br><br> Open a new script called <code>data-exploration.R</code>, and make sure packages <code>{here}</code>, <code>{rio}</code> and <code>{dplyr}</code> are loaded. Then, import the data into R as an object called <code>df_linelist</code>.</p>
 </div>
 </section><section id="data-exploration" class="level2"><h2 class="anchored" data-anchor-id="data-exploration">Data Exploration</h2>
 <p>Right after importing some data into R, we might want to take a look at it. When talking of <strong>data exploration</strong> we usually want to do a few things:</p>

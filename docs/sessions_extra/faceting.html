@@ -369,16 +369,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>The first option is tedious and it is error prone, and we advise against it; learning the tools of the second option will be a good investment of you time at some point as they are really powerful, but they are <em>way</em> out of the scope of this tutorial because a much simpler option already exist in <code>{ggplot2}</code>.</p>
 </section><section id="setup" class="level2"><h2 class="anchored" data-anchor-id="setup">Setup</h2>
+<p>We will be using the Mandoul measles case study; <strong>if you haven’t done the previous course sessions then be sure to <a href="https://github.com/epicentre-msf/repicentre/raw/main/data/scenarios/TCH_measles/mandoul_measles.zip">download the course folder</a> before moving forward</strong>.</p>
 <div class="setup">
-<p>We will use the same clean linelist that we used in the past sessions, which you can download here:</p>
-<div class="cell">
-<div class="cell-output-display">
-<a href="https://github.com/epicentre-msf/repicentre/raw/main/data/clean/moissala_linelist_clean_EN.rds">
-<button class="btn btn-default"><i class="fa fa-save"></i> Download clean data</button>
-</a>
-</div>
-</div>
-<p><br> Make sure this dataset is saved into the appropriate subdirectory of your R project and create a new script called <code>faceting.R</code> in your <code>R</code> directory. Add an appropriate header and load the following packages: <code>{here}</code>, <code>{rio}</code>, and <code>{tidyverse}</code>. <br><br> Finally, add an import section where you use <code>{here}</code> and <code>{rio}</code> to load your data into an object called <code>df_linelist</code>.</p>
+<p>For this session we will work with our <strong>raw</strong> Mandoul measles linelist. <br><br> Create a new script called <code>faceting.R</code> in your <code>R</code> directory. Add an appropriate header and load the following packages: <code>{here}</code>, <code>{rio}</code>, and <code>{tidyverse}</code>. Finally, add an import section where you use <code>{here}</code> and <code>{rio}</code> to load your data into an object called <code>df_linelist</code>.</p>
 </div>
 </section><section id="faceting" class="level2"><h2 class="anchored" data-anchor-id="faceting">Faceting</h2>
 <p>The function <code>facet_wrap()</code> allows you to replicate a graph based on the categories of a variable. For example, you could make the epicurve graph <em>by sex</em>, or <em>by site</em>. As other layers of a ggplot graph, you add it to your existing graph with a <code>+</code>. It creates a a figure with multiple small graphs, that <code>{ggplot2}</code> calls <em>facets</em> or <em>small multiples</em>.</p>
@@ -436,7 +429,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="faceting_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="864"></p>
+<figure class="figure"><p><img src="faceting_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="864"></p>
 </figure>
 </div>
 </div>
@@ -448,7 +441,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="faceting_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="864"></p>
+<figure class="figure"><p><img src="faceting_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="864"></p>
 </figure>
 </div>
 </div>
@@ -476,7 +469,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="faceting_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="864"></p>
+<figure class="figure"><p><img src="faceting_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="864"></p>
 </figure>
 </div>
 </div>
@@ -499,7 +492,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="faceting_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="864"></p>
+<figure class="figure"><p><img src="faceting_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="864"></p>
 </figure>
 </div>
 </div>
@@ -525,7 +518,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="faceting_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="faceting_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
