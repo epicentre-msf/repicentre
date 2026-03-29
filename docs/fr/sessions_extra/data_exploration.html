@@ -353,16 +353,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Produire des tableaux d’effectifs univariés</li>
 </ul></section><section id="setup" class="level2"><h2 class="anchored" data-anchor-id="setup">Setup</h2>
 <p><strong>Prérequis:</strong> ce tutoriel part du principe que vous avez suivi les sessions <a href="../sessions_core/01_introduction.html">introduction à R et R studio</a>, et <a href="../sessions_core/02_import_data.html">importation de données</a>.</p>
+<p>Nous allons également poursuivre l’étude de cas sur la rougeole de Mandoul ; <strong>si vous n’avez pas encore suivi les autres sessions du cours, veillez à <a href="https://github.com/epicentre-msf/repicentre/raw/main/data/scenarios/TCH_measles/mandoul_rougeole.zip">télécharger le dossier du cours</a> avant de continuer</strong>.</p>
 <div class="setup">
-<p>Pour cette session, nous travaillerons avec les données non nettoyées de la liste linéaire rougeole dans la région de Mandoul (Tchad), qui peut être téléchargée ici :</p>
-<div class="cell">
-<div class="cell-output-display">
-<a href="https://github.com/epicentre-msf/repicentre/raw/main/data/FETCHR.zip">
-<button class="btn btn-default"><i class="fa fa-save"></i> Télécharger les données</button>
-</a>
-</div>
-</div>
-<p><br> Assurez-vous qu’elle est correctement enregistrée dans le dossier <code>data/raw</code> de votre projet. Ensuite, créez un nouveau script appelé <code>data-exploration.R</code>, et chargez les paquets <code>{here}</code>, <code>{rio}</code> et <code>{dplyr}</code>. Enfin, importez les données dans R sous la forme d’un objet appelé <code>df_linelist</code>.</p>
+<p>Pour cette session, nous travaillerons avec les données <strong>brutes</strong> de la liste linéaire rougeole pour la région de Mandoul. <br><br> Créez un nouveau script appelé <code>data-exploration.R</code>, et chargez les paquets <code>{here}</code>, <code>{rio}</code> et <code>{dplyr}</code>. Puis, importez les données dans R sous la forme d’un objet appelé <code>df_linelist</code>.</p>
 </div>
 </section><section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <p>Il est très important d’inspecter les données que l’on vient d’importer dans R. Lorsque l’on parle d’exploration de données, on veut généralement faire plusieurs choses telles que :</p>
