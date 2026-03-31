@@ -409,7 +409,7 @@ C'est plus court comme ça...
 :::{.write}
 Utilisez `case_when()` et l'opérateur `%in%` pour créer une nouvelle colonne `vacc_status_simple` qui a la valeur :
 
-- `"Oui"` si le statut vaccinal est confirmé par carte **OU** oralement {.hovertip bs-toggle='tooltip' bs-title="C'est à dire a un statut vaccinal 'Oui - carte' ou 'Oui - oral'."}
+- `"Oui"` si le statut vaccinal est [confirmé par carte **OU** oralement]{.hovertip bs-toggle='tooltip' bs-title="C'est à dire a un statut vaccinal 'Oui - carte' ou 'Oui - oral'."}
 - `"Non"` pour les cas [non vaccinés]{.hovertip bs-toggle='tooltip' bs-title="A un statut vaccinal 'Non'."}  
 - `"Inconnu"` sinon.
 
