@@ -715,16 +715,16 @@ Note
 </div>
 <p>Much nicer.</p>
 <div class="write">
-<p>Use <code>case_when()</code> and the <code>%in%</code> operator to create a new column <code>vacc_status_strict</code> that has the value <code>"Yes"</code> for cases with <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Had a vacc_status of 'Yes - card'"><strong>card confirmed</strong> vaccination status</span>, <code>"No"</code> for cases who said they were <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Had a vacc_status of 'No'">unvaccinated</span>, and <code>"Unverified"</code> otherwise. The head of your new column should look like this:</p>
+<p>Use <code>case_when()</code> and the <code>%in%</code> operator to create a new column <code>vacc_status_simple</code> that has the value <code>"Yes"</code> for cases with <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Had a vacc_status of 'Yes - card' or 'Yes - oral'"><strong>either</strong> card or verbal confirmation</span>, <code>"No"</code> for cases who said they were <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Had a vacc_status of 'No'">unvaccinated</span>, and <code>"Unknown"</code> otherwise. The head of your new column should look like this:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>  vacc_status_strict
-1         Unverified
-2                 No
-3         Unverified
-4                 No
-5                 No
-6                 No</code></pre>
+<pre><code>  vacc_status vacc_status_simple
+1        &lt;NA&gt;            Unknown
+2          No                 No
+3  Yes - oral                Yes
+4          No                 No
+5          No                 No
+6          No                 No</code></pre>
 </div>
 </div>
 </div>
