@@ -377,17 +377,17 @@ df_raw |>
 Much nicer.
 
 :::{.write}
-Use `case_when()` and the `%in%` operator to create a new column `vacc_status_strict` that has the value `"Yes"` for cases with [**card confirmed** vaccination status]{.hovertip bs-toggle='tooltip' bs-title="Had a vacc_status of 'Yes - card'"}, `"No"` for cases who said they were [unvaccinated]{.hovertip bs-toggle='tooltip' bs-title="Had a vacc_status of 'No'"}, and `"Unverified"` otherwise. The head of your new column should look like this:
+Use `case_when()` and the `%in%` operator to create a new column `vacc_status_simple` that has the value `"Yes"` for cases with [**either** card or verbal confirmation]{.hovertip bs-toggle='tooltip' bs-title="Had a vacc_status of 'Yes - card' or 'Yes - oral'"}, `"No"` for cases who said they were [unvaccinated]{.hovertip bs-toggle='tooltip' bs-title="Had a vacc_status of 'No'"}, and `"Unknown"` otherwise. The head of your new column should look like this:
 
 ```{r}
 #| eval: true
 #| echo: false
 
 df_raw |>
-  mutate(vacc_status_strict = case_when(vacc_status == 'Yes - card' ~ 'Yes',
+  mutate(vacc_status_simple = case_when(vacc_status %in% c('Yes - card', 'Yes - oral') ~ 'Yes',
                                         vacc_status == 'No' ~ 'No',
-                                        .default = 'Unverified')) |>
-  select(vacc_status_strict) |>
+                                        .default = 'Unknown')) |>
+  select(vacc_status, vacc_status_simple) |>
   head()
 ```
 :::
