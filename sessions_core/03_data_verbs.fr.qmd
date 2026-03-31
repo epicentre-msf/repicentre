@@ -62,7 +62,7 @@ Aujourd'hui nous nous focaliserons sur les quatre verbes (fonctions !) qui perme
 
 
 :::{.callout-note}
-Peut-être avez-vous noté que nous présentons le paquet `{dplyr}` mais nous vous avons fait charger le paquet `{tidyverse}` lors de la mise en place. Le `{tidyverse}` est un *méta-paquet*: le charger charge automatiquement [plusieurs des paquets les plus utiles]{.hovertip bs-toggle='tooltip' bs-title="L'univers du tidyverse contient de très nombreux paquets, et les charger tous d'un coup serait long et peu utile. Les paquets les plus courants  ont donc été rassemblés dans un méta paquet `{tidyverse}`, pour un chargement rapide"} de l'univers du tidyverse, dont fait partie `{dplyr}` et d'autres paquets que nous verrons dans la session.
+Nous vous avons fait charger le paquet `{tidyverse}`lors de la mise au lieu de `{dplyr}`. Le `{tidyverse}` est un *méta-paquet*: le charger charge automatiquement [plusieurs paquets très utiles]{.hovertip bs-toggle='tooltip' bs-title="L'univers du tidyverse contient de très nombreux paquets. Les charger tous d'un coup serait long et inutile. Les paquets les plus courants ont donc été rassemblés dans un méta paquet `{tidyverse}`, pour un chargement rapide"} de l'univers du tidyverse, dont fait partie `{dplyr}` et d'autres paquets que nous verrons dans la session.
 :::
 
 
