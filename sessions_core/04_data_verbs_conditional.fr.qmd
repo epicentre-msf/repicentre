@@ -35,13 +35,13 @@ Dans la session précédente vous avez appris les bases du traitement de donnée
 
 Mise en place
 ----------------------------------------------------------------------------------
-**Prérequis** : cette leçon part du principe que vous connaissez les bases de la manipulation de données avec `{dplyr}`, et en particulier la fonction `mutate()`. Aller vous [rafraîchir si besoin](03_data_verbs.qmd). 
+**Prérequis** : les bases de la manipulation de données avec `{dplyr}`, et en particulier la fonction `mutate()`. Allez vous [rafraîchir si besoin](03_data_verbs.qmd). 
 
-Nous allons également poursuivre l'étude de cas sur la rougeole de Mandoul ; **si vous n'avez pas encore suivi les autres sessions du cours, veillez à [télécharger le dossier du cours](https://github.com/epicentre-msf/repicentre/raw/main/data/scenarios/TCH_measles/mandoul_rougeole.zip) avant de continuer**.
+Nous allons poursuivre l'étude de cas sur la rougeole à Mandoul ; **si vous n'avez pas encore suivi les autres sessions du cours, veillez à [télécharger le dossier du cours](https://github.com/epicentre-msf/repicentre/raw/main/data/scenarios/TCH_measles/mandoul_rougeole.zip) avant de continuer**.
 
 
 ::: {.setup}
-Nous utiliserons la liste linéaire avec les données **brutes**.
+Nous utiliserons la liste linéaire contenant les données **brutes**.
 <br><br>
 Si ce n'est pas déjà fait, enregistrez la dans le sous-dossier approprié de votre projet RStudio puis créez un nouveau script appelé `filtrer_recoder.R` dans votre sous-dossier `R`. Ajoutez un en-tête approprié et chargez les paquets suivants : `{here}`, `{rio}` et `{tidyverse}`. Enfin, ajoutez une section dédiée à l'import des données, utilisez `{here}` et `{rio}` pour importer vos données dans R, et assignez-les à un objet que nous appellerons `df_brut`
 :::
@@ -50,15 +50,12 @@ Si ce n'est pas déjà fait, enregistrez la dans le sous-dossier approprié de v
 
 Filtrer des données avec des conditions logiques
 --------------------------------------------------------------------------------
+
+Après avoir appris à sélectionner les *colonnes* d'un data frame nous allons voir comment sélectionner les *lignes*. Sélectionner des observations qui satisfont à [certains critères]{.hovertip bs-toggle='tooltip' bs-title="Par exemple, ne considérer que les patients hospitalisés ou venant d'une région particulière."} est une tâche particulièrement courante du travail d'épidémiologiste. Le paquet `{dplyr}` possède évidement une fonction pour ça : la fonction `filter()`. 
   
-Nous avons appris précédemment comment comment sélectionner les *colonnes* d'un data frame. Nous allons à présent apprendre la tâche complémentaire, qui est la sélection des *lignes* d'un data frame. C'est une tâche particulièrement courante du travail d'épidémiologiste qui permet de sélectionner des observations qui satisfont à [certains critères]{.hovertip bs-toggle='tooltip' bs-title="Par exemple, ne considérer que les patients hospitalisés ou venant d'une région particulière."}. Le paquet `{dplyr}` possède bien évidement une fonction pour ça, la fonction `filter()`. 
-  
-Avant de pouvoir l'utiliser nous allons néanmoins devoir apprendre à écrire des **conditions logique**, qui sont également un prérequis pour recoder des variables. Les conditions logiques sont des questions (ou *tests*) auxquelles R va répondre par `TRUE` ou  `FALSE` (ou `NA`).
+Avant de pouvoir l'utiliser nous allons néanmoins devoir apprendre à écrire des **conditions logiques**, qui sont également un prérequis pour recoder des variables. Les conditions logiques sont des questions (ou *tests*) auxquelles R va répondre par `TRUE` [vrai],  `FALSE` [faux] ou `NA`.
 
-
-### Egalité
-
-La syntaxe de `filter()` est assez simple :
+La syntaxe de `filter()` est assez simple : la fonction *conserve* les lignes où `condition_logique` est vraie :
 
 ```{r}
 # NE PAS EXÉCUTER (PSEUDO-CODE)
@@ -66,7 +63,9 @@ df_brut |>
   filter([condition_logique])
 ```
 
-Cette syntaxe permet de *conserver* les lignes où `condition_logique` est vraie. Ici, la condition logique va demander si quelque chose est égale à autre chose. Par exemple, si telle variable est égale à telle valeur (*est ce que patient a été hospitalisé ?*). 
+### Egalité
+
+Dans ce cas, la condition logique teste si quelque chose est égale à autre chose. Par exemple, si telle variable est égale à telle valeur (*est ce que patient a été hospitalisé ?*). 
 En R, nous testons l'égalité avec [l'opérateur `==`]{.hovertip bs-toggle='tooltip' bs-title="Notez bien le double signe égal !"}. 
 
 En pratique, pour créer un filtre qui ne garde que les patients hospitalisés nous écrivons : 
@@ -76,7 +75,7 @@ df_brut |>
   filter(hospitalisation == "oui")
 ```
 
-Ici, `filter()` parcourt chaque ligne de notre data frame et teste si la valeur d'`hospitalisation` dans cette ligne est égale à `"oui"`. La fonction ne renvoie alors que les lignes où la réponse à la question est `TRUE` [vrai]. 
+Ici, `filter()` parcourt chaque ligne de notre data frame et teste si la valeur d'`hospitalisation` dans cette ligne est égale à `"oui"`. La fonction ne renvoie alors que les lignes où la réponse à la question est `TRUE`. 
                                    
 :::{.write}
 Filtrez vos données pour ne conserver que les patients qui avaient de la fièvre (c'est à dire les patients contenant la valeur `"Yes"` dans la colonne `fievre`. Le début de la colonne `fievre` dans la sortie filtrée est :
@@ -96,7 +95,7 @@ Inspectez la sortie et `df_brut`. Pourquoi `df_brut` contient-il encore les pati
 
 ### Inégalité
 
-Parfois, nous préférons tester l'inégalité plutôt que l'égalité ; pour examiner les patients qui ne se sont **pas** rétablis, par exemple, qu'ils soient décédés ou sorti contre avis médical. Dans ce cas nous utiliserons l'opérateur `!=`, ce qui donne ce code : 
+Parfois, nous préférons tester l'inégalité plutôt que l'égalité ; pour examiner les patients qui ne se sont **pas** rétablis, par exemple, qu'ils soient décédés ou sorti contre avis médical. Dans ce cas nous utiliserons l'opérateur `!=` : 
                                      
 ```{r}
 df_brut |>
@@ -225,7 +224,7 @@ Nous avons fait le tour des conditions logiques les plus basiques en R. Les voic
 |Condition|R|
 |:---|:---:|
 |A identique à B ?|A == B|
-|A **pas** identique à B ?|A != B|
+|A **différent** de B ?|A != B|
 |A supérieur à B ?|A > B|
 |A supérieur ou égal à B ?|A >= B|
 |A inférieur à B ?|A < B|
@@ -235,9 +234,7 @@ Nous avons fait le tour des conditions logiques les plus basiques en R. Les voic
 Recoder des variables avec `case_when()`
 ------------------------------------------------------------------------------
 
-L'utilité des conditions logiques dans le traitement de données va bien plus loin que la sélection de lignes ! Elles sont par exemple très utiles quand nous voulons [recoder des variables]{.hovertip bs-toggle='tooltip' bs-title="Le recodage est le processus qui consiste soit à standardiser les valeurs d'une variable (par exemple, s'assurer que 'f' et 'femme' sont tous deux codés par 'Femme'), soit à créer des catégories à partir d'une variable continue (par exemple, des groupes d'âge)."}. Nous utiliserons les conditions logiques à l'intérieur de la fonction `case_when()` (également du paquet `{dplyr}`) pour recoder les variables.
-
-La fonction `case_when()` est un peu plus complexe que ce que l'on a vu jusqu'à présent, mais très puissante (et va donc vous être *très utile*). Nous allons décomposer sa syntaxe pas à pas. 
+Les conditions logiques sont également très utiles lorsque nous voulons [recoder des variables]{.hovertip bs-toggle='tooltip' bs-title="Le recodage est le processus qui consiste soit à standardiser les valeurs d'une variable (par exemple, s'assurer que 'f' et 'femme' sont tous deux codés par 'Femme'), soit à créer des catégories à partir d'une variable continue (par exemple, des groupes d'âge)."}. Dans cette leçon, nous les utiliserons au sein de la fonction `case_when()` (également du paquet `{dplyr}`) qui permet de recoder des variables. Cette fonction est un peu plus complexe que ce que l'on a vu jusqu'à présent, mais très puissante (et donc *très utile*). Nous allons décomposer sa syntaxe pas à pas. 
 
 Vous utiliserez presque toujours `case_when()` dans un `mutate()` pour recoder une variable existante ou en créer une nouvelle, avec cette syntaxe :
 
@@ -269,7 +266,7 @@ Ainsi, pour recoder les patients avec un PB inférieur à 115mm comme `"MAS"`, n
 
 Il y a en général plus d'une condition ! Dans notre exemple, une autre condition logique testerait si le patient est modérément malnutri avec l'instruction `pb < 125 ~ "MAM"`. 
 
-La dernière ligne de notre pseudo code contient l'argument `.default` et sert à fournir la valeur à utiliser lorsqu’aucune des conditions n'est remplie. Dans notre exemple, ça pourrait être `"Normal"`. 
+La dernière ligne de notre pseudo code contient l'argument `.default` et fourni la valeur à utiliser lorsqu’aucune des conditions n'est remplie. Dans notre exemple, ça pourrait être `"Normal"`. 
 
 Pour résumer, pour résumer, pour créer une variable contenant le statut nutritionnel à partir du PB : 
 
