@@ -47,7 +47,7 @@ Créez un nouveau script appelé `fonctions_donnees.R` dans votre sous-dossier `
 Traiter ses données avec `{dplyr}`
 ----------------------------------------------------------------
 
-Nous pouvons enfin travailler sur nos données ! Cette leçon et les suivantes s'appuieront sur plusieurs paquets de la *collection de paquets* [tidyverse]{.hovertip bs-toggle='tooltip' bs-title="Le tidyverse est une collection de paquets pour R qui insistent sur la lisibilité du code et la facilité d'utilisation."} pour manipuler des data frames, résumer et visualiser les données, et en particulier paquet `{dplyr}`.
+Nous pouvons enfin travailler sur nos données ! Cette leçon et les suivantes s'appuient sur plusieurs paquets de la *collection de paquets* [tidyverse]{.hovertip bs-toggle='tooltip' bs-title="Le tidyverse est une collection de paquets R qui insistent sur la lisibilité du code et la facilité d'utilisation."} pour manipuler des data frames, résumer et visualiser les données, et en particulier le paquet `{dplyr}`.
 
 Le *traitement des données* (parfois appelé *manipulation des données*) est un ensemble d'actions essentielles pour préparer et nettoyer les données avant une analyse (que ce soit dans R ou Excel). Le paquet `{dplyr}` fournit de nombreuses fonctions pour remplir ce genre de tâches courantes :
 
@@ -58,11 +58,11 @@ Le *traitement des données* (parfois appelé *manipulation des données*) est u
 
 Ces fonctions ont en général un [nom intuitif, qui correspond à un verbe]{.hovertip bs-toggle='tooltip' bs-title="Au moins en anglais, mais nous vous fournirons la traduction. Comme les auteurs du paquet utilisent souvent des verbes pour nommer leurs fonctions, on parle souvent des 'verbes de dplyr'."}. Par exemple, pour renommer des colonnes, on utilisera la fonction `rename()`.
 
-Aujourd'hui nous nous focaliserons sur les quatre verbes (fonctions !) qui permettent d'effectuer les tâches mentionnées précédemment, et que vous utiliserez en permanence. Nous vous montrerons également comment enchaîner les actions dans un *"pipeline"* pour plus de fluidité.
+Aujourd'hui nous nous focaliserons sur les quatre verbes (fonctions !) qui permettent d'effectuer les tâches mentionnées précédemment, et que vous utiliserez en permanence. Nous apprendrons également à enchaîner les actions dans un *"pipeline"* pour plus de fluidité.
 
 
 :::{.callout-note}
-Nous vous avons fait charger le paquet `{tidyverse}`lors de la mise au lieu de `{dplyr}`. Le `{tidyverse}` est un *méta-paquet*: le charger charge automatiquement [plusieurs paquets très utiles]{.hovertip bs-toggle='tooltip' bs-title="L'univers du tidyverse contient de très nombreux paquets. Les charger tous d'un coup serait long et inutile. Les paquets les plus courants ont donc été rassemblés dans un méta paquet `{tidyverse}`, pour un chargement rapide"} de l'univers du tidyverse, dont fait partie `{dplyr}` et d'autres paquets que nous verrons dans la session.
+Nous vous avons fait charger le paquet `{tidyverse}`lors de la mise au lieu de `{dplyr}`. Le `{tidyverse}` est un *méta-paquet* : le charger charge automatiquement [plusieurs paquets très utiles]{.hovertip bs-toggle='tooltip' bs-title="L'univers du tidyverse contient de très nombreux paquets. Les charger tous d'un coup serait long et inutile. Les paquets les plus courants ont donc été rassemblés dans un méta paquet `{tidyverse}`, pour un chargement rapide"} de l'univers du tidyverse, dont fait partie `{dplyr}` et d'autres paquets que nous verrons dans la session.
 :::
 
 
@@ -137,7 +137,7 @@ Utilisez la fonction `rename()` sur `df_brut` pour renommer les colonnes :
 - `nom_structure_sante` en `structure`
 :::
 
-Si vous ne faites qu'afficher le data frame produit dans la console (sans l'assigner à un objet), il peut être dur de voir si les colonnes ont été correctement renommées. Une [première stratégie]{.hovertip bs-toggle='tooltip' bs-title="Une seconde utilise le pipe, que nous verrons à la fin de cette leçon, et et une troisième est d'imbriquer la commande à tester directement dans une autre fonction, telle que names()."} consiste à enregistrer le data frame intermédiaire dans un objet pour pouvoir l'examiner avec des fonctions connues. Vous pouvez nommer cet objet temporaire comme vous voulez, mais un nom commun est `temp` [ou `tmp` en anglais] pour indiquer que ce n'est pas un objet destiné à être conservé.
+Si vous ne faites qu'afficher le data frame produit dans la console (sans l'assigner à un objet), il peut être dur de voir si les colonnes ont été correctement renommées. Une [première stratégie]{.hovertip bs-toggle='tooltip' bs-title="Une seconde utilise le pipe, que nous verrons à la fin de cette leçon, et une troisième est d'imbriquer la commande à tester directement dans une autre fonction, telle que names()."} consiste à enregistrer le data frame intermédiaire dans un objet pour pouvoir l'examiner avec des fonctions connues. Vous pouvez nommer cet objet temporaire comme vous voulez, mais un nom commun est `temp` [ou `tmp` en anglais] pour indiquer que ce n'est pas un objet destiné à être conservé.
 
 
 :::{.write}
