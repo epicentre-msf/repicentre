@@ -374,6 +374,7 @@ downloadthis::download_link(
 
 ### Ressources complémentaires
 
+- Ssession atellite sur [l'importation de plusieurs fichiers ou de plusieurs feuilles à partir d'un seul fichier (Excel)](../sessions_extra/import_multiple.qmd)
 - Le [site web](https://gesistsa.github.io/rio/index.html#supported-file-formats) de `{rio}`
 - [Plus d'exemples](https://epirhandbook.com/fr/new_pages/importing.fr.html) sur l'importation de données de différents types de fichiers
 

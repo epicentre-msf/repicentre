@@ -370,5 +370,6 @@ downloadthis::download_link(
 
 ### Additional Resources
 
+- Satellite session on [importing multiple files or multiple sheets from a single (Excel) file](../sessions_extra/import_multiple.qmd)
 - The `{rio}` [website](https://gesistsa.github.io/rio/index.html#supported-file-formats)
 - [More examples](https://epirhandbook.com/en/new_pages/importing.html) on importing data of various file types
