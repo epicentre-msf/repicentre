@@ -499,7 +499,7 @@ df_linelist |>
 Top ! Nous pouvons maintenant exporter ce data frame (presque) propre hors de R. Pour cela nous utiliserons la fonction `export()` de `{rio}` (et notre fidèle compagnon, la fonction `here()` de `{here}` pour gérer les chemins d'accès) :
 
 ```{r}
-df |>
+df_linelist|>
   export(here("data", "clean", "measles_linelist_clean.xlsx"))
 ```
 
@@ -511,7 +511,7 @@ Enregistrer les données au format `.xlsx` est utile pour pouvoir les ouvrir dan
 Pour exporter votre data frame vers un fichier `.rds`, il suffit de modifier l'extension :
 
 ```{r}
-df |>
+df_linelist |>
   export(here("data", "clean", "measles_linelist_clean.rds")) # TADAM !
 ```
 :::
@@ -607,35 +607,7 @@ La sortie ressemble à ceci :
 #| echo: false
 #| eval: true
 
-df <- df_brut |>
-  select(-nom_complet, -unite_age) |>
-  rename(
-    age_mois = age,
-    prefecture = sous_prefecture,
-    village = village_commune,
-    structure = nom_structure_sante) |>
-  mutate(
-    age_ans = age_mois / 12,
-    region = stringr::str_to_title(region),
-    prefecture = stringr::str_to_title(prefecture),
-    date_debut = lubridate::ymd(date_debut),
-    date_consultation = lubridate::ymd(date_consultation),
-    date_admission = lubridate::ymd(date_admission),
-    date_issue = lubridate::ymd(date_issue),
-    groupe_age = case_when(
-      age_mois < 6 ~ '< 6 mois',
-      age_mois < 12 ~ '6 - 11 mois',
-      age_ans < 5 ~ '12 - 59 mois',
-      age_ans <= 15 ~ '5 - 15 ans',
-      age_ans > 15 ~ '> 15 ans',
-      .default = 'Inconnu'),
-    sexe = case_when(
-      sexe %in% c("f", "femme", "femme") ~ "Femme",
-      sexe %in% c("h", "homme", "homme") ~ "Homme",
-      .default = "Inconnu")) |>
-  distinct() 
-
-df |>
+df_linelist |>
   filter(prefecture == "Moissala",
          structure %in% c("Moissala Est", "Moissala Nord", "Moissala Sud", 
                          "Hôpital du District de Moissala")) |> 
