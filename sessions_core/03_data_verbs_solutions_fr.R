@@ -30,12 +30,12 @@ df_linelist <- df_brut |>
   
   # Corriger le format de certaines colonnes, ajouter l'age en années
   mutate(age_ans = age_mois / 12,
-         region = stringr::str_to_title(region),
-         prefecture = stringr::str_to_title(prefecture),
-         date_debut = lubridate::ymd(date_debut),
-         date_consultation = lubridate::ymd(date_consultation),
-         date_admission = lubridate::ymd(date_admission),
-         date_issue = lubridate::ymd(date_issue)) |>
+         region = str_to_title(region),
+         prefecture = str_to_title(prefecture),
+         date_debut = ymd(date_debut),
+         date_consultation = ymd(date_consultation),
+         date_admission = ymd(date_admission),
+         date_issue = ymd(date_issue)) |>
   
   # supprimer les doublons
   distinct()
