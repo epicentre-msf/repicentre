@@ -756,24 +756,24 @@ Note
 </div>
 <p>C’est plus court comme ça…</p>
 <div class="write">
-<p>Utilisez <code>case_when()</code> et l’opérateur <code>%in%</code> pour créer une nouvelle colonne <code>vacc_status_strict</code> qui a la valeur :</p>
+<p>Utilisez <code>case_when()</code> et l’opérateur <code>%in%</code> pour créer une nouvelle colonne <code>vacc_status_simple</code> qui a la valeur :</p>
 <ul>
 <li>
-<code>"Oui"</code> si le statut vaccinal est <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="C'est à dire a un statut vaccinal 'Oui - carte'.">confirmé</span>
+<code>"Oui"</code> si le statut vaccinal est <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="C'est à dire a un statut vaccinal 'Oui - carte' ou 'Oui - oral'.">confirmé par carte <strong>OU</strong> oralement</span>
 </li>
 <li>
 <code>"Non"</code> pour les cas <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="A un statut vaccinal 'Non'.">non vaccinés</span><br>
 </li>
 <li>
-<code>"Non vérifié"</code> sinon.</li>
+<code>"Inconnu"</code> sinon.</li>
 </ul>
 <p>La tête de la nouvelle colonne ressemble à ceci :</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>  statut_vaccinal statut_vaccinal_strict
-1            &lt;NA&gt;            Non vérifié
+<pre><code>  statut_vaccinal statut_vaccinal_simple
+1            &lt;NA&gt;                Inconnu
 2             Non                    Non
-3      Oui - oral            Non vérifié
+3      Oui - oral                    Oui
 4             Non                    Non
 5             Non                    Non
 6             Non                    Non</code></pre>
