@@ -532,13 +532,15 @@ downloadthis::download_link(
   self_contained = FALSE
   )
 ```
-                                                                                              Aller plus loin
+
+
+Aller plus loin
 -------------------------------------------------------------------
 
 ### Exercices supplémentaires
 
 
-1. **Conditions** : si nous créons les deux vecteurs suivants : 
+1. **Conditions** : les tests logiques ne se restreignent pas à `filter()` et `case_when()`. On peut aussi les utiliser avec des vecteurs. Si nous créons les deux vecteurs suivants : 
 
 ```{r}
 #| eval: true

@@ -490,7 +490,7 @@ Going Further
 
 ### Extra Exercises
 
-1. **Conditions**: let us consider the two following vectors: 
+1. **Conditions**: you can use conditions outside of `filter()` and `case_when()`. Let's try thm with vectors: let us consider the two following vectors: 
 ```{r}
 #| eval: true
 vec1 <- c(1, 2, 3, 4, 5)
