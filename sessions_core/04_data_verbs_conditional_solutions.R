@@ -44,20 +44,7 @@ df <- df_raw |>
 
 # EXTRA EXERCICES ------------------------------------------------------------------------------
 
-# 1. Conditions
-vec1 <- c(1, 2, 3, 4, 5)
-vec2 <- c(1, 3, 4, 2, 5)
-
-vec1 == vec2
-vec1 >= vec2
-vec1 %in% vec2
-is.na(vec2)
-
-# 2.
-
-"Moissala Ouest" %in% df$facility
-
-# 3. Filtering
+# 1. Filtering
 
 df |> filter(prefecture == "Bedaya")
 df |> filter(fever != "Yes")
@@ -71,7 +58,7 @@ df |> filter()
 df |> filter()
 
 
-# 4. Cleaning
+# 2. Cleaning
 
 df |> 
   mutate(
@@ -94,7 +81,7 @@ df |>
     )
   )
 
-# 5. Simplify
+# 3. Simplify
 
 df |> 
   mutate(age_group2 = case_when(
@@ -105,6 +92,18 @@ df |>
     age_years >= 15 ~ "15 + years",
     .default = "Unknown")
   )
+
+# 4. Conditions
+vec1 <- c(1, 2, 3, 4, 5)
+vec2 <- c(1, 3, 4, 2, 5)
+
+vec1 == vec2
+vec1 >= vec2
+vec1 %in% vec2
+is.na(vec2)
+
+# 5.
+"Moissala Ouest" %in% df$facility
 
 
 ## CHALLENGE

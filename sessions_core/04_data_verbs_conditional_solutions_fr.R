@@ -62,20 +62,7 @@ df_linelist <- df_brut |>
 
 # EXERCICES SUPPÉMENTAIRES ------------------------------------------------------------------------------
 
-# 1. Conditions
-vec1 <- c(1, 2, 3, 4, 5)
-vec2 <- c(1, 3, 4, 2, 5)
-
-vec1 == vec2
-vec1 >= vec2
-vec1 %in% vec2
-is.na(vec2)
-
-# 2.
-
-"Moissala Ouest" %in% df_linelist$structure
-
-# 3. Filtering
+# 1. Filtering
 
 df_linelist |> filter(prefecture == "Bedaya")
 df_linelist |> filter(fievre != "Oui")
@@ -87,7 +74,7 @@ df_linelist |> filter(prefecture == "Moissala", structure == "Moissala Est", dat
 df_linelist |> filter(pb <115, age_mois < 59)
 
 
-# 4. Cleaning
+# 2. Cleaning
 
 df_linelist |> 
   mutate(
@@ -110,7 +97,7 @@ df_linelist |>
     )
   )
 
-# 5. Simplifier
+# 3. Simplifier
 
 df_linelist |> 
   mutate(groupe_age2 = case_when(
@@ -121,6 +108,18 @@ df_linelist |>
     age_ans >= 15 ~ "15+ ans",
     .default = "Inconnu")
   ) 
+
+# 4. Conditions
+vec1 <- c(1, 2, 3, 4, 5)
+vec2 <- c(1, 3, 4, 2, 5)
+
+vec1 == vec2
+vec1 >= vec2
+vec1 %in% vec2
+is.na(vec2)
+
+# 5.
+"Moissala Ouest" %in% df_linelist$structure
 
 ## DÉFI -------------------------------------------------------------------------
 # 1.
