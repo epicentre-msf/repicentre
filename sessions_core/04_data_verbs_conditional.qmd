@@ -474,7 +474,7 @@ Very well done. You've learned how to use basic data verbs, conditional logic, a
 #| eval: true
 
 downloadthis::download_link(
-  link = 'https://github.com/epicentre-msf/repicentre/blob/main/sessions_core/03_data_verbs_conditional_solutions.R',
+  link = 'https://github.com/epicentre-msf/repicentre/blob/main/sessions_core/04_data_verbs_conditional_solutions.R',
   button_label = 'Solution File',
   has_icon = TRUE,
   icon = "fa fa-save",
