@@ -377,16 +377,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section><section id="mise-en-place" class="level2"><h2 class="anchored" data-anchor-id="mise-en-place">Mise en place</h2>
 <p><strong>Prérequis</strong> Cette leçon part du principe que vous savez utiliser RStudio, êtes capable d’importer des données et connaissez les verbes de base du traitement des données. Rafraîchissez-vous si besoin sur les <a href="https://epicentre-msf.github.io/repicentre//fr/pathway.html">leçons précédentes</a>.</p>
+<p>Nous allons également poursuivre l’étude de cas sur la rougeole de Mandoul ; <strong>si vous n’avez pas encore suivi les autres sessions du cours, veillez à <a href="https://github.com/epicentre-msf/repicentre/raw/main/data/scenarios/TCH_measles/mandoul_rougeole.zip">télécharger le dossier du cours</a> avant de continuer</strong>.</p>
 <div class="setup">
-<p>Cette session utilisera la version nettoyée de la liste linéaire rougeole à Mandoul</p>
-<div class="cell">
-<div class="cell-output-display">
-<a href="https://github.com/epicentre-msf/repicentre/raw/main/data/FETCHR.zip">
-<button class="btn btn-default"><i class="fa fa-save"></i>  Course Folder</button>
-</a>
-</div>
-</div>
-<p><br> Ouvrez le projet Rstudio du cours et créez un nouveau script appelé “courbe_epi.R” avec les métadonnées appropriées. Enregistrez le dans <code>R/</code>. Pour cette leçon, nous aurons besoin de charger les paquets <code>{here}</code>, <code>{rio}</code>, <code>{dplyr}</code>, <code>{lubridate}</code>, et<code>{ggplot2}</code>. Ajoutez une section <code># IMPORT DONNÉES</code> où vous importez les données nettoyées du cours (<code>linelist_moissala_clean_FR.RDS</code>).</p>
+<p>Cette session utilisera la version <strong>nettoyée</strong> de la liste linéaire rougeole à Mandoul. <br><br> Ouvrez le projet Rstudio du cours et créez un nouveau script appelé “courbe_epi.R” avec les métadonnées appropriées. Enregistrez le dans <code>R/</code>. Pour cette leçon, nous aurons besoin de charger les paquets <code>{here}</code>, <code>{rio}</code>, <code>{dplyr}</code>, <code>{lubridate}</code>, et<code>{ggplot2}</code>. Ajoutez une section <code># IMPORT DONNÉES</code> où vous importez les données nettoyées du cours (<code>linelist_moissala_clean_FR.RDS</code>).</p>
 </div>
 </section><section id="les-paradigmes-de-la-création-de-graphiques" class="level2"><h2 class="anchored" data-anchor-id="les-paradigmes-de-la-création-de-graphiques">Les paradigmes de la création de graphiques</h2>
 <p>Il y a plusieurs manières d’approcher la visualisation de données en général et en R en particulier. Les deux paradigmes les plus connus sont :</p>
@@ -519,7 +512,7 @@ Note
 </div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -551,7 +544,7 @@ Note
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -578,7 +571,7 @@ Note
 </div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -594,7 +587,7 @@ Note
 </div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -606,7 +599,7 @@ Note
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -648,7 +641,7 @@ Note
 </div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -660,7 +653,7 @@ Note
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -683,7 +676,7 @@ Note
 </div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -703,7 +696,7 @@ Note
 </div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="960"></p>
+<figure class="figure"><p><img src="06_epicurves_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>

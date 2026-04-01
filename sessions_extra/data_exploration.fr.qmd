@@ -15,7 +15,8 @@ library(here) # for filepaths
 library(rio)  # import and export files
 library(dplyr)
 
-df_linelist <- import(here::here("data", "raw", "moissala_linelist_FR.xlsx"))
+df_linelist <- import(file = here('data', 'scenarios', 'TCH_measles',
+                                  'raw', 'moissala_linelist_FR.xlsx'))
 ```
 
 Objectifs
@@ -30,23 +31,12 @@ Setup
 
 **Prérequis:** ce tutoriel part du principe que vous avez suivi les sessions [introduction à R et R studio](../sessions_core/01_introduction.html), et [importation de données](../sessions_core/02_import_data.html).  
 
+Nous allons également poursuivre l'étude de cas sur la rougeole de Mandoul ; **si vous n'avez pas encore suivi les autres sessions du cours, veillez à [télécharger le dossier du cours](https://github.com/epicentre-msf/repicentre/raw/main/data/scenarios/TCH_measles/mandoul_rougeole.zip) avant de continuer**.
+
 ::: {.setup}
-Pour cette session, nous travaillerons avec les données non nettoyées de la liste linéaire rougeole dans la région de Mandoul (Tchad), qui peut être téléchargée ici : 
-
-```{r}
-#| echo: false
-#| eval: true
-
-downloadthis::download_link(
-  link = 'https://github.com/epicentre-msf/repicentre/raw/main/data/FETCHR.zip',
-  button_label = 'Télécharger les données',
-  has_icon = TRUE,
-  icon = "fa fa-save",
-  self_contained = FALSE
-)
-```
-<br>
-Assurez-vous qu'elle est correctement enregistrée dans le dossier `data/raw` de votre projet. Ensuite, créez un nouveau script appelé `data-exploration.R`, et chargez les paquets `{here}`, `{rio}` et `{dplyr}`. Enfin, importez les données dans R sous la forme d'un objet appelé `df_linelist`. 
+Pour cette session, nous travaillerons avec les données **brutes** de la liste linéaire rougeole pour la région de Mandoul. 
+<br><br>
+Créez un nouveau script appelé `data-exploration.R`, et chargez les paquets `{here}`, `{rio}` et `{dplyr}`. Puis, importez les données dans R sous la forme d'un objet appelé `df_linelist`. 
 :::
 
 Introduction

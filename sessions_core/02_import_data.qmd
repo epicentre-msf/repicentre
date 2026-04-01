@@ -15,8 +15,8 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 
 library(here) # for filepaths
 library(rio)  # import and export files
-df_linelist <- import(file = here("data", "raw", 
-              "moissala_linelist_EN.xlsx"))
+df_linelist <- import(file = here('data', 'scenarios', 'TCH_measles',
+                                  'raw', 'moissala_linelist_EN.xlsx'))
 
 ```
 
@@ -44,7 +44,7 @@ If not done already, download and unzip the course folder. Save the uncompressed
 #| eval: true
 
 downloadthis::download_link(
-  link = 'https://github.com/epicentre-msf/repicentre/raw/main/data/FETCHR.zip',
+  link = 'https://github.com/epicentre-msf/repicentre/raw/main/data/scenarios/TCH_measles/mandoul_measles_starter.zip',
   button_label = ' Course Folder',
   has_icon = TRUE,
   icon = "fa fa-save",
@@ -259,7 +259,7 @@ Run the above code in the console. What file path does `here("data", "raw")` giv
 :::
 
 ::: {.write}
-Using `here()`, create a complete file path for the file `Moissalla-measles-linelist-EN.xlsx`. Keep this path around, we will use it soon.
+Using `here()`, create a complete file path for the file `moissala_linelist_EN.xlsx`. Keep this path around, we will use it soon.
 :::
 
 ::: {.callout-important}
@@ -294,7 +294,7 @@ import(file = here("data", "raw", "example_linelist.xlsx"))
 Notice that we have nested the command `here()` **inside** the `import()` command. Nesting functions is absolutely allowed in R and is something you will do *all the time*. When functions are nested, R will evaluate them in the order of the innermost function (in this case `here()`) to the outermost (in this case `import()`). In this way, the *output* of `here()` is being used as the *input* of `import()`. 
 
 ::: {.write}
-Import the file `Moissalla-measles-linelist-EN.xlsx` that is in your raw data subfolder into R using `here()` and `import()`.
+Import the file `moissala_linelist_EN.xlsx` that is in your raw data subfolder into R using `here()` and `import()`.
 :::
 
 If your import worked correctly, R will print the data into the console but not save it into the environment because we have not [assigned them to an object](../sessions_core/01_introduction.qmd#sec-assignement-operator).

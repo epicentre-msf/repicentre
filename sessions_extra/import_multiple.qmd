@@ -1,7 +1,6 @@
 ---
 title: Import Multiple Files/Sheets
 description: Learn how to import multiple sheets from an Excel file, or several Excel files.
-date: last-modified
 image: ../img/extra/import_multiple/logo.svg
 categories:
   - Satellite
@@ -17,7 +16,8 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 library(rio)    
 library(here)  
 
-path_data_raw <- here("data", "raw", "satellite_multiple")
+path_data_raw <- here('data', 'session-specific', 'import-multiple', 'satellite_multiple_EN',
+                      'data', 'raw')
 
 lab_data_list <- import_list(here(path_data_raw, "multiple_sheets",
                                    "msf_laboratory_moissala_2023-09-24_first.xlsx")) 
@@ -32,11 +32,23 @@ lab_data_list <- import_list(here(path_data_raw, "multiple_sheets",
 
 ## Setup
 
-We expect you to be working in the course project. You can add this tutorial to the `import_data.R` script that you created in the [Import data core session](../sessions_core/02_import_data.qmd), or create a new script. 
-
-
 ::: {.setup}
-If you are working in a new script, add metadata about it at the top and load the `{rio}` and `{here}` packages. Then create a `path_data_raw` object that points to the directory `data / raw` of the course folder.
+Download and decompress the below folder containing data and an `.Rproj` file for this session. 
+```{r}
+#| echo: false
+#| eval: true
+
+downloadthis::download_link(
+  link = 'https://github.com/epicentre-msf/repicentre/raw/main/data/session-specific/import-multiple/satellite_multiple-importation_EN.zip',
+  button_label = 'Session Folder',
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  self_contained = FALSE
+)
+```
+
+<br><br>
+Navigate into the new folder and create a new script called `import_multiple.R`. Add an appropriate header to the script and load `{rio}` and `{here}`. Create a `path_data_raw` object that points to the directory `data/raw` of the course folder.
 :::
 
 
@@ -69,7 +81,7 @@ The `import_list()` function can import all the sheets from an [Excel file]{.hov
 ```{r}
 # PSEUDO CODE -- DO NOT RUN
 
-# returns a list of data frames
+# Returns a list of data frames:
 import_list(here(path_data_raw, "example_linelist.xlsx")) 
 ```
 
@@ -90,10 +102,14 @@ The object `lab_data_list` is a **list** that contains several data frames (one 
 
 ```{r}
 #| eval: true
+# Structure of the list:
+str(lab_data_list)  
 
-str(lab_data_list)     # Structure of the list
-length(lab_data_list)  # Nb of items in the list
-names(lab_data_list)   # Name of the items of the list
+# Nb of items in the list:
+length(lab_data_list)  
+
+# Name of the items of the list:
+names(lab_data_list)   
 ```
 
 You can also go and click on the list [in the Environment panel](../sessions_core/01_introduction.qmd#sec-envt) to inspect its structure, and open it in the Viewer, as we did for data frames. 
@@ -101,17 +117,22 @@ You can also go and click on the list [in the Environment panel](../sessions_cor
 ::: {.look}
 The View is a bit different. Click on the buttons you see and see what happens.
 
-**Hint** There are buttons that you can click on both on the left and right of the Viewer pane.
+
+**Hint:** There are buttons that you can click on both on the left and right of the Viewer pane, but the ones on the right appear only when you hover your mouse over a line.
 :::
 
 You can access elements of the list with [these commands]{.hovertip bs-toggle='tooltip' bs-title="We added the head() function to shorten the output, but you can remove it to print the whole elements."}
 
 ```{r}
 #| eval: true
+# Access by name:
+head(lab_data_list$positive)  
 
-head(lab_data_list$positive)  # Access by name
-head(lab_data_list[[1]])   # Access the content of the first element
-lab_data_list[1]   # Access by position the first element of the list
+# Access the content of the first element:
+head(lab_data_list[[1]]) 
+
+# Access by position the first element of the list:
+lab_data_list[1]
 ```
 
 
@@ -131,11 +152,13 @@ import_list(
 ```
 
 ::: {.write}
-Use the `import_list()` function to import all the sheets of `msf_laboratory_moissala_2023-09-24_first.xlsx`in one go, and store it in an object called `lab_data`, which is a *single data frame* containing all the data.
-:::
+Use the `import_list()` function to import all the sheets of `msf_laboratory_moissala_2023-09-24_first.xlsx` in one go, and store it in an object called `lab_data`, which is a *single data frame* containing all the data.
 
 
 You may use the `rbind_label = ` argument and provide a string for the column name, or not and see what happens.
+:::
+
+
 
 
 ### Slightly More Messy Sheets
@@ -202,7 +225,7 @@ import_list(vector_paths) # returns a list
 
 
 ::: {.look}
-Go to the sub-folder `data / raw /satellite_multiple/multiple_files/EN`. Open the files to check their content. Would it make sense to concatenate the data together at import in this case?
+Go to the sub-folder `data/raw/multiple_files/`. Open the Excel files to check their content. Would it make sense to concatenate the data together at import in this case?
 :::
 
 ::: {.write}
@@ -223,7 +246,7 @@ We will now use the function `list.files()` to automatically retrieve the file p
 ```{r}
 #| eval: true
 
-path_mult <- here::here(path_data_raw, "multiple_files", "EN") # optional, to shorten the following code
+path_mult <- here::here(path_data_raw, "multiple_files") # optional, to shorten the following code
 
 list.files(path = path_mult) # returns a vector of file names
 ```
@@ -244,7 +267,7 @@ Remember that thanks to `{here}` and relative paths within the course directory,
 
 Now, this is nice and all but there are those pesky files that are not Excel which we would like to avoid. An easy way is to use the `pattern` argument of `list.files()`. It takes a string of text that is matched to the names of files, to keep only the ones you want.
 
-The `pattern` argument accepts regular expressions, or regex for short, which are [*way* out of our scope here]{.hovertip bs-toggle='tooltip' bs-title="Regular expressions have their own syntax that is not limited to R. They are super powerful but also hard to use so if you are new to R you should probably wait a bit before diving into them."}. Here we are only giving you pointers to create a simple pattern.
+The `pattern` argument accepts regular expressions, or regex for short, which are [*way* out of our scope here]{.hovertip bs-toggle='tooltip' bs-title="Regular expressions have their own syntax that is not limited to R. They are super powerful but also hard to use so if you are new to R you should probably wait a bit before diving into them."}. Here we are only giving you pointers to create a simple _pattern_.
 
 The function will return file names that match the pattern: 
 
@@ -260,7 +283,7 @@ list.files(path = path_mult, pattern = "moissala_linelist")
 # All file names that contain "msf_ll":
 list.files(path = path_mult, pattern = "msf_ll")  # Nothing matches
 
-# All the files that contain "doc"
+# All the files that contain "doc":
 list.files(path = path_mult, pattern = "doc")
 ```
 

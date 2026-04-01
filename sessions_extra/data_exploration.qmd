@@ -27,23 +27,12 @@ Setup
 
 **Dependencies.** This extra session assumes that you have completed the sessions [introduction to R and R studio](../sessions_core/01_introduction.html), and [data importation](../sessions_core/02_import_data.html).  
 
+We will also be continuing with the Mandoul measles case study; **if you haven't done the previous course sessions then be sure to [download the course folder](https://github.com/epicentre-msf/repicentre/raw/main/data/scenarios/TCH_measles/mandoul_measles.zip) before moving forward**.
+
 ::: {.setup}
-For this session we will work with our raw Moissala measles linelist which can be downloaded here: 
-
-```{r}
-#| echo: false
-#| eval: true
-
-downloadthis::download_link(
-  link = 'https://github.com/epicentre-msf/repicentre/raw/main/data/FETCHR.zip',
-  button_label = ' Course Folder',
-  has_icon = TRUE,
-  icon = "fa fa-save",
-  self_contained = FALSE
-)
-```
-<br>
-Make sure it is appropriately stored in `data/raw` of your project. Then open a new script called `data-exploration.R`, and make sure packages `{here}`, `{rio}` and `{dplyr}` are loaded. Finally, import the data into R as an object called `df_linelist`. 
+For this session we will work with our **raw** Mandoul measles linelist.
+<br><br>
+Open a new script called `data-exploration.R`, and make sure packages `{here}`, `{rio}` and `{dplyr}` are loaded. Then, import the data into R as an object called `df_linelist`. 
 :::
 
 Data Exploration
@@ -65,7 +54,8 @@ library(here)
 library(rio)
 library(dplyr)
 
-df_linelist <- import(here::here("data", "raw", "moissala_linelist_EN.xlsx"))
+df_linelist <- import(file = here('data', 'scenarios', 'TCH_measles',
+                                  'raw', 'moissala_linelist_EN.xlsx'))
 
 ```
 

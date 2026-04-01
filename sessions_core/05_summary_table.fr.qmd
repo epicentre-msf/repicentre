@@ -16,7 +16,8 @@ library(here)
 library(tidyverse)
 
 # Import data
-df_linelist <- rio::import(here("data", "clean", "moissala_linelist_clean_FR.rds")) |> 
+df_linelist <- rio::import(file = here::here('data', 'scenarios', 'TCH_measles',
+                                             'clean', 'moissala_linelist_clean_FR.rds')) |>
   as_tibble()
 ```
 
@@ -31,23 +32,12 @@ df_linelist <- rio::import(here("data", "clean", "moissala_linelist_clean_FR.rds
 
 **Prérequis** : cette session part du principe que vous avez effectué les sessions obligatoires précédentes, en particulier que vous savez importer vos données et utiliser les verbes principaux de `{dplyr}`. Aller vous [rafraîchir si besoin](03_data_verbs.qmd).
 
+Nous allons également poursuivre l'étude de cas sur la rougeole de Mandoul ; **si vous n'avez pas encore suivi les autres sessions du cours, veillez à [télécharger le dossier du cours](https://github.com/epicentre-msf/repicentre/raw/main/data/scenarios/TCH_measles/mandoul_rougeole.zip) avant de continuer**.
+
+
 :::{.setup}
-Cette session utilise une version nettoyée de la liste linéaire rougeole à Mandoul (Tchad).
-
-```{r}
-#| echo: false
-#| eval: true
-
-downloadthis::download_link(
-  link = 'https://github.com/epicentre-msf/repicentre/raw/main/data/FETCHR.zip',
-  button_label = "Linelist rougeole nettoyée",
-  has_icon = TRUE,
-  icon = "fa fa-save",
-  self_contained = FALSE
-)
-```
-
-<br>
+Cette session utilise une version **nettoyée** de la liste linéaire rougeole à Mandoul (Tchad).
+<br><br>
 Ouvrez votre projet RStudio et créez un nouveau script dans le sous-dossier R appelé `tables.R` avec les métadonnées appropriées et une section "Paquets" qui importe : `{rio}`, `{here}` et `{tidyverse}`. Ajoutez une section "Import données" qui charge la version *nettoyée* de la liste linéaire de la rougeole dans R.
 :::
 

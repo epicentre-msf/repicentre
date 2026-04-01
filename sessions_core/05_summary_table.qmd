@@ -16,7 +16,8 @@ library(here)
 library(tidyverse)
 
 # Import data
-df_linelist <- rio::import(here("data", "clean", "moissala_linelist_clean_EN.rds"))
+df_linelist <- rio::import(file = here::here('data', 'scenarios', 'TCH_measles',
+                                             'clean', 'moissala_linelist_clean_EN.rds'))
 ```
 
 ## Objectives
@@ -28,25 +29,14 @@ df_linelist <- rio::import(here("data", "clean", "moissala_linelist_clean_EN.rds
 
 ## Setup
 
-**Dependencies.** This session assumes that you know how to use RStudio that you are able to import data and that you know th basic data handling verbs that we have seen in the core sessions so far. If you need a refresher on either of these topics, we encourage you to review the core sessions in the learning pathway.
+**Dependencies.** This session assumes that you know how to use RStudio that you are able to import data and that you know the basic data handling verbs that we have seen in the core sessions so far. If you need a refresher on any of these topics, we encourage you to review the core sessions in the learning pathway. 
+
+We will also be continuing with the Mandoul measles case study; **if you haven't done the previous course sessions then be sure to [download the course folder](https://github.com/epicentre-msf/repicentre/raw/main/data/scenarios/TCH_measles/mandoul_measles.zip) before moving forward**.
+
 
 :::{.setup}
-This session will use the clean version of the Moissala measles dataset. 
-
-```{r}
-#| echo: false
-#| eval: true
-
-downloadthis::download_link(
-  link = 'https://github.com/epicentre-msf/repicentre/raw/main/data/FETCHR.zip',
-  button_label = ' Course Folder',
-  has_icon = TRUE,
-  icon = "fa fa-save",
-  self_contained = FALSE
-)
-```
-
-<br>
+This session will use the **clean** version of the Mandoul measles dataset. 
+<br><br>
 Open your RStudio Project and create a new script in the R folder called `tables.R` with appropriate metadata and a "Packages" section that imports: `{rio}`, `{here}` and `{tidyverse}`. Add an "Import Data" section that loads the *cleaned* version of the measles linelist.
 :::
 

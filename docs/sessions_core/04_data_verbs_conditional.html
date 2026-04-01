@@ -365,16 +365,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
 </ul></section><section id="setup" class="level2"><h2 class="anchored" data-anchor-id="setup">Setup</h2>
 <p><strong>Dependencies.</strong> This session assumes that you know the basics of data manipulation with <code>{dplyr}</code>. If you need a refresher on this, please review the <a href="../sessions_core/03_data_verbs.html">third session in the learning pathway</a>.</p>
+<p>We will also be continuing with the Mandoul measles case study; <strong>if you haven’t done the previous course sessions then be sure to <a href="https://github.com/epicentre-msf/repicentre/raw/main/data/scenarios/TCH_measles/mandoul_measles.zip">download the course folder</a> before moving forward</strong>.</p>
 <div class="setup">
-<p>This session will work with the <strong>raw</strong> Moissala linelist data, which can be downloaded here:</p>
-<div class="cell">
-<div class="cell-output-display">
-<a href="https://github.com/epicentre-msf/repicentre/raw/refs/heads/main/data/raw/moissala_linelist_EN.xlsx">
-<button class="btn btn-default"><i class="fa fa-save"></i>  Download Data</button>
-</a>
-</div>
-</div>
-<p><br> Make sure this dataset is saved into the appropriate subdirectory of your R project and create a new script called <code>filtering_and_recoding_practice.R</code> in your <code>R</code> directory. Add an appropriate header and load the following packages: <code>{here}</code>, <code>{rio}</code>, and <code>{tidyverse}</code>. <br><br> Finally, add an import section where you use <code>{here}</code> and <code>{rio}</code> to load your data into an object called <code>df_raw</code>.</p>
+<p>This session will work with the <strong>raw</strong> Mandoul linelist data. <br><br> Create a new script called <code>filtering_and_recoding_practice.R</code> in your <code>R</code> directory. Add an appropriate header and load the following packages: <code>{here}</code>, <code>{rio}</code>, and <code>{tidyverse}</code>. Finally, add an import section where you use <code>{here}</code> and <code>{rio}</code> to load your data into an object called <code>df_raw</code>.</p>
 </div>
 </section><section id="using-conditional-logic-to-filter-data" class="level2"><h2 class="anchored" data-anchor-id="using-conditional-logic-to-filter-data">Using Conditional Logic to Filter Data</h2>
 <p>In the last session we learned a lot of the core data verbs in <code>{dplyr}</code> for basic manipulation tasks like selecting particular variables of interest and modifying them to better suit our needs. Beyond selecting <strong>variables of interest</strong>, another common task we have as epidemiologists is selecting <strong>observations of interest</strong>; ie: filtering our data to look at particular observations that meet a <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="For example, looking only at hospitalized patients or cases from a particular region.">certain criteria</span>.</p>
@@ -722,16 +715,16 @@ Note
 </div>
 <p>Much nicer.</p>
 <div class="write">
-<p>Use <code>case_when()</code> and the <code>%in%</code> operator to create a new column <code>vacc_status_strict</code> that has the value <code>"Yes"</code> for cases with <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Had a vacc_status of 'Yes - card'"><strong>card confirmed</strong> vaccination status</span>, <code>"No"</code> for cases who said they were <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Had a vacc_status of 'No'">unvaccinated</span>, and <code>"Unverified"</code> otherwise. The head of your new column should look like this:</p>
+<p>Use <code>case_when()</code> and the <code>%in%</code> operator to create a new column <code>vacc_status_simple</code> that has the value <code>"Yes"</code> for cases with <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Had a vacc_status of 'Yes - card' or 'Yes - oral'"><strong>either</strong> card or verbal confirmation</span>, <code>"No"</code> for cases who said they were <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Had a vacc_status of 'No'">unvaccinated</span>, and <code>"Unknown"</code> otherwise. The head of your new column should look like this:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>  vacc_status_strict
-1         Unverified
-2                 No
-3         Unverified
-4                 No
-5                 No
-6                 No</code></pre>
+<pre><code>  vacc_status vacc_status_simple
+1        &lt;NA&gt;            Unknown
+2          No                 No
+3  Yes - oral                Yes
+4          No                 No
+5          No                 No
+6          No                 No</code></pre>
 </div>
 </div>
 </div>

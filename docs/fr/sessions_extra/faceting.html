@@ -370,17 +370,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>La première option est fastidieuse et source d’erreurs, et nous la déconseillons. La seconde option n’est pas mauvaise en soi : les outils mentionnés sont extrêmement puissants et de bonnes cibles d’apprentissage pour quand vous serez plus à l’aise avec le langage. Mais ils sont trop avancés pour ce petit tutoriel, et une options simple existe déjà dans <code>{ggplot2}</code>.</p>
 </section><section id="mise-en-place" class="level2"><h2 class="anchored" data-anchor-id="mise-en-place">Mise en place</h2>
+<p>Nous allons utiliser l’étude de cas sur la rougeole de Mandoul ; <strong>si vous n’avez pas encore suivi les autres sessions du cours, veillez à <a href="https://github.com/epicentre-msf/repicentre/raw/main/data/scenarios/TCH_measles/mandoul_rougeole.zip">télécharger le dossier du cours</a> avant de continuer</strong>.</p>
 <div class="setup">
-<p>Nous utiliserons la même liste linéaire nettoyée que précédemment et qui peut être téléchargée ici :</p>
-<div class="cell">
-<div class="cell-output-display">
-<a href="https://github.com/epicentre-msf/repicentre/raw/main/data/clean/moissala_linelist_clean_FR.rds">
-<button class="btn btn-default"><i class="fa fa-save"></i> Télécharger les données</button>
-</a>
-</div>
-</div>
-<p><br> Si ce n’est pas déjà fait, enregistrez le jeu de données dans <code>data/clean</code> puis créez un nouveau script appelé <code>faceting.R</code> dans votre sous-dossier <code>R</code> (alternativement, vous pouvez rajouter une section au script sur les courbes épis).</p>
-<p><br> Si vous créez un nouveau script, ajoutez un en-tête approprié et chargez les paquets suivants : <code>{here}</code>, <code>{rio}</code> et <code>{tidyverse}</code>. Importez ensuite les données propres dans R et enregistrez-les dans un objet <code>df_linelist</code>.</p>
+<p>Pour cette session, nous travaillerons avec les données <strong>brutes</strong> de la liste linéaire rougeole pour la région de Mandoul. <br><br> Créez un nouveau script appelé <code>faceting.R</code> dans votre sous-dossier <code>R</code> (alternativement, vous pouvez rajouter une section au script sur les courbes épis). Ajoutez un en-tête approprié et chargez les paquets suivants : <code>{here}</code>, <code>{rio}</code> et <code>{tidyverse}</code>. Importez ensuite les données propres dans R et enregistrez-les dans un objet <code>df_linelist</code>.</p>
 </div>
 </section><section id="un-graphe-par-modalité-faceting" class="level2"><h2 class="anchored" data-anchor-id="un-graphe-par-modalité-faceting">Un graphe par modalité (<em>faceting</em>)</h2>
 <p>Dans ggplot, “faceting” est est l’action de créer des graphiques en plusieurs <span class="hovertip" data-bs-toggle="tooltip" data-bs-title="Que les concepteurs de {ggplot2} ont surnommées 'facets' en anglais. Les traductions françaises divergent : panneaux, facettes, parties, mini graphiques, petits multiples etc. Nous utiliserons le mot 'facettes' dans ce tutoriel.">parties</span>. La fonction <code>facet_wrap()</code> trace automatiquement un graphique pour chacune des modalités d’une variable. Par exemple, vous pouvez créer une courbe épi <em>par sexe</em>, ou <em>par site</em>. Comme les autres couches d’un ggplot, on l’ajoute à un graphique avec un <code>+</code>. Cela crée une figure avec plusieurs petits graphiques, les fameuses <em>facettes</em>.</p>
@@ -437,7 +429,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="faceting_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="864"></p>
+<figure class="figure"><p><img src="faceting_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="864"></p>
 </figure>
 </div>
 </div>
@@ -448,7 +440,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="faceting_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="864"></p>
+<figure class="figure"><p><img src="faceting_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="864"></p>
 </figure>
 </div>
 </div>
@@ -476,7 +468,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="faceting_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="864"></p>
+<figure class="figure"><p><img src="faceting_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="864"></p>
 </figure>
 </div>
 </div>
@@ -499,7 +491,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="faceting_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="864"></p>
+<figure class="figure"><p><img src="faceting_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="864"></p>
 </figure>
 </div>
 </div>
@@ -525,7 +517,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="faceting_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="faceting_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>

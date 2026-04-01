@@ -19,8 +19,8 @@ library(ggplot2)     # Todays workhorse
 
 
 # Data
-df_linelist <- rio::import(here::here('data', 'clean',
-                                      'moissala_linelist_clean_FR.rds')) 
+df_linelist <- rio::import(file = here::here('data', 'scenarios', 'TCH_measles',
+                                             'clean', 'moissala_linelist_clean_FR.rds'))
 
 
 # Their summarized dataset
@@ -29,7 +29,6 @@ df_cases <- df_linelist |>
 
 # Data for our examples
 df_hopital <- df_linelist |>
-  mutate(date_admission = ymd(date_admission)) %>% 
   count(date_admission, 
         name = 'patients') |>
   tidyr::drop_na(date_admission)
@@ -67,22 +66,12 @@ Mise en place
 
 **Prérequis** Cette leçon part du principe que vous savez utiliser RStudio, êtes capable d'importer des données et connaissez les verbes de base du traitement des données. Rafraîchissez-vous si besoin sur les [leçons précédentes](https://epicentre-msf.github.io/repicentre//fr/pathway.html).
 
+Nous allons également poursuivre l'étude de cas sur la rougeole de Mandoul ; **si vous n'avez pas encore suivi les autres sessions du cours, veillez à [télécharger le dossier du cours](https://github.com/epicentre-msf/repicentre/raw/main/data/scenarios/TCH_measles/mandoul_rougeole.zip) avant de continuer**.
+
+
 ::: {.setup}
-Cette session utilisera la version nettoyée de la liste linéaire rougeole à Mandoul
-
-```{r}
-#| echo: false
-#| eval: true
-
-downloadthis::download_link(
-  link = 'https://github.com/epicentre-msf/repicentre/raw/main/data/FETCHR.zip',
-  button_label = ' Course Folder',
-  has_icon = TRUE,
-  icon = "fa fa-save",
-  self_contained = FALSE
-)
-```
-<br>
+Cette session utilisera la version **nettoyée** de la liste linéaire rougeole à Mandoul.
+<br><br>
 Ouvrez le projet Rstudio du cours et créez un nouveau script appelé "courbe_epi.R" avec les métadonnées appropriées. Enregistrez le dans `R/`. Pour cette leçon, nous aurons besoin de charger les paquets `{here}`, `{rio}`, `{dplyr}`, `{lubridate}`, et`{ggplot2}`. Ajoutez une section `# IMPORT DONNÉES` où vous importez les données nettoyées du cours (`linelist_moissala_clean_FR.RDS`). 
 :::
 

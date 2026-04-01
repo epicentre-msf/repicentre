@@ -19,8 +19,8 @@ library(ggplot2)     # Todays workhorse
 
 
 # Data
-df_linelist <- rio::import(here::here('data', 'clean',
-                                      'moissala_linelist_clean_EN.rds')) 
+df_linelist <- rio::import(file = here::here('data', 'scenarios', 'TCH_measles',
+                                             'clean', 'moissala_linelist_clean_EN.rds'))
 
 
 # Their summarized dataset
@@ -29,7 +29,6 @@ df_cases <- df_linelist |>
 
 # Data for our examples
 df_hospital <- df_linelist |>
-  mutate(date_admission = ymd(date_admission)) %>% 
   count(date_admission, 
         name = 'patients') |>
   tidyr::drop_na(date_admission)
@@ -66,22 +65,12 @@ df_linelist |>
 
 **Dependencies.** This session assumes that you know how to use RStudio that you are able to import data and that you know th basic data handling verbs that we have seen in the core sessions so far. If you need a refresher on either of these topics, we encourage you to review the core sessions in the learning pathway.
 
+We will also be continuing with the Mandoul measles case study; **if you haven't done the previous course sessions then be sure to [download the course folder](https://github.com/epicentre-msf/repicentre/raw/main/data/scenarios/TCH_measles/mandoul_measles.zip) before moving forward**.
+
+
 ::: {.setup}
-This session will use the clean version of the Moissala measles linelist data.
-
-```{r}
-#| echo: false
-#| eval: true
-
-downloadthis::download_link(
-  link = 'https://github.com/epicentre-msf/repicentre/raw/main/data/FETCHR.zip',
-  button_label = ' Course Folder',
-  has_icon = TRUE,
-  icon = "fa fa-save",
-  self_contained = FALSE
-)
-```
-<br>
+This session will use the **clean** version of the Mandoul measles linelist data.
+<br><br>
 Open your RStudio project and create a new script called `epicurves.R` with appropriate metadata. Load the following packages: `{here}`, `{rio}`, `{dplyr}`, `{lubridate}`, and `{ggplot2}`. Add a section to your script called `# IMPORT DATA` where you import the *clean course dataset* (`moissala_linelist_clean_EN.rds`).
 :::
 
