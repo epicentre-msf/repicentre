@@ -12,7 +12,7 @@ library(tidyverse)
 
 
 # IMPORT ---------------------------------------------------
-df_brut <- import(file = here("data", "raw", "moissala_linelist_FR.rds"))
+df_brut <- import(file = here("data", "raw", "moissala_linelist_FR.xlsx"))
 
 
 # PIPELINE DE NETTOYAGE BASIQUE -----------------------------
