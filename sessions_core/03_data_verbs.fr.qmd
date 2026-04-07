@@ -92,7 +92,7 @@ Utilisez la fonction `select()` pour sélectionner les variables suivantes de vo
 ```{r}
 #| eval: true
 #| echo: false
-head(select(df_brut, id, sexe, age, date_debut , issue))
+head(select(df_brut, id, sexe, age, sous_prefecture, date_debut , issue))
 ```
 <br>
 Comparez ce résultat à `df_brut`. Ce dernier contient toujours toutes les colonnes importées (ce qui est le comportement désiré). Comprenez-vous pourquoi c'est le cas ?

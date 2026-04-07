@@ -94,7 +94,7 @@ Use `select()` to select the following variables in your dataset: `id`, `sex`, `
 ```{r}
 #| eval: true
 #| echo: false
-head(select(df_raw, id, sex, age, date_onset, outcome))
+head(select(df_raw, id, sex, age, sub_prefecture, date_onset, outcome))
 ```
 <br>
 Take a look at this output and then at `df_raw`. We can see that `df_raw` still contains all of the columns, which is what we want. But can you tell why it didn't change?
