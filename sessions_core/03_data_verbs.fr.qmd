@@ -1,6 +1,6 @@
 ---
 title: Traitement de données, les bases
-description: Une introduction à la manipulation et au nettoyage des données à l'aide du paquet `{dplyr}`.
+description: Une introduction au traitement et au nettoyage des données à l'aide du paquet `{dplyr}`.
 image: ../img/core/03_manipulation_basic/logo.svg
 categories:
   - Core
@@ -33,9 +33,9 @@ Objectifs
 
 Mise en place
 -------------------------------------------------------------------------
-**Prérequis** : cette leçon part du principe que vous savez comment utiliser RStudio et que vous êtes capable d'importer des données. Rafraîchissez-vous si besoin avec les [deux premières leçons](https://epicentre-msf.github.io/repicentre/pathway.html).
+**Prérequis** : savoir utiliser RStudio et importer des données. Rafraîchissez-vous si besoin avec les [deux premières leçons](https://epicentre-msf.github.io/repicentre/pathway.html).
 
-Nous allons également poursuivre l'étude de cas sur la rougeole de Mandoul ; **si vous n'avez pas encore suivi les autres sessions du cours, veillez à [télécharger le dossier du cours](https://github.com/epicentre-msf/repicentre/raw/main/data/scenarios/TCH_measles/mandoul_rougeole.zip) avant de continuer**.
+Nous allons poursuivre l'étude de cas sur la rougeole à Mandoul; **si vous n'avez pas encore suivi les autres sessions du cours, veillez à [télécharger le dossier du cours](https://github.com/epicentre-msf/repicentre/raw/main/data/scenarios/TCH_measles/mandoul_rougeole.zip) avant de continuer**.
 
 ::: {.setup}
 Nous utiliserons la linelist avec des données **brutes** que vous avez importée lors de la leçon précédente. 
@@ -47,22 +47,22 @@ Créez un nouveau script appelé `fonctions_donnees.R` dans votre sous-dossier `
 Traiter ses données avec `{dplyr}`
 ----------------------------------------------------------------
 
-La mise en place est terminée et nous pouvons maintenant nous focaliser sur nos données ! Cette leçon et les suivantes s'appuieront lourdement sur plusieurs paquets de la *collection de paquets* [tidyverse]{.hovertip bs-toggle='tooltip' bs-title="Le tidyverse est une collection de paquets pour R qui insistent sur la lisibilité du code et la facilité d'utilisation."} pour manipuler des data frames, résumer et visualiser les données, et en particulier paquet `{dplyr}` pour aujourd'hui.
+Nous pouvons enfin travailler sur nos données ! Cette leçon et les suivantes s'appuient sur plusieurs paquets de la *collection de paquets* [tidyverse]{.hovertip bs-toggle='tooltip' bs-title="Le tidyverse est une collection de paquets R qui insistent sur la lisibilité du code et la facilité d'utilisation."} pour manipuler des data frames, résumer et visualiser les données, et en particulier le paquet `{dplyr}`.
 
-Le *traitement des données* (aussi appelé *manipulation des données*) est un ensemble d'actions essentielles pour préparer et nettoyer les données avant une analyse (que ce soit dans R ou Excel). `{dplyr}` fournit un grand nombre de fonctions qui nous aident à manipuler les data frames et à réaliser de nombreuses tâches quotidiennes telles que :
+Le *traitement des données* (parfois appelé *manipulation des données*) est un ensemble d'actions essentielles pour préparer et nettoyer les données avant une analyse (que ce soit dans R ou Excel). Le paquet `{dplyr}` fournit de nombreuses fonctions pour remplir ce genre de tâches courantes :
 
 - créer des sous-ensembles de nos données en ne gardant que les [variables]{.hovertip bs-toggle='tooltip' bs-title="Rappelez-vous que chaque variable correspond à une colonne dans notre data frame"} d'intérêt
 - renommer des colonnes
 - ajouter ou modifier des colonnes
 - supprimer les doublons
 
-Ces fonctions ont en général un [nom intuitif, qui correspond à un verbe]{.hovertip bs-toggle='tooltip' bs-title="Il est vrai que, comme pour les autres fonctions de R, ces noms sont en Anglais, ce qui complique la compréhension pour nous autres francophones, mais vous verrez que ces noms ne sont pas trop difficiles à traduire. Par ailleurs, comme les créateurs ont choisi d'utiliser un verbe pour nommer leurs fonctions, il n'est pas rare de parler des 'verbes de dplyr'"}. Par exemple, pour renommer des colonnes, on utilisera la fonction `rename()`.
+Ces fonctions ont en général un [nom intuitif, qui correspond à un verbe]{.hovertip bs-toggle='tooltip' bs-title="Au moins en anglais, mais nous vous fournirons la traduction. Comme les auteurs du paquet utilisent souvent des verbes pour nommer leurs fonctions, on parle souvent des 'verbes de dplyr'."}. Par exemple, pour renommer des colonnes, on utilisera la fonction `rename()`.
 
-Aujourd'hui nous nous focaliserons sur les quatre verbes (fonctions !) qui permettent d'effectuer les tâches mentionnées précédemment, et que vous utiliserez en permanence. Nous vous montrerons également comment enchaîner les actions dans un *"pipeline"* pour plus de fluidité.
+Aujourd'hui nous nous focaliserons sur les quatre verbes (fonctions !) qui permettent d'effectuer les tâches mentionnées précédemment, et que vous utiliserez en permanence. Nous apprendrons également à enchaîner les actions dans un *"pipeline"* pour plus de fluidité.
 
 
 :::{.callout-note}
-Peut-être avez-vous noté que nous vous parlons du paquet `{dplyr}` mais nous vous avons fait charger le paquet `{tidyverse}` lors de la mise en place. C'est que le `{tidyverse}` est un méta-paquet, et le charger charge automatiquement [plusieurs des paquets les plus utiles]{.hovertip bs-toggle='tooltip' bs-title="Le tidyverse contient de très nombreux paquets, et les charger tous d'un coup serait trop lourd et peu utile. Les paquets les plus courants  ont donc été rassemblés dans le méta paquet `{tidyverse}`, pour un chargement rapide"} de l'univers du tidyverse, dont fait partie `{dplyr}` et d'autres paquets que nous verrons dans la session.
+Nous vous avons fait charger le paquet `{tidyverse}`lors de la mise au lieu de `{dplyr}`. Le `{tidyverse}` est un *méta-paquet* : le charger charge automatiquement [plusieurs paquets très utiles]{.hovertip bs-toggle='tooltip' bs-title="L'univers du tidyverse contient de très nombreux paquets. Les charger tous d'un coup serait long et inutile. Les paquets les plus courants ont donc été rassemblés dans un méta paquet `{tidyverse}`, pour un chargement rapide"} de l'univers du tidyverse, dont fait partie `{dplyr}` et d'autres paquets que nous verrons dans la session.
 :::
 
 
@@ -71,7 +71,7 @@ Actions de base sur les données
 
 ### Sélectionner des colonnes
 
-Il est fréquent de souhaiter écarter des variables d'un jeu de données, soit car ces colonnes contiennent des [données sensibles]{.hovertip bs-toggle='tooltip' bs-title="Les noms de patients, par exemple"}, soit parce que nous n'avons pas besoin d'elles pour une analyse donnée. Nous utiliserons pour cela la fonction `select()`, qui la [syntaxe suivante]{.hovertip bs-toggle='tooltip' bs-title="Notez qu'il s'agit de pseudo-code, c'est à dire un code non fonctionnel dédié à l'apprentissage, qui remplace des morceaux de codes par du langage pour mieux décrire la syntaxe. Le pseudo-code renverra une erreur si vous tentez de l'exécuter"} :
+Il est fréquent de souhaiter écarter des variables d'un jeu de données, soit car ces colonnes contiennent des [données sensibles]{.hovertip bs-toggle='tooltip' bs-title="Les noms de patients, par exemple"}, soit parce que nous n'avons pas besoin d'elles pour une analyse donnée. Nous utiliserons pour cela la fonction `select()`, qui a la [syntaxe suivante]{.hovertip bs-toggle='tooltip' bs-title="Notez qu'il s'agit de pseudo-code, c'est à dire un code non fonctionnel dédié à l'apprentissage, qui remplace des morceaux de codes par du langage pour mieux décrire la syntaxe. Le pseudo-code renverra une erreur si vous tentez de l'exécuter"} :
 
 ```{r}
 # NE PAS EXÉCUTER (PSEUDO-CODE)
@@ -98,7 +98,7 @@ head(select(df_brut, id, sexe, age, date_debut , issue))
 Comparez ce résultat à `df_brut`. Ce dernier contient toujours toutes les colonnes importées (ce qui est le comportement désiré). Comprenez-vous pourquoi c'est le cas ?
 :::
 
-Il arrive que nous ne voulions supprimer que quelques colonnes d'un jeu de données et si le jeu de données est [large]{.hovertip bs-toggle='tooltip' bs-title="Vous avez sans doute déjà été confronté à des listes linéaires ou des données d'enquête longues et complexes"} ça serait fastidieux d'écrire *toutes les colonnes à garder* comme nous l'avons fait ci-dessus... Heureusement, nous pouvons préfacer un nom de colonne par l'opérateur soustraction (`-`) pour indiquer à R de la supprimer. 
+Si l'on veut supprimer des colonnes d'un data frame un peu [large]{.hovertip bs-toggle='tooltip' bs-title="Vous avez sans doute déjà été confronté à des listes linéaires ou des données d'enquête longues et complexes"} il suffit de préfacer les noms de colonnes par l'opérateur soustraction (`-`). 
 
 Par exemple, pour créer un data frame sans la colonne `village_commune` :
 
@@ -137,7 +137,7 @@ Utilisez la fonction `rename()` sur `df_brut` pour renommer les colonnes :
 - `nom_structure_sante` en `structure`
 :::
 
-Quand nous n'enregistrons pas le data frame renvoyé par la fonction, il s'affiche dans la console, ce qui est peu lisible : il est laborieux de vérifier que votre commande a bien renommé les colonnes (ce serait encore pire si le data frame contenait 100 colonnes !). Une [première stratégie]{.hovertip bs-toggle='tooltip' bs-title="Nous en verrons une autre à la fin de la leçon avec le pipe, et une dernière est d'imbriquer la commande à tester directement dans une autre fonction, telle que names()."} consiste à enregistrer le data frame intermédiaire dans un objet pour pouvoir l'examiner avec des fonctions connue. Vous pouvez nommer cet objet temporaire comme vous voulez, mais un nom commun est `temp` (ou `tmp` en anglais) pour indiquer que ce n'est pas un objet final à être conservé.
+Si vous ne faites qu'afficher le data frame produit dans la console (sans l'assigner à un objet), il peut être dur de voir si les colonnes ont été correctement renommées. Une [première stratégie]{.hovertip bs-toggle='tooltip' bs-title="Une seconde utilise le pipe, que nous verrons à la fin de cette leçon, et une troisième est d'imbriquer la commande à tester directement dans une autre fonction, telle que names()."} consiste à enregistrer le data frame intermédiaire dans un objet pour pouvoir l'examiner avec des fonctions connues. Vous pouvez nommer cet objet temporaire comme vous voulez, mais un nom commun est `temp` [ou `tmp` en anglais] pour indiquer que ce n'est pas un objet destiné à être conservé.
 
 
 :::{.write}
@@ -206,7 +206,7 @@ Nous voulons souvent conserver la colonne originelle, mais il existe des cas rai
 - modifier des chaînes de caractères (format, correction de typos etc.)
 - corriger le type de données d'une colonne
 
-Notre jeu de données présente ces deux cas. Par exemple les colonnes `region` et `sous_prefecture` sont en majuscules, ce qui n'est pas un problème en soi, mais peut être [améliorable]{.hovertip bs-toggle='tooltip' bs-title="Par ailleurs, les incohérences de casse sont un problème courant dans les jeux de données sales, et il est souvent nécessaire de standardiser la casse d'une colonne du nettoyage"}. Pour corriger cela nous pouvons utiliser la fonction `str_to_title()` du paquet `{stringr}` (qui fait également partie du `{tidyverse}`) pour passer les valeurs en [casse "titre"]{.hovertip bs-toggle='tooltip' bs-title="Appelée 'title case' en anglais, où les titres sont souvent écrits avec la première lettre de chaque mot en majuscule, à la différence du français qui ne met que la première lettre du titre en majuscule. Cette convention fonctionne néanmoins bien pour des noms de lieux, y compris en français, tel que 'Kasaï Oriental'. Si vous souhaitez ne mettre en majuscule que la première lettre de la phrase, vous pouvez utiliser la fonction str_to_sentence() à la place."}.
+Notre jeu de données présente ces deux cas. Par exemple les colonnes `region` et `sous_prefecture` sont en majuscules, ce qui n'est pas un problème en soi, mais peut être [améliorable]{.hovertip bs-toggle='tooltip' bs-title="Les incohérences de casse sont un problème classique des données brutes, et il faut souvent standardiser la casse d'une colonne pendant le nettoyage"}. Nous pouvons utiliser la fonction `str_to_title()` du paquet `{stringr}` (qui fait également partie du `{tidyverse}`) pour passer les valeurs en [casse "titre"]{.hovertip bs-toggle='tooltip' bs-title="Appelée 'title case' en anglais, où les titres sont souvent écrits avec la première lettre de chaque mot en majuscule, à la différence du français qui ne met que la première lettre du titre en majuscule. Cette convention fonctionne néanmoins bien pour des noms de lieux, y compris en français, tel que 'Kasaï Oriental'. Si vous souhaitez ne mettre en majuscule que la première lettre de la phrase, vous pouvez utiliser la fonction str_to_sentence() à la place."}.
 
 ```{r}
 mutate(df_brut,
@@ -283,7 +283,7 @@ Utilisez la fonction `distinct()` et créez un data frame temporaire, `temp` qui
 L'opérateur "pipe"
 -------------------------------------------------------------------------------------------
 
-Nous avons profité de la présentation des fonctions essentielles de `{dplyr}` pour commencer le nettoyage du jeu de données. Il est temps de rassembler les commandes écrites dans les exercices en un ensemble cohérent pour créer un data frame contenant les données netoyées (au moins en partie) que nous appelerons `df_linelist`.
+Nous avons profité de la présentation des fonctions essentielles de `{dplyr}` pour commencer le nettoyage du jeu de données. Il est temps de rassembler les commandes écrites dans les exercices en un ensemble cohérent pour créer un data frame contenant les données partiellement nettoyées que nous nommerons `df_linelist`.
 
 :::{.callout-tip}
 En général, il est recommandé de conserver une version brute de votre ensemble de données, ici `df_brut`, qui reste inchangée dans votre code. Ainsi, vous l'avez toujours à disposition dans votre environnement comme référence et elle est toujours disponible au début de votre pipeline de nettoyage pour améliorer la reproductibilité.
@@ -433,7 +433,7 @@ df_brut |>
 **Astuce : ** soyez attentifs à vos noms de colonne. Si vous rennomez une colonne, il faudra utiliser le nouveau nom dans les étapes suivantes du pipeline.
 :::
 
-Fantastique ! C'est un excellent début de pipeline de nettoyage de vos données. Sauvegardez ce code, car nous le complèterons lors de la prochaine session, durant laquelle nous apprendron une autre étape essentielle du traitement de données : recoder les variables !
+Fantastique ! C'est un excellent début de pipeline de nettoyage de vos données. Sauvegardez ce code, car nous le compléterons lors de la prochaine session, durant laquelle nous apprendrons à recoder les variables, une autre étape essentielle du traitement de données !
 
 
 C'est fini !
