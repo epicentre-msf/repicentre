@@ -67,7 +67,7 @@ Ce dossier sera votre répertoire de travail pour toutes les sessions de ce cour
 
 Voici deux concepts importants que nous allons rencontrer dans cette session :
 
-**Répertoire de travail.** Le répertoire de travail est l'emplacement (dossier) où votre session R *en cours* travaille. Si vous enregistrez un fichier, par exemple, il sera enregistré dans ce dossier par défaut. De même, Si vous ouvrez un fichier, ce dossier sera affiché par défaut. Tous les chemins relatifs auront ce dossier pour origine. Par défaut, R choisit généralement votre dossier "Documents" comme répertoire de travail sur les machines Windows.
+**Répertoire de travail.** Le répertoire de travail est l'emplacement (dossier) où votre session R *en cours* travaille. Si vous enregistrez un fichier, par exemple, il sera enregistré dans ce dossier par défaut. De même, si vous ouvrez un fichier, ce dossier sera affiché par défaut. Tous les chemins relatifs auront ce dossier pour origine. Par défaut, R choisit généralement votre dossier "Documents" comme répertoire de travail sur les machines Windows.
 
 **Racine.** La racine fait référence au niveau de dossier le plus élevé du répertoire de travail. Si le dossier de votre cours s'appelle `FETCHR` la racine se trouverait directement à l'intérieur de celui-ci (et non dans l'un de ses sous-dossiers comme `R` ou `data`).
 
@@ -219,7 +219,7 @@ La mise à jour de certains paquets peut parfois changer le comportement de cert
 
 ## Importation de données
 
-### Trouver son chemin... {#sec-filepaths}
+### Trouver son chemin {#sec-filepaths}
 
 Pour ouvrir un fichier dans R, vous devez fournir un **chemin d'accès au fichier**. Un chemin d'accès est simplement un (long) nom pour un fichier qui inclut son emplacement sur votre ordinateur. Les chemins d'accès peuvent être *absolus* ou *relatifs*.
 
@@ -280,7 +280,7 @@ On veut souvent définir plusieurs chemins dans un projet (données brutes, donn
 
 ### Importer les données {#sec-import}
 
-Dans R, différents formats de fichiers sont importés par différentes fonctions spécialisées, ce qui est fastidieux à mémoriser et à charger. La fonction `import()` du paquet [`{rio}`]{.hovertip bs-toggle='tooltip' bs-title="Pour R Input and Output, c'est à dire entrées et sorties dans R"} nous fait gagner du temps en reconnaissant l'extension des fichiers et en [appellent automatiquement une fonction spécialisée]{.hovertip bs-toggle='tooltip' bs-title="Ce type de fonction, qui fournit une interface unifiée à d'autres fonctions spécifiques, est connu sous le nom de 'wrapper', c'est à dire 'emballage'."} pour charger les données.
+Dans R, différents formats de fichiers sont importés par différentes fonctions spécialisées, ce qui est fastidieux à mémoriser et à charger. La fonction `import()` du paquet [`{rio}`]{.hovertip bs-toggle='tooltip' bs-title="Pour R Input and Output, c'est à dire entrées et sorties dans R"} nous fait gagner du temps en identifiant l'extension des fichiers et en [appellant automatiquement une fonction spécialisée]{.hovertip bs-toggle='tooltip' bs-title="Ce type de fonction, qui fournit une interface unifiée à d'autres fonctions spécifiques, est connu sous le nom de 'wrapper', c'est à dire 'emballage'."} pour charger les données.
 
 Comme `import()` ne fait qu'appeler d'autres fonctions en arrière-plan, il est possible qu'elle ait besoin d'arguments optionnels spécifiques pour certains types de fichier.
 
@@ -296,7 +296,7 @@ Au minimum la fonction `import()` a besoin qu'on lui donne le chemin du fichier 
 import(file = here("data", "raw", "example_linelist.xlsx"))
 ```
 
-Notez que nous avons imbriqué la commande `here()` **à l'intérieur de** la commande `import()`. L'imbrication de fonctions est autorisée et même courante en R. R évalue les fonctions imbriquées de l'intérieur (`here()`) à l'extérieur (`import()`). La valeur renvoyée par `here()` est donc utilisée comme *valeur d'entrée* d'`import()`.
+Notez que nous avons imbriqué la commande `here()` **à l'intérieur** de la commande `import()`. L'imbrication de fonctions est courante en R. R évalue les fonctions imbriquées de l'intérieur (`here()`) à l'extérieur (`import()`). La valeur renvoyée par `here()` est donc utilisée comme *valeur d'entrée* d'`import()`.
 
 ::: {.write}
 Importez le fichier `moissala_linelist_FR.xlsx` en utilisant `here()` et `import()`.
