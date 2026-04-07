@@ -170,7 +170,7 @@ In the above code, we are creating a new column (`new_column`) by performing som
 
 ```{r}
 mutate(df_raw,
-       muac_cm = muac / 100)
+       muac_cm = muac / 10)
 ```
 
 :::{.write}
@@ -190,7 +190,7 @@ Great! But what if instead of creating a new column we instead wanted to change 
 
 ```{r}
 mutate(df_raw,
-       muac = muac / 100)
+       muac = muac / 10)
 ```
 
 We might want to keep age in months as well as years, so we won't reassign that column. But there are some other columns that could stand to be changed. There are a lot of reasons we might want to change a column, two of the most common ones are:

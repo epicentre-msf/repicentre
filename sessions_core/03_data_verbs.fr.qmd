@@ -176,7 +176,7 @@ Par exemple, nous pourrions créer une nouvelle colonne exprimant le [périmètr
 
 ```{r}
 mutate(df_brut,
-       pb_cm = pb / 100) # une opération arithmétique simple
+       pb_cm = pb / 10) # une opération arithmétique simple
 ```
 
 :::{.write}
@@ -198,7 +198,7 @@ Par exemple, si nous voulions *remplacer* la colonne `pb` qui contenait des vale
 
 ```{r}
 mutate(df_brut,
-       pb = pb / 100)
+       pb = pb / 10)
 ```
 
 Nous voulons souvent conserver la colonne originelle, mais il existe des cas raisonnables où nous souhaitons écraser les données par une nouvelle version. Par exemple : 
