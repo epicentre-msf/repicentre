@@ -1,7 +1,7 @@
 # Solutions pour la session 05 tableaux résumés
-# Auteurs : l'equipe FETCH
+# Auteurs : l'équipe FETCH
 # Date de création : 08/02/2025
-# Derniere mise a jour : 06/03/2025
+# Dernière mise a jour : 06/03/2026
 # Description : code modèle pour la session 5 (tableaux résumés)
 
 
@@ -32,7 +32,7 @@ df_linelist |>
 
 # Proportions
 # la létalité doit être calculée sur les patients dont le statut à la sortie est connu
-# Il faut donc filtrer avant de compter pour ne garder que les patients avec déces/gueri
+# Il faut donc filtrer avant de compter pour ne garder que les patients avec décès/guéris
 df_sortie <- df_linelist |>
   filter(
     statut_sortie != "sortie contre avis medical",
@@ -119,7 +119,7 @@ df_linelist |>
   )
 
 
-# 3) Tableau des signes, symptomes et statut palu en fonction du statut d'hospitalisation
+# 3) Tableau des signes, symptômes et statut palu en fonction du statut d'hospitalisation
 
 df_linelist |>
   # Enlever les patients sans statut d'hospitalisation
