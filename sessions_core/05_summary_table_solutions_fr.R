@@ -1,7 +1,7 @@
 # Solutions pour la session 05 tableaux résumés
-# Auteurs : l'equipe FETCH
+# Auteurs : l'équipe FETCH
 # Date de création : 08/02/2025
-# Derniere mise a jour : 06/03/2025
+# Dernière mise a jour : 06/03/2026
 # Description : code modèle pour la session 5 (tableaux résumés)
 
 
@@ -32,7 +32,7 @@ df_linelist |>
 
 # Proportions
 # la létalité doit être calculée sur les patients dont le statut à la sortie est connu
-# Il faut donc filtrer avant de compter pour ne garder que les patients avec déces/gueri
+# Il faut donc filtrer avant de compter pour ne garder que les patients avec décès/guéris
 df_sortie <- df_linelist |>
   filter(
     statut_sortie != "sortie contre avis medical",
@@ -63,8 +63,7 @@ df_linelist |>
     n_femmes = sum(sexe == "f", na.rm = TRUE),
     n_hosp = sum(hospitalisation == "oui", na.rm = TRUE),
     moy_age_hosp = mean(age[hospitalisation == "oui"], na.rm = TRUE),
-    moy_age_femmes = mean(age[sexe == "f"], na.rm = TRUE),
-    n_deces_moins_6m = sum(statut_sortie[age_groupe == "< 6 mois"] == "deces", na.rm = TRUE)
+    moy_age_femmes = mean(age[sexe == "f"], na.rm = TRUE)
   ) |>
   
   # Ajoute des proportions :
@@ -120,7 +119,7 @@ df_linelist |>
   )
 
 
-# 3) Tableau des signes, symptomes et statut palu en fonction du statut d'hospitalisation
+# 3) Tableau des signes, symptômes et statut palu en fonction du statut d'hospitalisation
 
 df_linelist |>
   # Enlever les patients sans statut d'hospitalisation
@@ -183,7 +182,7 @@ df_linelist|>
 # Defi
 df_linelist |>
   summarize(
-    .by = sub_prefecture,
-    n_death_u6m = sum(outcome[age_group == "< 6 months"] == "dead", na.rm = TRUE)
+    .by = sous_prefecture,
+    n_deces_moins_6m = sum(statut_sortie[age_groupe == "< 6 mois"] == "deces", na.rm = TRUE)
   ) 
 
