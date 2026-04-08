@@ -63,8 +63,7 @@ df_linelist |>
     n_femmes = sum(sexe == "f", na.rm = TRUE),
     n_hosp = sum(hospitalisation == "oui", na.rm = TRUE),
     moy_age_hosp = mean(age[hospitalisation == "oui"], na.rm = TRUE),
-    moy_age_femmes = mean(age[sexe == "f"], na.rm = TRUE),
-    n_deces_moins_6m = sum(statut_sortie[age_groupe == "< 6 mois"] == "deces", na.rm = TRUE)
+    moy_age_femmes = mean(age[sexe == "f"], na.rm = TRUE)
   ) |>
   
   # Ajoute des proportions :
@@ -183,7 +182,7 @@ df_linelist|>
 # Defi
 df_linelist |>
   summarize(
-    .by = sub_prefecture,
-    n_death_u6m = sum(outcome[age_group == "< 6 months"] == "dead", na.rm = TRUE)
+    .by = sous_prefecture,
+    n_deces_moins_6m = sum(statut_sortie[age_groupe == "< 6 mois"] == "deces", na.rm = TRUE)
   ) 
 
